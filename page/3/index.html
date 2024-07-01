@@ -54,7 +54,7 @@
   isHome: true,
   isHighlightShrink: false,
   isToc: false,
-  postUpdate: '2024-07-01 22:20:12'
+  postUpdate: '2024-07-01 22:49:03'
 }</script><script>(win=>{
       win.saveToLocal = {
         set: (key, value, ttl) => {
@@ -151,215 +151,97 @@
         }
       }
       detectApple()
-    })(window)</script><meta name="generator" content="Hexo 7.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">834</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><hr class="custom-hr"/></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="文KRIFE齐的博客"><span class="site-name">文KRIFE齐的博客</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">文KRIFE齐的博客</h1></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/06/16/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US2%E2%80%94%E2%80%94Shader%E5%BF%85%E5%A4%87%E5%9F%BA%E7%A1%80/US2S3%E2%80%94%E2%80%94CG%E8%AF%AD%E6%B3%95/US2S3L9%E2%80%94%E2%80%94%E8%AF%AD%E4%B9%89/" title="US2S3L9——语义">US2S3L9——语义</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-06-16T07:45:20.000Z" title="发表于 2024-06-16 15:45:20">2024-06-16</time></span></div><div class="content">US2S3L9——语义
-语义
-CG语言中提供了 语义 这种特殊关键字用于修饰函数中的传入参数和返回值
-它的主要作用是让Shader知道从哪里读取数据，并把数据输出到哪里
-让我们在Shader开发当中可以获取到想要的数据，并且可以把数据传递到正确的目标
-以最简单的顶点着色器为例：
-
-​POSITION​：应用阶段准备好的顶点数据会传入到该函数内，因此该参数需要这个语义来指定需要模型的顶点消息
-​SV_POSITION​：模型的顶点需要转换到裁剪空间，因此该函数的返回值需要这个语义来指定函数返回值代表裁剪空间下的坐标
-
-1234567#pragma vertex myVert//顶点着色器 回调函数float4 myVert(float4 v : POSITION) : SV_POSITION&#123;    return UnityObjectToClipPos(v);    //假设这里对顶点坐标进行变换，将变换出的顶点坐标返回出去&#125;
-注意：Unity中只支持CG当中的部分语义
-语义的主要作用是让 Shader 知道从哪里读取数据，并把数据输出到哪里
-我们在编写顶点片元着色 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/06/16/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US2%E2%80%94%E2%80%94Shader%E5%BF%85%E5%A4%87%E5%9F%BA%E7%A1%80/US2S3%E2%80%94%E2%80%94CG%E8%AF%AD%E6%B3%95/US2S3L8%E2%80%94%E2%80%94%E9%A1%B6%E7%82%B9-%E7%89%87%E5%85%83%E7%9D%80%E8%89%B2%E5%99%A8%E5%9F%BA%E6%9C%AC%E7%BB%93%E6%9E%84/" title="US2S3L8——顶点-片元着色器基本结构">US2S3L8——顶点-片元着色器基本结构</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-06-16T06:53:03.000Z" title="发表于 2024-06-16 14:53:03">2024-06-16</time></span></div><div class="content">US2S3L8——顶点-片元着色器基本结构
-顶点着色器的基本结构
-首先需要使用 #pragma vertex​ 来指定实现顶点着色器的函数
-最基础的顶点着色器函数要求：
+    })(window)</script><meta name="generator" content="Hexo 7.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">26</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div><hr class="custom-hr"/></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="文KRIFE齐的博客"><span class="site-name">文KRIFE齐的博客</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">文KRIFE齐的博客</h1></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/post/cs1l6------cimc-conversion-wtkxi.html" title="CS1L6——隐式转换">CS1L6——隐式转换</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-06-14T11:02:43.000Z" title="发表于 2023-06-14 19:02:43">2023-06-14</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/C/">C#</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/C/C-%E5%85%A5%E9%97%A8%E7%B3%BB%E5%88%97/">C#入门系列</a></span></div><div class="content">CS1L6——隐式转换
+隐式转换
+隐式转换就是某些变量类型按照隐式转换的规则[^1]，可以直接转变为另一种变量类型
+大致要点是：大集合完全包含的小集合，小集合即可转换为大集合
+隐式转换的规则
+相同类型的隐式转换
+​sbyte​ -&gt; short​ -&gt; int​ -&gt; long​（小范围的类型可以隐式转换为大范围类型）
+1234567891011sbyte sb = 1; // -128~127int i = 1;  //  -21亿~21亿short s = 1;    //  -32768~32767long l = 1;    //  -九百万兆~九百万兆s = sb;i = sb;i = s;l = sb;l = s;l = i;
+无符号  byte​ -&gt; ushort​ -&gt; uint​ -&gt; ulong​（小范围的类型可以隐式转换为大范围类型）
+1234567891011byte b = 1;    //  0~255uint ui = 1;    //  0~42亿ushort us = 1;  //  0~65535ulong ul ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/post/cs1l5------transfer-character-19s1h4.html" title="CS1L5——转义字符">CS1L5——转义字符</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-06-14T10:51:18.000Z" title="发表于 2023-06-14 18:51:18">2023-06-14</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/C/">C#</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/C/C-%E5%85%A5%E9%97%A8%E7%B3%BB%E5%88%97/">C#入门系列</a></span></div><div class="content">CS1L5——转义字符
+转义字符
+转义字符是字符串的一部分，用来表示一些特殊含义的字符，在字符串中表现、单引号、引号、空行
+固定写法
+1234//固定写法// \字符// \与 不同的字符 组合有不同的含义，例如：string str1 = &quot;\n&quot;
+常用的转义字符
 
 
-参数类型为float4​，它代表传入的顶点的坐标，该参数需要由POSITION​语义修饰，它代表**把模型的顶点坐标填充到这个参数当中**
+单引号 \'​
+1str = &quot;hh\&#x27;hh\&#x27;hh&quot;;
+输出：
+1hh&#x27;hh&#x27;hh
 
 
-返回值类型为float4​，它代表经过变换的顶点坐标，返回值需要由SV_POSITION​语义修饰，它代表**输出的内容是裁剪空间中的顶点坐标**
+双引号 \&quot;​
+1str = &quot;\&quot;hhh\&quot;&quot;;
+输出：
+1&quot;hhh&quot;
 
 
-函数内部需要对传入的模型空间的顶点坐标转换到裁剪空间后再返回出去
-可以使用mul(UNITY_MATRIX_MVP, *)​，其中mul()​是CG提供的内置的矩阵和向量的乘法运算函数，
-​UNITY_MATRIX_MVP​ 代表一个变换矩阵，是Unity内置的模型M，观察V，投影P矩阵的集合
-上面的写法是旧写法，在Unity2022内，它将被Unity自动替换为UnityObjectToClipPos(v)​，它是Unity封装的函数，效果是一样的
+斜杠 \\​
+1str = &quot;hh\\hh&quot;;
+输出：
+1hh\hh
 
 
-关于语义是什么，详见：US2S3L9——语义
-123456789101 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/06/16/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US2%E2%80%94%E2%80%94Shader%E5%BF%85%E5%A4%87%E5%9F%BA%E7%A1%80/US2S3%E2%80%94%E2%80%94CG%E8%AF%AD%E6%B3%95/US2S3L7%E2%80%94%E2%80%94%E5%87%BD%E6%95%B0/" title="US2S3L7——函数">US2S3L7——函数</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-06-16T06:21:59.000Z" title="发表于 2024-06-16 14:21:59">2024-06-16</time></span></div><div class="content">US2S3L7——函数
-本章代码关键字
-12in		//表示输入参数，用于外部传给内部，内部只会用，不会改，可以有多个out		//表示输出参数，用于内部传给外部，内部必须初始化或修改，可以有多个
-函数
-CG语法中的函数声明和使用几乎和C#中一模一样
-区别主要是CG中的 in​ 和 out​ 关键字
-
-in​ 表示输入参数，用于外部传给内部，内部只会用，不会改，可以有多个
-​out​ 表示输出参数，用于内部传给外部，内部必须初始化或修改，可以有多个
-
-对于有返回值的函数，要不采用返回值形式，要不采用 out​
-无返回值的函数
-基本结构：
-1234void name(in 参数类型 参数名, out 参数类型 参数名)&#123;	函数体&#125;
-
-​void​：以 void​ 开头，表示没有返回值
-​name​：函数的名称
-​in​：表示是输入参数，表示由函数外部传递给函数内部，内部不会修改该参数，只会使用该参数进行计算，允许有多个
-​out​：表示是输出参数，表示由函数内部传递给函数的调用者，在函数内部必须对该参数值进行初始化或修改，允许有多个
-
-注意：
-​in​ 和 out​  ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/06/16/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US2%E2%80%94%E2%80%94Shader%E5%BF%85%E5%A4%87%E5%9F%BA%E7%A1%80/US2S3%E2%80%94%E2%80%94CG%E8%AF%AD%E6%B3%95/US2S3L6%E2%80%94%E2%80%94%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6%E8%AF%AD%E5%8F%A5/" title="US2S3L6——流程控制语句">US2S3L6——流程控制语句</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-06-16T06:18:17.000Z" title="发表于 2024-06-16 14:18:17">2024-06-16</time></span></div><div class="content">US2S3L6——流程控制语句
-流程控制语句
-CG语法中的流程控制语句和C#中的使用一模一样
-需要注意的是，在使用它们时要更多的考虑性能消耗
-
-尽量少的使用循环语句，如果一定要用要减少次数和复杂度
-要利用GPU并行性这一特点来替代循环
-尽量避免复杂的条件分支
-
-条件分支语句
-尽量避免复杂的条件分支
-
-​if​ 语句
-​switch​ 语句
-
-条件分支语句的使用和C#中一模一样
-循环语句
-尽量少的使用循环语句，如果一定要用要减少次数和复杂度
-要利用GPU并行性这一特点来替代循环
-
-​for​ 循环
-​while​ 循环
-​do…while​ 循环
-
-循环语句的使用和C#中一模一样
-</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/06/16/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US2%E2%80%94%E2%80%94Shader%E5%BF%85%E5%A4%87%E5%9F%BA%E7%A1%80/US2S3%E2%80%94%E2%80%94CG%E8%AF%AD%E6%B3%95/US2S3L5%E2%80%94%E2%80%94%E8%BF%90%E7%AE%97%E7%AC%A6%E7%9B%B8%E5%85%B3/" title="US2S3L5——运算符相关">US2S3L5——运算符相关</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-06-16T04:55:02.000Z" title="发表于 2024-06-16 12:55:02">2024-06-16</time></span></div><div class="content">US2S3L5——运算符相关
-运算符
-CG语法中比较、条件、逻辑、数学等运算符的使用和C#中一致，需要注意的是：
-
-逻辑运算符在CG中不存在C#中的&quot;短路&quot;操作
-数学运算符在CG中取余符号只能向整数取余
-
-比较运算符
-CG语言中比较运算符包括
-
-大于 &gt;​
-小于 &lt;​
-大于等于 &gt;=​
-小于等于 &lt;=​
-等于 ==​
-不等于 !=​
-
-CG中的比较运算符的使用和C#中一样，详见：CS1L11——条件运算符，运算结果为 bool​ 值
-1234fixed f1 = 3;fixed f2 = 4;bool result = f1 &gt; f2;
-条件运算符
-CG语言中条件运算符（三目(三元)运算符）
-1condition ? value_if_true : value_if_false
-
-​condition​ 是一个条件表达式
-如果 condition​ 为真将返回 value_if_true​
-否则返回 value_if_false​
-
-CG中的条件运算符的使用和C#的三目运算符中一样
-1234fixed f1 = 3;fixed f2 = ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/06/16/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US2%E2%80%94%E2%80%94Shader%E5%BF%85%E5%A4%87%E5%9F%BA%E7%A1%80/US2S3%E2%80%94%E2%80%94CG%E8%AF%AD%E6%B3%95/US2S3L4%E2%80%94%E2%80%94Swizzle%E6%93%8D%E4%BD%9C%E7%AC%A6/" title="US2S3L4——Swizzle操作符">US2S3L4——Swizzle操作符</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-06-16T04:19:54.000Z" title="发表于 2024-06-16 12:19:54">2024-06-16</time></span></div><div class="content">US2S3L4——Swizzle操作符
-Swizzle操作符
-上节课我们学习了向量，但是我们并没有讲解如何获取向量中某元素的相关知识点
-而这节课将要学习的Swizzle操作符就可以用于获取向量中元素
-Swizzle操作符通常以点号( .​ )的形式使用，后面跟着所需的分量顺序
-对于四维向量来说，我们可以通过：向量.xyzw​ 或 向量.rgba​
-两种分量的写法来表示向量中的四个值
-其中 xyzw​ 和 rgba​ 分别代表四维向量中的四个元素
-在此的意义就是向量一般可以用来表示坐标和颜色
-
-向量获取元素可以利用Swizzle操作符获取
-矩阵获取元素和二维数组获取方式一样
-Swizzle操作符可以让我们对向量进行方便的操作
-向量和矩阵在声明和获取时可以配合使用
-高维向量或矩阵可以用低维容器装载，可以利用这个特点将4维变3维，4x4变3x3
-
-Swizzle操作符使用方法
+不常用的转义字符
 
 
-利用它来提取分量，使用 xyzw​ 或 rgba​
- 123456789fixed4 f4 = fixed4(1, 2, 3, 4);fixed f;//提取第一个分量f = f4.x;f = f4.r;//提取第 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/06/16/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US2%E2%80%94%E2%80%94Shader%E5%BF%85%E5%A4%87%E5%9F%BA%E7%A1%80/US2S3%E2%80%94%E2%80%94CG%E8%AF%AD%E6%B3%95/US2S3L3%E2%80%94%E2%80%94%E7%89%B9%E6%AE%8A%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" title="US2S3L3——特殊数据类型">US2S3L3——特殊数据类型</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-06-16T03:53:41.000Z" title="发表于 2024-06-16 11:53:41">2024-06-16</time></span></div><div class="content">US2S3L3——特殊数据类型
-本章代码关键字
-12数值类型维数 向量名 = 数值类型维数(num, ...)		//向量声明，最大维度不超过4维，可以使用bool声明bool向量数值类型行数x列数 = &#123; num, ... &#125;				//矩阵声明，矩阵最大行列不大于4，不小于1
-特殊数据类型
-注意：CG中向量，矩阵和数组是完全不同的，向量和矩阵是内置的数据类型，而数组则是一种数据结构，不是内置数据类型
-
-CG可以声明任意数值类型的矩阵和向量
-向量最大维度不超过4维
-矩阵最大行列不大于4，不小于1，在赋值时一定注意行列的关系
-​bool​ 向量可以用来存储向量之间比较的结果
-
-向量
-向量类型属于CG语言的内置数据类型
-内置的向量类型是基于基础数据类型声明的
-向量的最大维度不超过4维，数据类型可以是任意数值类型（也就是​基础数据类型​的数值类型）
-基本构成：
-
-​数据类型2 = 数据类型2(n1,n2)​
-​数据类型3 = 数据类型3(n1,n2,n3)​
-​数据类型4 = 数据类型4(n1,n2,n3,n4)​
-
-123456789//二维向量int2 i2 = i ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/06/15/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US2%E2%80%94%E2%80%94Shader%E5%BF%85%E5%A4%87%E5%9F%BA%E7%A1%80/US2S3%E2%80%94%E2%80%94CG%E8%AF%AD%E6%B3%95/US2S3L2%E2%80%94%E2%80%94%E5%9F%BA%E7%A1%80%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" title="US2S3L2——基础数据类型">US2S3L2——基础数据类型</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-06-15T13:58:16.000Z" title="发表于 2024-06-15 21:58:16">2024-06-15</time></span></div><div class="content">US2S3L2——基础数据类型
-基础数据类型
+制表符（tab）\t​
+1str = &quot;h\th&quot;;
+输出：
+1h	h
 
 
-​uint​：32为无符号整形
+退格（backspace）\b​
+1str = &quot;hh\bh&quot;;
+输出：
+1hh
 
 
-​int​：32位整形
-
-
-​float​：32位浮点数，符号：f​
-
-
-​half​：16位浮点数，符号：h​
-
-
-​fixed​：12位浮点数，Shader最常用的浮点数类型，不需要加后缀
-
-
-​bool​：布尔类型
-
-
-​string​：字符串
-
-
-​sampler​：纹理对象句柄
-下面都是用于处理纹理（Texture）数据的数据类型，他们的主要区别是纹理的维度和类型
-
-​sampler​： 通用的纹理采样器，可以用于处理各种不同维度和类型的纹理
-​sampler1D​：用于一维纹理，通常用于对一维纹理进行采样，例如从左到右的渐变色
-​sampler2D​：用于二维纹理，最常见的纹理类型之一。它用于处理二维图像纹理，例如贴图
-​sampler3D​：用于三维纹理，通常用于体积纹理，例如体积渲染
-​samplerCUBE​：用于立方体纹理，通常用于处理环境映射等需要立方体贴图的情况
-​samplerRECT​：用于处理矩形纹理，通常用于一些非标准的纹理映射需求
-
-
-
-1234567891011ui ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/06/15/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US2%E2%80%94%E2%80%94Shader%E5%BF%85%E5%A4%87%E5%9F%BA%E7%A1%80/US2S3%E2%80%94%E2%80%94CG%E8%AF%AD%E6%B3%95/US2S3L1%E2%80%94%E2%80%94CG%E8%AF%AD%E5%8F%A5%E4%B9%A6%E5%86%99%E4%BD%8D%E7%BD%AE%E5%8F%8A%E6%8C%87%E5%AE%9A%E7%9D%80%E8%89%B2%E5%99%A8%E5%87%BD%E6%95%B0/" title="US2S3L1——CG语句书写位置及指定着色器函数">US2S3L1——CG语句书写位置及指定着色器函数</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-06-15T13:42:11.000Z" title="发表于 2024-06-15 21:42:11">2024-06-15</time></span></div><div class="content">US2S3L1——CG语句书写位置及指定着色器函数
-本章代码关键字
-12345CGPROGRAM		//CG语句起始指令ENDCG			//CG语句结束指令//cg语句指令#pragma vertex		//这个预处理器指令会指定实现顶点着色器的函数#pragma fragment	//这个预处理器指令会指定实现片元着色器的函数
-CG语句写在哪里
-对于顶点/片元着色器来说，CG语句需要写在 Pass​ 渲染通道语句块中
-我们需要在Pass​语句块中，加入指令：CGPROGRAM​ 和 ENDCG​
-在这两个指令之间 就是我们书写CG代码的地方
-12345678910111213141516Shader &quot;TeachShader/Lesson13&quot;&#123;    Properties &#123;...&#125;    SubShader    &#123;        Tags &#123; ... &#125;        //...        Pass        &#123;            CGPROGRAM			//...CG语句写在 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/06/15/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US2%E2%80%94%E2%80%94Shader%E5%BF%85%E5%A4%87%E5%9F%BA%E7%A1%80/US2S3%E2%80%94%E2%80%94CG%E8%AF%AD%E6%B3%95/" title="US2S3——CG语法">US2S3——CG语法</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-06-15T13:15:15.000Z" title="发表于 2024-06-15 21:15:15">2024-06-15</time></span></div><div class="content">US2S3——CG语法
-Cg
-
-Cg语言（C for Graphics）是为GPU编程设计的高级着色器语言，由NVIDIA公司开发。
-Cg极力保留C语言的大部分语义，并让开发者从硬件细节中解脱出来，
-Cg同时也有一个高级语言的其他好处，如代码的易重用性，可读性得到提高，编译器代码优化。
-最新版本为3.1,当前已不再被积极开发与支持.
-Cg语言_百度百科 (baidu.com)
-
-本系列学习内容
-
-CG语句书写位置及指定着色器函数（写CG语法逻辑时，必须使用#pragma vertex​和#pragma fragment​指定实现着色器的函数）
-基础数据类型（fixed​，half​，sampler​，数组声明不同）
-特殊数据类型（向量，矩阵，bool​ 向量存储向量间比较结果）
-Swizzle操作符（获取向量分量，重新排列分量，配合低维向量声明高维向量，获取矩阵的某一行或元素，配合向量声明矩阵，高维转低维）
-运算符相关（比较，条件（三目），逻辑，数字计算等等）
-流程控制语句
-函数
-顶点-片元着色器基本结构（顶点着色器：将模型顶点转换到裁剪空间；片元着色器：输出片元颜色）
-语义（让Sha ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/2/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/#content-inner">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/#content-inner">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/84/#content-inner">84</a><a class="extend next" rel="next" href="/page/4/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">文KRIFE齐</div><div class="author-info__description">目前正处于搭建测试环节</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">834</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/07/01/hello-world/" title="欢迎来到文KRIFE齐的博客！">欢迎来到文KRIFE齐的博客！</a><time datetime="2024-07-01T11:46:20.391Z" title="发表于 2024-07-01 19:46:20">2024-07-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/US3S1L5%E2%80%94%E2%80%94Phong%E5%85%89%E7%85%A7%E6%A8%A1%E5%9E%8B/" title="US3S1L5——Phong光照模型">US3S1L5——Phong光照模型</a><time datetime="2024-06-25T14:33:57.000Z" title="发表于 2024-06-25 22:33:57">2024-06-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/US3S1L4%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B/US3S1L4-2%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B%E7%9A%84%E9%80%90%E7%89%87%E5%85%83%E5%85%89%E7%85%A7/" title="US3S1L4-2——Phong式高光反射模型的逐片元光照">US3S1L4-2——Phong式高光反射模型的逐片元光照</a><time datetime="2024-06-25T13:16:37.000Z" title="发表于 2024-06-25 21:16:37">2024-06-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/US3S1L4%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B/US3S1L4-1%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B%E7%9A%84%E9%80%90%E9%A1%B6%E7%82%B9%E5%85%89%E7%85%A7/" title="US3S1L4-1——Phong式高光反射模型的逐顶点光照">US3S1L4-1——Phong式高光反射模型的逐顶点光照</a><time datetime="2024-06-25T13:16:05.000Z" title="发表于 2024-06-25 21:16:05">2024-06-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/US3S1L4%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B/" title="US3S1L4——Phong式高光反射模型">US3S1L4——Phong式高光反射模型</a><time datetime="2024-06-25T10:14:12.000Z" title="发表于 2024-06-25 18:14:12">2024-06-25</time></div></div></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span><a class="card-more-btn" href="/archives/" title="查看更多">
-    <i class="fas fa-angle-right"></i></a></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/07/"><span class="card-archive-list-date">七月 2024</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/06/"><span class="card-archive-list-date">六月 2024</span><span class="card-archive-list-count">51</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/05/"><span class="card-archive-list-date">五月 2024</span><span class="card-archive-list-count">56</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/04/"><span class="card-archive-list-date">四月 2024</span><span class="card-archive-list-count">127</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/03/"><span class="card-archive-list-date">三月 2024</span><span class="card-archive-list-count">135</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/02/"><span class="card-archive-list-date">二月 2024</span><span class="card-archive-list-count">62</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/01/"><span class="card-archive-list-date">一月 2024</span><span class="card-archive-list-count">31</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/12/"><span class="card-archive-list-date">十二月 2023</span><span class="card-archive-list-count">2</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">834</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2024-07-01T14:20:11.890Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By 文KRIFE齐</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
+空字符（一般用于占位）\0​
+在C语言里是字符串的结束符，但在C#中不是，只是单纯的空字符
+ ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/post/cs1l4-constant-1fmj8l.html" title="CS1L4——常量">CS1L4——常量</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-06-14T09:34:16.000Z" title="发表于 2023-06-14 17:34:16">2023-06-14</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/C/">C#</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/C/C-%E5%85%A5%E9%97%A8%E7%B3%BB%E5%88%97/">C#入门系列</a></span></div><div class="content">CS1L4——常量
+关键字
+1const   //常量关键字
+常量
+常量关键字 const​
+常量必须初始化，不能被修改
+变量不一定需要初始化
+常量的作用多用于申明常用不变的变量
+1234567891011//常量关键字 const//常量声明固定写法//const 变量类型 变量名 = 初始值//常量声明const int i1 = 1;//变量声明int i2 = 2;Console.WriteLine(i1+&quot;是常量&quot;+i2+&quot;是变量&quot;);Console.WriteLine(&quot;常量必须初始化，不能被修改&quot;);Console.WriteLine(&quot;变量不一定需要初始化&quot;);Console.WriteLine(&quot;常量的作用多用于申明常用不变的变量&quot;);
+输出：
+12341是常量2是变量常量必须初始化，不能被修改变量不一定需要初始化常量的作用多用于申明常用不变的变量
+本课源代码
+12345678910111213141516171819202122namespace lesson4常量& ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/post/cs1l3-the-essence-of-variables-z26in06.html" title="CS1L3——变量的本质">CS1L3——变量的本质</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-06-14T09:01:26.000Z" title="发表于 2023-06-14 17:01:26">2023-06-14</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/C/">C#</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/C/C-%E5%85%A5%E9%97%A8%E7%B3%BB%E5%88%97/">C#入门系列</a></span></div><div class="content">CS1L3——变量的本质
+变量的本质
+变量的本质是二进制 ——&gt; 计算机中所有数据的本质都是二进制，也就是一堆0和1
+是二进制的原因是：数据传递只能通过电信号，电信号只有开和关两种状态
+计算机中的存储单位最小为 bit​（位），他只能表示0和1两个数字
+1bit就是1个数，0或者1
+为了方便数据表示，出现一个叫 byte​（字节）的单位，它是由8个 bit​ 组成的存储单位，所以我们一般说一个字节为8位
+为何 int​ 最多表示-21亿~21亿？因为 int​ 是由4个字节，也就是32个 0或1 表示的
+关键字
+1sizeof()    //查看某类型所占字节数
+变量的存储空间
+1bit就是内存中的1和0
+1byte = 8bit
+1MB = 1024KB
+1GB = 1024MB
+1TB = 1024GB
+通过 sizeof​ 方法可以获取变量类型所占的内存空间（单位：字节）
+123456789101112131415161718192021//1、有符号的整形变量 能存储一定范围内的正负数包括0的变量类型Console.WriteLine(&quot;sbyte所占的字节数为 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/post/cs1l2-variable-z2awnhq.html" title="CS1L2——变量">CS1L2——变量</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-06-14T07:36:48.000Z" title="发表于 2023-06-14 15:36:48">2023-06-14</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/C/">C#</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/C/C-%E5%85%A5%E9%97%A8%E7%B3%BB%E5%88%97/">C#入门系列</a></span></div><div class="content">CS1L2——变量
+关键字
+1234567891011121314151617181920#region #endregion    //上下两句组成代码块折叠的预处理器语句，只在VS编辑器有效果//1、有符号的整形变量 能存储一定范围内的正负数包括0的变量类型sbyte sb = 1; // -128~127int i = 1;  //  -21亿~21亿short s = 1;    //  -32768~32767long l = 1;    //  -九百万兆~九百万兆//2、无符号的整型变量 能存储一定范围内0和正数的变量类型byte b = 1;    //  0~255uint ui = 1;    //  0~42亿ushort us = 1;  //  0~65535ulong ul = 1;   //  0~18百万兆//3、浮点数（小数）float f = 0.1f;    // 数字后必须加f声明float，因为小数会被默认为double，从非0数算起为有效数字，7/8位有效数字，根据编译器不同有可能不同，超出部分会四舍五入double d = 0.1;     ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/post/cs1l1----c-1p8nf3.html" title="CS1L1——C#程序的基本结构">CS1L1——C#程序的基本结构</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-06-14T07:22:17.000Z" title="发表于 2023-06-14 15:22:17">2023-06-14</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/C/">C#</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/C/C-%E5%85%A5%E9%97%A8%E7%B3%BB%E5%88%97/">C#入门系列</a></span></div><div class="content">CS1L1——C#程序的基本结构
+C#的基本结构
+由：命名空间——类——函数（方法）——各种代码组成
+123456789101112131415161718192021222324252627/// &lt;summary&gt;/// 命名空间  —— 工具包/// &lt;/summary&gt;namespace Lesson1_第一个应用程序&#123;    //命名空间 代码块    //面向对象相关知识点内容(核心部分) 会在这里来写代码    /// &lt;summary&gt;    /// 类 —— 工具    /// &lt;/summary&gt;    class Program    &#123;        //类 代码块        //面向对象相关知识点内容（核心部分） 会在这里来写代码        /// &lt;summary&gt;        /// 函数 —— 工具能做的事情        /// 主函数 一个程序的主入口        /// &lt;/summary&gt;        /// &lt;param name=& ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/2/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/#content-inner">2</a><span class="page-number current">3</span></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">文KRIFE齐</div><div class="author-info__description">目前正处于搭建测试环节</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">26</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/07/01/hello-world/" title="欢迎来到文KRIFE齐的博客！">欢迎来到文KRIFE齐的博客！</a><time datetime="2024-07-01T11:46:20.391Z" title="发表于 2024-07-01 19:46:20">2024-07-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/post/us2s1l1----the-basic-concept-of-matrix-zixpgj.html" title="US2S1L1——矩阵的基本概念">US2S1L1——矩阵的基本概念</a><time datetime="2024-05-10T08:17:24.000Z" title="发表于 2024-05-10 16:17:24">2024-05-10</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/post/cs----c-z1eqhlo.html" title="CS——C#笔记">CS——C#笔记</a><time datetime="2024-02-01T10:37:01.000Z" title="发表于 2024-02-01 18:37:01">2024-02-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/post/cs1sl3-random-number-z2nquzm.html" title="CS1SL3——随机数">CS1SL3——随机数</a><time datetime="2023-08-11T12:55:42.000Z" title="发表于 2023-08-11 20:55:42">2023-08-11</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/post/cs1sl2-project-debugging-z2jjucm.html" title="CS1SL2——项目调试">CS1SL2——项目调试</a><time datetime="2023-08-11T12:55:40.000Z" title="发表于 2023-08-11 20:55:40">2023-08-11</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            
+            </div>
+            <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/C/"><span class="card-category-list-name">C#</span><span class="card-category-list-count">23</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/C/C-%E5%85%A5%E9%97%A8%E7%B3%BB%E5%88%97/"><span class="card-category-list-name">C#入门系列</span><span class="card-category-list-count">23</span></a></li></ul></li>
+            </ul></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/07/"><span class="card-archive-list-date">七月 2024</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/05/"><span class="card-archive-list-date">五月 2024</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/02/"><span class="card-archive-list-date">二月 2024</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/08/"><span class="card-archive-list-date">八月 2023</span><span class="card-archive-list-count">7</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/06/"><span class="card-archive-list-date">六月 2023</span><span class="card-archive-list-count">16</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">26</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2024-07-01T14:49:03.915Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By 文KRIFE齐</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
