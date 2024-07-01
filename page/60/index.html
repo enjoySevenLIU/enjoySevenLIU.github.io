@@ -1,0 +1,649 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>文KRIFE齐的博客 - 搭建中</title><meta name="author" content="文KRIFE齐"><meta name="copyright" content="文KRIFE齐"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="目前正处于搭建测试环节">
+<meta property="og:type" content="website">
+<meta property="og:title" content="文KRIFE齐的博客">
+<meta property="og:url" content="http://example.com/page/60/index.html">
+<meta property="og:site_name" content="文KRIFE齐的博客">
+<meta property="og:description" content="目前正处于搭建测试环节">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png">
+<meta property="article:author" content="文KRIFE齐">
+<meta property="article:tag" content="blog">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/page/60/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '文KRIFE齐的博客',
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2024-07-01 22:20:12'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">834</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><hr class="custom-hr"/></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="文KRIFE齐的博客"><span class="site-name">文KRIFE齐的博客</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">文KRIFE齐的博客</h1></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/08/22/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94C#%E7%AC%94%E8%AE%B0/CS4%E2%80%94%E2%80%94C#%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/" title="CS4——C#进阶系列">CS4——C#进阶系列</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-08-22T06:11:34.000Z" title="发表于 2023-08-22 14:11:34">2023-08-22</time></span></div><div class="content">CS4——C#进阶系列
+（笔记未开始迁移）
+本系列学习内容
+
+
+简单数据结构类
+
+ArrayList
+Stack
+Queue
+Hashtable
+
+
+
+泛型
+
+泛型
+泛型约束
+
+
+
+常用泛型数据结构类
+
+List
+Dictionary
+顺序存储和链式存储
+LinkedList
+泛型栈和队列
+
+
+
+委托和事件
+
+委托
+事件
+匿名函数
+Lambda表达式
+
+
+
+List排序
+
+
+协变逆变
+
+
+多线程
+
+
+预处理器指令
+
+
+反射和特性
+
+反射
+特性
+
+
+
+迭代器
+
+
+特殊语法
+
+var
+设置对象初始值
+设置集合初始值
+匿名类型
+可空类型
+空合并操作符
+内插字符串
+单句逻辑简略写法
+
+
+
+值类型和引用类型2
+
+反射
+特性
+
+
+
+排序进阶
+
+插入排序
+希尔排序
+归并排序
+快速排序
+堆排序
+
+
+
+‍
+</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/08/22/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94C#%E7%AC%94%E8%AE%B0/CS3%E2%80%94%E2%80%94C#%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/" title="CS3——C#核心系列">CS3——C#核心系列</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-08-22T06:11:11.000Z" title="发表于 2023-08-22 14:11:11">2023-08-22</time></span></div><div class="content">CS3——C#核心系列
+（笔记未开始迁移）
+
+
+语法知识
+
+
+面向对象的概念
+
+
+面向对象—封装
+
+类和对象
+成员变量和访问修饰符
+成员方法
+构造函数和析构函数
+成员属性
+索引器
+静态成员
+静态类和静态构造函数
+拓展方法
+运算符重载
+内部类和分部类
+
+
+
+面向对象—继承
+
+继承的基本规则
+里氏替换原则
+继承中的构造函数
+万物之父和装箱拆箱
+密封类
+
+
+
+面向对象—多态
+
+vob
+抽象类和抽象方法
+接口
+密封方法
+
+
+
+面向对象关联知识点
+
+万物之父中的方法
+String
+StringBuilder
+结构体和类的区别
+抽象类和接口的区别
+
+
+
+
+
+‍
+</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/08/22/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94C#%E7%AC%94%E8%AE%B0/CS2%E2%80%94%E2%80%94C#%E5%9F%BA%E7%A1%80%E7%B3%BB%E5%88%97/" title="CS2——C#基础系列">CS2——C#基础系列</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-08-22T06:08:20.000Z" title="发表于 2023-08-22 14:08:20">2023-08-22</time></span></div><div class="content">CS2——C#基础系列
+C#四部曲第二部分——系列代号CS2
+在上一系列里，我们学习了C#最基本的逻辑，主要函数以内的内容，包括各种变量、运算符和基础逻辑
+本系列将走出main​函数，接触到复杂数据类型，值和引用，函数相关，初步接触排序
+
+
+复杂数据类型概述
+
+
+枚举
+
+
+数组
+
+一维数组
+二维数组
+交错数组
+
+
+
+
+
+值类型和引用类型
+
+使用和存储上的区别
+特殊的引用类型string
+
+
+
+函数
+
+函数基础
+ref和out
+变长参数和参数默认值
+函数重载
+递归函数
+
+
+
+复杂数据类型—结构体
+
+
+排序初探
+
+冒泡排序
+选择排序
+
+
+
+</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/08/22/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U1%E2%80%94%E2%80%94Unity%E5%85%A5%E9%97%A8%E7%B3%BB%E5%88%97/U1L0%E2%80%94%E2%80%94Unity%E7%8E%AF%E5%A2%83%EF%BC%8C%E7%95%8C%E9%9D%A2%E5%8F%8A%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/U1L0-2%E2%80%94%E2%80%94Unity%E7%95%8C%E9%9D%A2%E5%9F%BA%E7%A1%80/" title="U1L0-2——Unity界面基础">U1L0-2——Unity界面基础</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-08-21T19:40:42.000Z" title="发表于 2023-08-22 03:40:42">2023-08-22</time></span></div><div class="content">U1L0-2——Unity界面基础
+Unity界面基础
+关于Unity的界面详细说明，可看这里 ——&gt; Unity 的界面 - Unity 手册
+Scene和Hierarchy窗口
+Scene（场景）和Hierarchy（层级）
+​​
+场景窗口和层级窗口是息息相关的
+层级窗口中看到的内容就是场景窗口中的显示对象
+Hierarchy层级窗口
+​​
+我们可以在Hierarchy窗口中创建或拖入各种游戏对象
+比如：模型、光源、图片UI等等内容
+层级窗口中显示的，就是一个场景中的所有对象
+在此窗口右键，可创建一些简单的3D物体，
+并对对象进行一些简单操作（复制，粘贴，克隆等）
+在物体前，可以选择是否显示和是否可选。
+Scene场景窗口
+窗口上方工具条内容
+​​
+
+
+渲染模式
+
+Shaded：着色器模式
+Wireframe：网格模式
+
+
+
+2D、3D视图切换
+
+
+光源、音效、特效显示开启
+
+
+打开或关闭 Scene 视图音频效果
+
+
+特效按钮和菜单
+
+
+场景可见性开关
+
+
+摄像机设置菜单
+
+
+Gizmos：辅助功能，控制场景上提示图标等
+
+
+‍
+坐标轴
+​​
+关于Unity中的3D世界坐标 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/08/22/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U1%E2%80%94%E2%80%94Unity%E5%85%A5%E9%97%A8%E7%B3%BB%E5%88%97/U1L0%E2%80%94%E2%80%94Unity%E7%8E%AF%E5%A2%83%EF%BC%8C%E7%95%8C%E9%9D%A2%E5%8F%8A%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/U1L0-1%E2%80%94%E2%80%94Unity%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" title="U1L0-1——Unity环境搭建">U1L0-1——Unity环境搭建</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-08-21T19:26:46.000Z" title="发表于 2023-08-22 03:26:46">2023-08-22</time></span></div><div class="content">U1L0-1——Unity环境搭建
+Unity引擎
+何为游戏引擎
+游戏引擎是指一些已编写好的可编辑电脑游戏系统或者一些交互式实时图像应用程序的核心组件。
+这些系统为游戏设计者提供各种编写游戏所需的各种工具，
+其目的在于让游戏设计者能容易和快速地做出游戏程序而不用由零开始。
+通俗来讲：游戏引擎就是专门做游戏的软件。它提供了很多现成的功能供我们使用让开发游戏事半功倍
+游戏引擎对于我们的意义
+
+降低做游戏的门槛……不用学太多的专业知识
+提升游戏开发的效率……不用从零开始
+
+如何学习Unity
+Unity相当于就是一个游戏开发工具包，我们只要学会使用工具包中的各个工具即可
+而使用这些工具的媒介就是我们已经学习完毕的C#程序语言
+总结
+
+什么是游戏引擎 —— 开发游戏的软件
+游戏引擎对于我们的意义 —— 门槛低，效率高
+如何学习游戏引擎 —— 软件操作、公共API、核心系统
+
+Unity就是一个做游戏的工具软件，它可以让开发游戏事半功倍。
+我们将通过我们学习的C#程序语言，作为和这个工具沟通的媒介，制作出最终的游戏产品。
+软件下载与安装
+首先，你需要下载一个Unity Hub——Unity Hu ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/08/22/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U1%E2%80%94%E2%80%94Unity%E5%85%A5%E9%97%A8%E7%B3%BB%E5%88%97/U1L0%E2%80%94%E2%80%94Unity%E7%8E%AF%E5%A2%83%EF%BC%8C%E7%95%8C%E9%9D%A2%E5%8F%8A%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/" title="U1L0——Unity环境，界面及工作原理">U1L0——Unity环境，界面及工作原理</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-08-21T19:13:05.000Z" title="发表于 2023-08-22 03:13:05">2023-08-22</time></span></div><div class="content">U1L0——Unity环境，界面及工作原理
+本笔记内容主要涉及Unity入门的前三部分，环境搭建，界面基础，工作原理等内容
+由于某些历史原因，在最初版的笔记里缺少了对这些知识的记录，因此缺少了这些部分的笔记
+通过整理提取他人的笔记，本部分内容得到补全，特别感谢盘子ssa整理的笔记，
+为了避免对已有笔记编号的过多修改，该部分内容特开编号U1L0，将所有相关内容记录该文件下
+
+
+Unity环境搭建
+
+Unity引擎是什么
+软件下载和安装
+新建工程和工程文件夹
+
+
+
+Unity界面基础
+
+Scene和Hierarchy窗口
+Game和Project窗口
+Inspector和Console窗口
+工具栏与父子关系
+
+
+
+Unity工作原理
+
+反射机制和游戏场景
+预设体和资源包的导入导出
+
+
+
+‍
+</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/08/22/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U4%E2%80%94%E2%80%94Unity%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/" title="U4——Unity进阶系列">U4——Unity进阶系列</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-08-21T19:08:16.000Z" title="发表于 2023-08-22 03:08:16">2023-08-22</time></span></div><div class="content">U4——Unity进阶系列
+Unity进阶系列的课程繁多且关系并不密切，且由多个课程组合而成，因此该系列最终的笔记形式可能和这个目录所写的差别较大！
+Unity四部曲第四部分——系列代号U4
+由于进阶分开成课，每个单独的课程会按照U4S1、U4S2这样的形式来作为代号（S编号取决于笔者的学习顺序）
+本系列主要涉及
+
+核心系统相关
+功能相关
+插件相关
+优化相关
+
+（预计该系列的内容如下面的目录所示，可能最后会有所调整，最后该系列更新完毕会重新整理，因此该目录为临时的目录）
+
+
+核心系统
+
+输入系统相关 
+资源寻址系统 Addressables
+物理系统之铰链和布料
+粒子系统
+光照系统
+DOTS（暂时放弃）
+Time Line
+地形系统
+
+
+
+插件相关
+
+Text Mesh Pro
+Do Tween
+
+
+
+功能相关
+
+视频播放
+Scriptable Object
+Animation Curve
+WWW 和 UnityWebRequest（该部分属于Unity网络开发）
+
+
+
+优化相关
+
+何为优化
+性能检测窗口
+静态批处理
+动态批处理
+网格合并
+
+
+
+‍
+</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/08/22/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UG%E2%80%94%E2%80%94UI%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0/UG4%E2%80%94%E2%80%94FairyGUI%E7%B3%BB%E5%88%97/" title="UG4——FairyGUI系列">UG4——FairyGUI系列</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-08-21T19:07:31.000Z" title="发表于 2023-08-22 03:07:31">2023-08-22</time></span></div><div class="content">UG4——FairyGUI系列
+UI系统第四部分——系列代号UG4
+FairyGUI
+FairyGUI是跨引擎的开源UI解决方案，它包含一个UI编辑器，以及多个流行游戏引擎的运行库(SDK)
+支持包括 Unity、Unreal、Cocos2dx、Egret、Laya、Flash 等等游戏引擎、
+需要时可以在FairyGUI官网上去查看官方文档：
+编辑器教程：编辑器使用基础 - 编辑器教程 | FairyGUI
+UnitySDK教程：特色功能 - Unity SDK 教程 | FairyGUI
+FairyGUI编辑器部分功能专业版才有
+本系列学习内容：
+
+
+FairyGUI基础
+
+
+基础必备
+
+
+FairyGUI编辑器下载和UnitySDK下载
+
+
+编辑器基础使用
+
+
+项目设置
+
+
+包的概念
+
+
+组件
+
+
+发布UI
+
+
+使用发布的UI
+
+加载包
+UIPanel加载界面
+动态加载界面
+StageCaera和UIContentScaler
+UIConfig
+
+
+
+
+
+FairyGUI中的基础元件
+
+
+元件
+
+
+图片
+
+
+图形
+
+
+动画
+
+序列帧动画元件
+骨骼动画元件
+
+
+
+装载器
+
+
+3D装 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/08/22/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UD%E2%80%94%E2%80%94Unity%E6%95%B0%E6%8D%AE%E6%8C%81%E4%B9%85%E5%8C%96%E7%AC%94%E8%AE%B0/UD4%E2%80%94%E2%80%94%E4%BA%8C%E8%BF%9B%E5%88%B6%E7%B3%BB%E5%88%97/" title="UD4——二进制系列">UD4——二进制系列</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-08-21T19:06:48.000Z" title="发表于 2023-08-22 03:06:48">2023-08-22</time></span></div><div class="content">UD4——二进制系列
+数据持久化第四部分——系列代号UD4
+二进制文件
+二进制是计算技术中广泛采用的一种数制。二进制数据是用0和1两个数码来表示的数，它的基数为2，进位规则是“逢二进一”
+计算机中存储的数据本质上都是2进制数的存储，在计算机中位（bit）是最小的存储单位，1位就是一个0或者一个1
+也就是说一个文件的数据本质上都是由n个0和1组合而成的，通过不同的解析规则最终呈现在我们的眼前。
+本系列学习内容
+
+
+各类型数据转字节数据
+
+
+文件操作相关
+
+文件相关
+文件流相关
+文件夹相关
+
+
+
+C#类对象的序列化和反序列化
+
+序列化
+反序列化
+加密
+
+
+
+知识补充
+
+
+Unity中添加菜单栏功能
+
+
+Excel数据读取
+
+导入Excel相关Dll包
+Excel数据读取
+
+
+
+
+
+学习二进制的原因
+之前我们学过的xml和json都是用特定的字符串组合规则来读写数据的。
+清晰易懂是他们的共同好处，但是也是一把双刃剑，
+比如如果我们用xml或者json存储数据，只要玩家找到对应的存储信息，就能够快速修改其中的内容。
+而且由于他们把数据转换成了对应的xml或者json字符串，我们最终在存储数据时 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/08/13/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UG%E2%80%94%E2%80%94UI%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0/UG3%E2%80%94%E2%80%94UGUI%E7%B3%BB%E5%88%97/UG3L18%E2%80%94%E2%80%94Canvas%20Group%20%E7%94%BB%E5%B8%83%E7%BB%84/" title="UG3L18——Canvas Group 画布组">UG3L18——Canvas Group 画布组</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-08-12T18:13:14.000Z" title="发表于 2023-08-13 02:13:14">2023-08-13</time></span></div><div class="content">UG3L18——Canvas Group 画布组
+问题：如何整体控制一个面板的淡入淡出等
+如果我们想要整体控制一个面板的淡入淡出 或者 整体禁用
+使用目前学习的知识点 是无法方便快捷的设置的
+Canvas Group
+为面板父对象添加 CanvasGroup组件 即可整体控制
+Canvas Group 参数相关
+​​
+
+Alpha：整体透明度控制
+Interactable：整体启用禁用设置
+Blocks Raycasts：整体射线检测设置
+Ignore Parent Groups：是否忽略父级CanvasGroup的作用
+
+‍
+</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/59/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/59/#content-inner">59</a><span class="page-number current">60</span><a class="page-number" href="/page/61/#content-inner">61</a><span class="space">&hellip;</span><a class="page-number" href="/page/84/#content-inner">84</a><a class="extend next" rel="next" href="/page/61/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">文KRIFE齐</div><div class="author-info__description">目前正处于搭建测试环节</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">834</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/07/01/hello-world/" title="欢迎来到文KRIFE齐的博客！">欢迎来到文KRIFE齐的博客！</a><time datetime="2024-07-01T11:46:20.391Z" title="发表于 2024-07-01 19:46:20">2024-07-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/US3S1L5%E2%80%94%E2%80%94Phong%E5%85%89%E7%85%A7%E6%A8%A1%E5%9E%8B/" title="US3S1L5——Phong光照模型">US3S1L5——Phong光照模型</a><time datetime="2024-06-25T14:33:57.000Z" title="发表于 2024-06-25 22:33:57">2024-06-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/US3S1L4%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B/US3S1L4-2%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B%E7%9A%84%E9%80%90%E7%89%87%E5%85%83%E5%85%89%E7%85%A7/" title="US3S1L4-2——Phong式高光反射模型的逐片元光照">US3S1L4-2——Phong式高光反射模型的逐片元光照</a><time datetime="2024-06-25T13:16:37.000Z" title="发表于 2024-06-25 21:16:37">2024-06-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/US3S1L4%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B/US3S1L4-1%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B%E7%9A%84%E9%80%90%E9%A1%B6%E7%82%B9%E5%85%89%E7%85%A7/" title="US3S1L4-1——Phong式高光反射模型的逐顶点光照">US3S1L4-1——Phong式高光反射模型的逐顶点光照</a><time datetime="2024-06-25T13:16:05.000Z" title="发表于 2024-06-25 21:16:05">2024-06-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/US3S1L4%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B/" title="US3S1L4——Phong式高光反射模型">US3S1L4——Phong式高光反射模型</a><time datetime="2024-06-25T10:14:12.000Z" title="发表于 2024-06-25 18:14:12">2024-06-25</time></div></div></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span><a class="card-more-btn" href="/archives/" title="查看更多">
+    <i class="fas fa-angle-right"></i></a></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/07/"><span class="card-archive-list-date">七月 2024</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/06/"><span class="card-archive-list-date">六月 2024</span><span class="card-archive-list-count">51</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/05/"><span class="card-archive-list-date">五月 2024</span><span class="card-archive-list-count">56</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/04/"><span class="card-archive-list-date">四月 2024</span><span class="card-archive-list-count">127</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/03/"><span class="card-archive-list-date">三月 2024</span><span class="card-archive-list-count">135</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/02/"><span class="card-archive-list-date">二月 2024</span><span class="card-archive-list-count">62</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/01/"><span class="card-archive-list-date">一月 2024</span><span class="card-archive-list-count">31</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/12/"><span class="card-archive-list-date">十二月 2023</span><span class="card-archive-list-count">2</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">834</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2024-07-01T14:20:11.890Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By 文KRIFE齐</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

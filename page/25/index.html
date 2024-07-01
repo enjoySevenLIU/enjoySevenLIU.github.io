@@ -1,0 +1,396 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>文KRIFE齐的博客 - 搭建中</title><meta name="author" content="文KRIFE齐"><meta name="copyright" content="文KRIFE齐"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="目前正处于搭建测试环节">
+<meta property="og:type" content="website">
+<meta property="og:title" content="文KRIFE齐的博客">
+<meta property="og:url" content="http://example.com/page/25/index.html">
+<meta property="og:site_name" content="文KRIFE齐的博客">
+<meta property="og:description" content="目前正处于搭建测试环节">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png">
+<meta property="article:author" content="文KRIFE齐">
+<meta property="article:tag" content="blog">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/page/25/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '文KRIFE齐的博客',
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2024-07-01 22:20:12'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">834</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><hr class="custom-hr"/></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="文KRIFE齐的博客"><span class="site-name">文KRIFE齐的博客</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">文KRIFE齐的博客</h1></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/03/31/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UM%E2%80%94%E2%80%94Unity%E7%A7%BB%E5%8A%A8%E5%B9%B3%E5%8F%B0%E7%9B%B8%E5%85%B3/UM2%E2%80%94%E2%80%94Java/UM2L3%E2%80%94%E2%80%94%E8%BF%90%E7%AE%97%E7%AC%A6/" title="UM2L3——运算符">UM2L3——运算符</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-03-31T07:28:37.000Z" title="发表于 2024-03-31 15:28:37">2024-03-31</time></span></div><div class="content">UM2L3——运算符
+运算符
+Java中运算符基本和C#一模一样，就把它当做C#来写即可，CS1——C#入门系列
+赋值运算符
+赋值运算符就是 =​，它可以将某个值赋值给某个变量
+123int i = 10;int i2, j2, k2;i2 = j2 = k2 = 10;
+算数运算符
+​+ - * / %​，0不能作为除数，优先级是* / %​ &gt; + -​
+123i = i + 10;i += 10;System.out.println(i);
+自增减运算符
+
+自增：++​
+自减：--​
+
+123i = 30;System.out.println(i++);    // 先加后用，因此输出30System.out.println(++i);    // 先加后用，因此输出32
+输出：
+123032
+比较运算符
+​&gt;、&lt;、==、&gt;=、&lt;=、!=​，返回值为boolean​值
+12boolean b = 3 &lt; 2;System.out.println(b);
+输出：
+1false
+逻辑运算符
+对两个boolean​值进行逻辑运算，返回boolean​ ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/03/31/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UM%E2%80%94%E2%80%94Unity%E7%A7%BB%E5%8A%A8%E5%B9%B3%E5%8F%B0%E7%9B%B8%E5%85%B3/UM2%E2%80%94%E2%80%94Java/UM2L2%E2%80%94%E2%80%94%E5%8F%98%E9%87%8F%E4%B8%8E%E5%B8%B8%E9%87%8F/" title="UM2L2——变量与常量">UM2L2——变量与常量</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-03-31T05:37:43.000Z" title="发表于 2024-03-31 13:37:43">2024-03-31</time></span></div><div class="content">UM2L2——变量与常量
+本章代码关键字
+12345678910111213141516System.out.println()	// Java的输出字符串到终端的方法//1、有符号的整形变量 能存储一定范围内的正负数包括0的变量类型byte sb = 1;			// -128~127int i = 1;				// -21亿~21亿short s = 1;			// -32768~32767long l = 1;   			// -九百万兆~九百万兆//2、浮点数（小数）float f = 0.1f;			// 数字后必须加f声明float，因为小数会被默认为double，从非0数算起为有效数字，7/8位有效数字，超出部分会四舍五入double d = 0.1;			// 从非0数算起为有效数字，15~17位有效数字，超出部分会四舍五入//3、特殊类型boolean bo = true;		// true或者falsechar c = &#x27;a&#x27;;			// 需要加&#x27;&#x27;,单个字符String st = &quot;hello&quot;;	// 需 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/03/31/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UM%E2%80%94%E2%80%94Unity%E7%A7%BB%E5%8A%A8%E5%B9%B3%E5%8F%B0%E7%9B%B8%E5%85%B3/UM2%E2%80%94%E2%80%94Java/UM2L1%E2%80%94%E2%80%94IDEA%E7%9A%84%E8%AF%AD%E8%A8%80%E8%AE%BE%E7%BD%AE%E3%80%81%E5%AD%97%E4%BD%93%E8%AE%BE%E7%BD%AE%E4%BB%A5%E5%8F%8AJava%E6%B3%A8%E9%87%8A/" title="UM2L1——IDEA的语言设置、字体设置以及Java注释">UM2L1——IDEA的语言设置、字体设置以及Java注释</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-03-31T04:59:31.000Z" title="发表于 2024-03-31 12:59:31">2024-03-31</time></span></div><div class="content">UM2L1——IDEA的语言设置、字体设置以及Java注释
+本章代码关键字
+123456789//单行注释/*多行  注释*//**文档注释 * 一般用来注释函数和类 * 类似与C#的///注释 */
+Java的控制台输出
+Java的控制台输出方法为System.out.println()​
+12345public class Main &#123;    public static void main(String[] args) &#123;        System.out.println(&quot;Hello, World!&quot;);    &#125;&#125;
+输出：
+1Hello, World!
+编译执行当前文件的代码
+在要执行的源代码文件里，在类中加上main​函数，然后在右上角选择当前文件，即可运行
+12345public class Test &#123;    public static void main(String[] args) &#123;        System.out.println(&quot;Test&quot;);    &#1 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/03/30/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UM%E2%80%94%E2%80%94Unity%E7%A7%BB%E5%8A%A8%E5%B9%B3%E5%8F%B0%E7%9B%B8%E5%85%B3/UM2%E2%80%94%E2%80%94Java/" title="UM2——Java">UM2——Java</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-03-30T14:24:22.000Z" title="发表于 2024-03-30 22:24:22">2024-03-30</time></span></div><div class="content">UM2——Java
+
+注意：这里的Java学习建立在学习过C#四部曲的基础上，因此这里的语法学习会简略一些，毕竟很多内容是相通的，除了一些细节上的不同
+
+Java
+Java 是由Sun公司在1995年推出的，Java面向对象程序设计语言和Java平台的总称
+后来 Sun公司 被 Oracle（甲骨文）收购，Java就变成了甲骨文公司的产品
+它是一种面向对象的语言，不仅吸收了C++的各种优点，还摒弃了C++里难以理解的多继承、指针等概念
+由于它强大和简单易用，所以它的出现席卷全球，可以说C#语言，就是微软照着Java打造的语言，想要复刻Java的成功
+Java可以用于编写桌面应用程序(PC软件)、WEB应用程序(网站开发)、Android应用程序、服务器开发等等
+本系列学习内容
+
+
+IDEA的语言设置、字体设置以及Java注释
+
+
+变量
+
+
+运算符
+
+
+条件分支语句
+
+
+循环语句
+
+
+数组和Arrays类
+
+
+函数
+
+
+面向对象
+
+封装
+继承
+多态
+
+
+
+包
+
+
+内部类
+
+
+String
+
+
+StringBuilder
+
+
+泛型
+
+
+集合类
+
+
+异常处理
+
+
+lambda表达式
+
+
+方法 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/03/30/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UM%E2%80%94%E2%80%94Unity%E7%A7%BB%E5%8A%A8%E5%B9%B3%E5%8F%B0%E7%9B%B8%E5%85%B3/UM1%E2%80%94%E2%80%94Android%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%80/UM1L9%E2%80%94%E2%80%94Android%20Studio%E5%86%85%E8%B0%83%E8%AF%95%E5%AE%89%E5%8D%93%E7%A8%8B%E5%BA%8F/" title="UM1L9——Android Studio内调试安卓程序">UM1L9——Android Studio内调试安卓程序</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-03-30T13:42:57.000Z" title="发表于 2024-03-30 21:42:57">2024-03-30</time></span></div><div class="content">UM1L9——Android Studio内调试安卓程序
+回顾Unity导出Android Studio工程
+具体内容：UM1L5——Android Studio打包安卓应用
+
+
+Build Settings 中进行设置
+​​
+
+检查密钥库是否设置成功
+勾选 Export Project
+勾选 Development Build（下面的内容选项不需要勾选，因为他们是Unity调试才会使用的）
+导出到指定目录
+
+
+
+使用 Android Studio 打开该工程
+
+
+更新 Gradle 版本
+​​
+
+
+删除 android.enableR8​
+​​
+
+
+保证构建成功
+
+
+在Android Studio中调试应用程序
+Android Studio中调试应用程序和 Unity中使用 Android Logcat + Unity Profiler窗口类似
+一般情况下，没有特殊需求，我们都在Unity中进行Android应用程序调试
+相对Android Studio中调试来说更适合我们Unity程序员
+
+
+保证Android设备和电脑进行USB调试连接
+右上角可查看是否连接设备
+​​
+
+
+菜单栏 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/03/30/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UM%E2%80%94%E2%80%94Unity%E7%A7%BB%E5%8A%A8%E5%B9%B3%E5%8F%B0%E7%9B%B8%E5%85%B3/UM1%E2%80%94%E2%80%94Android%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%80/UM1L8%E2%80%94%E2%80%94Android%20Logcat/" title="UM1L8——Android Logcat">UM1L8——Android Logcat</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-03-30T11:30:38.000Z" title="发表于 2024-03-30 19:30:38">2024-03-30</time></span></div><div class="content">UM1L8——Android Logcat
+Android Logcat
+Android Logcat 是 Unity 提供的一个拓展包，引入该拓展包后，我们可以在Unity当中对Android应用程序进行调试
+我们可以通过该工具获取到：
+
+安卓日志打印信息
+安卓应用程序内存统计
+安卓屏幕截图
+安卓屏幕录像
+堆栈跟踪
+
+Unity2019.4及以上版本都可以引入Android Logcat来帮助我们进行调试
+Android Logcat工具可以帮助我们进行Android相关调试，我们可以通过查看相关打印信息，来排查问题
+如何使用Android Logcat工具
+
+
+在Unity工程中引入Android Logcat包
+​​
+
+
+连接Android设备
+
+
+将Android Logcat连接到Android设备上点的应用程序，便可以查看相关信息
+在 Window ——&gt; Analysis ——&gt; Android Logcat 开启窗口
+​​
+
+
+窗口基础知识
+​​
+工具栏
+​
+
+
+Auto Run：自动运行 启用后，当你构建和运行应用程序时Android Logcat窗口会连 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/03/30/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UM%E2%80%94%E2%80%94Unity%E7%A7%BB%E5%8A%A8%E5%B9%B3%E5%8F%B0%E7%9B%B8%E5%85%B3/UM1%E2%80%94%E2%80%94Android%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%80/UM1L7%E2%80%94%E2%80%94Unity%20Remote/" title="UM1L7——Unity Remote">UM1L7——Unity Remote</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-03-30T11:08:06.000Z" title="发表于 2024-03-30 19:08:06">2024-03-30</time></span></div><div class="content">UM1L7——Unity Remote
+Unity Remote
+Remote翻译过来是远程的意思
+Unity Remote是Unity提供给我们的一个可以安装到移动平台上的应用程序
+帮助我们进行调试的远程工具
+Unity Remote主要可以帮助我们快速的测试设备的输入相关功能
+该应用程序可以安装到 Android、IOS设备上
+当我们在Unity编辑器运行项目时，移动设备上安装的Unity Remote会和Unity连接
+Unity编辑器中的游戏画面会被发送到移动设备上
+移动设备上的输入操作会返回到Unity编辑器运行的项目中
+它的主要作用就是可以让我们省去发布安装包、安装到移动设备上的这一繁琐流程
+可以直接通过Unity Remote远程连接来达到以下目的：
+
+
+查看项目在设备上的视觉表现效果
+
+
+测试移动设备输入逻辑是否能正常使用
+设备的以下输入会被回传到Unity引擎中用于测试：
+触屏输入相关、GPS、陀螺仪、指南针、加速度计、相机拍照信息、等等输入信息
+
+
+注意：
+
+Unity引擎传递给移动设备的画面较模糊，帧率较低，我们只能看看大致的表现效果
+我们主要通过这种方式，来测试 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/03/30/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UM%E2%80%94%E2%80%94Unity%E7%A7%BB%E5%8A%A8%E5%B9%B3%E5%8F%B0%E7%9B%B8%E5%85%B3/UM1%E2%80%94%E2%80%94Android%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%80/UM1L6%E2%80%94%E2%80%94Unity%E5%86%85%E8%B0%83%E8%AF%95%E5%AE%89%E5%8D%93%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F/" title="UM1L6——Unity内调试安卓应用程序">UM1L6——Unity内调试安卓应用程序</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-03-30T10:35:38.000Z" title="发表于 2024-03-30 18:35:38">2024-03-30</time></span></div><div class="content">UM1L6——Unity内调试安卓应用程序
+调试指的是什么
+我们在这里提到的调试，主要指的是 安卓手机的真机调试
+我们在开发前期，开发测试功能都是在Unity内完成的
+当我们真正把发布的 apk 安装到手机上运行时
+由于运行环境的改变（开发时在 Windows 或 MacOS，使用时在Android或IOS）
+我们很多时候需要在真机上进行项目的 性能分析 和 bug处理（断点调试修复bug）
+那么这时我们就需要学习如何通过Unity连接真机 来进行项目调试了
+准备测试用安卓手机
+
+
+安卓手机需要打开开发者模式
+可以根据自己的手机品牌自行搜索开启方式
+一般的操作方式：设置——&gt;关于手机——&gt;版本号（多次连点版本号）
+便可开启
+
+
+在手机的开发者选项中 开启 USB调试功能
+一般开发者选项会在：设置——&gt;系统——&gt;开发者选项中，找到USB调试功能 开启它
+
+
+将手机通过USB接入到你的电脑上，在手机上一般会弹出一个提示，选择允许进行USB调试
+
+
+在Unity中进行调试相关设置
+在 File ——&gt; Build Settings 中进行调试相关的设置
+
+
+完成 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/03/28/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UED%E2%80%94%E2%80%94Unity%E7%BC%96%E8%BE%91%E5%99%A8%E6%8B%93%E5%B1%95/UEDL8%E2%80%94%E2%80%94Handles%E5%85%AC%E5%85%B1%E7%B1%BB/" title="UEDL8——Handles公共类">UEDL8——Handles公共类</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-03-28T14:53:58.000Z" title="发表于 2024-03-28 22:53:58">2024-03-28</time></span></div><div class="content">UEDL8——Handles公共类
+本章代码关键字
+123Handles						//处理类，可以为某个脚本对象或者自定义编辑器窗口拓展在Scene窗口上的显示，可以自定义绘制内容OnSceneGUI() &#123; &#125;			//为某个脚本对象扩展在Scene窗口上的显示时，就需要在该方法内编写绘制逻辑SceneView.duringSceneGui	//为某个自定义编辑器窗口扩展在Scene窗口上的显示时，就需要将实现了绘制逻辑的方法添加到该事件内，窗口关闭时需要移除
+Handles
+​Handles​类提供了很多API，让我们可以在Scene窗口中绘制我们的自定义内容
+它和GUI​、EditorGUI​类似，只不过它专门提供给Scene窗口使用
+想要在Scene窗口中显示自定义内容，我们需要在对应的响应函数中进行处理
+Scene窗口拓展功能，主要是提供给自定义脚本和自定义窗口的，我们采用对应的规则进行处理
+便可以在之后的学习中利用场景更新响应函数来自定义一些Scene窗口的显示内容
+​Handles​的更多内容可看：
+
+Handles - Unity 脚本 API（中 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/03/28/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UED%E2%80%94%E2%80%94Unity%E7%BC%96%E8%BE%91%E5%99%A8%E6%8B%93%E5%B1%95/UEDL7%E2%80%94%E2%80%94Inspector%E7%AA%97%E5%8F%A3%E6%8B%93%E5%B1%95/" title="UEDL7——Inspector窗口拓展">UEDL7——Inspector窗口拓展</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-03-28T11:17:33.000Z" title="发表于 2024-03-28 19:17:33">2024-03-28</time></span></div><div class="content">UEDL7——Inspector窗口拓展
+本章代码关键字
+1234567891011121314151617[CustomEditor()]									//如要让类为另外一个类拓展在Inspector窗口的显示，需要添加该特性Editor												//编辑器类，如要让类为另外一个类拓展在Inspector窗口的显示，需要继承它SerializedProperty									//代表被拓展的脚本对象中的属性，我们可以通过它来修改被拓展的脚本对象中的属性SerializedObject									//代表被拓展的脚本对象，可获取被拓展的脚本对象中的属性，修改其在Inspector窗口的显示内容editor.serializedObject								//该类拓展显示的脚本对象，通过它获取属性，或者更新显示Inspector窗口的逻辑editor.serializedObject.FindProperty()				//将SerializedProperty变量与脚本对象的属性关联起来OnInspectorGUI()									//绘制Inspect ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/24/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/24/#content-inner">24</a><span class="page-number current">25</span><a class="page-number" href="/page/26/#content-inner">26</a><span class="space">&hellip;</span><a class="page-number" href="/page/84/#content-inner">84</a><a class="extend next" rel="next" href="/page/26/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">文KRIFE齐</div><div class="author-info__description">目前正处于搭建测试环节</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">834</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/07/01/hello-world/" title="欢迎来到文KRIFE齐的博客！">欢迎来到文KRIFE齐的博客！</a><time datetime="2024-07-01T11:46:20.391Z" title="发表于 2024-07-01 19:46:20">2024-07-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/US3S1L5%E2%80%94%E2%80%94Phong%E5%85%89%E7%85%A7%E6%A8%A1%E5%9E%8B/" title="US3S1L5——Phong光照模型">US3S1L5——Phong光照模型</a><time datetime="2024-06-25T14:33:57.000Z" title="发表于 2024-06-25 22:33:57">2024-06-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/US3S1L4%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B/US3S1L4-2%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B%E7%9A%84%E9%80%90%E7%89%87%E5%85%83%E5%85%89%E7%85%A7/" title="US3S1L4-2——Phong式高光反射模型的逐片元光照">US3S1L4-2——Phong式高光反射模型的逐片元光照</a><time datetime="2024-06-25T13:16:37.000Z" title="发表于 2024-06-25 21:16:37">2024-06-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/US3S1L4%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B/US3S1L4-1%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B%E7%9A%84%E9%80%90%E9%A1%B6%E7%82%B9%E5%85%89%E7%85%A7/" title="US3S1L4-1——Phong式高光反射模型的逐顶点光照">US3S1L4-1——Phong式高光反射模型的逐顶点光照</a><time datetime="2024-06-25T13:16:05.000Z" title="发表于 2024-06-25 21:16:05">2024-06-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/US3S1L4%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B/" title="US3S1L4——Phong式高光反射模型">US3S1L4——Phong式高光反射模型</a><time datetime="2024-06-25T10:14:12.000Z" title="发表于 2024-06-25 18:14:12">2024-06-25</time></div></div></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span><a class="card-more-btn" href="/archives/" title="查看更多">
+    <i class="fas fa-angle-right"></i></a></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/07/"><span class="card-archive-list-date">七月 2024</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/06/"><span class="card-archive-list-date">六月 2024</span><span class="card-archive-list-count">51</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/05/"><span class="card-archive-list-date">五月 2024</span><span class="card-archive-list-count">56</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/04/"><span class="card-archive-list-date">四月 2024</span><span class="card-archive-list-count">127</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/03/"><span class="card-archive-list-date">三月 2024</span><span class="card-archive-list-count">135</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/02/"><span class="card-archive-list-date">二月 2024</span><span class="card-archive-list-count">62</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/01/"><span class="card-archive-list-date">一月 2024</span><span class="card-archive-list-count">31</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/12/"><span class="card-archive-list-date">十二月 2023</span><span class="card-archive-list-count">2</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">834</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2024-07-01T14:20:11.890Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By 文KRIFE齐</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

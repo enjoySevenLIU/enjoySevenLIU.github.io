@@ -1,0 +1,244 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>UM3L2——Unity中调用Android内容 | 文KRIFE齐的博客</title><meta name="author" content="文KRIFE齐"><meta name="copyright" content="文KRIFE齐"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="UM3L2——Unity中调用Android内容 本章代码关键字 123456789AndroidJavaClass					&#x2F;&#x2F;安卓Java类，可以通过包名以及类名实例化androidJavaClass.GetStatic&lt;&gt;()		&#x2F;&#x2F;获取安卓Java类对象的方法，需要传入参数AndroidJavaObject					&#x2F;&#x2F;安卓Java类对象，通过它调用安卓的arr包内的内容and">
+<meta property="og:type" content="article">
+<meta property="og:title" content="UM3L2——Unity中调用Android内容">
+<meta property="og:url" content="http://example.com/2024/04/02/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UM%E2%80%94%E2%80%94Unity%E7%A7%BB%E5%8A%A8%E5%B9%B3%E5%8F%B0%E7%9B%B8%E5%85%B3/UM3%E2%80%94%E2%80%94Unity%20%E5%92%8C%20Android%20%E4%BA%A4%E4%BA%92/UM3L2%E2%80%94%E2%80%94Unity%E4%B8%AD%E8%B0%83%E7%94%A8Android%E5%86%85%E5%AE%B9/index.html">
+<meta property="og:site_name" content="文KRIFE齐的博客">
+<meta property="og:description" content="UM3L2——Unity中调用Android内容 本章代码关键字 123456789AndroidJavaClass					&#x2F;&#x2F;安卓Java类，可以通过包名以及类名实例化androidJavaClass.GetStatic&lt;&gt;()		&#x2F;&#x2F;获取安卓Java类对象的方法，需要传入参数AndroidJavaObject					&#x2F;&#x2F;安卓Java类对象，通过它调用安卓的arr包内的内容and">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png">
+<meta property="article:published_time" content="2024-04-02T12:38:19.000Z">
+<meta property="article:modified_time" content="2024-07-01T14:17:09.000Z">
+<meta property="article:author" content="文KRIFE齐">
+<meta property="article:tag" content="blog">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2024/04/02/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UM%E2%80%94%E2%80%94Unity%E7%A7%BB%E5%8A%A8%E5%B9%B3%E5%8F%B0%E7%9B%B8%E5%85%B3/UM3%E2%80%94%E2%80%94Unity%20%E5%92%8C%20Android%20%E4%BA%A4%E4%BA%92/UM3L2%E2%80%94%E2%80%94Unity%E4%B8%AD%E8%B0%83%E7%94%A8Android%E5%86%85%E5%AE%B9/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'UM3L2——Unity中调用Android内容',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-07-01 22:17:09'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">834</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><hr class="custom-hr"/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="文KRIFE齐的博客"><span class="site-name">文KRIFE齐的博客</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">UM3L2——Unity中调用Android内容</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-04-02T12:38:19.000Z" title="发表于 2024-04-02 20:38:19">2024-04-02</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-07-01T14:17:09.000Z" title="更新于 2024-07-01 22:17:09">2024-07-01</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="UM3L2——Unity中调用Android内容"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1>UM3L2——Unity中调用Android内容</h1>
+<h2 id="本章代码关键字">本章代码关键字</h2>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">AndroidJavaClass					<span class="comment">//安卓Java类，可以通过包名以及类名实例化</span></span><br><span class="line">androidJavaClass.GetStatic&lt;&gt;()		<span class="comment">//获取安卓Java类对象的方法，需要传入参数</span></span><br><span class="line">AndroidJavaObject					<span class="comment">//安卓Java类对象，通过它调用安卓的arr包内的内容</span></span><br><span class="line">androidJavaObject.Get&lt;&gt;()			<span class="comment">//获取成员变量</span></span><br><span class="line">androidJavaObject.Set&lt;&gt;()			<span class="comment">//设置成员变量</span></span><br><span class="line">androidJavaObject.GetStatic&lt;&gt;()		<span class="comment">//获取静态变量</span></span><br><span class="line">androidJavaObject.SetStatic&lt;&gt;()		<span class="comment">//设置静态变量</span></span><br><span class="line">androidJavaObject.Call&lt;&gt;()			<span class="comment">//执行成员方法</span></span><br><span class="line">androidJavaObject.CallStatic&lt;&gt;()	<span class="comment">//执行静态成员方法</span></span><br></pre></td></tr></table></figure>
+<h2 id="准备工作">准备工作</h2>
+<p>在Android Studio中的<code>MainActivity</code>​中加入测试用的成员变量</p>
+<p>​<img src="assets/image-20240402204128-7x31p6y.png" alt="image">​</p>
+<p>然后重新构建一次arr包</p>
+<h2 id="导入Android-Studio生成的内容">导入Android Studio生成的内容</h2>
+<p>在Unity中新建 <code>Plugins/Android</code>​ 插件文件夹<br>
+将 <code>AndroidStudio</code>​ 生成的内容 放入该文件夹中</p>
+<ol>
+<li>导入aar包</li>
+<li>导入<code>AndroidManifest.xml</code>​配置文件</li>
+</ol>
+<h2 id="在Unity中书写交互代码">在Unity中书写交互代码</h2>
+<p>固定写法如下：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Start</span>()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">//创建和Android通信的类信息</span></span><br><span class="line">    <span class="keyword">using</span> (AndroidJavaClass ajc = <span class="keyword">new</span> AndroidJavaClass(<span class="string">&quot;com.unity3d.player.UnityPlayer&quot;</span>))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//获取当前Unity基于的Activity对象</span></span><br><span class="line">        <span class="comment">//这里得到的对象就相当于是aar包中的MainActivity</span></span><br><span class="line">        <span class="keyword">using</span> (AndroidJavaObject ajo = ajc.GetStatic&lt;AndroidJavaObject&gt;(<span class="string">&quot;currentActivity&quot;</span>))</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">//获取到MainActivity后 就可以调用其中的对应Java代码了</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>其中，<code>ajo</code>​就是arr包的<code>MainActivity</code>​对象，就可以调用其中对应的Java代码了</p>
+<p>​<code>ajo</code>​（<code>MainActivity</code>​）的变量相关：</p>
+<ol>
+<li>
+<p>成员变量的获取和设置</p>
+<ul>
+<li>​<code>ajo.Get&lt;变量类型&gt;(&quot;变量名&quot;)</code>​</li>
+<li><code>ajo.Set&lt;变量类型&gt;(&quot;变量名&quot;, 值)</code>​</li>
+</ul>
+</li>
+<li>
+<p>静态成员变量的获取和设置</p>
+<ul>
+<li>​<code>ajo.GetStatic&lt;变量类型&gt;(&quot;变量名&quot;)</code>​</li>
+<li>​<code>ajo.SetStatic&lt;变量类型&gt;(&quot;变量名&quot;, 值)</code>​</li>
+</ul>
+</li>
+</ol>
+<p>​<code>ajo</code>​（<code>MainActivity</code>​）的函数相关：</p>
+<ol>
+<li>
+<p>成员函数调用</p>
+<ul>
+<li>无返回值 <code>ajo.Call(&quot;函数名&quot;, 参数)</code>​</li>
+<li>有返回值 <code>ajo.Call&lt;返回值类型&gt;(&quot;函数名&quot;, 参数)</code>​</li>
+</ul>
+</li>
+<li>
+<p>静态成员函数调用</p>
+<ul>
+<li>无返回值 <code>ajo.CallStatic(&quot;函数名&quot;, 参数)</code>​</li>
+<li>有返回值 <code>ajo.CallStatic&lt;返回值类型&gt;(&quot;函数名&quot;, 参数)</code>​</li>
+</ul>
+</li>
+</ol>
+<p>假设要调用如下的<code>MainActivity</code>​Java类：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.taikr.mytestgame;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> android.os.Bundle;</span><br><span class="line"><span class="keyword">import</span> com.unity3d.player.UnityPlayerActivity;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MainActivity</span> <span class="keyword">extends</span> <span class="title class_">UnityPlayerActivity</span> &#123;</span><br><span class="line">    <span class="comment">//用于测试的成员变量相关</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> testI;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="type">int</span> <span class="variable">testStaticI</span> <span class="operator">=</span> <span class="number">20</span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">onCreate</span><span class="params">(Bundle savedInstanceState)</span> &#123;</span><br><span class="line">        <span class="built_in">super</span>.onCreate(savedInstanceState);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//用于测试的成员函数</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">TestFun</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;String&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//用于测试的静态成员函数</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> String <span class="title function_">TestStaticFun</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;TestStaticFun&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>编写如下C#代码调用Java类，然后获取其变量，并执行方法，输出结果显示在UI上：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> UnityEngine;</span><br><span class="line"><span class="keyword">using</span> UnityEngine.UI;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">AndroidTest</span> : <span class="title">MonoBehaviour</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> Text txtOld;</span><br><span class="line">    <span class="keyword">public</span> Text txtNew;</span><br><span class="line">    <span class="keyword">public</span> Text txtStaticOld;</span><br><span class="line">    <span class="keyword">public</span> Text txtStaticNew;</span><br><span class="line">    <span class="keyword">public</span> Text txtTestFun;</span><br><span class="line">    <span class="keyword">public</span> Text txtTestStaticFun;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Start</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">using</span> (AndroidJavaClass javaClass = <span class="keyword">new</span> AndroidJavaClass(<span class="string">&quot;com.unity3d.player.UnityPlayer&quot;</span>))</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">//当前这个JavaObj就代表MainActivity这个对象，我们可以通过它获取到其中的变量、方法</span></span><br><span class="line">            <span class="keyword">using</span> (AndroidJavaObject javaObj = javaClass.GetStatic&lt;AndroidJavaObject&gt;(<span class="string">&quot;currentActivity&quot;</span>))</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="comment">//成员变量的获取和改变</span></span><br><span class="line">                <span class="built_in">int</span> i = javaObj.Get&lt;<span class="built_in">int</span>&gt;(<span class="string">&quot;testI&quot;</span>);</span><br><span class="line">                txtOld.text = i.ToString();</span><br><span class="line">                javaObj.Set&lt;<span class="built_in">int</span>&gt;(<span class="string">&quot;testI&quot;</span>, <span class="number">11</span>);</span><br><span class="line">                i = javaObj.Get&lt;<span class="built_in">int</span>&gt;(<span class="string">&quot;testI&quot;</span>);</span><br><span class="line">                txtNew.text = i.ToString();</span><br><span class="line">                <span class="comment">//静态成员变量的获取和改变</span></span><br><span class="line">                <span class="built_in">int</span> staticI = javaObj.GetStatic&lt;<span class="built_in">int</span>&gt;(<span class="string">&quot;testStaticI&quot;</span>);</span><br><span class="line">                txtStaticOld.text = staticI.ToString();</span><br><span class="line">                javaObj.SetStatic&lt;<span class="built_in">int</span>&gt;(<span class="string">&quot;testStaticI&quot;</span>, <span class="number">21</span>);</span><br><span class="line">                staticI = javaObj.GetStatic&lt;<span class="built_in">int</span>&gt;(<span class="string">&quot;testStaticI&quot;</span>);</span><br><span class="line">                txtStaticNew.text = staticI.ToString();</span><br><span class="line"></span><br><span class="line">                <span class="comment">//调用有返回值的成员函数</span></span><br><span class="line">                <span class="built_in">string</span> testFunStr = javaObj.Call&lt;<span class="built_in">string</span>&gt;(<span class="string">&quot;TestFun&quot;</span>);</span><br><span class="line">                txtTestFun.text = testFunStr;</span><br><span class="line"></span><br><span class="line">                <span class="comment">//调用有返回值的静态函数</span></span><br><span class="line">                <span class="built_in">string</span> testStaticFunStr = javaObj.CallStatic&lt;<span class="built_in">string</span>&gt;(<span class="string">&quot;TestStaticFun&quot;</span>);</span><br><span class="line">                txtTestStaticFun.text = testStaticFunStr;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>以上的内容必须要在安卓的环境下才可以运行，因此需要挂载脚本后打包</p>
+<h2 id="打包注意事项">打包注意事项</h2>
+<p>基础设置：</p>
+<ol>
+<li>打包密钥设置</li>
+<li>Unity工程位于非中文路径</li>
+</ol>
+<p>aar包设置（根据打包报错提示来处理，一般由以下几步需要处理）：</p>
+<p>首先用压缩软件打开arr包，对其中的内容进行处理：</p>
+<p>​<img src="assets/image-20240402212456-icttxjk.png" alt="image">​</p>
+<ol>
+<li>
+<p>删除aar包中 libs 下的 classes.jar，因为Unity会自带，避免重复报错</p>
+<p>‍</p>
+<p>​<img src="assets/image-20240402212611-kugrpc4.png" alt="image">​</p>
+</li>
+<li>
+<p>删除aar包中 classes.jar 中的 UnityPlayerActivity.class，因为Unity会自带，避免重复报错</p>
+<p>​<img src="assets/image-20240402212904-vike19a.png" alt="image">​</p>
+</li>
+<li>
+<p>删除aar包中 classes.jar 中的 BuildConfig.class，通过Unity打包不需要构建配置</p>
+<p>​<img src="assets/image-20240402213243-xkm7hwf.png" alt="image">​</p>
+</li>
+</ol>
+<p>打包完毕，安装至真机或者模拟器上，查看效果：</p>
+<p>​<img src="assets/Screenshot_20240402_213530_com.taikr.mytestgame-20240402213637-8y53o2j.jpg" alt="Screenshot_20240402_213530_com.taikr.mytestgame">​</p>
+<p>‍</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">文KRIFE齐</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2024/04/02/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UM%E2%80%94%E2%80%94Unity%E7%A7%BB%E5%8A%A8%E5%B9%B3%E5%8F%B0%E7%9B%B8%E5%85%B3/UM3%E2%80%94%E2%80%94Unity%20%E5%92%8C%20Android%20%E4%BA%A4%E4%BA%92/UM3L2%E2%80%94%E2%80%94Unity%E4%B8%AD%E8%B0%83%E7%94%A8Android%E5%86%85%E5%AE%B9/">http://example.com/2024/04/02/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UM%E2%80%94%E2%80%94Unity%E7%A7%BB%E5%8A%A8%E5%B9%B3%E5%8F%B0%E7%9B%B8%E5%85%B3/UM3%E2%80%94%E2%80%94Unity%20%E5%92%8C%20Android%20%E4%BA%A4%E4%BA%92/UM3L2%E2%80%94%E2%80%94Unity%E4%B8%AD%E8%B0%83%E7%94%A8Android%E5%86%85%E5%AE%B9/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">文KRIFE齐的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2024/04/02/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UM%E2%80%94%E2%80%94Unity%E7%A7%BB%E5%8A%A8%E5%B9%B3%E5%8F%B0%E7%9B%B8%E5%85%B3/UM3%E2%80%94%E2%80%94Unity%20%E5%92%8C%20Android%20%E4%BA%A4%E4%BA%92/UM3L3%E2%80%94%E2%80%94Android%E4%B8%AD%E8%B0%83%E7%94%A8Unity%E5%86%85%E5%AE%B9/" title="UM3L3——Android中调用Unity内容"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">UM3L3——Android中调用Unity内容</div></div></a></div><div class="next-post pull-right"><a href="/2024/04/02/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UM%E2%80%94%E2%80%94Unity%E7%A7%BB%E5%8A%A8%E5%B9%B3%E5%8F%B0%E7%9B%B8%E5%85%B3/UM3%E2%80%94%E2%80%94Unity%20%E5%92%8C%20Android%20%E4%BA%A4%E4%BA%92/UM3L1%E2%80%94%E2%80%94%E4%BA%A4%E4%BA%92%E9%A1%B9%E7%9B%AE%E5%88%9B%E5%BB%BA/" title="UM3L1——交互项目创建"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">UM3L1——交互项目创建</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">文KRIFE齐</div><div class="author-info__description">目前正处于搭建测试环节</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">834</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">UM3L2——Unity中调用Android内容</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%AC%E7%AB%A0%E4%BB%A3%E7%A0%81%E5%85%B3%E9%94%AE%E5%AD%97"><span class="toc-number">1.1.</span> <span class="toc-text">本章代码关键字</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="toc-number">1.2.</span> <span class="toc-text">准备工作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%BC%E5%85%A5Android-Studio%E7%94%9F%E6%88%90%E7%9A%84%E5%86%85%E5%AE%B9"><span class="toc-number">1.3.</span> <span class="toc-text">导入Android Studio生成的内容</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9C%A8Unity%E4%B8%AD%E4%B9%A6%E5%86%99%E4%BA%A4%E4%BA%92%E4%BB%A3%E7%A0%81"><span class="toc-number">1.4.</span> <span class="toc-text">在Unity中书写交互代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%93%E5%8C%85%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="toc-number">1.5.</span> <span class="toc-text">打包注意事项</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/07/01/hello-world/" title="欢迎来到文KRIFE齐的博客！">欢迎来到文KRIFE齐的博客！</a><time datetime="2024-07-01T11:46:20.391Z" title="发表于 2024-07-01 19:46:20">2024-07-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/US3S1L5%E2%80%94%E2%80%94Phong%E5%85%89%E7%85%A7%E6%A8%A1%E5%9E%8B/" title="US3S1L5——Phong光照模型">US3S1L5——Phong光照模型</a><time datetime="2024-06-25T14:33:57.000Z" title="发表于 2024-06-25 22:33:57">2024-06-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/US3S1L4%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B/US3S1L4-2%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B%E7%9A%84%E9%80%90%E7%89%87%E5%85%83%E5%85%89%E7%85%A7/" title="US3S1L4-2——Phong式高光反射模型的逐片元光照">US3S1L4-2——Phong式高光反射模型的逐片元光照</a><time datetime="2024-06-25T13:16:37.000Z" title="发表于 2024-06-25 21:16:37">2024-06-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/US3S1L4%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B/US3S1L4-1%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B%E7%9A%84%E9%80%90%E9%A1%B6%E7%82%B9%E5%85%89%E7%85%A7/" title="US3S1L4-1——Phong式高光反射模型的逐顶点光照">US3S1L4-1——Phong式高光反射模型的逐顶点光照</a><time datetime="2024-06-25T13:16:05.000Z" title="发表于 2024-06-25 21:16:05">2024-06-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/US3S1L4%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B/" title="US3S1L4——Phong式高光反射模型">US3S1L4——Phong式高光反射模型</a><time datetime="2024-06-25T10:14:12.000Z" title="发表于 2024-06-25 18:14:12">2024-06-25</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By 文KRIFE齐</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

@@ -1,0 +1,227 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>UH2S1L7——函数 | 文KRIFE齐的博客</title><meta name="author" content="文KRIFE齐"><meta name="copyright" content="文KRIFE齐"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="UH2S1L7——函数 函数 在Lua中，函数也是一种变量类型，而Lua的函数声明不需要指定返回值的类型 123function 函数名(参数列表)	函数代码块end 123函数名 &#x3D; function(参数列表)	函数代码块end 要注意，由于Lua是解释型语言，解释器从上到下执行代码，因此调用函数不能在函数声明之前，否则会报错 无参无返回值 12345678910print(&quot;***">
+<meta property="og:type" content="article">
+<meta property="og:title" content="UH2S1L7——函数">
+<meta property="og:url" content="http://example.com/2024/01/29/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UH%E2%80%94%E2%80%94Unity%E7%83%AD%E6%9B%B4%E6%96%B0%E7%AC%94%E8%AE%B0/UH2%E2%80%94%E2%80%94Lua%E7%83%AD%E6%9B%B4%E6%96%B0%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/UH2S1%E2%80%94%E2%80%94Lua/UH2S1L7%E2%80%94%E2%80%94%E5%87%BD%E6%95%B0/index.html">
+<meta property="og:site_name" content="文KRIFE齐的博客">
+<meta property="og:description" content="UH2S1L7——函数 函数 在Lua中，函数也是一种变量类型，而Lua的函数声明不需要指定返回值的类型 123function 函数名(参数列表)	函数代码块end 123函数名 &#x3D; function(参数列表)	函数代码块end 要注意，由于Lua是解释型语言，解释器从上到下执行代码，因此调用函数不能在函数声明之前，否则会报错 无参无返回值 12345678910print(&quot;***">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png">
+<meta property="article:published_time" content="2024-01-29T13:26:45.000Z">
+<meta property="article:modified_time" content="2024-07-01T14:16:28.000Z">
+<meta property="article:author" content="文KRIFE齐">
+<meta property="article:tag" content="blog">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2024/01/29/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UH%E2%80%94%E2%80%94Unity%E7%83%AD%E6%9B%B4%E6%96%B0%E7%AC%94%E8%AE%B0/UH2%E2%80%94%E2%80%94Lua%E7%83%AD%E6%9B%B4%E6%96%B0%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/UH2S1%E2%80%94%E2%80%94Lua/UH2S1L7%E2%80%94%E2%80%94%E5%87%BD%E6%95%B0/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'UH2S1L7——函数',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-07-01 22:16:28'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">834</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><hr class="custom-hr"/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="文KRIFE齐的博客"><span class="site-name">文KRIFE齐的博客</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">UH2S1L7——函数</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-01-29T13:26:45.000Z" title="发表于 2024-01-29 21:26:45">2024-01-29</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-07-01T14:16:28.000Z" title="更新于 2024-07-01 22:16:28">2024-07-01</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="UH2S1L7——函数"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1>UH2S1L7——函数</h1>
+<h1>函数</h1>
+<p>在Lua中，函数也是一种变量类型，而Lua的函数声明不需要指定返回值的类型</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> 函数名<span class="params">(参数列表)</span></span></span><br><span class="line">	函数代码块</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">函数名 = <span class="function"><span class="keyword">function</span><span class="params">(参数列表)</span></span></span><br><span class="line">	函数代码块</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p>要注意，由于Lua是解释型语言，解释器从上到下执行代码，<strong>因此调用函数不能在函数声明之前，否则会报错</strong></p>
+<h3 id="无参无返回值">无参无返回值</h3>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">&quot;**********无参无返回值************&quot;</span>)</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">F1</span><span class="params">()</span></span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;F1函数&quot;</span>)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">F1()</span><br><span class="line"></span><br><span class="line">F2 = <span class="function"><span class="keyword">function</span><span class="params">()</span></span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;F2函数&quot;</span>)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">F2()</span><br></pre></td></tr></table></figure>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">**********无参无返回值************</span><br><span class="line">F1函数</span><br><span class="line">F2函数</span><br></pre></td></tr></table></figure>
+<p>通过第二种写法可以发现，在Lua中函数是一种变量类型，用起来就像是C#中的委托那样</p>
+<h3 id="有参数">有参数</h3>
+<p>Lua的函数声明中，参数列表是不需要写清楚参数的类型的，<br>
+因此，调用函数时，可以传入各种类型的值<br>
+（当然内部的逻辑不一定能允许你瞎写，就像下面的函数传入<code>nil</code>​或者<code>boolean</code>​就会报错）</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">&quot;**********有参数************&quot;</span>)</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">F3</span><span class="params">(a)</span></span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;参数：&quot;</span> .. a)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">F3(<span class="number">1</span>)</span><br><span class="line">F3(<span class="string">&quot;123&quot;</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">**********有参数************</span><br><span class="line">参数：<span class="number">1</span></span><br><span class="line">参数：<span class="number">123</span></span><br></pre></td></tr></table></figure>
+<p>在Lua中，对一个函数不传入参数或者传入多余的参数这个行为本身不会报错（即传入参数个数与声明参数个数不匹配）<br>
+前者会让空着的参数为<code>nil</code>​，后者会丢弃多余的参数</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">FTest</span><span class="params">(a)</span></span></span><br><span class="line">    <span class="built_in">print</span>(a)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">FTest()</span><br><span class="line">FTest(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="literal">nil</span></span><br><span class="line"><span class="number">1</span></span><br></pre></td></tr></table></figure>
+<h3 id="有返回值">有返回值</h3>
+<p>在函数声明时，无需声明返回值类型，而要返回值时，直接<code>return</code>​一个值即可</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">&quot;**********有返回值************&quot;</span>)</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">F4</span><span class="params">(a)</span></span></span><br><span class="line">    <span class="keyword">return</span> a</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">temp = F4(<span class="string">&quot;123&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(temp)</span><br></pre></td></tr></table></figure>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">**********有返回值************</span><br><span class="line"><span class="number">123</span></span><br></pre></td></tr></table></figure>
+<p>Lua的<code>return</code>​可以返回多个值，用逗号分隔即可，需要多个变量去接受它，<br>
+如果没有足够的变量接收值，则多余的返回值会被丢弃，但是对应位置的值仍然可以接收到<br>
+当然，如果有过多的变量去接收这个值，则多出的变量接收不到任何值<br>
+接收返回值的变量数量与函数中实际返回的值数量不一致，不会导致报错</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">&quot;**********有返回值************&quot;</span>)</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">F4</span><span class="params">(a)</span></span></span><br><span class="line">    <span class="keyword">return</span> a, <span class="string">&quot;456&quot;</span>, <span class="literal">true</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">temp = F4(<span class="string">&quot;123&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(temp)</span><br><span class="line">temp1, temp2, temp3 = F4(<span class="string">&quot;123&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(temp1)</span><br><span class="line"><span class="built_in">print</span>(temp2)</span><br><span class="line"><span class="built_in">print</span>(temp3)</span><br><span class="line">tempA, tempB, tempC, tempD = F4(<span class="string">&quot;******&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(tempA)</span><br><span class="line"><span class="built_in">print</span>(tempB)</span><br><span class="line"><span class="built_in">print</span>(tempC)</span><br><span class="line"><span class="built_in">print</span>(tempD)</span><br></pre></td></tr></table></figure>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">**********有返回值************</span><br><span class="line"><span class="number">123</span></span><br><span class="line"><span class="number">123</span></span><br><span class="line"><span class="number">456</span></span><br><span class="line"><span class="literal">true</span></span><br><span class="line">******</span><br><span class="line"><span class="number">456</span></span><br><span class="line"><span class="literal">true</span></span><br><span class="line"><span class="literal">nil</span></span><br></pre></td></tr></table></figure>
+<h3 id="函数的类型">函数的类型</h3>
+<p>Lua中的函数作为变量最直观的证明就是直接用<code>type()</code>​来输出查看返回的值</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">&quot;**********函数类型************&quot;</span>)</span><br><span class="line">F5 = <span class="function"><span class="keyword">function</span><span class="params">()</span></span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;123&quot;</span>)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">type</span>(F5))</span><br></pre></td></tr></table></figure>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">**********函数类型************</span><br><span class="line"><span class="function"><span class="keyword">function</span></span></span><br></pre></td></tr></table></figure>
+<p>可见函数在Lua中就是一种变量类型</p>
+<h3 id="函数重载">函数重载</h3>
+<p>函数重载就是函数名相同但参数类型数量不同，返回值也不同的函数可以共同存在<br>
+<strong>Lua不支持函数重载！</strong> ，如果在之前先后声明了重名的函数 <strong>（这个行为本身不会报错！需要注意）</strong> ，则调用函数一定会调用最后声明的那个函数</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">&quot;**********验证函数重载************&quot;</span>)</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">F6</span><span class="params">()</span></span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;我是无参的&quot;</span>)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">F6</span><span class="params">(str)</span></span></span><br><span class="line">    <span class="built_in">print</span>(str)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">F6()</span><br><span class="line">F6(<span class="string">&quot;我是有参的&quot;</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">**********验证函数重载************</span><br><span class="line"><span class="literal">nil</span></span><br><span class="line">我是有参的</span><br></pre></td></tr></table></figure>
+<p>如果支持函数重载，这里的返回应当分别是<code>我是无参的</code>​和<code>我是有参的</code>​，<br>
+但明显，这段代码两次调用的都是后来声明的函数，可见，Lua不支持函数重载</p>
+<h3 id="变长函数">变长函数</h3>
+<p>不定参数在参数列表内用<code>...</code>​​，需要一个<a href="siyuan://blocks/20240130000450-klofjai">表</a>来接收它</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">&quot;**********变长参数************&quot;</span>)</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">F7</span><span class="params">( ... )</span></span></span><br><span class="line">    <span class="built_in">arg</span> = &#123; ... &#125;</span><br><span class="line">    <span class="keyword">for</span> i = <span class="number">1</span>, #<span class="built_in">arg</span> <span class="keyword">do</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="built_in">arg</span>[i])</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">F7(<span class="number">1</span>, <span class="string">&quot;2&quot;</span>, <span class="number">3</span>, <span class="literal">true</span>, <span class="number">5</span>, <span class="number">6</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">**********变长参数************</span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="number">2</span></span><br><span class="line"><span class="number">3</span></span><br><span class="line"><span class="literal">true</span></span><br><span class="line"><span class="number">5</span></span><br><span class="line"><span class="number">6</span></span><br></pre></td></tr></table></figure>
+<p>和C#一样，参数列表中局部参数与不定参数声明可以共存，<strong>不定参数必须要在参数列表最后一位</strong></p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">FTest2</span><span class="params">(a, b, ...)</span></span></span><br><span class="line">    <span class="built_in">print</span>(a)</span><br><span class="line">    <span class="built_in">print</span>(b)</span><br><span class="line">    <span class="built_in">print</span>(...)</span><br><span class="line">    <span class="built_in">arg</span> = &#123; ... &#125;</span><br><span class="line">    <span class="keyword">for</span> i = <span class="number">1</span>, #<span class="built_in">arg</span> <span class="keyword">do</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="built_in">arg</span>[i])</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">FTest2(<span class="number">1</span>, <span class="string">&quot;2&quot;</span>, <span class="number">3</span>, <span class="literal">true</span>, <span class="number">5</span>, <span class="number">6</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span></span><br><span class="line"><span class="number">2</span></span><br><span class="line"><span class="number">3</span>	<span class="literal">true</span>	<span class="number">5</span>	<span class="number">6</span></span><br><span class="line"><span class="number">3</span></span><br><span class="line"><span class="literal">true</span></span><br><span class="line"><span class="number">5</span></span><br><span class="line"><span class="number">6</span></span><br></pre></td></tr></table></figure>
+<p>可以看到<code>a = 1</code>​，<code>b = 2</code>​，<code>...</code>​包括<code>3, true, 5, 6</code>​</p>
+<h3 id="函数嵌套">函数嵌套</h3>
+<p>函数作为lua中的一种变量类型，是可以在函数中返回的，<br>
+因此你可以直接返回一个函数的声明给外部（如果直接返回函数声明，则该函数声明不可以命名）</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">&quot;**********函数嵌套************&quot;</span>)</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">F8</span><span class="params">()</span></span></span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span><span class="params">()</span></span></span><br><span class="line">        <span class="built_in">print</span>(<span class="number">123</span>)</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">f9 = F8()</span><br><span class="line">f9()</span><br></pre></td></tr></table></figure>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">**********函数嵌套************</span><br><span class="line"><span class="number">123</span></span><br></pre></td></tr></table></figure>
+<p>命名的函数也可以返回，需要先声明并赋值后再返回</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Fa</span><span class="params">()</span></span></span><br><span class="line">    Fb = <span class="function"><span class="keyword">function</span><span class="params">()</span></span></span><br><span class="line">        <span class="built_in">print</span>(<span class="number">123</span>)</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">return</span> Fb</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">fb = Fa()</span><br><span class="line">fb()</span><br></pre></td></tr></table></figure>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">123</span></span><br></pre></td></tr></table></figure>
+<p>甚至可以在函数里嵌套声明与外层函数重名的函数（不要这么做）</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Fa</span><span class="params">()</span></span></span><br><span class="line">    Fa = <span class="function"><span class="keyword">function</span><span class="params">()</span></span></span><br><span class="line">        <span class="built_in">print</span>(<span class="number">123</span>)</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">return</span> Fa</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">fa = Fa()</span><br><span class="line">fa()</span><br></pre></td></tr></table></figure>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">123</span></span><br></pre></td></tr></table></figure>
+<h3 id="函数嵌套涉及的闭包">函数嵌套涉及的闭包</h3>
+<p><strong>由于可以嵌套声明函数，以及返回函数，因此会出现函数局部变量生命周期改变的情况，也就是闭包</strong></p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">F9</span><span class="params">(x)</span></span></span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span><span class="params">(y)</span></span></span><br><span class="line">        <span class="keyword">return</span> x + y</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">f10 = F9(<span class="number">10</span>)</span><br><span class="line"><span class="built_in">print</span>(f10(<span class="number">5</span>))</span><br></pre></td></tr></table></figure>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">15</span></span><br></pre></td></tr></table></figure>
+<p>原本<code>F9</code>​的参数也就是局部变量<code>x</code>​在执行完<code>F9</code>​的代码后生命周期就结束了，但是<code>F9</code>​返回的函数仍然在使用<code>x</code>​<br>
+这就导致局部变量<code>x</code>​的生命周期函数被改变，<code>x</code>​会在<code>f10</code>​存储的函数里继续使用</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">文KRIFE齐</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2024/01/29/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UH%E2%80%94%E2%80%94Unity%E7%83%AD%E6%9B%B4%E6%96%B0%E7%AC%94%E8%AE%B0/UH2%E2%80%94%E2%80%94Lua%E7%83%AD%E6%9B%B4%E6%96%B0%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/UH2S1%E2%80%94%E2%80%94Lua/UH2S1L7%E2%80%94%E2%80%94%E5%87%BD%E6%95%B0/">http://example.com/2024/01/29/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UH%E2%80%94%E2%80%94Unity%E7%83%AD%E6%9B%B4%E6%96%B0%E7%AC%94%E8%AE%B0/UH2%E2%80%94%E2%80%94Lua%E7%83%AD%E6%9B%B4%E6%96%B0%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/UH2S1%E2%80%94%E2%80%94Lua/UH2S1L7%E2%80%94%E2%80%94%E5%87%BD%E6%95%B0/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">文KRIFE齐的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2024/01/30/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UH%E2%80%94%E2%80%94Unity%E7%83%AD%E6%9B%B4%E6%96%B0%E7%AC%94%E8%AE%B0/UH2%E2%80%94%E2%80%94Lua%E7%83%AD%E6%9B%B4%E6%96%B0%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/UH2S1%E2%80%94%E2%80%94Lua/UH2S1L8%E2%80%94%E2%80%94%E8%A1%A8/" title="UH2S1L8——表"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">UH2S1L8——表</div></div></a></div><div class="next-post pull-right"><a href="/2024/01/29/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UH%E2%80%94%E2%80%94Unity%E7%83%AD%E6%9B%B4%E6%96%B0%E7%AC%94%E8%AE%B0/UH2%E2%80%94%E2%80%94Lua%E7%83%AD%E6%9B%B4%E6%96%B0%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/UH2S1%E2%80%94%E2%80%94Lua/UH2S1L6%E2%80%94%E2%80%94%E5%BE%AA%E7%8E%AF%E8%AF%AD%E5%8F%A5/" title="UH2S1L6——循环语句"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">UH2S1L6——循环语句</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">文KRIFE齐</div><div class="author-info__description">目前正处于搭建测试环节</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">834</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">UH2S1L7——函数</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">2.</span> <span class="toc-text">函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%A0%E5%8F%82%E6%97%A0%E8%BF%94%E5%9B%9E%E5%80%BC"><span class="toc-number">2.0.1.</span> <span class="toc-text">无参无返回值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%89%E5%8F%82%E6%95%B0"><span class="toc-number">2.0.2.</span> <span class="toc-text">有参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%89%E8%BF%94%E5%9B%9E%E5%80%BC"><span class="toc-number">2.0.3.</span> <span class="toc-text">有返回值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E7%9A%84%E7%B1%BB%E5%9E%8B"><span class="toc-number">2.0.4.</span> <span class="toc-text">函数的类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E9%87%8D%E8%BD%BD"><span class="toc-number">2.0.5.</span> <span class="toc-text">函数重载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%98%E9%95%BF%E5%87%BD%E6%95%B0"><span class="toc-number">2.0.6.</span> <span class="toc-text">变长函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E5%B5%8C%E5%A5%97"><span class="toc-number">2.0.7.</span> <span class="toc-text">函数嵌套</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E5%B5%8C%E5%A5%97%E6%B6%89%E5%8F%8A%E7%9A%84%E9%97%AD%E5%8C%85"><span class="toc-number">2.0.8.</span> <span class="toc-text">函数嵌套涉及的闭包</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/07/01/hello-world/" title="欢迎来到文KRIFE齐的博客！">欢迎来到文KRIFE齐的博客！</a><time datetime="2024-07-01T11:46:20.391Z" title="发表于 2024-07-01 19:46:20">2024-07-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/US3S1L5%E2%80%94%E2%80%94Phong%E5%85%89%E7%85%A7%E6%A8%A1%E5%9E%8B/" title="US3S1L5——Phong光照模型">US3S1L5——Phong光照模型</a><time datetime="2024-06-25T14:33:57.000Z" title="发表于 2024-06-25 22:33:57">2024-06-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/US3S1L4%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B/US3S1L4-2%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B%E7%9A%84%E9%80%90%E7%89%87%E5%85%83%E5%85%89%E7%85%A7/" title="US3S1L4-2——Phong式高光反射模型的逐片元光照">US3S1L4-2——Phong式高光反射模型的逐片元光照</a><time datetime="2024-06-25T13:16:37.000Z" title="发表于 2024-06-25 21:16:37">2024-06-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/US3S1L4%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B/US3S1L4-1%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B%E7%9A%84%E9%80%90%E9%A1%B6%E7%82%B9%E5%85%89%E7%85%A7/" title="US3S1L4-1——Phong式高光反射模型的逐顶点光照">US3S1L4-1——Phong式高光反射模型的逐顶点光照</a><time datetime="2024-06-25T13:16:05.000Z" title="发表于 2024-06-25 21:16:05">2024-06-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/US3S1L4%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B/" title="US3S1L4——Phong式高光反射模型">US3S1L4——Phong式高光反射模型</a><time datetime="2024-06-25T10:14:12.000Z" title="发表于 2024-06-25 18:14:12">2024-06-25</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By 文KRIFE齐</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

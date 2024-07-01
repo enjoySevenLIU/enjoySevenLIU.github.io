@@ -1,0 +1,245 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>UN1L9-1——字节编码 | 文KRIFE齐的博客</title><meta name="author" content="文KRIFE齐"><meta name="copyright" content="文KRIFE齐"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="UN1L9-1——字节编码 字符编码 字符编码（英语：Character encoding）也称字集码， 是把字符集中的字符，编码为指定集合中某一对象，以便文本在计算机中存储或通过网络进行传递。 说人话： 计算机里只能存数字（2机制），所以如果文字字符想要进行存储的话，就需要把对应的文字字符转换为数字才能进行处理， 而字符编码就是文字字符在计算机中和数值的对应关系，是人为定义的一种映射规则。 比如">
+<meta property="og:type" content="article">
+<meta property="og:title" content="UN1L9-1——字节编码">
+<meta property="og:url" content="http://example.com/2024/03/03/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UN%E2%80%94%E2%80%94Unity%E7%BD%91%E7%BB%9C%E5%BC%80%E5%8F%91%E7%9B%B8%E5%85%B3/UN1%E2%80%94%E2%80%94%E7%BD%91%E7%BB%9C%E5%BC%80%E5%8F%91%E7%90%86%E8%AE%BA%E5%92%8C%E9%80%9A%E4%BF%A1%E5%BF%85%E5%A4%87%E7%9F%A5%E8%AF%86/UN1L9%E2%80%94%E2%80%94%E5%BA%8F%E5%88%97%E5%8C%96%E5%92%8C%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%962%E8%BF%9B%E5%88%B6%E6%95%B0%E6%8D%AE/UN1L9-1%E2%80%94%E2%80%94%E5%AD%97%E8%8A%82%E7%BC%96%E7%A0%81/index.html">
+<meta property="og:site_name" content="文KRIFE齐的博客">
+<meta property="og:description" content="UN1L9-1——字节编码 字符编码 字符编码（英语：Character encoding）也称字集码， 是把字符集中的字符，编码为指定集合中某一对象，以便文本在计算机中存储或通过网络进行传递。 说人话： 计算机里只能存数字（2机制），所以如果文字字符想要进行存储的话，就需要把对应的文字字符转换为数字才能进行处理， 而字符编码就是文字字符在计算机中和数值的对应关系，是人为定义的一种映射规则。 比如">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png">
+<meta property="article:published_time" content="2024-03-03T12:34:30.000Z">
+<meta property="article:modified_time" content="2024-07-01T14:16:58.000Z">
+<meta property="article:author" content="文KRIFE齐">
+<meta property="article:tag" content="blog">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2024/03/03/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UN%E2%80%94%E2%80%94Unity%E7%BD%91%E7%BB%9C%E5%BC%80%E5%8F%91%E7%9B%B8%E5%85%B3/UN1%E2%80%94%E2%80%94%E7%BD%91%E7%BB%9C%E5%BC%80%E5%8F%91%E7%90%86%E8%AE%BA%E5%92%8C%E9%80%9A%E4%BF%A1%E5%BF%85%E5%A4%87%E7%9F%A5%E8%AF%86/UN1L9%E2%80%94%E2%80%94%E5%BA%8F%E5%88%97%E5%8C%96%E5%92%8C%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%962%E8%BF%9B%E5%88%B6%E6%95%B0%E6%8D%AE/UN1L9-1%E2%80%94%E2%80%94%E5%AD%97%E8%8A%82%E7%BC%96%E7%A0%81/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'UN1L9-1——字节编码',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-07-01 22:16:58'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">834</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><hr class="custom-hr"/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="文KRIFE齐的博客"><span class="site-name">文KRIFE齐的博客</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">UN1L9-1——字节编码</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-03-03T12:34:30.000Z" title="发表于 2024-03-03 20:34:30">2024-03-03</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-07-01T14:16:58.000Z" title="更新于 2024-07-01 22:16:58">2024-07-01</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="UN1L9-1——字节编码"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1>UN1L9-1——字节编码</h1>
+<h1><strong>字符编码</strong></h1>
+<p>字符编码（英语：Character encoding）也称字集码，<br>
+是把字符集中的字符，编码为指定集合中某一对象，以便文本在计算机中存储或通过网络进行传递。</p>
+<p>说人话：<br>
+<strong>计算机里只能存数字（2机制），所以如果文字字符想要进行存储的话，就需要把对应的文字字符转换为数字才能进行处理，<br>
+而字符编码就是文字字符在计算机中和数值的对应关系，是人为定义的一种映射规则。</strong></p>
+<p>比如：<br>
+ASCII码（一种字符编码规则）中 数值65 用来映射 字符<code>A</code>​，我们存储 <code>A</code>​ 这个字符，本质上存在内存中的是数值65对应的2进制是<code>0100 0001</code>​</p>
+<p>常见的一些字符编码规则有：</p>
+<ul>
+<li>
+<p>每个国家针对自己国家语言制定的编码规则（因为语言文字的数量各不相同）</p>
+<p>ASCII码（美国）、GB2312编码（中国）、Shift_JIS编码（日本）、Euc-kr（韩国）等等</p>
+</li>
+<li>
+<p>世界通用的编码规则（把所有语言统一到一套编码里）</p>
+<p>Unicode编码，以及基于Unicode实现的编码规则：UTF-8、UTF-16、UTF-32</p>
+</li>
+</ul>
+<h2 id="为何会出现乱码"><strong>为何会出现乱码</strong></h2>
+<p>很多人在查看文本文件时，经常会看到如下图中的这种乱码。那么为什么会出现这样的乱码呢？</p>
+<p>​<img src="assets/image-20240303203935-jvzsuhz.png" alt="image">​</p>
+<p>假设我们的一个文件是采用中国制定的GB2312编码进行编辑存储的，<br>
+而此时我们并不使用GB2312这个编码规则去读取文件，而是采用其它的规则，比如日本制定的Shift_JIS编码读取该文件，<br>
+那么由于<strong>编码格式的存读不统一就会造成乱码的出现。因为不同的编码规则，字符和数值的映射关系是不同的。</strong></p>
+<p>比如：130这个数值在法语编码中代表了é，在希伯来语编码中却代表了字母Gimel (ג)，在中文编码中又会代表另一个符号。</p>
+<h2 id="ASCII码">ASCII码</h2>
+<p>我们知道在计算机内部，所有的信息最终都是一个二进制值。<br>
+一个二进制数就是一位（bit），有0和1两种状态。一个字节（byte）是8个二进制数组成的，所以1 byte = 8 bit。<br>
+也就是说一个字节一共可以用来表示256种不同的状态，从00000000到11111111。<br>
+如果每一个状态都代表一个符号的话，那么一个字节可以用来表示256个符号。</p>
+<p>上个世界60年代，美国制定了一套算是最早的字符编码，制定了一套基于英文字符与二进制位之间的对应关系。<br>
+这套标准被称为ASCII码，一直使用到今天。ASCII码一共规定了128个字符的编码。比如：</p>
+<p>字符 A = 65（十进制数）= 0100 0001（二进制数）<br>
+字符 1 = 49（十进制数）= 0011 0001（二进制数）等等</p>
+<p>下图为ASCII码的对照表：</p>
+<p>​<img src="assets/image-20240303204133-twmg7uf.png" alt="image">​</p>
+<h2 id="非ASCII码">非ASCII码</h2>
+<p>非ASCII码基本都是基于ASCII码进行的扩充，他们都保留了ASCII码0~127这段编码的规范。<br>
+也就是说<strong>非ASCII码的前面部分往往是和ASCII码的规则是相同的。</strong></p>
+<p>对于一些欧洲国家，他们使用一个字节便可以表示完自己所有的文字，他们利用了字节中闲置的最高位编入新的符号，<br>
+<strong>因为我们知道ASCII码的编码规则是：一个字节中的8位，只占用了一个字节的后面7位，最前面的一位统一规定为0。<br>
+所以这些语言系统中文字较少的国家让最前面的一位可以为1，他们就可以为自己的文字在128~255这一段加入新的对应规则。</strong></p>
+<p>比如：130这个数值在法语编码中代表了é，在希伯来语编码中却代表了字母Gimel (ג)</p>
+<p>这种一个字节就把字符表示完的做法只适用于语言系统中文字较少的国家，因为他们的语言的字母是有限的。</p>
+<p>对于使用象形文字的国家来说，一个字节完全不够用！比如中国，我们的汉字多达10万左右，一个字节最多也只能表示256种符号，是远远不够的。<br>
+所以必须使用多个字节来表示一个符号。比如我们前面提到的中国的简体中文GB2312编码，<br>
+是使用两个字节表示一个汉字，所以理论上来说可以表示256x256=65536个符号。</p>
+<p>所以<strong>所谓的非ASCII码，就是指的除了ASCII码以外的编码格式</strong>，每个国家都至少有1种针对自己语言文字的编码格式，<br>
+每一个编码格式中数值和字符的对应关系都可能不相同。这也就造成了前面说到的乱码问题。<br>
+在全世界范围内进行网络通信时，如果每个国家都使用不统一的编码格式，那么出现乱码的情况将随处可见。</p>
+<p>因此随着互联网的发展，人们决定要制定一套全世界统一的的编码规则，将世界上所有的符号都纳入其中，<br>
+为每一个符号赋予独一无二的编码（2进制数值）。那么这样就不会出现乱码问题，影响信息的传递了。</p>
+<h2 id="Unicode">Unicode</h2>
+<p>Unicode可以理解为是 Unique Code 的简写，翻译过来是“唯一的编码”。</p>
+<p><strong>它出现的主要原因就是用来解决乱码问题的，它将世界上所有的符号都纳入其中，<br>
+每一个符号都为其分配一个独一无二的二进制数表示它，那么乱码问题就会消失。</strong></p>
+<p>Unicode是一个很大的集合，现在的规模可以容纳100多万个符号，每个符号对应的二进制数都不一样。这样就确保了不同语言的字符不会再有冲突。</p>
+<p>那么这样可能就存在一个问题，就是有的符号用1个字节8位就可以表示了，有的符号可能需要使用2个字节16位甚至3个字节24位才能表示。<br>
+就比如说ASCII码，它的存储规则就是一个字节存储一个字符，那么当我们使用Unicode编码时，到底用几个字节来存储字符呢？</p>
+<p>因此我们需要注意：Unicode编码只是一个符号集，它只规定符号和二进制的对应关系，并没有规定这个二进制数值应该如何存储。</p>
+<p><strong>而UTF-8、UTF-16、UTF-32三种编码格式才是基于Unicode实现的具体编码方案</strong></p>
+<ul>
+<li>UTF-8编码：可变字节编码方案，可以根据实际情况使用1个、2个、3个、4个字节来存储字符</li>
+<li>UTF-16编码：可变字节编码方案，可以根据实际情况使用2个、4个字节来存储字符</li>
+<li>UTF-32编码：固定字节编码方案，用4个字节来存储字符</li>
+</ul>
+<h2 id="UTF-8">UTF-8</h2>
+<p><strong>我们在这里主要讲解目前互联网中使用最广泛、最普及的UTF-8编码格式</strong></p>
+<p>UTF-8是Unicode的实现方式之一，它的最大特点是：它是一种变长的编码方式，<br>
+可以使用1~4个字节表示一个字符，根据不同的符号而变化字节的长度。</p>
+<p>它的编码规则主要有以下两点：</p>
+<p>​<img src="https://scb4a2cp-sb-qn.qiqiuyun.net/files/course/2022/04-05/171510e6ce4c764035.png" alt="">​</p>
+<p>我们需要明确UTF-8和Unicode之间的关系：</p>
+<ul>
+<li>Unicode是世界上所有符号对应二进制数据的关系集合</li>
+<li>UTF-8<strong>是Unicode的实现方式之一</strong>：UTF-8 = Unicode符号集 + 变长的编码规则</li>
+</ul>
+<h2 id="总结">总结</h2>
+<p>我们在进行网络游戏开发时，只要保证前后端的字符编码格式统一就可以避免乱码的出现，<br>
+比如如果只有英文字符的情况下，我们可以统一使用ASCII码进行字符的2进制转换，<br>
+如果有中文字符的情况下，可以选择使用GB2313编码格式进行转换。</p>
+<p>但是，建议大家，在进行文件存储、网络传输时，都采用UTF-8的编码格式，<br>
+它相对其它格式来说在互联网通信中应用更广泛，更普遍，它包含各种语言符号</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">文KRIFE齐</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2024/03/03/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UN%E2%80%94%E2%80%94Unity%E7%BD%91%E7%BB%9C%E5%BC%80%E5%8F%91%E7%9B%B8%E5%85%B3/UN1%E2%80%94%E2%80%94%E7%BD%91%E7%BB%9C%E5%BC%80%E5%8F%91%E7%90%86%E8%AE%BA%E5%92%8C%E9%80%9A%E4%BF%A1%E5%BF%85%E5%A4%87%E7%9F%A5%E8%AF%86/UN1L9%E2%80%94%E2%80%94%E5%BA%8F%E5%88%97%E5%8C%96%E5%92%8C%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%962%E8%BF%9B%E5%88%B6%E6%95%B0%E6%8D%AE/UN1L9-1%E2%80%94%E2%80%94%E5%AD%97%E8%8A%82%E7%BC%96%E7%A0%81/">http://example.com/2024/03/03/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UN%E2%80%94%E2%80%94Unity%E7%BD%91%E7%BB%9C%E5%BC%80%E5%8F%91%E7%9B%B8%E5%85%B3/UN1%E2%80%94%E2%80%94%E7%BD%91%E7%BB%9C%E5%BC%80%E5%8F%91%E7%90%86%E8%AE%BA%E5%92%8C%E9%80%9A%E4%BF%A1%E5%BF%85%E5%A4%87%E7%9F%A5%E8%AF%86/UN1L9%E2%80%94%E2%80%94%E5%BA%8F%E5%88%97%E5%8C%96%E5%92%8C%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%962%E8%BF%9B%E5%88%B6%E6%95%B0%E6%8D%AE/UN1L9-1%E2%80%94%E2%80%94%E5%AD%97%E8%8A%82%E7%BC%96%E7%A0%81/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">文KRIFE齐的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2024/03/03/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UN%E2%80%94%E2%80%94Unity%E7%BD%91%E7%BB%9C%E5%BC%80%E5%8F%91%E7%9B%B8%E5%85%B3/UN1%E2%80%94%E2%80%94%E7%BD%91%E7%BB%9C%E5%BC%80%E5%8F%91%E7%90%86%E8%AE%BA%E5%92%8C%E9%80%9A%E4%BF%A1%E5%BF%85%E5%A4%87%E7%9F%A5%E8%AF%86/UN1L9%E2%80%94%E2%80%94%E5%BA%8F%E5%88%97%E5%8C%96%E5%92%8C%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%962%E8%BF%9B%E5%88%B6%E6%95%B0%E6%8D%AE/UN1L9-2%E2%80%94%E2%80%94%E5%BA%8F%E5%88%97%E5%8C%96%E5%92%8C%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/" title="UN1L9-2——序列化和反序列化"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">UN1L9-2——序列化和反序列化</div></div></a></div><div class="next-post pull-right"><a href="/2024/03/03/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UN%E2%80%94%E2%80%94Unity%E7%BD%91%E7%BB%9C%E5%BC%80%E5%8F%91%E7%9B%B8%E5%85%B3/UN1%E2%80%94%E2%80%94%E7%BD%91%E7%BB%9C%E5%BC%80%E5%8F%91%E7%90%86%E8%AE%BA%E5%92%8C%E9%80%9A%E4%BF%A1%E5%BF%85%E5%A4%87%E7%9F%A5%E8%AF%86/UN1L9%E2%80%94%E2%80%94%E5%BA%8F%E5%88%97%E5%8C%96%E5%92%8C%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%962%E8%BF%9B%E5%88%B6%E6%95%B0%E6%8D%AE/" title="UN1L9——序列化和反序列化2进制数据"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">UN1L9——序列化和反序列化2进制数据</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">文KRIFE齐</div><div class="author-info__description">目前正处于搭建测试环节</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">834</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">UN1L9-1——字节编码</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">2.</span> <span class="toc-text">字符编码</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BD%95%E4%BC%9A%E5%87%BA%E7%8E%B0%E4%B9%B1%E7%A0%81"><span class="toc-number">2.1.</span> <span class="toc-text">为何会出现乱码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ASCII%E7%A0%81"><span class="toc-number">2.2.</span> <span class="toc-text">ASCII码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%9EASCII%E7%A0%81"><span class="toc-number">2.3.</span> <span class="toc-text">非ASCII码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Unicode"><span class="toc-number">2.4.</span> <span class="toc-text">Unicode</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UTF-8"><span class="toc-number">2.5.</span> <span class="toc-text">UTF-8</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">2.6.</span> <span class="toc-text">总结</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/07/01/hello-world/" title="欢迎来到文KRIFE齐的博客！">欢迎来到文KRIFE齐的博客！</a><time datetime="2024-07-01T11:46:20.391Z" title="发表于 2024-07-01 19:46:20">2024-07-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/US3S1L5%E2%80%94%E2%80%94Phong%E5%85%89%E7%85%A7%E6%A8%A1%E5%9E%8B/" title="US3S1L5——Phong光照模型">US3S1L5——Phong光照模型</a><time datetime="2024-06-25T14:33:57.000Z" title="发表于 2024-06-25 22:33:57">2024-06-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/US3S1L4%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B/US3S1L4-2%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B%E7%9A%84%E9%80%90%E7%89%87%E5%85%83%E5%85%89%E7%85%A7/" title="US3S1L4-2——Phong式高光反射模型的逐片元光照">US3S1L4-2——Phong式高光反射模型的逐片元光照</a><time datetime="2024-06-25T13:16:37.000Z" title="发表于 2024-06-25 21:16:37">2024-06-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/US3S1L4%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B/US3S1L4-1%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B%E7%9A%84%E9%80%90%E9%A1%B6%E7%82%B9%E5%85%89%E7%85%A7/" title="US3S1L4-1——Phong式高光反射模型的逐顶点光照">US3S1L4-1——Phong式高光反射模型的逐顶点光照</a><time datetime="2024-06-25T13:16:05.000Z" title="发表于 2024-06-25 21:16:05">2024-06-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/US3S1L4%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B/" title="US3S1L4——Phong式高光反射模型">US3S1L4——Phong式高光反射模型</a><time datetime="2024-06-25T10:14:12.000Z" title="发表于 2024-06-25 18:14:12">2024-06-25</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By 文KRIFE齐</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

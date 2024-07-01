@@ -1,0 +1,244 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>UG4L8-6——装载器 | 文KRIFE齐的博客</title><meta name="author" content="文KRIFE齐"><meta name="copyright" content="文KRIFE齐"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="UG4L8-6——装载器 本章代码关键字 1234567GLoader									&#x2F;&#x2F;装载器类gObject.asLoader						&#x2F;&#x2F;将元件对象as成装载器对象返回gLoader.url								&#x2F;&#x2F;装载器所用的资源的urlgLoader.movieClip						&#x2F;&#x2F;获取装载器装载的动画或者图片gLoader.component						&#x2F;&#x2F;获取装载器装载的组件gLoa">
+<meta property="og:type" content="article">
+<meta property="og:title" content="UG4L8-6——装载器">
+<meta property="og:url" content="http://example.com/2023/11/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UG%E2%80%94%E2%80%94UI%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0/UG4%E2%80%94%E2%80%94FairyGUI%E7%B3%BB%E5%88%97/UG4L8%E2%80%94%E2%80%94FairyGUI%E4%B8%AD%E7%9A%84%E5%9F%BA%E7%A1%80%E5%85%83%E4%BB%B6/UG4L8-6%E2%80%94%E2%80%94%E8%A3%85%E8%BD%BD%E5%99%A8/index.html">
+<meta property="og:site_name" content="文KRIFE齐的博客">
+<meta property="og:description" content="UG4L8-6——装载器 本章代码关键字 1234567GLoader									&#x2F;&#x2F;装载器类gObject.asLoader						&#x2F;&#x2F;将元件对象as成装载器对象返回gLoader.url								&#x2F;&#x2F;装载器所用的资源的urlgLoader.movieClip						&#x2F;&#x2F;获取装载器装载的动画或者图片gLoader.component						&#x2F;&#x2F;获取装载器装载的组件gLoa">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png">
+<meta property="article:published_time" content="2023-11-25T10:47:37.000Z">
+<meta property="article:modified_time" content="2024-07-01T14:16:49.000Z">
+<meta property="article:author" content="文KRIFE齐">
+<meta property="article:tag" content="blog">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2023/11/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UG%E2%80%94%E2%80%94UI%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0/UG4%E2%80%94%E2%80%94FairyGUI%E7%B3%BB%E5%88%97/UG4L8%E2%80%94%E2%80%94FairyGUI%E4%B8%AD%E7%9A%84%E5%9F%BA%E7%A1%80%E5%85%83%E4%BB%B6/UG4L8-6%E2%80%94%E2%80%94%E8%A3%85%E8%BD%BD%E5%99%A8/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'UG4L8-6——装载器',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-07-01 22:16:49'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">834</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><hr class="custom-hr"/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="文KRIFE齐的博客"><span class="site-name">文KRIFE齐的博客</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">UG4L8-6——装载器</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-11-25T10:47:37.000Z" title="发表于 2023-11-25 18:47:37">2023-11-25</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-07-01T14:16:49.000Z" title="更新于 2024-07-01 22:16:49">2024-07-01</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="UG4L8-6——装载器"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1>UG4L8-6——装载器</h1>
+<h2 id="本章代码关键字">本章代码关键字</h2>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">GLoader									<span class="comment">//装载器类</span></span><br><span class="line">gObject.asLoader						<span class="comment">//将元件对象as成装载器对象返回</span></span><br><span class="line">gLoader.url								<span class="comment">//装载器所用的资源的url</span></span><br><span class="line">gLoader.movieClip						<span class="comment">//获取装载器装载的动画或者图片</span></span><br><span class="line">gLoader.component						<span class="comment">//获取装载器装载的组件</span></span><br><span class="line">gLoader.texture							<span class="comment">//装载Unity的贴图的属性</span></span><br><span class="line">UIObjectFactory.SetLoaderExtension()	<span class="comment">//注册拥有自定义加载方法的GLoader派生类</span></span><br></pre></td></tr></table></figure>
+<h1>装载器</h1>
+<p>为了节约性能提升效率，FairyGUI的图片是不能够动态修改资源的<br>
+而装载器的用途就是动态载入资源，我们可以使用装载器来动态的改变图片</p>
+<p>装载器可以装载：图片、动画、组件</p>
+<h2 id="如何创建装载器">如何创建装载器</h2>
+<ol>
+<li>
+<p>左侧选择装载器图标，在舞台上进行创建</p>
+<p>​<img src="assets/image-20231125185146-8oyi26r.png" alt="image">​</p>
+</li>
+<li>
+<p>选择想要变成装载器的元件右键，点击替换元件选择装载器</p>
+<p>​<img src="assets/image-20231125185238-94mmb5y.png" alt="image">​</p>
+</li>
+</ol>
+<h2 id="装载器相关属性">装载器相关属性</h2>
+<p>​<img src="assets/image-20231125185259-kgm3xzb.png" alt="image">​</p>
+<ul>
+<li>
+<p>URL：资源路径（图片、动画、组件）</p>
+</li>
+<li>
+<p>发布时清除：如果选中该选项，发布时会自动清空这里设置的值</p>
+<p>​<img src="assets/image-20231125185536-wqnn36i.png" alt="image"></p>
+</li>
+<li>
+<p>自动大小：如果选中该选项，则装载器的尺寸会自动适配图片大小<br>
+选中该选项，则下面的填充处理选项没有意义</p>
+</li>
+<li>
+<p>填充处理</p>
+<p>​<img src="assets/image-20231125185351-2y4jtr9.png" alt="image">​</p>
+<ul>
+<li>无 ：内容不会发生任何缩放。</li>
+<li>等比缩放（显示全部）：按照最小比率缩放，不变形，一边可能留空白。</li>
+<li>等比缩放（无边框） ：按照最大比率缩放，不变形，一边可能超出装载器矩形范围。</li>
+<li>等比缩放（适应高度）： 内容高度占满装载器高度，宽度等比缩放。</li>
+<li>等比缩放（适应宽度） ：内容宽度占满装载器宽度，高度等比缩放。</li>
+<li>自由缩放： 内容缩放至占满装载器矩形范围，不保持比例。</li>
+<li>注意：如果设置了自动大小，那么填充处理没有任何意义了</li>
+</ul>
+</li>
+<li>
+<p>仅允许缩小：勾选后，处理填充处理时，其中的内容永远不被放大，但可以被缩小</p>
+</li>
+<li>
+<p>帧：如果是动画，可以设置当前帧，如果是图片，没有任何意义</p>
+</li>
+</ul>
+<h2 id="在Unity中使用">在Unity中使用</h2>
+<ol>
+<li>
+<p>获取装载器</p>
+ <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GLoader gLoader = view.GetChild(<span class="string">&quot;loader1&quot;</span>).asLoader;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>加载包中或者Resource的资源</p>
+ <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//加载包中的资源</span></span><br><span class="line">gLoader.url = <span class="string">&quot;ui://teach/ui_TY_biaotilan_01&quot;</span>;</span><br><span class="line"><span class="comment">//通过内部帮助我们加载Resources加载资源</span></span><br><span class="line">gLoader.url = <span class="string">&quot;UI/bk&quot;</span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>动态创建装载器</p>
+ <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">GLoader loader = <span class="keyword">new</span> GLoader();</span><br><span class="line">loader.SetSize(<span class="number">100</span>, <span class="number">100</span>);</span><br><span class="line">loader.y = <span class="number">400</span>;</span><br><span class="line">loader.url = <span class="string">&quot;ui://teach/MovieClip1&quot;</span>;</span><br><span class="line">view.AddChild(loader);</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>获取装载器中的内容</p>
+<p>如果是图片和动画，通过<code>gLoader.movieClip</code>​获取，图片就是动画第一帧<br>
+如果是组件，通过<code>gLoader.component</code>​获取</p>
+ <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">MovieClip movie = gLoader.movieClip;</span><br><span class="line">GComponent component = gLoader.component;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>装载Unity贴图</p>
+ <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> Texture t;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Start</span>()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">//设置适配相关</span></span><br><span class="line">    GRoot.inst.SetContentScaleFactor(<span class="number">1365</span>, <span class="number">768</span>, UIContentScaler.ScreenMatc</span><br><span class="line">    <span class="comment">//包与依赖包的加载</span></span><br><span class="line">    UIPackage package = UIPackage.AddPackage(<span class="string">&quot;UI/teach&quot;</span>);</span><br><span class="line">    <span class="keyword">foreach</span> (<span class="keyword">var</span> item <span class="keyword">in</span> package.dependencies)</span><br><span class="line">    &#123;</span><br><span class="line">        UIPackage.AddPackage(item[<span class="string">&quot;name&quot;</span>]);</span><br><span class="line">    &#125;</span><br><span class="line">    GComponent view = UIPackage.CreateObject(<span class="string">&quot;teach&quot;</span>, <span class="string">&quot;TeachPanel&quot;</span>).asCom;</span><br><span class="line">    GRoot.inst.AddChild(view);</span><br><span class="line"></span><br><span class="line">    GLoader gLoader = view.GetChild(<span class="string">&quot;loader1&quot;</span>).asLoader;</span><br><span class="line">    gLoader.texture = <span class="keyword">new</span> NTexture(t);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>自定义加载方案</p>
+<p>首先需要声明一个继承<code>GLoader</code>​的派生类，在里面重写加载资源<code>LoadExternal()</code>​以及释放资源<code>FreeExternal()</code>​的方法</p>
+ <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//自定义加载方案</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">MyGLoader</span> : <span class="title">GLoader</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">//重写加载资源的方法</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">override</span> <span class="keyword">void</span> <span class="title">LoadExternal</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//自定义加载方式</span></span><br><span class="line">        Sprite s = <span class="literal">null</span>;                        <span class="comment">//假设你自己写了一些加载的规则</span></span><br><span class="line">        NTexture texture = <span class="keyword">new</span> NTexture(s);     <span class="comment">//假设这是加载成功的一张图</span></span><br><span class="line">        <span class="comment">//如果加载成功，需要执行这个方法，并将加载成功的图片传进去</span></span><br><span class="line">        onExternalLoadSuccess(texture);</span><br><span class="line">        <span class="comment">//如果加载失败，需要执行这个方法</span></span><br><span class="line">        onExternalLoadFailed();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">override</span> <span class="keyword">void</span> <span class="title">FreeExternal</span>(<span class="params">NTexture texture</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//释放外部载入资源的逻辑</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>再注册该派生类，传入该派生类的类型，之后所有的装载器都将使用自定义的方法</p>
+ <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UIObjectFactory.SetLoaderExtension(<span class="keyword">typeof</span>(MyGLoader));</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">文KRIFE齐</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2023/11/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UG%E2%80%94%E2%80%94UI%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0/UG4%E2%80%94%E2%80%94FairyGUI%E7%B3%BB%E5%88%97/UG4L8%E2%80%94%E2%80%94FairyGUI%E4%B8%AD%E7%9A%84%E5%9F%BA%E7%A1%80%E5%85%83%E4%BB%B6/UG4L8-6%E2%80%94%E2%80%94%E8%A3%85%E8%BD%BD%E5%99%A8/">http://example.com/2023/11/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UG%E2%80%94%E2%80%94UI%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0/UG4%E2%80%94%E2%80%94FairyGUI%E7%B3%BB%E5%88%97/UG4L8%E2%80%94%E2%80%94FairyGUI%E4%B8%AD%E7%9A%84%E5%9F%BA%E7%A1%80%E5%85%83%E4%BB%B6/UG4L8-6%E2%80%94%E2%80%94%E8%A3%85%E8%BD%BD%E5%99%A8/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">文KRIFE齐的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/11/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UG%E2%80%94%E2%80%94UI%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0/UG4%E2%80%94%E2%80%94FairyGUI%E7%B3%BB%E5%88%97/UG4L8%E2%80%94%E2%80%94FairyGUI%E4%B8%AD%E7%9A%84%E5%9F%BA%E7%A1%80%E5%85%83%E4%BB%B6/UG4L8-7%E2%80%94%E2%80%943D%E8%A3%85%E8%BD%BD%E5%99%A8/" title="UG4L8-7——3D装载器"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">UG4L8-7——3D装载器</div></div></a></div><div class="next-post pull-right"><a href="/2023/11/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UG%E2%80%94%E2%80%94UI%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0/UG4%E2%80%94%E2%80%94FairyGUI%E7%B3%BB%E5%88%97/UG4L8%E2%80%94%E2%80%94FairyGUI%E4%B8%AD%E7%9A%84%E5%9F%BA%E7%A1%80%E5%85%83%E4%BB%B6/UG4L8-5%E2%80%94%E2%80%94%E9%AA%A8%E9%AA%BC%E5%8A%A8%E7%94%BB%E5%85%83%E4%BB%B6/" title="UG4L8-5——骨骼动画元件"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">UG4L8-5——骨骼动画元件</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">文KRIFE齐</div><div class="author-info__description">目前正处于搭建测试环节</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">834</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">UG4L8-6——装载器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%AC%E7%AB%A0%E4%BB%A3%E7%A0%81%E5%85%B3%E9%94%AE%E5%AD%97"><span class="toc-number">1.1.</span> <span class="toc-text">本章代码关键字</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">2.</span> <span class="toc-text">装载器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E5%88%9B%E5%BB%BA%E8%A3%85%E8%BD%BD%E5%99%A8"><span class="toc-number">2.1.</span> <span class="toc-text">如何创建装载器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A3%85%E8%BD%BD%E5%99%A8%E7%9B%B8%E5%85%B3%E5%B1%9E%E6%80%A7"><span class="toc-number">2.2.</span> <span class="toc-text">装载器相关属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9C%A8Unity%E4%B8%AD%E4%BD%BF%E7%94%A8"><span class="toc-number">2.3.</span> <span class="toc-text">在Unity中使用</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/07/01/hello-world/" title="欢迎来到文KRIFE齐的博客！">欢迎来到文KRIFE齐的博客！</a><time datetime="2024-07-01T11:46:20.391Z" title="发表于 2024-07-01 19:46:20">2024-07-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/US3S1L5%E2%80%94%E2%80%94Phong%E5%85%89%E7%85%A7%E6%A8%A1%E5%9E%8B/" title="US3S1L5——Phong光照模型">US3S1L5——Phong光照模型</a><time datetime="2024-06-25T14:33:57.000Z" title="发表于 2024-06-25 22:33:57">2024-06-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/US3S1L4%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B/US3S1L4-2%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B%E7%9A%84%E9%80%90%E7%89%87%E5%85%83%E5%85%89%E7%85%A7/" title="US3S1L4-2——Phong式高光反射模型的逐片元光照">US3S1L4-2——Phong式高光反射模型的逐片元光照</a><time datetime="2024-06-25T13:16:37.000Z" title="发表于 2024-06-25 21:16:37">2024-06-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/US3S1L4%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B/US3S1L4-1%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B%E7%9A%84%E9%80%90%E9%A1%B6%E7%82%B9%E5%85%89%E7%85%A7/" title="US3S1L4-1——Phong式高光反射模型的逐顶点光照">US3S1L4-1——Phong式高光反射模型的逐顶点光照</a><time datetime="2024-06-25T13:16:05.000Z" title="发表于 2024-06-25 21:16:05">2024-06-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/US3S1L4%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B/" title="US3S1L4——Phong式高光反射模型">US3S1L4——Phong式高光反射模型</a><time datetime="2024-06-25T10:14:12.000Z" title="发表于 2024-06-25 18:14:12">2024-06-25</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By 文KRIFE齐</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

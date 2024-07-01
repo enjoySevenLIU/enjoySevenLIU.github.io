@@ -1,0 +1,241 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>US1L7——必备的图形程序接口概念 | 文KRIFE齐的博客</title><meta name="author" content="文KRIFE齐"><meta name="copyright" content="文KRIFE齐"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="US1L7——必备的图形程序接口概念 计算机图形程序接口 计算机图形程序接口（Graphics API）对于游戏开发程序员来说是非常重要的知识，是学习图形学时必不可少的内容。 计算机图形程序接口是一套可编程的开放标准，不管做2D还是3D游戏都需要这部分的底层API支持。 它本质上是软件，并不是硬件，是前辈们提前为你写好的调用系统硬件（GPU）绘制图形的代码。 我们甚至可以把它简单理解成是显卡厂商定">
+<meta property="og:type" content="article">
+<meta property="og:title" content="US1L7——必备的图形程序接口概念">
+<meta property="og:url" content="http://example.com/2024/05/10/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US1%E2%80%94%E2%80%94Shader%E5%BF%85%E5%A4%87%E6%A6%82%E5%BF%B5/US1L7%E2%80%94%E2%80%94%E5%BF%85%E5%A4%87%E7%9A%84%E5%9B%BE%E5%BD%A2%E7%A8%8B%E5%BA%8F%E6%8E%A5%E5%8F%A3%E6%A6%82%E5%BF%B5/index.html">
+<meta property="og:site_name" content="文KRIFE齐的博客">
+<meta property="og:description" content="US1L7——必备的图形程序接口概念 计算机图形程序接口 计算机图形程序接口（Graphics API）对于游戏开发程序员来说是非常重要的知识，是学习图形学时必不可少的内容。 计算机图形程序接口是一套可编程的开放标准，不管做2D还是3D游戏都需要这部分的底层API支持。 它本质上是软件，并不是硬件，是前辈们提前为你写好的调用系统硬件（GPU）绘制图形的代码。 我们甚至可以把它简单理解成是显卡厂商定">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png">
+<meta property="article:published_time" content="2024-05-10T07:33:53.000Z">
+<meta property="article:modified_time" content="2024-07-01T14:17:11.000Z">
+<meta property="article:author" content="文KRIFE齐">
+<meta property="article:tag" content="blog">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2024/05/10/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US1%E2%80%94%E2%80%94Shader%E5%BF%85%E5%A4%87%E6%A6%82%E5%BF%B5/US1L7%E2%80%94%E2%80%94%E5%BF%85%E5%A4%87%E7%9A%84%E5%9B%BE%E5%BD%A2%E7%A8%8B%E5%BA%8F%E6%8E%A5%E5%8F%A3%E6%A6%82%E5%BF%B5/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'US1L7——必备的图形程序接口概念',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-07-01 22:17:11'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">834</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><hr class="custom-hr"/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="文KRIFE齐的博客"><span class="site-name">文KRIFE齐的博客</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">US1L7——必备的图形程序接口概念</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-05-10T07:33:53.000Z" title="发表于 2024-05-10 15:33:53">2024-05-10</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-07-01T14:17:11.000Z" title="更新于 2024-07-01 22:17:11">2024-07-01</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="US1L7——必备的图形程序接口概念"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1>US1L7——必备的图形程序接口概念</h1>
+<h1><strong>计算机图形程序接口</strong></h1>
+<p>计算机图形程序接口（Graphics API）对于游戏开发程序员来说是非常重要的知识，是学习图形学时必不可少的内容。</p>
+<p>计算机图形程序接口是一套可编程的开放标准，不管做2D还是3D游戏都需要这部分的底层API支持。</p>
+<p>它本质上是软件，并不是硬件，是前辈们提前为你写好的调用系统硬件（GPU）绘制图形的代码。<br>
+我们甚至可以把它简单理解成是显卡厂商定义的一系列的底层的进行图形操作的加速API接口。</p>
+<p><strong>由于目前各种游戏引擎的出现，即使你没有系统的学习过图形学相关知识，也能够独立的通过游戏引擎开发游戏</strong>。<br>
+但是你必须知道的是，<strong>游戏引擎的一部分本质就是对图形程序接口的封装</strong>，<br>
+<strong>游戏引擎通过图形程序接口</strong>帮助我们<strong>完成了图像渲染相关的工作</strong>，我们只需要把工作重心放在游戏逻辑开发上了。</p>
+<p>因此，计算机图形程序接口对于游戏开发来说，是非常重要的内容，<br>
+即使你现在还没有时间，或者没有需求学习计算机图形学，你也必须对他们有一定的认识。</p>
+<h3 id="Unity程序员必了解的图形程序接口"><strong>Unity程序员必了解的图形程序接口</strong></h3>
+<ul>
+<li>
+<h4 id="OpenGL（Open-Graphics-Library）"><strong>OpenGL（Open Graphics Library）</strong></h4>
+<p>中文翻译过来是<strong>开放图形库</strong>，它定义了一个<strong>跨平台、跨语言</strong>的编程接口规格的专业图形程序接口，<br>
+可以用于3D、2D图形渲染，是一个功能强大、调用方便的底层图形库。<br>
+由于它跨平台、跨语言、出现时间早，因此它的应用极其广泛！</p>
+</li>
+<li>
+<h4 id="OpenGL-ES（OpenGL-for-Embedded-Systems）"><strong>OpenGL ES（OpenGL for Embedded Systems）</strong></h4>
+<p>中文翻译过来是<strong>用于嵌入式系统的开放图形库</strong>，它是<strong>OpenGL的子级</strong>，<br>
+<strong>主要针对手机、游戏主机</strong>等嵌入式设备而设计，免授权费、跨平台、功能完善。<br>
+GLES2.0、GLES3.0 指的就是OpenGL ES这套标准，他们也是Android和IOS手机上常用的图形处理标准。<br>
+<strong>Unity在移动平台进行图形渲染处理时，就包含了OpenGL ES方案</strong></p>
+</li>
+<li>
+<h4 id="Vulkan"><strong>Vulkan</strong></h4>
+<p>“下一代”开放的图形显示API，是与DX12能够匹敌的GPU API标准。<br>
+它有一套最新的图形加速API接口，目标是提供更灵活和丰富的底层操作接口，以替代OpenGL 和 OpenGL ES接口，<br>
+<strong>可以把Vulkan看做是OpenGL的升级版</strong>，目前<strong>新版本的Unity支持使用Vulkan方案</strong>。</p>
+</li>
+<li>
+<h4 id="Directx（Direct-eXtension）"><strong>Directx（Direct eXtension）</strong></h4>
+<p>中文翻译过来是直接拓展，简称DX。它是由<strong>微软</strong>公司创建的多媒体编程接口。<br>
+它<strong>不跨平台</strong>，只针对微软的相关产品，被广泛使用于Windows操作系统、XBOX游戏主机的图形应用程序开发中。</p>
+<p>其中的D3D算是DX一部分，是对标OpenGL的图形程序接口</p>
+</li>
+<li>
+<h4 id="WebGL（Web-Graphics-Library）"><strong>WebGL（Web Graphics Library）</strong></h4>
+<p>中文翻译过来是网页图形库，它是<strong>针对Web端（</strong> 网页 <strong>）的3D绘图协议</strong>，<br>
+这个标准允许把JavaScript和OpenGL ES 2.0结合在一起，<br>
+网页开发人员可以借助系统显卡在浏览器里流畅的展示3D场景和模型，可以在网页里进行3D图形开发。</p>
+</li>
+<li>
+<h4 id="Metal"><strong>Metal</strong></h4>
+<p>中文翻译过来是金属，它是<strong>苹果公司</strong>为游戏开发者提供的图形技术，<br>
+该技术能够为3D图像提高10倍渲染性能，但是它不支持跨平台，<br>
+主要针对IOS、macOS苹果自家的操作系统，只有苹果手机、电脑能够使用。</p>
+</li>
+</ul>
+<h3 id="对于我们的意义"><strong>对于我们的意义</strong></h3>
+<p>了解这些图形程序接口的基本概念对我们有什么意义呢？我们从他们的简单介绍中需要知道，他们主要支持的平台为：</p>
+<ul>
+<li><strong>Windows电脑：DX、OpenGL、Vulkan</strong></li>
+<li><strong>苹果电脑：Metal、OpenGL、Vulkan</strong></li>
+<li><strong>安卓手机：OpenGL ES、Vulkan</strong></li>
+<li><strong>苹果手机：OpenGL ES、Vulkan、Metal</strong></li>
+<li><strong>网站网页：Web GL</strong></li>
+</ul>
+<p>如果不通过游戏引擎，我们想要在这些平台上开发游戏，那么就必须要针对不同平台学习对应的图形程序接口相关的知识。<br>
+你会发现<strong>OpenGL</strong>的身影在各主流平台中都占有一席之地，由于它<strong>出现早、跨平台、跨语言</strong>，<br>
+所以也是为什么在学习计算机图形学时，OpenGL是必学的内容。</p>
+<p>我们现在使用游戏引擎开发游戏，在绝大多数情况下，不需要直接和图形程序接口打交道，<br>
+但是<strong>我们在Unity当中发布应用程序时</strong>，<strong>经常会看到和他们相关的一些设置</strong>，你必须要了解了他们的基本概念，才能清楚我们在设置什么。</p>
+<p>因此本篇文章的主要作用就是让你了解他们，并且可以为你指明学习计算机图形学时的一些学习方向。</p>
+<p>你还需要知道的是，这些<strong>图形程序接口</strong>还有不同的版本，比如DX10、DX11、DX12，比如OpenGL ES 2.0、OpenGL ES 3.0。<br>
+<strong>不同的设备、不同的操作系统他们支持的版本也是不同的</strong>。<br>
+比如我们进行手机游戏开发时，我们<strong>可以去查询主流移动设备支持的图形程序接口的版本，来决定在发布时，对于图形程序接口版本的兼容选择。<br>
+这样才能保证我们发布的应用程序能够支持更多的移动设备。</strong></p>
+<h3 id="总结"><strong>总结</strong></h3>
+<p>对于Unity来说，它针对你发布的不同平台，会进行图形程序接口方案的切换，比如：</p>
+<ol>
+<li>发布Windows应用时，使用DX方案</li>
+<li>发布苹果电脑应用时，使用Metal方案</li>
+<li>发布移动平台应用时，使用OpenGL ES 或 Vulkan方案</li>
+<li>发布网页应用时，使用WebGL方案</li>
+</ol>
+<p>我们不需要掌握对应图形程序接口方案的相关知识，也能利用Unity进行游戏开发，<br>
+因为引擎已经把图形渲染的核心内容封装起来，不需要我们直接操作他们。<br>
+但是长远考虑，随着你的能力提升，计算机图形学还是游戏开发程序员的必学知识，他可以帮助你理解渲染相关的原理，让你升职加薪，走得更远。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">文KRIFE齐</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2024/05/10/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US1%E2%80%94%E2%80%94Shader%E5%BF%85%E5%A4%87%E6%A6%82%E5%BF%B5/US1L7%E2%80%94%E2%80%94%E5%BF%85%E5%A4%87%E7%9A%84%E5%9B%BE%E5%BD%A2%E7%A8%8B%E5%BA%8F%E6%8E%A5%E5%8F%A3%E6%A6%82%E5%BF%B5/">http://example.com/2024/05/10/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US1%E2%80%94%E2%80%94Shader%E5%BF%85%E5%A4%87%E6%A6%82%E5%BF%B5/US1L7%E2%80%94%E2%80%94%E5%BF%85%E5%A4%87%E7%9A%84%E5%9B%BE%E5%BD%A2%E7%A8%8B%E5%BA%8F%E6%8E%A5%E5%8F%A3%E6%A6%82%E5%BF%B5/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">文KRIFE齐的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2024/05/10/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US1%E2%80%94%E2%80%94Shader%E5%BF%85%E5%A4%87%E6%A6%82%E5%BF%B5/US1L8%E2%80%94%E2%80%94%E5%85%B6%E4%BB%96%E7%9B%B8%E5%85%B3%E5%BF%85%E5%A4%87%E6%A6%82%E5%BF%B5/" title="US1L8——其他相关必备概念"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">US1L8——其他相关必备概念</div></div></a></div><div class="next-post pull-right"><a href="/2024/05/10/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US1%E2%80%94%E2%80%94Shader%E5%BF%85%E5%A4%87%E6%A6%82%E5%BF%B5/US1L6%E2%80%94%E2%80%94%E5%A6%82%E4%BD%95%E8%BF%9B%E8%A1%8CShader%E5%BC%80%E5%8F%91/" title="US1L6——如何进行Shader开发"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">US1L6——如何进行Shader开发</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">文KRIFE齐</div><div class="author-info__description">目前正处于搭建测试环节</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">834</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">US1L7——必备的图形程序接口概念</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">2.</span> <span class="toc-text">计算机图形程序接口</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Unity%E7%A8%8B%E5%BA%8F%E5%91%98%E5%BF%85%E4%BA%86%E8%A7%A3%E7%9A%84%E5%9B%BE%E5%BD%A2%E7%A8%8B%E5%BA%8F%E6%8E%A5%E5%8F%A3"><span class="toc-number">2.0.1.</span> <span class="toc-text">Unity程序员必了解的图形程序接口</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#OpenGL%EF%BC%88Open-Graphics-Library%EF%BC%89"><span class="toc-number">2.0.1.1.</span> <span class="toc-text">OpenGL（Open Graphics Library）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#OpenGL-ES%EF%BC%88OpenGL-for-Embedded-Systems%EF%BC%89"><span class="toc-number">2.0.1.2.</span> <span class="toc-text">OpenGL ES（OpenGL for Embedded Systems）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Vulkan"><span class="toc-number">2.0.1.3.</span> <span class="toc-text">Vulkan</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Directx%EF%BC%88Direct-eXtension%EF%BC%89"><span class="toc-number">2.0.1.4.</span> <span class="toc-text">Directx（Direct eXtension）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#WebGL%EF%BC%88Web-Graphics-Library%EF%BC%89"><span class="toc-number">2.0.1.5.</span> <span class="toc-text">WebGL（Web Graphics Library）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Metal"><span class="toc-number">2.0.1.6.</span> <span class="toc-text">Metal</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%B9%E4%BA%8E%E6%88%91%E4%BB%AC%E7%9A%84%E6%84%8F%E4%B9%89"><span class="toc-number">2.0.2.</span> <span class="toc-text">对于我们的意义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">2.0.3.</span> <span class="toc-text">总结</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/07/01/hello-world/" title="欢迎来到文KRIFE齐的博客！">欢迎来到文KRIFE齐的博客！</a><time datetime="2024-07-01T11:46:20.391Z" title="发表于 2024-07-01 19:46:20">2024-07-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/US3S1L5%E2%80%94%E2%80%94Phong%E5%85%89%E7%85%A7%E6%A8%A1%E5%9E%8B/" title="US3S1L5——Phong光照模型">US3S1L5——Phong光照模型</a><time datetime="2024-06-25T14:33:57.000Z" title="发表于 2024-06-25 22:33:57">2024-06-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/US3S1L4%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B/US3S1L4-2%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B%E7%9A%84%E9%80%90%E7%89%87%E5%85%83%E5%85%89%E7%85%A7/" title="US3S1L4-2——Phong式高光反射模型的逐片元光照">US3S1L4-2——Phong式高光反射模型的逐片元光照</a><time datetime="2024-06-25T13:16:37.000Z" title="发表于 2024-06-25 21:16:37">2024-06-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/US3S1L4%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B/US3S1L4-1%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B%E7%9A%84%E9%80%90%E9%A1%B6%E7%82%B9%E5%85%89%E7%85%A7/" title="US3S1L4-1——Phong式高光反射模型的逐顶点光照">US3S1L4-1——Phong式高光反射模型的逐顶点光照</a><time datetime="2024-06-25T13:16:05.000Z" title="发表于 2024-06-25 21:16:05">2024-06-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/US3S1L4%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B/" title="US3S1L4——Phong式高光反射模型">US3S1L4——Phong式高光反射模型</a><time datetime="2024-06-25T10:14:12.000Z" title="发表于 2024-06-25 18:14:12">2024-06-25</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By 文KRIFE齐</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

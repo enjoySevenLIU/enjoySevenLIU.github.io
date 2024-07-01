@@ -1,0 +1,312 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>U4S4L2——寻址资源设置 | 文KRIFE齐的博客</title><meta name="author" content="文KRIFE齐"><meta name="copyright" content="文KRIFE齐"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="U4S4L2——寻址资源设置 让资源变为可寻址资源   方法一：选中资源，勾选Inspector窗口中的Addressable ​​   方法二：选中资源，拖入Addressables Groups窗口中   注意：   C#代码无法作为可寻址资源   Resources文件夹下资源如果变为寻址资源，会移入Resources_moved文件夹中 原因：Resources文件夹下资源会最终打包出去，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="U4S4L2——寻址资源设置">
+<meta property="og:url" content="http://example.com/2024/03/01/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U4%E2%80%94%E2%80%94Unity%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/U4S4%E2%80%94%E2%80%94%E5%8F%AF%E5%AF%BB%E5%9D%80%E8%B5%84%E6%BA%90%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%20Addressables/U4S4L2%E2%80%94%E2%80%94%E5%AF%BB%E5%9D%80%E8%B5%84%E6%BA%90%E8%AE%BE%E7%BD%AE/index.html">
+<meta property="og:site_name" content="文KRIFE齐的博客">
+<meta property="og:description" content="U4S4L2——寻址资源设置 让资源变为可寻址资源   方法一：选中资源，勾选Inspector窗口中的Addressable ​​   方法二：选中资源，拖入Addressables Groups窗口中   注意：   C#代码无法作为可寻址资源   Resources文件夹下资源如果变为寻址资源，会移入Resources_moved文件夹中 原因：Resources文件夹下资源会最终打包出去，">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png">
+<meta property="article:published_time" content="2024-03-01T11:10:23.000Z">
+<meta property="article:modified_time" content="2024-07-01T14:16:25.000Z">
+<meta property="article:author" content="文KRIFE齐">
+<meta property="article:tag" content="blog">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2024/03/01/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U4%E2%80%94%E2%80%94Unity%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/U4S4%E2%80%94%E2%80%94%E5%8F%AF%E5%AF%BB%E5%9D%80%E8%B5%84%E6%BA%90%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%20Addressables/U4S4L2%E2%80%94%E2%80%94%E5%AF%BB%E5%9D%80%E8%B5%84%E6%BA%90%E8%AE%BE%E7%BD%AE/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'U4S4L2——寻址资源设置',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-07-01 22:16:25'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">834</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><hr class="custom-hr"/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="文KRIFE齐的博客"><span class="site-name">文KRIFE齐的博客</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">U4S4L2——寻址资源设置</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-03-01T11:10:23.000Z" title="发表于 2024-03-01 19:10:23">2024-03-01</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-07-01T14:16:25.000Z" title="更新于 2024-07-01 22:16:25">2024-07-01</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="U4S4L2——寻址资源设置"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1>U4S4L2——寻址资源设置</h1>
+<h2 id="让资源变为可寻址资源">让资源变为可寻址资源</h2>
+<ul>
+<li>
+<p>方法一：选中资源，勾选Inspector窗口中的Addressable</p>
+<p>​<img src="assets/image-20240301191429-zqmqq5c.png" alt="image">​</p>
+</li>
+<li>
+<p>方法二：选中资源，拖入Addressables Groups窗口中</p>
+</li>
+</ul>
+<p>注意：</p>
+<ol>
+<li>
+<p><strong>C#代码无法作为可寻址资源</strong></p>
+</li>
+<li>
+<p>Resources文件夹下资源如果变为寻址资源，<strong>会移入Resources_moved文件夹中</strong></p>
+<p>原因：Resources文件夹下资源会最终打包出去，如果变为可寻址资源意味着想通过Addressables进行管理<br>
+那么它就没有必要通过Resources方式去加载和打包，所以会自动迁移，避免重复打包，浪费空间</p>
+<p>​<img src="assets/image-20240301191450-3m9ncrz.png" alt="image">​</p>
+</li>
+</ol>
+<p>右键选择资源时菜单内容</p>
+<p>​<img src="assets/image-20240301191856-x1aagzo.png" alt="image">​</p>
+<ul>
+<li>Move Addressables to Group：将该资源放入到现有的另一个组中</li>
+<li>Move Addressables to New Group：<br>
+使用与当前组相同设置创建一个新组，并将该资源放入该新组中</li>
+<li>Rmove Addressables：移除资源，该资源会变为不可寻址资源</li>
+<li>Simplify Addressable Names：<br>
+简化可寻址资源名，会删除名称中的路径和拓展，简化缩短名称</li>
+<li>Copy Address to Clipboard：将地址复制到剪贴板</li>
+<li>Change Address：改名</li>
+<li>Create New Group：创建新租</li>
+</ul>
+<h2 id="资源组窗口讲解">资源组窗口讲解</h2>
+<p>​<img src="assets/image-20240301192301-0r0hsta.png" alt="image">​</p>
+<h3 id="资源信息（关键）">资源信息（关键）</h3>
+<p>​<img src="assets/image-20240301192413-yh18jwa.png" alt="image">​</p>
+<ol>
+<li>GroupName\Addressable Name：分组名\可寻址名（<strong>可重名，描述资源</strong>）</li>
+<li>Path：路径（<strong>不可重复</strong>，资源定位）</li>
+<li>Labels：标签（可重复、可用于<strong>区分资源种类</strong>，例如青铜装备、黄金装备）</li>
+</ol>
+<h3 id="创建分组相关">创建分组相关</h3>
+<p>组对于我们来说意义重大，之后在资源打包时，<strong>一个组可以作为一个或多个AB包</strong></p>
+<p>New（或者Create）——&gt; Group</p>
+<p>​<img src="assets/image-20240301192604-n5tbro5.png" alt="image">​</p>
+<ul>
+<li>
+<p>Packed Assets：打包资源分组</p>
+</li>
+<li>
+<p>Blank(no schema)：空白（无架构）</p>
+<p>​<img src="assets/image-20240301192827-hnnrrvf.png" alt="image">​</p>
+<p>与Packed Assets的对比，它几乎没有什么设置项目</p>
+</li>
+<li>
+<p>关于组设置Packed Assets详细可见：<br>
+<a href="siyuan://blocks/20240509164905-7udyqco">U4S4L9——Packed Assets 打包资源数据配置</a></p>
+</li>
+</ul>
+<p>区别：Packed Assets默认自带默认打包加载相关设置信息，Blank没有相关信息需要自己关联</p>
+<h3 id="选中某一组后右键">选中某一组后右键</h3>
+<p>​<img src="assets/image-20240301192946-ebxnpn7.png" alt="image">​</p>
+<ul>
+<li>Remove Group(s)：移除组，组中所有资源恢复为不可寻址资源</li>
+<li>Simplify Addressable Names：<br>
+简化可寻址名称，会删除名称中的路径和拓展，简化缩短名称</li>
+<li>Set as Default：<br>
+设置为默认组，当直接勾选资源中的Addressable时，会自动加入该组</li>
+<li>Inspect Group Setting：快速选中关联的组相关配置文件</li>
+<li>Rename：重命名</li>
+<li>Create New Group：创建新组</li>
+</ul>
+<h3 id="配置概述相关">配置概述相关</h3>
+<p>​<img src="assets/image-20240301193347-orxqlxy.png" alt="image">​</p>
+<ul>
+<li>Manage Profiles：管理配置文件<br>
+可以配置打包目标、本地远程的打包加载路径等等信息<br>
+关于Profiles，详见：<a href="siyuan://blocks/20240509161919-3nl6fvr">U4S4L7——Profile 概述窗口配置</a></li>
+</ul>
+<h3 id="Tools工具相关">Tools工具相关</h3>
+<p>​<img src="assets/image-20240301193441-fgoxiwx.png" alt="image">​</p>
+<ul>
+<li>
+<p>Inspect System Settings：检查系统设置</p>
+<p>会选择到 AddressableAssetSettings 上<br>
+​<img src="assets/image-20240301193652-2hoasfd.png" alt="image">​</p>
+</li>
+<li>
+<p>Check for content Update Restrictions：检查内容更新限制</p>
+</li>
+<li>
+<p>Window：打开Addressables相关窗口</p>
+</li>
+<li>
+<p>Groups View：分组视图相关（建议活用，详见<a href="siyuan://blocks/20240519173508-8u2ly5h">常见问题</a>）</p>
+<p>​<img src="assets/image-20240301193552-ii3yx41.png" alt="image">​</p>
+<ul>
+<li>Show Sprite and Subobject Addressable：<br>
+显示可寻址对象的精灵和子对象，<br>
+一般想要看到图集资源内内容时可以勾选该选项</li>
+<li>Group Hierarchy with Dashes：带破折号的组层次结构</li>
+</ul>
+</li>
+</ul>
+<h3 id="Play-Mode-Script播放模式脚本（编辑模式下如何运行）">Play Mode Script播放模式脚本（编辑模式下如何运行）</h3>
+<p>确定在编辑器播放模式下运行游戏时，可寻址系统如何访问可寻址资源</p>
+<p>​<img src="assets/image-20240301193834-12v7ypd.png" alt="image">​</p>
+<ul>
+<li>
+<p>Use Asset Database（fastest）：</p>
+<p>使用资源数据库（最快的），一般在开发阶段使用，<br>
+使用此选项时，您不必打包可寻址内容，它会直接使用文件夹中的资源<br>
+在实际开发时，可以不使用这种模式，这种模式没有测试的意义</p>
+</li>
+<li>
+<p>Simulate Groups（advanced）：</p>
+<p>模拟组（后期），一般在测试阶段使用，<br>
+分析布局和依赖项的内容，而不创建AB包<br>
+通过ResourceManager从资产数据库加载资产，就像通过AB包加载一样<br>
+通过引入时间延迟，模拟远程资产绑定的下载速度和本地绑定的文件加载速度<br>
+在开发阶段可以使用这个模式来进行资源加载</p>
+</li>
+<li>
+<p>Use Existing Build（requires built groups）：</p>
+<p>正儿八经的从AB包加载资源<br>
+使用现有AB包（需要构建AB包），一般在最终发布测试阶段使用<br>
+从早期内容版本创建的AB包加载资产<br>
+在使用此选项之前，必须使用生成脚本（如默认生成脚本）打包资源<br>
+远程内容必须托管在用于生成内容的配置文件的RemoteLoadPath上</p>
+</li>
+</ul>
+<h3 id="Build（构建打包相关）">Build（构建打包相关）</h3>
+<p>​<img src="assets/image-20240301194129-wrd4t3p.png" alt="image">​</p>
+<ul>
+<li>New Build：构建AB包资源（相当于打包资源分组）</li>
+<li>Update a Previour Build：更新以前的版本</li>
+<li>Clean Build：清空之前的构建资源</li>
+</ul>
+<h2 id="资源名注意事项">资源名注意事项</h2>
+<ol>
+<li><strong>资源路径一定不允许相同</strong>（后缀不同，名字相同可以）</li>
+<li>资源名我们可以随意修改</li>
+<li>之后在加载资源时我们可以使用<strong>名字和标签作为双标识加载指定资源</strong></li>
+</ol>
+<h2 id="资源分组">资源分组</h2>
+<p>我们可以按规则将资源进行分组，比如：角色、装备、怪物、UI等等</p>
+<p>​<img src="assets/image-20240301195058-yfuv6rk.png" alt="image">​</p>
+<p>‍</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">文KRIFE齐</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2024/03/01/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U4%E2%80%94%E2%80%94Unity%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/U4S4%E2%80%94%E2%80%94%E5%8F%AF%E5%AF%BB%E5%9D%80%E8%B5%84%E6%BA%90%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%20Addressables/U4S4L2%E2%80%94%E2%80%94%E5%AF%BB%E5%9D%80%E8%B5%84%E6%BA%90%E8%AE%BE%E7%BD%AE/">http://example.com/2024/03/01/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U4%E2%80%94%E2%80%94Unity%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/U4S4%E2%80%94%E2%80%94%E5%8F%AF%E5%AF%BB%E5%9D%80%E8%B5%84%E6%BA%90%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%20Addressables/U4S4L2%E2%80%94%E2%80%94%E5%AF%BB%E5%9D%80%E8%B5%84%E6%BA%90%E8%AE%BE%E7%BD%AE/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">文KRIFE齐的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2024/03/01/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U4%E2%80%94%E2%80%94Unity%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/U4S4%E2%80%94%E2%80%94%E5%8F%AF%E5%AF%BB%E5%9D%80%E8%B5%84%E6%BA%90%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%20Addressables/U4S4L3%E2%80%94%E2%80%94%E6%8C%87%E5%AE%9A%E8%B5%84%E6%BA%90%E5%8A%A0%E8%BD%BD/" title="U4S4L3——指定资源加载"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">U4S4L3——指定资源加载</div></div></a></div><div class="next-post pull-right"><a href="/2024/03/01/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U4%E2%80%94%E2%80%94Unity%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/U4S4%E2%80%94%E2%80%94%E5%8F%AF%E5%AF%BB%E5%9D%80%E8%B5%84%E6%BA%90%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%20Addressables/U4S4L1%E2%80%94%E2%80%94%E5%AF%BC%E5%85%A5Addressables/" title="U4S4L1——导入Addressables"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">U4S4L1——导入Addressables</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">文KRIFE齐</div><div class="author-info__description">目前正处于搭建测试环节</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">834</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">U4S4L2——寻址资源设置</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%A9%E8%B5%84%E6%BA%90%E5%8F%98%E4%B8%BA%E5%8F%AF%E5%AF%BB%E5%9D%80%E8%B5%84%E6%BA%90"><span class="toc-number">1.1.</span> <span class="toc-text">让资源变为可寻址资源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B5%84%E6%BA%90%E7%BB%84%E7%AA%97%E5%8F%A3%E8%AE%B2%E8%A7%A3"><span class="toc-number">1.2.</span> <span class="toc-text">资源组窗口讲解</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B5%84%E6%BA%90%E4%BF%A1%E6%81%AF%EF%BC%88%E5%85%B3%E9%94%AE%EF%BC%89"><span class="toc-number">1.2.1.</span> <span class="toc-text">资源信息（关键）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E5%88%86%E7%BB%84%E7%9B%B8%E5%85%B3"><span class="toc-number">1.2.2.</span> <span class="toc-text">创建分组相关</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%89%E4%B8%AD%E6%9F%90%E4%B8%80%E7%BB%84%E5%90%8E%E5%8F%B3%E9%94%AE"><span class="toc-number">1.2.3.</span> <span class="toc-text">选中某一组后右键</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E6%A6%82%E8%BF%B0%E7%9B%B8%E5%85%B3"><span class="toc-number">1.2.4.</span> <span class="toc-text">配置概述相关</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Tools%E5%B7%A5%E5%85%B7%E7%9B%B8%E5%85%B3"><span class="toc-number">1.2.5.</span> <span class="toc-text">Tools工具相关</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Play-Mode-Script%E6%92%AD%E6%94%BE%E6%A8%A1%E5%BC%8F%E8%84%9A%E6%9C%AC%EF%BC%88%E7%BC%96%E8%BE%91%E6%A8%A1%E5%BC%8F%E4%B8%8B%E5%A6%82%E4%BD%95%E8%BF%90%E8%A1%8C%EF%BC%89"><span class="toc-number">1.2.6.</span> <span class="toc-text">Play Mode Script播放模式脚本（编辑模式下如何运行）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Build%EF%BC%88%E6%9E%84%E5%BB%BA%E6%89%93%E5%8C%85%E7%9B%B8%E5%85%B3%EF%BC%89"><span class="toc-number">1.2.7.</span> <span class="toc-text">Build（构建打包相关）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B5%84%E6%BA%90%E5%90%8D%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="toc-number">1.3.</span> <span class="toc-text">资源名注意事项</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B5%84%E6%BA%90%E5%88%86%E7%BB%84"><span class="toc-number">1.4.</span> <span class="toc-text">资源分组</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/07/01/hello-world/" title="欢迎来到文KRIFE齐的博客！">欢迎来到文KRIFE齐的博客！</a><time datetime="2024-07-01T11:46:20.391Z" title="发表于 2024-07-01 19:46:20">2024-07-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/US3S1L5%E2%80%94%E2%80%94Phong%E5%85%89%E7%85%A7%E6%A8%A1%E5%9E%8B/" title="US3S1L5——Phong光照模型">US3S1L5——Phong光照模型</a><time datetime="2024-06-25T14:33:57.000Z" title="发表于 2024-06-25 22:33:57">2024-06-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/US3S1L4%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B/US3S1L4-2%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B%E7%9A%84%E9%80%90%E7%89%87%E5%85%83%E5%85%89%E7%85%A7/" title="US3S1L4-2——Phong式高光反射模型的逐片元光照">US3S1L4-2——Phong式高光反射模型的逐片元光照</a><time datetime="2024-06-25T13:16:37.000Z" title="发表于 2024-06-25 21:16:37">2024-06-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/US3S1L4%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B/US3S1L4-1%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B%E7%9A%84%E9%80%90%E9%A1%B6%E7%82%B9%E5%85%89%E7%85%A7/" title="US3S1L4-1——Phong式高光反射模型的逐顶点光照">US3S1L4-1——Phong式高光反射模型的逐顶点光照</a><time datetime="2024-06-25T13:16:05.000Z" title="发表于 2024-06-25 21:16:05">2024-06-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/US3S1L4%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B/" title="US3S1L4——Phong式高光反射模型">US3S1L4——Phong式高光反射模型</a><time datetime="2024-06-25T10:14:12.000Z" title="发表于 2024-06-25 18:14:12">2024-06-25</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By 文KRIFE齐</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

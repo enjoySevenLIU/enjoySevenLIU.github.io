@@ -1,0 +1,735 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>U4S1L7——Input Action类 | 文KRIFE齐的博客</title><meta name="author" content="文KRIFE齐"><meta name="copyright" content="文KRIFE齐"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="U4S1L7——Input Action类 本章代码关键字 123456789101112InputAction                    &#x2F;&#x2F;输入动作类，InputSystem输入监听触发相关的主要内容inputAction.Enable()           &#x2F;&#x2F;输入监听激活方法inputAction.started            &#x2F;&#x2F;开始操作时触发的委托inputAct">
+<meta property="og:type" content="article">
+<meta property="og:title" content="U4S1L7——Input Action类">
+<meta property="og:url" content="http://example.com/2023/11/04/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U4%E2%80%94%E2%80%94Unity%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/U4S1%E2%80%94%E2%80%94%E8%BE%93%E5%85%A5%E7%B3%BB%E7%BB%9F%20InputSystem/U4S1L7%E2%80%94%E2%80%94Input%20Action%E7%B1%BB/index.html">
+<meta property="og:site_name" content="文KRIFE齐的博客">
+<meta property="og:description" content="U4S1L7——Input Action类 本章代码关键字 123456789101112InputAction                    &#x2F;&#x2F;输入动作类，InputSystem输入监听触发相关的主要内容inputAction.Enable()           &#x2F;&#x2F;输入监听激活方法inputAction.started            &#x2F;&#x2F;开始操作时触发的委托inputAct">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png">
+<meta property="article:published_time" content="2023-11-04T07:07:45.000Z">
+<meta property="article:modified_time" content="2024-07-01T14:16:22.000Z">
+<meta property="article:author" content="文KRIFE齐">
+<meta property="article:tag" content="blog">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2023/11/04/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U4%E2%80%94%E2%80%94Unity%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/U4S1%E2%80%94%E2%80%94%E8%BE%93%E5%85%A5%E7%B3%BB%E7%BB%9F%20InputSystem/U4S1L7%E2%80%94%E2%80%94Input%20Action%E7%B1%BB/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'U4S1L7——Input Action类',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-07-01 22:16:22'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">834</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><hr class="custom-hr"/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="文KRIFE齐的博客"><span class="site-name">文KRIFE齐的博客</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">U4S1L7——Input Action类</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-11-04T07:07:45.000Z" title="发表于 2023-11-04 15:07:45">2023-11-04</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-07-01T14:16:22.000Z" title="更新于 2024-07-01 22:16:22">2024-07-01</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="U4S1L7——Input Action类"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1>U4S1L7——Input Action类</h1>
+<h2 id="本章代码关键字">本章代码关键字</h2>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">InputAction                    <span class="comment">//输入动作类，InputSystem输入监听触发相关的主要内容</span></span><br><span class="line">inputAction.Enable()           <span class="comment">//输入监听激活方法</span></span><br><span class="line">inputAction.started            <span class="comment">//开始操作时触发的委托</span></span><br><span class="line">inputAction.performed          <span class="comment">//真正触发时的委托</span></span><br><span class="line">inputAction.canceled           <span class="comment">//结束输入时触发的委托</span></span><br><span class="line">CallbackContext                <span class="comment">//输入监听回调信息类，所有作为输入监听方法都需要用这个来作为参数</span></span><br><span class="line">callbackContext.phase          <span class="comment">//当前输入状态</span></span><br><span class="line">callbackContext.action         <span class="comment">//输入动作行为也就是InputAction对象信息，即触发者传入自己</span></span><br><span class="line">callbackContext.control        <span class="comment">//控件信息，传入触发这次监听方法的输入控件名</span></span><br><span class="line">callbackContext.ReadValue&lt;&gt;    <span class="comment">//输入值，泛型内填入的类型有输入控件本身决定</span></span><br><span class="line">callbackContext.duration       <span class="comment">//输入持续时间</span></span><br><span class="line">callbackContext.startTime      <span class="comment">//输入开始时的时间</span></span><br></pre></td></tr></table></figure>
+<h1>InputAction</h1>
+<p>顾名思义，<code>InputAction</code>​是<code>InputSystem</code>​帮助我们封装的输入动作类<br>
+它的主要作用，是不需要我们通过写代码的形式来处理输入，而是直接在 Inspector窗口 编辑想要处理的输入类型<br>
+当输入触发时，我们只需要把精力花在输入触发后的逻辑处理上</p>
+<p>我们在想要用于处理输入动作的类中，申明对应的<code>InputAction</code>​类型的成员变量（注意：需要引用命名空间<code>UnityEngine.InputSystem</code>​）</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Lesson7</span> : <span class="title">MonoBehaviour</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> InputAction move;</span><br><span class="line">    <span class="keyword">public</span> InputAction Fire;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>​<img src="assets/image-20231104151347-2hd2k9e.png" alt="image">​</p>
+<h2 id="InputAction参数相关">InputAction参数相关</h2>
+<p>​<img src="assets/image-20231104151536-b284a38.png" alt="image"></p>
+<ul>
+<li>
+<p>点击齿轮<img src="assets/image-20231104151636-4yjyxz3.png" alt="image"> 输入设置</p>
+<p>​<img src="assets/image-20231104201002-irjwc1k.png" alt="image">​</p>
+<ul>
+<li>
+<h4 id="Actions-输入动作设置-设置输入的类型，筛选控制的类型">Actions 输入动作设置 - 设置输入的类型，筛选控制的类型</h4>
+<p>设置检测哪些输入</p>
+<p>​<img src="assets/image-20231104151847-ktu43m2.png" alt="image">​</p>
+<ul>
+<li>
+<p>Action Type：动作类型</p>
+<p>​<img src="assets/image-20231104152008-47uawm3.png" alt="image">​</p>
+<ul>
+<li>Value：值类型，<strong>主要用于状态连续更改的输入</strong>，<br>
+例如鼠标的移动，手柄的摇杆。<br>
+如果有多个设备绑定这个Action，<br>
+<strong>只会发送其中一个设备（最受控制的）的输入</strong></li>
+<li>Button：按钮类型，<strong>用于每次按下时触发的Action</strong></li>
+<li>Pass Through：直通类型，和Value一样，<br>
+<strong>区别在于如果有多个设备绑定这个Action，<br>
+会发送所有设备的输入</strong></li>
+</ul>
+</li>
+<li>
+<p>Control Type：控制类型</p>
+<p>在这里选择对应的类型，之后在选择对应设备按键相关属性时，会根据你选择内容的不同，筛选对应内容<br>
+这上面显示的内容就是各设备属性的返回值类型，<strong>当你选择他们后，非选择的类型将不会在之后的按键设置中出现</strong><br>
+很多内容我们基本用不到，<strong>相当于是在这里筛选输入设备的返回值</strong></p>
+<p>​<img src="assets/image-20231104152304-5tuadk4.png" alt="image">​</p>
+<ul>
+<li>Any - 任何值</li>
+<li>Analog - 模拟值，浮点数</li>
+<li>Axis - 一维轴浮点数，例如：摇杆输入返回值</li>
+<li>Bone - 骨骼</li>
+<li>Digital - 数字</li>
+<li>Double - 浮点</li>
+<li>Dpad - 4向按钮，例如：摇杆上的D-pad</li>
+<li>Eyes - VR相关数值</li>
+<li>Integer - 整数</li>
+<li>Quaternion - 四元数</li>
+<li>Stick - 摇杆相关</li>
+<li>Touch - 触屏相关</li>
+<li>Vector2 - 2维向量</li>
+<li>Vector3 - 3维向量</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<h4 id="Interactions-相互作用设置-处理特殊行为">Interactions 相互作用设置 - 处理特殊行为</h4>
+<p><strong>用于特殊输入，比如长按、多次点击等等，</strong><br>
+当满足条件时才会触发这个行为（设置长按时间、点击次数等等）</p>
+<p>​<img src="assets/image-20231104152723-22r51oq.png" alt="image">​</p>
+<ul>
+<li>
+<p>3个委托事件（<a href="siyuan://blocks/20231104202803-itb71se">这个事件在之后的代码里使用</a>）</p>
+<ul>
+<li><a href="siyuan://blocks/20231104202926-xcavczi">开始 started - 例如鼠标刚好开始按下的事件</a></li>
+<li><a href="siyuan://blocks/20231104202932-rln9o5n">触发 performed - 例如鼠标长按一段时间后满足条件触发的事件</a></li>
+<li><a href="siyuan://blocks/20231104202937-lcc7vnf">结束 canceled - 例如鼠标长按未满足条件就松开触发的事件</a></li>
+</ul>
+</li>
+<li>
+<p>特殊输入类型及参数</p>
+<p>​<img src="assets/image-20231104153203-vl15mx8.png" alt="image"></p>
+<p>以下的选项里几乎每个参数都有默认值，<a href="siyuan://blocks/20231104215050-ctfk9g9">可以在InputSystemPackage里修改这些默认值</a></p>
+<ul>
+<li>
+<p>Hold - 适用于<strong>需要输入设备保持一段时间的操作</strong></p>
+<ol>
+<li>
+<p>当按钮按下会触发started，</p>
+</li>
+<li>
+<p>若在松开按钮前，按住时间大于等于Hold Time，则会触发performed <strong>（时间一到就触发）</strong></p>
+</li>
+<li>
+<p>否则触发canceled</p>
+</li>
+<li>
+<p>Press Point：</p>
+<p>在Input System中，每个按钮都有对应的浮点值，<br>
+例如普通的按钮，将会在0（未按下）和1（按下）之间。<br>
+<strong>因此我们可以利用这个值（Press Point）来进行区分，<br>
+当大于等于这个值则认为按钮按下了。</strong></p>
+</li>
+</ol>
+<p>​<img src="assets/image-20231104153439-vg3viqz.png" alt="image">​</p>
+</li>
+<li>
+<p>Tap - 和 Hold 相反，<strong>需要在一段时间内按下松开来触发。</strong></p>
+<ol>
+<li>
+<p>当按钮按下会触发started，</p>
+</li>
+<li>
+<p>若在Max Tap Duriation时间内（小于）松开按钮，<br>
+触发performed，</p>
+</li>
+<li>
+<p>否则触发canceled。</p>
+</li>
+<li>
+<p>Press Point：</p>
+<p>在Input System中，每个按钮都有对应的浮点值，<br>
+例如普通的按钮，将会在0（未按下）和1（按下）之间。<br>
+<strong>因此我们可以利用这个值（Press Point）来进行区分，<br>
+当大于等于这个值则认为按钮按下了。</strong></p>
+</li>
+</ol>
+<p>​<img src="assets/image-20231104153843-9u68pdc.png" alt="image">​</p>
+</li>
+<li>
+<p>SlowTap - <strong>保持一段时间操作后松开才触发</strong></p>
+<p>类似<a href="siyuan://blocks/20231104151450-ocmm1tf">Hold</a>，<br>
+但是它在<strong>按住时间大于等于Max Tap Duriation的时候，<br>
+并不会立刻触发performed，</strong><br>
+而是会<strong>在松开的时候才触发performed</strong></p>
+<p>​<img src="assets/image-20231104154454-5lqvbf3.png" alt="image">​</p>
+<p>Press Point：<br>
+在Input System中，每个按钮都有对应的浮点值，<br>
+例如普通的按钮，将会在0（未按下）和1（按下）之间。<br>
+<strong>因此我们可以利用这个值（Press Point）来进行区分，<br>
+当大于等于这个值则认为按钮按下了。</strong></p>
+</li>
+<li>
+<p>MultiTap - <strong>用作于多次点击，例如双击或者三连击。</strong></p>
+<ul>
+<li>
+<p>Tap Count为<strong>点击次数</strong>，<br>
+Max Tap Spacing为<strong>每次点击之间的间隔</strong><br>
+（默认值为 2 * Max Tap Duration）</p>
+</li>
+<li>
+<p>Max Tap Duration为<strong>每次点击的持续时间</strong>，<br>
+<strong>即按下和松开按钮的这段时间</strong>。</p>
+</li>
+<li>
+<p>当<strong>每次点击时间小于Max Tap Duration</strong>，<br>
+且<strong>点击间隔时间小于Max Tap Spacing</strong>，<br>
+<strong>点击Tap Count次，触发performed。</strong></p>
+</li>
+<li>
+<p>Press Point：</p>
+<p>在Input System中，每个按钮都有对应的浮点值，<br>
+例如普通的按钮，将会在0（未按下）和1（按下）之间。<br>
+<strong>因此我们可以利用这个值（Press Point）来进行区分，<br>
+当大于等于这个值则认为按钮按下了。</strong></p>
+</li>
+</ul>
+<p>​<img src="assets/image-20231104154745-aejxhbo.png" alt="image">​</p>
+</li>
+<li>
+<p>Press - 可以实现类似按钮的操作</p>
+<ul>
+<li>
+<p>Trigger Behavior - 触发行为</p>
+<p>​<img src="assets/image-20231104155311-r5g07ja.png" alt="image">​</p>
+<ul>
+<li>
+<p>Press Only：</p>
+<p>按下的时候触发started和performed。<br>
+不触发canceled</p>
+</li>
+<li>
+<p>Release Only：</p>
+<p>按下的时候触发started，<br>
+松开的时候触发performed</p>
+</li>
+<li>
+<p>Press And Release：</p>
+<p>按下的时候触发started和performed，<br>
+松开的时候会再次触发started和performed。<br>
+不触发canceled</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Press Point：</p>
+<p>在Input System中，每个按钮都有对应的浮点值，<br>
+例如普通的按钮，将会在0（未按下）和1（按下）之间。<br>
+<strong>因此我们可以利用这个值（Press Point）来进行区分，<br>
+当大于等于这个值则认为按钮按下了。</strong></p>
+</li>
+</ul>
+<p>​<img src="assets/image-20231104155027-s5q5pqn.png" alt="image">​</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<h4 id="Processors-值处理加工设置-将输入的值进行一次加工">Processors 值处理加工设置 - 将输入的值进行一次加工</h4>
+<p>对得到的值进行处理加工<br>
+​<img src="assets/image-20231104155648-91c65s0.png" alt="image">​</p>
+<ul>
+<li>
+<p>Clamp - 将输入值钳制到[min…max]范围</p>
+<p>​<img src="assets/image-20231104155924-52n5ruq.png" alt="image">​</p>
+</li>
+<li>
+<p>Invert - 反转控件中的值（即，将值乘以-1）</p>
+</li>
+<li>
+<p>Invert Vector 2 - 反转控件中的值（即，将值乘以-1）</p>
+<p>​<img src="assets/image-20231104160013-vdr5f8m.png" alt="image"><br>
+如果invertX为真，则反转矢量的x轴；<br>
+如果invertY为真，则反转矢量的y轴。</p>
+</li>
+<li>
+<p>Invert Vector 3 - 反转控件中的值（即，将值乘以-1）</p>
+<p>​<img src="assets/image-20231104160117-emz6g4d.png" alt="image">​<br>
+如果反转x为真，则反转矢量的x轴；<br>
+如果反转y为真，则反转y轴；<br>
+如果反转z为真，则反转z轴。</p>
+</li>
+<li>
+<p><strong>Normalize - 单位化</strong></p>
+<p>​<img src="assets/image-20231104160203-7040z42.png" alt="image">​</p>
+<p>如果Min &gt;= Zero，则将[min…max]范围内的输入值规格化为无符号规格化形式[0…1]，<br>
+如果Min &lt; Zero，则将输入值规格化为有符号规格化形式[-1…1]。</p>
+</li>
+<li>
+<p><strong>Normalize Vector 2  - 将输入向量规格化为单位长度</strong></p>
+</li>
+<li>
+<p><strong>Normalize Vector 3  - 将输入向量规格化为单位长度</strong></p>
+</li>
+<li>
+<p>Scale - 将所有输入值乘以系数</p>
+<p>​<img src="assets/image-20231104160415-d83dynb.png" alt="image">​</p>
+</li>
+<li>
+<p>Scale Vector 2 - 将所有输入值沿x轴乘以x，沿y轴乘以y</p>
+<p>​<img src="assets/image-20231104160558-4i9iqqr.png" alt="image">​</p>
+</li>
+<li>
+<p>Scale Vector 3 - 将所有输入值沿x轴乘以x，沿y轴乘以y，沿z轴乘以z</p>
+<p>​<img src="assets/image-20231104160619-14r9o9r.png" alt="image">​</p>
+</li>
+<li>
+<p><strong>Axis Deadzone - axis死区处理器，缩放控件的值，使绝对值小于最小值的任何值为0，绝对值大于最大值的任何值为1或-1。</strong></p>
+<p>​<img src="assets/image-20231104160707-alfzwio.png" alt="image">​</p>
+<p>许多控件没有精确的静止点（也就是说，当控件位于中心时，它们并不总是精确报告0），<br>
+换句话来说，<strong>有些轴即使我们没有主动的输入，但依然有很小的值在输入进去，这会导致诸如操控的角色在无意间缓慢移动这种问题！</strong><br>
+在死区处理器上<strong>使用最小值可避免此类控件的无意输入。</strong><br>
+此外，当轴一直移动时，某些控件不一致地报告其最大值，<strong>换句话来说，就是我们即使已经把轴推到最末端，输入进去的值依然不是最大值</strong><br>
+在死区处理器上<strong>使用最大值可确保在这种情况下始终获得最大值。</strong></p>
+</li>
+<li>
+<p><strong>Stick Deadzone - 摇杆死区处理器，缩放Vector2控件（如摇杆）的值，</strong><br>
+以便任何幅值小于最小值的输入向量都将得到（0,0），而任何幅值大于最大值的输入向量都将规格化为长度1。</p>
+<p>​<img src="assets/image-20231104160947-lh6ic7o.png" alt="image">​</p>
+<p>许多控件没有精确的静止点（也就是说，当控件位于中心时，它们并不总是精确地报告（0,0）），<br>
+换句话来说，<strong>有些摇杆即使我们没有主动的去动它，但依然有很小的值在输入进去，这会导致诸如操控的角色在无意间缓慢移动这种问题！</strong><br>
+在死区处理器上使用最小值可避免此类控件的无意输入。<br>
+此外，当轴一直移动时，某些控件不一致地报告其最大值。<strong>换句话来说，就是我们即使已经把摇杆推到最末端，输入进去的值依然不是最大值</strong><br>
+在死区处理器上使用最大值可确保在这种情况下始终获得最大值。</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>点击+号 <img src="assets/image-20231104162020-uzgs81y.png" alt="image"> 创建输入</p>
+<p>​<img src="assets/image-20231104201023-0vfmw19.png" alt="image">​</p>
+<p>在这里创建一个输入后，点击创建出来的<No Binding>即可<a href="siyuan://blocks/20231104151450-szywliy">设置接受何种输入</a>，<br>
+<strong>可以添加多个输入以触发这个成员对应的监听事件，例如跨平台游戏就可以添加不同平台的各种输入</strong><br>
+具体添加监听事件的方法请看这个——&gt;<a href="siyuan://blocks/20231104202351-ddgjbfk">InputAction的使用</a>，<br>
+在Inspector窗口设置完成，在脚本里向该<code>InputAction</code>​成员添加监听到输入后执行什么逻辑的监听函数后，即完成输入监听的流程</p>
+<ul>
+<li>
+<p>Add Binding<br>
+添加新的输入绑定（单按键输入）</p>
+<p>​<img src="assets/image-20231104205618-q06jsvr.png" alt="image">​</p>
+</li>
+<li>
+<p>Add Positive\Negative Binding<sup>(2019版前的名称是：Add 1D Axis Composite)</sup><br>
+添加1D轴组合（类似<a href="siyuan://blocks/20230709152125-7p9to3z">Input</a>中的<a href="siyuan://blocks/20230709160416-jxh20bo">水平竖直热键</a>，返回-1~1之间的一个值）</p>
+<p>​<img src="assets/image-20231104212017-vr6ibqj.png" alt="image">​</p>
+<ul>
+<li>Negative：负面按键，例如 0~-1</li>
+<li>Positive：正向按键，例如 0~1</li>
+</ul>
+<p>​<img src="assets/image-20231104212051-33hh90w.png" alt="image">​</p>
+<ul>
+<li>
+<p>Composite Type：复合类型</p>
+</li>
+<li>
+<p>MinValue：最小值</p>
+</li>
+<li>
+<p>MaxValue：最大值</p>
+</li>
+<li>
+<p>Which Side Wins：哪一方获胜 <strong>（即当同时按下时如何处理）</strong></p>
+<ul>
+<li>Neither：双方没有优先权，返回MinValue和MaxValue的中间值</li>
+<li>Positive：正面优先，返回maxValue</li>
+<li>Negative：负面优先，返回minValue</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Add Up\Down\Left\Right Composite<sup>( 2019版前的名称是：Add 2D Vector Composite)</sup>​<br>
+添加2D向量组合（类似将<a href="siyuan://blocks/20230709160416-jxh20bo">Input中的水平竖直热键</a>组合在一起，得到的Vector中的x，y分别表示两个轴）</p>
+<p>​​<img src="assets/image-20231104213336-ndiny76.png" alt="image">​​</p>
+<ul>
+<li>Up:上 ( 0 , 1 )</li>
+<li>Down：下 ( 0 , -1 )</li>
+<li>Left：左 ( -1 , 0 )</li>
+<li>Right：右 ( 1 , 0 )</li>
+</ul>
+<p>​<img src="assets/image-20231104213007-7i6b50k.png" alt="image">​</p>
+<ul>
+<li>
+<p>Composite Type：复合类型</p>
+</li>
+<li>
+<p>Mode：处理模式</p>
+<ul>
+<li>Analog：模拟值，浮点值</li>
+<li>Digital Normalized：单位化向量</li>
+<li>Digital：未单位化的向量</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Add Up\Down\Left\Right\Forward\Backward Composite<br>
+添加3D向量组合（类似于上面的2D向量组合，多加了一个轴，得到Vector3中的x，y，z分别表示三个轴）</p>
+<p>​<img src="assets/image-20231104213402-ur92cfq.png" alt="image">​</p>
+</li>
+<li>
+<p>Add Button With One Modifier Composite<br>
+添加带有一个复合修改器的按钮（可以理解为双组合键， 比如Ctrl+C、Ctrl+V）</p>
+<p>​<img src="assets/image-20231104214035-yc8wmn9.png" alt="image">​</p>
+<ul>
+<li>Modifier：复合输入内容</li>
+<li>Binding：输入内容<sup>（在2020版及以前，这里的名称是Button）</sup></li>
+</ul>
+<p>举例：复制按键Ctrl+C、Ctrl 为 Modifier、C 为 Binding</p>
+</li>
+<li>
+<p>Add Button With Two Modifier Composite<br>
+添加带有两个复合修改器的按钮（可以理解为三组合键，比如Ctrl+K+U）</p>
+<p>​<img src="assets/image-20231104214907-36h36zx.png" alt="image">​</p>
+<ul>
+<li>Modifier：复合输入内容1</li>
+<li>Modifier：复合输入内容2</li>
+<li>Button：输入内容</li>
+</ul>
+<p>举例：复制按键Ctrl+K+U，Ctrl为Modifier1，K为Modifier2，U为Binding</p>
+</li>
+</ul>
+</li>
+<li>
+<p>创建一种输入后，如何选择要监听什么输入</p>
+<p>点击创建出来的<No Binding>即可设置从哪个控件接受输入</p>
+<ul>
+<li>
+<p>Path：从哪个控件接受输入</p>
+<ul>
+<li>Usages：常用用法</li>
+<li>GamePad：游戏手柄</li>
+<li>Joystick：操纵杆</li>
+<li>Keyboard：键盘</li>
+<li>Mouse：鼠标</li>
+<li>Pen：笔</li>
+<li>Pointer：指针</li>
+<li>Sensor：传感器</li>
+<li>TouchScreen：触屏</li>
+<li>Tracked Device：履带装置</li>
+<li>XR Controller：XR 控制器</li>
+<li>XR HMD：XR 头戴显示器</li>
+<li>Other：其它</li>
+</ul>
+</li>
+</ul>
+<p>​<img src="assets/image-20231104202146-rxvbriv.png" alt="image">​</p>
+</li>
+</ul>
+<h2 id="InputAction的使用">InputAction的使用</h2>
+<ol>
+<li>
+<h3 id="启用输入检测">启用输入检测</h3>
+ <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> InputAction move;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Start</span>()</span></span><br><span class="line">&#123;</span><br><span class="line">    move.Enable();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="关闭输入检测">关闭输入检测</h5>
+ <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">move.Disable();</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<h3 id="操作监听相关">操作监听相关</h3>
+<p>涉及操作监听的成员变量都是委托，需要向委托传入参数为<a href="siyuan://blocks/20231104204137-d0ko9gn">InputAction.CallbackContext</a>​​​（是<code>InputAction</code>​​​的内部结构体）的方法<br>
+触发这些委托方法的输入方式由Inspector窗口内对该<code>InputAction</code>​​​的成员的设置决定，具体请看<a href="siyuan://blocks/20231104151400-x5tr5mr">InputAction参数相关</a></p>
+<p>这里演示的结果是绑定了鼠标左键和键盘A键的效果，也就是说，按下鼠标左键和按下A键都会触发下面的代码<br>
+​<img src="assets/image-20231104210559-uv0e1ee.png" alt="image">​</p>
+<ul>
+<li>
+<h4 id="开始操作">开始操作</h4>
+<p>这个开始操作指的是，该<code>InputAction</code>​​绑定的输入方法出现输入时触发的委托（不满足<a href="siyuan://blocks/20231104151450-fladwxy">Interactions 相互作用设置</a>里的条件时也会触发）<br>
+​<code>inputAction.started</code>​​是一个事件委托，由外部加入参数为<code>InputAction.CallbackContext</code>​​的监听方法，由监听方法来监听开始操作的输入</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> InputAction move;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Start</span>()</span></span><br><span class="line">&#123;</span><br><span class="line">    move.Enable();</span><br><span class="line">    move.started += TestFunc;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">TestFunc</span>(<span class="params">InputAction.CallbackContext context</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    print(<span class="string">&quot;开始操作&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>结果：<br>
+​<img src="assets/image-20231104205931-ud160og.png" alt="image">​</p>
+</li>
+<li>
+<h4 id="真正触发">真正触发</h4>
+<p>这个真正触发指的是，该<code>InputAction</code>​​绑定的输入方法出现输入且满足<a href="siyuan://blocks/20231104151450-fladwxy">Interactions 相互作用设置</a>里的条件时就会触发<br>
+​<code>inputAction.performed</code>​​是一个事件委托，由外部加入参数为<code>InputAction.CallbackContext</code>​​的监听方法，由监听方法来监听真正触发的输入</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> InputAction move;</span><br><span class="line"><span class="keyword">public</span> InputAction Fire;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Start</span>()</span></span><br><span class="line">&#123;</span><br><span class="line">    move.Enable();</span><br><span class="line">    move.performed += (context) =&gt;</span><br><span class="line">    &#123;</span><br><span class="line">        print(<span class="string">&quot;触发事件调用&quot;</span>);</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>结果：<br>
+​<img src="assets/image-20231104210010-7dngxvx.png" alt="image">​</p>
+</li>
+<li>
+<h4 id="结束操作">结束操作</h4>
+<p>这个结束操作指的是，该<code>InputAction</code>​​绑定的输入方法都结束输入时就会触发<br>
+​<code>inputAction.canceled</code>​​是一个事件委托，由外部加入参数为<code>InputAction.CallbackContext</code>​​的监听方法，由监听方法来监听结束操作的输入</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> InputAction move;</span><br><span class="line"><span class="keyword">public</span> InputAction Fire;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Start</span>()</span></span><br><span class="line">&#123;</span><br><span class="line">    move.Enable();</span><br><span class="line">    move.canceled += (context) =&gt;</span><br><span class="line">    &#123;</span><br><span class="line">        print(<span class="string">&quot;结束事件调用&quot;</span>);</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>​<img src="assets/image-20231104210024-1nzah3n.png" alt="image">​</p>
+</li>
+</ul>
+</li>
+<li>
+<h3 id="关键参数-CallbackContext">关键参数 CallbackContext</h3>
+<p>该参数为 添加到<code>InputAction</code>​对象的被输入触发的委托的 监听方法所必需的参数</p>
+<ul>
+<li>
+<h4 id="当前状态">当前状态</h4>
+<p>​<code>CallbackContext</code>​​状态的枚举有：</p>
+<ul>
+<li>没有启用 <code>Disabled</code>​​</li>
+<li>等待 <code>Waiting</code>​​</li>
+<li>开始 <code>Started</code>​​</li>
+<li>触发 <code>Performed</code>​​</li>
+<li>结束 <code>Canceled</code>​​</li>
+</ul>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">move.performed += (context) =&gt;</span><br><span class="line">&#123;</span><br><span class="line">    print(<span class="string">&quot;触发事件调用&quot;</span>);</span><br><span class="line">    <span class="comment">//当前状态</span></span><br><span class="line">    print(callbackContext.phase);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>​<img src="assets/image-20231104210132-m247sls.png" alt="image">​</p>
+</li>
+<li>
+<h4 id="动作行为信息">动作行为信息</h4>
+<p>其实这里的<code>action</code>​​就是上面声明的<code>InputAction</code>​​成员变量</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> InputAction move;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Start</span>()</span></span><br><span class="line">&#123;</span><br><span class="line">    move.Enable();</span><br><span class="line">    move.performed += (callbackContext) =&gt;</span><br><span class="line">    &#123;</span><br><span class="line">        print(<span class="string">&quot;触发事件调用&quot;</span>);</span><br><span class="line">        <span class="comment">//动作行为信息 </span></span><br><span class="line">        print(callbackContext.action.name);</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>​<img src="assets/image-20231104210141-v5qoox2.png" alt="image">​</p>
+</li>
+<li>
+<h4 id="控件信息">控件信息</h4>
+<p>得到输入设备的信息</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">move.performed += (context) =&gt;</span><br><span class="line">&#123;</span><br><span class="line">    print(<span class="string">&quot;触发事件调用&quot;</span>);</span><br><span class="line">    <span class="comment">//控件(设备)信息</span></span><br><span class="line">    print(callbackContext.control.name);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>按下鼠标左键时：<br>
+​<img src="assets/image-20231104210149-r3zf960.png" alt="image"><br>
+按下键盘A键时：<br>
+​<img src="assets/image-20231104210702-77f9h0i.png" alt="image">​</p>
+</li>
+<li>
+<h4 id="获取值">获取值</h4>
+<p><strong>注意！这里的泛型使用什么类型取决于你使用的输入方式，例如：摇杆就是****​<code>Vector2</code>​</strong>​ <strong>，轴就是****​<code>float</code>​</strong>​</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">move.performed += (context) =&gt;</span><br><span class="line">&#123;</span><br><span class="line">    print(<span class="string">&quot;触发事件调用&quot;</span>);</span><br><span class="line">    <span class="comment">//获取值，这里是检测鼠标按键，因此检测值泛型不能用float</span></span><br><span class="line">    <span class="comment">//print(callbackContext.ReadValue&lt;float&gt;)</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<h4 id="持续时间">持续时间</h4>
+<p>操作持续的时间</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">move.performed += (context) =&gt;</span><br><span class="line">&#123;</span><br><span class="line">    print(<span class="string">&quot;触发事件调用&quot;</span>);</span><br><span class="line">    <span class="comment">//持续时间</span></span><br><span class="line">    print(callbackContext.duration);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>​<img src="assets/image-20231104210252-x49c1qg.png" alt="image">​</p>
+</li>
+<li>
+<h4 id="开始时间">开始时间</h4>
+<p>操作开始的时间</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">move.performed += (context) =&gt;</span><br><span class="line">&#123;</span><br><span class="line">    print(<span class="string">&quot;触发事件调用&quot;</span>);</span><br><span class="line">    <span class="comment">//开始时间</span></span><br><span class="line">    print(callbackContext.startTime);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>​<img src="assets/image-20231104210259-blfudga.png" alt="image">​</p>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="特殊输入设置">特殊输入设置</h2>
+<p>如果要修改特殊输入的默认值，需要修改Input System Package，它在Project Setting内</p>
+<p>如果要修改Input System Package的内容的话，我们需要先创建一个设置的配置文件，点击Create setting asset即可<br>
+​<img src="assets/image-20231104221827-ivz9d5o.png" alt="image"><br>
+点击后创建这个文件<br>
+​<img src="assets/image-20231104222011-lconeyk.png" alt="image"><br>
+如果要放弃配置文件带来的修改，直接删除创建的文件即可</p>
+<h3 id="Input-Syetem-Package-参数相关">Input Syetem Package 参数相关</h3>
+<p>​​​<img src="assets/image-20231104222548-6q51yd5.png" alt="image">​​​</p>
+<ul>
+<li>
+<p>UpdateMode：更新模式</p>
+<ul>
+<li>Process Events In Dynamic Update：在动态更新中处理事件</li>
+<li>Process Events In Fixed Update：在固定更新中处理事件</li>
+<li>Process Events Manually：手动处理事件</li>
+</ul>
+</li>
+<li>
+<p>Background Behavior：后台行为</p>
+<ul>
+<li>Reset And Disable Non Background Devices：<br>
+重置和禁用非后台设备</li>
+<li>Reset And Disable All Devices：重置和禁用所有设备</li>
+<li>Ignore Focus：忽略焦点</li>
+</ul>
+</li>
+<li>
+<p>Filter Noise on .current：过滤当前设备的噪音</p>
+</li>
+<li>
+<p>Compensate Orientation：定向补偿</p>
+</li>
+<li>
+<p><strong>Default Deadzone Min：默认死区最小值</strong></p>
+</li>
+<li>
+<p><strong>Default Deadzone Max：默认死区最大值</strong></p>
+</li>
+<li>
+<p><strong>Default Button Press Point：默认按钮达到触发按下的点（线性扳机用）</strong></p>
+</li>
+<li>
+<p><strong>Button Release Threshold：按钮释放阈值</strong></p>
+</li>
+<li>
+<p><strong>Default Tap TIme：默认点击时间</strong></p>
+</li>
+<li>
+<p><strong>Default Slow Tap Time：默认慢速点击时间</strong></p>
+</li>
+<li>
+<p><strong>Default Hold Time：默认保持时间</strong></p>
+</li>
+<li>
+<p><strong>Tap Radius：点击半径</strong></p>
+</li>
+<li>
+<p><strong>MultTap Delay TIme：多次点击延迟时间</strong></p>
+</li>
+<li>
+<p>Supported Devices：支持的设备</p>
+<p>如果希望输入系统支持其可以识别的所有输入设备，<br>
+请将支持的设备保留为空。<br>
+但是，如果您只对某一组设备感兴趣，那么在此处添加它们将缩小编辑器中显示的范围，并避免从与项目无关的设备获取输入。<br>
+在此处添加设备时，任何未被分类为受支持的设备都将显示在输入调试器的“不受支持的设备”下</p>
+</li>
+<li>
+<p>Motion Usage：动作使用</p>
+</li>
+<li>
+<p>Description：描述</p>
+</li>
+<li>
+<p>Play Mode Input Behavior：播放模式输入行为</p>
+<ul>
+<li>Pointers And Keyboards Respect Game View Focus：<br>
+指针和键盘遵守游戏视图焦点</li>
+<li>All Devices Respect Game View Focus：<br>
+所有设备都遵守游戏视图焦点</li>
+<li>All Device Input Always Goes To Game View：<br>
+所有设备输入始终进入游戏视图</li>
+</ul>
+</li>
+</ul>
+<p>‍</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">文KRIFE齐</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2023/11/04/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U4%E2%80%94%E2%80%94Unity%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/U4S1%E2%80%94%E2%80%94%E8%BE%93%E5%85%A5%E7%B3%BB%E7%BB%9F%20InputSystem/U4S1L7%E2%80%94%E2%80%94Input%20Action%E7%B1%BB/">http://example.com/2023/11/04/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U4%E2%80%94%E2%80%94Unity%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/U4S1%E2%80%94%E2%80%94%E8%BE%93%E5%85%A5%E7%B3%BB%E7%BB%9F%20InputSystem/U4S1L7%E2%80%94%E2%80%94Input%20Action%E7%B1%BB/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">文KRIFE齐的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/11/05/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U4%E2%80%94%E2%80%94Unity%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/U4S1%E2%80%94%E2%80%94%E8%BE%93%E5%85%A5%E7%B3%BB%E7%BB%9F%20InputSystem/U4S1L8%E2%80%94%E2%80%94%E8%BE%93%E5%85%A5%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" title="U4S1L8——输入配置文件"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">U4S1L8——输入配置文件</div></div></a></div><div class="next-post pull-right"><a href="/2023/11/04/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U4%E2%80%94%E2%80%94Unity%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/U4S1%E2%80%94%E2%80%94%E8%BE%93%E5%85%A5%E7%B3%BB%E7%BB%9F%20InputSystem/U4S1L6%E2%80%94%E2%80%94%E5%85%B6%E5%AE%83%E8%BE%93%E5%85%A5/" title="U4S1L6——其它输入"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">U4S1L6——其它输入</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">文KRIFE齐</div><div class="author-info__description">目前正处于搭建测试环节</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">834</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">U4S1L7——Input Action类</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%AC%E7%AB%A0%E4%BB%A3%E7%A0%81%E5%85%B3%E9%94%AE%E5%AD%97"><span class="toc-number">1.1.</span> <span class="toc-text">本章代码关键字</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">2.</span> <span class="toc-text">InputAction</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#InputAction%E5%8F%82%E6%95%B0%E7%9B%B8%E5%85%B3"><span class="toc-number">2.1.</span> <span class="toc-text">InputAction参数相关</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Actions-%E8%BE%93%E5%85%A5%E5%8A%A8%E4%BD%9C%E8%AE%BE%E7%BD%AE-%E8%AE%BE%E7%BD%AE%E8%BE%93%E5%85%A5%E7%9A%84%E7%B1%BB%E5%9E%8B%EF%BC%8C%E7%AD%9B%E9%80%89%E6%8E%A7%E5%88%B6%E7%9A%84%E7%B1%BB%E5%9E%8B"><span class="toc-number">2.1.0.1.</span> <span class="toc-text">Actions 输入动作设置 - 设置输入的类型，筛选控制的类型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Interactions-%E7%9B%B8%E4%BA%92%E4%BD%9C%E7%94%A8%E8%AE%BE%E7%BD%AE-%E5%A4%84%E7%90%86%E7%89%B9%E6%AE%8A%E8%A1%8C%E4%B8%BA"><span class="toc-number">2.1.0.2.</span> <span class="toc-text">Interactions 相互作用设置 - 处理特殊行为</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Processors-%E5%80%BC%E5%A4%84%E7%90%86%E5%8A%A0%E5%B7%A5%E8%AE%BE%E7%BD%AE-%E5%B0%86%E8%BE%93%E5%85%A5%E7%9A%84%E5%80%BC%E8%BF%9B%E8%A1%8C%E4%B8%80%E6%AC%A1%E5%8A%A0%E5%B7%A5"><span class="toc-number">2.1.0.3.</span> <span class="toc-text">Processors 值处理加工设置 - 将输入的值进行一次加工</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#InputAction%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-number">2.2.</span> <span class="toc-text">InputAction的使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%AF%E7%94%A8%E8%BE%93%E5%85%A5%E6%A3%80%E6%B5%8B"><span class="toc-number">2.2.1.</span> <span class="toc-text">启用输入检测</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%85%B3%E9%97%AD%E8%BE%93%E5%85%A5%E6%A3%80%E6%B5%8B"><span class="toc-number">2.2.1.0.1.</span> <span class="toc-text">关闭输入检测</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E7%9B%91%E5%90%AC%E7%9B%B8%E5%85%B3"><span class="toc-number">2.2.2.</span> <span class="toc-text">操作监听相关</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BC%80%E5%A7%8B%E6%93%8D%E4%BD%9C"><span class="toc-number">2.2.2.1.</span> <span class="toc-text">开始操作</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%9C%9F%E6%AD%A3%E8%A7%A6%E5%8F%91"><span class="toc-number">2.2.2.2.</span> <span class="toc-text">真正触发</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BB%93%E6%9D%9F%E6%93%8D%E4%BD%9C"><span class="toc-number">2.2.2.3.</span> <span class="toc-text">结束操作</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E9%94%AE%E5%8F%82%E6%95%B0-CallbackContext"><span class="toc-number">2.2.3.</span> <span class="toc-text">关键参数 CallbackContext</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BD%93%E5%89%8D%E7%8A%B6%E6%80%81"><span class="toc-number">2.2.3.1.</span> <span class="toc-text">当前状态</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8A%A8%E4%BD%9C%E8%A1%8C%E4%B8%BA%E4%BF%A1%E6%81%AF"><span class="toc-number">2.2.3.2.</span> <span class="toc-text">动作行为信息</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8E%A7%E4%BB%B6%E4%BF%A1%E6%81%AF"><span class="toc-number">2.2.3.3.</span> <span class="toc-text">控件信息</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E5%80%BC"><span class="toc-number">2.2.3.4.</span> <span class="toc-text">获取值</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8C%81%E7%BB%AD%E6%97%B6%E9%97%B4"><span class="toc-number">2.2.3.5.</span> <span class="toc-text">持续时间</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BC%80%E5%A7%8B%E6%97%B6%E9%97%B4"><span class="toc-number">2.2.3.6.</span> <span class="toc-text">开始时间</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%89%B9%E6%AE%8A%E8%BE%93%E5%85%A5%E8%AE%BE%E7%BD%AE"><span class="toc-number">2.3.</span> <span class="toc-text">特殊输入设置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Input-Syetem-Package-%E5%8F%82%E6%95%B0%E7%9B%B8%E5%85%B3"><span class="toc-number">2.3.1.</span> <span class="toc-text">Input Syetem Package 参数相关</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/07/01/hello-world/" title="欢迎来到文KRIFE齐的博客！">欢迎来到文KRIFE齐的博客！</a><time datetime="2024-07-01T11:46:20.391Z" title="发表于 2024-07-01 19:46:20">2024-07-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/US3S1L5%E2%80%94%E2%80%94Phong%E5%85%89%E7%85%A7%E6%A8%A1%E5%9E%8B/" title="US3S1L5——Phong光照模型">US3S1L5——Phong光照模型</a><time datetime="2024-06-25T14:33:57.000Z" title="发表于 2024-06-25 22:33:57">2024-06-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/US3S1L4%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B/US3S1L4-2%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B%E7%9A%84%E9%80%90%E7%89%87%E5%85%83%E5%85%89%E7%85%A7/" title="US3S1L4-2——Phong式高光反射模型的逐片元光照">US3S1L4-2——Phong式高光反射模型的逐片元光照</a><time datetime="2024-06-25T13:16:37.000Z" title="发表于 2024-06-25 21:16:37">2024-06-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/US3S1L4%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B/US3S1L4-1%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B%E7%9A%84%E9%80%90%E9%A1%B6%E7%82%B9%E5%85%89%E7%85%A7/" title="US3S1L4-1——Phong式高光反射模型的逐顶点光照">US3S1L4-1——Phong式高光反射模型的逐顶点光照</a><time datetime="2024-06-25T13:16:05.000Z" title="发表于 2024-06-25 21:16:05">2024-06-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/US3S1L4%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B/" title="US3S1L4——Phong式高光反射模型">US3S1L4——Phong式高光反射模型</a><time datetime="2024-06-25T10:14:12.000Z" title="发表于 2024-06-25 18:14:12">2024-06-25</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By 文KRIFE齐</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

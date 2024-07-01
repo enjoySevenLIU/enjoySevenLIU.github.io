@@ -1,0 +1,249 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>UH2S2L6——全局函数获取 | 文KRIFE齐的博客</title><meta name="author" content="文KRIFE齐"><meta name="copyright" content="文KRIFE齐"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="UH2S2L6——全局函数获取 本章代码关键字 1234[CSharpCallLua]			&#x2F;&#x2F;使委托可以接收Lua方法的特性，添加特性后需要使用Generate CodeLuaFunction				&#x2F;&#x2F;xLua提供的委托，可以接收各种类型的Lua全局函数，建议少用，因为会产生垃圾luaFunction.Call()		&#x2F;&#x2F;执行委托，需要传入参数，会返回object数组luaFunction.D">
+<meta property="og:type" content="article">
+<meta property="og:title" content="UH2S2L6——全局函数获取">
+<meta property="og:url" content="http://example.com/2024/02/02/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UH%E2%80%94%E2%80%94Unity%E7%83%AD%E6%9B%B4%E6%96%B0%E7%AC%94%E8%AE%B0/UH2%E2%80%94%E2%80%94Lua%E7%83%AD%E6%9B%B4%E6%96%B0%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/UH2S2%E2%80%94%E2%80%94xLua/UH2S2L6%E2%80%94%E2%80%94%E5%85%A8%E5%B1%80%E5%87%BD%E6%95%B0%E8%8E%B7%E5%8F%96/index.html">
+<meta property="og:site_name" content="文KRIFE齐的博客">
+<meta property="og:description" content="UH2S2L6——全局函数获取 本章代码关键字 1234[CSharpCallLua]			&#x2F;&#x2F;使委托可以接收Lua方法的特性，添加特性后需要使用Generate CodeLuaFunction				&#x2F;&#x2F;xLua提供的委托，可以接收各种类型的Lua全局函数，建议少用，因为会产生垃圾luaFunction.Call()		&#x2F;&#x2F;执行委托，需要传入参数，会返回object数组luaFunction.D">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png">
+<meta property="article:published_time" content="2024-02-02T06:09:41.000Z">
+<meta property="article:modified_time" content="2024-07-01T14:16:29.000Z">
+<meta property="article:author" content="文KRIFE齐">
+<meta property="article:tag" content="blog">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2024/02/02/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UH%E2%80%94%E2%80%94Unity%E7%83%AD%E6%9B%B4%E6%96%B0%E7%AC%94%E8%AE%B0/UH2%E2%80%94%E2%80%94Lua%E7%83%AD%E6%9B%B4%E6%96%B0%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/UH2S2%E2%80%94%E2%80%94xLua/UH2S2L6%E2%80%94%E2%80%94%E5%85%A8%E5%B1%80%E5%87%BD%E6%95%B0%E8%8E%B7%E5%8F%96/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'UH2S2L6——全局函数获取',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-07-01 22:16:29'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">834</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><hr class="custom-hr"/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="文KRIFE齐的博客"><span class="site-name">文KRIFE齐的博客</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">UH2S2L6——全局函数获取</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-02-02T06:09:41.000Z" title="发表于 2024-02-02 14:09:41">2024-02-02</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-07-01T14:16:29.000Z" title="更新于 2024-07-01 22:16:29">2024-07-01</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="UH2S2L6——全局函数获取"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1>UH2S2L6——全局函数获取</h1>
+<h2 id="本章代码关键字">本章代码关键字</h2>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[<span class="meta">CSharpCallLua</span>]			<span class="comment">//使委托可以接收Lua方法的特性，添加特性后需要使用Generate Code</span></span><br><span class="line">LuaFunction				<span class="comment">//xLua提供的委托，可以接收各种类型的Lua全局函数，建议少用，因为会产生垃圾</span></span><br><span class="line">luaFunction.Call()		<span class="comment">//执行委托，需要传入参数，会返回object数组</span></span><br><span class="line">luaFunction.Dispose()	<span class="comment">//销毁luaFunction，若不销毁，则将一直占用内存！</span></span><br></pre></td></tr></table></figure>
+<h2 id="全局函数的获取">全局函数的获取</h2>
+<ul>
+<li>
+<p>无参无返回</p>
+<ul>
+<li>自定义委托</li>
+<li>Action</li>
+<li>UnityAction</li>
+<li>LuaFunction</li>
+</ul>
+</li>
+<li>
+<p>有参有返回</p>
+<ul>
+<li>自定义委托</li>
+<li>Func</li>
+<li>LuaFunction</li>
+</ul>
+</li>
+<li>
+<p>多返回</p>
+<ul>
+<li>
+<p>自定义委托</p>
+<ul>
+<li>Out</li>
+<li>Ref</li>
+</ul>
+</li>
+<li>
+<p>LuaFunction</p>
+</li>
+</ul>
+</li>
+<li>
+<p>变长参数</p>
+<ul>
+<li>自定义委托</li>
+<li>LuaFunction</li>
+</ul>
+</li>
+</ul>
+<p>先在Lua声明不同的函数（无参无返回，有参有返回，多返回值，变长参数）</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">TestFun = <span class="function"><span class="keyword">function</span><span class="params">()</span></span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;无参无返回&quot;</span>)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">TestFun2 = <span class="function"><span class="keyword">function</span><span class="params">(a)</span></span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;有参有返回&quot;</span>)</span><br><span class="line">    <span class="keyword">return</span> a + <span class="number">1</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">TestFun3 = <span class="function"><span class="keyword">function</span><span class="params">(a)</span></span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>, <span class="number">2</span>, <span class="literal">false</span>, <span class="string">&quot;123&quot;</span>, a</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">TestFun4 = <span class="function"><span class="keyword">function</span><span class="params">(a, ...)</span></span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;a&quot;</span>)</span><br><span class="line">    <span class="built_in">arg</span> = &#123; ... &#125;</span><br><span class="line">    <span class="keyword">for</span> key, value <span class="keyword">in</span> <span class="built_in">pairs</span>(<span class="built_in">arg</span>) <span class="keyword">do</span></span><br><span class="line">        <span class="built_in">print</span>(key, value)</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<h3 id="无参无返回值">无参无返回值</h3>
+<p>我们可以像调用全局变量一样调用全局方法，就是需要使用委托来接收它<br>
+这个委托可以是我们自己声明的，也可以使用Unity提供的，也可以使用C#提供的，<br>
+xLua也提供了对应的变量类型接收方法，调用它需要使用<code>Call</code>​方法（官方建议少用，因为会产生垃圾，性能不佳）</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//无参无返回值的委托</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="built_in">delegate</span> <span class="keyword">void</span> <span class="title">CustomCall</span>()</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">L5_CallFunction</span> : <span class="title">MonoBehaviour</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Start</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        LuaManager.Instance.Init();</span><br><span class="line">        LuaManager.Instance.DoLuaFile(<span class="string">&quot;Main&quot;</span>);</span><br><span class="line"></span><br><span class="line">        CustomCall call = LuaManager.Instance.Global.Get&lt;CustomCall&gt;(<span class="string">&quot;TestFun&quot;</span>);</span><br><span class="line">        call();</span><br><span class="line">        UnityAction ua = LuaManager.Instance.Global.Get&lt;UnityAction&gt;(<span class="string">&quot;TestFun&quot;</span>);</span><br><span class="line">        ua();</span><br><span class="line">        Action action = LuaManager.Instance.Global.Get&lt;Action&gt;(<span class="string">&quot;TestFun&quot;</span>);</span><br><span class="line">        action();</span><br><span class="line">        LuaFunction lf = LuaManager.Instance.Global.Get&lt;LuaFunction&gt;(<span class="string">&quot;TestFun&quot;</span>);</span><br><span class="line">        lf.Call();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="有参有返回值">有参有返回值</h3>
+<p>和上面的无参无返回值函数的调用大同小异，但是需要做额外的步骤<br>
+<strong>首先是委托需要有对应的参数与返回值类型，并且加上特性</strong>​ <strong>​<code>[CSharpCallLua]</code>​</strong> ​ <strong>，<br>
+并且在工具栏点击 XLua - Clear Generate Code 选项，生成对应的C#代码，该委托才能被识别！</strong></p>
+<p>​<code>[CSharpCallLua]</code>​特性有不在类声明前添加也可以使用的方法，对不能直接修改代码的类也有效，详见：<a href="siyuan://blocks/20240204144641-xvlyppu">让系统类型和Lua能互相访问</a></p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//无参无返回值的委托</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="built_in">delegate</span> <span class="keyword">void</span> <span class="title">CustomCall</span>()</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//有参有返回值的委托</span></span><br><span class="line">[<span class="meta">CSharpCallLua</span>]</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="built_in">delegate</span> <span class="built_in">int</span> <span class="title">CustomCall2</span>(<span class="params"><span class="built_in">int</span> a</span>)</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">L5_CallFunction</span> : <span class="title">MonoBehaviour</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Start</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        LuaManager.Instance.Init();</span><br><span class="line">        LuaManager.Instance.DoLuaFile(<span class="string">&quot;Main&quot;</span>);</span><br><span class="line">        CustomCall2 call2 = LuaManager.Instance.Global.Get&lt;CustomCall2&gt;(<span class="string">&quot;TestFun2&quot;</span>);</span><br><span class="line">        Debug.Log(<span class="string">&quot;有参有返回值：&quot;</span> + call2(<span class="number">10</span>));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>​<img src="assets/image-20240202143628-hcb4o31.png" alt="image">​</p>
+<p>C#也自带了有参有返回值的委托<code>Func&lt;&gt;</code>​，可以直接使用，泛型参数第一个一定是返回值，后面都是参数</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">CustomCall2 call2 = LuaManager.Instance.Global.Get&lt;CustomCall2&gt;(<span class="string">&quot;TestFun2&quot;</span>);</span><br><span class="line">Debug.Log(<span class="string">&quot;有参有返回值：&quot;</span> + call2(<span class="number">10</span>));</span><br><span class="line">Func&lt;<span class="built_in">int</span>, <span class="built_in">int</span>&gt; sFun = LuaManager.Instance.Global.Get&lt;Func&lt;<span class="built_in">int</span>, <span class="built_in">int</span>&gt;&gt;(<span class="string">&quot;TestFun2&quot;</span>);</span><br><span class="line">Debug.Log(<span class="string">&quot;有参有返回值：&quot;</span> + sFun(<span class="number">20</span>));</span><br></pre></td></tr></table></figure>
+<p>也可以使用XLua提供的委托，执行时需要传入参数，它会返回<code>object[]</code>​，返回值从这个数组获取</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">LuaFunction lf2 = LuaManager.Instance.Global.Get&lt;LuaFunction&gt;(<span class="string">&quot;TestFun2&quot;</span>);</span><br><span class="line">Debug.Log(<span class="string">&quot;有参有返回值：&quot;</span> + lf2.Call(<span class="number">30</span>)[<span class="number">0</span>]);</span><br></pre></td></tr></table></figure>
+<p>​<img src="assets/image-20240202144238-017gilc.png" alt="image">​</p>
+<h3 id="多返回值">多返回值</h3>
+<p>C#不支持函数多返回值，我们需要使用<code>out</code>​和<code>ref</code>​来接收，也就是通过传入的参数变量来接收返回值<br>
+具体声明方式是，用<code>out</code>​修饰接收返回值参数，将接收返回值的变量传入到方法中，这些变量在这些过方法后就会接收到方法的返回值<br>
+（同样的，这种新声明出来的委托还是需要加上特性并执行Generate Code）</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//多返回值的委托</span></span><br><span class="line">[<span class="meta">CSharpCallLua</span>]</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="built_in">delegate</span> <span class="built_in">int</span> <span class="title">CustomCall3</span>(<span class="params"><span class="built_in">int</span> a, <span class="keyword">out</span> <span class="built_in">int</span> b, <span class="keyword">out</span> <span class="built_in">bool</span> c, <span class="keyword">out</span> <span class="built_in">string</span> d, <span class="keyword">out</span> <span class="built_in">int</span> e</span>)</span>;</span><br><span class="line"><span class="comment">//前面的a是传入Lua方法的参数，后面的参数用来接收返回值的参数</span></span><br></pre></td></tr></table></figure>
+<p>函数的第一个返回值还是通过委托本身返回出来，剩下的返回值就是通过参数传递变量来接收返回值</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//多返回值的委托</span></span><br><span class="line">[<span class="meta">CSharpCallLua</span>]</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="built_in">delegate</span> <span class="built_in">int</span> <span class="title">CustomCall3</span>(<span class="params"><span class="built_in">int</span> a, <span class="keyword">out</span> <span class="built_in">int</span> b, <span class="keyword">out</span> <span class="built_in">bool</span> c, <span class="keyword">out</span> <span class="built_in">string</span> d, <span class="keyword">out</span> <span class="built_in">int</span> e</span>)</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">L5_CallFunction</span> : <span class="title">MonoBehaviour</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Start</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        LuaManager.Instance.Init();</span><br><span class="line">        LuaManager.Instance.DoLuaFile(<span class="string">&quot;Main&quot;</span>);</span><br><span class="line">        CustomCall3 call3 = LuaManager.Instance.Global.Get&lt;CustomCall3&gt;(<span class="string">&quot;TestFun3&quot;</span>);</span><br><span class="line">        <span class="built_in">int</span> b;</span><br><span class="line">        <span class="built_in">bool</span> c;</span><br><span class="line">        <span class="built_in">string</span> d;</span><br><span class="line">        <span class="built_in">int</span> e;</span><br><span class="line">        Debug.Log(<span class="string">&quot;第一个返回值：&quot;</span> + call3(<span class="number">100</span>, <span class="keyword">out</span> b, <span class="keyword">out</span> c, <span class="keyword">out</span> d, <span class="keyword">out</span> e));</span><br><span class="line">        Debug.Log(<span class="string">&quot;剩余的返回值：&quot;</span> + b + <span class="string">&quot;_&quot;</span> + c + <span class="string">&quot;_&quot;</span> + d + <span class="string">&quot;_&quot;</span> + e);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>​<img src="assets/image-20240202154839-tb38ba7.png" alt="image">​</p>
+<p>用<code>ref</code>​修饰参数的效果是一样的，唯一的区别是，<code>ref</code>​传入的变量必须初始化</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//多返回值的委托</span></span><br><span class="line">[<span class="meta">CSharpCallLua</span>]</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="built_in">delegate</span> <span class="built_in">int</span> <span class="title">CustomCall3</span>(<span class="params"><span class="built_in">int</span> a, <span class="keyword">out</span> <span class="built_in">int</span> b, <span class="keyword">out</span> <span class="built_in">bool</span> c, <span class="keyword">out</span> <span class="built_in">string</span> d, <span class="keyword">out</span> <span class="built_in">int</span> e</span>)</span>;</span><br><span class="line">[<span class="meta">CSharpCallLua</span>]</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="built_in">delegate</span> <span class="built_in">int</span> <span class="title">CustomCall4</span>(<span class="params"><span class="built_in">int</span> a, <span class="keyword">ref</span> <span class="built_in">int</span> b, <span class="keyword">ref</span> <span class="built_in">bool</span> c, <span class="keyword">ref</span> <span class="built_in">string</span> d, <span class="keyword">ref</span> <span class="built_in">int</span> e</span>)</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">L5_CallFunction</span> : <span class="title">MonoBehaviour</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Start</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        LuaManager.Instance.Init();</span><br><span class="line">        LuaManager.Instance.DoLuaFile(<span class="string">&quot;Main&quot;</span>);</span><br><span class="line">        CustomCall3 call3 = LuaManager.Instance.Global.Get&lt;CustomCall3&gt;(<span class="string">&quot;TestFun3&quot;</span>);</span><br><span class="line">        <span class="built_in">int</span> b;</span><br><span class="line">        <span class="built_in">bool</span> c;</span><br><span class="line">        <span class="built_in">string</span> d;</span><br><span class="line">        <span class="built_in">int</span> e;</span><br><span class="line">        Debug.Log(<span class="string">&quot;第一个返回值：&quot;</span> + call3(<span class="number">100</span>, <span class="keyword">out</span> b, <span class="keyword">out</span> c, <span class="keyword">out</span> d, <span class="keyword">out</span> e));</span><br><span class="line">        Debug.Log(<span class="string">&quot;剩余的返回值：&quot;</span> + b + <span class="string">&quot;_&quot;</span> + c + <span class="string">&quot;_&quot;</span> + d + <span class="string">&quot;_&quot;</span> + e);</span><br><span class="line"></span><br><span class="line">        CustomCall4 call4 = LuaManager.Instance.Global.Get&lt;CustomCall4&gt;(<span class="string">&quot;TestFun3&quot;</span>);</span><br><span class="line">        <span class="built_in">int</span> b1 = <span class="number">0</span>;</span><br><span class="line">        <span class="built_in">bool</span> c1 = <span class="literal">true</span>;</span><br><span class="line">        <span class="built_in">string</span> d1 = <span class="string">&quot;&quot;</span>;</span><br><span class="line">        <span class="built_in">int</span> e1 = <span class="number">0</span>;</span><br><span class="line">        Debug.Log(<span class="string">&quot;第一个返回值：&quot;</span> + call4(<span class="number">200</span>, <span class="keyword">ref</span> b1, <span class="keyword">ref</span> c1, <span class="keyword">ref</span> d1, <span class="keyword">ref</span> e1));</span><br><span class="line">        Debug.Log(<span class="string">&quot;剩余的返回值：&quot;</span> + b1 + <span class="string">&quot;_&quot;</span> + c1 + <span class="string">&quot;_&quot;</span> + d1 + <span class="string">&quot;_&quot;</span> + e1);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>​<img src="assets/image-20240202155342-5pmqomr.png" alt="image">​</p>
+<p>这里同样可以使用XLua提供的委托，执行时需要传入参数，它会返回<code>object[]</code>​，返回值从这个数组获取（少用）</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">LuaFunction lf3 = LuaManager.Instance.Global.Get&lt;LuaFunction&gt;(<span class="string">&quot;TestFun3&quot;</span>);</span><br><span class="line"><span class="built_in">object</span>[] objs = lf3.Call(<span class="number">1000</span>);</span><br><span class="line"><span class="keyword">for</span> (<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; objs.Length; i++)</span><br><span class="line">&#123;</span><br><span class="line">    Debug.Log(<span class="string">&quot;第&quot;</span> + i + <span class="string">&quot;个返回值是：&quot;</span> + objs[i]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="变长参数">变长参数</h3>
+<p>调用变长参数函数的委托，我们在参数列表使用C#提供的变长参数即可，<br>
+只不过和Lua相比C#的变长参数需要我们指定类型，如果类型不确定，可以使用<code>object</code>​<br>
+如果可以确定是单一类型，就直接使用对应的类型即可<br>
+（同样的，这种新声明出来的委托还是需要加上特性并执行Generate Code）</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//变长参数</span></span><br><span class="line">[<span class="meta">CSharpCallLua</span>]</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="built_in">delegate</span> <span class="keyword">void</span> <span class="title">CustomCall5</span>(<span class="params"><span class="built_in">string</span> a, <span class="keyword">params</span> <span class="built_in">int</span>[] args</span>)</span>;       <span class="comment">//变长参数的类型，是根据实际情况来决定的</span></span><br></pre></td></tr></table></figure>
+<p>这里同样可以使用XLua提供的委托，执行时传入对应的参数即可（少用）</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//变长参数</span></span><br><span class="line">[<span class="meta">CSharpCallLua</span>]</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="built_in">delegate</span> <span class="keyword">void</span> <span class="title">CustomCall5</span>(<span class="params"><span class="built_in">string</span> a, <span class="keyword">params</span> <span class="built_in">int</span>[] args</span>)</span>;       <span class="comment">//变长参数的类型，是根据实际情况来决定的</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">L5_CallFunction</span> : <span class="title">MonoBehaviour</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Start</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        LuaManager.Instance.Init();</span><br><span class="line">        LuaManager.Instance.DoLuaFile(<span class="string">&quot;Main&quot;</span>);</span><br><span class="line"></span><br><span class="line">        CustomCall5 call5 = LuaManager.Instance.Global.Get&lt;CustomCall5&gt;(<span class="string">&quot;TestFun4&quot;</span>);</span><br><span class="line">        call5(<span class="string">&quot;传入了这些参数：&quot;</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">666</span>, <span class="number">7</span>, <span class="number">88</span>, <span class="number">999</span>);</span><br><span class="line">        LuaFunction lf4 = LuaManager.Instance.Global.Get&lt;LuaFunction&gt;(<span class="string">&quot;TestFun4&quot;</span>);</span><br><span class="line">        lf4.Call(<span class="string">&quot;传入了这些参数：&quot;</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">54321</span>, <span class="number">6666</span>, <span class="number">7</span>, <span class="number">88</span>, <span class="number">9</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="​LuaFunction​的销毁">​LuaFunction​的销毁</h3>
+<p>当<code>LuaFunction</code>​的调用完毕时，应当手动销毁，否则将一直占用内存，造成内存泄露，<code>LuaTable</code>​同理<br>
+Lua解析器的<code>tick()</code>​就是会释放我们没有手动销毁的<code>LuaTable</code>​，<code>LuaFunction</code>​</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lf.Dispose();</span><br></pre></td></tr></table></figure>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">文KRIFE齐</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2024/02/02/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UH%E2%80%94%E2%80%94Unity%E7%83%AD%E6%9B%B4%E6%96%B0%E7%AC%94%E8%AE%B0/UH2%E2%80%94%E2%80%94Lua%E7%83%AD%E6%9B%B4%E6%96%B0%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/UH2S2%E2%80%94%E2%80%94xLua/UH2S2L6%E2%80%94%E2%80%94%E5%85%A8%E5%B1%80%E5%87%BD%E6%95%B0%E8%8E%B7%E5%8F%96/">http://example.com/2024/02/02/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UH%E2%80%94%E2%80%94Unity%E7%83%AD%E6%9B%B4%E6%96%B0%E7%AC%94%E8%AE%B0/UH2%E2%80%94%E2%80%94Lua%E7%83%AD%E6%9B%B4%E6%96%B0%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/UH2S2%E2%80%94%E2%80%94xLua/UH2S2L6%E2%80%94%E2%80%94%E5%85%A8%E5%B1%80%E5%87%BD%E6%95%B0%E8%8E%B7%E5%8F%96/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">文KRIFE齐的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2024/02/02/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UH%E2%80%94%E2%80%94Unity%E7%83%AD%E6%9B%B4%E6%96%B0%E7%AC%94%E8%AE%B0/UH2%E2%80%94%E2%80%94Lua%E7%83%AD%E6%9B%B4%E6%96%B0%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/UH2S2%E2%80%94%E2%80%94xLua/UH2S2L7%E2%80%94%E2%80%94%E8%A1%A8%E6%98%A0%E5%B0%84%E5%88%B0List%E5%92%8CDictionary/" title="UH2S2L7——表映射到List和Dictionary"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">UH2S2L7——表映射到List和Dictionary</div></div></a></div><div class="next-post pull-right"><a href="/2024/02/01/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UH%E2%80%94%E2%80%94Unity%E7%83%AD%E6%9B%B4%E6%96%B0%E7%AC%94%E8%AE%B0/UH2%E2%80%94%E2%80%94Lua%E7%83%AD%E6%9B%B4%E6%96%B0%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/UH2S2%E2%80%94%E2%80%94xLua/UH2S2L5%E2%80%94%E2%80%94%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F%E8%8E%B7%E5%8F%96/" title="UH2S2L5——全局变量获取"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">UH2S2L5——全局变量获取</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">文KRIFE齐</div><div class="author-info__description">目前正处于搭建测试环节</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">834</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">UH2S2L6——全局函数获取</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%AC%E7%AB%A0%E4%BB%A3%E7%A0%81%E5%85%B3%E9%94%AE%E5%AD%97"><span class="toc-number">1.1.</span> <span class="toc-text">本章代码关键字</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%A8%E5%B1%80%E5%87%BD%E6%95%B0%E7%9A%84%E8%8E%B7%E5%8F%96"><span class="toc-number">1.2.</span> <span class="toc-text">全局函数的获取</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%A0%E5%8F%82%E6%97%A0%E8%BF%94%E5%9B%9E%E5%80%BC"><span class="toc-number">1.2.1.</span> <span class="toc-text">无参无返回值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%89%E5%8F%82%E6%9C%89%E8%BF%94%E5%9B%9E%E5%80%BC"><span class="toc-number">1.2.2.</span> <span class="toc-text">有参有返回值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%9A%E8%BF%94%E5%9B%9E%E5%80%BC"><span class="toc-number">1.2.3.</span> <span class="toc-text">多返回值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%98%E9%95%BF%E5%8F%82%E6%95%B0"><span class="toc-number">1.2.4.</span> <span class="toc-text">变长参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%80%8BLuaFunction%E2%80%8B%E7%9A%84%E9%94%80%E6%AF%81"><span class="toc-number">1.2.5.</span> <span class="toc-text">​LuaFunction​的销毁</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/07/01/hello-world/" title="欢迎来到文KRIFE齐的博客！">欢迎来到文KRIFE齐的博客！</a><time datetime="2024-07-01T11:46:20.391Z" title="发表于 2024-07-01 19:46:20">2024-07-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/US3S1L5%E2%80%94%E2%80%94Phong%E5%85%89%E7%85%A7%E6%A8%A1%E5%9E%8B/" title="US3S1L5——Phong光照模型">US3S1L5——Phong光照模型</a><time datetime="2024-06-25T14:33:57.000Z" title="发表于 2024-06-25 22:33:57">2024-06-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/US3S1L4%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B/US3S1L4-2%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B%E7%9A%84%E9%80%90%E7%89%87%E5%85%83%E5%85%89%E7%85%A7/" title="US3S1L4-2——Phong式高光反射模型的逐片元光照">US3S1L4-2——Phong式高光反射模型的逐片元光照</a><time datetime="2024-06-25T13:16:37.000Z" title="发表于 2024-06-25 21:16:37">2024-06-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/US3S1L4%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B/US3S1L4-1%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B%E7%9A%84%E9%80%90%E9%A1%B6%E7%82%B9%E5%85%89%E7%85%A7/" title="US3S1L4-1——Phong式高光反射模型的逐顶点光照">US3S1L4-1——Phong式高光反射模型的逐顶点光照</a><time datetime="2024-06-25T13:16:05.000Z" title="发表于 2024-06-25 21:16:05">2024-06-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/US3S1L4%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B/" title="US3S1L4——Phong式高光反射模型">US3S1L4——Phong式高光反射模型</a><time datetime="2024-06-25T10:14:12.000Z" title="发表于 2024-06-25 18:14:12">2024-06-25</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By 文KRIFE齐</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

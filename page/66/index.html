@@ -1,0 +1,491 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>文KRIFE齐的博客 - 搭建中</title><meta name="author" content="文KRIFE齐"><meta name="copyright" content="文KRIFE齐"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="目前正处于搭建测试环节">
+<meta property="og:type" content="website">
+<meta property="og:title" content="文KRIFE齐的博客">
+<meta property="og:url" content="http://example.com/page/66/index.html">
+<meta property="og:site_name" content="文KRIFE齐的博客">
+<meta property="og:description" content="目前正处于搭建测试环节">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png">
+<meta property="article:author" content="文KRIFE齐">
+<meta property="article:tag" content="blog">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/page/66/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '文KRIFE齐的博客',
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2024-07-01 22:20:12'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">834</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><hr class="custom-hr"/></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="文KRIFE齐的博客"><span class="site-name">文KRIFE齐的博客</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">文KRIFE齐的博客</h1></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/08/08/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U3%E2%80%94%E2%80%94Unity%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/U3L18%E2%80%94%E2%80%943D%E5%8A%A8%E7%94%BB%E7%9B%B8%E5%85%B3/U3L18-4%E2%80%94%E2%80%94%E5%8A%A8%E7%94%BB2D%E6%B7%B7%E5%90%88/" title="U3L18-4——动画2D混合">U3L18-4——动画2D混合</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-08-08T14:33:20.000Z" title="发表于 2023-08-08 22:33:20">2023-08-08</time></span></div><div class="content">U3L18-4——动画2D混合
+1D混合和2D混合
+1D混合是用一个参数控制动画的混合，之所以叫1D是因为一个参数可以看做是1维线性的
+2D混合你可以简单理解是用两个参数控制动画的混合，之所以叫2D是因为两个参数可以看做是2维平面xy轴的感觉
+2D混合的种类
+​
+创建2D混合树还是和创建1D混合一致
+但是需要在名字下方的修改混合类型（Blend Type）
+
+
+
+英文混合模式名
+中文混合模式名
+作用和示例
+
+
+
+
+2D Simple Directional
+2D简单定向模式
+运动表示不同方向时使用。比如向前、后、左、右走
+
+
+2D Freeform Directional
+2D自由形式定向模式
+同上，运动表示不同方向时使用，但是可以在同一方向上有多个运动。比如向前跑和走
+
+
+2D Freeform Cartesian
+2D自由形式笛卡尔坐标模式
+运动不表示不同方向时使用。比如向前走不拐弯，向前跑不拐弯，向前走右转，向前跑右转
+
+
+Direct
+直接模式
+自由控制每个节点权重，一般做表情动作
+
+
+
+前三种方式只是针对动作的不同采用不同的算法来进行混合的
+第四种可以用多个参数进行融合
+混合 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/08/08/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U3%E2%80%94%E2%80%94Unity%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/U3L18%E2%80%94%E2%80%943D%E5%8A%A8%E7%94%BB%E7%9B%B8%E5%85%B3/U3L18-3%E2%80%94%E2%80%94%E5%8A%A8%E7%94%BB1D%E6%B7%B7%E5%90%88/" title="U3L18-3——动画1D混合">U3L18-3——动画1D混合</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-08-08T14:33:17.000Z" title="发表于 2023-08-08 22:33:17">2023-08-08</time></span></div><div class="content">U3L18-3——动画1D混合
+动画混合
+游戏动画中常见的功能就是在两个或者多个相似运动之间进行混合
+比如
+
+根据角色的速度来混合行走和奔跑动画
+根据角色的转向来混合向左或向右倾斜的动作
+
+你可以理解是高级版的动画过渡
+之前我们学习的动画过渡是处理两个不同类型动作之间切换的过渡效果
+而动画混合是允许合并多个动画来使动画平滑混合
+如何在状态机窗口创建动画混合状态
+​​
+在Animator Controller窗口
+右键-&gt;Create State-&gt;From New Blend Tree
+1D混合的使用
+1D混合就是通过一个参数来混合子运动
+注意：往混合树里面加入动作时需要找到动画文件进行关联
+参数相关
+​​
+
+
+Parameter 参数，用于控制混合的参数，在参数列表中的参数
+
+
+蓝色图像 可以在这里控制n个动画的阈值
+
+
+Motion 关联的动画列表，可以用鼠标改变顺序
+
+
+Threshold 对应动作的临界阈值
+当等于这个值时动作权重最大（完全播放该动作）
+这个值可以完全自由控制，数值范围不定
+
+
+​​控制动作的播放速度
+
+
+​​是否镜像动作
+
+
+Automate Th ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/08/08/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U3%E2%80%94%E2%80%94Unity%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/U3L18%E2%80%94%E2%80%943D%E5%8A%A8%E7%94%BB%E7%9B%B8%E5%85%B3/" title="U3L18——3D动画相关">U3L18——3D动画相关</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-08-08T14:31:27.000Z" title="发表于 2023-08-08 22:31:27">2023-08-08</time></span></div><div class="content">U3L18——3D动画相关
+本章内容大量涉及Animator，具体内容看这里 ——&gt; U3L14——Animator动画状态机
+相关学习内容
+
+3D动画的使用
+动画分层和遮罩
+动画1D混合
+动画2D混合
+动画子状态机
+动画IK控制
+动作目标匹配
+Statemachinebehaviour 状态机行为脚本
+状态机复用
+
+‍
+</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/08/08/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U3%E2%80%94%E2%80%94Unity%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/U3L18%E2%80%94%E2%80%943D%E5%8A%A8%E7%94%BB%E7%9B%B8%E5%85%B3/U3L18-2%E2%80%94%E2%80%94%E5%8A%A8%E7%94%BB%E5%88%86%E5%B1%82%E5%92%8C%E9%81%AE%E7%BD%A9/" title="U3L18-2——动画分层和遮罩">U3L18-2——动画分层和遮罩</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-08-08T14:23:45.000Z" title="发表于 2023-08-08 22:23:45">2023-08-08</time></span></div><div class="content">U3L18-2——动画分层和遮罩
+本章代码关键字
+12animator.GetLayerIndex()        //通过层级名字获取索引animator.SetLayerWeight(,);     //设置某个层级的权重
+动画分层的主要目的
+动画分层的作用
+游戏中会有这样的需求
+人物健康状态时播放正常动画
+人物非健康状态时播放特殊动画
+比如血量低于一定界限，人物的大部分动作将表现为虚弱状态
+我们可以利用动画分层来快速实现这样的功能
+动画分层和动画遮罩结合使用
+3D游戏中我们常常会面对这样的需求
+人物站立时会有开枪动作
+人物跑动时会有开枪动作
+人物蹲下时会有开枪动作
+从表现上来看光是开枪动作可能就有3种
+如果要让美术同学做3种开枪动作费时又费资源
+我们是否可以这样做
+比如开枪动画只影响上半身
+下半身根据实际情况播放站立，跑动，蹲下动作
+通过上下半身播放不同的动画就可以达到动画的组合播放
+动画分层的主要就是达到这两个目的
+
+两套不同层动作的切换
+结合动画遮罩让两个动画叠加在一起播放
+
+提升动画多样性，节约资源
+利用动画分层我们可以做到
+
+上下半身播放两个动画进行组合，比如上半身扔炸 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/08/08/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U3%E2%80%94%E2%80%94Unity%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/U3L18%E2%80%94%E2%80%943D%E5%8A%A8%E7%94%BB%E7%9B%B8%E5%85%B3/U3L18-1%E2%80%94%E2%80%943D%E5%8A%A8%E7%94%BB%E7%9A%84%E4%BD%BF%E7%94%A8/" title="U3L18-1——3D动画的使用">U3L18-1——3D动画的使用</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-08-08T08:52:39.000Z" title="发表于 2023-08-08 16:52:39">2023-08-08</time></span></div><div class="content">U3L18-1——3D动画的使用
+使用导入的3D动画
+
+将模型拖入场景中
+为模型对象添加Animator脚本
+为其撞见Animator Controller动画控制器（状态机）
+将想要使用的相关动作 拖入Animator Controller动画控制器（状态机）窗口
+在Animator Controller动画控制器（状态机）窗口编辑动画关系（使用之前学习的状态机相关知识）
+代码控制状态切换（和状态机的代码控制内容差不多）
+
+注意点
+
+Has Exit Time是否启用 如果希望瞬间切换动画不需过多等待，取消该选项
+Can Transition To self是否启用 如果希望自己不要打断自己，取消该选项
+
+状态设置相关参数
+我们可以选中状态机窗口中的 某一个状态 为其设置相关参数
+我们可以称之为动画状态设置
+主要设置的是 当前状态的播放速度等等细节
+​​
+
+Motion：分配给此状态的动画剪辑
+Speed：动画的默认速度
+Multiplier：控制速度的乘数
+如果要使用需要勾选的Parameter选中配合的参数float类型
+Motion Time：运动的时间
+如果要使用需要勾选的P ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/08/07/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U3%E2%80%94%E2%80%94Unity%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/U3L17%E2%80%94%E2%80%94%E6%A8%A1%E5%9E%8B%E5%AF%BC%E5%85%A5%E7%9B%B8%E5%85%B3%E8%AE%BE%E7%BD%AE/U3L17-3%E2%80%94%E2%80%94Animation%E5%8A%A8%E7%94%BB%E9%A1%B5%E7%AD%BE/U3L17-3-d%E2%80%94%E2%80%94%E9%A2%84%E8%A7%88%E7%AA%97%E5%8F%A3/" title="U3L17-3-d——预览窗口">U3L17-3-d——预览窗口</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-08-07T14:28:15.000Z" title="发表于 2023-08-07 22:28:15">2023-08-07</time></span></div><div class="content">U3L17-3-d——预览窗口
+​​
+
+
+动画预览
+
+
+动画剪辑名称
+​​
+
+
+IK：是否开启脚步反向动力学预览
+​​
+
+
+2D：2D模式预览
+​​
+
+
+箭头：是否显示轴心和质心辅助图标
+​​
+
+
+切换预览操作的游戏对象，向预览窗口拖模型可以直接替换模型
+​​
+
+
+播放暂停键 时间轴（可拖动预览）
+​​
+
+
+播放速度
+​​
+
+
+播放状态标记 秒、百分比、帧编号显示当前播放到的位置
+​​
+
+
+可以为资源添加标签Tag
+​​
+
+
+AB包相关设置，AB包知识时会讲解
+​​
+
+
+
+
+</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/08/07/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U3%E2%80%94%E2%80%94Unity%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/U3L17%E2%80%94%E2%80%94%E6%A8%A1%E5%9E%8B%E5%AF%BC%E5%85%A5%E7%9B%B8%E5%85%B3%E8%AE%BE%E7%BD%AE/U3L17-3%E2%80%94%E2%80%94Animation%E5%8A%A8%E7%94%BB%E9%A1%B5%E7%AD%BE/U3L17-3-c%E2%80%94%E2%80%94%E5%8A%A8%E7%94%BB%E5%89%AA%E8%BE%91%E5%B1%9E%E6%80%A7%E5%85%B6%E5%AE%83%E8%AE%BE%E7%BD%AE/" title="U3L17-3-c——动画剪辑属性其它设置">U3L17-3-c——动画剪辑属性其它设置</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-08-07T14:23:21.000Z" title="发表于 2023-08-07 22:23:21">2023-08-07</time></span></div><div class="content">U3L17-3-c——动画剪辑属性其它设置
+Curves 曲线
+​​
+
+
+曲线可以配合Animator作为参数
+通过加入曲线值可以利用他标记重要的点
+可以修改曲线的名字，名字就类似参数名
+可以通过加减来添加或删除曲线信息
+即，向Animator添加该动作时，为Animator添加与曲线同名的条件
+该条件的数值就会在播放动画时和曲线的数值上的一致
+
+
+曲线中的值X轴代表标准化时间（0~1）代表动画的开始和结尾
+Y轴的值可以根据需求自己设置
+也可以使用下方提供的预设曲线
+​​
+
+
+Events 事件
+​​
+
+动画事件
+类似之前我们学习的Animation窗口中的动画事件
+可以在这里为动画剪辑添加一个事件，
+当动画播放到事件处时会自动找对象脚本中的同名函数
+当我们希望在动画某一时刻进行逻辑处理时非常常用
+比如某一时刻进行伤害判断
+
+Mask 遮罩
+​​
+
+动画遮罩
+主要作用是当播放该动画时
+可以指定哪一部分或者哪些骨骼排除在外不受动作影响
+Humanoid（人形动画的快捷设置）
+我们分别可以控制 头、左右臂、左右手、左右腿、根等
+点击他们让他们变成红色，就代表做该动作时不影响该部位
+Tran ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/08/07/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U3%E2%80%94%E2%80%94Unity%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/U3L17%E2%80%94%E2%80%94%E6%A8%A1%E5%9E%8B%E5%AF%BC%E5%85%A5%E7%9B%B8%E5%85%B3%E8%AE%BE%E7%BD%AE/U3L17-3%E2%80%94%E2%80%94Animation%E5%8A%A8%E7%94%BB%E9%A1%B5%E7%AD%BE/U3L17-3-b%E2%80%94%E2%80%94%E5%8A%A8%E7%94%BB%E5%89%AA%E8%BE%91%E5%B1%9E%E6%80%A7%E5%9F%BA%E6%9C%AC%E8%AE%BE%E7%BD%AE/" title="U3L17-3-b——动画剪辑属性基本设置">U3L17-3-b——动画剪辑属性基本设置</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-08-07T14:23:16.000Z" title="发表于 2023-08-07 22:23:16">2023-08-07</time></span></div><div class="content">U3L17-3-b——动画剪辑属性基本设置
+动画剪辑属性
+​​
+
+
+动画剪辑名称 可编辑修改
+
+
+时间轴
+Start动画剪辑的开始帧
+End动画剪辑的结束帧
+我们可以在时间轴中定义每个动画剪辑的帧范围
+
+
+Loop Time：播放动画剪辑时是否循环播放，到结尾时重新开始
+
+
+Loop Pose：无缝循环运动
+用于循环时结束帧和开始帧动作不同时，Unity会先将动作调整到和开始帧动作一致再开始播放下一次动画
+
+Loop Match：循环匹配 （绿灯即结束帧的动作和开始帧匹配）
+
+
+
+Cycle Offset：循环动画在其他时间开始时的周期偏移
+即其他动画切到该动画时，从该动画的第几秒开始
+
+
+
+
+Root Transform Rotation：根位置的角度相关
+
+
+Bake Into Pose：将根旋转烘焙到骨骼移动。
+禁用此选项将存储为根运动
+简单来说，就是该动画的角度变化是否带动场景内根物体的角度变化
+
+
+Based Upon：根旋转的基础
+
+Original：保持源文件中的原始旋转
+Root Node Rotation：使用根节点的旋转
+（仅适用Generic通用动画类型）
+Bod ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/08/07/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U3%E2%80%94%E2%80%94Unity%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/U3L17%E2%80%94%E2%80%94%E6%A8%A1%E5%9E%8B%E5%AF%BC%E5%85%A5%E7%9B%B8%E5%85%B3%E8%AE%BE%E7%BD%AE/U3L17-3%E2%80%94%E2%80%94Animation%E5%8A%A8%E7%94%BB%E9%A1%B5%E7%AD%BE/U3L17-3-a%E2%80%94%E2%80%94%E5%9F%BA%E7%A1%80%E4%BF%A1%E6%81%AF%E8%AE%BE%E7%BD%AE/" title="U3L17-3-a——基础信息设置">U3L17-3-a——基础信息设置</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-08-07T14:23:14.000Z" title="发表于 2023-08-07 22:23:14">2023-08-07</time></span></div><div class="content">U3L17-3-a——基础信息设置
+不含动画资源的模型
+​​
+包含动画资源的模型
+动画文件基础设置
+​
+
+
+Import Constraints：从此资源导入约束
+启用后，Unity会自动添加相应的约束组件将其关联到正确的游戏对象
+
+
+Import Animation：从此资源导入动画
+如果禁用，下面的选项都将没有，并且不会导入任何动画
+
+
+Bake Animations：烘焙动画
+通过反向动力学（IK）或模拟创建的动画以便推进运动关键帧，仅用于Maya、3Dmax和Cinema4D文件
+
+
+Anim.Compression：导入动画时使用的压缩类型
+
+​​
+Off：禁用动画压缩
+在导入时Unity不会减少关键帧数量
+效果最好性能较低，文件较大，运行时内存占用也大
+通常不建议使用
+Keyframe Reduction：减少冗余关键帧
+仅适用于Generic通用动画类型
+Keyframe Reduction and Compression：减少关键帧并在文件中存储动画时压缩关键帧，会影响文件大小，但是内存大小和Keyframe Reduction相同，仅适用于Legacy旧版动画类型
+O ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/08/07/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U3%E2%80%94%E2%80%94Unity%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/U3L17%E2%80%94%E2%80%94%E6%A8%A1%E5%9E%8B%E5%AF%BC%E5%85%A5%E7%9B%B8%E5%85%B3%E8%AE%BE%E7%BD%AE/U3L17-4%E2%80%94%E2%80%94Materials%E6%9D%90%E8%B4%A8%E7%BA%B9%E7%90%86%E9%A1%B5%E7%AD%BE/" title="U3L17-4——Materials材质纹理页签">U3L17-4——Materials材质纹理页签</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-08-07T11:24:43.000Z" title="发表于 2023-08-07 19:24:43">2023-08-07</time></span></div><div class="content">U3L17-4——Materials材质纹理页签
+​​
+
+
+Material Creation Mode： 定义希望Unity如何为模型生成或导入材质
+
+None：不使用此模型中嵌入的任何材质
+改用Unity的默认漫反射材质
+Standard：导入时，Unity使用默认规则来生成材质
+注意，在2021版里该方法已被标注为旧版
+Import via MaterialDescription（Experimental）：导入时，Unity使用FBX文件中嵌入的材质描述来生成材质。
+与Standard相比，该方法结果更准确，并且支持更广泛的材质类型。
+
+
+
+sRGB Albedo Colors：是否在伽马空间中使用反射率颜色
+对于使用线性颜色控件的项目，禁用此选项
+如果上面的选项选择的是 Import via MaterialDescription（Experimental）该属性不可用
+
+
+Location：定义如何访问材质和纹理
+
+Use Embedded Materials：将导入的材质保持在导入的资源中
+Use External Materials（Legacy）：将导入的材质提取为外 ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/65/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/65/#content-inner">65</a><span class="page-number current">66</span><a class="page-number" href="/page/67/#content-inner">67</a><span class="space">&hellip;</span><a class="page-number" href="/page/84/#content-inner">84</a><a class="extend next" rel="next" href="/page/67/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">文KRIFE齐</div><div class="author-info__description">目前正处于搭建测试环节</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">834</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/07/01/hello-world/" title="欢迎来到文KRIFE齐的博客！">欢迎来到文KRIFE齐的博客！</a><time datetime="2024-07-01T11:46:20.391Z" title="发表于 2024-07-01 19:46:20">2024-07-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/US3S1L5%E2%80%94%E2%80%94Phong%E5%85%89%E7%85%A7%E6%A8%A1%E5%9E%8B/" title="US3S1L5——Phong光照模型">US3S1L5——Phong光照模型</a><time datetime="2024-06-25T14:33:57.000Z" title="发表于 2024-06-25 22:33:57">2024-06-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/US3S1L4%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B/US3S1L4-2%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B%E7%9A%84%E9%80%90%E7%89%87%E5%85%83%E5%85%89%E7%85%A7/" title="US3S1L4-2——Phong式高光反射模型的逐片元光照">US3S1L4-2——Phong式高光反射模型的逐片元光照</a><time datetime="2024-06-25T13:16:37.000Z" title="发表于 2024-06-25 21:16:37">2024-06-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/US3S1L4%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B/US3S1L4-1%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B%E7%9A%84%E9%80%90%E9%A1%B6%E7%82%B9%E5%85%89%E7%85%A7/" title="US3S1L4-1——Phong式高光反射模型的逐顶点光照">US3S1L4-1——Phong式高光反射模型的逐顶点光照</a><time datetime="2024-06-25T13:16:05.000Z" title="发表于 2024-06-25 21:16:05">2024-06-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/US3S1L4%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B/" title="US3S1L4——Phong式高光反射模型">US3S1L4——Phong式高光反射模型</a><time datetime="2024-06-25T10:14:12.000Z" title="发表于 2024-06-25 18:14:12">2024-06-25</time></div></div></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span><a class="card-more-btn" href="/archives/" title="查看更多">
+    <i class="fas fa-angle-right"></i></a></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/07/"><span class="card-archive-list-date">七月 2024</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/06/"><span class="card-archive-list-date">六月 2024</span><span class="card-archive-list-count">51</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/05/"><span class="card-archive-list-date">五月 2024</span><span class="card-archive-list-count">56</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/04/"><span class="card-archive-list-date">四月 2024</span><span class="card-archive-list-count">127</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/03/"><span class="card-archive-list-date">三月 2024</span><span class="card-archive-list-count">135</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/02/"><span class="card-archive-list-date">二月 2024</span><span class="card-archive-list-count">62</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/01/"><span class="card-archive-list-date">一月 2024</span><span class="card-archive-list-count">31</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/12/"><span class="card-archive-list-date">十二月 2023</span><span class="card-archive-list-count">2</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">834</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2024-07-01T14:20:11.890Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By 文KRIFE齐</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

@@ -1,0 +1,253 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>U3L14-2——Animator Controller动画控制器（状态机） | 文KRIFE齐的博客</title><meta name="author" content="文KRIFE齐"><meta name="copyright" content="文KRIFE齐"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="U3L14-2——Animator Controller动画控制器（状态机） 创建动画状态机  通过为场景中物体创建动画时自动创建 手动创建动画状态机文件  基础使用——初识动画状态机窗口 左侧面板 ​​  Layers：动画层级页签，为动画添加更多的层级，层级权重高的动画播放会覆盖层级权重低的 Parameters：参数页签，为动画状态机添加控制状态切换的参数 眼睛图标：显隐左侧面板  右侧面板">
+<meta property="og:type" content="article">
+<meta property="og:title" content="U3L14-2——Animator Controller动画控制器（状态机）">
+<meta property="og:url" content="http://example.com/2023/08/04/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U3%E2%80%94%E2%80%94Unity%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/U3L14%E2%80%94%E2%80%94Animator%E5%8A%A8%E7%94%BB%E7%8A%B6%E6%80%81%E6%9C%BA/U3L14-2%E2%80%94%E2%80%94Animator%20Controller%E5%8A%A8%E7%94%BB%E6%8E%A7%E5%88%B6%E5%99%A8%EF%BC%88%E7%8A%B6%E6%80%81%E6%9C%BA%EF%BC%89/index.html">
+<meta property="og:site_name" content="文KRIFE齐的博客">
+<meta property="og:description" content="U3L14-2——Animator Controller动画控制器（状态机） 创建动画状态机  通过为场景中物体创建动画时自动创建 手动创建动画状态机文件  基础使用——初识动画状态机窗口 左侧面板 ​​  Layers：动画层级页签，为动画添加更多的层级，层级权重高的动画播放会覆盖层级权重低的 Parameters：参数页签，为动画状态机添加控制状态切换的参数 眼睛图标：显隐左侧面板  右侧面板">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png">
+<meta property="article:published_time" content="2023-08-04T12:43:39.000Z">
+<meta property="article:modified_time" content="2024-07-01T14:16:17.000Z">
+<meta property="article:author" content="文KRIFE齐">
+<meta property="article:tag" content="blog">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2023/08/04/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U3%E2%80%94%E2%80%94Unity%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/U3L14%E2%80%94%E2%80%94Animator%E5%8A%A8%E7%94%BB%E7%8A%B6%E6%80%81%E6%9C%BA/U3L14-2%E2%80%94%E2%80%94Animator%20Controller%E5%8A%A8%E7%94%BB%E6%8E%A7%E5%88%B6%E5%99%A8%EF%BC%88%E7%8A%B6%E6%80%81%E6%9C%BA%EF%BC%89/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'U3L14-2——Animator Controller动画控制器（状态机）',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-07-01 22:16:17'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">834</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><hr class="custom-hr"/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="文KRIFE齐的博客"><span class="site-name">文KRIFE齐的博客</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">U3L14-2——Animator Controller动画控制器（状态机）</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-08-04T12:43:39.000Z" title="发表于 2023-08-04 20:43:39">2023-08-04</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-07-01T14:16:17.000Z" title="更新于 2024-07-01 22:16:17">2024-07-01</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="U3L14-2——Animator Controller动画控制器（状态机）"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1>U3L14-2——Animator Controller动画控制器（状态机）</h1>
+<h2 id="创建动画状态机">创建动画状态机</h2>
+<ol>
+<li>通过为场景中物体创建动画时自动创建</li>
+<li>手动创建动画状态机文件</li>
+</ol>
+<h2 id="基础使用——初识动画状态机窗口">基础使用——初识动画状态机窗口</h2>
+<h3 id="左侧面板">左侧面板</h3>
+<p>​<img src="assets/image-20230804205440-6dnjixv.png" alt="image">​</p>
+<ul>
+<li>Layers：动画层级页签，为动画添加更多的层级，层级权重高的动画播放会覆盖层级权重低的</li>
+<li>Parameters：参数页签，为动画状态机添加控制状态切换的参数</li>
+<li>眼睛图标：显隐左侧面板</li>
+</ul>
+<h3 id="右侧面板">右侧面板</h3>
+<p>​<img src="assets/image-20230804205520-awd3hfa.png" alt="image">​</p>
+<ul>
+<li>
+<p>网格化布局区域： 主要用于编辑状态之前的切换关系</p>
+<ul>
+<li>1.窗口中的每一个矩形表示一个状态</li>
+<li>2.窗口中的每一个箭头表示一个切换条件</li>
+</ul>
+</li>
+<li>
+<p>矩形说明：</p>
+<ul>
+<li>
+<p>默认三大矩形：</p>
+<ul>
+<li>绿色Entry矩形：进入状态机流程</li>
+<li>红色Exit矩形：退出状态机流程</li>
+<li>Any State：任意状态，代表状态机中的任意状态</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>人为添加矩形：</p>
+<ul>
+<li>橙色矩形：一开始的默认状态动画，和Entry相连<br>
+表示一开始播放的动画</li>
+<li>灰色矩形：自己添加的某一种动作状态</li>
+</ul>
+</li>
+</ul>
+<h2 id="基础使用——添加动画">基础使用——添加动画</h2>
+<ol>
+<li>自动添加——为对象创建动画后会自动将动画添加到状态机中</li>
+<li>手动添加1——将动画文件拖入到状态机中 <strong>（注意：老动画拖入会有警告）</strong></li>
+<li>手动添加2——右键创建状态，再关联动画</li>
+</ol>
+<h2 id="基础使用——添加-切换连线">基础使用——添加 切换连线</h2>
+<p>切换连线 就是 表示一个状态切换到另一个状态的方向</p>
+<p>对 状态 右键并点击 Make Transition，并连接到 要连接的状态上，两个状态就会出现切换连线<br>
+删除切换连线只需要点击切换连线再按Delete即可</p>
+<h2 id="基础使用——添加-切换条件">基础使用——添加 切换条件</h2>
+<ol>
+<li>
+<p>在左侧面板点击参数页签<br>
+可以在这里添加四种类型的切换条件</p>
+<p>​<img src="assets/image-20230804212036-iiq3ysa.png" alt="image">​</p>
+</li>
+<li>
+<p>左侧的值可以改变，也可以通过代码设置<br>
+这里的值将用于切换连线的条件判断</p>
+<p><img src="assets/image-20230804213350-x0iq8wm.png" alt="image">​</p>
+</li>
+</ol>
+<h2 id="基础使用——设置动画间切换条件">基础使用——设置动画间切换条件</h2>
+<ol>
+<li>
+<p>添加切换条件后<br>
+选择一条切换连线，将添加好的条件加入到其条件列表内<br>
+在这里设置当该切换条件 满足什么条件时 就切换（根据切换条件类型选择）如果有多个切换条件，则都满足时才能切换</p>
+<p>​<img src="assets/image-20230804212157-noy8ska.png" alt="image">​​​</p>
+</li>
+<li>
+<p>float类型切换条件 可选 大于、小于 某个值<br>
+int类型切换条件 可选 大于、小于、等于、不等于 某个值<br>
+bool类型切换条件 可选 true、false<br>
+trigger类型切换条件 较为特殊：当trigger激活（即选中了trigger），且其他条件满足时，就执行切换，<br>
+切换后该trigger失活（即自动取消trigger的选中）</p>
+</li>
+</ol>
+<h2 id="补充：关于动画切换的延时切换">补充：关于动画切换的延时切换</h2>
+<p>有时修改状态机条件使一个动画切换到另一个动画时，会有延迟（先等前一个动画执行完毕）<br>
+如果不想要这种延时，在该切换对应的 切换连线中 关闭Has Exit Time即可</p>
+<p>​<img src="assets/image-20230804230129-nwp260t.png" alt="image">​</p>
+<h2 id="补充：关于Animation窗口内各状态和连线的参数">补充：关于Animation窗口内各状态和连线的参数</h2>
+<p><a href="siyuan://blocks/20230808170706-2vkykep">一般状态相关</a></p>
+<p><a href="siyuan://blocks/20230808170935-xm38tya">连线相关</a></p>
+<p>混合树和子状态机相关可以直接在<a href="siyuan://blocks/20230808223127-rmqmu7b">3D动画相关</a>内查找</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">文KRIFE齐</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2023/08/04/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U3%E2%80%94%E2%80%94Unity%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/U3L14%E2%80%94%E2%80%94Animator%E5%8A%A8%E7%94%BB%E7%8A%B6%E6%80%81%E6%9C%BA/U3L14-2%E2%80%94%E2%80%94Animator%20Controller%E5%8A%A8%E7%94%BB%E6%8E%A7%E5%88%B6%E5%99%A8%EF%BC%88%E7%8A%B6%E6%80%81%E6%9C%BA%EF%BC%89/">http://example.com/2023/08/04/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U3%E2%80%94%E2%80%94Unity%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/U3L14%E2%80%94%E2%80%94Animator%E5%8A%A8%E7%94%BB%E7%8A%B6%E6%80%81%E6%9C%BA/U3L14-2%E2%80%94%E2%80%94Animator%20Controller%E5%8A%A8%E7%94%BB%E6%8E%A7%E5%88%B6%E5%99%A8%EF%BC%88%E7%8A%B6%E6%80%81%E6%9C%BA%EF%BC%89/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">文KRIFE齐的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/08/04/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U3%E2%80%94%E2%80%94Unity%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/U3L14%E2%80%94%E2%80%94Animator%E5%8A%A8%E7%94%BB%E7%8A%B6%E6%80%81%E6%9C%BA/U3L14-3%E2%80%94%E2%80%94%E4%BB%A3%E7%A0%81%E6%8E%A7%E5%88%B6%E5%8A%A8%E7%94%BB%E7%8A%B6%E6%80%81%E6%9C%BA%E5%88%87%E6%8D%A2/" title="U3L14-3——代码控制动画状态机切换"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">U3L14-3——代码控制动画状态机切换</div></div></a></div><div class="next-post pull-right"><a href="/2023/08/04/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U3%E2%80%94%E2%80%94Unity%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/U3L14%E2%80%94%E2%80%94Animator%E5%8A%A8%E7%94%BB%E7%8A%B6%E6%80%81%E6%9C%BA/U3L14-1%E2%80%94%E2%80%94%E6%9C%89%E9%99%90%E7%8A%B6%E6%80%81%E6%9C%BA/" title="U3L14-1——有限状态机"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">U3L14-1——有限状态机</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">文KRIFE齐</div><div class="author-info__description">目前正处于搭建测试环节</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">834</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">U3L14-2——Animator Controller动画控制器（状态机）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E5%8A%A8%E7%94%BB%E7%8A%B6%E6%80%81%E6%9C%BA"><span class="toc-number">1.1.</span> <span class="toc-text">创建动画状态机</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8%E2%80%94%E2%80%94%E5%88%9D%E8%AF%86%E5%8A%A8%E7%94%BB%E7%8A%B6%E6%80%81%E6%9C%BA%E7%AA%97%E5%8F%A3"><span class="toc-number">1.2.</span> <span class="toc-text">基础使用——初识动画状态机窗口</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%A6%E4%BE%A7%E9%9D%A2%E6%9D%BF"><span class="toc-number">1.2.1.</span> <span class="toc-text">左侧面板</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%B3%E4%BE%A7%E9%9D%A2%E6%9D%BF"><span class="toc-number">1.2.2.</span> <span class="toc-text">右侧面板</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8%E2%80%94%E2%80%94%E6%B7%BB%E5%8A%A0%E5%8A%A8%E7%94%BB"><span class="toc-number">1.3.</span> <span class="toc-text">基础使用——添加动画</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8%E2%80%94%E2%80%94%E6%B7%BB%E5%8A%A0-%E5%88%87%E6%8D%A2%E8%BF%9E%E7%BA%BF"><span class="toc-number">1.4.</span> <span class="toc-text">基础使用——添加 切换连线</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8%E2%80%94%E2%80%94%E6%B7%BB%E5%8A%A0-%E5%88%87%E6%8D%A2%E6%9D%A1%E4%BB%B6"><span class="toc-number">1.5.</span> <span class="toc-text">基础使用——添加 切换条件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8%E2%80%94%E2%80%94%E8%AE%BE%E7%BD%AE%E5%8A%A8%E7%94%BB%E9%97%B4%E5%88%87%E6%8D%A2%E6%9D%A1%E4%BB%B6"><span class="toc-number">1.6.</span> <span class="toc-text">基础使用——设置动画间切换条件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%A5%E5%85%85%EF%BC%9A%E5%85%B3%E4%BA%8E%E5%8A%A8%E7%94%BB%E5%88%87%E6%8D%A2%E7%9A%84%E5%BB%B6%E6%97%B6%E5%88%87%E6%8D%A2"><span class="toc-number">1.7.</span> <span class="toc-text">补充：关于动画切换的延时切换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%A5%E5%85%85%EF%BC%9A%E5%85%B3%E4%BA%8EAnimation%E7%AA%97%E5%8F%A3%E5%86%85%E5%90%84%E7%8A%B6%E6%80%81%E5%92%8C%E8%BF%9E%E7%BA%BF%E7%9A%84%E5%8F%82%E6%95%B0"><span class="toc-number">1.8.</span> <span class="toc-text">补充：关于Animation窗口内各状态和连线的参数</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/07/01/hello-world/" title="欢迎来到文KRIFE齐的博客！">欢迎来到文KRIFE齐的博客！</a><time datetime="2024-07-01T11:46:20.391Z" title="发表于 2024-07-01 19:46:20">2024-07-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/US3S1L5%E2%80%94%E2%80%94Phong%E5%85%89%E7%85%A7%E6%A8%A1%E5%9E%8B/" title="US3S1L5——Phong光照模型">US3S1L5——Phong光照模型</a><time datetime="2024-06-25T14:33:57.000Z" title="发表于 2024-06-25 22:33:57">2024-06-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/US3S1L4%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B/US3S1L4-2%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B%E7%9A%84%E9%80%90%E7%89%87%E5%85%83%E5%85%89%E7%85%A7/" title="US3S1L4-2——Phong式高光反射模型的逐片元光照">US3S1L4-2——Phong式高光反射模型的逐片元光照</a><time datetime="2024-06-25T13:16:37.000Z" title="发表于 2024-06-25 21:16:37">2024-06-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/US3S1L4%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B/US3S1L4-1%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B%E7%9A%84%E9%80%90%E9%A1%B6%E7%82%B9%E5%85%89%E7%85%A7/" title="US3S1L4-1——Phong式高光反射模型的逐顶点光照">US3S1L4-1——Phong式高光反射模型的逐顶点光照</a><time datetime="2024-06-25T13:16:05.000Z" title="发表于 2024-06-25 21:16:05">2024-06-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/US3S1L4%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B/" title="US3S1L4——Phong式高光反射模型">US3S1L4——Phong式高光反射模型</a><time datetime="2024-06-25T10:14:12.000Z" title="发表于 2024-06-25 18:14:12">2024-06-25</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By 文KRIFE齐</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
