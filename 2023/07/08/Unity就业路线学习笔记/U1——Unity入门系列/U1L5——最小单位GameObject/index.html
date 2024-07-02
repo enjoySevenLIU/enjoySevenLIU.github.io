@@ -1,0 +1,279 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>U1L5——最小单位GameObject | 文KRIFE齐的博客</title><meta name="author" content="文KRIFE齐"><meta name="copyright" content="文KRIFE齐"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="U1L5——最小单位GameObject GameObject  在Unity编辑器中：游戏对象__是 Unity Editor 中最重要的概念。游戏中的每个对象（从角色和可收集物品到光源、摄像机和特效）都是__游戏对象。但是，游戏对象本身无法执行任何操作；需要向游戏对象提供属性，然后游戏对象才能成为角色、环境或特效。 重要的类 - GameObject - Unity 手册  而在脚本中：Uni">
+<meta property="og:type" content="article">
+<meta property="og:title" content="U1L5——最小单位GameObject">
+<meta property="og:url" content="http://example.com/2023/07/08/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U1%E2%80%94%E2%80%94Unity%E5%85%A5%E9%97%A8%E7%B3%BB%E5%88%97/U1L5%E2%80%94%E2%80%94%E6%9C%80%E5%B0%8F%E5%8D%95%E4%BD%8DGameObject/index.html">
+<meta property="og:site_name" content="文KRIFE齐的博客">
+<meta property="og:description" content="U1L5——最小单位GameObject GameObject  在Unity编辑器中：游戏对象__是 Unity Editor 中最重要的概念。游戏中的每个对象（从角色和可收集物品到光源、摄像机和特效）都是__游戏对象。但是，游戏对象本身无法执行任何操作；需要向游戏对象提供属性，然后游戏对象才能成为角色、环境或特效。 重要的类 - GameObject - Unity 手册  而在脚本中：Uni">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png">
+<meta property="article:published_time" content="2023-07-08T09:01:26.000Z">
+<meta property="article:modified_time" content="2024-07-02T03:56:23.000Z">
+<meta property="article:author" content="文KRIFE齐">
+<meta property="article:tag" content="blog">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2023/07/08/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U1%E2%80%94%E2%80%94Unity%E5%85%A5%E9%97%A8%E7%B3%BB%E5%88%97/U1L5%E2%80%94%E2%80%94%E6%9C%80%E5%B0%8F%E5%8D%95%E4%BD%8DGameObject/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'U1L5——最小单位GameObject',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-07-02 11:56:23'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">834</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">113</div></a></div><hr class="custom-hr"/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="文KRIFE齐的博客"><span class="site-name">文KRIFE齐的博客</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">U1L5——最小单位GameObject</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-07-08T09:01:26.000Z" title="发表于 2023-07-08 17:01:26">2023-07-08</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-07-02T03:56:23.000Z" title="更新于 2024-07-02 11:56:23">2024-07-02</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U1%E2%80%94%E2%80%94Unity%E5%85%A5%E9%97%A8%E7%B3%BB%E5%88%97/">U1——Unity入门系列</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="U1L5——最小单位GameObject"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1>U1L5——最小单位GameObject</h1>
+<h1>GameObject</h1>
+<blockquote>
+<p>在Unity编辑器中：<strong>游戏对象__是 Unity Editor 中最重要的概念。游戏中的每个对象（从角色和可收集物品到光源、摄像机和特效）都是__游戏对象</strong>。但是，游戏对象本身无法执行任何操作；需要向游戏对象提供属性，然后游戏对象才能成为角色、环境或特效。</p>
+<p><a target="_blank" rel="noopener" href="https://docs.unity.cn/cn/2021.3/Manual/class-GameObject.html">重要的类 - GameObject - Unity 手册</a></p>
+</blockquote>
+<p>而在脚本中：Unity 的 GameObject 类用于表示任何可以存在于<strong>场景</strong>中的事物。</p>
+<h2 id="本章代码关键字">本章代码关键字</h2>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">gameObject										<span class="comment">//获取该MonoBehaviour派生类对应的GameObject类的实例化对象</span></span><br><span class="line"><span class="comment">//GameObject的成员变量</span></span><br><span class="line">gameObject.name									<span class="comment">//脚本所挂载的游戏对象的名字</span></span><br><span class="line">gameObject.activeSelf							<span class="comment">//脚本所挂载的游戏对象的激活状态（bool）</span></span><br><span class="line">gameObject.isStatic								<span class="comment">//脚本所挂载的游戏对象的是否是静态的（bool）</span></span><br><span class="line">gameObject.layer								<span class="comment">//脚本所挂载的游戏对象的层级</span></span><br><span class="line">gameObject.tag									<span class="comment">//脚本所挂载的游戏对象的标签</span></span><br><span class="line">gameObject.transform							<span class="comment">//脚本所挂载的游戏对象的Transform类的实例化对象</span></span><br><span class="line"><span class="comment">//GameObject中的静态方法</span></span><br><span class="line">GameObject.CreatePrimitive(PrimitiveType.几何体)	<span class="comment">//创建自带几何体</span></span><br><span class="line">GameObject.Find(<span class="string">&quot;对象名&quot;</span>)						<span class="comment">//通过对象名遍历在场景中的所有对象去查找激活的对象</span></span><br><span class="line">GameObject.FindGameObjectWithTag(<span class="string">&quot;tag名&quot;</span>)		<span class="comment">//通过tag查找单个对象</span></span><br><span class="line">GameObject.FindGameObjectsWithTag(<span class="string">&quot;tag名&quot;</span>)		<span class="comment">//通过tag查找多个对象，返回数组</span></span><br><span class="line">GameObject.FindObjectOfType&lt;&gt;()					<span class="comment">//找到场景中挂载的某一个脚本对象</span></span><br><span class="line">GameObject.Instantiate(克隆对象)					<span class="comment">//根据克隆对象创建一个一模一样的对象</span></span><br><span class="line">GameObject.Destroy(, )							<span class="comment">//删除对象，也可以删除脚本，第二个参数可以填延迟删除时间</span></span><br><span class="line">GameObject.DestroyImmediate()					<span class="comment">//立即删除对象或脚本而不等到下一帧更新</span></span><br><span class="line">GameObject.DontDestroyOnLoad();					<span class="comment">//使自己依附的GameObject对象，过场景不被删除</span></span><br><span class="line"><span class="comment">//GameObject中的成员方法</span></span><br><span class="line"><span class="keyword">new</span> GameObject()								<span class="comment">//创建空物体</span></span><br><span class="line">.AddComponent&lt;&gt;()								<span class="comment">//为对象添加脚本</span></span><br><span class="line"><span class="keyword">this</span>.gameObject.CompareTag()					<span class="comment">//游戏对象的标签比较</span></span><br><span class="line">.SetActive()									<span class="comment">//设置游戏对象的激活失活</span></span><br><span class="line"><span class="keyword">this</span>.gameObject.SendMessage()					<span class="comment">//通知自己执行什么行为</span></span><br><span class="line"><span class="keyword">this</span>.gameObject.BroadcastMessage();				<span class="comment">//广播行为让自己和自己的子对象执行</span></span><br><span class="line"><span class="keyword">this</span>.gameObject.SendMessageUpwards(<span class="string">&quot;函数名&quot;</span>);	<span class="comment">//向父对象和自己发送信息，并执行</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="GameObject中的成员变量">GameObject中的成员变量</h2>
+<p>主要的成员变量有：<code>name</code>​(名字)、<code>activeSelf</code>​(是否激活)、<code>isStatic</code>​(是否是静态)、<code>layer</code>​(层级)、<code>tag</code>​(标签)、<code>transform</code>​</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//名字</span></span><br><span class="line">print(<span class="keyword">this</span>.gameObject.name);</span><br><span class="line"><span class="keyword">this</span>.gameObject.name = <span class="string">&quot;Lesson4SevenL改名&quot;</span>;</span><br><span class="line">print(<span class="keyword">this</span>.gameObject.name);</span><br><span class="line"><span class="comment">//是否激活</span></span><br><span class="line">print(<span class="keyword">this</span>.gameObject.activeSelf);</span><br><span class="line"><span class="comment">//是否是静态</span></span><br><span class="line">print(<span class="keyword">this</span>.gameObject.isStatic);</span><br><span class="line"><span class="comment">//层级</span></span><br><span class="line">print(<span class="keyword">this</span>.gameObject.layer);</span><br><span class="line"><span class="comment">//标签</span></span><br><span class="line">print(<span class="keyword">this</span>.gameObject.tag);</span><br><span class="line"><span class="comment">//transform（使改变信息）</span></span><br><span class="line">print(<span class="keyword">this</span>.gameObject.transform.position);  <span class="comment">//等同于this.gameObject.transform，不过一个是通过gameObject获得，一个通过Mono获得</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="GameObject中的静态方法">GameObject中的静态方法</h2>
+<p>注意！Unity里面的Object 不是指的万物之父Object<br>
+Unity里的Object 命名空间在UnityEngine中的 Object类 也是集成万物之父的一个自定义类<br>
+C#中的Object 命名空间是在System中的</p>
+<h3 id="创建自带几何体">创建自带几何体</h3>
+<p>只要得到了一个<code>GameObject</code>​对象 就可以得到它身上挂载的任何脚本信息，通过<code>obj.GetComponent</code>​来得取</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">GameObject obj = GameObject.CreatePrimitive(PrimitiveType.Cube);</span><br><span class="line">obj.name = <span class="string">&quot;SevenL创建的立方体&quot;</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="查找对象">查找对象</h3>
+<p>注意！以下的所有的方法无法找到失活的对象，只能找到激活的对象</p>
+<h4 id="查找单个对象">查找单个对象</h4>
+<p>注意！如果场景中存在多个满足条件的对象，我们无法准确确定找到的是谁<br>
+得到某一个单一对象目前就有两种方式了：</p>
+<ol>
+<li>
+<p>是public从外部面板拖 进行关联</p>
+</li>
+<li>
+<p>通过API去找</p>
+</li>
+<li>
+<h5 id="通过对象名查找">通过对象名查找</h5>
+<p>注意！这个方法查找效率低下，性能损耗大，不建议使用，因为它会遍历在场景中的所有对象去查找</p>
+ <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">GameObject obj2 = GameObject.Find(<span class="string">&quot;SevenL&quot;</span>);</span><br><span class="line"><span class="keyword">if</span> (obj2 != <span class="literal">null</span>)</span><br><span class="line">&#123;</span><br><span class="line">    print(obj2.name);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;</span><br><span class="line">    print(<span class="string">&quot;没有找到所需对象&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<h5 id="2-通过tag来查找对象">2.通过tag来查找对象</h5>
+<p>以上方法 在有重名或者有多个对象为同一tag的情况下 无法查找指定的对象</p>
+ <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">GameObject obj3 = GameObject.FindWithTag(<span class="string">&quot;Player&quot;</span>);</span><br><span class="line"><span class="comment">//该方法与上面的方法 效果是一样的 只是名字不一样而已</span></span><br><span class="line">GameObject obj3 = GameObject.FindGameObjectWithTag(<span class="string">&quot;Player&quot;</span>);</span><br><span class="line"><span class="keyword">if</span> (obj3 != <span class="literal">null</span>)</span><br><span class="line">&#123;</span><br><span class="line">    print(<span class="string">&quot;根据tag找到的对象&quot;</span> + obj3.name);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;</span><br><span class="line">    print(<span class="string">&quot;根据tag没有找到对应对象&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="查找多个对象">查找多个对象</h4>
+<p>找多个对象的API 只能是通过tag去找多个 通过名字 是没有找多个的方法的</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">GameObject[] objs =  GameObject.FindGameObjectsWithTag(<span class="string">&quot;Player&quot;</span>);</span><br><span class="line">print(<span class="string">&quot;找到tag为Player的个数&quot;</span> + objs.Length);</span><br></pre></td></tr></table></figure>
+<h4 id="查找某个脚本">查找某个脚本</h4>
+<p>还有几个查找对象相关是用的比较少的方法 是GameObject父类 Object提供的方法<br>
+它可以找到场景中挂载的某一个脚本对象(效率比直接查找对象名的方法更差，因为不仅要遍历对象，还要遍历对象的脚本)</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Lesson4 o = GameObject.FindObjectOfType&lt;Lesson4&gt;();</span><br><span class="line">print(o.gameObject.name);</span><br></pre></td></tr></table></figure>
+<h3 id="实例化对象（克隆对象）的方法">实例化对象（克隆对象）的方法</h3>
+<p>实例化（克隆）对象，它的作用是：根据一个GameObject对象，创建出一个和它一模一样的对象</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GameObject obj5 = GameObject.Instantiate(myobj);</span><br></pre></td></tr></table></figure>
+<p>以后学了更多的知识点 就可以在这里操作obj<br>
+如果你继承了 <code>MonoBehaviour</code>​ 其实可以不用写<code>GameObject</code>​一样可以使用<br>
+因为这个方法是<strong>Unity里面的</strong>​<strong>​<code>Object</code>​</strong>​<strong>基类</strong>提供给我们的 所以可以直接用</p>
+<h3 id="删除对象的方法">删除对象的方法</h3>
+<p>第一个参数是对象或者脚本，第二个参数是延迟几秒删除，可以不填，不仅可以删除对象 还可以删除脚本</p>
+<p>注意！该方法不能用于没有运行Unity程序的编辑器状态下，因为该方法是在运行模式下的下一帧删除，<br>
+在没有运行Unity程序的编辑器状态下是无法删除且报错的</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">GameObject.Destroy(myobj2);</span><br><span class="line"><span class="comment">//第二个参数代表延迟几秒</span></span><br><span class="line">GameObject.Destroy(obj5, <span class="number">5</span>);</span><br><span class="line"><span class="comment">//Destroy()不仅可以删除对象 还可以删除脚本</span></span><br><span class="line">GameObject.Destroy(<span class="keyword">this</span>);</span><br></pre></td></tr></table></figure>
+<p>删除对象有两种作用</p>
+<ol>
+<li>是删除指定的一个游戏对象</li>
+<li>是删除一个指定的脚本对象</li>
+</ol>
+<p>注意：这个Destroy()不会马上移除对象 只是给这个对象加了一个移除标识，一般情况下 它会在下一帧把这个对象移除并从内存中移除</p>
+<hr>
+<h4 id="立即删除游戏对象的方法">立即删除游戏对象的方法</h4>
+<p>以下的方法会立刻将对象移除，但是如果没有特殊的需要马上移除一个对象的情况下<br>
+建议用上面的 <code>Destroy</code>​ 方法 因为是异步的 降低卡顿的概率</p>
+<p>但如果是没有运行Unity程序的编辑器模式下，要删除场景上的对象必须使用该方法，而不能使用 <code>Destroy</code>​ 方法</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GameObject.DestroyImmediate();</span><br></pre></td></tr></table></figure>
+<p>如果是继承<code>MonoBehaviour</code>​的类<strong>一样不用写</strong>​<strong>​<code>GameObject</code>​</strong>​ <strong>因为这个方法是Unity里面的</strong>​<strong>​<code>Object</code>​</strong>​<strong>基类提供给我们的，</strong> 所以可以直接用</p>
+<hr>
+<h2 id="GameObject中的成员方法">GameObject中的成员方法</h2>
+<h3 id="创建空物体">创建空物体</h3>
+<p>new一个GameObject就是在创建一个空物体<br>
+第一个参数是对象的名字，后面的参数可以填多个控件（脚本）以添加脚本</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">GameObject obj6 = <span class="keyword">new</span> GameObject();</span><br><span class="line">GameObject obj7 = <span class="keyword">new</span> GameObject(<span class="string">&quot;SevenL创建的空物体&quot;</span>);</span><br><span class="line">GameObject obj8 = <span class="keyword">new</span> GameObject(<span class="string">&quot;加了脚本的空物体&quot;</span>, <span class="keyword">typeof</span>(Lesson2), <span class="keyword">typeof</span>(Lesson1));</span><br></pre></td></tr></table></figure>
+<h3 id="为对象添加脚本">为对象添加脚本</h3>
+<p>继承了MonoBehaviour的脚本 是不能去new的<br>
+如果想要动态的添加MonoBehaviour的脚本 在某个对象上<br>
+直接使用GameObject提供的方法即可<br>
+有两种方法，更推荐泛型方法，因为不需要as，更加方便</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Lesson1 les1 = obj6.AddComponent(<span class="keyword">typeof</span>(Lesson1)) <span class="keyword">as</span> Lesson1;</span><br><span class="line"><span class="comment">//上下两者是等同的，但是更推荐下面的泛型方法 因为不需要as 更加方便</span></span><br><span class="line">Lesson2 les2 = obj6.AddComponent&lt;Lesson2&gt;();</span><br></pre></td></tr></table></figure>
+<h3 id="标签比较">标签比较</h3>
+<p>顾名思义、通过比较传入的标签名来确认是否为该标签</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="keyword">this</span>.gameObject.CompareTag(<span class="string">&quot;Player&quot;</span>))</span><br><span class="line">&#123;</span><br><span class="line">    print(<span class="string">&quot;对象的标签是Player&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//上下两者是一样的</span></span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">this</span>.gameObject.tag == <span class="string">&quot;Player&quot;</span>)</span><br><span class="line">&#123;</span><br><span class="line">    print(<span class="string">&quot;对象的标签 是 Player&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="设置激活或失活">设置激活或失活</h3>
+<p>false 失活、true 激活</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">obj6.SetActive(<span class="literal">false</span>);</span><br><span class="line">obj7.SetActive(<span class="literal">false</span>);</span><br><span class="line">obj8.SetActive(<span class="literal">false</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="次要的成员方法">次要的成员方法</h3>
+<p>了解即可 不建议使用 效率较差<br>
+通过广播或者发送信息的形式 让自己或者别人 执行某些行为方法</p>
+<h4 id="通知自己执行某个行为">通知自己执行某个行为</h4>
+<p>命令自己 去执行这个TestFun这个函数 会在自己身上挂载所有脚本去找这个名字的函数<br>
+该对象会去找到 自己身上所有的脚本 有这个名字的函数去执行</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>.gameObject.SendMessage(<span class="string">&quot;TestFun&quot;</span>);</span><br><span class="line"><span class="keyword">this</span>.gameObject.SendMessage(<span class="string">&quot;TestFun2&quot;</span>, <span class="number">199</span>);</span><br></pre></td></tr></table></figure>
+<h4 id="对子对象广播">对子对象广播</h4>
+<p>广播行为 让自己和自己的子对象执行</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>.gameObject.BroadcastMessage(<span class="string">&quot;函数名&quot;</span>);</span><br></pre></td></tr></table></figure>
+<h4 id="对父对象广播">对父对象广播</h4>
+<p>向父对象和自己发送信息，并执行</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>.gameObject.SendMessageUpwards(<span class="string">&quot;函数名&quot;</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="总结">总结</h2>
+<p>GameObject的常用内容</p>
+<p>基本成员变量<br>
+名字 失活激活状态 标签 层级 等等</p>
+<p>静态方法相关<br>
+创建自带几何体<br>
+查找场景中的对象<br>
+实例化对象<br>
+删除对象<br>
+过场景不移除</p>
+<p>成员方法<br>
+设置激活失活状态<br>
+和MonoBehaviour中相同的 得到脚本相关的方法</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">文KRIFE齐</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2023/07/08/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U1%E2%80%94%E2%80%94Unity%E5%85%A5%E9%97%A8%E7%B3%BB%E5%88%97/U1L5%E2%80%94%E2%80%94%E6%9C%80%E5%B0%8F%E5%8D%95%E4%BD%8DGameObject/">http://example.com/2023/07/08/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U1%E2%80%94%E2%80%94Unity%E5%85%A5%E9%97%A8%E7%B3%BB%E5%88%97/U1L5%E2%80%94%E2%80%94%E6%9C%80%E5%B0%8F%E5%8D%95%E4%BD%8DGameObject/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">文KRIFE齐的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/07/08/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U1%E2%80%94%E2%80%94Unity%E5%85%A5%E9%97%A8%E7%B3%BB%E5%88%97/U1L6%E2%80%94%E2%80%94%E6%97%B6%E9%97%B4%E7%9B%B8%E5%85%B3Time/" title="U1L6——时间相关Time"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">U1L6——时间相关Time</div></div></a></div><div class="next-post pull-right"><a href="/2023/07/08/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U1%E2%80%94%E2%80%94Unity%E5%85%A5%E9%97%A8%E7%B3%BB%E5%88%97/U1L4%E2%80%94%E2%80%94MonoBehaviour%E7%9A%84%E9%87%8D%E8%A6%81%E5%86%85%E5%AE%B9/" title="U1L4——MonoBehaviour的重要内容"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">U1L4——MonoBehaviour的重要内容</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">文KRIFE齐</div><div class="author-info__description">目前正处于搭建测试环节</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">834</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">113</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">U1L5——最小单位GameObject</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">2.</span> <span class="toc-text">GameObject</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%AC%E7%AB%A0%E4%BB%A3%E7%A0%81%E5%85%B3%E9%94%AE%E5%AD%97"><span class="toc-number">2.1.</span> <span class="toc-text">本章代码关键字</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#GameObject%E4%B8%AD%E7%9A%84%E6%88%90%E5%91%98%E5%8F%98%E9%87%8F"><span class="toc-number">2.2.</span> <span class="toc-text">GameObject中的成员变量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#GameObject%E4%B8%AD%E7%9A%84%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95"><span class="toc-number">2.3.</span> <span class="toc-text">GameObject中的静态方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E8%87%AA%E5%B8%A6%E5%87%A0%E4%BD%95%E4%BD%93"><span class="toc-number">2.3.1.</span> <span class="toc-text">创建自带几何体</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E6%89%BE%E5%AF%B9%E8%B1%A1"><span class="toc-number">2.3.2.</span> <span class="toc-text">查找对象</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9F%A5%E6%89%BE%E5%8D%95%E4%B8%AA%E5%AF%B9%E8%B1%A1"><span class="toc-number">2.3.2.1.</span> <span class="toc-text">查找单个对象</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%80%9A%E8%BF%87%E5%AF%B9%E8%B1%A1%E5%90%8D%E6%9F%A5%E6%89%BE"><span class="toc-number">2.3.2.1.1.</span> <span class="toc-text">通过对象名查找</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-%E9%80%9A%E8%BF%87tag%E6%9D%A5%E6%9F%A5%E6%89%BE%E5%AF%B9%E8%B1%A1"><span class="toc-number">2.3.2.1.2.</span> <span class="toc-text">2.通过tag来查找对象</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9F%A5%E6%89%BE%E5%A4%9A%E4%B8%AA%E5%AF%B9%E8%B1%A1"><span class="toc-number">2.3.2.2.</span> <span class="toc-text">查找多个对象</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9F%A5%E6%89%BE%E6%9F%90%E4%B8%AA%E8%84%9A%E6%9C%AC"><span class="toc-number">2.3.2.3.</span> <span class="toc-text">查找某个脚本</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E4%BE%8B%E5%8C%96%E5%AF%B9%E8%B1%A1%EF%BC%88%E5%85%8B%E9%9A%86%E5%AF%B9%E8%B1%A1%EF%BC%89%E7%9A%84%E6%96%B9%E6%B3%95"><span class="toc-number">2.3.3.</span> <span class="toc-text">实例化对象（克隆对象）的方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%96%B9%E6%B3%95"><span class="toc-number">2.3.4.</span> <span class="toc-text">删除对象的方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AB%8B%E5%8D%B3%E5%88%A0%E9%99%A4%E6%B8%B8%E6%88%8F%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%96%B9%E6%B3%95"><span class="toc-number">2.3.4.1.</span> <span class="toc-text">立即删除游戏对象的方法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#GameObject%E4%B8%AD%E7%9A%84%E6%88%90%E5%91%98%E6%96%B9%E6%B3%95"><span class="toc-number">2.4.</span> <span class="toc-text">GameObject中的成员方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E7%A9%BA%E7%89%A9%E4%BD%93"><span class="toc-number">2.4.1.</span> <span class="toc-text">创建空物体</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E5%AF%B9%E8%B1%A1%E6%B7%BB%E5%8A%A0%E8%84%9A%E6%9C%AC"><span class="toc-number">2.4.2.</span> <span class="toc-text">为对象添加脚本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%87%E7%AD%BE%E6%AF%94%E8%BE%83"><span class="toc-number">2.4.3.</span> <span class="toc-text">标签比较</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE%E6%BF%80%E6%B4%BB%E6%88%96%E5%A4%B1%E6%B4%BB"><span class="toc-number">2.4.4.</span> <span class="toc-text">设置激活或失活</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AC%A1%E8%A6%81%E7%9A%84%E6%88%90%E5%91%98%E6%96%B9%E6%B3%95"><span class="toc-number">2.4.5.</span> <span class="toc-text">次要的成员方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%80%9A%E7%9F%A5%E8%87%AA%E5%B7%B1%E6%89%A7%E8%A1%8C%E6%9F%90%E4%B8%AA%E8%A1%8C%E4%B8%BA"><span class="toc-number">2.4.5.1.</span> <span class="toc-text">通知自己执行某个行为</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AF%B9%E5%AD%90%E5%AF%B9%E8%B1%A1%E5%B9%BF%E6%92%AD"><span class="toc-number">2.4.5.2.</span> <span class="toc-text">对子对象广播</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AF%B9%E7%88%B6%E5%AF%B9%E8%B1%A1%E5%B9%BF%E6%92%AD"><span class="toc-number">2.4.5.3.</span> <span class="toc-text">对父对象广播</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">2.5.</span> <span class="toc-text">总结</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/07/01/hello-world/" title="欢迎来到文KRIFE齐的博客！">欢迎来到文KRIFE齐的博客！</a><time datetime="2024-07-01T11:46:20.391Z" title="发表于 2024-07-01 19:46:20">2024-07-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/US3S1L5%E2%80%94%E2%80%94Phong%E5%85%89%E7%85%A7%E6%A8%A1%E5%9E%8B/" title="US3S1L5——Phong光照模型">US3S1L5——Phong光照模型</a><time datetime="2024-06-25T14:33:57.000Z" title="发表于 2024-06-25 22:33:57">2024-06-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/US3S1L4%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B/US3S1L4-2%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B%E7%9A%84%E9%80%90%E7%89%87%E5%85%83%E5%85%89%E7%85%A7/" title="US3S1L4-2——Phong式高光反射模型的逐片元光照">US3S1L4-2——Phong式高光反射模型的逐片元光照</a><time datetime="2024-06-25T13:16:37.000Z" title="发表于 2024-06-25 21:16:37">2024-06-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/US3S1L4%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B/US3S1L4-1%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B%E7%9A%84%E9%80%90%E9%A1%B6%E7%82%B9%E5%85%89%E7%85%A7/" title="US3S1L4-1——Phong式高光反射模型的逐顶点光照">US3S1L4-1——Phong式高光反射模型的逐顶点光照</a><time datetime="2024-06-25T13:16:05.000Z" title="发表于 2024-06-25 21:16:05">2024-06-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/US3S1L4%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B/" title="US3S1L4——Phong式高光反射模型">US3S1L4——Phong式高光反射模型</a><time datetime="2024-06-25T10:14:12.000Z" title="发表于 2024-06-25 18:14:12">2024-06-25</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By 文KRIFE齐</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

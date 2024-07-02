@@ -1,0 +1,439 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>U4S3L4——Video Player视频播放器 | 文KRIFE齐的博客</title><meta name="author" content="文KRIFE齐"><meta name="copyright" content="文KRIFE齐"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="U4S3L4——Video Player视频播放器 本章代码关键字 123456789101112131415161718192021videoPlayer.playOnAwake            &#x2F;&#x2F;是否自动播放videoPlayer.renderMode             &#x2F;&#x2F;渲染模式VideoRenderMode                    &#x2F;&#x2F;渲染模式的枚举Video">
+<meta property="og:type" content="article">
+<meta property="og:title" content="U4S3L4——Video Player视频播放器">
+<meta property="og:url" content="http://example.com/2023/11/20/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U4%E2%80%94%E2%80%94Unity%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/U4S3%E2%80%94%E2%80%94%E8%A7%86%E9%A2%91%E6%92%AD%E6%94%BE/U4S3L4%E2%80%94%E2%80%94Video%20Player%E8%A7%86%E9%A2%91%E6%92%AD%E6%94%BE%E5%99%A8/index.html">
+<meta property="og:site_name" content="文KRIFE齐的博客">
+<meta property="og:description" content="U4S3L4——Video Player视频播放器 本章代码关键字 123456789101112131415161718192021videoPlayer.playOnAwake            &#x2F;&#x2F;是否自动播放videoPlayer.renderMode             &#x2F;&#x2F;渲染模式VideoRenderMode                    &#x2F;&#x2F;渲染模式的枚举Video">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png">
+<meta property="article:published_time" content="2023-11-20T13:22:13.000Z">
+<meta property="article:modified_time" content="2024-07-02T03:56:36.000Z">
+<meta property="article:author" content="文KRIFE齐">
+<meta property="article:tag" content="blog">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2023/11/20/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U4%E2%80%94%E2%80%94Unity%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/U4S3%E2%80%94%E2%80%94%E8%A7%86%E9%A2%91%E6%92%AD%E6%94%BE/U4S3L4%E2%80%94%E2%80%94Video%20Player%E8%A7%86%E9%A2%91%E6%92%AD%E6%94%BE%E5%99%A8/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'U4S3L4——Video Player视频播放器',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-07-02 11:56:36'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">834</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">113</div></a></div><hr class="custom-hr"/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="文KRIFE齐的博客"><span class="site-name">文KRIFE齐的博客</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">U4S3L4——Video Player视频播放器</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-11-20T13:22:13.000Z" title="发表于 2023-11-20 21:22:13">2023-11-20</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-07-02T03:56:36.000Z" title="更新于 2024-07-02 11:56:36">2024-07-02</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U4%E2%80%94%E2%80%94Unity%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/">U4——Unity进阶系列</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U4%E2%80%94%E2%80%94Unity%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/U4S3%E2%80%94%E2%80%94%E8%A7%86%E9%A2%91%E6%92%AD%E6%94%BE/">U4S3——视频播放</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="U4S3L4——Video Player视频播放器"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1>U4S3L4——Video Player视频播放器</h1>
+<h2 id="本章代码关键字">本章代码关键字</h2>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">videoPlayer.playOnAwake            <span class="comment">//是否自动播放</span></span><br><span class="line">videoPlayer.renderMode             <span class="comment">//渲染模式</span></span><br><span class="line">VideoRenderMode                    <span class="comment">//渲染模式的枚举</span></span><br><span class="line">VideoRenderMode.RenderTexture      <span class="comment">//要渲染的目标贴图</span></span><br><span class="line">videoPlayer.targetCamera           <span class="comment">//要渲染到的目标摄像机</span></span><br><span class="line">videoPlayer.targetCameraAlpha      <span class="comment">//视频透明度，渲染模式选择摄像机相关时</span></span><br><span class="line">videoPlayer.source                 <span class="comment">//视频源</span></span><br><span class="line">VideoSource                        <span class="comment">//视频源的枚举</span></span><br><span class="line">videoPlayer.clip                   <span class="comment">//要播放的视频切片</span></span><br><span class="line">videoPlayer.url                    <span class="comment">//要播放的视频的url路径</span></span><br><span class="line">videoPlayer.length                 <span class="comment">//视频的长度（秒）</span></span><br><span class="line">videoPlayer.time                   <span class="comment">//视频播放了多久（秒）</span></span><br><span class="line">videoPlayer.frameCount             <span class="comment">//视频的总帧数</span></span><br><span class="line">videoPlayer.frame                  <span class="comment">//视频当前播放到那一帧</span></span><br><span class="line">videoPlayer.Play();                <span class="comment">//播放视频</span></span><br><span class="line">videoPlayer.Stop();                <span class="comment">//停止视频</span></span><br><span class="line">videoPlayer.Pause();               <span class="comment">//暂停视频</span></span><br><span class="line">videoPlayer.Prepare();             <span class="comment">//准备视频</span></span><br><span class="line">videoPlayer.prepareCompleted       <span class="comment">//当准备完毕时执行的事件</span></span><br><span class="line">videoPlayer.started                <span class="comment">//当视频开始播放时执行的事件</span></span><br><span class="line">videoPlayer.loopPointReached       <span class="comment">//当视频播放到结尾时执行的事件</span></span><br></pre></td></tr></table></figure>
+<h1>Video Player</h1>
+<p>Video Player顾名思义是视频播放器的意思，它是Unity提供给我们用于播放视频的组件<br>
+该视频播放器组件，可以在游戏中播放导入的视频剪辑文件</p>
+<p>​<code>VideoPlayer</code>​是用于视频播放的组件，我们可以通过它来控制视频播放相关设置</p>
+<p>其中比较重要的参数有</p>
+<ol>
+<li>渲染模式</li>
+<li>播放暂停相关API</li>
+</ol>
+<p>视频播放时，需要有短暂的准备时间才会开始播放，我们可以通过<code>Prepare()</code>​函数来启动准备，准备完毕后再正式开始播放</p>
+<h2 id="添加Video-Player组件">添加Video Player组件</h2>
+<ul>
+<li>
+<p>方法一：在Hierarchy窗口点击加号，选择Video &gt; Video Player</p>
+<p>​<img src="assets/image-20231120213957-8ut76ir.png" alt="image">​</p>
+</li>
+<li>
+<p>方法二：选择场景上任何一个对象，为其添加Video Player组件</p>
+<p>​<img src="assets/image-20231120214147-nevif44.png" alt="image">​</p>
+</li>
+<li>
+<p>方法三：直接将视频文件拖入到Hierarchy窗口中</p>
+</li>
+</ul>
+<h2 id="Video-Player-参数相关">Video Player 参数相关</h2>
+<p>​<img src="assets/image-20231120214338-tzinajh.png" alt="image">​</p>
+<ul>
+<li>
+<p><strong>Source 视频源</strong></p>
+<ul>
+<li>
+<p><strong>Video Clip 视频剪辑</strong></p>
+<p>可以直接将视频剪辑拖入此处或者选择视频剪辑进行关联</p>
+</li>
+<li>
+<p><strong>URL 视频路径</strong></p>
+<p>选择视频的路径，可以是远程视频路径<br>
+也可以之后通过代码直接关联视频资源路径</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Play On Awake 场景启动时就播放视频</strong></p>
+<p>如果希望自己控制播放时机，请取消该选项</p>
+</li>
+<li>
+<p><strong>Wait For First Frame 等待第一帧准备完毕</strong></p>
+<p>如果勾选该选项，Unity将等待视频第一帧准备好显示，<br>
+如果取消勾选，可能会丢弃前几帧使视频时间与游戏保持同步</p>
+</li>
+<li>
+<p>Loop 是否循环播放</p>
+</li>
+<li>
+<p>Skip On Drop 是否允许视频播放器跳过帧以赶上当前时间</p>
+</li>
+<li>
+<p>Playback Speed 表示播放速度的乘数</p>
+<p>0~10之间的值<br>
+1表示正常速度，如果数值为2，则视频速度*2，表示两倍速播放</p>
+</li>
+<li>
+<p><strong>Render Mode 渲染方式</strong></p>
+<ul>
+<li>
+<p>Camera Far Plane <strong>在摄像机的远平面上渲染</strong></p>
+<p>这意味着摄像机仍然会显示到拍摄到的物体</p>
+<p>​<img src="assets/image-20231120215113-u88rm8h.png" alt="image">​</p>
+<p>​<img src="assets/image-20231120214808-owtre05.png" alt="image">​</p>
+<ul>
+<li>Camera 定义接受视频的摄像机</li>
+<li>Alpha 视频的全局透明度</li>
+<li>3D Layout 3D层级</li>
+</ul>
+</li>
+<li>
+<p>Camera Near Plane 在摄像机的近平面上渲染</p>
+<p>参数与上一个相同，但是这里视频将会遮挡拍摄到的物体</p>
+<p>​<img src="assets/image-20231120215206-u98xw2o.png" alt="image"></p>
+<p>​<img src="assets/image-20231120215240-mzhqiym.png" alt="image">​​</p>
+</li>
+<li>
+<p>Render Texture 将视频渲染到渲染纹理中</p>
+<p>​<img src="assets/image-20231120215505-ko69271.png" alt="image">​</p>
+<ul>
+<li>Target Texture 用于渲染图像的渲染纹理<br>
+（建议将纹理的尺寸设置到与视频分辨率一致）</li>
+</ul>
+</li>
+<li>
+<p>Material Override 通过游戏对象渲染器的材质将视频渲染到游戏对象的选定纹理属性中</p>
+<p>效果如下：</p>
+<p>​<img src="assets/image-20231120220206-c274y80.png" alt="image">​</p>
+<ul>
+<li>
+<p>Renderer 用于渲染图像的渲染器（Mesh Renderer）</p>
+<p>如果为None，则使用Video Player依附对象的上的渲染器</p>
+</li>
+</ul>
+</li>
+<li>
+<p>API Only 不预先设置渲染到哪里，通过代码来设置视频渲染到哪里，通过Video Player中的 texture属性进行设置</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Aspect Ratio 宽高比设置</p>
+<p>​<img src="assets/image-20231120220435-dt2a239.png" alt="image">​</p>
+<ul>
+<li>
+<p>No Scaling 不使用缩放</p>
+</li>
+<li>
+<p><strong>Fit Vertically 垂直适应目标矩形</strong></p>
+<p>必要时裁剪左侧和右侧或在每侧留下黑色区域<br>
+以保留原视频的宽高比</p>
+</li>
+<li>
+<p><strong>Fit Horizontally 水平适应目标矩形</strong></p>
+<p>必要时裁剪顶部和底部或在顶或底留下黑色区域<br>
+以保留原视频的宽高比</p>
+</li>
+<li>
+<p><strong>Fit Inside 对原视频进行缩放而不必裁剪，但是可能会留黑边</strong></p>
+</li>
+<li>
+<p><strong>Fit Outside 对原视频进行缩放，可能需要进行裁剪而不会留黑边</strong></p>
+</li>
+<li>
+<p>Stretch 在水平和垂直方向均进行缩放以适应目标矩形。不会保留源宽高比</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Audio Output Mode 如何输出视频源的音频</p>
+<p>​<img src="assets/image-20231120221024-6vhyrjb.png" alt="image">​</p>
+<ul>
+<li>
+<p>None 不播放音频</p>
+</li>
+<li>
+<p>Audio Source 发送给指定的音频源对象，允许Unity的音频处理</p>
+<ul>
+<li>Audio Source 用于播放音频轨道的音频源</li>
+</ul>
+</li>
+<li>
+<p>Direct 直接绕过Unity音频处理，发送给音频输出硬件输出</p>
+<ul>
+<li>Mute 静音</li>
+<li>Volume 音量</li>
+</ul>
+</li>
+<li>
+<p>API Only 通过代码将音频样本发送到关联AudioSampleProvider听诊器</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Track Enabled 启用关联的音频轨道用于播放，必须在播放前设置</p>
+<p>​<img src="assets/image-20231120221235-tfctjf2.png" alt="image">​</p>
+<p>比如： Track 0[en, 2 ch]表示有一个音频轨道，语言是 en，<br>
+并且音频轨道有2个声道（2 ch），表示它是双声道音频轨道</p>
+</li>
+</ul>
+<h2 id="Video-Player-代码相关">Video Player 代码相关</h2>
+<p>注意：使用 <code>VideoPlayer</code>​ 组件需要引用命名空间 <code>UnityEngine.Video</code>​</p>
+<ol>
+<li>
+<p>将一个 <code>VideoPlayer</code>​​ 附加到主摄像机<br>
+将 <code>VideoPlayer</code>​​ 添加到摄像机对象时，它会自动瞄准摄像机背板，无需更改<code>videoPlayer.targetCamera</code>​​</p>
+ <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">GameObject camera = GameObject.Find(<span class="string">&quot;Main Camera&quot;</span>);</span><br><span class="line">VideoPlayer videoPlayer = camera.AddComponent&lt;VideoPlayer&gt;();</span><br></pre></td></tr></table></figure>
+<p>​​<img src="assets/image-20231120221912-5wx7gwg.png" alt="image">​​</p>
+</li>
+<li>
+<p>参数相关设置</p>
+<ul>
+<li>
+<p>是否自动播放</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">videoPlayer.playOnAwake = <span class="literal">true</span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>渲染模式</p>
+<p>这里是使用<code>VideoRenderMode</code>​枚举来选择模式，参数和Inspector窗口上的渲染方式一致</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">videoPlayer.renderMode = VideoRenderMode.CameraNearPlane;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>
+<p>当选择<code>VideoRenderMode.RenderTexture</code>​时，就可以设置<code>texture</code>​参数</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> UnityEngine.Video;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Lesson2</span> : <span class="title">MonoBehaviour</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> RenderTexture texture;</span><br><span class="line">    <span class="keyword">public</span> VideoClip clip;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Start</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        GameObject camera = GameObject.Find(<span class="string">&quot;Main Camera&quot;</span>);</span><br><span class="line">        VideoPlayer videoPlayer = camera.AddComponent&lt;VideoPlayer&gt;();</span><br><span class="line">        videoPlayer.renderMode = ​VideoRenderMode.RenderTexture​;</span><br><span class="line">        videoPlayer.targetTexture = texture</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>当选择<code>VideoRenderMode.CameraNearPlane</code>​或者<code>VideoRenderMode.CameraFarPlane</code>​时，就可以设置目标摄像机<code>targetCamera</code>​参数</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">videoPlayer.renderMode = VideoRenderMode.CameraNearPlane;</span><br><span class="line">videoPlayer.targetCamera = Camera.main;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li>
+<p>透明度</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">videoPlayer.targetCameraAlpha = <span class="number">0.5f</span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>视频源</p>
+<p>这里是使用<code>VideoSource</code>​枚举来选择模式，有<code>VideoSource.VideoClip</code>​和<code>VideoSource.Url</code>​两种</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">videoPlayer.source = VideoSource.VideoClip</span><br></pre></td></tr></table></figure>
+<ul>
+<li>
+<p>视频切片</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> UnityEngine.Video;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Lesson2</span> : <span class="title">MonoBehaviour</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> RenderTexture texture;</span><br><span class="line">    <span class="keyword">public</span> VideoClip clip;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Start is called before the first frame update</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Start</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        GameObject camera = GameObject.Find(<span class="string">&quot;Main Camera&quot;</span>);</span><br><span class="line">        VideoPlayer videoPlayer = camera.AddComponent&lt;VideoPlayer&gt;();</span><br><span class="line">        videoPlayer.source = VideoSource.VideoClip;</span><br><span class="line">        videoPlayer.clip = clip;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>URL地址</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">videoPlayer.source = VideoSource.Url;</span><br><span class="line">videoPlayer.url = Application.streamingAssetsPath + <span class="string">&quot;/Video.mp4&quot;</span>;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li>
+<p>视频总时长</p>
+<p>单位为秒</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(videoPlayer.length);    <span class="comment">//单位为s</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>当前时长，即播放了多久</p>
+<p>单位为秒</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(videoPlayer.time);    <span class="comment">//单位为s</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>总帧数</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(videoPlayer.frameCount);</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>当前帧</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(videoPlayer.frame);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li>
+<p>方法相关</p>
+<ul>
+<li>
+<p>视频播放</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (Input.GetKeyDown(KeyCode.Space))</span><br><span class="line">&#123;</span><br><span class="line">    videoPlayer.Play();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>视频停止</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (Input.GetKeyDown(KeyCode.S))</span><br><span class="line">&#123;</span><br><span class="line">    videoPlayer.Stop();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>视频暂停</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (Input.GetKeyDown(KeyCode.P))</span><br><span class="line">&#123;</span><br><span class="line">    videoPlayer.Pause();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>视频准备函数</p>
+<p>预先加载视频，之后播放视频反应可以更加迅速</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">videoPlayer.Prepare();</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li>
+<p>事件相关</p>
+<ul>
+<li>
+<p>准备视频完成事件</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">videoPlayer.prepareCompleted += (v) =&gt;</span><br><span class="line">&#123;</span><br><span class="line">    print(<span class="string">&quot;准备完成&quot;</span>);</span><br><span class="line">    isOver = <span class="literal">true</span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>开始事件</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">videoPlayer.started += (v) =&gt;</span><br><span class="line">&#123;</span><br><span class="line">    print(<span class="string">&quot;当执行player播放方法后 会调用的事件&quot;</span>);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>当视频播放到结尾时调用事件</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">videoPlayer.loopPointReached += (v) =&gt;</span><br><span class="line">&#123;</span><br><span class="line">    print(<span class="string">&quot;视频播放到结尾处会调用的事件&quot;</span>);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ol>
+<p>‍</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">文KRIFE齐</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2023/11/20/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U4%E2%80%94%E2%80%94Unity%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/U4S3%E2%80%94%E2%80%94%E8%A7%86%E9%A2%91%E6%92%AD%E6%94%BE/U4S3L4%E2%80%94%E2%80%94Video%20Player%E8%A7%86%E9%A2%91%E6%92%AD%E6%94%BE%E5%99%A8/">http://example.com/2023/11/20/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U4%E2%80%94%E2%80%94Unity%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/U4S3%E2%80%94%E2%80%94%E8%A7%86%E9%A2%91%E6%92%AD%E6%94%BE/U4S3L4%E2%80%94%E2%80%94Video%20Player%E8%A7%86%E9%A2%91%E6%92%AD%E6%94%BE%E5%99%A8/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">文KRIFE齐的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/11/21/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U4%E2%80%94%E2%80%94Unity%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/U4S3%E2%80%94%E2%80%94%E8%A7%86%E9%A2%91%E6%92%AD%E6%94%BE/U4S3L5%E2%80%94%E2%80%94%E5%85%A8%E6%99%AF%E8%A7%86%E9%A2%91/" title="U4S3L5——全景视频"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">U4S3L5——全景视频</div></div></a></div><div class="next-post pull-right"><a href="/2023/11/17/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U4%E2%80%94%E2%80%94Unity%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/U4S3%E2%80%94%E2%80%94%E8%A7%86%E9%A2%91%E6%92%AD%E6%94%BE/U4S3L3%E2%80%94%E2%80%94%E8%A7%86%E9%A2%91%E5%89%AA%E8%BE%91%E8%AE%BE%E7%BD%AE%E7%9B%B8%E5%85%B3/" title="U4S3L3——视频剪辑设置相关"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">U4S3L3——视频剪辑设置相关</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">文KRIFE齐</div><div class="author-info__description">目前正处于搭建测试环节</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">834</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">113</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">U4S3L4——Video Player视频播放器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%AC%E7%AB%A0%E4%BB%A3%E7%A0%81%E5%85%B3%E9%94%AE%E5%AD%97"><span class="toc-number">1.1.</span> <span class="toc-text">本章代码关键字</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">2.</span> <span class="toc-text">Video Player</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0Video-Player%E7%BB%84%E4%BB%B6"><span class="toc-number">2.1.</span> <span class="toc-text">添加Video Player组件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Video-Player-%E5%8F%82%E6%95%B0%E7%9B%B8%E5%85%B3"><span class="toc-number">2.2.</span> <span class="toc-text">Video Player 参数相关</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Video-Player-%E4%BB%A3%E7%A0%81%E7%9B%B8%E5%85%B3"><span class="toc-number">2.3.</span> <span class="toc-text">Video Player 代码相关</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/07/01/hello-world/" title="欢迎来到文KRIFE齐的博客！">欢迎来到文KRIFE齐的博客！</a><time datetime="2024-07-01T11:46:20.391Z" title="发表于 2024-07-01 19:46:20">2024-07-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/US3S1L5%E2%80%94%E2%80%94Phong%E5%85%89%E7%85%A7%E6%A8%A1%E5%9E%8B/" title="US3S1L5——Phong光照模型">US3S1L5——Phong光照模型</a><time datetime="2024-06-25T14:33:57.000Z" title="发表于 2024-06-25 22:33:57">2024-06-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/US3S1L4%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B/US3S1L4-2%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B%E7%9A%84%E9%80%90%E7%89%87%E5%85%83%E5%85%89%E7%85%A7/" title="US3S1L4-2——Phong式高光反射模型的逐片元光照">US3S1L4-2——Phong式高光反射模型的逐片元光照</a><time datetime="2024-06-25T13:16:37.000Z" title="发表于 2024-06-25 21:16:37">2024-06-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/US3S1L4%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B/US3S1L4-1%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B%E7%9A%84%E9%80%90%E9%A1%B6%E7%82%B9%E5%85%89%E7%85%A7/" title="US3S1L4-1——Phong式高光反射模型的逐顶点光照">US3S1L4-1——Phong式高光反射模型的逐顶点光照</a><time datetime="2024-06-25T13:16:05.000Z" title="发表于 2024-06-25 21:16:05">2024-06-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/US3S1L4%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B/" title="US3S1L4——Phong式高光反射模型">US3S1L4——Phong式高光反射模型</a><time datetime="2024-06-25T10:14:12.000Z" title="发表于 2024-06-25 18:14:12">2024-06-25</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By 文KRIFE齐</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

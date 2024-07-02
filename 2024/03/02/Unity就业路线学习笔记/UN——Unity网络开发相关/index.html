@@ -1,0 +1,366 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>UN——Unity网络开发相关 | 文KRIFE齐的博客</title><meta name="author" content="文KRIFE齐"><meta name="copyright" content="文KRIFE齐"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="UN——Unity网络开发相关  前置知识：C#，线程相关知识，二进制相关（变量的本质 + 数据持久化二进制），Json  Unity网络开发 在没有学习网络相关知识之前，我们只能制作单机游戏，玩家之间不能交互，数据只能在本机上存储读取 在学习网络开发相关的知识后，我们可以通过网络制作让玩家之间进行交互的内容（信息同步，信息交换），也可通过网络将动态数据存储到服务器上  注：本笔记对应的课程主要针">
+<meta property="og:type" content="article">
+<meta property="og:title" content="UN——Unity网络开发相关">
+<meta property="og:url" content="http://example.com/2024/03/02/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UN%E2%80%94%E2%80%94Unity%E7%BD%91%E7%BB%9C%E5%BC%80%E5%8F%91%E7%9B%B8%E5%85%B3/index.html">
+<meta property="og:site_name" content="文KRIFE齐的博客">
+<meta property="og:description" content="UN——Unity网络开发相关  前置知识：C#，线程相关知识，二进制相关（变量的本质 + 数据持久化二进制），Json  Unity网络开发 在没有学习网络相关知识之前，我们只能制作单机游戏，玩家之间不能交互，数据只能在本机上存储读取 在学习网络开发相关的知识后，我们可以通过网络制作让玩家之间进行交互的内容（信息同步，信息交换），也可通过网络将动态数据存储到服务器上  注：本笔记对应的课程主要针">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png">
+<meta property="article:published_time" content="2024-03-02T12:57:51.000Z">
+<meta property="article:modified_time" content="2024-07-02T03:57:12.000Z">
+<meta property="article:author" content="文KRIFE齐">
+<meta property="article:tag" content="blog">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2024/03/02/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UN%E2%80%94%E2%80%94Unity%E7%BD%91%E7%BB%9C%E5%BC%80%E5%8F%91%E7%9B%B8%E5%85%B3/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'UN——Unity网络开发相关',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-07-02 11:57:12'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">834</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">113</div></a></div><hr class="custom-hr"/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="文KRIFE齐的博客"><span class="site-name">文KRIFE齐的博客</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">UN——Unity网络开发相关</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-03-02T12:57:51.000Z" title="发表于 2024-03-02 20:57:51">2024-03-02</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-07-02T03:57:12.000Z" title="更新于 2024-07-02 11:57:12">2024-07-02</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="UN——Unity网络开发相关"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1>UN——Unity网络开发相关</h1>
+<blockquote>
+<p>前置知识：C#，线程相关知识，二进制相关（变量的本质 + 数据持久化二进制），Json</p>
+</blockquote>
+<h1>Unity网络开发</h1>
+<p>在没有学习网络相关知识之前，我们只能制作单机游戏，玩家之间不能交互，数据只能在本机上存储读取<br>
+在学习网络开发相关的知识后，我们可以通过网络制作让玩家之间进行交互的内容（信息同步，信息交换），也可通过网络将动态数据存储到服务器上</p>
+<blockquote>
+<p>注：本笔记对应的课程主要针对的Unity客户端的前端部分的开发，而不是服务器后端，也没有涉及同步模式，但仍然是网络相关课程的基础</p>
+</blockquote>
+<p>笔记代号UN——Unity Network的缩写 <strong>（不是联合国！）</strong></p>
+<p>本系列学习内容</p>
+<ul>
+<li>
+<p>网络开发必备理论和通信前的必备知识</p>
+<ul>
+<li>
+<p>网络基本概念</p>
+</li>
+<li>
+<p>IP、端口、Mac地址</p>
+</li>
+<li>
+<p>客户端和服务端</p>
+</li>
+<li>
+<p>数据通信模型</p>
+</li>
+<li>
+<p>网络协议</p>
+<ul>
+<li>OSI 模型</li>
+<li>TCP/IP 协议</li>
+<li>TCP和UDP</li>
+</ul>
+</li>
+<li>
+<p>通信前的必备知识</p>
+<ul>
+<li>
+<p>网络游戏通信方案概述</p>
+</li>
+<li>
+<p>IP地址和端口类</p>
+</li>
+<li>
+<p>域名解析</p>
+</li>
+<li>
+<p>序列化和反序列化2进制数据</p>
+<ul>
+<li>字节编码</li>
+<li>序列化</li>
+<li>反序列化</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>网络通信</p>
+<ul>
+<li>
+<p>套接字Socket（长连接游戏常用）</p>
+<ul>
+<li>
+<p>Socket的重要API</p>
+</li>
+<li>
+<p>TCP通信概述</p>
+<ul>
+<li>
+<p>同步</p>
+<ul>
+<li>服务端和客户端的同步通信</li>
+<li>区分消息类型</li>
+<li>分包、黏包</li>
+<li>客户端主动断开连接</li>
+<li>实现心跳消息</li>
+</ul>
+</li>
+<li>
+<p>异步</p>
+<ul>
+<li>异步通信常用方法</li>
+<li>服务端和客户端异步通信</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>UDP通信概述</p>
+<ul>
+<li>服务端和客户端同步通信</li>
+<li>异步通信常用方法</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>文件传输FTP（文件传输）</p>
+<ul>
+<li>FTP工作原理</li>
+<li>搭建FTP服务器</li>
+<li>FTP关键类</li>
+<li>上传文件</li>
+<li>下载文件</li>
+<li>其它操作</li>
+</ul>
+</li>
+<li>
+<p>超文本传输HTTP（短连接游戏常用）</p>
+<ul>
+<li>
+<p>HTTP工作原理</p>
+</li>
+<li>
+<p>搭建HTTP服务器</p>
+</li>
+<li>
+<p>C#的相关类</p>
+<ul>
+<li>HTTP关键类</li>
+<li>下载数据</li>
+<li>上传数据</li>
+</ul>
+</li>
+<li>
+<p>Unity的相关类</p>
+<ul>
+<li>WWW类</li>
+<li>WWWFrom类</li>
+<li>UnityWebRequest类 —— 获取数据、上传数据</li>
+<li>UnityWebRequest类高级操作 —— 获取数据、上传数据</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>消息处理</p>
+<ul>
+<li>
+<p>自定义协议生成工具</p>
+<ul>
+<li>如何制作协议（消息）生成工具</li>
+<li>协议（消息）配置</li>
+<li>协议（消息）生成</li>
+</ul>
+</li>
+<li>
+<p>第三方协议生成工具Protobuf</p>
+<ul>
+<li>
+<p>Protobuf</p>
+<ul>
+<li>配置规则</li>
+<li>协议生成</li>
+<li>协议使用</li>
+</ul>
+</li>
+<li>
+<p>Protobuf-Net</p>
+</li>
+</ul>
+</li>
+<li>
+<p>其它</p>
+<ul>
+<li>大小端模式</li>
+<li>消息加密解密</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>实践项目</p>
+<ul>
+<li>消息池和消息处理类</li>
+<li>实现断线重连</li>
+</ul>
+</li>
+</ul>
+<h2 id="必须达到的水平">必须达到的水平</h2>
+<ol>
+<li>掌握网络通信中的一些必备理论知识（OSI模型、TCP/IP协议等）</li>
+<li>能够对自定义类对象进行序列化和反序列化</li>
+<li>能够熟练使用Socket，进行TCP、UDP的同步异步通信</li>
+<li>能够处理网络通信中的分包黏包和心跳消息</li>
+<li>能够使用FTP和HTTP协议进行文件的上传和下载</li>
+<li>熟练掌握Unity的<code>WWW</code>​类和<code>UnityWebRequest</code>​类</li>
+<li>熟练使用Protobuf，了解自定义协议生成工具的制作原理</li>
+<li>了解大小端模式，消息加密原理</li>
+</ol>
+<h2 id="学习这些内容的意义">学习这些内容的意义</h2>
+<p>在网络游戏开发中，<strong>前端程序更多的是配合后端程序来完成网络通信</strong><br>
+我们相对后端程序来说，网络开发的压力较小，我们只需要<strong>保证消息收发的准确性和及时性通信的安全性问题</strong>，<br>
+比如消息加密，更多的是配合后端来实施加密方案<br>
+<strong>服务器的承载量问题</strong>，比如一个服能容纳多少人，更多的也是后端程序的工作，我们只需要配合他们完成需求即可<br>
+因此掌握了这门课程的内容，基本能够应对<strong>大部分网络游戏开发中的前端需求</strong></p>
+<h2 id="关于同步模式">关于同步模式</h2>
+<p>在网络游戏开发中有常用的几种同步模式，比如：<br>
+状态同步模式 和 帧同步模式<br>
+这两种模式在该课程当中并没有进行讲解</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">文KRIFE齐</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2024/03/02/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UN%E2%80%94%E2%80%94Unity%E7%BD%91%E7%BB%9C%E5%BC%80%E5%8F%91%E7%9B%B8%E5%85%B3/">http://example.com/2024/03/02/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UN%E2%80%94%E2%80%94Unity%E7%BD%91%E7%BB%9C%E5%BC%80%E5%8F%91%E7%9B%B8%E5%85%B3/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">文KRIFE齐的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2024/03/02/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UN%E2%80%94%E2%80%94Unity%E7%BD%91%E7%BB%9C%E5%BC%80%E5%8F%91%E7%9B%B8%E5%85%B3/UN1%E2%80%94%E2%80%94%E7%BD%91%E7%BB%9C%E5%BC%80%E5%8F%91%E7%90%86%E8%AE%BA%E5%92%8C%E9%80%9A%E4%BF%A1%E5%BF%85%E5%A4%87%E7%9F%A5%E8%AF%86/UN1L1%E2%80%94%E2%80%94%E7%BD%91%E7%BB%9C%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/" title="UN1L1——网络基本概念"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">UN1L1——网络基本概念</div></div></a></div><div class="next-post pull-right"><a href="/2024/03/02/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UH%E2%80%94%E2%80%94Unity%E7%83%AD%E6%9B%B4%E6%96%B0%E7%AC%94%E8%AE%B0/UH2%E2%80%94%E2%80%94Lua%E7%83%AD%E6%9B%B4%E6%96%B0%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" title="UH2——Lua热更新解决方案"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">UH2——Lua热更新解决方案</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">文KRIFE齐</div><div class="author-info__description">目前正处于搭建测试环节</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">834</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">113</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">UN——Unity网络开发相关</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">2.</span> <span class="toc-text">Unity网络开发</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BF%85%E9%A1%BB%E8%BE%BE%E5%88%B0%E7%9A%84%E6%B0%B4%E5%B9%B3"><span class="toc-number">2.1.</span> <span class="toc-text">必须达到的水平</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%A6%E4%B9%A0%E8%BF%99%E4%BA%9B%E5%86%85%E5%AE%B9%E7%9A%84%E6%84%8F%E4%B9%89"><span class="toc-number">2.2.</span> <span class="toc-text">学习这些内容的意义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E5%90%8C%E6%AD%A5%E6%A8%A1%E5%BC%8F"><span class="toc-number">2.3.</span> <span class="toc-text">关于同步模式</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/07/01/hello-world/" title="欢迎来到文KRIFE齐的博客！">欢迎来到文KRIFE齐的博客！</a><time datetime="2024-07-01T11:46:20.391Z" title="发表于 2024-07-01 19:46:20">2024-07-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/US3S1L5%E2%80%94%E2%80%94Phong%E5%85%89%E7%85%A7%E6%A8%A1%E5%9E%8B/" title="US3S1L5——Phong光照模型">US3S1L5——Phong光照模型</a><time datetime="2024-06-25T14:33:57.000Z" title="发表于 2024-06-25 22:33:57">2024-06-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/US3S1L4%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B/US3S1L4-2%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B%E7%9A%84%E9%80%90%E7%89%87%E5%85%83%E5%85%89%E7%85%A7/" title="US3S1L4-2——Phong式高光反射模型的逐片元光照">US3S1L4-2——Phong式高光反射模型的逐片元光照</a><time datetime="2024-06-25T13:16:37.000Z" title="发表于 2024-06-25 21:16:37">2024-06-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/US3S1L4%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B/US3S1L4-1%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B%E7%9A%84%E9%80%90%E9%A1%B6%E7%82%B9%E5%85%89%E7%85%A7/" title="US3S1L4-1——Phong式高光反射模型的逐顶点光照">US3S1L4-1——Phong式高光反射模型的逐顶点光照</a><time datetime="2024-06-25T13:16:05.000Z" title="发表于 2024-06-25 21:16:05">2024-06-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/US3S1L4%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B/" title="US3S1L4——Phong式高光反射模型">US3S1L4——Phong式高光反射模型</a><time datetime="2024-06-25T10:14:12.000Z" title="发表于 2024-06-25 18:14:12">2024-06-25</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By 文KRIFE齐</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

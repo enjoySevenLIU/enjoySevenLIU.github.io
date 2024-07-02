@@ -1,0 +1,354 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>UN2L8——TCP异步通信常用方法 | 文KRIFE齐的博客</title><meta name="author" content="文KRIFE齐"><meta name="copyright" content="文KRIFE齐"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="UN2L8——TCP异步通信常用方法 本章代码关键字 12345678910111213141516171819202122232425&#x2F;&#x2F;Begin开头的API：内部开多线程，通过回调形式返回结果，需要和End相关方法配合使用IAsyncResult						&#x2F;&#x2F;所有Begin开头的API都会返回它，也会作为Begin开头的API传入的回调函数的参数iAsyncResult.AsyncStat">
+<meta property="og:type" content="article">
+<meta property="og:title" content="UN2L8——TCP异步通信常用方法">
+<meta property="og:url" content="http://example.com/2024/03/10/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UN%E2%80%94%E2%80%94Unity%E7%BD%91%E7%BB%9C%E5%BC%80%E5%8F%91%E7%9B%B8%E5%85%B3/UN2%E2%80%94%E2%80%94%E5%A5%97%E6%8E%A5%E5%AD%97Socket%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1%E6%96%B9%E6%A1%88/UN2L8%E2%80%94%E2%80%94TCP%E5%BC%82%E6%AD%A5%E9%80%9A%E4%BF%A1%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95/index.html">
+<meta property="og:site_name" content="文KRIFE齐的博客">
+<meta property="og:description" content="UN2L8——TCP异步通信常用方法 本章代码关键字 12345678910111213141516171819202122232425&#x2F;&#x2F;Begin开头的API：内部开多线程，通过回调形式返回结果，需要和End相关方法配合使用IAsyncResult						&#x2F;&#x2F;所有Begin开头的API都会返回它，也会作为Begin开头的API传入的回调函数的参数iAsyncResult.AsyncStat">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png">
+<meta property="article:published_time" content="2024-03-10T06:36:16.000Z">
+<meta property="article:modified_time" content="2024-07-02T03:57:10.000Z">
+<meta property="article:author" content="文KRIFE齐">
+<meta property="article:tag" content="blog">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2024/03/10/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UN%E2%80%94%E2%80%94Unity%E7%BD%91%E7%BB%9C%E5%BC%80%E5%8F%91%E7%9B%B8%E5%85%B3/UN2%E2%80%94%E2%80%94%E5%A5%97%E6%8E%A5%E5%AD%97Socket%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1%E6%96%B9%E6%A1%88/UN2L8%E2%80%94%E2%80%94TCP%E5%BC%82%E6%AD%A5%E9%80%9A%E4%BF%A1%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'UN2L8——TCP异步通信常用方法',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-07-02 11:57:10'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">834</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">113</div></a></div><hr class="custom-hr"/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="文KRIFE齐的博客"><span class="site-name">文KRIFE齐的博客</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">UN2L8——TCP异步通信常用方法</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-03-10T06:36:16.000Z" title="发表于 2024-03-10 14:36:16">2024-03-10</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-07-02T03:57:10.000Z" title="更新于 2024-07-02 11:57:10">2024-07-02</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UN%E2%80%94%E2%80%94Unity%E7%BD%91%E7%BB%9C%E5%BC%80%E5%8F%91%E7%9B%B8%E5%85%B3/">UN——Unity网络开发相关</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UN%E2%80%94%E2%80%94Unity%E7%BD%91%E7%BB%9C%E5%BC%80%E5%8F%91%E7%9B%B8%E5%85%B3/UN2%E2%80%94%E2%80%94%E5%A5%97%E6%8E%A5%E5%AD%97Socket%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1%E6%96%B9%E6%A1%88/">UN2——套接字Socket网络通信方案</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="UN2L8——TCP异步通信常用方法"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1>UN2L8——TCP异步通信常用方法</h1>
+<h2 id="本章代码关键字">本章代码关键字</h2>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Begin开头的API：内部开多线程，通过回调形式返回结果，需要和End相关方法配合使用</span></span><br><span class="line">IAsyncResult						<span class="comment">//所有Begin开头的API都会返回它，也会作为Begin开头的API传入的回调函数的参数</span></span><br><span class="line">iAsyncResult.AsyncState				<span class="comment">//获取Begin开头的API传入的 作为回调方法的参数 的值</span></span><br><span class="line">iAsyncResult.AsyncWaitHandle		<span class="comment">//设置Begin开头的API返回的IAsyncResult的AsyncWaitHandle属性，可以让执行异步方法的线程卡住一段时间</span></span><br><span class="line">socket.BeginAccept()				<span class="comment">//异步监听客户端连入方法，传入回调函数和回调函数的参数</span></span><br><span class="line">socket.EndAccept()					<span class="comment">//结束异步监听客户端连入方法，传入回调函数的参数，返回连接客户端的Socket</span></span><br><span class="line">socket.BeginConnect()				<span class="comment">//异步连接服务器方法，传入回调函数和回调函数的参数</span></span><br><span class="line">socket.EndConnect()					<span class="comment">//结束异步连接服务器方法，传入回调函数的参数</span></span><br><span class="line">socket.BeginReceive()				<span class="comment">//异步接收消息方法，传入字节数组，偏移量，最大接收字节数，标识，回调函数和回调函数的参数</span></span><br><span class="line">socket.EndReceive()					<span class="comment">//结束异步接收消息方法，传入回调函数的参数，返回接收了多少字节</span></span><br><span class="line">socket.BeginSend()					<span class="comment">//异步发送消息方法，传入字节数组，偏移量，最大发送字节数，标识，回调函数和回调函数的参数</span></span><br><span class="line">socket.EndSend()					<span class="comment">//结束异步发送消息方法，传入回调函数的参数，返回发送了多少字节</span></span><br><span class="line"><span class="comment">//Async结尾的API：内部开多线程，通过回调形式返回结果，依赖SocketAsyncEventArgs对象配合使用，可以让我们更加方便的进行操作</span></span><br><span class="line">SocketAsyncEventArgs					<span class="comment">//传入Async结尾的异步方法的参数类型，以及回调方法内会传入的参数类型</span></span><br><span class="line">socketAsyncEventArgs.Completed			<span class="comment">//当异步方法执行完毕时，会执行这里设置的回调方法</span></span><br><span class="line">socketAsyncEventArgs.SocketError		<span class="comment">//获取异步方法执行结果，可用于判断是否执行成功</span></span><br><span class="line">socketAsyncEventArgs.AcceptSocket		<span class="comment">//当异步监听客户端连入方法执行完毕时，可以通过该方法来获取连接客户端的Socket</span></span><br><span class="line">socketAsyncEventArgs.SetBuffer()		<span class="comment">//设置用于接收/发送的字节数组，并设置接收/发送的起始位置和最多接收/发送多少字节</span></span><br><span class="line">socketAsyncEventArgs.Buffer				<span class="comment">//获取设置的接收/发送的字节数组</span></span><br><span class="line">socketAsyncEventArgs.BytesTransferred	<span class="comment">//获取字节数组内接收/发送了多少字节</span></span><br><span class="line">socketAsyncEventArgs.RemoteEndPoint		<span class="comment">//异步连接服务器前，设置IP地址和端口号的属性</span></span><br><span class="line">socket.AcceptAsync()					<span class="comment">//异步监听客户端连入方法</span></span><br><span class="line">socket.ConnectAsync()					<span class="comment">//异步连接服务器方法</span></span><br><span class="line">socket.SendAsync()						<span class="comment">//异步发送消息方法</span></span><br><span class="line">socket.ReceiveAsync()					<span class="comment">//异步接收消息方法</span></span><br></pre></td></tr></table></figure>
+<h2 id="异步方法和同步方法的区别">异步方法和同步方法的区别</h2>
+<ul>
+<li>同步方法：方法中逻辑执行完毕后，再继续执行后面的方法</li>
+<li>异步方法：方法中逻辑可能还没有执行完毕，就继续执行后面的内容</li>
+</ul>
+<p>异步方法的本质，往往异步方法当中都会使用多线程执行某部分逻辑<br>
+这样我们就不需要等待方法中逻辑执行完毕就可以继续执行下面的逻辑了</p>
+<p>注意：<br>
+Unity中的协同程序中的某些异步方法，有的使用的是多线程、有的使用的是迭代器分步执行<br>
+关于协同程序可以回顾Unity基础当中讲解协同程序原理的知识点</p>
+<h2 id="举例说明异步方法原理">举例说明异步方法原理</h2>
+<p>我们以一个异步倒计时方法举例</p>
+<ol>
+<li>
+<p>线程回调</p>
+ <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Start</span>()</span></span><br><span class="line">&#123;</span><br><span class="line">    CountDownAsync(<span class="number">5</span>, () =&gt;</span><br><span class="line">    &#123;</span><br><span class="line">        print(<span class="string">&quot;倒计时结束&quot;</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">    print(<span class="string">&quot;异步执行后的逻辑&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//倒计时方法</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">CountDownAsync</span>(<span class="params"><span class="built_in">int</span> second, UnityAction callBack</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    Thread t = <span class="keyword">new</span> Thread(() =&gt;</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">while</span> (<span class="literal">true</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            print(second);</span><br><span class="line">            Thread.Sleep(<span class="number">1000</span>);</span><br><span class="line">            --second;</span><br><span class="line">            <span class="keyword">if</span> (second &lt;= <span class="number">0</span>)</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        callBack?.Invoke();</span><br><span class="line">    &#125;);</span><br><span class="line">    t.Start();</span><br><span class="line">    print(<span class="string">&quot;开始倒计时&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="assets/image-20240310144657-xv0cg5j.png" alt="image">​</p>
+</li>
+<li>
+<p>​<code>async</code>​ 和 <code>await</code>​ 会等待线程执行完毕，继续执行后面的逻辑，相对第一种方式，它可以让函数分步执行</p>
+ <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Start</span>()</span></span><br><span class="line">&#123;</span><br><span class="line">    CountDownAsync(<span class="number">5</span>);</span><br><span class="line">    print(<span class="string">&quot;异步执行后的逻辑2&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">async</span> <span class="keyword">void</span> <span class="title">CountDownAsync</span>(<span class="params"><span class="built_in">int</span> second</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    print(<span class="string">&quot;倒计时开始&quot;</span>);</span><br><span class="line">    <span class="keyword">await</span> Task.Run(() =&gt;</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">while</span> (<span class="literal">true</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            print(second);</span><br><span class="line">            Thread.Sleep(<span class="number">1000</span>);</span><br><span class="line">            --second;</span><br><span class="line">            <span class="keyword">if</span> (second &lt;= <span class="number">0</span>)</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    print(<span class="string">&quot;倒计时结束&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>​<img src="assets/image-20240310144942-2b5bx1b.png" alt="image">​</p>
+</li>
+</ol>
+<h2 id="SocketTCP通信中的异步方法">SocketTCP通信中的异步方法</h2>
+<p>C#中网络通信异步方法中，主要提供了两种方案</p>
+<ol>
+<li>
+<h3 id="Begin​开头的API"><code>Begin</code>​开头的API</h3>
+<p>内部开多线程，通过回调形式返回结果，需要和<code>End</code>​​相关方法配合使用</p>
+<ul>
+<li>
+<h4 id="回调函数参数，以及Begin​开头的API返回值：IAsyncResult​">回调函数参数，以及<code>Begin</code>​开头的API返回值：<code>IAsyncResult</code>​</h4>
+<p>以下所有<code>Begin</code>​开头的API执行后都会返回该接口参数，传入该<code>Begin</code>​开头的API的回调方法也会传入该接口参数</p>
+<ul>
+<li>​<code>AsyncState</code>​​：获取调用异步方法时传入的参数，需要转换</li>
+<li>​<code>AsyncWaitHandle</code>​：用于同步等待，通过设置<code>Begin</code>​方法返回的<code>iAsyncResult</code>​的<code>AsyncWaitHandle</code>​属性，可以卡住主线程一段时间</li>
+</ul>
+</li>
+<li>
+<h4 id="服务器端相关-——-监听连入Begin​开头异步方法">服务器端相关 —— 监听连入<code>Begin</code>​开头异步方法</h4>
+<p>​<code>BeginAccept</code>​​方法有多个重载，一般使用两个参数的重载，<br>
+参数一：带<code>IAsyncResult</code>​​参数的回调方法，参数二：传入到参数一方法的内容，一般会把<code>Socket</code>​​自己传进去</p>
+<p>在异步监听到连入后，就会执行参数一的回调方法，并将参数二的内容传入到回调方法内，<br>
+在回调方法内获取<code>BeginAccept</code>​​参数二的内容，可以通过<code>iAsyncResult.AsyncState</code>​​获取，需要自行<code>as</code>​​成原来的类型<br>
+回调方法内需要执行<code>EndAccept</code>​​来获取连入的客户端<code>Socket</code>​​，需要传入委托方法的参数</p>
+<p>可以在回调方法内再次执行<code>BeginAccept</code>​​进行下一次的监听，<br>
+因为是执行的异步方法，回调方法会继续执行，所以不构成递归，不需要担心爆栈</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Start</span>()</span></span><br><span class="line">&#123;</span><br><span class="line">    Socket socketTcp = <span class="keyword">new</span> Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);</span><br><span class="line">	socketTcp.BeginAccept(AcceptCallBack, socketTcp);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">AcceptCallBack</span>(<span class="params">IAsyncResult result</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">try</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//获取传入的参数</span></span><br><span class="line">        Socket s = result.AsyncState <span class="keyword">as</span> Socket;</span><br><span class="line">        <span class="comment">//通过调用EndAccept就可以得到连入的客户端Socket</span></span><br><span class="line">        Socket clientSocket = s.EndAccept(result);</span><br><span class="line">        <span class="comment">//继续下一次的监听，注意，它不是递归，因为在执行了异步方法后，此方法会继续执行</span></span><br><span class="line">        s.BeginAccept(AcceptCallBack, clientSocket);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">catch</span> (SocketException e)</span><br><span class="line">    &#123;</span><br><span class="line">        print(e.SocketErrorCode);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<h4 id="客户端相关-——-连接服务器Begin​开头异步方法">客户端相关 —— 连接服务器<code>Begin</code>​开头异步方法</h4>
+<p>使用方法与服务端的<code>BeginAccept</code>​​，但是多了一个参数，同时一般也不需要连续多次执行</p>
+<ul>
+<li>参数一：IP地址和端口号，</li>
+<li>参数二：带<code>IAsyncResult</code>​​参数的回调方法</li>
+<li>参数三：传入到参数一方法的内容，一般会把<code>Socket</code>​​自己传进去</li>
+</ul>
+<p>在异步监听到连入后，就会执行参数一的回调方法，并将参数二的内容传入到回调方法内，<br>
+在回调方法内获取参数二的内容，可以通过<code>iAsyncResult.AsyncState</code>​​获取，需要自行<code>as</code>​​成原来的类型<br>
+回调方法内需要执行<code>EndConnect</code>​​，需要传入回调方法的参数</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">Socket socketTcp = <span class="keyword">new</span> Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);</span><br><span class="line">IPEndPoint ipPoint = <span class="keyword">new</span> IPEndPoint(IPAddress.Parse(<span class="string">&quot;127.0.0.1&quot;</span>), <span class="number">8080</span>);</span><br><span class="line">socketTcp.BeginConnect(ipPoint, (result) =&gt;</span><br><span class="line">&#123;</span><br><span class="line">    Socket s = result.AsyncState <span class="keyword">as</span> Socket;</span><br><span class="line">    <span class="keyword">try</span></span><br><span class="line">    &#123;</span><br><span class="line">        s.EndConnect(result);</span><br><span class="line">        print(<span class="string">&quot;连接成功&quot;</span>);      <span class="comment">//不需要再次连接</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">catch</span> (SocketException e)</span><br><span class="line">    &#123;</span><br><span class="line">        print(<span class="string">&quot;连接出错：&quot;</span> + e.ErrorCode);</span><br><span class="line">        <span class="comment">//还可以在这里进行断线重连的操作</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;, socketTcp);</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>服务器和客户端通用</p>
+<ul>
+<li>
+<h4 id="TCP接收消息Begin​开头异步方法">TCP接收消息<code>Begin</code>​开头异步方法</h4>
+<p>开始异步接收消息使用<code>socket.BeginReceive()</code>​​</p>
+<ul>
+<li>参数一：用于接收消息的字节数组</li>
+<li>参数二：偏移量，相当于从接收消息字节数组的第几位开始接收，处理分包、黏包可以就利用该参数</li>
+<li>参数三：接收消息字节数组还能接收多少字节</li>
+<li>参数四：<code>SocketFlag</code>​​枚举，也就是标识，一般传入空标识<code>SocketFlag.None</code>​​即可</li>
+<li>参数五：回调函数，参数为<code>IAsyncResult</code>​​</li>
+<li>参数六：传入到回调函数内的参数，一般传入<code>socket</code>​​自己，在回调函数内通过<code>iAsyncResult.AsyncState</code>​​获取</li>
+</ul>
+<p>在接收到消息后，会执行参数五的回调函数，并将参数六传入进去，可通过<code>iAsyncResult.AsyncState</code>​获取<br>
+需要通过<code>socket.EndReceive()</code>​获取接收到了多少字节，需要传入回调函数的参数，<br>
+在回调函数内就可以处理消息，执行<code>socket.BeginReceive()</code>​开始下一次消息监听</p>
+<p>同样的，因为<code>socket.BeginReceive()</code>​是异步方法，回调方法会继续执行，所以不构成递归，不需要担心爆栈（前提是正常运行）</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Start</span>()</span></span><br><span class="line">&#123;</span><br><span class="line">    Socket socketTcp = <span class="keyword">new</span> Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);</span><br><span class="line">	<span class="comment">//假设这里连接了另外一台设备</span></span><br><span class="line">    socketTcp.BeginReceive(resultBytes, <span class="number">0</span>, resultBytes.Length, SocketFlags.None, ReceiveCallBack, socketTcp);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">ReceiveCallBack</span>(<span class="params">IAsyncResult result</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">try</span></span><br><span class="line">    &#123;</span><br><span class="line">        Socket socket = result.AsyncState <span class="keyword">as</span> Socket;</span><br><span class="line">        <span class="comment">//返回值是接收到了多少字节</span></span><br><span class="line">        <span class="built_in">int</span> receiveNum = socket.EndReceive(result);</span><br><span class="line">        <span class="comment">//进行消息处理</span></span><br><span class="line">        print(Encoding.UTF8.GetString(resultBytes, <span class="number">0</span>, receiveNum));</span><br><span class="line">        <span class="comment">//如果还要继续接收</span></span><br><span class="line">        socket.BeginReceive(resultBytes, <span class="number">0</span>, resultBytes.Length, SocketFlags.None, ReceiveCallBack, socket);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">catch</span> (SocketException e)</span><br><span class="line">    &#123;</span><br><span class="line">        print(<span class="string">&quot;接收消息出错：&quot;</span> + e.ErrorCode + e.Message);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<h4 id="TCP发送消息Begin​开头异步方法">TCP发送消息<code>Begin</code>​开头异步方法</h4>
+<p>开始异步发送消息使用<code>socket.BeginSend()</code>​</p>
+<ul>
+<li>参数一：要发送的字节数组</li>
+<li>参数二：偏移量，从字节数组的第几位开始发送，将一个消息分开发送时可以使用</li>
+<li>参数三：发送消息字节数组最多发送出去多少字节，将一个消息分开发送时可以使用</li>
+<li>参数四：<code>SocketFlag</code>​枚举，也就是标识，一般传入空标识<code>SocketFlag.None</code>​即可</li>
+<li>参数五：回调函数，参数为<code>IAsyncResult</code>​</li>
+<li>参数六：传入到回调函数内的参数，一般传入<code>socket</code>​自己，在回调函数内通过<code>iAsyncResult.AsyncState</code>​获取</li>
+</ul>
+<p>在发送了消息后，会执行参数五的回调函数，并将参数六传入进去，可通过<code>iAsyncResult.AsyncState</code>​获取<br>
+通过<code>socket.EndSend()</code>​可以获取发送出去了多少字节，需要传入回调函数的参数<br>
+一般不需要获取发送出去了多少字节，除非要将一个消息分批发送</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Start</span>()</span></span><br><span class="line">&#123;</span><br><span class="line">    Socket socketTcp = <span class="keyword">new</span> Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);</span><br><span class="line">    <span class="built_in">byte</span>[] bytes = Encoding.UTF8.GetBytes(<span class="string">&quot;123123123123123&quot;</span>);</span><br><span class="line">    socketTcp.BeginSend(bytes, <span class="number">0</span>, bytes.Length, SocketFlags.None, (result) =&gt;</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">try</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">int</span> sendNum = socketTcp.EndSend(result);</span><br><span class="line">            print(<span class="string">&quot;发送成功&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">catch</span> (SocketException e)</span><br><span class="line">        &#123;</span><br><span class="line">            print(<span class="string">&quot;发送错误：&quot;</span> + e.SocketErrorCode + e.Message);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;, socketTcp);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<h3 id="Async​结尾的API"><code>Async</code>​结尾的API</h3>
+<p>内部开多线程，通过回调形式返回结果，依赖<code>SocketAsyncEventArgs</code>​对象配合使用，可以让我们更加方便的进行操作</p>
+<ul>
+<li>
+<h4 id="关键变量类型：SocketAsyncEventArgs​">关键变量类型：<code>SocketAsyncEventArgs</code>​</h4>
+<p>它会作为<code>Async</code>​异步方法的传入值，我们需要通过它进行一些关键参数的赋值，同时频繁通过它的属性获取需要的内容<br>
+设置好<code>SocketAsyncEventArgs</code>​之后，调用<code>Async</code>​结尾的API就可以直接传入它而无需做其他操作</p>
+<ul>
+<li>
+<p>​<code>Completed</code>​​：在传入到<code>Async</code>​​异步方法前先添加回调函数，在异步方法执行完毕后就会执行这里的回调函数，</p>
+<p>​<code>Async</code>​​异步方法结束后的处理逻辑主要就在回调函数里执行</p>
+<p>该事件使用的是<code>EventHandler&lt;SocketAsyncEventArgs&gt;</code>​​委托，<br>
+因此回调函数的参数列表就是一个<code>object</code>​​类型参数和一个<code>SocketAsyncEventArgs</code>​​类型参数，<br>
+其中<code>object</code>​​就是执行异步方法的<code>Socket</code>​​，<code>SocketAsyncEventArgs</code>​​就执行异步方法时传入的参数、</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//监听客户端连入部分代码的例子</span></span><br><span class="line">SocketAsyncEventArgs AcceptAsyncArgs = <span class="keyword">new</span> SocketAsyncEventArgs();</span><br><span class="line">AcceptAsyncArgs.Completed += (socket, args) =&gt;</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (args.SocketError == SocketError.Success)</span><br><span class="line">    &#123;</span><br><span class="line">        Socket clientSocket = args.AcceptSocket;</span><br><span class="line">        (socket <span class="keyword">as</span> Socket).AcceptAsync(args);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        print(<span class="string">&quot;连入客户端失败：&quot;</span> + args.SocketError);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>​<code>SocketError</code>​​：获取报错号，可用于判断<code>Async</code>​​异步方法是否执行成功，若等于<code>SocketError.Success</code>​​就是执行成功</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (args.SocketError == SocketError.Success)</span><br><span class="line">	print(<span class="string">&quot;连接成功&quot;</span>);</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    print(<span class="string">&quot;连接服务器失败：&quot;</span> + args.SocketError);</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>​<code>AcceptSocket</code>​​：监听连入<code>Async</code>​​结尾异步方法执行完毕后，通过该方法获取连接客户端的Socket</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Socket clientSocket = args.AcceptSocket;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>​<code>SetBuffer()</code>​​：设置发送/接收消息的字节数组，同时设置发送/接收数据的起始位置，以及字节数组最大发送/接收的字节数</p>
+<p>如果已经设置了发送/接收消息的字节数组，那么可以只设置发送/接收数据的起始位置，以及字节数组最大发送/接收的字节数<br>
+其中设置发送/接收数据的起始位置，以及字节数组最大发送/接收的字节数在接收消息时可以用来处理分包黏包</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">SocketAsyncEventArgs receiveAsyncArgs = <span class="keyword">new</span> SocketAsyncEventArgs();</span><br><span class="line"><span class="built_in">byte</span>[] receiveBytes = <span class="keyword">new</span> <span class="built_in">byte</span>[<span class="number">1024</span> * <span class="number">1024</span>];</span><br><span class="line">receiveAsyncArgs.SetBuffer(receiveBytes, <span class="number">0</span>, receiveBytes.Length);</span><br><span class="line">receiveAsyncArgs.SetBuffer(<span class="number">0</span>, args.Buffer.Length);</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>​<code>Buffer</code>​​：获取发送/接收消息的字节数组的属性</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//反序列化接收到的字节数组</span></span><br><span class="line">Encoding.UTF8.GetString(args.Buffer, <span class="number">0</span>, args.BytesTransferred);</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>​<code>BytesTransferred</code>​​：获取字节数组发送/接收了多少字节数</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//反序列化接收到的字节数组</span></span><br><span class="line">Encoding.UTF8.GetString(args.Buffer, <span class="number">0</span>, args.BytesTransferred);</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>​<code>RemoteEndPoint</code>​：异步连接服务器前，设置服务器的IP地址和端口号</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">SocketAsyncEventArgs ConnectAsyncArgs = <span class="keyword">new</span> SocketAsyncEventArgs();</span><br><span class="line">ConnectAsyncArgs.RemoteEndPoint = <span class="keyword">new</span> IPEndPoint(IPAddress.Parse(<span class="string">&quot;127.0.0.1&quot;</span>, <span class="number">8080</span>)</span><br><span class="line">ConnectAsyncArgs.Completed += (socket, args) =&gt;</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (args.SocketError == SocketError.Success)</span><br><span class="line">    &#123;</span><br><span class="line">        print(<span class="string">&quot;连接成功&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        print(<span class="string">&quot;连接服务器失败：&quot;</span> + args.SocketError);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li>
+<h4 id="服务器端相关-——-监听连入Async​结尾异步方法">服务器端相关 —— 监听连入<code>Async</code>​结尾异步方法</h4>
+<p>首先实例化一个<code>SocketAsyncEventArgs</code>​​，然后设置完成异步方法后执行的回调函数<br>
+回调函数有两个参数，一个是执行异步方法的<code>Socket</code>​​（<code>object</code>​​类型），一个是传入到异步方法的<code>SocketAsyncEventArgs</code>​​</p>
+<p>在回调函数中，需要通过<code>socketAsyncEventArgs.SocketError</code>​来判断客户端连入是否成功<br>
+如果成功，就可以通过<code>socketAsyncEventArgs.AcceptSocket</code>​来获取连接客户端的Socket</p>
+<p>同样的，可以通过传入的<code>Socket</code>​执行<code>AcceptAsync</code>​来进行下一次的监听方法</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">SocketAsyncEventArgs AcceptAsyncArgs = <span class="keyword">new</span> SocketAsyncEventArgs();</span><br><span class="line">AcceptAsyncArgs.Completed += (socket, args) =&gt;</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (args.SocketError == SocketError.Success)</span><br><span class="line">    &#123;</span><br><span class="line">        Socket clientSocket = args.AcceptSocket;</span><br><span class="line">        (socket <span class="keyword">as</span> Socket).AcceptAsync(args);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        print(<span class="string">&quot;连入客户端失败：&quot;</span> + args.SocketError);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">socketTcp.AcceptAsync(AcceptAsyncArgs);</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<h4 id="客户端相关-——-连接服务器异步Async​结尾方法">客户端相关 —— 连接服务器异步<code>Async</code>​结尾方法</h4>
+<p>首先实例化一个<code>SocketAsyncEventArgs</code>​，然后设置完成异步方法后执行的回调函数<br>
+回调函数有两个参数，一个是执行异步方法的<code>Socket</code>​（<code>object</code>​类型），一个是传入到异步方法的<code>SocketAsyncEventArgs</code>​<br>
+然后，需要通过<code>socketAsyncEventArgs.RemoteEndPoint</code>​来设置要连接的服务器</p>
+<p>在回调函数中，需要通过<code>socketAsyncEventArgs.SocketError</code>​来判断连接服务器是否成功</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">SocketAsyncEventArgs ConnectAsyncArgs = <span class="keyword">new</span> SocketAsyncEventArgs();</span><br><span class="line">ConnectAsyncArgs.RemoteEndPoint = <span class="keyword">new</span> IPEndPoint(IPAddress.Parse(<span class="string">&quot;127.0.0.1&quot;</span>, <span class="number">8080</span>)</span><br><span class="line">ConnectAsyncArgs.Completed += (socket, args) =&gt;</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (args.SocketError == SocketError.Success)</span><br><span class="line">    &#123;</span><br><span class="line">        print(<span class="string">&quot;连接成功&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        print(<span class="string">&quot;连接服务器失败：&quot;</span> + args.SocketError);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">socketTcp.ConnectAsync(ConnectAsyncArgs);</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>服务器和客户端通用</p>
+<ul>
+<li>
+<h4 id="TCP发送消息异步Async​结尾方法">TCP发送消息异步<code>Async</code>​结尾方法</h4>
+<p>首先实例化一个<code>SocketAsyncEventArgs</code>​，然后设置完成异步方法后执行的回调函数<br>
+回调函数有两个参数，一个是执行异步方法的<code>Socket</code>​（<code>object</code>​类型），一个是传入到异步方法的<code>SocketAsyncEventArgs</code>​<br>
+然后，需要通过<code>socketAsyncEventArgs.SetBuffer()</code>​来设置要发送出去的字节数组</p>
+<p>在回调函数中，需要通过<code>socketAsyncEventArgs.SocketError</code>​来判断消息发送是否成功</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">SocketAsyncEventArgs SendAsyncArgs = <span class="keyword">new</span> SocketAsyncEventArgs();</span><br><span class="line"><span class="built_in">byte</span>[] bytes2 = Encoding.UTF8.GetBytes(<span class="string">&quot;abcabcabcabc&quot;</span>);</span><br><span class="line">SendAsyncArgs.SetBuffer(bytes2, <span class="number">0</span>, bytes2.Length);</span><br><span class="line">SendAsyncArgs.Completed += (socket, args) =&gt;</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (args.SocketError == SocketError.Success)</span><br><span class="line">    &#123;</span><br><span class="line">        print(<span class="string">&quot;发送成功&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        print(<span class="string">&quot;发送失败：&quot;</span> + args.SocketError);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">socketTcp.SendAsync(SendAsyncArgs);</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<h4 id="TCP接收消息异步Async​结尾方法">TCP接收消息异步<code>Async</code>​结尾方法</h4>
+<p>首先实例化一个<code>SocketAsyncEventArgs</code>​，然后设置完成异步方法后执行的回调函数<br>
+回调函数有两个参数，一个是执行异步方法的<code>Socket</code>​（<code>object</code>​类型），一个是传入到异步方法的<code>SocketAsyncEventArgs</code>​<br>
+然后，需要通过<code>socketAsyncEventArgs.SetBuffer()</code>​来设置要接收消息的字节数组</p>
+<p>在回调函数中，需要通过<code>socketAsyncEventArgs.SocketError</code>​来判消息接收是否成功<br>
+通过<code>socketAsyncEventArgs.Buffer</code>​来获取接收到消息的字节数组<br>
+通过<code>socketAsyncEventArgs.BytesTransferred</code>​来获取接收到了多少字节数据</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">SocketAsyncEventArgs receiveAsyncArgs = <span class="keyword">new</span> SocketAsyncEventArgs();</span><br><span class="line"><span class="built_in">byte</span>[] receiveBytes = <span class="keyword">new</span> <span class="built_in">byte</span>[<span class="number">1024</span> * <span class="number">1024</span>];</span><br><span class="line">receiveAsyncArgs.SetBuffer(receiveBytes, <span class="number">0</span>, receiveBytes.Length);</span><br><span class="line">receiveAsyncArgs.Completed += (socket, args) =&gt;</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (args.SocketError == SocketError.Success)</span><br><span class="line">    &#123;</span><br><span class="line">        Encoding.UTF8.GetString(args.Buffer, <span class="number">0</span>, args.BytesTransferred);</span><br><span class="line">        args.SetBuffer(<span class="number">0</span>, args.Buffer.Length);</span><br><span class="line">        <span class="comment">//接受完消息后在接收下一条</span></span><br><span class="line">        (socket <span class="keyword">as</span> Socket).ReceiveAsync(args);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        print(<span class="string">&quot;接收失败：&quot;</span> + args.SocketError);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">socketTcp.ReceiveAsync(receiveAsyncArgs);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">文KRIFE齐</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2024/03/10/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UN%E2%80%94%E2%80%94Unity%E7%BD%91%E7%BB%9C%E5%BC%80%E5%8F%91%E7%9B%B8%E5%85%B3/UN2%E2%80%94%E2%80%94%E5%A5%97%E6%8E%A5%E5%AD%97Socket%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1%E6%96%B9%E6%A1%88/UN2L8%E2%80%94%E2%80%94TCP%E5%BC%82%E6%AD%A5%E9%80%9A%E4%BF%A1%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95/">http://example.com/2024/03/10/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UN%E2%80%94%E2%80%94Unity%E7%BD%91%E7%BB%9C%E5%BC%80%E5%8F%91%E7%9B%B8%E5%85%B3/UN2%E2%80%94%E2%80%94%E5%A5%97%E6%8E%A5%E5%AD%97Socket%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1%E6%96%B9%E6%A1%88/UN2L8%E2%80%94%E2%80%94TCP%E5%BC%82%E6%AD%A5%E9%80%9A%E4%BF%A1%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">文KRIFE齐的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2024/03/10/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UN%E2%80%94%E2%80%94Unity%E7%BD%91%E7%BB%9C%E5%BC%80%E5%8F%91%E7%9B%B8%E5%85%B3/UN2%E2%80%94%E2%80%94%E5%A5%97%E6%8E%A5%E5%AD%97Socket%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1%E6%96%B9%E6%A1%88/UN2L9%E2%80%94%E2%80%94%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%92%8C%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%BC%82%E6%AD%A5%E9%80%9A%E4%BF%A1/" title="UN2L9——服务端和客户端异步通信"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">UN2L9——服务端和客户端异步通信</div></div></a></div><div class="next-post pull-right"><a href="/2024/03/09/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UN%E2%80%94%E2%80%94Unity%E7%BD%91%E7%BB%9C%E5%BC%80%E5%8F%91%E7%9B%B8%E5%85%B3/UN2%E2%80%94%E2%80%94%E5%A5%97%E6%8E%A5%E5%AD%97Socket%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1%E6%96%B9%E6%A1%88/UN2L7%E2%80%94%E2%80%94%E5%AE%9E%E7%8E%B0%E5%BF%83%E8%B7%B3%E6%B6%88%E6%81%AF/" title="UN2L7——实现心跳消息"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">UN2L7——实现心跳消息</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">文KRIFE齐</div><div class="author-info__description">目前正处于搭建测试环节</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">834</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">113</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">UN2L8——TCP异步通信常用方法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%AC%E7%AB%A0%E4%BB%A3%E7%A0%81%E5%85%B3%E9%94%AE%E5%AD%97"><span class="toc-number">1.1.</span> <span class="toc-text">本章代码关键字</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%82%E6%AD%A5%E6%96%B9%E6%B3%95%E5%92%8C%E5%90%8C%E6%AD%A5%E6%96%B9%E6%B3%95%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">1.2.</span> <span class="toc-text">异步方法和同步方法的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BE%E4%BE%8B%E8%AF%B4%E6%98%8E%E5%BC%82%E6%AD%A5%E6%96%B9%E6%B3%95%E5%8E%9F%E7%90%86"><span class="toc-number">1.3.</span> <span class="toc-text">举例说明异步方法原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SocketTCP%E9%80%9A%E4%BF%A1%E4%B8%AD%E7%9A%84%E5%BC%82%E6%AD%A5%E6%96%B9%E6%B3%95"><span class="toc-number">1.4.</span> <span class="toc-text">SocketTCP通信中的异步方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Begin%E2%80%8B%E5%BC%80%E5%A4%B4%E7%9A%84API"><span class="toc-number">1.4.1.</span> <span class="toc-text">Begin​开头的API</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0%E5%8F%82%E6%95%B0%EF%BC%8C%E4%BB%A5%E5%8F%8ABegin%E2%80%8B%E5%BC%80%E5%A4%B4%E7%9A%84API%E8%BF%94%E5%9B%9E%E5%80%BC%EF%BC%9AIAsyncResult%E2%80%8B"><span class="toc-number">1.4.1.1.</span> <span class="toc-text">回调函数参数，以及Begin​开头的API返回值：IAsyncResult​</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF%E7%9B%B8%E5%85%B3-%E2%80%94%E2%80%94-%E7%9B%91%E5%90%AC%E8%BF%9E%E5%85%A5Begin%E2%80%8B%E5%BC%80%E5%A4%B4%E5%BC%82%E6%AD%A5%E6%96%B9%E6%B3%95"><span class="toc-number">1.4.1.2.</span> <span class="toc-text">服务器端相关 —— 监听连入Begin​开头异步方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9B%B8%E5%85%B3-%E2%80%94%E2%80%94-%E8%BF%9E%E6%8E%A5%E6%9C%8D%E5%8A%A1%E5%99%A8Begin%E2%80%8B%E5%BC%80%E5%A4%B4%E5%BC%82%E6%AD%A5%E6%96%B9%E6%B3%95"><span class="toc-number">1.4.1.3.</span> <span class="toc-text">客户端相关 —— 连接服务器Begin​开头异步方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#TCP%E6%8E%A5%E6%94%B6%E6%B6%88%E6%81%AFBegin%E2%80%8B%E5%BC%80%E5%A4%B4%E5%BC%82%E6%AD%A5%E6%96%B9%E6%B3%95"><span class="toc-number">1.4.1.4.</span> <span class="toc-text">TCP接收消息Begin​开头异步方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#TCP%E5%8F%91%E9%80%81%E6%B6%88%E6%81%AFBegin%E2%80%8B%E5%BC%80%E5%A4%B4%E5%BC%82%E6%AD%A5%E6%96%B9%E6%B3%95"><span class="toc-number">1.4.1.5.</span> <span class="toc-text">TCP发送消息Begin​开头异步方法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Async%E2%80%8B%E7%BB%93%E5%B0%BE%E7%9A%84API"><span class="toc-number">1.4.2.</span> <span class="toc-text">Async​结尾的API</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B3%E9%94%AE%E5%8F%98%E9%87%8F%E7%B1%BB%E5%9E%8B%EF%BC%9ASocketAsyncEventArgs%E2%80%8B"><span class="toc-number">1.4.2.1.</span> <span class="toc-text">关键变量类型：SocketAsyncEventArgs​</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF%E7%9B%B8%E5%85%B3-%E2%80%94%E2%80%94-%E7%9B%91%E5%90%AC%E8%BF%9E%E5%85%A5Async%E2%80%8B%E7%BB%93%E5%B0%BE%E5%BC%82%E6%AD%A5%E6%96%B9%E6%B3%95"><span class="toc-number">1.4.2.2.</span> <span class="toc-text">服务器端相关 —— 监听连入Async​结尾异步方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9B%B8%E5%85%B3-%E2%80%94%E2%80%94-%E8%BF%9E%E6%8E%A5%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%BC%82%E6%AD%A5Async%E2%80%8B%E7%BB%93%E5%B0%BE%E6%96%B9%E6%B3%95"><span class="toc-number">1.4.2.3.</span> <span class="toc-text">客户端相关 —— 连接服务器异步Async​结尾方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#TCP%E5%8F%91%E9%80%81%E6%B6%88%E6%81%AF%E5%BC%82%E6%AD%A5Async%E2%80%8B%E7%BB%93%E5%B0%BE%E6%96%B9%E6%B3%95"><span class="toc-number">1.4.2.4.</span> <span class="toc-text">TCP发送消息异步Async​结尾方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#TCP%E6%8E%A5%E6%94%B6%E6%B6%88%E6%81%AF%E5%BC%82%E6%AD%A5Async%E2%80%8B%E7%BB%93%E5%B0%BE%E6%96%B9%E6%B3%95"><span class="toc-number">1.4.2.5.</span> <span class="toc-text">TCP接收消息异步Async​结尾方法</span></a></li></ol></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/07/01/hello-world/" title="欢迎来到文KRIFE齐的博客！">欢迎来到文KRIFE齐的博客！</a><time datetime="2024-07-01T11:46:20.391Z" title="发表于 2024-07-01 19:46:20">2024-07-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/US3S1L5%E2%80%94%E2%80%94Phong%E5%85%89%E7%85%A7%E6%A8%A1%E5%9E%8B/" title="US3S1L5——Phong光照模型">US3S1L5——Phong光照模型</a><time datetime="2024-06-25T14:33:57.000Z" title="发表于 2024-06-25 22:33:57">2024-06-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/US3S1L4%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B/US3S1L4-2%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B%E7%9A%84%E9%80%90%E7%89%87%E5%85%83%E5%85%89%E7%85%A7/" title="US3S1L4-2——Phong式高光反射模型的逐片元光照">US3S1L4-2——Phong式高光反射模型的逐片元光照</a><time datetime="2024-06-25T13:16:37.000Z" title="发表于 2024-06-25 21:16:37">2024-06-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/US3S1L4%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B/US3S1L4-1%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B%E7%9A%84%E9%80%90%E9%A1%B6%E7%82%B9%E5%85%89%E7%85%A7/" title="US3S1L4-1——Phong式高光反射模型的逐顶点光照">US3S1L4-1——Phong式高光反射模型的逐顶点光照</a><time datetime="2024-06-25T13:16:05.000Z" title="发表于 2024-06-25 21:16:05">2024-06-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/US3S1L4%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B/" title="US3S1L4——Phong式高光反射模型">US3S1L4——Phong式高光反射模型</a><time datetime="2024-06-25T10:14:12.000Z" title="发表于 2024-06-25 18:14:12">2024-06-25</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By 文KRIFE齐</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

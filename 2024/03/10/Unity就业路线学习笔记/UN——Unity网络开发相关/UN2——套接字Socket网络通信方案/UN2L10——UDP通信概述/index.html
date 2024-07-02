@@ -1,0 +1,231 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>UN2L10——UDP通信概述 | 文KRIFE齐的博客</title><meta name="author" content="文KRIFE齐"><meta name="copyright" content="文KRIFE齐"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="UN2L10——UDP通信概述 服务端和客户端需要做什么 UDP通信逻辑要比TCP通信的逻辑更简单一点，UDP中客户端与服务器端要做的事情大同小异，细节上有差异   客户端和服务端  创建套接字Socket 用Bind​方法将套接字与本地地址进行绑定 用ReceiveFrom​和SendTo​方法在套接字上收发消息 用Shutdown​方法释放连接 关闭套接字    ​​ UDP相对TCP的区别">
+<meta property="og:type" content="article">
+<meta property="og:title" content="UN2L10——UDP通信概述">
+<meta property="og:url" content="http://example.com/2024/03/10/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UN%E2%80%94%E2%80%94Unity%E7%BD%91%E7%BB%9C%E5%BC%80%E5%8F%91%E7%9B%B8%E5%85%B3/UN2%E2%80%94%E2%80%94%E5%A5%97%E6%8E%A5%E5%AD%97Socket%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1%E6%96%B9%E6%A1%88/UN2L10%E2%80%94%E2%80%94UDP%E9%80%9A%E4%BF%A1%E6%A6%82%E8%BF%B0/index.html">
+<meta property="og:site_name" content="文KRIFE齐的博客">
+<meta property="og:description" content="UN2L10——UDP通信概述 服务端和客户端需要做什么 UDP通信逻辑要比TCP通信的逻辑更简单一点，UDP中客户端与服务器端要做的事情大同小异，细节上有差异   客户端和服务端  创建套接字Socket 用Bind​方法将套接字与本地地址进行绑定 用ReceiveFrom​和SendTo​方法在套接字上收发消息 用Shutdown​方法释放连接 关闭套接字    ​​ UDP相对TCP的区别">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png">
+<meta property="article:published_time" content="2024-03-10T15:00:09.000Z">
+<meta property="article:modified_time" content="2024-07-02T03:57:10.000Z">
+<meta property="article:author" content="文KRIFE齐">
+<meta property="article:tag" content="blog">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2024/03/10/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UN%E2%80%94%E2%80%94Unity%E7%BD%91%E7%BB%9C%E5%BC%80%E5%8F%91%E7%9B%B8%E5%85%B3/UN2%E2%80%94%E2%80%94%E5%A5%97%E6%8E%A5%E5%AD%97Socket%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1%E6%96%B9%E6%A1%88/UN2L10%E2%80%94%E2%80%94UDP%E9%80%9A%E4%BF%A1%E6%A6%82%E8%BF%B0/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'UN2L10——UDP通信概述',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-07-02 11:57:10'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">834</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">113</div></a></div><hr class="custom-hr"/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="文KRIFE齐的博客"><span class="site-name">文KRIFE齐的博客</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">UN2L10——UDP通信概述</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-03-10T15:00:09.000Z" title="发表于 2024-03-10 23:00:09">2024-03-10</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-07-02T03:57:10.000Z" title="更新于 2024-07-02 11:57:10">2024-07-02</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UN%E2%80%94%E2%80%94Unity%E7%BD%91%E7%BB%9C%E5%BC%80%E5%8F%91%E7%9B%B8%E5%85%B3/">UN——Unity网络开发相关</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UN%E2%80%94%E2%80%94Unity%E7%BD%91%E7%BB%9C%E5%BC%80%E5%8F%91%E7%9B%B8%E5%85%B3/UN2%E2%80%94%E2%80%94%E5%A5%97%E6%8E%A5%E5%AD%97Socket%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1%E6%96%B9%E6%A1%88/">UN2——套接字Socket网络通信方案</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="UN2L10——UDP通信概述"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1>UN2L10——UDP通信概述</h1>
+<h2 id="服务端和客户端需要做什么">服务端和客户端需要做什么</h2>
+<p>UDP通信逻辑要比TCP通信的逻辑更简单一点，UDP中客户端与服务器端要做的事情大同小异，细节上有差异</p>
+<ul>
+<li>
+<p>客户端和服务端</p>
+<ol>
+<li>创建套接字Socket</li>
+<li>用<code>Bind</code>​方法将套接字与本地地址进行绑定</li>
+<li>用<code>ReceiveFrom</code>​和<code>SendTo</code>​方法在套接字上收发消息</li>
+<li>用<code>Shutdown</code>​方法释放连接</li>
+<li>关闭套接字</li>
+</ol>
+</li>
+</ul>
+<p>​<img src="assets/image-20240310230418-ektis4w.png" alt="image">​</p>
+<h2 id="UDP相对TCP的区别">UDP相对TCP的区别</h2>
+<p>​<img src="assets/image-20240303155948-tds0yio.png" alt="image">​</p>
+<p>TCP通信与UDP通信逻辑上的区别：</p>
+<p>​<img src="assets/image-20240304172139-850jyl1.png" alt="image"><img src="assets/image-20240310230717-y8ouitl.png" alt="image">​</p>
+<h2 id="分包、黏包问题">分包、黏包问题</h2>
+<ol>
+<li>UDP不会黏包</li>
+<li>因为UDP不可靠，我们要避免其自动分包，消息大小要控制在一定范围内</li>
+</ol>
+<p>但是我们可以根据自己的需求自己在实现逻辑时加入分包黏包功能：</p>
+<ol>
+<li>消息过小可以手动黏包</li>
+<li>消息过大可以手动分包</li>
+</ol>
+<p>但是对于手动分包，我们必须解决UDP无序和丢包的问题</p>
+<h3 id="黏包问题">黏包问题</h3>
+<p>UDP本身作为无连接的不可靠的传输协议（适合频繁发送较小的数据包），<strong>他不会对数据包进行合并发送</strong><br>
+一端发送什么数据，直接就发出去了，他不会对数据合并，<strong>因此在UDP当中不会出现黏包问题</strong>（除非你手动进行黏包）</p>
+<h3 id="分包问题">分包问题</h3>
+<p>由于UDP是不可靠的连接，消息传递过程中可能出现<strong>无序、丢包等情况****所以如果允许UDP进行分包，那后果将会是灾难性的</strong>，比如分包的后半段丢包或者比上半段先发来，我们在处理消息时将会非常困难<br>
+因此为了避免其分包，我们建议在发送UDP消息时，控制消息的大小在<strong>MTU（最大传输单元）</strong> 范围内</p>
+<p><strong>MTU（Maximum Transmission Unit）最大传输单元，用来通知对方所能接受数据服务单元的最大尺寸</strong><br>
+不同操作系统会提供用户一个默认值，以太网和802.3对数据帧的长度限制，其最大值分别是1500字节和1492字节<br>
+由于UDP包本身带有一些信息，因此建议：</p>
+<ol>
+<li>局域网环境下：1472字节以内（1500减去UDP头部28为1472）</li>
+<li>互联网环境下：548字节以内（老的ISP拨号网络的标准值为576减去UDP头部28为548）</li>
+</ol>
+<p>只要遵守这个规则，就不会出现自动分包的情况</p>
+<p>如果想要发送的消息确实比较大，要大于548字节或1472字节这个限制呢？<br>
+比如我们要发一个5000字节的数据，他是一条完整消息<br>
+我们可以<strong>进行手动分包，将5000拆分成多个消息，每个消息不超过限制</strong>，但是手动分包的前提是要<strong>解决UDP的丢包和无序问题</strong><br>
+我们可以将<strong>不可靠的UDP通信实现为可靠的UDP通信</strong><br>
+比如：在消息中加入序号、消息总包数、自己的包ID、长度等等信息，并且实现消息确认、消息重发等功能</p>
+<h2 id="总结">总结</h2>
+<ol>
+<li>
+<p>服务端和客户端代码应该怎么写</p>
+<p><strong>创建—&gt;绑定—&gt;收发消息—&gt;释放关闭</strong></p>
+</li>
+<li>
+<p>UDP相对TCP的区别</p>
+<p><strong>代码流程更简单，UDP不可靠效率高</strong></p>
+</li>
+<li>
+<p>UDP的分包、黏包问题，UDP不会黏包，要避免UDP自动分包</p>
+<ol>
+<li><strong>局域网环境下：1472字节以内</strong></li>
+<li><strong>互联网环境下：548字节以内</strong></li>
+</ol>
+<p><strong>我们可以根据需求自己处理UDP的分包黏包，<br>
+但是前提是要自己解决无序和丢包的问题</strong></p>
+</li>
+</ol>
+<p>​<img src="assets/image-20240310230717-y8ouitl.png" alt="image">​​<img src="assets/image-20240303155948-tds0yio.png" alt="image">​</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">文KRIFE齐</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2024/03/10/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UN%E2%80%94%E2%80%94Unity%E7%BD%91%E7%BB%9C%E5%BC%80%E5%8F%91%E7%9B%B8%E5%85%B3/UN2%E2%80%94%E2%80%94%E5%A5%97%E6%8E%A5%E5%AD%97Socket%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1%E6%96%B9%E6%A1%88/UN2L10%E2%80%94%E2%80%94UDP%E9%80%9A%E4%BF%A1%E6%A6%82%E8%BF%B0/">http://example.com/2024/03/10/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UN%E2%80%94%E2%80%94Unity%E7%BD%91%E7%BB%9C%E5%BC%80%E5%8F%91%E7%9B%B8%E5%85%B3/UN2%E2%80%94%E2%80%94%E5%A5%97%E6%8E%A5%E5%AD%97Socket%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1%E6%96%B9%E6%A1%88/UN2L10%E2%80%94%E2%80%94UDP%E9%80%9A%E4%BF%A1%E6%A6%82%E8%BF%B0/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">文KRIFE齐的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2024/03/11/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UN%E2%80%94%E2%80%94Unity%E7%BD%91%E7%BB%9C%E5%BC%80%E5%8F%91%E7%9B%B8%E5%85%B3/UN2%E2%80%94%E2%80%94%E5%A5%97%E6%8E%A5%E5%AD%97Socket%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1%E6%96%B9%E6%A1%88/UN2L11%E2%80%94%E2%80%94%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%92%8C%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%90%8C%E6%AD%A5%E9%80%9A%E4%BF%A1/" title="UN2L11——服务端和客户端同步通信"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">UN2L11——服务端和客户端同步通信</div></div></a></div><div class="next-post pull-right"><a href="/2024/03/10/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UN%E2%80%94%E2%80%94Unity%E7%BD%91%E7%BB%9C%E5%BC%80%E5%8F%91%E7%9B%B8%E5%85%B3/UN2%E2%80%94%E2%80%94%E5%A5%97%E6%8E%A5%E5%AD%97Socket%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1%E6%96%B9%E6%A1%88/UN2L9%E2%80%94%E2%80%94%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%92%8C%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%BC%82%E6%AD%A5%E9%80%9A%E4%BF%A1/" title="UN2L9——服务端和客户端异步通信"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">UN2L9——服务端和客户端异步通信</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">文KRIFE齐</div><div class="author-info__description">目前正处于搭建测试环节</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">834</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">113</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">UN2L10——UDP通信概述</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%92%8C%E5%AE%A2%E6%88%B7%E7%AB%AF%E9%9C%80%E8%A6%81%E5%81%9A%E4%BB%80%E4%B9%88"><span class="toc-number">1.1.</span> <span class="toc-text">服务端和客户端需要做什么</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UDP%E7%9B%B8%E5%AF%B9TCP%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">1.2.</span> <span class="toc-text">UDP相对TCP的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E5%8C%85%E3%80%81%E9%BB%8F%E5%8C%85%E9%97%AE%E9%A2%98"><span class="toc-number">1.3.</span> <span class="toc-text">分包、黏包问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%BB%8F%E5%8C%85%E9%97%AE%E9%A2%98"><span class="toc-number">1.3.1.</span> <span class="toc-text">黏包问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E5%8C%85%E9%97%AE%E9%A2%98"><span class="toc-number">1.3.2.</span> <span class="toc-text">分包问题</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">1.4.</span> <span class="toc-text">总结</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/07/01/hello-world/" title="欢迎来到文KRIFE齐的博客！">欢迎来到文KRIFE齐的博客！</a><time datetime="2024-07-01T11:46:20.391Z" title="发表于 2024-07-01 19:46:20">2024-07-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/US3S1L5%E2%80%94%E2%80%94Phong%E5%85%89%E7%85%A7%E6%A8%A1%E5%9E%8B/" title="US3S1L5——Phong光照模型">US3S1L5——Phong光照模型</a><time datetime="2024-06-25T14:33:57.000Z" title="发表于 2024-06-25 22:33:57">2024-06-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/US3S1L4%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B/US3S1L4-2%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B%E7%9A%84%E9%80%90%E7%89%87%E5%85%83%E5%85%89%E7%85%A7/" title="US3S1L4-2——Phong式高光反射模型的逐片元光照">US3S1L4-2——Phong式高光反射模型的逐片元光照</a><time datetime="2024-06-25T13:16:37.000Z" title="发表于 2024-06-25 21:16:37">2024-06-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/US3S1L4%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B/US3S1L4-1%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B%E7%9A%84%E9%80%90%E9%A1%B6%E7%82%B9%E5%85%89%E7%85%A7/" title="US3S1L4-1——Phong式高光反射模型的逐顶点光照">US3S1L4-1——Phong式高光反射模型的逐顶点光照</a><time datetime="2024-06-25T13:16:05.000Z" title="发表于 2024-06-25 21:16:05">2024-06-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/US3S1L4%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B/" title="US3S1L4——Phong式高光反射模型">US3S1L4——Phong式高光反射模型</a><time datetime="2024-06-25T10:14:12.000Z" title="发表于 2024-06-25 18:14:12">2024-06-25</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By 文KRIFE齐</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

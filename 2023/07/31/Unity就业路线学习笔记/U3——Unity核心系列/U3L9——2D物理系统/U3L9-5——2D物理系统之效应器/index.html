@@ -1,0 +1,275 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>U3L9-5——2D物理系统之效应器 | 文KRIFE齐的博客</title><meta name="author" content="文KRIFE齐"><meta name="copyright" content="文KRIFE齐"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="U3L9-5——2D物理系统之效应器 效应器 2D效应器是配合2D碰撞器一起使用 可以让游戏对象在相互接触时产生一些特殊的物理作用力 可以通过2D效应器快捷的实现一些 传送带 互斥 吸引 漂浮 单向碰撞等等效果 注意！效应器其实只是Unity为我们写好的一些2D游戏中常用功能的一些代码 在实际开发中我们不应该过于依赖效应器 如果发现效应器和自己的游戏需求不太匹配时，我们完全可以自己实现符合需求的“">
+<meta property="og:type" content="article">
+<meta property="og:title" content="U3L9-5——2D物理系统之效应器">
+<meta property="og:url" content="http://example.com/2023/07/31/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U3%E2%80%94%E2%80%94Unity%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/U3L9%E2%80%94%E2%80%942D%E7%89%A9%E7%90%86%E7%B3%BB%E7%BB%9F/U3L9-5%E2%80%94%E2%80%942D%E7%89%A9%E7%90%86%E7%B3%BB%E7%BB%9F%E4%B9%8B%E6%95%88%E5%BA%94%E5%99%A8/index.html">
+<meta property="og:site_name" content="文KRIFE齐的博客">
+<meta property="og:description" content="U3L9-5——2D物理系统之效应器 效应器 2D效应器是配合2D碰撞器一起使用 可以让游戏对象在相互接触时产生一些特殊的物理作用力 可以通过2D效应器快捷的实现一些 传送带 互斥 吸引 漂浮 单向碰撞等等效果 注意！效应器其实只是Unity为我们写好的一些2D游戏中常用功能的一些代码 在实际开发中我们不应该过于依赖效应器 如果发现效应器和自己的游戏需求不太匹配时，我们完全可以自己实现符合需求的“">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png">
+<meta property="article:published_time" content="2023-07-31T11:45:05.000Z">
+<meta property="article:modified_time" content="2024-07-02T03:56:27.000Z">
+<meta property="article:author" content="文KRIFE齐">
+<meta property="article:tag" content="blog">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2023/07/31/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U3%E2%80%94%E2%80%94Unity%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/U3L9%E2%80%94%E2%80%942D%E7%89%A9%E7%90%86%E7%B3%BB%E7%BB%9F/U3L9-5%E2%80%94%E2%80%942D%E7%89%A9%E7%90%86%E7%B3%BB%E7%BB%9F%E4%B9%8B%E6%95%88%E5%BA%94%E5%99%A8/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'U3L9-5——2D物理系统之效应器',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-07-02 11:56:27'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">834</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">113</div></a></div><hr class="custom-hr"/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="文KRIFE齐的博客"><span class="site-name">文KRIFE齐的博客</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">U3L9-5——2D物理系统之效应器</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-07-31T11:45:05.000Z" title="发表于 2023-07-31 19:45:05">2023-07-31</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-07-02T03:56:27.000Z" title="更新于 2024-07-02 11:56:27">2024-07-02</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U3%E2%80%94%E2%80%94Unity%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/">U3——Unity核心系列</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U3%E2%80%94%E2%80%94Unity%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/U3L9%E2%80%94%E2%80%942D%E7%89%A9%E7%90%86%E7%B3%BB%E7%BB%9F/">U3L9——2D物理系统</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="U3L9-5——2D物理系统之效应器"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1>U3L9-5——2D物理系统之效应器</h1>
+<h1>效应器</h1>
+<p>2D效应器是配合2D碰撞器一起使用<br>
+可以让游戏对象在相互接触时产生一些特殊的物理作用力<br>
+可以通过2D效应器快捷的实现一些 传送带 互斥 吸引 漂浮 单向碰撞等等效果</p>
+<p><strong>注意！效应器其实只是Unity为我们写好的一些2D游戏中常用功能的一些代码<br>
+在实际开发中我们不应该过于依赖效应器<br>
+如果发现效应器和自己的游戏需求不太匹配时，我们完全可以自己实现符合需求的“效应器”</strong></p>
+<h2 id="不同种类2D效应器的使用">不同种类2D效应器的使用</h2>
+<h3 id="区域效应器">区域效应器</h3>
+<p>主要作用：在一个区域内让游戏对象受到力和扭矩力的作用</p>
+<p>​<img src="assets/image-20230731232902-i0ezvfd.png" alt="image">​</p>
+<ul>
+<li>
+<p>Use Collider Mask：是否启用碰撞器遮罩，如果开启才会出现下面的Collider Mask，可以通过选择层，决定该效应器只会作用于哪些层的对象</p>
+</li>
+<li>
+<p>Use Global Angle：勾选将使用世界坐标系角度，如果不勾选，角度为局部角度</p>
+</li>
+<li>
+<p>Force Angle：施加力的角度</p>
+</li>
+<li>
+<p>Force Magnitude：施加力的大小</p>
+</li>
+<li>
+<p>Force Variation：施加力的随机大小变化 会在Force Magnitude基础上根据该值进行随机变化</p>
+</li>
+<li>
+<p>ForceTarget：效应器在目标对象上施加力的作用点</p>
+<ul>
+<li>Collider：以碰撞器的当前位置（如果碰撞器有偏移，没有位于质心，可能会产生扭矩力，带来旋转）</li>
+<li>Rigidbody：以刚体的当前质心（不会产生扭矩力）</li>
+</ul>
+</li>
+<li>
+<p>Drag：阻力</p>
+</li>
+<li>
+<p>Angular Drag：扭矩阻力</p>
+</li>
+</ul>
+<h3 id="浮力效应器">浮力效应器</h3>
+<p>主要作用：模拟流体行为，浮动和阻力相关设置，让玩家在该区域看起来像在水里移动</p>
+<p>​<img src="assets/image-20230731234746-kjfgosa.png" alt="image">​</p>
+<ul>
+<li>Density：流体密度，密度较大，碰撞体会下沉，密度越小碰撞体会上浮 密度和流体相同的碰撞体会浮在流体中</li>
+<li>Surface Level：定义浮力流体的表面位置，对象高于此线时，不会对其施加浮力，以下或者相交会施加浮力。沿世界Y轴偏移</li>
+<li>Linear Drag：影响对象在水中移动的阻力系数</li>
+<li>Angular Drag：影响对象在水中旋转的阻力系数</li>
+<li>Flow Angle：流体流动方向相对世界控件的角度，沿指定方向施加浮力</li>
+<li>Flow Magnitude：与FlowAngle结合使用，前者决定力的角度，该值确定浮力大小</li>
+<li>Flow Variation：随机改变流体力的值</li>
+</ul>
+<h3 id="点效应器">点效应器</h3>
+<p>主要作用：模拟磁铁 吸引或者排斥的效果</p>
+<p>​<img src="assets/image-20230801001639-t3bo2ua.png" alt="image">​</p>
+<ul>
+<li>
+<p>Force Magnitude：施加力的大小</p>
+</li>
+<li>
+<p>Force Variation：施加力的大小变化</p>
+</li>
+<li>
+<p>Distance Scale：效应器和目标之间举例的缩放。计算距离时，会按该比值对距离进行缩放</p>
+</li>
+<li>
+<p>Force Source：力源来自哪个位置，从该点计算距离。</p>
+<ul>
+<li>Collider：碰撞器的位置</li>
+<li>Rigidbody：刚体的位置</li>
+</ul>
+</li>
+<li>
+<p>Force Target：作用力目标位置，用改点计算位置</p>
+<ul>
+<li>Collider：碰撞器的位置，如果碰撞器有偏移，可能会产生扭矩力</li>
+<li>Rigidbody：刚体的位置，不会产生扭矩力</li>
+</ul>
+</li>
+<li>
+<p>Force Mode：计算力的模式</p>
+<ul>
+<li>Constant：忽略源和目标之间相隔的距离</li>
+<li>Inverse Linear：反线性距离计算，距离越远，力的大小呈线性减小</li>
+<li>Inverse Squared：反平方距离计算，力的大小呈指数减小（按平方下降），类似现实世界重力</li>
+</ul>
+</li>
+</ul>
+<h3 id="平台效应器">平台效应器</h3>
+<p>主要作用：2D游戏当中的平台或可往上跳跃的墙壁</p>
+<p>​<img src="assets/image-20230801002322-az03fb0.png" alt="image">​</p>
+<ul>
+<li>Rotational Offset：旋转偏移量，控制平台角度偏移</li>
+<li>Use One Way：是否使用单向碰撞行为</li>
+<li>Use One Way Grouping：当平台式有多个碰撞器组合时，可以通过它将所有碰撞器设置为单向碰撞行为</li>
+<li>Surface Arc：以局部坐标系下向上的方向为中心，填写一个角度值，定义不允许通过的表面，该角度外的其它地方视为单向碰撞</li>
+<li>Use Side Friction：是否应该在平台两侧使用摩擦</li>
+<li>Use Side Bounce：是否应该在平台两侧使用弹性</li>
+<li>Side Arc：用于定义左右两侧平台的响应弧度</li>
+</ul>
+<h3 id="表面效应器">表面效应器</h3>
+<p>主要作用：模拟传送带</p>
+<p>​<img src="assets/image-20230801003443-6kpt5y8.png" alt="image">​</p>
+<ul>
+<li>Speed：表面保持的速度</li>
+<li>Speed Variation：速度的随机增加值</li>
+<li>Force Scale：缩放沿表面移动时施加的力。如果是0表示不施加力，相当于禁用。值越低越慢，值越高越快，<br>
+<strong>建议不要设置为1，因为当设置为1时可能会抵消施加在物体上的其它力，比如跳跃的力</strong></li>
+<li>Use Contact Force：是否对接触物体表面的出点施加力，如果选择会让对象旋转，如果不开启则不会旋转</li>
+<li>Use Friction：是否使用摩擦力</li>
+<li>Use Bounce：是否使用弹力</li>
+</ul>
+<p>‍</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">文KRIFE齐</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2023/07/31/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U3%E2%80%94%E2%80%94Unity%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/U3L9%E2%80%94%E2%80%942D%E7%89%A9%E7%90%86%E7%B3%BB%E7%BB%9F/U3L9-5%E2%80%94%E2%80%942D%E7%89%A9%E7%90%86%E7%B3%BB%E7%BB%9F%E4%B9%8B%E6%95%88%E5%BA%94%E5%99%A8/">http://example.com/2023/07/31/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U3%E2%80%94%E2%80%94Unity%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/U3L9%E2%80%94%E2%80%942D%E7%89%A9%E7%90%86%E7%B3%BB%E7%BB%9F/U3L9-5%E2%80%94%E2%80%942D%E7%89%A9%E7%90%86%E7%B3%BB%E7%BB%9F%E4%B9%8B%E6%95%88%E5%BA%94%E5%99%A8/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">文KRIFE齐的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/08/01/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U3%E2%80%94%E2%80%94Unity%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/U3L10%E2%80%94%E2%80%94Sprite%20Shape%20Profile%20%E7%B2%BE%E7%81%B5%E5%BD%A2%E7%8A%B6%E6%A6%82%E8%BF%B0%E6%96%87%E4%BB%B6/" title="U3L10——Sprite Shape Profile 精灵形状概述文件"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">U3L10——Sprite Shape Profile 精灵形状概述文件</div></div></a></div><div class="next-post pull-right"><a href="/2023/07/31/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U3%E2%80%94%E2%80%94Unity%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/U3L9%E2%80%94%E2%80%942D%E7%89%A9%E7%90%86%E7%B3%BB%E7%BB%9F/U3L9-4%E2%80%94%E2%80%942D%E7%89%A9%E7%90%86%E7%B3%BB%E7%BB%9F%E4%B9%8B%E6%81%92%E5%AE%9A%E5%8A%9B/" title="U3L9-4——2D物理系统之恒定力"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">U3L9-4——2D物理系统之恒定力</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">文KRIFE齐</div><div class="author-info__description">目前正处于搭建测试环节</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">834</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">113</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">U3L9-5——2D物理系统之效应器</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">2.</span> <span class="toc-text">效应器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8D%E5%90%8C%E7%A7%8D%E7%B1%BB2D%E6%95%88%E5%BA%94%E5%99%A8%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-number">2.1.</span> <span class="toc-text">不同种类2D效应器的使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8C%BA%E5%9F%9F%E6%95%88%E5%BA%94%E5%99%A8"><span class="toc-number">2.1.1.</span> <span class="toc-text">区域效应器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%AE%E5%8A%9B%E6%95%88%E5%BA%94%E5%99%A8"><span class="toc-number">2.1.2.</span> <span class="toc-text">浮力效应器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%82%B9%E6%95%88%E5%BA%94%E5%99%A8"><span class="toc-number">2.1.3.</span> <span class="toc-text">点效应器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B9%B3%E5%8F%B0%E6%95%88%E5%BA%94%E5%99%A8"><span class="toc-number">2.1.4.</span> <span class="toc-text">平台效应器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A1%A8%E9%9D%A2%E6%95%88%E5%BA%94%E5%99%A8"><span class="toc-number">2.1.5.</span> <span class="toc-text">表面效应器</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/07/01/hello-world/" title="欢迎来到文KRIFE齐的博客！">欢迎来到文KRIFE齐的博客！</a><time datetime="2024-07-01T11:46:20.391Z" title="发表于 2024-07-01 19:46:20">2024-07-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/US3S1L5%E2%80%94%E2%80%94Phong%E5%85%89%E7%85%A7%E6%A8%A1%E5%9E%8B/" title="US3S1L5——Phong光照模型">US3S1L5——Phong光照模型</a><time datetime="2024-06-25T14:33:57.000Z" title="发表于 2024-06-25 22:33:57">2024-06-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/US3S1L4%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B/US3S1L4-2%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B%E7%9A%84%E9%80%90%E7%89%87%E5%85%83%E5%85%89%E7%85%A7/" title="US3S1L4-2——Phong式高光反射模型的逐片元光照">US3S1L4-2——Phong式高光反射模型的逐片元光照</a><time datetime="2024-06-25T13:16:37.000Z" title="发表于 2024-06-25 21:16:37">2024-06-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/US3S1L4%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B/US3S1L4-1%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B%E7%9A%84%E9%80%90%E9%A1%B6%E7%82%B9%E5%85%89%E7%85%A7/" title="US3S1L4-1——Phong式高光反射模型的逐顶点光照">US3S1L4-1——Phong式高光反射模型的逐顶点光照</a><time datetime="2024-06-25T13:16:05.000Z" title="发表于 2024-06-25 21:16:05">2024-06-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/US3S1L4%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B/" title="US3S1L4——Phong式高光反射模型">US3S1L4——Phong式高光反射模型</a><time datetime="2024-06-25T10:14:12.000Z" title="发表于 2024-06-25 18:14:12">2024-06-25</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By 文KRIFE齐</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

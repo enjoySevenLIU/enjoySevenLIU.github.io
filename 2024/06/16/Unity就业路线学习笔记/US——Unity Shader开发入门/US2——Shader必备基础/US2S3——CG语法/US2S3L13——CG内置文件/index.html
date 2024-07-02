@@ -1,0 +1,330 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>US2S3L13——CG内置文件 | 文KRIFE齐的博客</title><meta name="author" content="文KRIFE齐"><meta name="copyright" content="文KRIFE齐"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="US2S3L13——CG内置文件 CG内置文件 CG中的内置文件和内置函数一样，是用于帮助我们进行Shader开发的 利用其中的函数、宏、全局变量等内容，可以提升我们Shader的开发效率 如果想要了解更多的内置内容可以参阅Unity官网的资料：  内置文件相关：内置着色器 include 文件 - Unity 手册 函数相关：内置着色器 helper 函数 - Unity 手册 宏相关：内置宏">
+<meta property="og:type" content="article">
+<meta property="og:title" content="US2S3L13——CG内置文件">
+<meta property="og:url" content="http://example.com/2024/06/16/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US2%E2%80%94%E2%80%94Shader%E5%BF%85%E5%A4%87%E5%9F%BA%E7%A1%80/US2S3%E2%80%94%E2%80%94CG%E8%AF%AD%E6%B3%95/US2S3L13%E2%80%94%E2%80%94CG%E5%86%85%E7%BD%AE%E6%96%87%E4%BB%B6/index.html">
+<meta property="og:site_name" content="文KRIFE齐的博客">
+<meta property="og:description" content="US2S3L13——CG内置文件 CG内置文件 CG中的内置文件和内置函数一样，是用于帮助我们进行Shader开发的 利用其中的函数、宏、全局变量等内容，可以提升我们Shader的开发效率 如果想要了解更多的内置内容可以参阅Unity官网的资料：  内置文件相关：内置着色器 include 文件 - Unity 手册 函数相关：内置着色器 helper 函数 - Unity 手册 宏相关：内置宏">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png">
+<meta property="article:published_time" content="2024-06-16T10:14:23.000Z">
+<meta property="article:modified_time" content="2024-07-02T03:57:28.000Z">
+<meta property="article:author" content="文KRIFE齐">
+<meta property="article:tag" content="blog">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2024/06/16/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US2%E2%80%94%E2%80%94Shader%E5%BF%85%E5%A4%87%E5%9F%BA%E7%A1%80/US2S3%E2%80%94%E2%80%94CG%E8%AF%AD%E6%B3%95/US2S3L13%E2%80%94%E2%80%94CG%E5%86%85%E7%BD%AE%E6%96%87%E4%BB%B6/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'US2S3L13——CG内置文件',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-07-02 11:57:28'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">834</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">113</div></a></div><hr class="custom-hr"/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="文KRIFE齐的博客"><span class="site-name">文KRIFE齐的博客</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">US2S3L13——CG内置文件</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-06-16T10:14:23.000Z" title="发表于 2024-06-16 18:14:23">2024-06-16</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-07-02T03:57:28.000Z" title="更新于 2024-07-02 11:57:28">2024-07-02</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity-Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/">US——Unity Shader开发入门</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity-Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US2%E2%80%94%E2%80%94Shader%E5%BF%85%E5%A4%87%E5%9F%BA%E7%A1%80/">US2——Shader必备基础</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity-Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US2%E2%80%94%E2%80%94Shader%E5%BF%85%E5%A4%87%E5%9F%BA%E7%A1%80/US2S3%E2%80%94%E2%80%94CG%E8%AF%AD%E6%B3%95/">US2S3——CG语法</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="US2S3L13——CG内置文件"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1>US2S3L13——CG内置文件</h1>
+<h1>CG内置文件</h1>
+<p>CG中的内置文件和内置函数一样，是用于帮助我们进行Shader开发的<br>
+利用其中的函数、宏、全局变量等内容，可以提升我们Shader的开发效率</p>
+<p>如果想要了解更多的内置内容可以参阅Unity官网的资料：</p>
+<ul>
+<li>内置文件相关：<a target="_blank" rel="noopener" href="https://docs.unity.cn/cn/2022.3/Manual/SL-BuiltinIncludes.html">内置着色器 include 文件 - Unity 手册</a></li>
+<li>函数相关：<a target="_blank" rel="noopener" href="https://docs.unity.cn/cn/2022.3/Manual/SL-BuiltinFunctions.html">内置着色器 helper 函数 - Unity 手册</a></li>
+<li>宏相关：<a target="_blank" rel="noopener" href="https://docs.unity.cn/cn/2022.3/Manual/SL-BuiltinMacros.html">内置宏 - Unity 手册</a></li>
+<li>变量相关：<a target="_blank" rel="noopener" href="https://docs.unity.cn/cn/2022.3/Manual/SL-UnityShaderVariables.html">内置着色器变量 - Unity 手册</a></li>
+</ul>
+<h2 id="CG内置文件的位置和作用">CG内置文件的位置和作用</h2>
+<p>我们可以在Unity的安装目录中找到CG内置文件，在：<code>编辑器安装目录/Data/CGIncludes</code>​ 中</p>
+<ul>
+<li>后缀为<code>.cginc</code>​的文件为CG语言内置文件</li>
+<li>后缀为<code>.glslinc</code>​的文件为GLSL语言内置文件</li>
+</ul>
+<p>​<img src="assets/image-20240616181713-w5abdyo.png" alt="image">​</p>
+<p>他们是预定义的Shader文件，里面包含了一些已经写好的Shader相关逻辑<br>
+作用和CG内置函数一样，可以提升我们的Shader开发效率，可以直接使用其中的方法等内容来进行逻辑开发</p>
+<p>Unity中常用的内置文件有</p>
+<ol>
+<li>
+<p>​<code>UnityCG.cginc</code>​：包含最常用的帮助函数、宏和结构体等</p>
+<p>其中：</p>
+<ul>
+<li>常用的帮助函数有：函数（UnityCG.cginc中）</li>
+<li>常用的结构体有：结构体（UnityCG.cginc中）</li>
+</ul>
+</li>
+<li>
+<p>​<code>Lighting.cginc</code>​：包含各种内置光照模型。如果编写的是Surface Shader(标准表面着色器），会自动包含进来</p>
+</li>
+<li>
+<p>​<code>UnityShaderVariables.cginc</code>​：编译UnityShader时，会自动包含进来。包含许多内置的全局变量</p>
+</li>
+<li>
+<p>​<code>HLSLSupport.cginc</code>​：编译UnityShader时，会自动包含进来。声明了很多用于跨平台编译的宏和定义</p>
+</li>
+</ol>
+<p>等等</p>
+<h2 id="如何使用CG内置文件">如何使用CG内置文件</h2>
+<p>在CG语句块中进行引用，通过编译指令 <code>#include &quot;内置文件名.cginc&quot;</code>​ 的形式进行引用<br>
+我们便可以在CG语言中使用其中的内容</p>
+<p>注意：一些常用的函数、宏、变量，可以不用引用，Unity会在编译时自动识别，但是为了避免报错，建议都引用</p>
+<p>&quot;宏&quot;通常指的是一种预处理指令或代码片段，用于在代码中进行文本替换。<br>
+宏允许程序员定义一个标识符（通常以大写字母表示）来代表一个代码片段，<br>
+然后在编译时将这个标识符替换为相应的代码，这种替换过程称为宏展开。</p>
+<p><strong><u>说人话：就是为一些代码片段，取一个别名，方便使用。在真正编译时在把这个别名翻译成对应的代码。</u></strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">SubShader</span><br><span class="line">&#123;</span><br><span class="line">    Pass</span><br><span class="line">    &#123;</span><br><span class="line">        CGPROGRAM</span><br><span class="line">        <span class="meta">#<span class="keyword">pragma</span> vertex myVert</span></span><br><span class="line">        <span class="meta">#<span class="keyword">pragma</span> fragment myFrag</span></span><br><span class="line">    </span><br><span class="line">        <span class="meta">#<span class="keyword">include</span> <span class="string">&quot;UnityCG.cginc&quot;</span></span></span><br><span class="line">		<span class="comment">//...</span></span><br><span class="line">		ENDCG</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="常用内容">常用内容</h2>
+<ul>
+<li>
+<h3 id="函数（UnityCG-cginc中）">函数（UnityCG.cginc中）</h3>
+<p>下列的函数都是将一个点或者方向或者矢量转换到另一个坐标空间中</p>
+<ol>
+<li>
+<p>​<code>float3 WorldSpaceViewDir(float4 v)</code>​</p>
+<p>输入一个模型空间中的顶点位置，<u>返回</u>​<u><strong>世界空间</strong></u>​<u>中从该点到摄像机的观察方向</u></p>
+</li>
+<li>
+<p>​<code>float3 ObjSpaceViewDir(float4 v)</code>​</p>
+<p>输入一个模型空间中的顶点位置，<u>返回</u>​<u><strong>模型空间</strong></u>​<u>中从该点到摄像机的观察方向</u></p>
+</li>
+<li>
+<p>​<code>float3 WorldSpaceLightDir(float4 v)</code>​</p>
+<p>仅用于向前渲染中。输入一个模型空间中的顶点位置，<u>返回</u>​<u><strong>世界空间</strong></u>​<u>中从该点到光源的光照方向。</u>（返回值没有被归一化）</p>
+</li>
+<li>
+<p>​<code>float3 ObjSpaceLightDir(float4 v)</code>​</p>
+<p>仅用于向前渲染中。输入一个模型空间中的顶点位置，<u>返回</u>​<u><strong>模型空间</strong></u>​<u>中从该点到光源的光照方向。</u>（返回值没有被归一化）</p>
+</li>
+<li>
+<p>​<code>float3 UnityObjectToWorldNormal(float3 norm)</code>​</p>
+<p><strong>把法线方向从模型空间转换到世界空间中</strong></p>
+</li>
+<li>
+<p>​<code>float3 UnityObjectToWorldDir(in float3 dir)</code>​</p>
+<p><strong>把方向矢量从模型空间转换到世界空间中</strong></p>
+</li>
+<li>
+<p>​<code>float3 UnityWorldToObjectDir(float3 dir)</code>​</p>
+<p><strong>把方向矢量从世界空间转换到模型空间中</strong></p>
+</li>
+</ol>
+<p>等等</p>
+</li>
+</ul>
+<ul>
+<li>
+<h3 id="结构体（UnityCG-cginc中）">结构体（UnityCG.cginc中）</h3>
+<ol>
+<li>
+<p>​<code>appdata_base</code>​：用于顶点着色器<strong>输入</strong>：顶点位置、顶点法线、第一组纹理坐标</p>
+<p>其成员为：</p>
+ <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">appdata_base</span> &#123;</span></span><br><span class="line">    float4 vertex : POSITION;			<span class="comment">//模型空间中的顶点位置</span></span><br><span class="line">    float3 normal : NORMAL;				<span class="comment">//顶点法线</span></span><br><span class="line">    float4 texcoord : TEXCOORD0;		<span class="comment">//第一组纹理坐标</span></span><br><span class="line">    UNITY_VERTEX_INPUT_INSTANCE_ID</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>​<code>appdata_tan</code>​：用于顶点着色器<strong>输入</strong>：顶点位置、顶点法线、<strong>顶点切线</strong>、第一组纹理坐标</p>
+</li>
+<li>
+<p>​<code>appdata_full</code>​：用于顶点着色器<strong>输入</strong>：顶点位置、顶点法线、<strong>顶点切线、四组（或更多）纹理坐标</strong></p>
+</li>
+<li>
+<p>​<code>appdata_img</code>​：用于顶点着色器<strong>输入</strong>：顶点位置、第一组纹理坐标</p>
+</li>
+<li>
+<p>​<code>v2f_img</code>​：用于顶点着色器<strong>输出</strong>：裁剪空间中的位置，纹理坐标</p>
+</li>
+</ol>
+<p>等等</p>
+<p>使用内置结构体进行参数传递示例：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">CGPROGRAM</span><br><span class="line"><span class="meta">#<span class="keyword">pragma</span> vertex myVert</span></span><br><span class="line"><span class="meta">#<span class="keyword">pragma</span> fragment myFrag</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;UnityCG.cginc&quot;</span></span></span><br><span class="line"></span><br><span class="line">sampler2D _My2D;		<span class="comment">//使用外部关联的2D贴图</span></span><br><span class="line"></span><br><span class="line">v2f_img <span class="title function_">myVert</span><span class="params">(appdata_base data)</span></span><br><span class="line">&#123;</span><br><span class="line">    v2f_img v2fData;									<span class="comment">//输出到片元着色器的结构体变量</span></span><br><span class="line">    v2fData.pos = UnityObjectToClipPos(data.vertex);	<span class="comment">//转换模型空间的顶点坐标到裁剪空间</span></span><br><span class="line">    v2fData.uv = data.texcoord;							<span class="comment">//将纹理坐标赋值到结构体成员上</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> v2fData;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">fixed4 <span class="title function_">myFrag</span><span class="params">(v2f_img data)</span> : SV_Target</span><br><span class="line">&#123;</span><br><span class="line">    fixed4 color = tex2D(_My2D, data.uv);				<span class="comment">//使用纹理查询获取贴图上的某个坐标的颜色</span></span><br><span class="line">    <span class="keyword">return</span> color;</span><br><span class="line">&#125;</span><br><span class="line">ENDCG</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<h3 id="变换矩阵宏（UnityShaderVariables-cginc中）">变换矩阵宏（UnityShaderVariables.cginc中）</h3>
+<p>编译UnityShader时，该文件内的宏会自动包含进来，因此无需去 <code>#include</code>​</p>
+<p>坐标空间变换顺序：模型空间 -&gt; 世界空间 -&gt; 观察空间 -&gt; 裁剪空间 -&gt; 屏幕空间</p>
+<p>在片元着色器中，我们常常需要完成：模型空间 -&gt; 世界空间 -&gt; 观察空间 -&gt; 裁剪空间的变换<br>
+而下面的宏就是可以直接用于进行矩阵计算的矩阵宏，它们就可以用来进行坐标空间的转换</p>
+<ol>
+<li>
+<p>​<code>UNITY_MATRIX_MVP</code>​：当前的 模型 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>×</mo></mrow><annotation encoding="application/x-tex">\times</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord">×</span></span></span></span> 观察 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>×</mo></mrow><annotation encoding="application/x-tex">\times</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord">×</span></span></span></span> 投影 矩阵，用于将顶点/方向向量**<u>从模型空间变换到裁剪空间中</u>**</p>
+ <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">v2f_img <span class="title function_">myVert</span><span class="params">(appdata_base data)</span></span><br><span class="line">&#123;</span><br><span class="line">    v2f_img v2fData;                    <span class="comment">//需要传递给片元着色器的数据</span></span><br><span class="line">    v2fData.pos = UnityObjectToClipPos(data.vertex);	<span class="comment">//将模型空间的顶点转换到裁剪空间</span></span><br><span class="line">	<span class="comment">//上一句等效于</span></span><br><span class="line">	v2fData.pos = mul(UNITY_MATRIX_MVP​, data.vertex);	<span class="comment">//将模型空间的顶点转换到裁剪空间</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> v2fData;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>​<code>UNITY_MATRIX_MV</code>​：当前的 模型 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>×</mo></mrow><annotation encoding="application/x-tex">\times</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord">×</span></span></span></span> 观察 矩阵，用于将顶点/方向向量**<u>从模型空间变换到观察空间中</u>**</p>
+</li>
+<li>
+<p>​<code>UNITY_MATRIX_V</code>​：当前的观察矩阵，用于将顶点/方向向量**<u>从世界空间变换到观察空间中</u>**</p>
+</li>
+<li>
+<p>​<code>UNITY_MATRIX_P</code>​：当前的投影矩阵，用于将顶点/方向向量**<u>从观察空间变换到裁剪空间中</u>**</p>
+</li>
+<li>
+<p>​<code>UNITY_MATRIX_VP</code>​：当前的 观察 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>×</mo></mrow><annotation encoding="application/x-tex">\times</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord">×</span></span></span></span> 投影 矩阵，用于将顶点/方向向量**<u>从世界空间变换到裁剪空间中</u>**</p>
+</li>
+<li>
+<p>​<code>UNITY_MATRIX_T_MV</code>​：<code>UNITY_MATRIX_MV</code>​的转置矩阵</p>
+</li>
+<li>
+<p>​<code>UNITY_MATRIX_IT_MV</code>​：<code>UNITY_MATRIX_MV</code>​的逆转置矩阵，用于**<u>将法线从模型空间变换到观察空间</u>**，也可用于得到<code>UNITY_MATRIX_MV</code>​的逆矩阵</p>
+</li>
+<li>
+<p>​<code>_Object2World</code>​：当前的模型矩阵，用于将顶点/方向矢量**<u>从模型空间变换到世界空间</u>**</p>
+ <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">v2f_img <span class="title function_">myVert</span><span class="params">(appdata_base data)</span></span><br><span class="line">&#123;</span><br><span class="line">    v2f_img v2fData;                    <span class="comment">//需要传递给片元着色器的数据</span></span><br><span class="line"></span><br><span class="line">	float4 worldPos = mul(_Object2World, data,vertex​)	<span class="comment">//得到世界空间下的顶点坐标</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> v2fData;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>​<code>_World2Object</code>​：<code>_Object2World</code>​ 的逆矩阵，用于将顶点/方向矢量**<u>从世界空间变换到模型空间</u>**</p>
+</li>
+</ol>
+<p>等等</p>
+</li>
+<li>
+<h3 id="变量">变量</h3>
+<ol>
+<li>
+<p>​<code>_Time</code>​ （不用引用，直接使用即可）</p>
+<p>自关卡加载以来的时间<code>(t/20, t, t*2, t*3)</code>​用于对着色器内的事物进行动画处理</p>
+</li>
+<li>
+<p>​<code>_LightColor0</code>​ （向前渲染时，引用<code>UnityLightingCommon.cginc</code>​；延迟渲染时，引用<code>UnityDeferredLibrary.cginc</code>​）</p>
+<p>光的颜色</p>
+</li>
+</ol>
+<p>等等</p>
+</li>
+</ul>
+<p>‍</p>
+<p>‍</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">文KRIFE齐</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2024/06/16/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US2%E2%80%94%E2%80%94Shader%E5%BF%85%E5%A4%87%E5%9F%BA%E7%A1%80/US2S3%E2%80%94%E2%80%94CG%E8%AF%AD%E6%B3%95/US2S3L13%E2%80%94%E2%80%94CG%E5%86%85%E7%BD%AE%E6%96%87%E4%BB%B6/">http://example.com/2024/06/16/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US2%E2%80%94%E2%80%94Shader%E5%BF%85%E5%A4%87%E5%9F%BA%E7%A1%80/US2S3%E2%80%94%E2%80%94CG%E8%AF%AD%E6%B3%95/US2S3L13%E2%80%94%E2%80%94CG%E5%86%85%E7%BD%AE%E6%96%87%E4%BB%B6/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">文KRIFE齐的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2024/06/16/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/" title="US3——Shader开发知识"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">US3——Shader开发知识</div></div></a></div><div class="next-post pull-right"><a href="/2024/06/16/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US2%E2%80%94%E2%80%94Shader%E5%BF%85%E5%A4%87%E5%9F%BA%E7%A1%80/US2S3%E2%80%94%E2%80%94CG%E8%AF%AD%E6%B3%95/US2S3L12%E2%80%94%E2%80%94CG%E5%86%85%E7%BD%AE%E5%87%BD%E6%95%B0/" title="US2S3L12——CG内置函数"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">US2S3L12——CG内置函数</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">文KRIFE齐</div><div class="author-info__description">目前正处于搭建测试环节</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">834</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">113</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">US2S3L13——CG内置文件</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">2.</span> <span class="toc-text">CG内置文件</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#CG%E5%86%85%E7%BD%AE%E6%96%87%E4%BB%B6%E7%9A%84%E4%BD%8D%E7%BD%AE%E5%92%8C%E4%BD%9C%E7%94%A8"><span class="toc-number">2.1.</span> <span class="toc-text">CG内置文件的位置和作用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8CG%E5%86%85%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-number">2.2.</span> <span class="toc-text">如何使用CG内置文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E5%86%85%E5%AE%B9"><span class="toc-number">2.3.</span> <span class="toc-text">常用内容</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%EF%BC%88UnityCG-cginc%E4%B8%AD%EF%BC%89"><span class="toc-number">2.3.1.</span> <span class="toc-text">函数（UnityCG.cginc中）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%93%E6%9E%84%E4%BD%93%EF%BC%88UnityCG-cginc%E4%B8%AD%EF%BC%89"><span class="toc-number">2.3.2.</span> <span class="toc-text">结构体（UnityCG.cginc中）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%98%E6%8D%A2%E7%9F%A9%E9%98%B5%E5%AE%8F%EF%BC%88UnityShaderVariables-cginc%E4%B8%AD%EF%BC%89"><span class="toc-number">2.3.3.</span> <span class="toc-text">变换矩阵宏（UnityShaderVariables.cginc中）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%98%E9%87%8F"><span class="toc-number">2.3.4.</span> <span class="toc-text">变量</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/07/01/hello-world/" title="欢迎来到文KRIFE齐的博客！">欢迎来到文KRIFE齐的博客！</a><time datetime="2024-07-01T11:46:20.391Z" title="发表于 2024-07-01 19:46:20">2024-07-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/US3S1L5%E2%80%94%E2%80%94Phong%E5%85%89%E7%85%A7%E6%A8%A1%E5%9E%8B/" title="US3S1L5——Phong光照模型">US3S1L5——Phong光照模型</a><time datetime="2024-06-25T14:33:57.000Z" title="发表于 2024-06-25 22:33:57">2024-06-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/US3S1L4%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B/US3S1L4-2%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B%E7%9A%84%E9%80%90%E7%89%87%E5%85%83%E5%85%89%E7%85%A7/" title="US3S1L4-2——Phong式高光反射模型的逐片元光照">US3S1L4-2——Phong式高光反射模型的逐片元光照</a><time datetime="2024-06-25T13:16:37.000Z" title="发表于 2024-06-25 21:16:37">2024-06-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/US3S1L4%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B/US3S1L4-1%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B%E7%9A%84%E9%80%90%E9%A1%B6%E7%82%B9%E5%85%89%E7%85%A7/" title="US3S1L4-1——Phong式高光反射模型的逐顶点光照">US3S1L4-1——Phong式高光反射模型的逐顶点光照</a><time datetime="2024-06-25T13:16:05.000Z" title="发表于 2024-06-25 21:16:05">2024-06-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/US3S1L4%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B/" title="US3S1L4——Phong式高光反射模型">US3S1L4——Phong式高光反射模型</a><time datetime="2024-06-25T10:14:12.000Z" title="发表于 2024-06-25 18:14:12">2024-06-25</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By 文KRIFE齐</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

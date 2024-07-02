@@ -1,0 +1,393 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>文KRIFE齐的博客 - 搭建中</title><meta name="author" content="文KRIFE齐"><meta name="copyright" content="文KRIFE齐"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="目前正处于搭建测试环节">
+<meta property="og:type" content="website">
+<meta property="og:title" content="文KRIFE齐的博客">
+<meta property="og:url" content="http://example.com/page/7/index.html">
+<meta property="og:site_name" content="文KRIFE齐的博客">
+<meta property="og:description" content="目前正处于搭建测试环节">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png">
+<meta property="article:author" content="文KRIFE齐">
+<meta property="article:tag" content="blog">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/page/7/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '文KRIFE齐的博客',
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2024-07-02 12:04:08'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">834</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">113</div></a></div><hr class="custom-hr"/></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="文KRIFE齐的博客"><span class="site-name">文KRIFE齐的博客</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">文KRIFE齐的博客</h1></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/05/17/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/PP%E2%80%94%E2%80%94%E5%AE%9E%E8%B7%B5%E9%A1%B9%E7%9B%AE%E7%AC%94%E8%AE%B0/P2%E2%80%94%E2%80%94%E7%8B%AC%E7%AB%8B%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91ARPG/P2L12%E2%80%94%E2%80%94%E3%80%90git%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86%E3%80%91Git%E5%88%9B%E5%BB%BA%E4%B8%8E%E5%88%A0%E9%99%A4%E5%88%86%E6%94%AF%EF%BC%8C%E5%90%88%E5%B9%B6%E5%88%86%E6%94%AF/" title="P2L12——【git版本管理】Git创建与删除分支，合并分支">P2L12——【git版本管理】Git创建与删除分支，合并分支</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-05-17T06:16:52.000Z" title="发表于 2024-05-17 14:16:52">2024-05-17</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/PP%E2%80%94%E2%80%94%E5%AE%9E%E8%B7%B5%E9%A1%B9%E7%9B%AE%E7%AC%94%E8%AE%B0/">PP——实践项目笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/PP%E2%80%94%E2%80%94%E5%AE%9E%E8%B7%B5%E9%A1%B9%E7%9B%AE%E7%AC%94%E8%AE%B0/P2%E2%80%94%E2%80%94%E7%8B%AC%E7%AB%8B%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91ARPG/">P2——独立游戏开发ARPG</a></span></div><div class="content">P2L12——【git版本管理】Git创建与删除分支，合并分支
+git分支功能
+Git当中提供的分支功能，相当于就是为开发过程添加一条新的开发路径。如图所示
+​​
+举个例子来说明这张图，当我们在项目开发后期时，项目可能会被多个发行商代理，
+不同发行商可能会提一些商业活动需求，比如在游戏中加入一些充值活动，一些不同的充值功能。
+那么此时我们完全可以在最终版本处进行分支，不同的分支开发不同的功能需求，相互不影响。甚至在后期也可以将多个分支进行合并。
+如何创建新的分支
+​​
+​​
+​​
+分支切换
+​​
+我们首先在该分支中加入一个开发节点，在工程文件夹中加入一个文件，并点击记录分支按钮（Commit到分支）
+​​
+这时再切换分支，你可以看到不同分支中的开发节点是不同的了（因为Android分支是基于之前的Main分支的，所以前面部分是相同的节点）
+​​
+​​
+发布分支
+如果你想要将新的分支上传的Github云端，以便分享给它人，只需要切换到对应节点，然后点击推送即可
+​​
+预览拉取请求，我们先按下不表，忽略这个按钮
+​​
+此时来到Github主页中，查看对应的项目，就可以在Github上看到对 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/05/17/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/PP%E2%80%94%E2%80%94%E5%AE%9E%E8%B7%B5%E9%A1%B9%E7%9B%AE%E7%AC%94%E8%AE%B0/P2%E2%80%94%E2%80%94%E7%8B%AC%E7%AB%8B%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91ARPG/P2L11%E2%80%94%E2%80%94%E3%80%90git%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86%E3%80%91%E6%B1%89%E5%8C%96%20Github%20Desktop/" title="P2L11——【git版本管理】汉化 Github Desktop">P2L11——【git版本管理】汉化 Github Desktop</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-05-17T06:05:44.000Z" title="发表于 2024-05-17 14:05:44">2024-05-17</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/PP%E2%80%94%E2%80%94%E5%AE%9E%E8%B7%B5%E9%A1%B9%E7%9B%AE%E7%AC%94%E8%AE%B0/">PP——实践项目笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/PP%E2%80%94%E2%80%94%E5%AE%9E%E8%B7%B5%E9%A1%B9%E7%9B%AE%E7%AC%94%E8%AE%B0/P2%E2%80%94%E2%80%94%E7%8B%AC%E7%AB%8B%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91ARPG/">P2——独立游戏开发ARPG</a></span></div><div class="content">P2L11——【git版本管理】汉化 Github Desktop
+汉化 Github Desktop
+为了方便英文不好的同学在使用Git Desktop时更加方便，可以尝试将其汉化
+该项目在Github开源：robotze/GithubDesktopZhTool: Github Desktop 汉化工具 支持 Windows Mac Linux
+下载Release的最新版即可
+解压后得到
+​​
+双击运行后，点击汉化
+​​
+点击确定
+​​
+会自动打开Git DeskTop
+​​
+汉化成功！
+注意：如果你的版本较新，无法正常汉化，需要到其Github上下载最新的汉化包
+取消汉化
+如果想要取消汉化，打开汉化工具，点击还原即可
+‍
+</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/05/17/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/PP%E2%80%94%E2%80%94%E5%AE%9E%E8%B7%B5%E9%A1%B9%E7%9B%AE%E7%AC%94%E8%AE%B0/P2%E2%80%94%E2%80%94%E7%8B%AC%E7%AB%8B%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91ARPG/P2L10%E2%80%94%E2%80%94%E3%80%90git%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86%E3%80%91Git%E5%88%9B%E5%BB%BA%E6%96%B0%E7%9A%84%E4%BB%A3%E7%A0%81%E4%BB%93%E5%BA%93%EF%BC%8C%E4%BB%A5%E5%8F%8A%E5%B0%86%E5%B7%B2%E6%9C%89%E9%A1%B9%E7%9B%AE%E5%AD%98%E5%82%A8%E4%B8%BA%E5%BA%93/" title="P2L10——【git版本管理】Git创建新的代码仓库，以及将已有项目存储为库">P2L10——【git版本管理】Git创建新的代码仓库，以及将已有项目存储为库</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-05-17T06:00:55.000Z" title="发表于 2024-05-17 14:00:55">2024-05-17</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/PP%E2%80%94%E2%80%94%E5%AE%9E%E8%B7%B5%E9%A1%B9%E7%9B%AE%E7%AC%94%E8%AE%B0/">PP——实践项目笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/PP%E2%80%94%E2%80%94%E5%AE%9E%E8%B7%B5%E9%A1%B9%E7%9B%AE%E7%AC%94%E8%AE%B0/P2%E2%80%94%E2%80%94%E7%8B%AC%E7%AB%8B%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91ARPG/">P2——独立游戏开发ARPG</a></span></div><div class="content">P2L10——【git版本管理】Git创建新的代码仓库，以及将已有项目存储为库
+Github Desktop 创建新的代码仓库
+1.认识界面
+​​
+2.创建新的存储仓库
+点击从本地磁盘上创建新存储库
+​​
+在弹出窗口中填写关键信息
+​​
+我的填写如下，路径可以自己找一个磁盘新建一个文件夹用于测试
+​​
+点击Create repository 创建仓库后，创建成功，界面变为如下图所示
+​​
+我们可以点击窗口中的在资源管理器中查看存储库文件按钮
+​​
+便可以打开仓库所在位置
+​​
+此时，我们便可以在这个文件夹中创建Unity工程，或添加想要被版本控制的文件了
+3.为新建仓库添加文件，上传版本节点
+我们在次路径中创建一个测试用的文本文件，里面随便编辑一些内容
+​​
+回到Git窗口中
+​​
+​​
+点击Commit to main 提交到主分支后，窗口刷新，表示当前版本没有修改
+​​
+切换到History版本历史页签
+​​
+4. 同步到远端GitHub仓库中
+注意：做了以上操作，这些版本信息只是记录在了本地，并没有同步到远端Github仓库
+同步到Github仓库
+​​
+点击后弹出窗口
+​​
+点 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/05/16/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US2%E2%80%94%E2%80%94Shader%E5%BF%85%E5%A4%87%E5%9F%BA%E7%A1%80/US2S1%E2%80%94%E2%80%94%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E5%8F%8A%E5%9D%90%E6%A0%87%E7%A9%BA%E9%97%B4%E5%8F%98%E6%8D%A2/US2S1L11%E2%80%94%E2%80%94%E5%9D%90%E6%A0%87%E7%A9%BA%E9%97%B4%E7%9A%84%E5%8F%98%E6%8D%A2%E8%A7%84%E5%88%99/" title="US2S1L11——坐标空间的变换规则">US2S1L11——坐标空间的变换规则</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-05-16T13:35:28.000Z" title="发表于 2024-05-16 21:35:28">2024-05-16</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity-Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/">US——Unity Shader开发入门</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity-Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US2%E2%80%94%E2%80%94Shader%E5%BF%85%E5%A4%87%E5%9F%BA%E7%A1%80/">US2——Shader必备基础</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity-Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US2%E2%80%94%E2%80%94Shader%E5%BF%85%E5%A4%87%E5%9F%BA%E7%A1%80/US2S1%E2%80%94%E2%80%94%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E5%8F%8A%E5%9D%90%E6%A0%87%E7%A9%BA%E9%97%B4%E5%8F%98%E6%8D%A2/">US2S1——线性代数及坐标空间变换</a></span></div><div class="content">US2S1L11——坐标空间的变换规则
+坐标空间的组成
+想要定义一个坐标空间，我们必须要具备以下两点：
+
+坐标原点位置
+3个坐标轴的方向（三维坐标系中）
+
+有了这两点信息，我们就能够决定一个坐标空间了
+坐标空间之间的关系
+在Unity中，世界坐标空间相当于我们的基础坐标空间，Unity中其他的大部分坐标空间，都是世界坐标空间的子坐标空间。
+这些子坐标空间的原点和轴向的相关表示数据，都是基于世界坐标空间的。
+因此，在Unity中坐标空间之间会形成一种层级结构，大部分坐标空间都是另一个坐标空间的子空间。
+所以，Unity中的坐标空间的变换实际上就是父空间和子空间之间对点或向量进行变换。
+​​
+坐标空间的变换矩阵
+
+
+从子坐标空间到父坐标空间的变换矩阵：
+Ms−f=(∣∣∣∣XsYsZsOs∣∣∣∣0001)M_{s-f} = \begin{pmatrix} 
+    | &amp; | &amp; | &amp; | \\
+    X_s &amp; Y_s &amp; Z_s &amp; O_s \\
+    | &amp; | &amp; | &amp; | \\
+    0 &amp ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/05/16/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US2%E2%80%94%E2%80%94Shader%E5%BF%85%E5%A4%87%E5%9F%BA%E7%A1%80/US2S1%E2%80%94%E2%80%94%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E5%8F%8A%E5%9D%90%E6%A0%87%E7%A9%BA%E9%97%B4%E5%8F%98%E6%8D%A2/US2S1L10%E2%80%94%E2%80%94%E5%9D%90%E6%A0%87%E7%A9%BA%E9%97%B4%E7%9A%84%E5%8F%98%E6%8D%A2/" title="US2S1L10——坐标空间的变换">US2S1L10——坐标空间的变换</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-05-16T04:54:25.000Z" title="发表于 2024-05-16 12:54:25">2024-05-16</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity-Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/">US——Unity Shader开发入门</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity-Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US2%E2%80%94%E2%80%94Shader%E5%BF%85%E5%A4%87%E5%9F%BA%E7%A1%80/">US2——Shader必备基础</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity-Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US2%E2%80%94%E2%80%94Shader%E5%BF%85%E5%A4%87%E5%9F%BA%E7%A1%80/US2S1%E2%80%94%E2%80%94%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E5%8F%8A%E5%9D%90%E6%A0%87%E7%A9%BA%E9%97%B4%E5%8F%98%E6%8D%A2/">US2S1——线性代数及坐标空间变换</a></span></div><div class="content">US2S1L10——坐标空间的变换
+
+重要知识回顾
+
+渲染管线（流水线）的基本概念是将数据分阶段的变为屏幕图像的过程
+在渲染管线中的顶点阶段​和​光栅化阶段​会对数据进行处理
+其中最重要的一部分数据处理工作就是坐标转换、顶点变换等等
+线性代数中的矩阵相关知识，主要就是帮助我们来完成变换的
+我们可以通过平移​ **、**​旋转​ 、​缩放矩阵来完成对点或向量的变换
+
+
+坐标空间
+坐标空间是一个用于描述和定位物体位置的数学概念。
+它一般由一个基础参照物（原点）和轴线（相互垂直的轴线）组成。
+常见的坐标空间包括二维平面坐标空间和三维空间
+在三维空间中，通常决定一个原点 (0,0,0)(0,0,0)(0,0,0) 并使用三个坐标轴（通常是x轴、y轴和z轴）来描述点的位置。
+例如，在三维坐标空间中，一个点可以通过其x、y和z坐标来确定其在空间中的位置。
+关于Unity中坐标系的知识点，我们在Unity基础中的坐标系中已经学习过了
+为什么有很多不同的坐标空间
+我们在Unity基础中讲解的坐标系相关知识中提到了：
+
+世界坐标系
+物体坐标系
+屏幕坐标系
+
+等等
+这些就是各种不同的坐标空间，之所以存在这 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/05/16/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US2%E2%80%94%E2%80%94Shader%E5%BF%85%E5%A4%87%E5%9F%BA%E7%A1%80/US2S1%E2%80%94%E2%80%94%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E5%8F%8A%E5%9D%90%E6%A0%87%E7%A9%BA%E9%97%B4%E5%8F%98%E6%8D%A2/US2S1L9%E2%80%94%E2%80%94%E5%A4%8D%E5%90%88%E8%BF%90%E7%AE%97/" title="US2S1L9——复合运算">US2S1L9——复合运算</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-05-16T04:44:28.000Z" title="发表于 2024-05-16 12:44:28">2024-05-16</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity-Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/">US——Unity Shader开发入门</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity-Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US2%E2%80%94%E2%80%94Shader%E5%BF%85%E5%A4%87%E5%9F%BA%E7%A1%80/">US2——Shader必备基础</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity-Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US2%E2%80%94%E2%80%94Shader%E5%BF%85%E5%A4%87%E5%9F%BA%E7%A1%80/US2S1%E2%80%94%E2%80%94%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E5%8F%8A%E5%9D%90%E6%A0%87%E7%A9%BA%E9%97%B4%E5%8F%98%E6%8D%A2/">US2S1——线性代数及坐标空间变换</a></span></div><div class="content">US2S1L9——复合运算
+
+回顾各个变换矩阵
+
+
+平移矩阵
+[100tx010ty001tz0001]\begin{bmatrix}
+  1 &amp; 0 &amp; 0 &amp; tx \\
+  0 &amp; 1 &amp; 0 &amp; ty \\
+  0 &amp; 0 &amp; 1 &amp; tz \\
+  0 &amp; 0 &amp; 0 &amp; 1
+\end{bmatrix}
+​1000​0100​0010​txtytz1​​
+
+
+旋转矩阵
+绕 x 轴旋转 β 度，旋转矩阵为：
+[10000cosβ−sinβ00sinβcosβ00001]\begin{bmatrix}
+  1 &amp; 0 &amp; 0 &amp; 0 \\
+  0 &amp; cos\beta &amp; -sin\beta &amp; 0 \\
+  0 &amp; sin\beta &amp; cos\beta &amp; 0 \\
+  0 &amp; 0 &amp; 0 &amp; 1 \\
+\end{bmatrix}
+​1000​0cosβsinβ0​0−sinβcosβ0 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/05/16/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US2%E2%80%94%E2%80%94Shader%E5%BF%85%E5%A4%87%E5%9F%BA%E7%A1%80/US2S1%E2%80%94%E2%80%94%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E5%8F%8A%E5%9D%90%E6%A0%87%E7%A9%BA%E9%97%B4%E5%8F%98%E6%8D%A2/US2S1L8%E2%80%94%E2%80%94%E7%BC%A9%E6%94%BE%E7%9F%A9%E9%98%B5/" title="US2S1L8——缩放矩阵">US2S1L8——缩放矩阵</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-05-16T04:23:57.000Z" title="发表于 2024-05-16 12:23:57">2024-05-16</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity-Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/">US——Unity Shader开发入门</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity-Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US2%E2%80%94%E2%80%94Shader%E5%BF%85%E5%A4%87%E5%9F%BA%E7%A1%80/">US2——Shader必备基础</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity-Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US2%E2%80%94%E2%80%94Shader%E5%BF%85%E5%A4%87%E5%9F%BA%E7%A1%80/US2S1%E2%80%94%E2%80%94%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E5%8F%8A%E5%9D%90%E6%A0%87%E7%A9%BA%E9%97%B4%E5%8F%98%E6%8D%A2/">US2S1——线性代数及坐标空间变换</a></span></div><div class="content">US2S1L8——缩放矩阵
+
+4×44 \times 44×4 矩阵的基本构成规则为：
+[M11M12M13txM21M22M23tyM31M32M23tz0001]\begin{bmatrix}
+  M_{11} &amp; M_{12} &amp; M_{13} &amp; tx \\
+  M_{21} &amp; M_{22} &amp; M_{23} &amp; ty \\
+  M_{31} &amp; M_{32} &amp; M_{23} &amp; tz \\
+  0 &amp; 0 &amp; 0 &amp; 1
+\end{bmatrix}
+​M11​M21​M31​0​M12​M22​M32​0​M13​M23​M23​0​txtytz1​​
+​​
+
+矩阵的 M3×3M^{3 \times 3}M3×3 部分用于表示旋转和缩放变换
+矩阵的 t3×1t^{3 \times 1}t3×1 部分用于表示平移
+矩阵的 01×30^{1\times3}01×3 部分始终为零矩阵
+矩阵的 右下角元素 始终为 1
+
+
+缩放矩阵
+缩放矩阵主要就是对向量或点进行缩放操作，它可以用于改变 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/05/16/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US2%E2%80%94%E2%80%94Shader%E5%BF%85%E5%A4%87%E5%9F%BA%E7%A1%80/US2S1%E2%80%94%E2%80%94%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E5%8F%8A%E5%9D%90%E6%A0%87%E7%A9%BA%E9%97%B4%E5%8F%98%E6%8D%A2/US2S1L7%E2%80%94%E2%80%94%E6%97%8B%E8%BD%AC%E7%9F%A9%E9%98%B5/" title="US2S1L7——旋转矩阵">US2S1L7——旋转矩阵</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-05-16T03:54:32.000Z" title="发表于 2024-05-16 11:54:32">2024-05-16</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity-Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/">US——Unity Shader开发入门</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity-Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US2%E2%80%94%E2%80%94Shader%E5%BF%85%E5%A4%87%E5%9F%BA%E7%A1%80/">US2——Shader必备基础</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity-Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US2%E2%80%94%E2%80%94Shader%E5%BF%85%E5%A4%87%E5%9F%BA%E7%A1%80/US2S1%E2%80%94%E2%80%94%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E5%8F%8A%E5%9D%90%E6%A0%87%E7%A9%BA%E9%97%B4%E5%8F%98%E6%8D%A2/">US2S1——线性代数及坐标空间变换</a></span></div><div class="content">US2S1L7——旋转矩阵
+
+4×44 \times 44×4 矩阵的基本构成规则为：
+[M11M12M13txM21M22M23tyM31M32M23tz0001]\begin{bmatrix}
+  M_{11} &amp; M_{12} &amp; M_{13} &amp; tx \\
+  M_{21} &amp; M_{22} &amp; M_{23} &amp; ty \\
+  M_{31} &amp; M_{32} &amp; M_{23} &amp; tz \\
+  0 &amp; 0 &amp; 0 &amp; 1
+\end{bmatrix}
+​M11​M21​M31​0​M12​M22​M32​0​M13​M23​M23​0​txtytz1​​
+​​
+
+矩阵的 M3×3M^{3 \times 3}M3×3 部分用于表示旋转和缩放变换
+矩阵的 t3×1t^{3 \times 1}t3×1 部分用于表示平移
+矩阵的 01×30^{1\times3}01×3 部分始终为零矩阵
+矩阵的 右下角元素 始终为 1
+
+
+旋转矩阵
+旋转操作需要指定一个旋转轴（不一定是空间中的坐标轴）
+ ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/05/15/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US2%E2%80%94%E2%80%94Shader%E5%BF%85%E5%A4%87%E5%9F%BA%E7%A1%80/US2S1%E2%80%94%E2%80%94%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E5%8F%8A%E5%9D%90%E6%A0%87%E7%A9%BA%E9%97%B4%E5%8F%98%E6%8D%A2/US2S1L6%E2%80%94%E2%80%94%E5%B9%B3%E7%A7%BB%E7%9F%A9%E9%98%B5/" title="US2S1L6——平移矩阵">US2S1L6——平移矩阵</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-05-15T14:29:36.000Z" title="发表于 2024-05-15 22:29:36">2024-05-15</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity-Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/">US——Unity Shader开发入门</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity-Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US2%E2%80%94%E2%80%94Shader%E5%BF%85%E5%A4%87%E5%9F%BA%E7%A1%80/">US2——Shader必备基础</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity-Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US2%E2%80%94%E2%80%94Shader%E5%BF%85%E5%A4%87%E5%9F%BA%E7%A1%80/US2S1%E2%80%94%E2%80%94%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E5%8F%8A%E5%9D%90%E6%A0%87%E7%A9%BA%E9%97%B4%E5%8F%98%E6%8D%A2/">US2S1——线性代数及坐标空间变换</a></span></div><div class="content">US2S1L6——平移矩阵
+
+知识回顾
+
+三维空间中的点或向量，我们使用齐次坐标进行矩阵运算
+​(x,y,z,w)(x , y , z , w)(x,y,z,w)，其中 w=1w = 1w=1 时 代表是一个点，w=0w = 0w=0 时 代表一个向量
+在Unity的Shader开发中
+我们采用列矩阵的形式进行向量计算，利用结合律，我们可以从右往左阅读
+CBAv=C(B(Av))CBAv = C(B(Av))CBAv=C(B(Av))
+
+
+基础变换矩阵的构成规则
+通过上节课齐次坐标的学习，我们知道：4×44 \times 44×4 的矩阵为仿射矩阵
+它不仅可以表示出线性变换（缩放、旋转等），还可以表示出平移变换。
+因此，我们将要学习的平移、缩放、旋转相关的变换，将会使用 4×44 \times 44×4 的矩阵来进行计算
+4×44 \times 44×4 矩阵的基本构成规则为：
+[M11M12M13txM21M22M23tyM31M32M23tz0001]\begin{bmatrix}
+  M_{11} &amp; M_{12} &amp; M_{13} &amp; tx \\
+  M ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/05/15/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US2%E2%80%94%E2%80%94Shader%E5%BF%85%E5%A4%87%E5%9F%BA%E7%A1%80/US2S1%E2%80%94%E2%80%94%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E5%8F%8A%E5%9D%90%E6%A0%87%E7%A9%BA%E9%97%B4%E5%8F%98%E6%8D%A2/US2S1L5%E2%80%94%E2%80%94%E9%BD%90%E6%AC%A1%E5%9D%90%E6%A0%87/" title="US2S1L5——齐次坐标">US2S1L5——齐次坐标</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-05-15T14:18:54.000Z" title="发表于 2024-05-15 22:18:54">2024-05-15</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity-Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/">US——Unity Shader开发入门</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity-Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US2%E2%80%94%E2%80%94Shader%E5%BF%85%E5%A4%87%E5%9F%BA%E7%A1%80/">US2——Shader必备基础</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity-Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US2%E2%80%94%E2%80%94Shader%E5%BF%85%E5%A4%87%E5%9F%BA%E7%A1%80/US2S1%E2%80%94%E2%80%94%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E5%8F%8A%E5%9D%90%E6%A0%87%E7%A9%BA%E9%97%B4%E5%8F%98%E6%8D%A2/">US2S1——线性代数及坐标空间变换</a></span></div><div class="content">US2S1L5——齐次坐标
+齐次坐标
+齐次坐标是一种在计算机图形学中常用的表示坐标的方式。
+它是通过引入一个额外的维度来扩展传统的笛卡尔坐标系，就是将一个原本是 nnn 维的向量或矩阵用 n+1n + 1n+1 维来表示，
+让我们可以更方便的进行几何变换和矩阵运算。
+举例：
+三维空间中有一个向量或点 (x,y,z)(x , y , z)(x,y,z)，它对应的齐次坐标就是给它加一维，变成  (x,y,z,w)(x , y , z , w)(x,y,z,w)  ，
+其中 www 值的改变可以让它有具有不同的含义。
+
+
+齐次坐标是什么
+就是将一个原本是 nnn 维的向量或矩阵用 n+1n + 1n+1 维来表示
+
+
+为什么要使用齐次坐标进行矩阵运算
+
+明确的区分向量和点
+能够表示出平移变换
+
+
+
+为什么要使用齐次坐标进行矩阵运算
+
+
+主要原因1：通过齐次坐标，我们可以明确的区分向量和点
+刚才的例子讲解：
+三维空间中的 (x,y,z)(x , y , z)(x,y,z) ，它既可以表示点，也可以表示向量。
+那么我们可以利用齐次坐标给它加一维，变成 (x,y,z,w)(x , y , z ,  ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/6/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/#content-inner">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/#content-inner">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/84/#content-inner">84</a><a class="extend next" rel="next" href="/page/8/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">文KRIFE齐</div><div class="author-info__description">目前正处于搭建测试环节</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">834</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">113</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/07/01/hello-world/" title="欢迎来到文KRIFE齐的博客！">欢迎来到文KRIFE齐的博客！</a><time datetime="2024-07-01T11:46:20.391Z" title="发表于 2024-07-01 19:46:20">2024-07-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/US3S1L5%E2%80%94%E2%80%94Phong%E5%85%89%E7%85%A7%E6%A8%A1%E5%9E%8B/" title="US3S1L5——Phong光照模型">US3S1L5——Phong光照模型</a><time datetime="2024-06-25T14:33:57.000Z" title="发表于 2024-06-25 22:33:57">2024-06-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/US3S1L4%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B/US3S1L4-2%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B%E7%9A%84%E9%80%90%E7%89%87%E5%85%83%E5%85%89%E7%85%A7/" title="US3S1L4-2——Phong式高光反射模型的逐片元光照">US3S1L4-2——Phong式高光反射模型的逐片元光照</a><time datetime="2024-06-25T13:16:37.000Z" title="发表于 2024-06-25 21:16:37">2024-06-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/US3S1L4%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B/US3S1L4-1%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B%E7%9A%84%E9%80%90%E9%A1%B6%E7%82%B9%E5%85%89%E7%85%A7/" title="US3S1L4-1——Phong式高光反射模型的逐顶点光照">US3S1L4-1——Phong式高光反射模型的逐顶点光照</a><time datetime="2024-06-25T13:16:05.000Z" title="发表于 2024-06-25 21:16:05">2024-06-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/US3S1L4%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B/" title="US3S1L4——Phong式高光反射模型">US3S1L4——Phong式高光反射模型</a><time datetime="2024-06-25T10:14:12.000Z" title="发表于 2024-06-25 18:14:12">2024-06-25</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            <a class="card-more-btn" href="/categories/" title="查看更多">
+    <i class="fas fa-angle-right"></i></a>
+            </div>
+            <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><span class="card-category-list-name">Unity就业路线学习笔记</span><span class="card-category-list-count">833</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94C-%E7%AC%94%E8%AE%B0/"><span class="card-category-list-name">CS——C#笔记</span><span class="card-category-list-count">49</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94C-%E7%AC%94%E8%AE%B0/CS1%E2%80%94%E2%80%94C-%E5%85%A5%E9%97%A8%E7%B3%BB%E5%88%97/"><span class="card-category-list-name">CS1——C#入门系列</span><span class="card-category-list-count">22</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94C-%E7%AC%94%E8%AE%B0/CS2%E2%80%94%E2%80%94C-%E5%9F%BA%E7%A1%80%E7%B3%BB%E5%88%97/"><span class="card-category-list-name">CS2——C#基础系列</span><span class="card-category-list-count">3</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94C-%E7%AC%94%E8%AE%B0/CS3%E2%80%94%E2%80%94C-%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/"><span class="card-category-list-name">CS3——C#核心系列</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94C-%E7%AC%94%E8%AE%B0/CS4%E2%80%94%E2%80%94C-%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/"><span class="card-category-list-name">CS4——C#进阶系列</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94C-%E7%AC%94%E8%AE%B0/CS5%E2%80%94%E2%80%94C-%E7%9F%A5%E8%AF%86%E8%A1%A5%E5%85%85/"><span class="card-category-list-name">CS5——C#知识补充</span><span class="card-category-list-count">16</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94C-%E7%AC%94%E8%AE%B0/CS5%E2%80%94%E2%80%94C-%E7%9F%A5%E8%AF%86%E8%A1%A5%E5%85%85/CS5L7%E2%80%94%E2%80%94C-5-%E5%8A%9F%E8%83%BD%E5%92%8C%E8%AF%AD%E6%B3%95/"><span class="card-category-list-name">CS5L7——C# 5 功能和语法</span><span class="card-category-list-count">2</span></a></li></ul></li></ul></li></ul></li>
+            </ul></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span><a class="card-more-btn" href="/archives/" title="查看更多">
+    <i class="fas fa-angle-right"></i></a></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/07/"><span class="card-archive-list-date">七月 2024</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/06/"><span class="card-archive-list-date">六月 2024</span><span class="card-archive-list-count">51</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/05/"><span class="card-archive-list-date">五月 2024</span><span class="card-archive-list-count">56</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/04/"><span class="card-archive-list-date">四月 2024</span><span class="card-archive-list-count">127</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/03/"><span class="card-archive-list-date">三月 2024</span><span class="card-archive-list-count">135</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/02/"><span class="card-archive-list-date">二月 2024</span><span class="card-archive-list-count">62</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/01/"><span class="card-archive-list-date">一月 2024</span><span class="card-archive-list-count">31</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/12/"><span class="card-archive-list-date">十二月 2023</span><span class="card-archive-list-count">2</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">834</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2024-07-02T04:04:07.863Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By 文KRIFE齐</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

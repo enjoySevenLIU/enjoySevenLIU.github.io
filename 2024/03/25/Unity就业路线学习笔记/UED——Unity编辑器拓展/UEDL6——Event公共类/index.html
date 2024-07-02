@@ -1,0 +1,396 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>UEDL6——Event公共类 | 文KRIFE齐的博客</title><meta name="author" content="文KRIFE齐"><meta name="copyright" content="文KRIFE齐"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="UEDL6——Event公共类 本章代码关键字 12345678910111213141516171819Event.current					&#x2F;&#x2F;获取当前事件Event.current.alt				&#x2F;&#x2F;判断alt键是否按下Event.current.shift				&#x2F;&#x2F;shift键是否按下Event.current.control			&#x2F;&#x2F;ctrl键是否按下Event.current.isMo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="UEDL6——Event公共类">
+<meta property="og:url" content="http://example.com/2024/03/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UED%E2%80%94%E2%80%94Unity%E7%BC%96%E8%BE%91%E5%99%A8%E6%8B%93%E5%B1%95/UEDL6%E2%80%94%E2%80%94Event%E5%85%AC%E5%85%B1%E7%B1%BB/index.html">
+<meta property="og:site_name" content="文KRIFE齐的博客">
+<meta property="og:description" content="UEDL6——Event公共类 本章代码关键字 12345678910111213141516171819Event.current					&#x2F;&#x2F;获取当前事件Event.current.alt				&#x2F;&#x2F;判断alt键是否按下Event.current.shift				&#x2F;&#x2F;shift键是否按下Event.current.control			&#x2F;&#x2F;ctrl键是否按下Event.current.isMo">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png">
+<meta property="article:published_time" content="2024-03-25T14:44:38.000Z">
+<meta property="article:modified_time" content="2024-07-02T03:57:15.000Z">
+<meta property="article:author" content="文KRIFE齐">
+<meta property="article:tag" content="blog">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2024/03/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UED%E2%80%94%E2%80%94Unity%E7%BC%96%E8%BE%91%E5%99%A8%E6%8B%93%E5%B1%95/UEDL6%E2%80%94%E2%80%94Event%E5%85%AC%E5%85%B1%E7%B1%BB/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'UEDL6——Event公共类',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-07-02 11:57:15'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">834</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">113</div></a></div><hr class="custom-hr"/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="文KRIFE齐的博客"><span class="site-name">文KRIFE齐的博客</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">UEDL6——Event公共类</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-03-25T14:44:38.000Z" title="发表于 2024-03-25 22:44:38">2024-03-25</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-07-02T03:57:15.000Z" title="更新于 2024-07-02 11:57:15">2024-07-02</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UED%E2%80%94%E2%80%94Unity%E7%BC%96%E8%BE%91%E5%99%A8%E6%8B%93%E5%B1%95/">UED——Unity编辑器拓展</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="UEDL6——Event公共类"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1>UEDL6——Event公共类</h1>
+<h2 id="本章代码关键字">本章代码关键字</h2>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">Event.current					<span class="comment">//获取当前事件</span></span><br><span class="line">Event.current.alt				<span class="comment">//判断alt键是否按下</span></span><br><span class="line">Event.current.shift				<span class="comment">//shift键是否按下</span></span><br><span class="line">Event.current.control			<span class="comment">//ctrl键是否按下</span></span><br><span class="line">Event.current.isMouse			<span class="comment">//是否是鼠标事件</span></span><br><span class="line">Event.current.button			<span class="comment">//判断鼠标左中右键，0,1,2 分别代表 左,右,中</span></span><br><span class="line">Event.current.mousePosition		<span class="comment">//鼠标相对于窗口坐标系的位置</span></span><br><span class="line">Event.current.isKey				<span class="comment">//判断是否是键盘输入</span></span><br><span class="line">Event.current.character			<span class="comment">//获取键盘输入的字符</span></span><br><span class="line">Event.current.keyCode			<span class="comment">//获取键盘输入对应的KeyCode</span></span><br><span class="line">Event.current.type				<span class="comment">//判断输入类型</span></span><br><span class="line">EventType						<span class="comment">//表示Event的类型</span></span><br><span class="line">Event.current.capsLock			<span class="comment">//是否锁定大写 对应键盘上capslock键是否开启</span></span><br><span class="line">Event.current.command			<span class="comment">//Windows键或Command键（苹果使用）是否按下</span></span><br><span class="line">Event.current.commandName		<span class="comment">//键盘事件 返回的是字符串 可以用来判断是否触发了对应的键盘事件</span></span><br><span class="line">Event.current.delta				<span class="comment">//鼠标间隔移动距离</span></span><br><span class="line">Event.current.functionKey		<span class="comment">//是否是功能键输入</span></span><br><span class="line">Event.current.numeric			<span class="comment">//小键盘是否开启</span></span><br><span class="line">Event.current.Use()				<span class="comment">//避免组合键冲突，在处理完对应输入事件后，调用该方法，可以阻止事件继续派发，防止和Unity其他编辑器事件逻辑冲突</span></span><br></pre></td></tr></table></figure>
+<h1>Event</h1>
+<p>​<code>Event</code>​公共类提供了许多属性和方法，允许你检查和处理用户输入，主要用于在Unity编辑器拓展开发中</p>
+<p>因为<code>Input</code>​相关内容需要在运行时才能监听输入，而<code>Event</code>​专门提供给编辑模式下使用，可以帮助我们检测鼠标键盘输入等事件相关操作<br>
+它在 <code>OnGUI</code>​ 和 <code>OnSceneView</code>​ 中都能使用</p>
+<p>Event的具体内容参见：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://docs.unity3d.com/ScriptReference/Event.html">Unity - Scripting API: Event (unity3d.com)</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.unity.cn/cn/2022.3/ScriptReference/Event.html">Event - Unity 脚本 API</a>（中文文档）</li>
+</ul>
+<h2 id="重要API">重要API</h2>
+<p>注意：以下的API全部都是焦点在窗口上时才会触发</p>
+<ol>
+<li>
+<p>获取当前事件 <code>Event.current</code>​</p>
+ <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Event eve = Event.current;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>alt键是否按下 <code>Event.current.alt</code>​</p>
+ <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (Event.current.alt)</span><br><span class="line">    Debug.Log(<span class="string">&quot;alt键按下了！&quot;</span>);</span><br></pre></td></tr></table></figure>
+<p>​<img src="assets/image-20240328172100-c2u8brs.png" alt="image">​</p>
+</li>
+<li>
+<p>shift键是否按下 <code>Event.current.shift</code>​</p>
+ <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (Event.current.shift)</span><br><span class="line">    Debug.Log(<span class="string">&quot;shift键按下了！&quot;</span>);</span><br></pre></td></tr></table></figure>
+<p>​<img src="assets/image-20240328172051-6kouc87.png" alt="image">​</p>
+</li>
+<li>
+<p>ctrl键是否按下 <code>Event.current.control</code>​</p>
+ <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (Event.current.control)</span><br><span class="line">    Debug.Log(<span class="string">&quot;ctrl键按下了！&quot;</span>);</span><br></pre></td></tr></table></figure>
+<p>​<img src="assets/image-20240328172244-15may29.png" alt="image">​</p>
+</li>
+<li>
+<p>是否是鼠标事件 <code>Event.current.isMouse</code>​</p>
+ <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (Event.current.isMouse)</span><br><span class="line">    Debug.Log(<span class="string">&quot;鼠标相关事件&quot;</span>);</span><br></pre></td></tr></table></figure>
+<p>按下鼠标上的左键中键右键就会输出该消息</p>
+<p>​<img src="assets/image-20240328172251-8v7o4rs.png" alt="image">​</p>
+</li>
+<li>
+<p>判断鼠标左中右键 <code>Evnet.current.button</code>​ (0,1,2 分别代表 左,右,中 如果大于2可能是其他鼠标按键)</p>
+ <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (Event.current.isMouse)</span><br><span class="line">&#123;</span><br><span class="line">    Debug.Log(<span class="string">&quot;鼠标相关事件&quot;</span>);</span><br><span class="line">    Debug.Log(Event.current.button);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>依次按下左键，中键，右键输出的内容</p>
+<p>​<img src="assets/image-20240328172618-tqctx6p.png" alt="image">​</p>
+</li>
+<li>
+<p>鼠标位置 <code>Event.current.mousePosition</code>​，输出鼠标相对于窗口坐标系位置的Vector2值</p>
+ <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (Event.current.isMouse)</span><br><span class="line">&#123;</span><br><span class="line">    Debug.Log(<span class="string">&quot;鼠标相关事件&quot;</span>);</span><br><span class="line">    Debug.Log(Event.current.button);</span><br><span class="line">    Debug.Log(<span class="string">&quot;鼠标位置: &quot;</span> + Event.current.mousePosition);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>焦点在窗口上时，按下鼠标键拖动鼠标</p>
+<p>​<img src="assets/image-20240328172847-krg742v.png" alt="image">​</p>
+</li>
+<li>
+<p>判断是否是键盘输入 <code>Event.current.isKey</code>​</p>
+ <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (Event.current.isKey)</span><br><span class="line">&#123;</span><br><span class="line">    Debug.Log(<span class="string">&quot;键盘相关事件&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>​<img src="assets/image-20240328173215-rw1ia5y.png" alt="image">​</p>
+</li>
+<li>
+<p>获取键盘输入的字符 <code>Event.current.character</code>​</p>
+<p>输出的是输入的字符<code>char</code>​，输出结果收到是否按下Shift键影响，按下shift键会输出大写字母</p>
+ <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (Event.current.isKey)</span><br><span class="line">&#123;</span><br><span class="line">    Debug.Log(<span class="string">&quot;键盘相关事件&quot;</span>);</span><br><span class="line">    Debug.Log(<span class="string">&quot;Character: &quot;</span> + Event.current.character);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>​<img src="assets/image-20240328173603-zywbr56.png" alt="image">​</p>
+</li>
+<li>
+<p>获取键盘输入对应的<code>KeyCode</code>​：<code>Event.current.keyCode</code>​</p>
+<p>输出的是<code>KeyCode</code>​枚举，输出结果不受大小写影响</p>
+ <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (Event.current.isKey)</span><br><span class="line">&#123;</span><br><span class="line">    Debug.Log(<span class="string">&quot;键盘相关事件&quot;</span>);</span><br><span class="line">    Debug.Log(<span class="string">&quot;KeyCode: &quot;</span> + Event.current.keyCode);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>​<img src="assets/image-20240328173553-kbw55ae.png" alt="image">​</p>
+</li>
+<li>
+<p>判断输入类型 <code>Event.current.type</code>​</p>
+<p>​<code>EventType</code>​ 枚举和它比较即可，<code>EventType</code>​中有常用的鼠标按下抬起拖拽，键盘按下抬起等等类型，<br>
+一般会配合它来判断如鼠标键盘的抬起或者按下，具体有哪些事件可看：EventType​</p>
+ <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (Event.current.type == EventType.MouseDown)</span><br><span class="line">&#123;</span><br><span class="line">    Debug.Log(<span class="string">&quot;鼠标按下&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>是否锁定大写 对应键盘上capslock键是否开启 <code>Event.current.capsLock</code>​</p>
+ <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (Event.current.capsLock)</span><br><span class="line">    Debug.Log(<span class="string">&quot;大小写锁定开启&quot;</span>);</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    Debug.Log(<span class="string">&quot;大小写锁定关闭&quot;</span>);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>​<img src="assets/image-20240328174915-wkghlal.png" alt="image">​</p>
+</li>
+<li>
+<p>Windows键或Command键（苹果使用）是否按下 <code>Event.current.command</code>​</p>
+ <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (Event.current.command)</span><br><span class="line">    Debug.Log(<span class="string">&quot;Windows win键按下 或 Mac Command键按下&quot;</span>);</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>键盘事件 返回的是字符串 <code>Event.current.commandName</code>​ 可以用来判断是否触发了对应的键盘事件</p>
+<p>特定返回值代表特定事件，我们之前学习的窗口事件传递也使用了该方法，只是方法名是我们自定义的</p>
+<ul>
+<li>
+<p>​<code>Copy</code>​：拷贝</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (Event.current.commandName == <span class="string">&quot;Copy&quot;</span>)</span><br><span class="line">    Debug.Log(<span class="string">&quot;按下了ctrl + c&quot;</span>);</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>​<code>Paste</code>​：粘贴</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (Event.current.commandName == <span class="string">&quot;Paste&quot;</span>)</span><br><span class="line">    Debug.Log(<span class="string">&quot;按下了ctrl + v&quot;</span>);</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p><code>Cut</code>​：剪切</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (Event.current.commandName == <span class="string">&quot;Cut&quot;</span>)</span><br><span class="line">    Debug.Log(<span class="string">&quot;按下了ctrl + x&quot;</span>);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>​<img src="assets/image-20240328175700-v3ni2jb.png" alt="image">​</p>
+</li>
+<li>
+<p>鼠标间隔移动距离 <code>Event.current.delta</code>​</p>
+<p>在按下鼠标的键时才会输出移动距离</p>
+ <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Debug.Log(Event.current.delta);</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>是否是功能键输入 <code>Event.current.functionKey</code>​</p>
+<p>功能键指小键盘中的 方向键, page up, page down, backspace等等</p>
+ <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (Event.current.functionKey)</span><br><span class="line">    Debug.Log(<span class="string">&quot;功能键按下了&quot;</span>);</span><br></pre></td></tr></table></figure>
+<p>​<img src="assets/image-20240328180043-14l1i1u.png" alt="image">​</p>
+</li>
+<li>
+<p>小键盘是否开启<sup>（笔者未能触发，原因不明）</sup> <code>Event.current.numeric</code>​</p>
+ <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (Event.current.numeric)</span><br><span class="line">    Debug.Log(<span class="string">&quot;数字小键盘开启&quot;</span>);</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>避免组合键冲突 <code>Event.current.Use()</code>​</p>
+<p>在处理完对应输入事件后，调用该方法，可以阻止事件继续派发，防止和Unity其他编辑器事件逻辑冲突</p>
+ <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Event.current.Use();</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="EventType">EventType</h3>
+<p>EventType是枚举，表示<code>Event</code>​的类型，详细请见：<a target="_blank" rel="noopener" href="https://docs.unity.cn/cn/2022.3/ScriptReference/EventType.html">EventType - Unity 脚本 API</a></p>
+<table>
+<thead>
+<tr>
+<th>枚举字段</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>​<a target="_blank" rel="noopener" href="https://docs.unity.cn/cn/2022.3/ScriptReference/EventType.MouseDown.html"><code>MouseDown</code></a>​</td>
+<td>按下了鼠标键。</td>
+</tr>
+<tr>
+<td>​<a target="_blank" rel="noopener" href="https://docs.unity.cn/cn/2022.3/ScriptReference/EventType.MouseUp.html"><code>MouseUp</code></a>​</td>
+<td>释放了鼠标键。</td>
+</tr>
+<tr>
+<td>​<a target="_blank" rel="noopener" href="https://docs.unity.cn/cn/2022.3/ScriptReference/EventType.MouseMove.html"><code>MouseMove</code></a>​</td>
+<td>移动了鼠标（仅限 Editor 视图）。</td>
+</tr>
+<tr>
+<td>​<a target="_blank" rel="noopener" href="https://docs.unity.cn/cn/2022.3/ScriptReference/EventType.MouseDrag.html"><code>MouseDrag</code></a>​</td>
+<td>拖动了鼠标。</td>
+</tr>
+<tr>
+<td>​<a target="_blank" rel="noopener" href="https://docs.unity.cn/cn/2022.3/ScriptReference/EventType.KeyDown.html"><code>KeyDown</code></a>​</td>
+<td>按下了一个键盘键。</td>
+</tr>
+<tr>
+<td>​<a target="_blank" rel="noopener" href="https://docs.unity.cn/cn/2022.3/ScriptReference/EventType.KeyUp.html"><code>KeyUp</code></a>​</td>
+<td>释放了一个键盘键。</td>
+</tr>
+<tr>
+<td>​<a target="_blank" rel="noopener" href="https://docs.unity.cn/cn/2022.3/ScriptReference/EventType.ScrollWheel.html"><code>ScrollWheel</code></a>​</td>
+<td>移动了滚轮。</td>
+</tr>
+<tr>
+<td>​<a target="_blank" rel="noopener" href="https://docs.unity.cn/cn/2022.3/ScriptReference/EventType.Repaint.html"><code>Repaint</code></a>​</td>
+<td>重绘事件。每一帧都发送一个。</td>
+</tr>
+<tr>
+<td>​<a target="_blank" rel="noopener" href="https://docs.unity.cn/cn/2022.3/ScriptReference/EventType.Layout.html"><code>Layout</code></a>​</td>
+<td>布局事件。</td>
+</tr>
+<tr>
+<td>​<a target="_blank" rel="noopener" href="https://docs.unity.cn/cn/2022.3/ScriptReference/EventType.DragUpdated.html"><code>DragUpdated</code></a>​</td>
+<td>仅限 Editor：拖放操作已更新。</td>
+</tr>
+<tr>
+<td>​<a target="_blank" rel="noopener" href="https://docs.unity.cn/cn/2022.3/ScriptReference/EventType.DragPerform.html"><code>DragPerform</code></a>​</td>
+<td>仅限 Editor：拖放操作已执行。</td>
+</tr>
+<tr>
+<td>​<a target="_blank" rel="noopener" href="https://docs.unity.cn/cn/2022.3/ScriptReference/EventType.DragExited.html"><code>DragExited</code></a>​</td>
+<td>仅限 Editor：拖放操作已退出。</td>
+</tr>
+<tr>
+<td>​<a target="_blank" rel="noopener" href="https://docs.unity.cn/cn/2022.3/ScriptReference/EventType.Ignore.html"><code>Ignore</code></a>​</td>
+<td>应忽略 Event。</td>
+</tr>
+<tr>
+<td>​<a target="_blank" rel="noopener" href="https://docs.unity.cn/cn/2022.3/ScriptReference/EventType.Used.html"><code>Used</code></a>​</td>
+<td>已经处理了事件。</td>
+</tr>
+<tr>
+<td>​<a target="_blank" rel="noopener" href="https://docs.unity.cn/cn/2022.3/ScriptReference/EventType.ValidateCommand.html"><code>ValidateCommand</code></a>​</td>
+<td>验证特殊命令（例如复制和粘贴）。</td>
+</tr>
+<tr>
+<td>​<a target="_blank" rel="noopener" href="https://docs.unity.cn/cn/2022.3/ScriptReference/EventType.ExecuteCommand.html"><code>ExecuteCommand</code></a>​</td>
+<td>执行特殊命令（例如复制和粘贴）。</td>
+</tr>
+<tr>
+<td>​<a target="_blank" rel="noopener" href="https://docs.unity.cn/cn/2022.3/ScriptReference/EventType.ContextClick.html"><code>ContextClick</code></a>​</td>
+<td>用户已点击了右键（或者在 Mac 上点击了 Control）。</td>
+</tr>
+<tr>
+<td>​<a target="_blank" rel="noopener" href="https://docs.unity.cn/cn/2022.3/ScriptReference/EventType.MouseEnterWindow.html"><code>MouseEnterWindow</code></a>​</td>
+<td>鼠标进入了某个窗口（仅限 Editor 视图）。</td>
+</tr>
+<tr>
+<td>​<a target="_blank" rel="noopener" href="https://docs.unity.cn/cn/2022.3/ScriptReference/EventType.MouseLeaveWindow.html"><code>MouseLeaveWindow</code></a>​</td>
+<td>鼠标离开了某个窗口（仅限 Editor 视图）。</td>
+</tr>
+<tr>
+<td>​<a target="_blank" rel="noopener" href="https://docs.unity.cn/cn/2022.3/ScriptReference/EventType.TouchDown.html"><code>TouchDown</code></a>​</td>
+<td>直接操作设备（手指、笔）触屏。</td>
+</tr>
+<tr>
+<td>​<a target="_blank" rel="noopener" href="https://docs.unity.cn/cn/2022.3/ScriptReference/EventType.TouchUp.html"><code>TouchUp</code></a>​</td>
+<td>直接操作设备（手指、笔）离开屏幕。</td>
+</tr>
+<tr>
+<td>​<a target="_blank" rel="noopener" href="https://docs.unity.cn/cn/2022.3/ScriptReference/EventType.TouchMove.html"><code>TouchMove</code></a>​</td>
+<td>直接操作设备（手指、笔）在屏幕上移动（拖动）。</td>
+</tr>
+<tr>
+<td>​<a target="_blank" rel="noopener" href="https://docs.unity.cn/cn/2022.3/ScriptReference/EventType.TouchEnter.html"><code>TouchEnter</code></a>​</td>
+<td>直接操作设备（手指、笔）移动到窗口中（拖动）。</td>
+</tr>
+<tr>
+<td>​<a target="_blank" rel="noopener" href="https://docs.unity.cn/cn/2022.3/ScriptReference/EventType.TouchLeave.html"><code>TouchLeave</code></a>​</td>
+<td>直接操作设备（手指、笔）移出窗口（拖动）。</td>
+</tr>
+<tr>
+<td>​<a target="_blank" rel="noopener" href="https://docs.unity.cn/cn/2022.3/ScriptReference/EventType.TouchStationary.html"><code>TouchStationary</code></a>​</td>
+<td>直接操作设备（手指、笔）静止事件（长时间触地）。</td>
+</tr>
+</tbody>
+</table>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">文KRIFE齐</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2024/03/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UED%E2%80%94%E2%80%94Unity%E7%BC%96%E8%BE%91%E5%99%A8%E6%8B%93%E5%B1%95/UEDL6%E2%80%94%E2%80%94Event%E5%85%AC%E5%85%B1%E7%B1%BB/">http://example.com/2024/03/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UED%E2%80%94%E2%80%94Unity%E7%BC%96%E8%BE%91%E5%99%A8%E6%8B%93%E5%B1%95/UEDL6%E2%80%94%E2%80%94Event%E5%85%AC%E5%85%B1%E7%B1%BB/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">文KRIFE齐的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2024/03/27/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UM%E2%80%94%E2%80%94Unity%E7%A7%BB%E5%8A%A8%E5%B9%B3%E5%8F%B0%E7%9B%B8%E5%85%B3/UM1%E2%80%94%E2%80%94Android%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%80/UM1L5%E2%80%94%E2%80%94Android%20Studio%E6%89%93%E5%8C%85%E5%AE%89%E5%8D%93%E5%BA%94%E7%94%A8/" title="UM1L5——Android Studio打包安卓应用"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">UM1L5——Android Studio打包安卓应用</div></div></a></div><div class="next-post pull-right"><a href="/2024/03/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UED%E2%80%94%E2%80%94Unity%E7%BC%96%E8%BE%91%E5%99%A8%E6%8B%93%E5%B1%95/UEDL4%E2%80%94%E2%80%94EditorGUIUtility%E5%85%AC%E5%85%B1%E7%B1%BB/UEDL4-5%E2%80%94%E2%80%94%E7%BB%98%E5%88%B6%E8%89%B2%E6%9D%BF%E3%80%81%E7%BB%98%E5%88%B6%E6%9B%B2%E7%BA%BF/" title="UEDL4-5——绘制色板、绘制曲线"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">UEDL4-5——绘制色板、绘制曲线</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">文KRIFE齐</div><div class="author-info__description">目前正处于搭建测试环节</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">834</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">113</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">UEDL6——Event公共类</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%AC%E7%AB%A0%E4%BB%A3%E7%A0%81%E5%85%B3%E9%94%AE%E5%AD%97"><span class="toc-number">1.1.</span> <span class="toc-text">本章代码关键字</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">2.</span> <span class="toc-text">Event</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%87%8D%E8%A6%81API"><span class="toc-number">2.1.</span> <span class="toc-text">重要API</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#EventType"><span class="toc-number">2.1.1.</span> <span class="toc-text">EventType</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/07/01/hello-world/" title="欢迎来到文KRIFE齐的博客！">欢迎来到文KRIFE齐的博客！</a><time datetime="2024-07-01T11:46:20.391Z" title="发表于 2024-07-01 19:46:20">2024-07-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/US3S1L5%E2%80%94%E2%80%94Phong%E5%85%89%E7%85%A7%E6%A8%A1%E5%9E%8B/" title="US3S1L5——Phong光照模型">US3S1L5——Phong光照模型</a><time datetime="2024-06-25T14:33:57.000Z" title="发表于 2024-06-25 22:33:57">2024-06-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/US3S1L4%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B/US3S1L4-2%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B%E7%9A%84%E9%80%90%E7%89%87%E5%85%83%E5%85%89%E7%85%A7/" title="US3S1L4-2——Phong式高光反射模型的逐片元光照">US3S1L4-2——Phong式高光反射模型的逐片元光照</a><time datetime="2024-06-25T13:16:37.000Z" title="发表于 2024-06-25 21:16:37">2024-06-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/US3S1L4%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B/US3S1L4-1%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B%E7%9A%84%E9%80%90%E9%A1%B6%E7%82%B9%E5%85%89%E7%85%A7/" title="US3S1L4-1——Phong式高光反射模型的逐顶点光照">US3S1L4-1——Phong式高光反射模型的逐顶点光照</a><time datetime="2024-06-25T13:16:05.000Z" title="发表于 2024-06-25 21:16:05">2024-06-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/US3S1L4%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B/" title="US3S1L4——Phong式高光反射模型">US3S1L4——Phong式高光反射模型</a><time datetime="2024-06-25T10:14:12.000Z" title="发表于 2024-06-25 18:14:12">2024-06-25</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By 文KRIFE齐</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

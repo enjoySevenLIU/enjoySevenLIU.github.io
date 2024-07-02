@@ -1,0 +1,378 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>UG4L9-9——按钮 | 文KRIFE齐的博客</title><meta name="author" content="文KRIFE齐"><meta name="copyright" content="文KRIFE齐"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="UG4L9-9——按钮 本章代码关键字 123456789101112131415GButton								&#x2F;&#x2F;按钮控件类gObject.asButton					&#x2F;&#x2F;将元件类对象as成按钮控件类对象的属性，单选按钮和复选按钮都使用它gButton.text						&#x2F;&#x2F;按钮的文本标题显示内容gButton.icon						&#x2F;&#x2F;按钮的图片标题显示内容UIConfig.buttonSoun">
+<meta property="og:type" content="article">
+<meta property="og:title" content="UG4L9-9——按钮">
+<meta property="og:url" content="http://example.com/2023/11/28/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UG%E2%80%94%E2%80%94UI%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0/UG4%E2%80%94%E2%80%94FairyGUI%E7%B3%BB%E5%88%97/UG4L9%E2%80%94%E2%80%94FairyGUI%E4%B8%AD%E7%9A%84%E6%8E%A7%E4%BB%B6/UG4L9-9%E2%80%94%E2%80%94%E6%8C%89%E9%92%AE/index.html">
+<meta property="og:site_name" content="文KRIFE齐的博客">
+<meta property="og:description" content="UG4L9-9——按钮 本章代码关键字 123456789101112131415GButton								&#x2F;&#x2F;按钮控件类gObject.asButton					&#x2F;&#x2F;将元件类对象as成按钮控件类对象的属性，单选按钮和复选按钮都使用它gButton.text						&#x2F;&#x2F;按钮的文本标题显示内容gButton.icon						&#x2F;&#x2F;按钮的图片标题显示内容UIConfig.buttonSoun">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png">
+<meta property="article:published_time" content="2023-11-28T12:14:43.000Z">
+<meta property="article:modified_time" content="2024-07-02T03:57:04.000Z">
+<meta property="article:author" content="文KRIFE齐">
+<meta property="article:tag" content="blog">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2023/11/28/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UG%E2%80%94%E2%80%94UI%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0/UG4%E2%80%94%E2%80%94FairyGUI%E7%B3%BB%E5%88%97/UG4L9%E2%80%94%E2%80%94FairyGUI%E4%B8%AD%E7%9A%84%E6%8E%A7%E4%BB%B6/UG4L9-9%E2%80%94%E2%80%94%E6%8C%89%E9%92%AE/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'UG4L9-9——按钮',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-07-02 11:57:04'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">834</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">113</div></a></div><hr class="custom-hr"/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="文KRIFE齐的博客"><span class="site-name">文KRIFE齐的博客</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">UG4L9-9——按钮</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-11-28T12:14:43.000Z" title="发表于 2023-11-28 20:14:43">2023-11-28</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-07-02T03:57:04.000Z" title="更新于 2024-07-02 11:57:04">2024-07-02</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UG%E2%80%94%E2%80%94UI%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0/">UG——UI系统笔记</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UG%E2%80%94%E2%80%94UI%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0/UG4%E2%80%94%E2%80%94FairyGUI%E7%B3%BB%E5%88%97/">UG4——FairyGUI系列</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UG%E2%80%94%E2%80%94UI%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0/UG4%E2%80%94%E2%80%94FairyGUI%E7%B3%BB%E5%88%97/UG4L9%E2%80%94%E2%80%94FairyGUI%E4%B8%AD%E7%9A%84%E6%8E%A7%E4%BB%B6/">UG4L9——FairyGUI中的控件</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="UG4L9-9——按钮"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1>UG4L9-9——按钮</h1>
+<h2 id="本章代码关键字">本章代码关键字</h2>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">GButton								<span class="comment">//按钮控件类</span></span><br><span class="line">gObject.asButton					<span class="comment">//将元件类对象as成按钮控件类对象的属性，单选按钮和复选按钮都使用它</span></span><br><span class="line">gButton.text						<span class="comment">//按钮的文本标题显示内容</span></span><br><span class="line">gButton.icon						<span class="comment">//按钮的图片标题显示内容</span></span><br><span class="line">UIConfig.buttonSound				<span class="comment">//设置按钮默认音效</span></span><br><span class="line">UIPackage.GetItemAssetByURL()		<span class="comment">//通过URL来获取某个包里的资源</span></span><br><span class="line">UIConfig.buttonSoundVolumeScale		<span class="comment">//设置按钮默认音效音量大小</span></span><br><span class="line">GRoot.inst.EnableSound()			<span class="comment">//开启全局声音</span></span><br><span class="line">GRoot.inst.DisableSound()			<span class="comment">//关闭全局声音</span></span><br><span class="line">GRoot.inst.soundVolume				<span class="comment">//设置全局音量大小</span></span><br><span class="line">gButton.onClick.Add()				<span class="comment">//为按钮添加监听事件</span></span><br><span class="line">gButton.FireClick()					<span class="comment">//代码控制按钮触发点击效果和按钮触发监听函数</span></span><br><span class="line">gButton.onClick.Call()				<span class="comment">//代码触发监听函数，而不触发按钮点击效果</span></span><br><span class="line">gButton.selected					<span class="comment">//单选按钮或复选按钮是否选中</span></span><br><span class="line">gButton.onChanged.Add()				<span class="comment">//单选按钮或复选按钮添加选中状态改变监听事件</span></span><br></pre></td></tr></table></figure>
+<h1>按钮</h1>
+<p>按钮是FairyGUI里最常用的扩展组件，它用于多个用途<br>
+我们可以通过按钮控件实现，普通按钮，单选按钮，复选按钮</p>
+<h2 id="普通按钮相关">普通按钮相关</h2>
+<h3 id="创建普通按钮控件">创建普通按钮控件</h3>
+<p>按钮控件建议自动创建</p>
+<ol>
+<li>
+<p>自动创建 —— 菜单栏 —&gt; 资源 —&gt; 新建按钮（或者点击工具栏快捷按钮）</p>
+<p>​<img src="assets/image-20240226203741-qrq2fs2.png" alt="image">​</p>
+</li>
+<li>
+<p>手动创建 —— 创建组件 —&gt; 拓展设置为按钮 —&gt; 添加名为<strong>button</strong>的控制器 —&gt; 控制器中包含按钮的几种状态 —&gt; 创建title和icon</p>
+<p><strong>注意：控制器名button、文本title、图片icon是按钮的命名规则</strong></p>
+<p>如果按钮希望有各种效果，那么按钮<strong>组件的控制器命名必须为button，</strong> 控制器下各个页面：</p>
+<ul>
+<li>up：正常状态</li>
+<li>down：普通按钮按下状态/单选或多选按钮选中时的状态</li>
+<li>over：鼠标悬浮在按钮上的状态</li>
+<li>selectedOver：单选或多选按钮选中时，鼠标悬停在上方时的状态</li>
+<li>disabled：按钮不可用时的状态</li>
+<li>selectedDisabled：当单选或多选按钮选中时，按钮不可用时的状态</li>
+</ul>
+<p>一般情况下，我们只需要设置4种状态 up/down/over/selectedOver即可<br>
+如果是移动设备上 只需要设置 up/down即可，<br>
+按钮不可用时，FairyGUI提供了默认的变灰效果，<br>
+如果你不想要变灰效果，再去设置disabled和selectedDisabled两种状态</p>
+</li>
+</ol>
+<h4 id="自动创建按钮相关">自动创建按钮相关</h4>
+<p>​<img src="assets/image-20240226203901-elsrreo.png" alt="image">​</p>
+<ul>
+<li>
+<p>按钮模式</p>
+<ul>
+<li>普通按钮：用于点击响应的用途，无状态</li>
+<li>单选按钮：有一个是否选中的状态，如果要实现单选按钮组，<br>
+可以将多个单选按钮的<strong>连接属性绑定到同一个控制器</strong></li>
+<li>复选按钮：有一个是否选中的状态</li>
+</ul>
+</li>
+<li>
+<p>文本标题：是否自动创建一个title文本元件作为按钮文字</p>
+</li>
+<li>
+<p>图形标题：是否自动创建一个icon图形元件作为按钮文字</p>
+</li>
+<li>
+<p>普通按钮一般不会同时选择文本或者图形标题<br>
+更多时候我们只需要选择 创建文本标题 即可</p>
+</li>
+</ul>
+<h3 id="按钮组件属性相关">按钮组件属性相关</h3>
+<p>​<img src="assets/image-20240226205229-rmzoj92.png" alt="image">​</p>
+<ul>
+<li>
+<p>模式</p>
+<ul>
+<li>普通按钮：用于点击响应的用途，无状态</li>
+<li>单选按钮：有一个是否选中的状态，如果要实现单选按钮组，<br>
+可以将多个单选按钮的<strong>连接属性绑定到同一个控制器</strong></li>
+<li>复选按钮：有一个是否选中的状态</li>
+</ul>
+</li>
+<li>
+<p>按下效果：FGUI内置了几个按钮在不同页面下的状态效果</p>
+<ul>
+<li>缩放：按下时按钮变大或变小</li>
+<li>变暗：按下时按钮呈现变暗状态</li>
+</ul>
+</li>
+</ul>
+<h3 id="外部使用普通按钮属性相关">外部使用普通按钮属性相关</h3>
+<p>在外部组件使用普通按钮组件时，普通按钮组件的属性如下</p>
+<p>​<img src="assets/image-20240226211334-0tyv3cy.png" alt="image">​</p>
+<ul>
+<li>状态：单选和多选按钮可以通过它来设置是否是选中状态，<br>
+普通按钮设置它没有意义</li>
+<li>标题：设置按钮上显示的文字信息，<br>
+如果没有文本，那么修改这里没有意义</li>
+<li>选中时标题：当按钮处于选中状态时，文本显示的内容<br>
+普通按钮设置它没有意义</li>
+<li>图标：如果不存在icon图片元件，则修改这里没有意义</li>
+<li>选中时图标：同选中时标题</li>
+<li>点击音效：如果和全局设置不一样，可以覆盖</li>
+<li>连接：控制器可以和按钮联动（多用于单选按钮）</li>
+</ul>
+<p>​​</p>
+<h3 id="Unity中的使用">Unity中的使用</h3>
+<ol>
+<li>
+<p>获取按钮控件</p>
+ <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GButton gButton = view.GetChild(<span class="string">&quot;btnTest&quot;</span>).asButton;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>按钮控件api相关</p>
+<ul>
+<li>
+<p>按钮文字标题显示的文本</p>
+<p>值得一提的是，<code>text</code>​属性即使不<code>as</code>​成<code>GButton</code>​也可以用，因为它是在<code>GObject</code>​声明的</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gButton.text = <span class="string">&quot;哈哈&quot;</span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>按钮图片标题显示的图片</p>
+<p>值得一提的是，<code>icon</code>​属性即使不<code>as</code>​成<code>GButton</code>​也可以用，因为它是在<code>GObject</code>​声明的</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gButton.icon = <span class="string">&quot;ui://teach/ui_DL_an_quxiao_01&quot;</span>;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li>
+<p>音效相关设置</p>
+<p><strong>注意！在FGUI编辑器里设置的默认音效在Unity里是不起作用的，必须要将默认音效导出后在Unity内设置默认音效</strong></p>
+<ul>
+<li>
+<p>设置默认音效</p>
+<p>需要在按钮显示出来前设置</p>
+<p>可以通过UI Config来设置默认音效，需要预加载对应的包</p>
+<p>​<img src="assets/image-20240226215034-nnattyx.png" alt="image">​</p>
+<p>也可以通过代码设置，<br>
+<strong>注意，<strong>​</strong>​<code>UIConfig</code>​</strong>​<strong>的</strong>​<strong>​<code>buttonSound</code>​</strong>​<strong>属性使用的是</strong>​<strong>​<code>NAudioClip</code>​</strong>​<strong>类型的数据，因此，音效加载出来后需要强转成</strong>​<strong>​<code>NAudioClip</code>​</strong>​<strong>类对象</strong></p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UIConfig.buttonSound = (NAudioClip)UIPackage.GetItemAssetByURL(<span class="string">&quot;ui://teach/btnMusic&quot;</span>);</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>​设置音效大小<sup>（设置该属性不生效，原因未知，请使用GRoot.inst.soundVolume设置按钮音效）</sup>​</p>
+<p>需要在按钮生成前设置，填写0到1之间的数值</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UIConfig.buttonSoundVolumeScale = <span class="number">0.5f</span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>开启全局音效</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GRoot.inst.EnableSound();</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>关闭全局音效</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GRoot.inst.DisableSound();</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>调整全局声音大小，包括按钮和动效</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GRoot.inst.soundVolume = <span class="number">0.1f</span>;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li>
+<p>事件监听相关</p>
+<p>值得一提的是，<code>onClick.Add</code>​即使不<code>as</code>​成<code>GButton</code>​也可以用，因为它是在<code>GObject</code>​声明的</p>
+ <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">gButton.onClick.Add(() =&gt;</span><br><span class="line">&#123;</span><br><span class="line">    print(<span class="string">&quot;按钮被点击&quot;</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>
+<p>通过代码触发按钮点击</p>
+<p>第一个参数是设置是否播放按下按钮的效果，第二个参数是设置是否执行按钮的监听函数</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gButton.FireClick(<span class="literal">true</span>, <span class="literal">true</span>);</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>触发按钮中监听的函数，但是不会出现任何点击效果</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gButton.onClick.Call();</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="通过URL加载包中数据">通过URL加载包中数据</h2>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UIPackage.GetItemAssetByURL(<span class="string">&quot;ui://teach/btnMusic&quot;</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="复选按钮相关">复选按钮相关</h2>
+<h3 id="创建复选按钮控件">创建复选按钮控件</h3>
+<p>创建复选按钮和创建普通按钮的流程一致，区别是按钮模式需要选择为复选按钮，而按下状态图片不能用于选中时显示图片</p>
+<p>对于复选按钮，最好同时创建图形标题和文本标题，<br>
+其中文本标题用于描述该复选按钮作用，图形标题用于选中该按钮时显示标识</p>
+<h3 id="外部使用复选按钮属性设置相关">外部使用复选按钮属性设置相关</h3>
+<p>​<img src="assets/image-20240227114804-ojpqrul.png" alt="image">​</p>
+<ul>
+<li>大部分内容已在普通按钮属性部分阐述</li>
+<li>点击该按钮会在是否选中状态切换</li>
+<li>复选按钮可以填入选中时图标和选中时标题<br>
+它会使得title和icon在选中时改变显示内容<br>
+其中，选中时图标可用于选中时显示选中图标（例如 √ ）</li>
+</ul>
+<h2 id="单选按钮相关">单选按钮相关</h2>
+<p>创建单选按钮和创建普通按钮的流程一致，区别是按钮模式需要选择为单选按钮，同样按下状态图片不能用于选中时显示图片</p>
+<p>对于单选按钮，最好同时创建图形标题和文本标题，<br>
+其中文本标题用于描述该复选按钮作用，图形标题用于选中该按钮时显示标识</p>
+<h3 id="外部使用单选按钮属性设置相关">外部使用单选按钮属性设置相关</h3>
+<p>​<img src="assets/image-20240227120457-o88tnlg.png" alt="image">​</p>
+<ul>
+<li>大部分内容已在普通按钮属性部分阐述</li>
+<li>单选按钮可以填入选中时图标和选中时标题<br>
+它会使得title和icon在选中时改变显示内容<br>
+其中，选中时图标可用于选中时显示选中图标（例如 √ ）</li>
+<li>单选按钮如果要和其他单选按钮实现单选效果<br>
+同组单选按钮需要连接相同控制器的不同的页面编号<br>
+之后选中单选按钮就会改变这个控制器的页面，<br>
+让其他同组单选按钮取消选中，从而实现单选效果</li>
+</ul>
+<h3 id="单选按钮的单选效果实现">单选按钮的单选效果实现</h3>
+<p>首先需要创建一个控制器，该组单选按钮有几个就有几个页签，同时最好勾选自动调整单选组对象层次</p>
+<p>​<img src="assets/image-20240227120637-t0itfpd.png" alt="image">​</p>
+<p>然后同组的单选按钮需要连接相同控制器的各个页面</p>
+<p>​<img src="assets/image-20240227120713-zytgfga.png" alt="image"><img src="assets/image-20240227120723-m00eo9i.png" alt="image">​</p>
+<p>这样就能实现单选效果</p>
+<p>由于单选按钮可以和控制器联动，因此它不仅可以用来实现选择某个选项，还可以用来<strong>切页效果</strong>，只需要让子页面通过控制器控制即可</p>
+<h2 id="单选按钮和复选按钮在Unity中的使用">单选按钮和复选按钮在Unity中的使用</h2>
+<ul>
+<li>
+<p>获取单选按钮和复选按钮</p>
+<p>由于单选按钮和复选按钮本质都是按钮，因此像获取普通按钮那样获取按钮即可</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">GButton checkBox = view.GetChild(<span class="string">&quot;checkBox1&quot;</span>).asButton;</span><br><span class="line">GButton radioBox = view.GetChild(<span class="string">&quot;radioBox1&quot;</span>).asButton;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>改变选中状态<sup>（笔者使用Unity2021和FairyGUIUnity运行时4.3.0时， 使用代码让按钮选中状态为true。会让选中时图标残留在按钮图片下方，如果此时手动点击取消，就会发现选中时图标残留，尚不知此现象发生原因 因此最好让选中时图片小于图片按钮大小，防止瑕疵）</sup></p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">checkBox.selected = <span class="literal">true</span>;</span><br><span class="line">radioBox.selected = <span class="literal">true</span>;</span><br></pre></td></tr></table></figure>
+<p>不过对于单选按钮来说，最好使用切换控制器页签的方法来修改单选按钮的选中状态</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Controller c = view.GetController(<span class="string">&quot;RadioGroup&quot;</span>);</span><br><span class="line">c.selectedIndex = <span class="number">0</span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>选中状态改变事件监听相关</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">checkBox.onChanged.Add(() =&gt;</span><br><span class="line">&#123;</span><br><span class="line">    print(<span class="string">&quot;状态改变了&quot;</span> + checkBox.selected);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">文KRIFE齐</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2023/11/28/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UG%E2%80%94%E2%80%94UI%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0/UG4%E2%80%94%E2%80%94FairyGUI%E7%B3%BB%E5%88%97/UG4L9%E2%80%94%E2%80%94FairyGUI%E4%B8%AD%E7%9A%84%E6%8E%A7%E4%BB%B6/UG4L9-9%E2%80%94%E2%80%94%E6%8C%89%E9%92%AE/">http://example.com/2023/11/28/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UG%E2%80%94%E2%80%94UI%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0/UG4%E2%80%94%E2%80%94FairyGUI%E7%B3%BB%E5%88%97/UG4L9%E2%80%94%E2%80%94FairyGUI%E4%B8%AD%E7%9A%84%E6%8E%A7%E4%BB%B6/UG4L9-9%E2%80%94%E2%80%94%E6%8C%89%E9%92%AE/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">文KRIFE齐的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/11/28/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UG%E2%80%94%E2%80%94UI%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0/UG4%E2%80%94%E2%80%94FairyGUI%E7%B3%BB%E5%88%97/UG4L9%E2%80%94%E2%80%94FairyGUI%E4%B8%AD%E7%9A%84%E6%8E%A7%E4%BB%B6/UG4L9-10%E2%80%94%E2%80%94%E8%BF%9B%E5%BA%A6%E6%9D%A1/" title="UG4L9-10——进度条"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">UG4L9-10——进度条</div></div></a></div><div class="next-post pull-right"><a href="/2023/11/28/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UG%E2%80%94%E2%80%94UI%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0/UG4%E2%80%94%E2%80%94FairyGUI%E7%B3%BB%E5%88%97/UG4L9%E2%80%94%E2%80%94FairyGUI%E4%B8%AD%E7%9A%84%E6%8E%A7%E4%BB%B6/UG4L9-8%E2%80%94%E2%80%94%E6%A0%87%E7%AD%BE/" title="UG4L9-8——标签"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">UG4L9-8——标签</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">文KRIFE齐</div><div class="author-info__description">目前正处于搭建测试环节</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">834</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">113</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">UG4L9-9——按钮</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%AC%E7%AB%A0%E4%BB%A3%E7%A0%81%E5%85%B3%E9%94%AE%E5%AD%97"><span class="toc-number">1.1.</span> <span class="toc-text">本章代码关键字</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">2.</span> <span class="toc-text">按钮</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%99%AE%E9%80%9A%E6%8C%89%E9%92%AE%E7%9B%B8%E5%85%B3"><span class="toc-number">2.1.</span> <span class="toc-text">普通按钮相关</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E6%99%AE%E9%80%9A%E6%8C%89%E9%92%AE%E6%8E%A7%E4%BB%B6"><span class="toc-number">2.1.1.</span> <span class="toc-text">创建普通按钮控件</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%87%AA%E5%8A%A8%E5%88%9B%E5%BB%BA%E6%8C%89%E9%92%AE%E7%9B%B8%E5%85%B3"><span class="toc-number">2.1.1.1.</span> <span class="toc-text">自动创建按钮相关</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%89%E9%92%AE%E7%BB%84%E4%BB%B6%E5%B1%9E%E6%80%A7%E7%9B%B8%E5%85%B3"><span class="toc-number">2.1.2.</span> <span class="toc-text">按钮组件属性相关</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%96%E9%83%A8%E4%BD%BF%E7%94%A8%E6%99%AE%E9%80%9A%E6%8C%89%E9%92%AE%E5%B1%9E%E6%80%A7%E7%9B%B8%E5%85%B3"><span class="toc-number">2.1.3.</span> <span class="toc-text">外部使用普通按钮属性相关</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Unity%E4%B8%AD%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-number">2.1.4.</span> <span class="toc-text">Unity中的使用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%9A%E8%BF%87URL%E5%8A%A0%E8%BD%BD%E5%8C%85%E4%B8%AD%E6%95%B0%E6%8D%AE"><span class="toc-number">2.2.</span> <span class="toc-text">通过URL加载包中数据</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%8D%E9%80%89%E6%8C%89%E9%92%AE%E7%9B%B8%E5%85%B3"><span class="toc-number">2.3.</span> <span class="toc-text">复选按钮相关</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E5%A4%8D%E9%80%89%E6%8C%89%E9%92%AE%E6%8E%A7%E4%BB%B6"><span class="toc-number">2.3.1.</span> <span class="toc-text">创建复选按钮控件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%96%E9%83%A8%E4%BD%BF%E7%94%A8%E5%A4%8D%E9%80%89%E6%8C%89%E9%92%AE%E5%B1%9E%E6%80%A7%E8%AE%BE%E7%BD%AE%E7%9B%B8%E5%85%B3"><span class="toc-number">2.3.2.</span> <span class="toc-text">外部使用复选按钮属性设置相关</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%95%E9%80%89%E6%8C%89%E9%92%AE%E7%9B%B8%E5%85%B3"><span class="toc-number">2.4.</span> <span class="toc-text">单选按钮相关</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%96%E9%83%A8%E4%BD%BF%E7%94%A8%E5%8D%95%E9%80%89%E6%8C%89%E9%92%AE%E5%B1%9E%E6%80%A7%E8%AE%BE%E7%BD%AE%E7%9B%B8%E5%85%B3"><span class="toc-number">2.4.1.</span> <span class="toc-text">外部使用单选按钮属性设置相关</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%95%E9%80%89%E6%8C%89%E9%92%AE%E7%9A%84%E5%8D%95%E9%80%89%E6%95%88%E6%9E%9C%E5%AE%9E%E7%8E%B0"><span class="toc-number">2.4.2.</span> <span class="toc-text">单选按钮的单选效果实现</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%95%E9%80%89%E6%8C%89%E9%92%AE%E5%92%8C%E5%A4%8D%E9%80%89%E6%8C%89%E9%92%AE%E5%9C%A8Unity%E4%B8%AD%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-number">2.5.</span> <span class="toc-text">单选按钮和复选按钮在Unity中的使用</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/07/01/hello-world/" title="欢迎来到文KRIFE齐的博客！">欢迎来到文KRIFE齐的博客！</a><time datetime="2024-07-01T11:46:20.391Z" title="发表于 2024-07-01 19:46:20">2024-07-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/US3S1L5%E2%80%94%E2%80%94Phong%E5%85%89%E7%85%A7%E6%A8%A1%E5%9E%8B/" title="US3S1L5——Phong光照模型">US3S1L5——Phong光照模型</a><time datetime="2024-06-25T14:33:57.000Z" title="发表于 2024-06-25 22:33:57">2024-06-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/US3S1L4%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B/US3S1L4-2%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B%E7%9A%84%E9%80%90%E7%89%87%E5%85%83%E5%85%89%E7%85%A7/" title="US3S1L4-2——Phong式高光反射模型的逐片元光照">US3S1L4-2——Phong式高光反射模型的逐片元光照</a><time datetime="2024-06-25T13:16:37.000Z" title="发表于 2024-06-25 21:16:37">2024-06-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/US3S1L4%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B/US3S1L4-1%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B%E7%9A%84%E9%80%90%E9%A1%B6%E7%82%B9%E5%85%89%E7%85%A7/" title="US3S1L4-1——Phong式高光反射模型的逐顶点光照">US3S1L4-1——Phong式高光反射模型的逐顶点光照</a><time datetime="2024-06-25T13:16:05.000Z" title="发表于 2024-06-25 21:16:05">2024-06-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/US3S1L4%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B/" title="US3S1L4——Phong式高光反射模型">US3S1L4——Phong式高光反射模型</a><time datetime="2024-06-25T10:14:12.000Z" title="发表于 2024-06-25 18:14:12">2024-06-25</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By 文KRIFE齐</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

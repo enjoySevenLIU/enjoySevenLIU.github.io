@@ -1,0 +1,198 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>ZMUIL5——堆栈系统 | 文KRIFE齐的博客</title><meta name="author" content="文KRIFE齐"><meta name="copyright" content="文KRIFE齐"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="ZMUIL5——堆栈系统 堆栈系统要做的工作  堆栈系统可以设置窗口弹出队列，按照设定好的顺序在特定的时机顺序弹出多个窗口 堆栈系统依次弹出窗口时，打开或关闭弹出队列外的窗口，不会影响堆栈系统的窗口弹出 堆栈系统可以在弹出窗口时，可以随时向队列内添加新的需要弹出的窗口，或者清除弹出队列，取消堆栈系统的窗口弹出  堆栈系统是任何游戏必不可少的一项功能，它可以用作诸如首次进入大厅时一些特殊或活动面板的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ZMUIL5——堆栈系统">
+<meta property="og:url" content="http://example.com/2024/01/23/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UFW%E2%80%94%E2%80%94%E7%A8%8B%E5%BA%8F%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3%E7%AC%94%E8%AE%B0/ZMUI%E2%80%94%E2%80%94UGUI%E6%A1%86%E6%9E%B6ZMUIFrameWork/ZMUIL5%E2%80%94%E2%80%94%E5%A0%86%E6%A0%88%E7%B3%BB%E7%BB%9F/index.html">
+<meta property="og:site_name" content="文KRIFE齐的博客">
+<meta property="og:description" content="ZMUIL5——堆栈系统 堆栈系统要做的工作  堆栈系统可以设置窗口弹出队列，按照设定好的顺序在特定的时机顺序弹出多个窗口 堆栈系统依次弹出窗口时，打开或关闭弹出队列外的窗口，不会影响堆栈系统的窗口弹出 堆栈系统可以在弹出窗口时，可以随时向队列内添加新的需要弹出的窗口，或者清除弹出队列，取消堆栈系统的窗口弹出  堆栈系统是任何游戏必不可少的一项功能，它可以用作诸如首次进入大厅时一些特殊或活动面板的">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png">
+<meta property="article:published_time" content="2024-01-23T14:48:08.000Z">
+<meta property="article:modified_time" content="2024-07-02T03:56:56.000Z">
+<meta property="article:author" content="文KRIFE齐">
+<meta property="article:tag" content="blog">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2024/01/23/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UFW%E2%80%94%E2%80%94%E7%A8%8B%E5%BA%8F%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3%E7%AC%94%E8%AE%B0/ZMUI%E2%80%94%E2%80%94UGUI%E6%A1%86%E6%9E%B6ZMUIFrameWork/ZMUIL5%E2%80%94%E2%80%94%E5%A0%86%E6%A0%88%E7%B3%BB%E7%BB%9F/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'ZMUIL5——堆栈系统',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-07-02 11:56:56'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">834</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">113</div></a></div><hr class="custom-hr"/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="文KRIFE齐的博客"><span class="site-name">文KRIFE齐的博客</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">ZMUIL5——堆栈系统</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-01-23T14:48:08.000Z" title="发表于 2024-01-23 22:48:08">2024-01-23</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-07-02T03:56:56.000Z" title="更新于 2024-07-02 11:56:56">2024-07-02</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UFW%E2%80%94%E2%80%94%E7%A8%8B%E5%BA%8F%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3%E7%AC%94%E8%AE%B0/">UFW——程序框架相关笔记</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UFW%E2%80%94%E2%80%94%E7%A8%8B%E5%BA%8F%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3%E7%AC%94%E8%AE%B0/ZMUI%E2%80%94%E2%80%94UGUI%E6%A1%86%E6%9E%B6ZMUIFrameWork/">ZMUI——UGUI框架ZMUIFrameWork</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="ZMUIL5——堆栈系统"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1>ZMUIL5——堆栈系统</h1>
+<h2 id="堆栈系统要做的工作">堆栈系统要做的工作</h2>
+<ol>
+<li>堆栈系统可以设置窗口弹出队列，按照设定好的顺序在特定的时机顺序弹出多个窗口</li>
+<li>堆栈系统依次弹出窗口时，打开或关闭弹出队列外的窗口，不会影响堆栈系统的窗口弹出</li>
+<li>堆栈系统可以在弹出窗口时，可以随时向队列内添加新的需要弹出的窗口，或者清除弹出队列，取消堆栈系统的窗口弹出</li>
+</ol>
+<p>堆栈系统是任何游戏必不可少的一项功能，它可以用作诸如首次进入大厅时一些特殊或活动面板的有序自动弹出，<br>
+从而让玩家能够更好的去了解到游戏内容和新增功能。</p>
+<h2 id="UIModule的堆栈系统相关">UIModule的堆栈系统相关</h2>
+<p>堆栈系统会控制UI窗口的显示隐藏，而<code>UIModule</code>​负责窗口显隐的执行，因此堆栈系统主要在<code>UIModule</code>​内实现</p>
+<h3 id="堆栈系统使用队列的原因">堆栈系统使用队列的原因</h3>
+<p>堆栈系统实际是使用队列容器来装载要显示的窗口的，而不是栈，<br>
+因为栈是后进先出，而向堆栈系统添加要显示的面板的时间是不确定的，例如服务器发送消息的时间就不确定<br>
+如果使用后进先出的栈，假设在弹出窗口1后，窗口2和窗口3先后入栈，这会导致下一个弹出的窗口是窗口3，造成窗口弹出顺序的混乱<br>
+而队列的先进先出的顺序就很符合直觉，也不会造成弹出顺序的混乱</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//UIModule内</span></span><br><span class="line"><span class="keyword">private</span> Queue&lt;WindowBase&gt; mWindowStack = <span class="keyword">new</span> Queue&lt;WindowBase&gt;();   <span class="comment">//堆栈系统的队列，用来管理弹窗的循环弹出</span></span><br><span class="line"><span class="keyword">private</span> <span class="built_in">bool</span> mStartPopStackWindowStatus = <span class="literal">false</span>;                    <span class="comment">//开始弹出堆栈的标志，用于处理多种情况，例如：正在出栈中有其他界面弹出，可以直接放到栈内进行弹出等</span></span><br></pre></td></tr></table></figure>
+<h3 id="WindowBehaviour的堆栈系统相关">WindowBehaviour的堆栈系统相关</h3>
+<p>这里的<code>PopStack</code>​表示是否是从堆栈系统弹出的窗口，它决定隐藏该窗口时是否让堆栈系统弹出队列里的下一个窗口<br>
+​<code>PopStackListener</code>​是窗口加入堆栈系统队列时的弹出窗口委托，当堆栈系统弹出该窗口时会执行该函数</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//WindowBehaviour内</span></span><br><span class="line"><span class="keyword">public</span> <span class="built_in">bool</span> PopStack &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;              <span class="comment">//是否是通过堆栈系统弹出的弹窗，若是，则处于堆栈弹出的流程时，隐藏该窗口将弹出下一个窗口</span></span><br><span class="line"><span class="keyword">public</span> Action&lt;WindowBase&gt; PopStackListener &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;    <span class="comment">//从堆栈系统出栈时的监听函数</span></span><br></pre></td></tr></table></figure>
+<h3 id="堆栈系统执行流程">堆栈系统执行流程</h3>
+<blockquote>
+<ol>
+<li>使用<code>PushWindowToStack</code>​方法使用泛型传入要加入队列的窗口，同时可以传入弹出窗口时执行的委托<br>
+无论界面是否已加载都先new出来，将委托赋值给这个new出来的对象的<code>PopStackListener</code>​，然后将它加入到队列内</li>
+<li>使用<code>StartPopFirstStackWindow</code>​将开启堆栈系统的窗口顺序弹出，将<code>UIModule</code>​的<code>mStartPopStackWindowStatus</code>​赋值为<code>true</code>​标记弹出的开始<br>
+然后调用<code>PopStackWindow</code>​方法</li>
+<li>​<code>PopStackWindow</code>​方法会检查队列是否拥有窗口，<br>
+如果不存在就终止堆栈系统的弹出，将<code>mStartPopStackWindowStatus</code>​赋值为<code>false</code>​<br>
+如果存在，则队列弹出在<code>PushWindowToStack</code>​new出来的窗口，将该窗口传入堆栈系统专用<code>PopUpWindow</code>​方法内<br>
+之前new出来的窗口会将<code>PopStackListener</code>​赋值给<code>PopUpWindow</code>​方法弹出的窗口，将其<code>PopStack</code>​赋值为<code>true</code>​，并执行<code>PopStackListener</code>​的委托</li>
+<li>当有窗口隐藏或销毁时，会执行<code>PopNextStackWindow</code>​方法，如果关闭的这个窗口<code>PopStack</code>​为<code>true</code>​，就再次执行<code>PopStackWindow</code>​</li>
+<li>​<code>PushAndPopStackWindow</code>​方法会在加入队列时就直接开始弹出窗口</li>
+<li>​<code>ClearStackWindows</code>​会清除队列，可以用于打断弹出队列</li>
+</ol>
+</blockquote>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//堆栈系统专用弹出窗口方法，传入从堆栈系统弹出的WindowBase</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> WindowBase <span class="title">PopUpWindow</span>(<span class="params">WindowBase QueuePopWindow</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    System.Type type = QueuePopWindow.GetType();</span><br><span class="line">    <span class="built_in">string</span> windowName = type.Name;</span><br><span class="line">    <span class="comment">//先确认是否加载过Window，若加载过，直接返回加载过的Window</span></span><br><span class="line">    WindowBase LoadedWindow = GetWindow(windowName);</span><br><span class="line">    <span class="keyword">if</span> (LoadedWindow != <span class="literal">null</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> ShowWindow(windowName);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//若未加载，则将弹出的WindowBase用于初始化</span></span><br><span class="line">    <span class="keyword">return</span> InitializeWindow(QueuePopWindow, windowName);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">region</span> 堆栈系统相关</span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> 向堆栈压入一个界面</span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;typeparam name=&quot;T&quot;&gt;</span>要压入的窗口<span class="doctag">&lt;/typeparam&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;popCallBack&quot;&gt;</span>出栈时要执行的监听函数<span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">PushWindowToStack</span>&lt;<span class="title">T</span>&gt;(<span class="params">Action&lt;WindowBase&gt; popCallBack = <span class="literal">null</span></span>) <span class="keyword">where</span> T : WindowBase, <span class="keyword">new</span>()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">//这里的new出来的T暂时用于在队列内记录监听函数，</span></span><br><span class="line">    <span class="comment">//后续出栈显示窗口时，若T已经加载过，则这里的监听函数将赋值给已经加载过的T，若未加载过再使用该T用于初始化</span></span><br><span class="line">    T windowBase = <span class="keyword">new</span> T();</span><br><span class="line">    windowBase.PopStackListener = popCallBack;</span><br><span class="line">    mWindowStack.Enqueue(windowBase);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> 弹出堆栈中第一个弹窗</span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">StartPopFirstStackWindow</span>()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (mStartPopStackWindowStatus) <span class="keyword">return</span>;</span><br><span class="line">    mStartPopStackWindowStatus = <span class="literal">true</span>;      <span class="comment">//表示已经开始进行堆栈弹出的流程</span></span><br><span class="line">    PopStackWindow();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> 压入并直接开始弹出堆栈弹窗</span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;typeparam name=&quot;T&quot;&gt;</span>要压入的窗口<span class="doctag">&lt;/typeparam&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;popCallBack&quot;&gt;</span>出栈时要执行的监听函数<span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">PushAndPopStackWindow</span>&lt;<span class="title">T</span>&gt;(<span class="params">Action&lt;WindowBase&gt; popCallBack = <span class="literal">null</span></span>) <span class="keyword">where</span> T : WindowBase, <span class="keyword">new</span>()</span></span><br><span class="line">&#123;</span><br><span class="line">    PushWindowToStack&lt;T&gt;(popCallBack);</span><br><span class="line">    StartPopFirstStackWindow();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> 弹出下一个窗口</span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;windowBase&quot;&gt;</span><span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">PopNextStackWindow</span>(<span class="params">WindowBase windowBase</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (windowBase != <span class="literal">null</span> &amp;&amp; mStartPopStackWindowStatus &amp;&amp; windowBase.PopStack)</span><br><span class="line">    &#123;</span><br><span class="line">        windowBase.PopStack = <span class="literal">false</span>;</span><br><span class="line">        PopStackWindow();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> 弹出堆栈弹窗</span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;returns&gt;</span>是否从堆栈里弹出窗口<span class="doctag">&lt;/returns&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="built_in">bool</span> <span class="title">PopStackWindow</span>()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (mWindowStack.Count &gt; <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        WindowBase recordWindow = mWindowStack.Dequeue();</span><br><span class="line">        WindowBase popWindow = PopUpWindow(recordWindow);</span><br><span class="line">        popWindow.PopStackListener = recordWindow.PopStackListener;</span><br><span class="line">        popWindow.PopStack = <span class="literal">true</span>;              <span class="comment">//表示是从堆栈系统里打开的窗口，关闭该窗口将重新执行这里的方法</span></span><br><span class="line">        popWindow.PopStackListener?.Invoke(popWindow);</span><br><span class="line">        popWindow.PopStackListener = <span class="literal">null</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        mStartPopStackWindowStatus = <span class="literal">false</span>;     <span class="comment">//表示堆栈弹出的流程结束</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> 清空窗口堆栈，可用于中途取消堆栈弹出流程</span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">ClearStackWindows</span>()</span></span><br><span class="line">&#123;</span><br><span class="line">    mWindowStack.Clear();</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">#<span class="keyword">endregion</span></span></span><br></pre></td></tr></table></figure>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">文KRIFE齐</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2024/01/23/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UFW%E2%80%94%E2%80%94%E7%A8%8B%E5%BA%8F%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3%E7%AC%94%E8%AE%B0/ZMUI%E2%80%94%E2%80%94UGUI%E6%A1%86%E6%9E%B6ZMUIFrameWork/ZMUIL5%E2%80%94%E2%80%94%E5%A0%86%E6%A0%88%E7%B3%BB%E7%BB%9F/">http://example.com/2024/01/23/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UFW%E2%80%94%E2%80%94%E7%A8%8B%E5%BA%8F%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3%E7%AC%94%E8%AE%B0/ZMUI%E2%80%94%E2%80%94UGUI%E6%A1%86%E6%9E%B6ZMUIFrameWork/ZMUIL5%E2%80%94%E2%80%94%E5%A0%86%E6%A0%88%E7%B3%BB%E7%BB%9F/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">文KRIFE齐的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2024/01/24/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UFW%E2%80%94%E2%80%94%E7%A8%8B%E5%BA%8F%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3%E7%AC%94%E8%AE%B0/ZMUI%E2%80%94%E2%80%94UGUI%E6%A1%86%E6%9E%B6ZMUIFrameWork/ZMUIL6%E2%80%94%E2%80%94%E9%AB%98%E6%80%A7%E8%83%BD%E7%B3%BB%E7%BB%9F/" title="ZMUIL6——高性能系统"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">ZMUIL6——高性能系统</div></div></a></div><div class="next-post pull-right"><a href="/2024/01/09/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UFW%E2%80%94%E2%80%94%E7%A8%8B%E5%BA%8F%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3%E7%AC%94%E8%AE%B0/ZMUI%E2%80%94%E2%80%94UGUI%E6%A1%86%E6%9E%B6ZMUIFrameWork/ZMUIL4%E2%80%94%E2%80%94%E8%87%AA%E5%8A%A8%E5%8C%96%E7%B3%BB%E7%BB%9F/" title="ZMUIL4——自动化系统"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">ZMUIL4——自动化系统</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">文KRIFE齐</div><div class="author-info__description">目前正处于搭建测试环节</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">834</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">113</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">ZMUIL5——堆栈系统</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A0%86%E6%A0%88%E7%B3%BB%E7%BB%9F%E8%A6%81%E5%81%9A%E7%9A%84%E5%B7%A5%E4%BD%9C"><span class="toc-number">1.1.</span> <span class="toc-text">堆栈系统要做的工作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UIModule%E7%9A%84%E5%A0%86%E6%A0%88%E7%B3%BB%E7%BB%9F%E7%9B%B8%E5%85%B3"><span class="toc-number">1.2.</span> <span class="toc-text">UIModule的堆栈系统相关</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A0%86%E6%A0%88%E7%B3%BB%E7%BB%9F%E4%BD%BF%E7%94%A8%E9%98%9F%E5%88%97%E7%9A%84%E5%8E%9F%E5%9B%A0"><span class="toc-number">1.2.1.</span> <span class="toc-text">堆栈系统使用队列的原因</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#WindowBehaviour%E7%9A%84%E5%A0%86%E6%A0%88%E7%B3%BB%E7%BB%9F%E7%9B%B8%E5%85%B3"><span class="toc-number">1.2.2.</span> <span class="toc-text">WindowBehaviour的堆栈系统相关</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A0%86%E6%A0%88%E7%B3%BB%E7%BB%9F%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B"><span class="toc-number">1.2.3.</span> <span class="toc-text">堆栈系统执行流程</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/07/01/hello-world/" title="欢迎来到文KRIFE齐的博客！">欢迎来到文KRIFE齐的博客！</a><time datetime="2024-07-01T11:46:20.391Z" title="发表于 2024-07-01 19:46:20">2024-07-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/US3S1L5%E2%80%94%E2%80%94Phong%E5%85%89%E7%85%A7%E6%A8%A1%E5%9E%8B/" title="US3S1L5——Phong光照模型">US3S1L5——Phong光照模型</a><time datetime="2024-06-25T14:33:57.000Z" title="发表于 2024-06-25 22:33:57">2024-06-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/US3S1L4%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B/US3S1L4-2%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B%E7%9A%84%E9%80%90%E7%89%87%E5%85%83%E5%85%89%E7%85%A7/" title="US3S1L4-2——Phong式高光反射模型的逐片元光照">US3S1L4-2——Phong式高光反射模型的逐片元光照</a><time datetime="2024-06-25T13:16:37.000Z" title="发表于 2024-06-25 21:16:37">2024-06-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/US3S1L4%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B/US3S1L4-1%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B%E7%9A%84%E9%80%90%E9%A1%B6%E7%82%B9%E5%85%89%E7%85%A7/" title="US3S1L4-1——Phong式高光反射模型的逐顶点光照">US3S1L4-1——Phong式高光反射模型的逐顶点光照</a><time datetime="2024-06-25T13:16:05.000Z" title="发表于 2024-06-25 21:16:05">2024-06-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/US3S1L4%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B/" title="US3S1L4——Phong式高光反射模型">US3S1L4——Phong式高光反射模型</a><time datetime="2024-06-25T10:14:12.000Z" title="发表于 2024-06-25 18:14:12">2024-06-25</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By 文KRIFE齐</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

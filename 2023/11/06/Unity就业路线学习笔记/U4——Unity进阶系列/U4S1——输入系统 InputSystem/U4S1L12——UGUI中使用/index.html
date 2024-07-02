@@ -1,0 +1,338 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>U4S1L12——UGUI中使用 | 文KRIFE齐的博客</title><meta name="author" content="文KRIFE齐"><meta name="copyright" content="文KRIFE齐"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="U4S1L12——UGUI中使用 InputSystem对UI的支持  新输入系统 InputSystem 不支持 IMGUI（GUI）​注意： 编辑器​代码不受影响 如果当前激活的是InputSystem，那么OnGUI中的输入判断相关内容不会被触发 你必须要选择Both或者只激活老输入系统InputManager才能让OnGUI中内容有用 新输入系统支持UGUI，但是需要使用新输入系统输入模块">
+<meta property="og:type" content="article">
+<meta property="og:title" content="U4S1L12——UGUI中使用">
+<meta property="og:url" content="http://example.com/2023/11/06/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U4%E2%80%94%E2%80%94Unity%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/U4S1%E2%80%94%E2%80%94%E8%BE%93%E5%85%A5%E7%B3%BB%E7%BB%9F%20InputSystem/U4S1L12%E2%80%94%E2%80%94UGUI%E4%B8%AD%E4%BD%BF%E7%94%A8/index.html">
+<meta property="og:site_name" content="文KRIFE齐的博客">
+<meta property="og:description" content="U4S1L12——UGUI中使用 InputSystem对UI的支持  新输入系统 InputSystem 不支持 IMGUI（GUI）​注意： 编辑器​代码不受影响 如果当前激活的是InputSystem，那么OnGUI中的输入判断相关内容不会被触发 你必须要选择Both或者只激活老输入系统InputManager才能让OnGUI中内容有用 新输入系统支持UGUI，但是需要使用新输入系统输入模块">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png">
+<meta property="article:published_time" content="2023-11-06T13:19:00.000Z">
+<meta property="article:modified_time" content="2024-07-02T03:56:35.000Z">
+<meta property="article:author" content="文KRIFE齐">
+<meta property="article:tag" content="blog">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2023/11/06/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U4%E2%80%94%E2%80%94Unity%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/U4S1%E2%80%94%E2%80%94%E8%BE%93%E5%85%A5%E7%B3%BB%E7%BB%9F%20InputSystem/U4S1L12%E2%80%94%E2%80%94UGUI%E4%B8%AD%E4%BD%BF%E7%94%A8/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'U4S1L12——UGUI中使用',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-07-02 11:56:35'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">834</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">113</div></a></div><hr class="custom-hr"/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="文KRIFE齐的博客"><span class="site-name">文KRIFE齐的博客</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">U4S1L12——UGUI中使用</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-11-06T13:19:00.000Z" title="发表于 2023-11-06 21:19:00">2023-11-06</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-07-02T03:56:35.000Z" title="更新于 2024-07-02 11:56:35">2024-07-02</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U4%E2%80%94%E2%80%94Unity%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/">U4——Unity进阶系列</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U4%E2%80%94%E2%80%94Unity%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/U4S1%E2%80%94%E2%80%94%E8%BE%93%E5%85%A5%E7%B3%BB%E7%BB%9F-InputSystem/">U4S1——输入系统 InputSystem</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="U4S1L12——UGUI中使用"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1>U4S1L12——UGUI中使用</h1>
+<h2 id="InputSystem对UI的支持">InputSystem对UI的支持</h2>
+<ol>
+<li>新输入系统 InputSystem 不支持 IMGUI（GUI）​<strong>注意：</strong> 编辑器​<strong>代码不受影响</strong><br>
+如果当前激活的是InputSystem，那么OnGUI中的输入判断相关内容不会被触发<br>
+你必须要选择Both或者只激活老输入系统InputManager才能让OnGUI中内容有用</li>
+<li>新输入系统支持UGUI，但是需要使用新输入系统输入模块（Input System UI Input Module）</li>
+</ol>
+<h2 id="Input-System-UI-Input-Module-参数相关">Input System UI Input Module 参数相关</h2>
+<p>​​<img src="assets/image-20231106212815-1tij418.png" alt="image">​​</p>
+<ul>
+<li>
+<p>Send Pointer Hover To Parent - 是否将指针悬停事件发送给父对象</p>
+<p>如果这个属性为true，那么当指针悬停在一个UI组件上时，不仅这个元素会收到IPointerEnterHandler​和IPointerExitHandler​的回调（接口提供的方法），它的所有父级对象也会收到这些回调</p>
+</li>
+<li>
+<p>Move Repeat Delay - 生成初始IMoveHandler​之间的初始延迟（秒）</p>
+<p>OnMove导航事件，并在移动操作保持激活状态时生成重复的导航事件</p>
+</li>
+<li>
+<p>Move Repeat Rate<br>
+移动动作保持激活时，生成重复导航事件之间的间隔（秒）</p>
+<p>请注意，<strong>这是由帧速率限制的；每帧不会有多个移动重复事件</strong>，<br>
+因此，如果帧速率低于重复率，则有效重复率将低于此设置。<br>
+换句话说，<strong>就算你将间隔时间填的很小很小，它每帧也最多只执行一次</strong></p>
+</li>
+<li>
+<p>XR Tracking Origin</p>
+</li>
+<li>
+<p>Deselect On Background CLick - 是否在没有点击到对象时取消选择</p>
+<p>默认情况下，当指针被点击并且没有击中任何对象时，当前选择会被清除。即上一次点击选中的对象，这一次点击没有点中任何东西时，对象的选中将被取消<br>
+<strong>然而，这可能会妨碍键盘和游戏板导航，因为它们需要关闭当前选定的对象。要防止自动取消选择，请将此属性设置为false。</strong></p>
+</li>
+<li>
+<p><strong>Pointer Behavior - 如何处理将输入送入UI的多个指针</strong></p>
+<p>用于处理多点选择</p>
+<p>​<img src="assets/image-20231106215145-926qvfi.png" alt="image">​</p>
+<ul>
+<li>
+<p>Single Mouse Or Pen But Multi Touch And Track</p>
+<p>对于未分类为触摸或跟踪输入的所有输入，其行为类似于单个统一指针，对于跟踪和触摸输入，其行为类似于所有指针。</p>
+<p>例如，如果在鼠标和笔上接收到并发输入，<strong>则将两者的输入馈送到同一UI指针实例中。其中一个的位置输入将覆盖另一个的位置。</strong><br>
+或者说，<strong>鼠标和笔始终会统一的输入到同一个指针</strong></p>
+<p>请注意，当从触摸或跟踪设备接收到输入时，鼠标和笔的单个统一指针将被删除，包括在鼠标/笔光标当前悬停在对象上时发送的IPointerExit事件。<strong>也就是说。触屏设备仍将当作多个指针处理</strong></p>
+</li>
+<li>
+<p>Single Unified Pointer</p>
+<p>所有指针输入都是统一的，因此只有一个指针。<br>
+<strong>这包括触摸和跟踪输入</strong><br>
+这意味着，无论有多少设备将输入送入到UI的不同点上，只有帧中最后一个这样的输入才会生效并成为当前UI指针的位置。</p>
+</li>
+<li>
+<p>All Pointers As Is</p>
+<p>UI输入模块不会统一任何指针输入。<br>
+任何设备，包括<strong>提供输入指针类型动作的触摸和跟踪设备，都将是其自己的指针</strong>（或触摸输入的多个指针）<br>
+<strong>注意：这可能意味着UI中将有任意数量的指针，并且可能同时指向多个对象。</strong></p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Actions Asset - 包含控制UI的所有操作的输入操作配置资产。</strong></p>
+<p>您可以使用以下属性<strong>选择资产中的哪些操作（输入配置文件里的InputAction）</strong> 对应于哪些UI输入。</p>
+<p>默认情况下，这将引用名为DefaultInputActions的内置资产，该资产包含用于驱动UI的常见默认操作（其实就是我们在PlayerInput默认创建的输入配置文件）</p>
+<p>如果要设置自己的操作，请创建自定义输入操作资源并在此处分配。<br>
+也就是可以自己创建一个输入配置文件来分配输入操作资源</p>
+<p>在Inspector中将新资源引用指定给此字段时，编辑器会尝试根据常用命名约定自动将操作映射到UI输入。</p>
+</li>
+<li>
+<p>Point - 提供2D屏幕位置的动作。</p>
+<p>用作指向UI元素的光标，以实现鼠标样式的UI交互。<br>
+设置为传递操作类型和向量2值类型。</p>
+</li>
+<li>
+<p>Left Click - 映射到用于与UI交互的主光标按钮的操作。</p>
+<p>设置为传递操作类型和按钮值类型。</p>
+</li>
+<li>
+<p>Middle Click - 映射到用于与UI交互的中间光标按钮的操作</p>
+<p>设置为传递操作类型和按钮值类型。</p>
+</li>
+<li>
+<p>Right Click - 映射到用于与UI交互的辅助光标按钮的操作。</p>
+<p>设置为传递操作类型和按钮值类型。</p>
+</li>
+<li>
+<p>Scroll Wheel - 提供手势输入以允许在UI中滚动的操作。</p>
+<p>设置为传递操作类型和向量2值类型。</p>
+</li>
+<li>
+<p>Move - 一种操作，提供用于选择当前活动用户界面的二维矢量。</p>
+<p>这允许游戏板或箭头键样式的UI导航。<br>
+设置为传递操作类型和向量2值类型</p>
+</li>
+<li>
+<p>Submit - 与当前选择的UI接触或“单击”的操作。</p>
+<p>设置为按钮动作类型。</p>
+</li>
+<li>
+<p>Cancel - 退出与当前选定UI的任何交互的操作。</p>
+<p>设置为按钮动作类型。</p>
+</li>
+<li>
+<p>Tracked Position - 提供一个或多个空间跟踪设备（如XR hand控制器）的3D位置的动作。</p>
+<p>结合跟踪设备方向，这允许通过指向空间中的UI可选择项进行XR样式的UI交互。 设置为传递操作类型和向量3值类型。</p>
+</li>
+<li>
+<p>Tracked Orientation - 传递表示一个或多个空间跟踪设备（如XR hand控制器）旋转的四元数的操作。</p>
+<p>结合跟踪设备位置，这允许通过指向空间中的UI可选择项进行XR样式的UI交互。 设置为传递操作类型和四元数值类型。</p>
+</li>
+</ul>
+<h2 id="VR相关中使用新输入系统注意事项">VR相关中使用新输入系统注意事项</h2>
+<p>如果想在VR项目中使用新输入系统配合UGUI使用<br>
+需要在Canvas对象上添加Tracked Device Raycaster组件</p>
+<p>​<img src="assets/image-20231106220822-mho38oe.png" alt="image">​</p>
+<h2 id="多人游戏使用多套UI">多人游戏使用多套UI</h2>
+<p>如果同一设备上的多人游戏，每个人想要使用自己的一套独立UI，需要将EventSystem中的EventSystem组件​<strong>替换为Multiplayer Event System组件</strong></p>
+<p>​<img src="assets/image-20231106220951-7a5rv4g.png" alt="image">​</p>
+<p>与EventSystem组件不同，可以在<strong>场景中同时激活多个MultiplayerEventSystem。</strong><br>
+这样，您可以有多个玩家，每个玩家都有自己的Input System UI Input Module和 Multiplayer Event System组件<br>
+<strong>每个玩家都可以有自己的一组操作来驱动自己的UI实例</strong>。<br>
+如果您正在使用PlayerInput组件，还可以设置PlayerInput以自动配置玩家的 Input System UI Input Module 以使用玩家的操作<br>
+MultilayerEventSystem组件的属性与事件系统中的属性相同<br>
+此外，MultiplayerEventSystem组件还添加了一个playerRoot属性，您可以将其设置为一个游戏对象<br>
+该游戏对象包含此事件系统应在其层次结构中处理的所有UI可选择项</p>
+<h2 id="On-Screen组件相关">On-Screen组件相关</h2>
+<p>On-Screen组件可以<strong>模拟UI和用户操作的交互</strong></p>
+<ol>
+<li>
+<p>On-Screen Button：按钮交互</p>
+<p>使用该脚本的Button会自动拥有模拟某个按键的逻辑</p>
+<p>​<img src="assets/image-20231106222347-7zaet1x.png" alt="image">​</p>
+<ul>
+<li>Control Path：要模拟的按键输入，<br>
+输入会触发什么由输入配置文件与脚本内的监听输入逻辑决定</li>
+</ul>
+</li>
+<li>
+<p>On-Screen Stick：摇杆交互</p>
+<p>使用该脚本的Image贴图会自动拥有摇杆的逻辑</p>
+<p>​<img src="assets/image-20231106222326-ipn2pwo.png" alt="image"></p>
+<ul>
+<li>
+<p>Movement Range：摇杆贴图可移动范围</p>
+</li>
+<li>
+<p>Control Path：要模拟的摇杆输入，<br>
+输入会触发什么由输入配置文件与脚本内的监听输入逻辑决定</p>
+</li>
+<li>
+<p>Behaviour：摇杆行为</p>
+<p>​<img src="assets/image-20231106222723-iijmclj.png" alt="image">​</p>
+<ul>
+<li>
+<p>Relative Position With Static Origin - 静态起点与相对位置</p>
+<p>默认的模式，它会使摇杆的中心点固定在初始位置，手指的移动会相对于中心点来计算摇杆的值，而不是相对于摇杆的边界<sup>（该描述来自不靠谱的来源，真实情况存疑，仅供参考）</sup></p>
+</li>
+<li>
+<p>Exact Position With Static Origin<br>
+静态起点与绝对位置</p>
+</li>
+<li>
+<p>Exact Position With Dynamic Origin<br>
+动态起点和绝对位置</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Use lsolated Input Actions：</p>
+<p>​<img src="assets/image-20231106223259-3t8fomk.png" alt="image"></p>
+<p>用来解决On-Screen Stick的输入和其他UI输入之间的冲突问题。<br>
+如果不勾选这个选项，那么当拖动摇杆时，摇杆的输入设备会在手指所属的设备（鼠标，触摸，笔等）和控件路径所指定的设备（例如游戏手柄）之间切换，这可能会导致摇杆的移动不稳定。</p>
+<p>如果勾选了这个选项，<strong>那么摇杆会使用一套独立的Input Action实例来驱动交互，而不是使用UI定义的Input Action。</strong></p>
+<p>这个选项的缺点是，<strong>指针的输入会在摇杆组件和UI使用的Input Action Asset中重复。</strong></p>
+</li>
+</ul>
+</li>
+</ol>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">文KRIFE齐</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2023/11/06/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U4%E2%80%94%E2%80%94Unity%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/U4S1%E2%80%94%E2%80%94%E8%BE%93%E5%85%A5%E7%B3%BB%E7%BB%9F%20InputSystem/U4S1L12%E2%80%94%E2%80%94UGUI%E4%B8%AD%E4%BD%BF%E7%94%A8/">http://example.com/2023/11/06/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U4%E2%80%94%E2%80%94Unity%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/U4S1%E2%80%94%E2%80%94%E8%BE%93%E5%85%A5%E7%B3%BB%E7%BB%9F%20InputSystem/U4S1L12%E2%80%94%E2%80%94UGUI%E4%B8%AD%E4%BD%BF%E7%94%A8/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">文KRIFE齐的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/11/06/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U4%E2%80%94%E2%80%94Unity%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/U4S1%E2%80%94%E2%80%94%E8%BE%93%E5%85%A5%E7%B3%BB%E7%BB%9F%20InputSystem/U4S1L13%E2%80%94%E2%80%94Input%20Debug/" title="U4S1L13——Input Debug"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">U4S1L13——Input Debug</div></div></a></div><div class="next-post pull-right"><a href="/2023/11/05/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U4%E2%80%94%E2%80%94Unity%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/U4S1%E2%80%94%E2%80%94%E8%BE%93%E5%85%A5%E7%B3%BB%E7%BB%9F%20InputSystem/U4S1L11%E2%80%94%E2%80%94Player%20Input%20Manager/" title="U4S1L11——Player Input Manager"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">U4S1L11——Player Input Manager</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">文KRIFE齐</div><div class="author-info__description">目前正处于搭建测试环节</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">834</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">113</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">U4S1L12——UGUI中使用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#InputSystem%E5%AF%B9UI%E7%9A%84%E6%94%AF%E6%8C%81"><span class="toc-number">1.1.</span> <span class="toc-text">InputSystem对UI的支持</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Input-System-UI-Input-Module-%E5%8F%82%E6%95%B0%E7%9B%B8%E5%85%B3"><span class="toc-number">1.2.</span> <span class="toc-text">Input System UI Input Module 参数相关</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#VR%E7%9B%B8%E5%85%B3%E4%B8%AD%E4%BD%BF%E7%94%A8%E6%96%B0%E8%BE%93%E5%85%A5%E7%B3%BB%E7%BB%9F%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="toc-number">1.3.</span> <span class="toc-text">VR相关中使用新输入系统注意事项</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E4%BA%BA%E6%B8%B8%E6%88%8F%E4%BD%BF%E7%94%A8%E5%A4%9A%E5%A5%97UI"><span class="toc-number">1.4.</span> <span class="toc-text">多人游戏使用多套UI</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#On-Screen%E7%BB%84%E4%BB%B6%E7%9B%B8%E5%85%B3"><span class="toc-number">1.5.</span> <span class="toc-text">On-Screen组件相关</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/07/01/hello-world/" title="欢迎来到文KRIFE齐的博客！">欢迎来到文KRIFE齐的博客！</a><time datetime="2024-07-01T11:46:20.391Z" title="发表于 2024-07-01 19:46:20">2024-07-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/US3S1L5%E2%80%94%E2%80%94Phong%E5%85%89%E7%85%A7%E6%A8%A1%E5%9E%8B/" title="US3S1L5——Phong光照模型">US3S1L5——Phong光照模型</a><time datetime="2024-06-25T14:33:57.000Z" title="发表于 2024-06-25 22:33:57">2024-06-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/US3S1L4%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B/US3S1L4-2%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B%E7%9A%84%E9%80%90%E7%89%87%E5%85%83%E5%85%89%E7%85%A7/" title="US3S1L4-2——Phong式高光反射模型的逐片元光照">US3S1L4-2——Phong式高光反射模型的逐片元光照</a><time datetime="2024-06-25T13:16:37.000Z" title="发表于 2024-06-25 21:16:37">2024-06-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/US3S1L4%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B/US3S1L4-1%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B%E7%9A%84%E9%80%90%E9%A1%B6%E7%82%B9%E5%85%89%E7%85%A7/" title="US3S1L4-1——Phong式高光反射模型的逐顶点光照">US3S1L4-1——Phong式高光反射模型的逐顶点光照</a><time datetime="2024-06-25T13:16:05.000Z" title="发表于 2024-06-25 21:16:05">2024-06-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/US3S1L4%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B/" title="US3S1L4——Phong式高光反射模型">US3S1L4——Phong式高光反射模型</a><time datetime="2024-06-25T10:14:12.000Z" title="发表于 2024-06-25 18:14:12">2024-06-25</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By 文KRIFE齐</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

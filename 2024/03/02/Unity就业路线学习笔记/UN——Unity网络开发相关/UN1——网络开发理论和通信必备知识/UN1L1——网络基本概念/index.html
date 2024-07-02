@@ -1,0 +1,234 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>UN1L1——网络基本概念 | 文KRIFE齐的博客</title><meta name="author" content="文KRIFE齐"><meta name="copyright" content="文KRIFE齐"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="UN1L1——网络基本概念 网络 在没有网络之前，每个人的设备（电脑等）都是彼此孤立的，网络的出现让设备之间可以相互通信 ​​ 网络的作用 网络是由若干设备和连接这些设备的链路构成，各种设备，间接或者直接通过介质相连 设备之间想要进行信息传递时，将想要传递的数据编码为2进制数值便可以被有效的传输 这些数据是以电脉冲的形式进行传输的线缆中的电压是在高低状态之间进行变化的 因而，二进制中1是通过产生一">
+<meta property="og:type" content="article">
+<meta property="og:title" content="UN1L1——网络基本概念">
+<meta property="og:url" content="http://example.com/2024/03/02/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UN%E2%80%94%E2%80%94Unity%E7%BD%91%E7%BB%9C%E5%BC%80%E5%8F%91%E7%9B%B8%E5%85%B3/UN1%E2%80%94%E2%80%94%E7%BD%91%E7%BB%9C%E5%BC%80%E5%8F%91%E7%90%86%E8%AE%BA%E5%92%8C%E9%80%9A%E4%BF%A1%E5%BF%85%E5%A4%87%E7%9F%A5%E8%AF%86/UN1L1%E2%80%94%E2%80%94%E7%BD%91%E7%BB%9C%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/index.html">
+<meta property="og:site_name" content="文KRIFE齐的博客">
+<meta property="og:description" content="UN1L1——网络基本概念 网络 在没有网络之前，每个人的设备（电脑等）都是彼此孤立的，网络的出现让设备之间可以相互通信 ​​ 网络的作用 网络是由若干设备和连接这些设备的链路构成，各种设备，间接或者直接通过介质相连 设备之间想要进行信息传递时，将想要传递的数据编码为2进制数值便可以被有效的传输 这些数据是以电脉冲的形式进行传输的线缆中的电压是在高低状态之间进行变化的 因而，二进制中1是通过产生一">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png">
+<meta property="article:published_time" content="2024-03-02T13:35:53.000Z">
+<meta property="article:modified_time" content="2024-07-02T03:57:10.000Z">
+<meta property="article:author" content="文KRIFE齐">
+<meta property="article:tag" content="blog">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2024/03/02/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UN%E2%80%94%E2%80%94Unity%E7%BD%91%E7%BB%9C%E5%BC%80%E5%8F%91%E7%9B%B8%E5%85%B3/UN1%E2%80%94%E2%80%94%E7%BD%91%E7%BB%9C%E5%BC%80%E5%8F%91%E7%90%86%E8%AE%BA%E5%92%8C%E9%80%9A%E4%BF%A1%E5%BF%85%E5%A4%87%E7%9F%A5%E8%AF%86/UN1L1%E2%80%94%E2%80%94%E7%BD%91%E7%BB%9C%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'UN1L1——网络基本概念',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-07-02 11:57:10'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">834</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">113</div></a></div><hr class="custom-hr"/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="文KRIFE齐的博客"><span class="site-name">文KRIFE齐的博客</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">UN1L1——网络基本概念</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-03-02T13:35:53.000Z" title="发表于 2024-03-02 21:35:53">2024-03-02</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-07-02T03:57:10.000Z" title="更新于 2024-07-02 11:57:10">2024-07-02</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UN%E2%80%94%E2%80%94Unity%E7%BD%91%E7%BB%9C%E5%BC%80%E5%8F%91%E7%9B%B8%E5%85%B3/">UN——Unity网络开发相关</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UN%E2%80%94%E2%80%94Unity%E7%BD%91%E7%BB%9C%E5%BC%80%E5%8F%91%E7%9B%B8%E5%85%B3/UN1%E2%80%94%E2%80%94%E7%BD%91%E7%BB%9C%E5%BC%80%E5%8F%91%E7%90%86%E8%AE%BA%E5%92%8C%E9%80%9A%E4%BF%A1%E5%BF%85%E5%A4%87%E7%9F%A5%E8%AF%86/">UN1——网络开发理论和通信必备知识</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="UN1L1——网络基本概念"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1>UN1L1——网络基本概念</h1>
+<h1>网络</h1>
+<p>在没有网络之前，每个人的设备（电脑等）都是彼此孤立的，<strong>网络的出现让设备之间可以相互通信</strong></p>
+<p>​<img src="assets/image-20240302213644-079dpk7.png" alt="image">​</p>
+<h2 id="网络的作用">网络的作用</h2>
+<p><strong>网络是由若干设备和连接这些设备的链路构成，各种设备，间接或者直接通过介质相连</strong><br>
+设备之间想要进行信息传递时，将想要传递的数据编码为2进制数值便可以被有效的传输<br>
+这些数据是以电脉冲的形式进行传输的线缆中的电压是在高低状态之间进行变化的<br>
+因而，<strong>二进制中1是通过产生一个正电压来传输的，二进制中0是通过产生一个负电压来传输的</strong></p>
+<p>网络的基本概念很容易理解，但是提到网络我们不得不提一些关键词<br>
+局域网、以太网、城域网、广域网、 因特网、互联网、万维网等等<br>
+我们接下来就来简单的认识他们</p>
+<p>​<img src="assets/image-20240302213753-5ocr6on.png" alt="image">​</p>
+<ul>
+<li>网络：由若干设备和连接这些设备的链路构成，设备间可以相互通信</li>
+<li>局域网：指某一个小区域内由多台设备互联成的计算机组</li>
+<li>以太网：网络连接的一种规则，定义了连接传输规范</li>
+<li>城域网：是在一个城市范围内所建立的网络，几十到一百公里</li>
+<li>广域网：是连接不同地区、城市、国家的远程网络，几十到几千公里</li>
+<li>互联网（因特网）：是目前国际上最大的互联网，定义了通信规则等</li>
+<li>万维网：是基于因特网的网站和网页的统称</li>
+</ul>
+<h1>局域网</h1>
+<p><strong>局域网（Local Area Network，简称LAN）是按照范围划分而来的名称</strong><br>
+是指在某一个小区域内由多台设备互联成的计算机组<br>
+可以是家里的两台设备组成，也可以是学校、公司里的上千台设备组成<br>
+特点是<strong>分布地区范围有限，覆盖范围一般是方圆几千米之内</strong></p>
+<p>​<img src="assets/image-20240302213910-p0mb7f6.png" alt="image">​</p>
+<h1>以太网</h1>
+<p><strong>以太网是一种计算机局域网技术</strong>，是目前应用最普遍的局域网技术<br>
+IEEE组织（电气与电子工程师协会）的IEEE 802.3标准制定了以太网的技术标准<br>
+它规定了包括物理层的连线、电子信号和介质访问层协议的内容</p>
+<p>说人话：<br>
+刚才我们了解了局域网是什么，局域网中设备的连接规范，数据的传输规范等等规则都是基于以太网的技术标准来完成的，<br>
+所以，简单理解以太网就是网络连接的一种规则（协议）</p>
+<h2 id="以太网-网络拓扑结构">以太网 网络拓扑结构</h2>
+<p>概念： 用传输媒体把计算机等各种设备互相连接起来的物理布局，是指<strong>设备互连过程中构成的几何形状</strong></p>
+<p>拓扑结构往往是多种一起混合使用的</p>
+<p>​<img src="assets/image-20240302214124-4cio3jb.png" alt="image"><img src="assets/image-20240302214135-q32kyej.png" alt="image">​</p>
+<h1>城域网</h1>
+<p>城域网（Metropolitan Area Network，简称MAN）是在一个城市范围内所建立的网络<br>
+通常覆盖一个城市，从几十公里到一百公里不等，可能会有多种介质，用户的数量也比局域网更多</p>
+<p>​<img src="assets/image-20240302214232-n95efyz.png" alt="image">​</p>
+<h1>广域网</h1>
+<p>广域网（Wide Area Network，简称WAN）又称外网、公网，是连接不同地区局域网或城域网设备通信的远程网，<br>
+通常跨接很大的物理范围，所覆盖的范围从几十公里到几千公里，它能连接多个地区、城市和国家，形成国际性的远程网络</p>
+<p><strong>注意：广域网并不等同于互联网</strong></p>
+<p>​<img src="assets/image-20240302214335-04mlzc6.png" alt="image">​</p>
+<h1>互联网（因特网）</h1>
+<p>互联网，如果作为名词理解的话，就是互相联网，让各种设备处于同一网络环境下，只要设备互相连接网络了，那么设备之间就可以进行通信<br>
+<strong>它一般泛指彼此能够通信的设备组成的网络</strong></p>
+<p>但是目前我们往往提到的互联网，大部分时候都是指代的<strong>因特网</strong><br>
+你可以把<strong>互联网作为名词理解，也可以将互联网理解为因特网的代称</strong></p>
+<p><strong>互联网（internet，音译为因特网）</strong><br>
+又称国际网络，指的是网络与网络之间所串连成的庞大网络，这些网络以一组通用的协议（规则）相连，形成逻辑上的单一巨大国际网络。<br>
+互联网目前已经把200多个国家和地区的大部分设备连接了起来，形成了一个遍布全世界的网络。<br>
+所以在一定程度上也可以说，互联网等同于广域网，广域网包含了互联网。<br>
+互联网使用的技术，在广域网上一定有，但是某些广域网的技术，互联网上不一定有<br>
+比如军用的广域网，普通老百姓是不会使用的</p>
+<p>互联网（因特网）的本质就是人为定义的一系列协议（规则）总称为“互联网协议”</p>
+<p><strong>主要功能：</strong></p>
+<p><strong>定义计算机如何接入互联网，以及接入互联网的计算机的通信标准，也就是为我们的设备定义连入标准，并且为传输的2进制数据定义一些传输规则</strong><br>
+只要遵守这些规则来进行网络连接和数据传输，我们的各种设备就可以通过网络进行通讯，进行信息的交换</p>
+<p>简单理解因特网：</p>
+<p>它是国际上最大的互联网，所以当我们提到互联网时一般都代指因特网<br>
+它是指当前全球最大的、开放的、有众多网络互相连接而成的特定的计算机网络<br>
+它采用TCP/IP协议簇作为通信的规则，提供了包括万维网（WWW）、文件传输（FTP）、电子邮件（E-mail）、远程登录（Telnet）等等服务<br>
+只要我们的设备和应用程序遵守这套因特网的互联网规则，那么我们就可以在这个庞大的网络体系当中畅游</p>
+<h1>万维网</h1>
+<p>万维网（World Wide Web，简称WWW，也称Web、3W等），它是存储在因特网的计算机当中，数量巨大的文档（页面）的集合<br>
+它是无数个网络站点和网页的集合，是构成因特网的主要部分，我们平时用浏览器看到的内容就属于万维网，他们本质上就是一个个的文档（页面）</p>
+<p>如果把<strong>因特网看做是网络的基础，那么万维网就可以被看做是对因特网的应用</strong><br>
+是利用因特网规则的一种信息传递和呈现的手段，可以认为万维网就是网站和页面的统称</p>
+<p>‍</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">文KRIFE齐</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2024/03/02/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UN%E2%80%94%E2%80%94Unity%E7%BD%91%E7%BB%9C%E5%BC%80%E5%8F%91%E7%9B%B8%E5%85%B3/UN1%E2%80%94%E2%80%94%E7%BD%91%E7%BB%9C%E5%BC%80%E5%8F%91%E7%90%86%E8%AE%BA%E5%92%8C%E9%80%9A%E4%BF%A1%E5%BF%85%E5%A4%87%E7%9F%A5%E8%AF%86/UN1L1%E2%80%94%E2%80%94%E7%BD%91%E7%BB%9C%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/">http://example.com/2024/03/02/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UN%E2%80%94%E2%80%94Unity%E7%BD%91%E7%BB%9C%E5%BC%80%E5%8F%91%E7%9B%B8%E5%85%B3/UN1%E2%80%94%E2%80%94%E7%BD%91%E7%BB%9C%E5%BC%80%E5%8F%91%E7%90%86%E8%AE%BA%E5%92%8C%E9%80%9A%E4%BF%A1%E5%BF%85%E5%A4%87%E7%9F%A5%E8%AF%86/UN1L1%E2%80%94%E2%80%94%E7%BD%91%E7%BB%9C%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">文KRIFE齐的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2024/03/02/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UN%E2%80%94%E2%80%94Unity%E7%BD%91%E7%BB%9C%E5%BC%80%E5%8F%91%E7%9B%B8%E5%85%B3/UN1%E2%80%94%E2%80%94%E7%BD%91%E7%BB%9C%E5%BC%80%E5%8F%91%E7%90%86%E8%AE%BA%E5%92%8C%E9%80%9A%E4%BF%A1%E5%BF%85%E5%A4%87%E7%9F%A5%E8%AF%86/UN1L2%E2%80%94%E2%80%94IP%E3%80%81%E7%AB%AF%E5%8F%A3%E3%80%81Mac%E5%9C%B0%E5%9D%80/" title="UN1L2——IP、端口、Mac地址"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">UN1L2——IP、端口、Mac地址</div></div></a></div><div class="next-post pull-right"><a href="/2024/03/02/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UN%E2%80%94%E2%80%94Unity%E7%BD%91%E7%BB%9C%E5%BC%80%E5%8F%91%E7%9B%B8%E5%85%B3/" title="UN——Unity网络开发相关"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">UN——Unity网络开发相关</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">文KRIFE齐</div><div class="author-info__description">目前正处于搭建测试环节</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">834</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">113</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">UN1L1——网络基本概念</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">2.</span> <span class="toc-text">网络</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="toc-number">2.1.</span> <span class="toc-text">网络的作用</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">3.</span> <span class="toc-text">局域网</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">4.</span> <span class="toc-text">以太网</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A5%E5%A4%AA%E7%BD%91-%E7%BD%91%E7%BB%9C%E6%8B%93%E6%89%91%E7%BB%93%E6%9E%84"><span class="toc-number">4.1.</span> <span class="toc-text">以太网 网络拓扑结构</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">5.</span> <span class="toc-text">城域网</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">6.</span> <span class="toc-text">广域网</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">7.</span> <span class="toc-text">互联网（因特网）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">8.</span> <span class="toc-text">万维网</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/07/01/hello-world/" title="欢迎来到文KRIFE齐的博客！">欢迎来到文KRIFE齐的博客！</a><time datetime="2024-07-01T11:46:20.391Z" title="发表于 2024-07-01 19:46:20">2024-07-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/US3S1L5%E2%80%94%E2%80%94Phong%E5%85%89%E7%85%A7%E6%A8%A1%E5%9E%8B/" title="US3S1L5——Phong光照模型">US3S1L5——Phong光照模型</a><time datetime="2024-06-25T14:33:57.000Z" title="发表于 2024-06-25 22:33:57">2024-06-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/US3S1L4%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B/US3S1L4-2%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B%E7%9A%84%E9%80%90%E7%89%87%E5%85%83%E5%85%89%E7%85%A7/" title="US3S1L4-2——Phong式高光反射模型的逐片元光照">US3S1L4-2——Phong式高光反射模型的逐片元光照</a><time datetime="2024-06-25T13:16:37.000Z" title="发表于 2024-06-25 21:16:37">2024-06-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/US3S1L4%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B/US3S1L4-1%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B%E7%9A%84%E9%80%90%E9%A1%B6%E7%82%B9%E5%85%89%E7%85%A7/" title="US3S1L4-1——Phong式高光反射模型的逐顶点光照">US3S1L4-1——Phong式高光反射模型的逐顶点光照</a><time datetime="2024-06-25T13:16:05.000Z" title="发表于 2024-06-25 21:16:05">2024-06-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/US3S1L4%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B/" title="US3S1L4——Phong式高光反射模型">US3S1L4——Phong式高光反射模型</a><time datetime="2024-06-25T10:14:12.000Z" title="发表于 2024-06-25 18:14:12">2024-06-25</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By 文KRIFE齐</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

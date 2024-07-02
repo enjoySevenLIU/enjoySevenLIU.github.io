@@ -1,0 +1,272 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>UN4L6——WWW类 | 文KRIFE齐的博客</title><meta name="author" content="文KRIFE齐"><meta name="copyright" content="文KRIFE齐"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="UN4L6——WWW类 本章代码关键字 1234567891011121314WWW									&#x2F;&#x2F;Unity提供给我们简单的访问网页的类，我们可以通过该类下载和上传一些数据new WWW()							&#x2F;&#x2F;WWW的构造函数，用于创建一个WWW请求，传入Http或者ftp地址，或者本地地址（以file:&#x2F;&#x2F;开头）www.GetAudioClip()					&#x2F;&#x2F;从下载数据返回一个音效切片A">
+<meta property="og:type" content="article">
+<meta property="og:title" content="UN4L6——WWW类">
+<meta property="og:url" content="http://example.com/2024/03/15/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UN%E2%80%94%E2%80%94Unity%E7%BD%91%E7%BB%9C%E5%BC%80%E5%8F%91%E7%9B%B8%E5%85%B3/UN4%E2%80%94%E2%80%94HTTP%E8%B6%85%E6%96%87%E6%9C%AC%E4%BC%A0%E8%BE%93%E5%8D%8F%E8%AE%AE%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1%E6%96%B9%E6%A1%88/UN4L6%E2%80%94%E2%80%94WWW%E7%B1%BB/index.html">
+<meta property="og:site_name" content="文KRIFE齐的博客">
+<meta property="og:description" content="UN4L6——WWW类 本章代码关键字 1234567891011121314WWW									&#x2F;&#x2F;Unity提供给我们简单的访问网页的类，我们可以通过该类下载和上传一些数据new WWW()							&#x2F;&#x2F;WWW的构造函数，用于创建一个WWW请求，传入Http或者ftp地址，或者本地地址（以file:&#x2F;&#x2F;开头）www.GetAudioClip()					&#x2F;&#x2F;从下载数据返回一个音效切片A">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png">
+<meta property="article:published_time" content="2024-03-15T08:04:53.000Z">
+<meta property="article:modified_time" content="2024-07-02T03:57:12.000Z">
+<meta property="article:author" content="文KRIFE齐">
+<meta property="article:tag" content="blog">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2024/03/15/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UN%E2%80%94%E2%80%94Unity%E7%BD%91%E7%BB%9C%E5%BC%80%E5%8F%91%E7%9B%B8%E5%85%B3/UN4%E2%80%94%E2%80%94HTTP%E8%B6%85%E6%96%87%E6%9C%AC%E4%BC%A0%E8%BE%93%E5%8D%8F%E8%AE%AE%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1%E6%96%B9%E6%A1%88/UN4L6%E2%80%94%E2%80%94WWW%E7%B1%BB/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'UN4L6——WWW类',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-07-02 11:57:12'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">834</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">113</div></a></div><hr class="custom-hr"/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="文KRIFE齐的博客"><span class="site-name">文KRIFE齐的博客</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">UN4L6——WWW类</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-03-15T08:04:53.000Z" title="发表于 2024-03-15 16:04:53">2024-03-15</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-07-02T03:57:12.000Z" title="更新于 2024-07-02 11:57:12">2024-07-02</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UN%E2%80%94%E2%80%94Unity%E7%BD%91%E7%BB%9C%E5%BC%80%E5%8F%91%E7%9B%B8%E5%85%B3/">UN——Unity网络开发相关</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UN%E2%80%94%E2%80%94Unity%E7%BD%91%E7%BB%9C%E5%BC%80%E5%8F%91%E7%9B%B8%E5%85%B3/UN4%E2%80%94%E2%80%94HTTP%E8%B6%85%E6%96%87%E6%9C%AC%E4%BC%A0%E8%BE%93%E5%8D%8F%E8%AE%AE%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1%E6%96%B9%E6%A1%88/">UN4——HTTP超文本传输协议网络通信方案</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="UN4L6——WWW类"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1>UN4L6——WWW类</h1>
+<h2 id="本章代码关键字">本章代码关键字</h2>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">WWW									<span class="comment">//Unity提供给我们简单的访问网页的类，我们可以通过该类下载和上传一些数据</span></span><br><span class="line"><span class="keyword">new</span> WWW()							<span class="comment">//WWW的构造函数，用于创建一个WWW请求，传入Http或者ftp地址，或者本地地址（以file://开头）</span></span><br><span class="line">www.GetAudioClip()					<span class="comment">//从下载数据返回一个音效切片AudioClip对象</span></span><br><span class="line">www.LoadImageIntoTexture()			<span class="comment">//用下载数据中的图像来替换现有的一个Texture2D对象</span></span><br><span class="line">WWW.LoadFromCacheOrDownload()		<span class="comment">//从缓存加载AB包对象，如果该包不在缓存则自动下载存储到缓存中，以便以后直接从本地缓存中加载</span></span><br><span class="line">www.assetBundle						<span class="comment">//如果加载的数据是AB包，可以通过该变量直接获取加载结果</span></span><br><span class="line">www.bytes							<span class="comment">//以字节数组的形式获取加载到的内容</span></span><br><span class="line">www.bytesDownloaded					<span class="comment">//获取已下载的字节数</span></span><br><span class="line">www.error							<span class="comment">//返回一个错误消息，如果下载期间出现错误，可以通过它获取错误信息</span></span><br><span class="line">www.isDone							<span class="comment">//判断下载是否已经完成</span></span><br><span class="line">www.GetMovieTexture()				<span class="comment">//如果下载的视频，可以获取一个MovieTexture​类型结果</span></span><br><span class="line">www.progress						<span class="comment">//返回一个0~1的下载进度</span></span><br><span class="line">www.text							<span class="comment">//如果下载的数据是字符串，以字符串的形式返回内容</span></span><br><span class="line">www.texture							<span class="comment">//如果下载的数据是图片，就直接以Texture2D的形式返回加载结果</span></span><br></pre></td></tr></table></figure>
+<h1>WWW</h1>
+<p>​<code>WWW</code>​是Unity提供给我们简单的访问网页的类，我们可以通过该类下载和上传一些数据<br>
+在使用http协议时，默认的请求类型是<code>Get</code>​，如果想要<code>Post</code>​上传，需要配合下节课学习的WWWFrom类使用</p>
+<p>它主要支持的协议如下：</p>
+<ol>
+<li>​<code>http://</code>​和<code>https://</code>​ 超文本传输协议</li>
+<li>​<code>ftp://</code>​ 文件传输协议（但仅限于匿名下载）</li>
+<li>​<code>file://</code>​ 本地文件传输协议，可以使用该协议异步加载本地文件（PC、IOS、Android都支持）</li>
+</ol>
+<p>Unity中的WWW类比使用C#中的Http、FTP相关类更加的方便，建议大家使用Unity当中为我们封装好的类来处理下载、加载相关逻辑</p>
+<p>注意：</p>
+<ol>
+<li>该类一般配合协同程序使用</li>
+<li>该类<strong>在较新Unity版本中会提示过时</strong>，但是仍可以使用，新版本将其功能整合进了UnityWebRequest类（之后讲解）</li>
+</ol>
+<h2 id="WWW类的常用方法和变量">WWW类的常用方法和变量</h2>
+<ul>
+<li>
+<h3 id="常用方法">常用方法</h3>
+<ol>
+<li>
+<p>​<code>WWW()</code>​​：<strong>构造函数，用于创建一个WWW请求</strong></p>
+ <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">WWW www = <span class="keyword">new</span> WWW(<span class="string">&quot;http://192.168.1.106/Http_Server/下载测试.png&quot;</span>);</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>​<code>GetAudioClip()</code>​​：从下载数据返回一个音效切片AudioClip对象</p>
+ <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">AudioClip clip = www.GetAudioClip();</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>​<code>LoadImageIntoTexture()</code>​​：用下载数据中的图像来替换现有的一个Texture2D对象</p>
+ <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Texture2D texture = <span class="keyword">new</span> Texture2D(<span class="number">100</span>, <span class="number">100</span>);</span><br><span class="line">www.LoadImageIntoTexture(texture);</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>​<code>LoadFromCacheOrDownload()</code>​​：从缓存加载AB包对象，如果该包不在缓存则自动下载存储到缓存中，以便以后直接从本地缓存中加载</p>
+<p>参数一是AB包文件地址，参数二是版本，该方法多用于Unity网页游戏上，端游或者手游一般会直接提前下载AB包准备使用</p>
+ <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">WWW.LoadFromCacheOrDownload(<span class="string">&quot;http://192.168.1.106/Http_Server/test.assetbundle&quot;</span>, <span class="number">1</span>);</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+<li>
+<h3 id="常用属性">常用属性</h3>
+<ol>
+<li>
+<p>​<code>assetBundle</code>​：如果加载的数据是AB包，可以通过该变量直接获取加载结果</p>
+ <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">AssetBundle ab = www.assetBundle;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>​<code>audioClip</code>​：如果加载的数据是音效切片文件，可以通过该变量直接获取加载结果</p>
+<p>注：老版本内才能使用<code>audioClip</code>​属性，新版已经改为了使用<code>GetAudioClip()</code>​获取</p>
+ <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">www.audioClip</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>​<code>bytes</code>​：以字节数组的形式获取加载到的内容</p>
+ <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">byte</span>[] bytes = www.bytes</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>​<code>bytesDownloaded</code>​：获取已下载的字节数</p>
+ <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">int</span> downloadBytesNum = www.bytesDownloaded;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>​<code>error</code>​：返回一个错误消息，如果下载期间出现错误，可以通过它获取错误信息</p>
+<p>如果没有问题，它将一直为<code>null</code>​</p>
+ <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (www.error != <span class="literal">null</span>) &#123; &#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>​<code>isDone</code>​：判断下载是否已经完成</p>
+<p>注意，该方法不能判断下载是否出错！</p>
+ <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (www.isDone) &#123; &#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>​<code>movie</code>​：如果下载的视频，可以获取一个<code>MovieTexture</code>​类型结果</p>
+<p>注：老版本内才能使用<code>movie</code>​属性，新版已经改为了使用<code>GetMovieTexture()</code>​</p>
+<p>再注：其返回值<code>MovieTexture</code>​也是几乎淘汰的旧视频播放方案</p>
+ <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">www.GetMovieTexture()</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>​<code>progress</code>​：下载进度</p>
+ <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">float</span> progress = www.progress;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>​<code>text</code>​：如果下载的数据是字符串，以字符串的形式返回内容</p>
+ <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">www.text</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>​<code>texture</code>​：如果下载的数据是图片，就直接以Texture2D的形式返回加载结果</p>
+ <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Texture2D tex = www.texture;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+</ul>
+<h2 id="利用WWW类来异步下载或加载文件">利用WWW类来异步下载或加载文件</h2>
+<h3 id="下载HTTP服务器上的内容">下载HTTP服务器上的内容</h3>
+<p>使用<code>WWW</code>​类来异步下载文件非常简单，首先在实例化<code>WWW</code>​对象时传入该资源在http服务器上的地址<br>
+然后就可以使用<code>yield return</code>​直接返回<code>www</code>​对象将协程挂起，即可等到资源下载完毕后继续执行协程的逻辑<br>
+我们可以通过<code>error</code>​属性是否为空来判断下载是否出错，之后使用<code>www</code>​对象对应的方法或者属性获取资源即可</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> RawImage image;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Start</span>()</span></span><br><span class="line">&#123;</span><br><span class="line">    StartCoroutine(DownLoadHttp());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">IEnumerator <span class="title">DownLoadHttp</span>()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">//创建WWW对象</span></span><br><span class="line">    WWW www = <span class="keyword">new</span> WWW(<span class="string">&quot;http://192.168.1.106/Http_Server/下载测试.png&quot;</span>);</span><br><span class="line">    <span class="comment">//直接等待加载结束</span></span><br><span class="line">    <span class="keyword">yield</span> <span class="keyword">return</span> www;</span><br><span class="line">    <span class="comment">//使用加载结束后的资源</span></span><br><span class="line">    <span class="keyword">if</span> (www.error == <span class="literal">null</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        image.texture = www.texture;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>除了直接<code>yield return www</code>​对象本身，还可以每帧检测是否下载完毕，期间就可以输出下载字节数与进度</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> RawImage image;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Start</span>()</span></span><br><span class="line">&#123;</span><br><span class="line">    StartCoroutine(DownLoadHttp());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">IEnumerator <span class="title">DownLoadHttp</span>()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">//创建WWW对象</span></span><br><span class="line">    WWW www = <span class="keyword">new</span> WWW(<span class="string">&quot;http://192.168.1.106/Http_Server/下载测试.png&quot;</span>);</span><br><span class="line">    <span class="comment">//每帧检测是否下载完毕，期间可以打印下载了多少字节，下载的进度</span></span><br><span class="line">    <span class="keyword">while</span> (!www.isDone)</span><br><span class="line">    &#123;</span><br><span class="line">        print(<span class="string">$&quot;下载了<span class="subst">&#123;www.bytesDownloaded&#125;</span>字节&quot;</span>);</span><br><span class="line">        print(<span class="string">$&quot;下载到<span class="subst">&#123;www.progress * <span class="number">100</span>&#125;</span>%&quot;</span>);</span><br><span class="line">        <span class="keyword">yield</span> <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    print(<span class="string">$&quot;下载了<span class="subst">&#123;www.bytesDownloaded&#125;</span>字节&quot;</span>);</span><br><span class="line">    print(<span class="string">$&quot;下载到<span class="subst">&#123;www.progress * <span class="number">100</span>&#125;</span>%&quot;</span>);</span><br><span class="line">    <span class="comment">//使用加载结束后的资源</span></span><br><span class="line">    <span class="keyword">if</span> (www.error == <span class="literal">null</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        image.texture = www.texture;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>​<img src="assets/image-20240315171607-1r5ns26.png" alt="image">​</p>
+<h3 id="下载FTP服务器上的内容（FTP服务器一定要支持匿名账户）">下载FTP服务器上的内容（FTP服务器一定要支持匿名账户）</h3>
+<p>如果想要<code>WWW</code>​类能够访问FTP服务器上的内容，该FTP服务器一定要支持匿名账户登入！</p>
+<p>从FTP服务器上下载内容的逻辑，基本与从Http服务器上下载内容一致，<br>
+唯一的不同就是在实例化<code>WWW</code>​对象时传入的地址是<code>ftp://...</code>​格式的</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> RawImage image;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Start</span>()</span></span><br><span class="line">&#123;</span><br><span class="line">    StartCoroutine(DownLoadFtp());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">IEnumerator <span class="title">DownLoadFtp</span>()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">//创建WWW对象</span></span><br><span class="line">    WWW www = <span class="keyword">new</span> WWW(<span class="string">&quot;ftp://192.168.1.106/下载测试.png&quot;</span>);</span><br><span class="line">    <span class="comment">//每帧检测是否下载完毕，期间可以打印下载了多少字节，下载的进度</span></span><br><span class="line">    <span class="keyword">while</span> (!www.isDone)</span><br><span class="line">    &#123;</span><br><span class="line">        print(<span class="string">$&quot;下载了<span class="subst">&#123;www.bytesDownloaded&#125;</span>字节&quot;</span>);</span><br><span class="line">        print(<span class="string">$&quot;下载到<span class="subst">&#123;www.progress * <span class="number">100</span>&#125;</span>%&quot;</span>);</span><br><span class="line">        <span class="keyword">yield</span> <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    print(<span class="string">$&quot;下载了<span class="subst">&#123;www.bytesDownloaded&#125;</span>字节&quot;</span>);</span><br><span class="line">    print(<span class="string">$&quot;下载到<span class="subst">&#123;www.progress * <span class="number">100</span>&#125;</span>%&quot;</span>);</span><br><span class="line">    <span class="comment">//使用加载结束后的资源</span></span><br><span class="line">    <span class="keyword">if</span> (www.error == <span class="literal">null</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        image.texture = www.texture;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        print(www.error);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="本地内容加载（一般移动平台加载数据都会使用该方式）">本地内容加载（一般移动平台加载数据都会使用该方式）</h3>
+<p>该方法常用于移动平台加载本地的数据</p>
+<p>从本地加载内容的逻辑，基本与从Http服务器和Ftp服务器上下载内容一致，<br>
+唯一的不同就是在实例化<code>WWW</code>​对象时传入的地址是 <code>file:// + 本地文件路径</code>​ 格式的</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> RawImage image;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Start</span>()</span></span><br><span class="line">&#123;</span><br><span class="line">    StartCoroutine(DownLoadLocal());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">IEnumerator <span class="title">DownLoadLocal</span>()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">//创建WWW对象</span></span><br><span class="line">    WWW www = <span class="keyword">new</span> WWW(<span class="string">&quot;file://&quot;</span> + Application.streamingAssetsPath + <span class="string">&quot;/本地下载测试.png&quot;</span>);</span><br><span class="line">    <span class="comment">//每帧检测是否下载完毕，期间可以打印下载了多少字节，下载的进度</span></span><br><span class="line">    <span class="keyword">while</span> (!www.isDone)</span><br><span class="line">    &#123;</span><br><span class="line">        print(<span class="string">$&quot;加载了<span class="subst">&#123;www.bytesDownloaded&#125;</span>字节&quot;</span>);</span><br><span class="line">        print(<span class="string">$&quot;加载到<span class="subst">&#123;www.progress * <span class="number">100</span>&#125;</span>%&quot;</span>);</span><br><span class="line">        <span class="keyword">yield</span> <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    print(<span class="string">$&quot;加载了<span class="subst">&#123;www.bytesDownloaded&#125;</span>字节&quot;</span>);</span><br><span class="line">    print(<span class="string">$&quot;加载到<span class="subst">&#123;www.progress * <span class="number">100</span>&#125;</span>%&quot;</span>);</span><br><span class="line">    <span class="comment">//使用加载结束后的资源</span></span><br><span class="line">    <span class="keyword">if</span> (www.error == <span class="literal">null</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        image.texture = www.texture;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        print(www.error);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">文KRIFE齐</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2024/03/15/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UN%E2%80%94%E2%80%94Unity%E7%BD%91%E7%BB%9C%E5%BC%80%E5%8F%91%E7%9B%B8%E5%85%B3/UN4%E2%80%94%E2%80%94HTTP%E8%B6%85%E6%96%87%E6%9C%AC%E4%BC%A0%E8%BE%93%E5%8D%8F%E8%AE%AE%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1%E6%96%B9%E6%A1%88/UN4L6%E2%80%94%E2%80%94WWW%E7%B1%BB/">http://example.com/2024/03/15/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UN%E2%80%94%E2%80%94Unity%E7%BD%91%E7%BB%9C%E5%BC%80%E5%8F%91%E7%9B%B8%E5%85%B3/UN4%E2%80%94%E2%80%94HTTP%E8%B6%85%E6%96%87%E6%9C%AC%E4%BC%A0%E8%BE%93%E5%8D%8F%E8%AE%AE%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1%E6%96%B9%E6%A1%88/UN4L6%E2%80%94%E2%80%94WWW%E7%B1%BB/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">文KRIFE齐的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2024/03/15/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UN%E2%80%94%E2%80%94Unity%E7%BD%91%E7%BB%9C%E5%BC%80%E5%8F%91%E7%9B%B8%E5%85%B3/UN4%E2%80%94%E2%80%94HTTP%E8%B6%85%E6%96%87%E6%9C%AC%E4%BC%A0%E8%BE%93%E5%8D%8F%E8%AE%AE%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1%E6%96%B9%E6%A1%88/UN4L7%E2%80%94%E2%80%94WWWFrom%E7%B1%BB/" title="UN4L7——WWWFrom类"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">UN4L7——WWWFrom类</div></div></a></div><div class="next-post pull-right"><a href="/2024/03/14/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UN%E2%80%94%E2%80%94Unity%E7%BD%91%E7%BB%9C%E5%BC%80%E5%8F%91%E7%9B%B8%E5%85%B3/UN4%E2%80%94%E2%80%94HTTP%E8%B6%85%E6%96%87%E6%9C%AC%E4%BC%A0%E8%BE%93%E5%8D%8F%E8%AE%AE%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1%E6%96%B9%E6%A1%88/UN4L5%E2%80%94%E2%80%94HTTP%E4%B8%8A%E4%BC%A0%E6%95%B0%E6%8D%AE/" title="UN4L5——HTTP上传数据"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">UN4L5——HTTP上传数据</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">文KRIFE齐</div><div class="author-info__description">目前正处于搭建测试环节</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">834</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">113</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">UN4L6——WWW类</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%AC%E7%AB%A0%E4%BB%A3%E7%A0%81%E5%85%B3%E9%94%AE%E5%AD%97"><span class="toc-number">1.1.</span> <span class="toc-text">本章代码关键字</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">2.</span> <span class="toc-text">WWW</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#WWW%E7%B1%BB%E7%9A%84%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95%E5%92%8C%E5%8F%98%E9%87%8F"><span class="toc-number">2.1.</span> <span class="toc-text">WWW类的常用方法和变量</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95"><span class="toc-number">2.1.1.</span> <span class="toc-text">常用方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E5%B1%9E%E6%80%A7"><span class="toc-number">2.1.2.</span> <span class="toc-text">常用属性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A9%E7%94%A8WWW%E7%B1%BB%E6%9D%A5%E5%BC%82%E6%AD%A5%E4%B8%8B%E8%BD%BD%E6%88%96%E5%8A%A0%E8%BD%BD%E6%96%87%E4%BB%B6"><span class="toc-number">2.2.</span> <span class="toc-text">利用WWW类来异步下载或加载文件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8B%E8%BD%BDHTTP%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E7%9A%84%E5%86%85%E5%AE%B9"><span class="toc-number">2.2.1.</span> <span class="toc-text">下载HTTP服务器上的内容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8B%E8%BD%BDFTP%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E7%9A%84%E5%86%85%E5%AE%B9%EF%BC%88FTP%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%80%E5%AE%9A%E8%A6%81%E6%94%AF%E6%8C%81%E5%8C%BF%E5%90%8D%E8%B4%A6%E6%88%B7%EF%BC%89"><span class="toc-number">2.2.2.</span> <span class="toc-text">下载FTP服务器上的内容（FTP服务器一定要支持匿名账户）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%AC%E5%9C%B0%E5%86%85%E5%AE%B9%E5%8A%A0%E8%BD%BD%EF%BC%88%E4%B8%80%E8%88%AC%E7%A7%BB%E5%8A%A8%E5%B9%B3%E5%8F%B0%E5%8A%A0%E8%BD%BD%E6%95%B0%E6%8D%AE%E9%83%BD%E4%BC%9A%E4%BD%BF%E7%94%A8%E8%AF%A5%E6%96%B9%E5%BC%8F%EF%BC%89"><span class="toc-number">2.2.3.</span> <span class="toc-text">本地内容加载（一般移动平台加载数据都会使用该方式）</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/07/01/hello-world/" title="欢迎来到文KRIFE齐的博客！">欢迎来到文KRIFE齐的博客！</a><time datetime="2024-07-01T11:46:20.391Z" title="发表于 2024-07-01 19:46:20">2024-07-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/US3S1L5%E2%80%94%E2%80%94Phong%E5%85%89%E7%85%A7%E6%A8%A1%E5%9E%8B/" title="US3S1L5——Phong光照模型">US3S1L5——Phong光照模型</a><time datetime="2024-06-25T14:33:57.000Z" title="发表于 2024-06-25 22:33:57">2024-06-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/US3S1L4%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B/US3S1L4-2%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B%E7%9A%84%E9%80%90%E7%89%87%E5%85%83%E5%85%89%E7%85%A7/" title="US3S1L4-2——Phong式高光反射模型的逐片元光照">US3S1L4-2——Phong式高光反射模型的逐片元光照</a><time datetime="2024-06-25T13:16:37.000Z" title="发表于 2024-06-25 21:16:37">2024-06-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/US3S1L4%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B/US3S1L4-1%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B%E7%9A%84%E9%80%90%E9%A1%B6%E7%82%B9%E5%85%89%E7%85%A7/" title="US3S1L4-1——Phong式高光反射模型的逐顶点光照">US3S1L4-1——Phong式高光反射模型的逐顶点光照</a><time datetime="2024-06-25T13:16:05.000Z" title="发表于 2024-06-25 21:16:05">2024-06-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/US3S1L4%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B/" title="US3S1L4——Phong式高光反射模型">US3S1L4——Phong式高光反射模型</a><time datetime="2024-06-25T10:14:12.000Z" title="发表于 2024-06-25 18:14:12">2024-06-25</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By 文KRIFE齐</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
