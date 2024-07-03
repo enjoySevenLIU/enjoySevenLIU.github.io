@@ -54,7 +54,7 @@
   isHome: true,
   isHighlightShrink: false,
   isToc: false,
-  postUpdate: '2024-07-02 12:47:22'
+  postUpdate: '2024-07-03 10:26:14'
 }</script><script>(win=>{
       win.saveToLocal = {
         set: (key, value, ttl) => {
@@ -151,278 +151,270 @@
         }
       }
       detectApple()
-    })(window)</script><meta name="generator" content="Hexo 7.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">834</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">113</div></a></div><hr class="custom-hr"/></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="文KRIFE齐的博客"><span class="site-name">文KRIFE齐的博客</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">文KRIFE齐的博客</h1></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/05/15/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US2%E2%80%94%E2%80%94Shader%E5%BF%85%E5%A4%87%E5%9F%BA%E7%A1%80/US2S1%E2%80%94%E2%80%94%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E5%8F%8A%E5%9D%90%E6%A0%87%E7%A9%BA%E9%97%B4%E5%8F%98%E6%8D%A2/US2S1L4%E2%80%94%E2%80%94%E7%9F%A9%E9%98%B5%E7%9A%84%E5%87%A0%E4%BD%95%E6%84%8F%E4%B9%89/" title="US2S1L4——矩阵的几何意义">US2S1L4——矩阵的几何意义</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-05-15T14:10:50.000Z" title="发表于 2024-05-15 22:10:50">2024-05-15</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity-Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/">US——Unity Shader开发入门</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity-Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US2%E2%80%94%E2%80%94Shader%E5%BF%85%E5%A4%87%E5%9F%BA%E7%A1%80/">US2——Shader必备基础</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity-Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US2%E2%80%94%E2%80%94Shader%E5%BF%85%E5%A4%87%E5%9F%BA%E7%A1%80/US2S1%E2%80%94%E2%80%94%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E5%8F%8A%E5%9D%90%E6%A0%87%E7%A9%BA%E9%97%B4%E5%8F%98%E6%8D%A2/">US2S1——线性代数及坐标空间变换</a></span></div><div class="content">US2S1L4——矩阵的几何意义
-几何意义
-要了解矩阵的几何意义，我们必须知道几何意义是什么意思
-几何意义：
-在数学中，几何意义指数学概念、对象或运算在几何学中的直观解释或视觉表达。
-可以将抽象的数学概念与我们对空间和形状的感知联系起来。
-通过几何意义，我们可以用直观的方式理解和描述数学概念，使其更据实际意义
-比如：点和向量都可以在图像中画出来，他们的几何意义涉及到它们在几何学中的位置、形状、结构、关系等方面的解释和理解，
-通过可视化，可以更好的研究和应用。
-说人话：几何意义就是帮助我们用简单的语言和图像来解释数学概念，使其更具实际意义
-矩阵的几何意义 —— 变换（Transform）
-点和向量能在图像中画出来，那么矩阵可以吗？
-答案是肯定的，矩阵的可视化结果就是：变换（Transform）
-在游戏开发中，如果你看到了一个矩阵，那么基本上你可以认为你看到的是一个变换，这些变换一般包含：平移、旋转、缩放
-比如：
-我们想要将一个点、一个向量进行一种变换（平移、旋转、缩放）
-那么我们可以利用矩阵来进行数学计算，从而达到变换的目的
-变换的种类
-矩阵的几何意思是变换，在数学中常用的几何变换有两种 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/05/15/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/PP%E2%80%94%E2%80%94%E5%AE%9E%E8%B7%B5%E9%A1%B9%E7%9B%AE%E7%AC%94%E8%AE%B0/P2%E2%80%94%E2%80%94%E7%8B%AC%E7%AB%8B%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91ARPG/P2L9%E2%80%94%E2%80%94%E3%80%90%E7%A8%8B%E5%BA%8F%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C%E3%80%91Github%E6%B3%A8%E5%86%8C%E7%99%BB%E5%BD%95%20Gitbub%20Desktop%E7%9A%84%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85/" title="P2L9——【程序准备工作】Github注册登录 Gitbub Desktop的下载安装">P2L9——【程序准备工作】Github注册登录 Gitbub Desktop的下载安装</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-05-15T12:44:13.000Z" title="发表于 2024-05-15 20:44:13">2024-05-15</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/PP%E2%80%94%E2%80%94%E5%AE%9E%E8%B7%B5%E9%A1%B9%E7%9B%AE%E7%AC%94%E8%AE%B0/">PP——实践项目笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/PP%E2%80%94%E2%80%94%E5%AE%9E%E8%B7%B5%E9%A1%B9%E7%9B%AE%E7%AC%94%E8%AE%B0/P2%E2%80%94%E2%80%94%E7%8B%AC%E7%AB%8B%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91ARPG/">P2——独立游戏开发ARPG</a></span></div><div class="content">P2L9——【程序准备工作】Github注册登录 Gitbub Desktop的下载安装
+    })(window)</script><meta name="generator" content="Hexo 7.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">823</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">109</div></a></div><hr class="custom-hr"/></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="文KRIFE齐的博客"><span class="site-name">文KRIFE齐的博客</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">文KRIFE齐的博客</h1></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/05/11/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/PP%E2%80%94%E2%80%94%E5%AE%9E%E8%B7%B5%E9%A1%B9%E7%9B%AE%E7%AC%94%E8%AE%B0/P2%E2%80%94%E2%80%94%E7%8B%AC%E7%AB%8B%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91ARPG/P2L5%E2%80%94%E2%80%94%E9%A2%84%E7%A0%94%E7%AB%8B%E9%A1%B9%E6%B5%81%E7%A8%8B%E4%B8%AD%E7%9A%84%E7%AB%8B%E9%A1%B9%E8%AF%84%E4%BC%B0/" title="P2L5——预研立项流程中的立项评估">P2L5——预研立项流程中的立项评估</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-05-11T14:15:31.000Z" title="发表于 2024-05-11 22:15:31">2024-05-11</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/PP%E2%80%94%E2%80%94%E5%AE%9E%E8%B7%B5%E9%A1%B9%E7%9B%AE%E7%AC%94%E8%AE%B0/">PP——实践项目笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/PP%E2%80%94%E2%80%94%E5%AE%9E%E8%B7%B5%E9%A1%B9%E7%9B%AE%E7%AC%94%E8%AE%B0/P2%E2%80%94%E2%80%94%E7%8B%AC%E7%AB%8B%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91ARPG/">P2——独立游戏开发ARPG</a></span></div><div class="content">P2L5——预研立项流程中的立项评估
+立项评估的主要因素有哪些
+根据我们在预研立项整个流程中得到相关数据，我们便可以进行立项评估。我们主要考虑的因素有：
 
-更好的体验github的一种方式
-由于某些原因，github的直接使用体验不甚理想，想要稳定流畅使用需要借助加速工具，
-这里可以使用羽翼城大佬制作的steamcommunity 302，它是免费的，在这里下载：steamcommunity 302 – Dogfight360
-该工具虽然主要用于加速Steam社区的浏览，但该工具内置了很多网页的加速选项，其中就包括github，且笔者实测效果显著
-在下载安装并打开该工具后，点击设置
-​​
-在本地反代选择处选择Github访问，保存设置重启软件即可
-​​
-加速Github的访问有多种方式，本方式仅供参考
+市场需求和竞争分析 （市场调研阶段）
+营销推广计划（市场调研阶段）
+法律和版权问题（市场调研 和 需求分析阶段）
+预算和资金筹备（需求分析阶段）
+开发周期（需求分析阶段）
+游戏的可玩性（Demo产出阶段）
+技术上（程序、美术）的可行性（Demo产出阶段）
+风险评估（立项评估阶段）
 
-Github注册登录
-**1. 访问github网站：**​GitHub
-2. 点击右上角登录
-​​
-3.若没有账号，则注册
-​​
-4.注册流程
-邮箱输入
-​​
-密码输入
-​​
-用户名输入
-​​
-邮箱是否接收产品更新和公告，根据需求选择
-​​
-防机器人验证
-​​
-回答问题即可
-​​
-登录注册用的邮箱，收取验证码后输入
-​​
-5.登录
-​​
-6.首次 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/05/15/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/PP%E2%80%94%E2%80%94%E5%AE%9E%E8%B7%B5%E9%A1%B9%E7%9B%AE%E7%AC%94%E8%AE%B0/P2%E2%80%94%E2%80%94%E7%8B%AC%E7%AB%8B%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91ARPG/P2L8%E2%80%94%E2%80%94%E3%80%90%E7%A8%8B%E5%BA%8F%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C%E3%80%91%E4%B8%BA%E4%BD%95%E8%A6%81%E4%BD%BF%E7%94%A8%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86%E8%BD%AF%E4%BB%B6/" title="P2L8——【程序准备工作】为何要使用版本管理软件">P2L8——【程序准备工作】为何要使用版本管理软件</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-05-15T12:17:09.000Z" title="发表于 2024-05-15 20:17:09">2024-05-15</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/PP%E2%80%94%E2%80%94%E5%AE%9E%E8%B7%B5%E9%A1%B9%E7%9B%AE%E7%AC%94%E8%AE%B0/">PP——实践项目笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/PP%E2%80%94%E2%80%94%E5%AE%9E%E8%B7%B5%E9%A1%B9%E7%9B%AE%E7%AC%94%E8%AE%B0/P2%E2%80%94%E2%80%94%E7%8B%AC%E7%AB%8B%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91ARPG/">P2——独立游戏开发ARPG</a></span></div><div class="content">P2L8——【程序准备工作】为何要使用版本管理软件
-版本管理软件
-版本管理软件 是用来 跟踪、记录、管理 项目文件（如代码、文本、图像、音频等）变化的
-主要是用来帮助我们进行：版本控制、团队协作、并行开发、代码审查、备份和恢复
-它可以帮助我们 提高团队协作效率，保护数据安全，跟踪项目变化
-版本管理软件主要功能是可以用来随时记录工程的修改（代码、文本、资源等）
-使用者每同步上传一次自己的修改，它就会将其记录在案
-因此，我们可以利用它完成以下工作：
+等等
+预研立项流程的重要性
+重视 预研立项 阶段！
+重视 预研立项 阶段！
+重视 预研立项 阶段！
+基于之前的理论知识讲解，相信能够感受到预研立项阶段的重要性
+因为这个阶段相当于就是在为团队从宏观上发现问题并解决问题，大大的降低项目风险！
+如果有同学认为预研立项阶段有点浪费时间，不如走一步看一步，那么这个想法非常危险！
+特别是对于经验不够丰富的团队和个人，如果忽略了预研立项，那么很可能导致后期的项目失败！
+如果不做预研立项或者预研立项工作不充分，则可能为项目和团队带来的问题：
+
+市场风险：没有进行市场调研，造成产品无法满足玩家需求，在同类产品面前竞争力不 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/05/11/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/PP%E2%80%94%E2%80%94%E5%AE%9E%E8%B7%B5%E9%A1%B9%E7%9B%AE%E7%AC%94%E8%AE%B0/P2%E2%80%94%E2%80%94%E7%8B%AC%E7%AB%8B%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91ARPG/P2L4%E2%80%94%E2%80%94%E6%A0%B8%E5%BF%83%E7%8E%A9%E6%B3%95Demo%E4%BA%A7%E5%87%BA/" title="P2L4——核心玩法Demo产出">P2L4——核心玩法Demo产出</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-05-11T13:49:33.000Z" title="发表于 2024-05-11 21:49:33">2024-05-11</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/PP%E2%80%94%E2%80%94%E5%AE%9E%E8%B7%B5%E9%A1%B9%E7%9B%AE%E7%AC%94%E8%AE%B0/">PP——实践项目笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/PP%E2%80%94%E2%80%94%E5%AE%9E%E8%B7%B5%E9%A1%B9%E7%9B%AE%E7%AC%94%E8%AE%B0/P2%E2%80%94%E2%80%94%E7%8B%AC%E7%AB%8B%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91ARPG/">P2——独立游戏开发ARPG</a></span></div><div class="content">P2L4——核心玩法Demo产出
+核心玩法Demo产出的主要工作
+在预研立项阶段中，核心玩法Demo产出是对于​**程序工种​最最重要的一个环节。
+我们不仅可以产出Demo帮助团队验证项目的可玩性**，还可以帮助团队验证项目在最低配置目标设备上的可行性！
+如果不重视内存和性能的瓶颈测试，那么会为团队埋下一颗定时炸弹！
+当策划需求超出内存和性能上限时，便是定时炸弹爆炸之时！
+若预研立项时不考虑全面，做足准备。待到爆炸之时又无法妥善解决性能瓶颈问题，那么对于项目和团队都会是毁灭性的！
+核心玩法Demo的产出需要团队多个工种配合完成，其中主要参与其中的核心工种为：
+
+策划
+程序
+美术
+
+而不同工种的主要工作也各有不同
 
 
-团队协作、并行开发：当不同人员开发完对应功能后上传，通过版本管理软件合并他们的代码
+策划主要工作
+策划根据前期流程中确定游戏类型、市场调研、基本概念产出、需求分析等阶段得到的结果，
+基本对游戏核心玩法已经有明确需求，基于这些需求，策划需要：
+
+书写需求策划案（程序、美术）
+制作相关功能数据表
+配合相似项目演示提出核心玩法需求
+验收程序、美术产出，沟通制作修改细节
+确定产品运行的目标设备的最低配置要求
+
+等等
+主要目的：确定核心玩法的实现规则，确定目标设备最 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/05/10/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US2%E2%80%94%E2%80%94Shader%E5%BF%85%E5%A4%87%E5%9F%BA%E7%A1%80/US2S1%E2%80%94%E2%80%94%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E5%8F%8A%E5%9D%90%E6%A0%87%E7%A9%BA%E9%97%B4%E5%8F%98%E6%8D%A2/US2S1L2%E2%80%94%E2%80%94%E7%9F%A9%E9%98%B5%E4%B9%98%E6%B3%95/" title="US2S1L2——矩阵乘法">US2S1L2——矩阵乘法</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-05-10T08:42:36.000Z" title="发表于 2024-05-10 16:42:36">2024-05-10</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity-Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/">US——Unity Shader开发入门</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity-Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US2%E2%80%94%E2%80%94Shader%E5%BF%85%E5%A4%87%E5%9F%BA%E7%A1%80/">US2——Shader必备基础</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity-Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US2%E2%80%94%E2%80%94Shader%E5%BF%85%E5%A4%87%E5%9F%BA%E7%A1%80/US2S1%E2%80%94%E2%80%94%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E5%8F%8A%E5%9D%90%E6%A0%87%E7%A9%BA%E9%97%B4%E5%8F%98%E6%8D%A2/">US2S1——线性代数及坐标空间变换</a></span></div><div class="content">US2S1L2——矩阵乘法
 
 
-代码审查：方便程序主管审核代码，通过版本管理软件可以看到对方上传的代码，进行审核
+矩阵和标量的乘法
+直接让矩阵(M)中的每一个标量和标量(k)相乘即可
 
 
-版本控制、备份和恢复：由于版本管理软件记录了所有节点上传的数据，可以准确的控制版本信息，随时随地的进行数据备份和恢复
+矩阵和矩阵的乘法
+
+判断条件： 左列右行要相等才能相乘
+结果矩阵结构： 左行右列
+标量相乘的规则： 左行乘右列再相加
+
+矩阵乘法不满足交换律，满足结合律
 
 
-版本管理软件是用来做什么的
-帮助我们进行版本控制、团队协作、并行开发、代码审查、备份和恢复
+矩阵和标量的乘法
+矩阵(MMM)和标量(kkk)的乘法很简单 直接让矩阵(MMM)中的每一个标量和标量(kkk)相乘即可
+kM=Mk=k=k[m11m12m13m21m22m23m31m32m33]=[km11km12km13km21km22km23km31km32km33]kM=Mk=k=
+k\begin{bmatrix} 
+  m_{11} &amp; m_{12} &amp; m_{13} \\
+  m_{21} &amp; m_{22} &amp; m_{23} \\
+  m_{31} &amp; m_{32} &amp; m_{33} \\
+\end{bmatrix}=
+\begin{bmatrix} 
+  km_{11} &amp; km_{12} &amp; km_{13} \\
+  km_{21} &amp;  ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/05/10/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US2%E2%80%94%E2%80%94Shader%E5%BF%85%E5%A4%87%E5%9F%BA%E7%A1%80/US2S1%E2%80%94%E2%80%94%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E5%8F%8A%E5%9D%90%E6%A0%87%E7%A9%BA%E9%97%B4%E5%8F%98%E6%8D%A2/US2S1L1%E2%80%94%E2%80%94%E7%9F%A9%E9%98%B5%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/" title="US2S1L1——矩阵的基本概念">US2S1L1——矩阵的基本概念</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-05-10T08:17:24.000Z" title="发表于 2024-05-10 16:17:24">2024-05-10</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity-Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/">US——Unity Shader开发入门</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity-Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US2%E2%80%94%E2%80%94Shader%E5%BF%85%E5%A4%87%E5%9F%BA%E7%A1%80/">US2——Shader必备基础</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity-Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US2%E2%80%94%E2%80%94Shader%E5%BF%85%E5%A4%87%E5%9F%BA%E7%A1%80/US2S1%E2%80%94%E2%80%94%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E5%8F%8A%E5%9D%90%E6%A0%87%E7%A9%BA%E9%97%B4%E5%8F%98%E6%8D%A2/">US2S1——线性代数及坐标空间变换</a></span></div><div class="content">US2S1L1——矩阵的基本概念
+矩阵
+矩阵（Matrix）是线性代数中的一个核心概念和重要工具
+通过矩阵，我们可以方便的进行向量的相关计算
+也可以更好的理解和解决线性代数中的各种问题
+简而言之：矩阵是一种用来表示和处理数据的数学工具，它可以帮助我们有效的管理和计算大量的数据
+矩阵的数学表示
+矩阵（Matrix）可以通过 方括号内的数值表格来表示，比如：
+[461][132][132567][234345783]\begin{bmatrix}
+ 4 &amp; 6 &amp; 1
+\end{bmatrix}
+\quad
+\begin{bmatrix}
+ 1 \\
+ 3 \\
+ 2 \\
+\end{bmatrix}
+\quad
+\begin{bmatrix}
+ 1 &amp; 3 &amp; 2 \\
+ 5 &amp; 6 &amp; 7 \\
+\end{bmatrix}
+\quad 
+\begin{bmatrix} 
+  2 &amp; 3 &amp; 4 \\
+  3 &amp; 4 &amp; 5 \\
+  7 &amp; 8 &amp; 3 \\
+\end{bmatrix}
+[4 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/05/10/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US2%E2%80%94%E2%80%94Shader%E5%BF%85%E5%A4%87%E5%9F%BA%E7%A1%80/US2S1%E2%80%94%E2%80%94%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E5%8F%8A%E5%9D%90%E6%A0%87%E7%A9%BA%E9%97%B4%E5%8F%98%E6%8D%A2/" title="US2S1——线性代数及坐标空间变换">US2S1——线性代数及坐标空间变换</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-05-10T08:14:15.000Z" title="发表于 2024-05-10 16:14:15">2024-05-10</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity-Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/">US——Unity Shader开发入门</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity-Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US2%E2%80%94%E2%80%94Shader%E5%BF%85%E5%A4%87%E5%9F%BA%E7%A1%80/">US2——Shader必备基础</a></span></div><div class="content">US2S1——线性代数及坐标空间变换
+线性代数
+
+线性代数是数学的一个分支，它的研究对象是​向量，向量空间（或称线性空间），线性变换和有限维的线性方程组。
+向量空间是现代数学的一个重要课题；因而，线性代数被广泛地应用于抽象代数和泛函分析中；
+通过解析几何，线性代数得以被具体表示。线性代数的理论已被泛化为算子理论。
+由于科学研究中的非线性模型通常可以被近似为线性模型，使得线性代数被广泛地应用于自然科学和社会科学中。
+线性代数（数学分支学科）_百度百科 (baidu.com)
+
+线性代数是数学的一个分支学科，它是一门研究向量和它们之间关系的数学学科
+我们可以把向量想象成有大小和方向的箭头，线性代数主要研究如何使用这些箭头进行加减乘除运算，以及它们之间的变换规则。
+简而言之：线性代数是一门研究向量和变换的数学学科
+
+强烈推荐配合学习以加深理解：【官方双语/合集】线性代数的本质 - 系列合集_哔哩哔哩_bilibili
+
+本系列学习内容
 
 
-常用的版本管理软件有哪些
-Git、SVN、Perforce、Mercurial、Plastic 等等
-我们之后主要使用Mercurial（水银），Git通 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/05/13/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US2%E2%80%94%E2%80%94Shader%E5%BF%85%E5%A4%87%E5%9F%BA%E7%A1%80/US2S1%E2%80%94%E2%80%94%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E5%8F%8A%E5%9D%90%E6%A0%87%E7%A9%BA%E9%97%B4%E5%8F%98%E6%8D%A2/US2S1L3%E2%80%94%E2%80%94%E7%89%B9%E6%AE%8A%E7%9F%A9%E9%98%B5/" title="US2S1L3——特殊矩阵">US2S1L3——特殊矩阵</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-05-13T14:20:09.000Z" title="发表于 2024-05-13 22:20:09">2024-05-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity-Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/">US——Unity Shader开发入门</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity-Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US2%E2%80%94%E2%80%94Shader%E5%BF%85%E5%A4%87%E5%9F%BA%E7%A1%80/">US2——Shader必备基础</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity-Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US2%E2%80%94%E2%80%94Shader%E5%BF%85%E5%A4%87%E5%9F%BA%E7%A1%80/US2S1%E2%80%94%E2%80%94%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E5%8F%8A%E5%9D%90%E6%A0%87%E7%A9%BA%E9%97%B4%E5%8F%98%E6%8D%A2/">US2S1——线性代数及坐标空间变换</a></span></div><div class="content">US2S1L3——特殊矩阵
-特殊矩阵
+矩阵的基本概念
 
 
-方块矩阵 —— 行列数相等的矩阵
+矩阵乘法
 
 
-对角矩阵 —— 只有主对角线有值，其余元素全为零的 方阵
+特殊矩阵（重要特殊矩阵：逆矩阵，正交矩阵，行矩阵和列矩阵）
 
 
-单位矩阵 —— 主对角线上的元素均为1 的 对角矩阵
+平移、缩放、旋转变换
+
+矩阵的几何意义（表示变换，包括缩 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/05/10/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US2%E2%80%94%E2%80%94Shader%E5%BF%85%E5%A4%87%E5%9F%BA%E7%A1%80/" title="US2——Shader必备基础">US2——Shader必备基础</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-05-10T07:48:56.000Z" title="发表于 2024-05-10 15:48:56">2024-05-10</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity-Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/">US——Unity Shader开发入门</a></span></div><div class="content">US2——Shader必备基础
+
+如何学习Shader开发
+学习Shader开发，主要要学习：数学相关知识、语法相关知识、着色器开发相关知识 等
+学习了这些知识后，我们就能按照需求去处理渲染数据，最终才能在屏幕上显示出符合需求的图像效果
+
+本系列主要涉及：
 
 
-数量矩阵 —— 主对角线上的元素为同一值 的 对角矩阵
+数学基础（Mathf​，三角函数，坐标系，向量）
+详见Unity基础——3D数学所有知识点
 
 
-转置矩阵 —— 将原始矩阵的行和列互换得到的 新矩阵
-
-矩阵转置的转置等于原矩阵 (MT)T=M(M^T)^T = M(MT)T=M
-矩阵串接的转置，等于反向串接各个矩阵的转置 (AB)T=BTAT(AB)^T =B^TA^T(AB)T=BTAT
+线性代数及坐标空间变换
 
 
-
-逆矩阵 —— MM−1=M−1M=I（单位矩阵）MM^{−1} = M^{−1}M = I（单位矩阵）MM−1=M−1M=I（单位矩阵）
-
-
-正交矩阵 —— 一个方阵和它的转置矩阵相乘为单位矩阵，那么它就是正交矩阵：MMT=MTM=IMM^T = M^TM = IMMT=MTM=I
+ShaderLab语法
 
 
-列矩阵和行矩阵 —— 列矩阵就是只有一列的矩阵；行矩阵就是只有一行的矩阵。他们一般用于表示向量
+CG语法
 
 
-方块矩阵
-方块矩阵简称方阵，它的特点是**行列数相等**，比如 3×33\times33×3、4× ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/05/13/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/PP%E2%80%94%E2%80%94%E5%AE%9E%E8%B7%B5%E9%A1%B9%E7%9B%AE%E7%AC%94%E8%AE%B0/P2%E2%80%94%E2%80%94%E7%8B%AC%E7%AB%8B%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91ARPG/P2L7%E2%80%94%E2%80%94%E3%80%90%E7%A8%8B%E5%BA%8F%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C%E3%80%91%E6%8A%80%E6%9C%AF%E6%A0%88%E9%80%89%E6%8B%A9/" title="P2L7——【程序准备工作】技术栈选择">P2L7——【程序准备工作】技术栈选择</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-05-13T14:03:53.000Z" title="发表于 2024-05-13 22:03:53">2024-05-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/PP%E2%80%94%E2%80%94%E5%AE%9E%E8%B7%B5%E9%A1%B9%E7%9B%AE%E7%AC%94%E8%AE%B0/">PP——实践项目笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/PP%E2%80%94%E2%80%94%E5%AE%9E%E8%B7%B5%E9%A1%B9%E7%9B%AE%E7%AC%94%E8%AE%B0/P2%E2%80%94%E2%80%94%E7%8B%AC%E7%AB%8B%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91ARPG/">P2——独立游戏开发ARPG</a></span></div><div class="content">P2L7——【程序准备工作】技术栈选择
-技术栈
-技术栈的意思是：用于开发 软件（游戏）使用的**技术和工具的集合**
-比如：
+‍
+</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/05/10/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US1%E2%80%94%E2%80%94Shader%E5%BF%85%E5%A4%87%E6%A6%82%E5%BF%B5/US1L8%E2%80%94%E2%80%94%E5%85%B6%E4%BB%96%E7%9B%B8%E5%85%B3%E5%BF%85%E5%A4%87%E6%A6%82%E5%BF%B5/" title="US1L8——其他相关必备概念">US1L8——其他相关必备概念</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-05-10T07:41:00.000Z" title="发表于 2024-05-10 15:41:00">2024-05-10</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity-Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/">US——Unity Shader开发入门</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity-Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US1%E2%80%94%E2%80%94Shader%E5%BF%85%E5%A4%87%E6%A6%82%E5%BF%B5/">US1——Shader必备概念</a></span></div><div class="content">US1L8——其他相关必备概念
 
-前后端程序技术 —— C++、C#、Java、Lua 等语言
-开发工具 —— Visual Studio、VSCode、Unity引擎、UE引擎、Cocos引擎 等
+知识回顾
+在游戏开发时，针对不同的平台（操作系统）可能会使用不同的图形接口程序
+其中较常用的几种图形接口程序为：
 
-也就是说我们在正式开发之前，需要根据项目的实际情况
-考虑好应该用什么样的技术和工具来进行开发，做好开发准备
+OpenGL/Vulkan（跨平台，几乎所有平台都能使用）
+DX（针对微软相关平台，微软的Windows）
+Metal（针对苹果相关平台，苹果的Mac OS ）
+Web GL（针对网页相关）
 
-
-什么是技术栈
-用于开发 软件（游戏）使用的技术和工具的集合
+图形接口程序主要是用于命令硬件完成图像渲染相关工作的
 
 
-游戏开发（前端）常规技术栈分类
-Unity、UE、Cocos、Flash、Laya等
+
+渲染管线（流水线）和图形接口程序的关系
+图形接口程序（OpenGL、DX等）提供了对渲染管线（流水线）的控制和管理功能，它是开发者和硬件打交道的中间层
 
 
-Unity 技术栈选择
-Unity 2022.3.28f1、 VS、 Unity程序基础小框架、 数据持久化四部曲之2进制 等
+Shader和图形接口程序的关系
+Shader属于图形接口程序的一部分
 
 
-在正式开发前就应该选择好技术栈，才能更好的应对后续的实际开发
-游戏开发（前端）常见技术栈分类
-由于目前 游戏开发前端 主要都是 基于 游戏引擎 进行开发
-因此，技术栈基本都基于游戏引擎来划分。
-目前市面上常见的技术栈分类有以下几种：
-
-Unity —— 适合移动端游戏、主机端游戏等
-UE（虚幻） —— 适 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/05/13/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/PP%E2%80%94%E2%80%94%E5%AE%9E%E8%B7%B5%E9%A1%B9%E7%9B%AE%E7%AC%94%E8%AE%B0/P2%E2%80%94%E2%80%94%E7%8B%AC%E7%AB%8B%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91ARPG/P2L6%E2%80%94%E2%80%94%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E5%89%8D%E5%90%8E%E7%AB%AF%E7%A8%8B%E5%BA%8F%E5%8C%BA%E5%88%AB/" title="P2L6——游戏开发前后端程序区别">P2L6——游戏开发前后端程序区别</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-05-13T13:42:23.000Z" title="发表于 2024-05-13 21:42:23">2024-05-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/PP%E2%80%94%E2%80%94%E5%AE%9E%E8%B7%B5%E9%A1%B9%E7%9B%AE%E7%AC%94%E8%AE%B0/">PP——实践项目笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/PP%E2%80%94%E2%80%94%E5%AE%9E%E8%B7%B5%E9%A1%B9%E7%9B%AE%E7%AC%94%E8%AE%B0/P2%E2%80%94%E2%80%94%E7%8B%AC%E7%AB%8B%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91ARPG/">P2——独立游戏开发ARPG</a></span></div><div class="content">P2L6——游戏开发前后端程序区别
-游戏开发前后端程序方向选择
-对于学生和转业人员，要明确自己的定位，选择以 前后端程序的哪种身份进入行业。
-针对性地进行学习、突破、专精，当自己的技能达到一定水平后，可以前后端全方面发展。
-但是对于初学者的建议，一定是选择前后端其中一条路线进行学习，
-如果双管齐下，由于时间、精力、专注度种种因素往往会得不偿失。
-游戏开发前后端程序的定义
+不同图形接口程序对Shader开发的影响
+开发语言不同、坐标系原点不同
 
 
-游戏 客户端程序员 = 前端程序员
-工种主要包括：
+渲染管线（流水线）和图形接口程序的关系
+图形接口程序（OpenGL、DX等）主要是用于控制和管理渲染管线流程的通过图形接口程序提供的API，
+我们就可以配置和操作渲染管线中的某些阶段设置输入数据、控制图形处理、应用各种渲染效果，最终实现图形渲染和呈现。
+图形接口程序充当了开发者和图形硬件 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/05/10/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US1%E2%80%94%E2%80%94Shader%E5%BF%85%E5%A4%87%E6%A6%82%E5%BF%B5/US1L7%E2%80%94%E2%80%94%E5%BF%85%E5%A4%87%E7%9A%84%E5%9B%BE%E5%BD%A2%E7%A8%8B%E5%BA%8F%E6%8E%A5%E5%8F%A3%E6%A6%82%E5%BF%B5/" title="US1L7——必备的图形程序接口概念">US1L7——必备的图形程序接口概念</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-05-10T07:33:53.000Z" title="发表于 2024-05-10 15:33:53">2024-05-10</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity-Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/">US——Unity Shader开发入门</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity-Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US1%E2%80%94%E2%80%94Shader%E5%BF%85%E5%A4%87%E6%A6%82%E5%BF%B5/">US1——Shader必备概念</a></span></div><div class="content">US1L7——必备的图形程序接口概念
+计算机图形程序接口
+计算机图形程序接口（Graphics API）对于游戏开发程序员来说是非常重要的知识，是学习图形学时必不可少的内容。
+计算机图形程序接口是一套可编程的开放标准，不管做2D还是3D游戏都需要这部分的底层API支持。
+它本质上是软件，并不是硬件，是前辈们提前为你写好的调用系统硬件（GPU）绘制图形的代码。
+我们甚至可以把它简单理解成是显卡厂商定义的一系列的底层的进行图形操作的加速API接口。
+由于目前各种游戏引擎的出现，即使你没有系统的学习过图形学相关知识，也能够独立的通过游戏引擎开发游戏。
+但是你必须知道的是，游戏引擎的一部分本质就是对图形程序接口的封装，
+游戏引擎通过图形程序接口帮助我们完成了图像渲染相关的工作，我们只需要把工作重心放在游戏逻辑开发上了。
+因此，计算机图形程序接口对于游戏开发来说，是非常重要的内容，
+即使你现在还没有时间，或者没有需求学习计算机图形学，你也必须对他们有一定的认识。
+Unity程序员必了解的图形程序接口
 
-Unity程序员
-UE程序员
-Cocos程序员
-Egret程序员
-Laya程序员
-Flash程序员
+
+OpenGL（Open Graphics Library）
+中文翻译过来是开放图形库，它定义 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/05/10/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US1%E2%80%94%E2%80%94Shader%E5%BF%85%E5%A4%87%E6%A6%82%E5%BF%B5/US1L6%E2%80%94%E2%80%94%E5%A6%82%E4%BD%95%E8%BF%9B%E8%A1%8CShader%E5%BC%80%E5%8F%91/" title="US1L6——如何进行Shader开发">US1L6——如何进行Shader开发</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-05-10T07:27:54.000Z" title="发表于 2024-05-10 15:27:54">2024-05-10</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity-Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/">US——Unity Shader开发入门</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity-Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US1%E2%80%94%E2%80%94Shader%E5%BF%85%E5%A4%87%E6%A6%82%E5%BF%B5/">US1——Shader必备概念</a></span></div><div class="content">US1L6——如何进行Shader开发
+如何学习Shader开发
+学习Shader开发，主要要学习：数学相关知识、语法相关知识、着色器开发相关知识 等
+学习了这些知识后，我们就能按照需求去处理渲染数据
+最终才能在屏幕上显示出符合需求的图像效果
+学习Shader开发，我们必须要学习的基本知识有
+
+
+数学相关知识
+在渲染管线的几何阶段，我们最主要要处理的核心工作之一就是坐标转换
+我们要了解坐标转换的原理，就需要学习数学相关的知识，主要包含的内容有：
+
+向量相关知识
+线性代数相关知识（学习矩阵计算相关知识）
+
+在顶点着色器中，我们就需要利用这些知识完成坐标转换等相关的工作
+
+
+语法相关知识
+我们已经知道我们需要在渲染管线的 几何阶段中的顶点着色器 和 光栅化阶段中的片元着色器 两个小阶段
+自定义处理数据来达到各种不同的表现效果
+而想要实现自定义逻辑处理，我们就需要学习着色器开发的特定语言
+在Unity当中的Shader开发，我们需要学习
+
+Unity中的 ShaderLab 语法
+着色开发的 CG语言
 
 等等
 
 
-游戏 服务端程序员 = 后端程序员
-工种主要包括：
-
-C++程序员
-Java程序员
-Go程序员
-C#程序员
-
-等等
-
-
-前后端核心技能点
-
-
-前端核心技能点
-
-编程语言 c#、c++、TypeScript、as
-脚本语言 lua
-常用数据结构和算法
-常用设计模式
-游戏引擎工具使用（Unity、UE、Cocos等等）
-渲染原理，动画原理，着色器编程
-3D游戏数学基础
-多线程编程
-游戏AI编程
-
-等等
+着色器开发相关知识
+渲染管线的本质是将数据最终呈现为屏幕图像,那为了让最终的图 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/05/10/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US1%E2%80%94%E2%80%94Shader%E5%BF%85%E5%A4%87%E6%A6%82%E5%BF%B5/US1L5%E2%80%94%E2%80%94%E4%BD%95%E4%B8%BAShader%E5%BC%80%E5%8F%91/" title="US1L5——何为Shader开发">US1L5——何为Shader开发</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-05-10T07:18:46.000Z" title="发表于 2024-05-10 15:18:46">2024-05-10</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity-Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/">US——Unity Shader开发入门</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity-Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US1%E2%80%94%E2%80%94Shader%E5%BF%85%E5%A4%87%E6%A6%82%E5%BF%B5/">US1——Shader必备概念</a></span></div><div class="content">US1L5——何为Shader开发
+Shader
+Shader​ 的中文意思是 ​**着色器**，它是一种用于描述如何渲染图形和计算图形外观的程序
+主要用于控制图形的颜色、光照、纹理和其他视觉效果
+着色器通常由着色器语言编写，这些着色器语言提供了指令和语法
+用于编写描述光照、纹理映射、阴影、反射等图形外观的代码
+说人话：Shader 就是 着色器，是用于编写图形表现效果的程序代码
+Shader 和 渲染管线 的关系
+我们之所以在本套课程中一开始就讲解渲染管线的相关知识点，就是因为Shader和渲染管线的关系是密不可分的
+渲染管线（流水线）的基本概念是将数据分阶段的变为屏幕图像的过程，
+而Shader开发就是针对其中某些阶段的自定义开发，从而决定图形图像最终呈现到屏幕上的表现效果
+在Unity中，我们学习的Shader开发主要针对渲染管线中的两个小阶段的
 
 
-后端核心技能点
-
-编程语言 c++、java、Go ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/05/12/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UH%E2%80%94%E2%80%94Unity%E7%83%AD%E6%9B%B4%E6%96%B0%E7%AC%94%E8%AE%B0/UH5%E2%80%94%E2%80%94HybridCLR%E7%83%AD%E6%9B%B4%E6%96%B0%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" title="UH5——HybridCLR热更新解决方案">UH5——HybridCLR热更新解决方案</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-05-12T14:28:12.000Z" title="发表于 2024-05-12 22:28:12">2024-05-12</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UH%E2%80%94%E2%80%94Unity%E7%83%AD%E6%9B%B4%E6%96%B0%E7%AC%94%E8%AE%B0/">UH——Unity热更新笔记</a></span></div><div class="content">UH5——HybridCLR热更新解决方案
-HybridCLR
-HybridCLR是一个特性完整、零成本、高性能、低内存的近乎完美的Unity全平台原生c#热更方案。
-HybridCLR扩充了il2cpp的代码，使它由纯AOT runtime变成 AOT+Interpreter 混合runtime，进而原生支持动态加载assembly，
-使得基于il2cpp backend打包的游戏不仅能在Android平台，
-也能在IOS、Consoles等限制了JIT的平台上高效地以AOT+interpreter混合模式执行，从底层彻底支持了热更新。
-HybridCLR首页：HybridCLR | HybridCLR (code-philosophy.com)
-HybridCLR的Github：focus-creative-games/hybridclr (github.com)
-</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/05/12/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U4%E2%80%94%E2%80%94Unity%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/U4S4%E2%80%94%E2%80%94%E5%8F%AF%E5%AF%BB%E5%9D%80%E8%B5%84%E6%BA%90%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%20Addressables/U4S4L14%E2%80%94%E2%80%94%E6%A0%B9%E6%8D%AE%E8%B5%84%E6%BA%90%E5%AE%9A%E4%BD%8D%E4%BF%A1%E6%81%AF%E5%8A%A0%E8%BD%BD%E8%B5%84%E6%BA%90/" title="U4S4L14——根据资源定位信息加载资源">U4S4L14——根据资源定位信息加载资源</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-05-12T13:50:13.000Z" title="发表于 2024-05-12 21:50:13">2024-05-12</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U4%E2%80%94%E2%80%94Unity%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/">U4——Unity进阶系列</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U4%E2%80%94%E2%80%94Unity%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/U4S4%E2%80%94%E2%80%94%E5%8F%AF%E5%AF%BB%E5%9D%80%E8%B5%84%E6%BA%90%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F-Addressables/">U4S4——可寻址资源管理系统 Addressables</a></span></div><div class="content">U4S4L14——根据资源定位信息加载资源
-本章代码关键字
-12IResourceLocation								//资源定位信息接口，可通过它获取资源的主键，内部ID，以及资源类型等等消息Addressables.LoadResourceLocationsAsync()		//通过资源名或者标签名或者资源名标签名组合加载符合条件的资源定位信息
-回顾学过的加载可寻址资源的方式
-
-
-通过标识类进行加载（指定资源加载）
-
-
-通过资源名或标签名加载单个资源（动态加载）
- 1Addressables.LoadAssetAsync&lt;GameObject&gt;(&quot;Cube&quot;)
-
-
-通过资源名或标签名或两者组合加载多个资源（动态加载）
- 12345Addressables.LoadAssetsAsync&lt;GameObject&gt;(	new List&lt;string&gt;() &#123; &quot;Cube&quot;, &quot;SD&quot; &#125;,	(obj) =&gt; &#123; /* 使用资源的逻辑 */ &#125;,	Add ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/05/12/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U4%E2%80%94%E2%80%94Unity%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/U4S4%E2%80%94%E2%80%94%E5%8F%AF%E5%AF%BB%E5%9D%80%E8%B5%84%E6%BA%90%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%20Addressables/U4S4L13%E2%80%94%E2%80%94%E8%B5%84%E6%BA%90%E6%9B%B4%E6%96%B0/" title="U4S4L13——资源更新">U4S4L13——资源更新</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-05-12T12:42:06.000Z" title="发表于 2024-05-12 20:42:06">2024-05-12</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U4%E2%80%94%E2%80%94Unity%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/">U4——Unity进阶系列</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U4%E2%80%94%E2%80%94Unity%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/U4S4%E2%80%94%E2%80%94%E5%8F%AF%E5%AF%BB%E5%9D%80%E8%B5%84%E6%BA%90%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F-Addressables/">U4S4——可寻址资源管理系统 Addressables</a></span></div><div class="content">U4S4L13——资源更新
-资源更新
-当项目正式发布后，对于远程加载的资源，
-我们可以通过改变资源服务器上的AB包内容来达到更新游戏的目的
-Addressables会自动帮助我们判断哪些资源更新了，并加载最新的内容
-远程资源包时整包更新还是局部更新，取决于Content Update Restriction内容更新限制参数
-可以根据自己项目的实际情况选择具体使用哪种方式即可
-一定记住 更新当前版本的小内容 都是通过更新以前版本来生成AB包 而不是重新打包构建
-如果要设计重新打包构建了 那就必须重新发布一次应用程序（PC：exe，Android：apk等等）
-​​
-内容更新限制参数回顾
-在组设置中有一个内容更新限制的设置：Content Update Restriction
+几何阶段 —— 顶点着色器 小阶段
 ​​
 
-Can Change Post Release：
-可以改变发行后内容，该模式不移动任何资源，如果包中的任何资源发生了更改，则重新构建整个包
-Cannot Change Post Release：
-无法改变发布后内容，如果包中任何资源已经改变，
-则[检查内容更新限制]工具会将其移动到为更新创建的新组中。
-在进行 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/05/12/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U4%E2%80%94%E2%80%94Unity%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/U4S4%E2%80%94%E2%80%94%E5%8F%AF%E5%AF%BB%E5%9D%80%E8%B5%84%E6%BA%90%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%20Addressables/U4S4L12%E2%80%94%E2%80%94%E8%B5%84%E6%BA%90%E6%89%93%E5%8C%85%EF%BC%88%E5%8F%91%E5%B8%83%EF%BC%89%E5%8A%A0%E8%BD%BD/" title="U4S4L12——资源打包（发布）加载">U4S4L12——资源打包（发布）加载</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-05-12T06:53:13.000Z" title="发表于 2024-05-12 14:53:13">2024-05-12</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U4%E2%80%94%E2%80%94Unity%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/">U4——Unity进阶系列</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U4%E2%80%94%E2%80%94Unity%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/U4S4%E2%80%94%E2%80%94%E5%8F%AF%E5%AF%BB%E5%9D%80%E8%B5%84%E6%BA%90%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F-Addressables/">U4S4——可寻址资源管理系统 Addressables</a></span></div><div class="content">U4S4L12——资源打包（发布）加载
-资源打包（发布）加载
-一个项目中的资源到底是本地还是远端，根据实际情况而定
 
-对于需要热更新的网络游戏
-默认基础资源作为本地资源，大部分资源作为远端资源
-对于不需要热更新的单机游戏
-所有的资源都是本地资源
-具体采用的打包策略根据实际情况来定
-
-编辑器中资源加载的几种方式
+光栅化阶段 —— 片元着色器 小阶段
+​​
 
 
-Use Asset Database（fastest）：
-使用资源数据库（最快的）
-不用打AB包，直接本地加载资源，主要用于开发功能时
-
-
-Simulate Groups（advanced）：
-模拟组（后期）
-不用打AB包，通过ResourceManager​从资产数据库加载资产，就像通过AB包加载一样
-通过引入时间延迟，模拟远程AB包的下载速度和本地AB包加载速度，在开发阶段可以使用这个模式来进行资源加载
-
-
-Use Existing Build（requires built groups）：
-正儿八经的加载AB包资源，必须打AB包后使用，会从AB包中加载资源
-
-
-本地资源发布
-本地发布，所有组的加载和发布都选择本地路径即可，设置详见：U4S4L7——Profile 概述窗 ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/7/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/#content-inner">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/#content-inner">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/84/#content-inner">84</a><a class="extend next" rel="next" href="/page/9/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">文KRIFE齐</div><div class="author-info__description">目前正处于搭建测试环节</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">834</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">113</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/07/01/hello-world/" title="欢迎来到文KRIFE齐的博客！">欢迎来到文KRIFE齐的博客！</a><time datetime="2024-07-01T11:46:20.391Z" title="发表于 2024-07-01 19:46:20">2024-07-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/US3S1L5%E2%80%94%E2%80%94Phong%E5%85%89%E7%85%A7%E6%A8%A1%E5%9E%8B/" title="US3S1L5——Phong光照模型">US3S1L5——Phong光照模型</a><time datetime="2024-06-25T14:33:57.000Z" title="发表于 2024-06-25 22:33:57">2024-06-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/US3S1L4%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B/US3S1L4-2%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B%E7%9A%84%E9%80%90%E7%89%87%E5%85%83%E5%85%89%E7%85%A7/" title="US3S1L4-2——Phong式高光反射模型的逐片元光照">US3S1L4-2——Phong式高光反射模型的逐片元光照</a><time datetime="2024-06-25T13:16:37.000Z" title="发表于 2024-06-25 21:16:37">2024-06-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/US3S1L4%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B/US3S1L4-1%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B%E7%9A%84%E9%80%90%E9%A1%B6%E7%82%B9%E5%85%89%E7%85%A7/" title="US3S1L4-1——Phong式高光反射模型的逐顶点光照">US3S1L4-1——Phong式高光反射模型的逐顶点光照</a><time datetime="2024-06-25T13:16:05.000Z" title="发表于 2024-06-25 21:16:05">2024-06-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/US3S1L4%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B/" title="US3S1L4——Phong式高光反射模型">US3S1L4——Phong式高光反射模型</a><time datetime="2024-06-25T10:14:12.000Z" title="发表于 2024-06-25 18:14:12">2024-06-25</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+Shader开发
+大家了解了Shader和渲染管线（流水线）的关系，并且也学习了渲染管线（流水线）相关知识，那么大家应该能够感受到：
+Sh ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/7/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/#content-inner">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/#content-inner">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/83/#content-inner">83</a><a class="extend next" rel="next" href="/page/9/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">文KRIFE齐</div><div class="author-info__description">目前正处于搭建测试环节</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">823</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">109</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/07/01/hello-world/" title="欢迎来到文KRIFE齐的博客！">欢迎来到文KRIFE齐的博客！</a><time datetime="2024-07-01T11:46:20.391Z" title="发表于 2024-07-01 19:46:20">2024-07-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/16/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S3%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E9%80%8F%E6%98%8E%E6%95%88%E6%9E%9C/" title="US3S3——Shader入门-透明效果">US3S3——Shader入门-透明效果</a><time datetime="2024-06-16T11:23:09.000Z" title="发表于 2024-06-16 19:23:09">2024-06-16</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/16/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S2%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E7%BA%B9%E7%90%86%E6%95%88%E6%9E%9C/" title="US3S2——Shader入门-纹理效果">US3S2——Shader入门-纹理效果</a><time datetime="2024-06-16T11:22:01.000Z" title="发表于 2024-06-16 19:22:01">2024-06-16</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/16/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/" title="US3S1——Shader入门-光照效果">US3S1——Shader入门-光照效果</a><time datetime="2024-06-16T11:21:34.000Z" title="发表于 2024-06-16 19:21:34">2024-06-16</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/16/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/" title="US3——Shader开发知识">US3——Shader开发知识</a><time datetime="2024-06-16T11:14:03.000Z" title="发表于 2024-06-16 19:14:03">2024-06-16</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
             <i class="fas fa-folder-open"></i>
             <span>分类</span>
             <a class="card-more-btn" href="/categories/" title="查看更多">
     <i class="fas fa-angle-right"></i></a>
             </div>
             <ul class="card-category-list" id="aside-cat-list">
-            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><span class="card-category-list-name">Unity就业路线学习笔记</span><span class="card-category-list-count">833</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94C-%E7%AC%94%E8%AE%B0/"><span class="card-category-list-name">CS——C#笔记</span><span class="card-category-list-count">49</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94C-%E7%AC%94%E8%AE%B0/CS1%E2%80%94%E2%80%94C-%E5%85%A5%E9%97%A8%E7%B3%BB%E5%88%97/"><span class="card-category-list-name">CS1——C#入门系列</span><span class="card-category-list-count">22</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94C-%E7%AC%94%E8%AE%B0/CS2%E2%80%94%E2%80%94C-%E5%9F%BA%E7%A1%80%E7%B3%BB%E5%88%97/"><span class="card-category-list-name">CS2——C#基础系列</span><span class="card-category-list-count">3</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94C-%E7%AC%94%E8%AE%B0/CS3%E2%80%94%E2%80%94C-%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/"><span class="card-category-list-name">CS3——C#核心系列</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94C-%E7%AC%94%E8%AE%B0/CS4%E2%80%94%E2%80%94C-%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/"><span class="card-category-list-name">CS4——C#进阶系列</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94C-%E7%AC%94%E8%AE%B0/CS5%E2%80%94%E2%80%94C-%E7%9F%A5%E8%AF%86%E8%A1%A5%E5%85%85/"><span class="card-category-list-name">CS5——C#知识补充</span><span class="card-category-list-count">16</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94C-%E7%AC%94%E8%AE%B0/CS5%E2%80%94%E2%80%94C-%E7%9F%A5%E8%AF%86%E8%A1%A5%E5%85%85/CS5L7%E2%80%94%E2%80%94C-5-%E5%8A%9F%E8%83%BD%E5%92%8C%E8%AF%AD%E6%B3%95/"><span class="card-category-list-name">CS5L7——C# 5 功能和语法</span><span class="card-category-list-count">2</span></a></li></ul></li></ul></li></ul></li>
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><span class="card-category-list-name">Unity就业路线学习笔记</span><span class="card-category-list-count">822</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94C-%E7%AC%94%E8%AE%B0/"><span class="card-category-list-name">CS——C#笔记</span><span class="card-category-list-count">49</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94C-%E7%AC%94%E8%AE%B0/CS1%E2%80%94%E2%80%94C-%E5%85%A5%E9%97%A8%E7%B3%BB%E5%88%97/"><span class="card-category-list-name">CS1——C#入门系列</span><span class="card-category-list-count">22</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94C-%E7%AC%94%E8%AE%B0/CS2%E2%80%94%E2%80%94C-%E5%9F%BA%E7%A1%80%E7%B3%BB%E5%88%97/"><span class="card-category-list-name">CS2——C#基础系列</span><span class="card-category-list-count">3</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94C-%E7%AC%94%E8%AE%B0/CS3%E2%80%94%E2%80%94C-%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/"><span class="card-category-list-name">CS3——C#核心系列</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94C-%E7%AC%94%E8%AE%B0/CS4%E2%80%94%E2%80%94C-%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/"><span class="card-category-list-name">CS4——C#进阶系列</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94C-%E7%AC%94%E8%AE%B0/CS5%E2%80%94%E2%80%94C-%E7%9F%A5%E8%AF%86%E8%A1%A5%E5%85%85/"><span class="card-category-list-name">CS5——C#知识补充</span><span class="card-category-list-count">16</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94C-%E7%AC%94%E8%AE%B0/CS5%E2%80%94%E2%80%94C-%E7%9F%A5%E8%AF%86%E8%A1%A5%E5%85%85/CS5L7%E2%80%94%E2%80%94C-5-%E5%8A%9F%E8%83%BD%E5%92%8C%E8%AF%AD%E6%B3%95/"><span class="card-category-list-name">CS5L7——C# 5 功能和语法</span><span class="card-category-list-count">2</span></a></li></ul></li></ul></li></ul></li>
             </ul></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span><a class="card-more-btn" href="/archives/" title="查看更多">
-    <i class="fas fa-angle-right"></i></a></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/07/"><span class="card-archive-list-date">七月 2024</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/06/"><span class="card-archive-list-date">六月 2024</span><span class="card-archive-list-count">51</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/05/"><span class="card-archive-list-date">五月 2024</span><span class="card-archive-list-count">56</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/04/"><span class="card-archive-list-date">四月 2024</span><span class="card-archive-list-count">127</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/03/"><span class="card-archive-list-date">三月 2024</span><span class="card-archive-list-count">135</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/02/"><span class="card-archive-list-date">二月 2024</span><span class="card-archive-list-count">62</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/01/"><span class="card-archive-list-date">一月 2024</span><span class="card-archive-list-count">31</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/12/"><span class="card-archive-list-date">十二月 2023</span><span class="card-archive-list-count">2</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">834</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2024-07-02T04:47:19.568Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By 文KRIFE齐</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
+    <i class="fas fa-angle-right"></i></a></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/07/"><span class="card-archive-list-date">七月 2024</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/06/"><span class="card-archive-list-date">六月 2024</span><span class="card-archive-list-count">40</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/05/"><span class="card-archive-list-date">五月 2024</span><span class="card-archive-list-count">56</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/04/"><span class="card-archive-list-date">四月 2024</span><span class="card-archive-list-count">127</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/03/"><span class="card-archive-list-date">三月 2024</span><span class="card-archive-list-count">135</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/02/"><span class="card-archive-list-date">二月 2024</span><span class="card-archive-list-count">62</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/01/"><span class="card-archive-list-date">一月 2024</span><span class="card-archive-list-count">31</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/12/"><span class="card-archive-list-date">十二月 2023</span><span class="card-archive-list-count">2</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">823</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2024-07-03T02:26:12.231Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By 文KRIFE齐</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
