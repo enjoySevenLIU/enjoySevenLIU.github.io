@@ -54,7 +54,7 @@
   isHome: true,
   isHighlightShrink: false,
   isToc: false,
-  postUpdate: '2024-07-03 10:26:14'
+  postUpdate: '2024-07-03 10:34:11'
 }</script><script>(win=>{
       win.saveToLocal = {
         set: (key, value, ttl) => {
@@ -151,225 +151,297 @@
         }
       }
       detectApple()
-    })(window)</script><meta name="generator" content="Hexo 7.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">823</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">109</div></a></div><hr class="custom-hr"/></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="文KRIFE齐的博客"><span class="site-name">文KRIFE齐的博客</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">文KRIFE齐的博客</h1></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/08/01/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U3%E2%80%94%E2%80%94Unity%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/U3L11%E2%80%94%E2%80%94Sprite%20Shape%20Renderer%20&amp;%20Sprite%20Shape%20Controller/" title="U3L11——Sprite Shape Renderer &amp; Sprite Shape Controller">U3L11——Sprite Shape Renderer &amp; Sprite Shape Controller</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-08-01T08:45:17.000Z" title="发表于 2023-08-01 16:45:17">2023-08-01</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U3%E2%80%94%E2%80%94Unity%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/">U3——Unity核心系列</a></span></div><div class="content">U3L11——Sprite Shape Renderer &amp; Sprite Shape Controller
-Sprite Shape Renderer（精灵形状渲染器）
-该控件主要是控制 材质 颜色 以及和其它Sprite交互时的排序等等信息
+    })(window)</script><meta name="generator" content="Hexo 7.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">834</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">113</div></a></div><hr class="custom-hr"/></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="文KRIFE齐的博客"><span class="site-name">文KRIFE齐的博客</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">文KRIFE齐的博客</h1></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/08/03/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U3%E2%80%94%E2%80%94Unity%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/U3L13%E2%80%94%E2%80%94Animation%E5%8A%A8%E7%94%BB%E7%AA%97%E5%8F%A3/U3L13-2%E2%80%94%E2%80%94%E5%88%9B%E5%BB%BA%E7%BC%96%E8%BE%91Animation%E5%8A%A8%E7%94%BB/" title="U3L13-2——创建编辑Animation动画">U3L13-2——创建编辑Animation动画</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-08-03T15:07:42.000Z" title="发表于 2023-08-03 23:07:42">2023-08-03</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U3%E2%80%94%E2%80%94Unity%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/">U3——Unity核心系列</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U3%E2%80%94%E2%80%94Unity%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/U3L13%E2%80%94%E2%80%94Animation%E5%8A%A8%E7%94%BB%E7%AA%97%E5%8F%A3/">U3L13——Animation动画窗口</a></span></div><div class="content">U3L13-2——创建编辑Animation动画
+创建动画
+
+在场景中选中想要创建动画的对象
+在Animation窗口中点击创建
+选择动画文件将要保存到的位置
+
+保存动画文件时，Unity会帮助我们完成以下操作
+
+创建一个 Animator Controller（动画控制器 或称之为 动画状态机）资源（新动画系统）
+将新创建的动画文件添加到Animator Controller中
+为动画对象添加Animator组件
+为Animator组件关联创建的Animator Controller文件
+
+窗口变化
+
+
+左侧面板
+
+
+​​
+多出一个可以选择当前动画的下拉列表
+可以在这里创建新动画和切换动画
+
+
+​
+多出一个可以添加变化属性的按钮
+在这里你可以任意添加你想要在动画中变化的脚本变量
+
+
+​
+要显示这个，需要先在Animation面板右上角三点菜单选择Show Sample Rate
+该数值决定该动画为一秒多少帧
+
+
+
+
+右侧面板
+
+
+时间轴可以拖动
+注意：时间轴上的单位为n秒n帧 一格代表一帧（并不是秒）
+
+
+关键帧的右键菜单（主要用于曲线模式）
 ​​
 
-Color：颜色
-Mask Interaction：遮罩相互作用规则设置
-Fill Material：填充材质
-Edge Material：边缘材质
-Sorting Layer &amp; Order in Layer：排序相关
 
-Sprite Shape Controller（精灵形状控制器）
+Add Key：添加关键帧
+
+ ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/08/03/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U3%E2%80%94%E2%80%94Unity%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/U3L14%E2%80%94%E2%80%94Animator%E5%8A%A8%E7%94%BB%E7%8A%B6%E6%80%81%E6%9C%BA/" title="U3L14——Animator动画状态机">U3L14——Animator动画状态机</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-08-03T14:50:01.000Z" title="发表于 2023-08-03 22:50:01">2023-08-03</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U3%E2%80%94%E2%80%94Unity%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/">U3——Unity核心系列</a></span></div><div class="content">U3L14——Animator动画状态机
+有限状态机
+有限状态机
+Animator Controller动画控制器（状态机）
+Animator Controller动画控制器（状态机）
+代码控制动画状态机切换
+代码控制动画状态机切换
+</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/08/03/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U3%E2%80%94%E2%80%94Unity%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/U3L13%E2%80%94%E2%80%94Animation%E5%8A%A8%E7%94%BB%E7%AA%97%E5%8F%A3/" title="U3L13——Animation动画窗口">U3L13——Animation动画窗口</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-08-03T14:49:14.000Z" title="发表于 2023-08-03 22:49:14">2023-08-03</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U3%E2%80%94%E2%80%94Unity%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/">U3——Unity核心系列</a></span></div><div class="content">U3L13——Animation动画窗口
+Animation窗口
+Animation窗口 直译就是动画窗口
+它主要用于在Unity内部创建和修改动画，所有在场景中的对象都可以通过Animation窗口为其制作动画
+原理：
+制作动画时：记录在固定时间点对象挂载的脚本的变量变化
+播放动画时：将制作动画时记录的数据在固定时间点进行改变，产生动画效果
+打开Animation动画窗口
+Window——&gt;Animation——&gt;Animation
+关键词说明
+动画时间轴
+每一个动画文件都有自己的一个生命周期，从动画开始到结束
+我们可以在动画时间轴上编辑每一个动画生命周期中变化
+动画中的帧
+假设某个动画的帧率为60帧每秒，意味着该动画1秒钟最多会有60次改变机会
+每一帧的间隔时间是 1s/60 ≈ 16.67毫秒
+也就是说 我们最快可以每16.67毫秒改变一次对象状态
+关键帧
+动画在时间轴上的某一个时间节点上处于的状态
+Animation窗口功能
+​​
+
+
+从左至右：
+
+预览模式（开关）
+录制模式（开关）打开后预览模式默认开启
+回到动画开头
+上一关键帧（快捷键：键盘逗号）
+播放动画（快捷 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/08/01/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U3%E2%80%94%E2%80%94Unity%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/U3L12%E2%80%94%E2%80%94Tilemap%E7%93%A6%E7%89%87%E5%9C%B0%E5%9B%BE/U3L12-7%E2%80%94%E2%80%94Tilemap%E4%BB%A3%E7%A0%81%E6%8E%A7%E5%88%B6%E7%9B%B8%E5%85%B3/" title="U3L12-7——Tilemap代码控制相关">U3L12-7——Tilemap代码控制相关</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-08-01T13:48:31.000Z" title="发表于 2023-08-01 21:48:31">2023-08-01</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U3%E2%80%94%E2%80%94Unity%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/">U3——Unity核心系列</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U3%E2%80%94%E2%80%94Unity%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/U3L12%E2%80%94%E2%80%94Tilemap%E7%93%A6%E7%89%87%E5%9C%B0%E5%9B%BE/">U3L12——Tilemap瓦片地图</a></span></div><div class="content">U3L12-7——Tilemap代码控制相关
+本章关键字
+123456789UnityEngine.Tilemaps       //Tilemap相关所需的命名空间Tilemap                    //瓦片地图信息 可以通过它得到瓦片格子Grid                       //格子位置相关控制 可以通过它 进行坐标转换TileBase                   //瓦片资源对象基类tilemap.ClearAllTiles()    //清空瓦片地图tilemap.SetTile(,)         //设置某个格子位置的瓦片tilemap.SetTiles(,)        //设置多个格子位置的多个瓦片tilemap.SwapTile(,)        //批量替换某种瓦片grid.WorldToCell()         //世界坐标转换为格子坐标
+获取Tilemap和TileBase和Grid
+
+Tilemap组件：用于管理瓦片地图
+瓦片地图信息 可以通过它得到瓦片格子
+TileBase组件：瓦片资源对象基类
+瓦片资源基 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/08/01/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U3%E2%80%94%E2%80%94Unity%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/U3L12%E2%80%94%E2%80%94Tilemap%E7%93%A6%E7%89%87%E5%9C%B0%E5%9B%BE/U3L12-5%E2%80%94%E2%80%94%E5%AE%98%E6%96%B9%E6%8B%93%E5%B1%95%E5%8C%85%E2%80%94%E6%96%B0%E5%A2%9E%E7%93%A6%E7%89%87%E7%B1%BB%E5%9E%8B/" title="U3L12-5——官方拓展包—新增瓦片类型">U3L12-5——官方拓展包—新增瓦片类型</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-08-01T13:48:02.000Z" title="发表于 2023-08-01 21:48:02">2023-08-01</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U3%E2%80%94%E2%80%94Unity%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/">U3——Unity核心系列</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U3%E2%80%94%E2%80%94Unity%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/U3L12%E2%80%94%E2%80%94Tilemap%E7%93%A6%E7%89%87%E5%9C%B0%E5%9B%BE/">U3L12——Tilemap瓦片地图</a></span></div><div class="content">U3L12-5——官方拓展包—新增瓦片类型
+新增瓦片类型
+请注意！
+本次笔记内容对应的课 讲解的是2019版unity的2D extras
+而笔者在本次学习中 使用的是2021版unity的2D Tilemap extras
+前者已停止更新，后者在Unity2021版2D项目上会自动安装，同时，两者并不兼容
+但是，2D Tilemap extras并没有包含所有的2D extras的内容，相比2D extras缺少了部分瓦片类型和笔刷类型
+基于以上原因，接下来的笔记优先基于2021版上预装的2D Tilemap extras，而对于相比2D extras缺失或者不同的部分会另外标记和记录
+​​
+左图是2021版unity的2D Tilemap extras的新增瓦片类型；右图为2019版unity的2D extras的新增瓦片类型
+规则瓦片 RuleTile
+定义不同方向是否存在连接图片的规则，让我们更加快捷的进行地图编辑
 ​​​​
 
 
-Profile：使用的精灵形状概述文件
+Default Sprite：默认图片
 
 
-启用编辑状态后
+Default GameObject ：默认游戏对象
 
 
-Tangent Mode ：切线模式，从左至右依次是：
+Default Collider：默认碰撞器规则 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/08/01/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U3%E2%80%94%E2%80%94Unity%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/U3L12%E2%80%94%E2%80%94Tilemap%E7%93%A6%E7%89%87%E5%9C%B0%E5%9B%BE/U3L12-6%E2%80%94%E2%80%94%E5%AE%98%E6%96%B9%E6%8B%93%E5%B1%95%E5%8C%85%E2%80%94%E6%96%B0%E5%A2%9E%E7%AC%94%E5%88%B7%E7%B1%BB%E5%9E%8B/" title="U3L12-6——官方拓展包—新增笔刷类型">U3L12-6——官方拓展包—新增笔刷类型</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-08-01T13:47:58.000Z" title="发表于 2023-08-01 21:47:58">2023-08-01</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U3%E2%80%94%E2%80%94Unity%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/">U3——Unity核心系列</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U3%E2%80%94%E2%80%94Unity%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/U3L12%E2%80%94%E2%80%94Tilemap%E7%93%A6%E7%89%87%E5%9C%B0%E5%9B%BE/">U3L12——Tilemap瓦片地图</a></span></div><div class="content">U3L12-6——官方拓展包—新增笔刷类型
+新增笔刷类型
+请注意！
+本次笔记内容对应的课 讲解的是2019版unity的2D extras
+而笔者在本次学习中 使用的是2021版unity的2D Tilemap extras
+前者已停止更新，后者在Unity2021版2D项目上会自动安装，同时，两者并不兼容
+但是，2D Tilemap extras并没有包含所有的2D extras的内容，相比2D extras缺少了部分瓦片类型和笔刷类型
+基于以上原因，接下来的笔记优先基于2021版上预装的2D Tilemap extras，而对于相比2D extras缺失或者不同的部分会另外标记和记录
+​​​​
+左图是2021版unity的2D Tilemap extras的新增笔刷类型；右图为2019版unity的2D extras的新增笔刷类型
+新建自定义笔刷（2D Tilemap extras没有这个功能）
 
-顶点模式 - 点两侧不构成曲线
-切线模式 - 点两侧构成曲线，并且可以控制切线弧度
-左右切线模式 - 点两侧构成曲线
-并且可以分别控制左右两侧切线弧度
+预设体笔刷——用于快捷刷出想要创建的精灵
+预设体随机笔刷——用于快捷随机刷出想要创建的精灵
+随机笔刷——可以指定瓦片进行关联，随机刷出对应瓦片
+
+拓展笔刷
 
 
-
-Position：选中点的局部坐标位置
-
-
-Height：控制点左右两侧精灵图片的高度
-
-
-Corner：是否使用角度图片
-
-​​
-Disable ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/08/01/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U3%E2%80%94%E2%80%94Unity%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/U3L10%E2%80%94%E2%80%94Sprite%20Shape%20Profile%20%E7%B2%BE%E7%81%B5%E5%BD%A2%E7%8A%B6%E6%A6%82%E8%BF%B0%E6%96%87%E4%BB%B6/" title="U3L10——Sprite Shape Profile 精灵形状概述文件">U3L10——Sprite Shape Profile 精灵形状概述文件</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-08-01T08:05:02.000Z" title="发表于 2023-08-01 16:05:02">2023-08-01</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U3%E2%80%94%E2%80%94Unity%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/">U3——Unity核心系列</a></span></div><div class="content">U3L10——Sprite Shape Profile 精灵形状概述文件
-Sprite Shape Profile
-顾名思义，Sprite Shape是精灵形状的意思
-从名字上看不出到底是用来干什么的
-其实它主要是方便我们以节约美术资源为前提
-制作2D游戏场景地形或者背景的
-导入Sprite Shape Profile工具
-
-在Package Manager中导入相关工具
-可以选择性导入事例和拓展资源
-
-准备精灵形状概括资源
-想要节约美术资源的创建地形或其它类似资源
-首先我们要准备精灵形状概括资源
-之后我们就会使用它来创建地形等资源
-
-开放不封闭的图形
-封闭的图形
-
-使用精灵形状概括资源创建地形
-Sprite Shape Profile 精灵形状概述文件配置
+Coordinate Br ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/08/01/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U3%E2%80%94%E2%80%94Unity%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/U3L12%E2%80%94%E2%80%94Tilemap%E7%93%A6%E7%89%87%E5%9C%B0%E5%9B%BE/U3L12-4%E2%80%94%E2%80%94%E5%AE%98%E6%96%B9%E6%8B%93%E5%B1%95%E5%8C%85%E5%AF%BC%E5%85%A5/" title="U3L12-4——官方拓展包导入">U3L12-4——官方拓展包导入</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-08-01T13:47:47.000Z" title="发表于 2023-08-01 21:47:47">2023-08-01</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U3%E2%80%94%E2%80%94Unity%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/">U3——Unity核心系列</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U3%E2%80%94%E2%80%94Unity%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/U3L12%E2%80%94%E2%80%94Tilemap%E7%93%A6%E7%89%87%E5%9C%B0%E5%9B%BE/">U3L12——Tilemap瓦片地图</a></span></div><div class="content">U3L12-4——官方拓展包导入
+下载官方拓展包
+下载地址：https://github.com/Unity-Technologies/2d-extras
+注意！该拓展包的github页面已经停止了更新！
+一般情况下，2021版可以直接使用Package Manager（包管理器）的2D Tilemap Extras，里面已经包含了一些2D Extras的内容
+如果在 存在2D Tilemap Extras 的情况下，再去导入2D Extras，会报错，出现文件重复的问题！
+导入官方拓展包
+解压后直接拖入到Assets文件夹中即可
+官方拓展包有什么用
+拓展包为Tilemap添加新的瓦片类型和笔刷类型 帮助我们更加方便的编辑2D场景
+</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/08/01/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U3%E2%80%94%E2%80%94Unity%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/U3L12%E2%80%94%E2%80%94Tilemap%E7%93%A6%E7%89%87%E5%9C%B0%E5%9B%BE/U3L12-2%E2%80%94%E2%80%94Tile%20Palette%E7%93%A6%E7%89%87%E8%B0%83%E8%89%B2%E5%99%A8%E7%AA%97%E5%8F%A3%E4%BD%BF%E7%94%A8/" title="U3L12-2——Tile Palette瓦片调色器窗口使用">U3L12-2——Tile Palette瓦片调色器窗口使用</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-08-01T13:47:28.000Z" title="发表于 2023-08-01 21:47:28">2023-08-01</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U3%E2%80%94%E2%80%94Unity%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/">U3——Unity核心系列</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U3%E2%80%94%E2%80%94Unity%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/U3L12%E2%80%94%E2%80%94Tilemap%E7%93%A6%E7%89%87%E5%9C%B0%E5%9B%BE/">U3L12——Tilemap瓦片地图</a></span></div><div class="content">U3L12-2——Tile Palette瓦片调色器窗口使用
+创建相关参数
 ​​
 
 
-Use Sprite Borders：是否使用精灵边框，用于九宫格拉伸
+Name：瓦片调色器名称
 
 
-Texture：用于填充实心部分的纹理（使用的纹理的平铺模式必须是Repeat重复模式）
+Grid：瓦片的网格布局
+
+Rectangle：矩形瓦片
+Hexagon：六边形瓦片
+Isometric：等距瓦片，单元格为菱形
+Isometric Z as Y：等距瓦片并且Unity将单元格Z轴转换为局部Y坐标
 
 
-Offset：纹理偏移量
+
+Hexagon Type：六边形瓦片地图类型
 
 
-这里的设置主要用于封闭图形
-在不同角度范围内使用的图片不同 可以达到一个封闭效果
+Point Top：点朝顶部的六边形
 
-Angle Ranges：角度范围
-S ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/07/31/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U3%E2%80%94%E2%80%94Unity%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/U3L9%E2%80%94%E2%80%942D%E7%89%A9%E7%90%86%E7%B3%BB%E7%BB%9F/U3L9-5%E2%80%94%E2%80%942D%E7%89%A9%E7%90%86%E7%B3%BB%E7%BB%9F%E4%B9%8B%E6%95%88%E5%BA%94%E5%99%A8/" title="U3L9-5——2D物理系统之效应器">U3L9-5——2D物理系统之效应器</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-07-31T11:45:05.000Z" title="发表于 2023-07-31 19:45:05">2023-07-31</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U3%E2%80%94%E2%80%94Unity%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/">U3——Unity核心系列</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U3%E2%80%94%E2%80%94Unity%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/U3L9%E2%80%94%E2%80%942D%E7%89%A9%E7%90%86%E7%B3%BB%E7%BB%9F/">U3L9——2D物理系统</a></span></div><div class="content">U3L9-5——2D物理系统之效应器
-效应器
-2D效应器是配合2D碰撞器一起使用
-可以让游戏对象在相互接触时产生一些特殊的物理作用力
-可以通过2D效应器快捷的实现一些 传送带 互斥 吸引 漂浮 单向碰撞等等效果
-注意！效应器其实只是Unity为我们写好的一些2D游戏中常用功能的一些代码
-在实际开发中我们不应该过于依赖效应器
-如果发现效应器和自己的游戏需求不太匹配时，我们完全可以自己实现符合需求的“效应器”
-不同种类2D效应器的使用
-区域效应器
-主要作用：在一个区域内让游戏对象受到力和扭矩力的作用
 ​​
 
 
-Use Collider Mask：是否启用碰撞器遮罩，如果开启才会出现下面的Collider Mask，可以通过选择层，决定该效应器只会作用于哪些层的对象
 
+Flat Top：面朝顶部的六边形
 
-Use Global Angle：勾选将使用世界坐标系角度，如果不勾选，角度为局部角度
-
-
-Force Angle：施加力的角度
-
-
-Force Magnitude：施加力的大小
-
-
-Force Variation：施加力的随机大小变化 会在Force Magnitude基础上根据该值进行随机变化
-
-
-ForceTarget ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/07/31/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U3%E2%80%94%E2%80%94Unity%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/U3L9%E2%80%94%E2%80%942D%E7%89%A9%E7%90%86%E7%B3%BB%E7%BB%9F/U3L9-4%E2%80%94%E2%80%942D%E7%89%A9%E7%90%86%E7%B3%BB%E7%BB%9F%E4%B9%8B%E6%81%92%E5%AE%9A%E5%8A%9B/" title="U3L9-4——2D物理系统之恒定力">U3L9-4——2D物理系统之恒定力</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-07-31T11:45:01.000Z" title="发表于 2023-07-31 19:45:01">2023-07-31</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U3%E2%80%94%E2%80%94Unity%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/">U3——Unity核心系列</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U3%E2%80%94%E2%80%94Unity%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/U3L9%E2%80%94%E2%80%942D%E7%89%A9%E7%90%86%E7%B3%BB%E7%BB%9F/">U3L9——2D物理系统</a></span></div><div class="content">U3L9-4——2D物理系统之恒定力
-恒定力
-恒定力是一个特殊的脚本
-它可以给一个2D刚体持续添加一个力
-在做一些随着时间推移而加速的对象时很适用
-比如类似火箭发射等效果
-恒定力脚本会线性的为对象添加力和扭矩力，让其移动和选择
-参数讲解
-​​
-
-Force：物理更新时施加于2D刚体上的线性力
-Relative Force：物理更新时施加的线性力（相对刚体对象坐标系）
-Torque：物理更新时施加于2D刚体的扭矩力
-
-</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/07/31/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U3%E2%80%94%E2%80%94Unity%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/U3L9%E2%80%94%E2%80%942D%E7%89%A9%E7%90%86%E7%B3%BB%E7%BB%9F/U3L9-3%E2%80%94%E2%80%942D%E7%89%A9%E7%90%86%E7%B3%BB%E7%BB%9F%E4%B9%8B%E7%89%A9%E7%90%86%E6%9D%90%E8%B4%A8/" title="U3L9-3——2D物理系统之物理材质">U3L9-3——2D物理系统之物理材质</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-07-31T11:44:57.000Z" title="发表于 2023-07-31 19:44:57">2023-07-31</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U3%E2%80%94%E2%80%94Unity%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/">U3——Unity核心系列</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U3%E2%80%94%E2%80%94Unity%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/U3L9%E2%80%94%E2%80%942D%E7%89%A9%E7%90%86%E7%B3%BB%E7%BB%9F/">U3L9——2D物理系统</a></span></div><div class="content">U3L9-3——2D物理系统之物理材质
-物理材质
-物理材质是用于决定在物体产生碰撞时这些物体之间的摩擦和弹性表现的
-通过物理材质我们可以做出类似斜坡不滑落，小球反弹等效果
-参数相关
-​
-
-Friction：摩擦系数，为0表示没有摩擦力
-Bounciness：反弹程度。0表示没有弹力，1表示完美弹力
-（没有能量损失一直弹）
-
-​
-</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/07/31/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U3%E2%80%94%E2%80%94Unity%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/U3L9%E2%80%94%E2%80%942D%E7%89%A9%E7%90%86%E7%B3%BB%E7%BB%9F/U3L9-2%E2%80%94%E2%80%942D%E7%89%A9%E7%90%86%E7%B3%BB%E7%BB%9F%E4%B9%8B%E7%A2%B0%E6%92%9E%E5%99%A8/" title="U3L9-2——2D物理系统之碰撞器">U3L9-2——2D物理系统之碰撞器</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-07-31T11:44:53.000Z" title="发表于 2023-07-31 19:44:53">2023-07-31</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U3%E2%80%94%E2%80%94Unity%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/">U3——Unity核心系列</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U3%E2%80%94%E2%80%94Unity%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/U3L9%E2%80%94%E2%80%942D%E7%89%A9%E7%90%86%E7%B3%BB%E7%BB%9F/">U3L9——2D物理系统</a></span></div><div class="content">U3L9-2——2D物理系统之碰撞器
-碰撞器（2D）
-碰撞器是用于在物理系统中 表示物体体积的的（形状或范围）
-刚体通过得到碰撞器的范围信息进行计算
-判断两个物体的范围是否接触
-如果接触 刚体就会模拟力的效果产生速度和旋转
-本章代码关键字
-1234567891011void OnCollisionEnter2D(Collision2D collision) &#123; &#125;	//碰撞触发接触时会自动执行这个函数（函数名，函数参数的类型不可以改动）collision2D.collider				        //碰撞到的对象碰撞器的信息collision2D.gameObject				        //碰撞对象的依附对象（GameObject）collision2D.transform				        //碰撞对象的依附对象的位置信息collision2D.contactCount				//触碰点数相关ContactPoint[] pos = collision2D.contacts		//接触点 具体的坐标	void OnCollisionStay2D(Coll ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/07/31/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U3%E2%80%94%E2%80%94Unity%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/U3L9%E2%80%94%E2%80%942D%E7%89%A9%E7%90%86%E7%B3%BB%E7%BB%9F/U3L9-1%E2%80%94%E2%80%942D%E7%89%A9%E7%90%86%E7%B3%BB%E7%BB%9F%E4%B9%8B%E5%88%9A%E4%BD%93/" title="U3L9-1——2D物理系统之刚体">U3L9-1——2D物理系统之刚体</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-07-31T11:44:49.000Z" title="发表于 2023-07-31 19:44:49">2023-07-31</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U3%E2%80%94%E2%80%94Unity%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/">U3——Unity核心系列</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U3%E2%80%94%E2%80%94Unity%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/U3L9%E2%80%94%E2%80%942D%E7%89%A9%E7%90%86%E7%B3%BB%E7%BB%9F/">U3L9——2D物理系统</a></span></div><div class="content">U3L9-1——2D物理系统之刚体
-刚体（2D）
-刚体是物理系统中用于帮助我们进行模拟物理碰撞中力的效果的
-2D物理系统中的刚体和3D中的刚体基本是一样的
-最大的区别是对象只会在XY平面中移动，并且只在垂直于该平面的轴上旋转
-本章代码关键字
-123Rigidbody2D            //2D刚体类rigidbody.AddForce()   //对刚体加力rigidbody.velocity     //刚体的速度
-参数相关
 ​​
 
 
-刚体类型
-
-
-Dynamic：动态类型 受重力和力的影响移动和旋转
-
-
-Material： 物理材质，在刚体上设置了物理材质
-如果子物体有碰撞器但是没有设置材质则会通用刚体的物理材质
-如果不设置，将使用在Physics 2D窗口中设置的默认材质
-物理材质的使用优先级：
-
-2D碰撞器上指定的2D物理材质
-2D刚体上指定的2D物理材质
-Physics 2D窗口指定的2D默认物理材质
 
 
 
-Simulated： 如果希望2D刚体以及所有子对象2D碰撞器和2D关节都能模拟物理效果 需要启用该选项
+Cell Size：瓦片绘制到单元格的大小
+
+Automatic：基于瓦片资源的精灵大小自动设置
+Manual：自定义大小
 
 
-Use Auto Mass：是否使用自动质量
+
+补充 2021 LTS 新参数（来自Creating a Tile Palette - Unity 手册）
+请注意，如果要制作制作等距棱形瓦片地图则必须修改下方的参数！！！！
 
 
-M ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/07/31/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U3%E2%80%94%E2%80%94Unity%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/U3L9%E2%80%94%E2%80%942D%E7%89%A9%E7%90%86%E7%B3%BB%E7%BB%9F/" title="U3L9——2D物理系统">U3L9——2D物理系统</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-07-31T11:41:44.000Z" title="发表于 2023-07-31 19:41:44">2023-07-31</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U3%E2%80%94%E2%80%94Unity%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/">U3——Unity核心系列</a></span></div><div class="content">U3L9——2D物理系统
-学习2D物理系统之前建议先学习Unity入门当中的3D物理系统
-因为他们非常的类似，由于我们之前详细讲解了3D物理系统
-所以在讲解2D物理系统时会相对简洁一些
-一些讲过的知识点就不过多赘述了
-2D物理系统相关
 
-刚体
-碰撞器
-物理材质
-恒定力
-效应器
+Sort Mode
+确定瓦片面板中的渲染器的透明度排序模式。
 
-</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/07/30/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U3%E2%80%94%E2%80%94Unity%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/U3L8%E2%80%94%E2%80%94Sprite%20Atlas%20%E7%B2%BE%E7%81%B5%E5%9B%BE%E9%9B%86%E5%88%B6%E4%BD%9C/" title="U3L8——Sprite Atlas 精灵图集制作">U3L8——Sprite Atlas 精灵图集制作</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-07-30T12:17:38.000Z" title="发表于 2023-07-30 20:17:38">2023-07-30</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U3%E2%80%94%E2%80%94Unity%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/">U3——Unity核心系列</a></span></div><div class="content">U3L8——Sprite Atlas 精灵图集制作
-本章代码关键字
-123UnityEngine.U2D            //一部分2D内容的命名空间SpriteAtlas                //精灵图集类spriteAtlas.GetSprite()    //获取精灵图集的单个精灵
-为什么要打图集
-打图集的目的就是减少DrawCall 提高性能
-具体DrawCall是什么在NGUI课程中已经详细讲解 ——&gt; Drawcall
-在2D游戏开发，以及UI开发中是会频繁使用的功能
-在Unity中打开自带的打图集功能
-在工程设置面板中打开功能
-Edit——&gt;Project Setting——&gt;Editor
-Sprite Packer(精灵包装器，可以通过Unity自带图集工具生成图集)
-Disabled：默认设置，不会打包图集
-Enabled For Builds（Legacy Sprite Packer）：Unity仅在构建时打包图集，在编辑模式下不会打包图集
-Always Enabled（Legacy Sprite Packer）：Unity在构建时 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/07/30/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U3%E2%80%94%E2%80%94Unity%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/U3L7%E2%80%94%E2%80%94Sorting%20Group/" title="U3L7——Sorting Group">U3L7——Sorting Group</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-07-30T11:09:49.000Z" title="发表于 2023-07-30 19:09:49">2023-07-30</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U3%E2%80%94%E2%80%94Unity%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/">U3——Unity核心系列</a></span></div><div class="content">U3L7——Sorting Group
-Sorting Group
-顾名思义，SortingGroup是排序分组的意思
-它的主要作用就是对多个精灵图片进行分组排序
-Unity会将同一个排序组中的精灵图片一起排序，就好像他们是单个游戏对象一样
-主要作用是对于需要分层的2D游戏用于整体排序
-Sorting Group的使用
-直接对游戏对象添加Sorting Group组件即可
+
+
+
+Default
+默认透明度排序模式。此模式由项目的图形设置决定。
+
+
+Orthographic
+选择此模式可根据从摄像机到瓦 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/08/01/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U3%E2%80%94%E2%80%94Unity%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/U3L12%E2%80%94%E2%80%94Tilemap%E7%93%A6%E7%89%87%E5%9C%B0%E5%9B%BE/U3L12-3%E2%80%94%E2%80%94%E7%93%A6%E7%89%87%E5%9C%B0%E5%9B%BE%E5%85%B3%E9%94%AE%E8%84%9A%E6%9C%AC%E5%92%8C%E7%A2%B0%E6%92%9E%E5%99%A8/" title="U3L12-3——瓦片地图关键脚本和碰撞器">U3L12-3——瓦片地图关键脚本和碰撞器</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-08-01T13:47:17.000Z" title="发表于 2023-08-01 21:47:17">2023-08-01</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U3%E2%80%94%E2%80%94Unity%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/">U3——Unity核心系列</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U3%E2%80%94%E2%80%94Unity%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/U3L12%E2%80%94%E2%80%94Tilemap%E7%93%A6%E7%89%87%E5%9C%B0%E5%9B%BE/">U3L12——Tilemap瓦片地图</a></span></div><div class="content">U3L12-3——瓦片地图关键脚本和碰撞器
+关键脚本
+Grid
 ​​
-注意事项
 
-子排序组，先排子对象 再按父对象和别人一起排 （同层和同层比）
-多个 挂载排序分组组件的预设体 之间 通过修改 排序索引号来决定前后顺序
 
-</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/68/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/68/#content-inner">68</a><span class="page-number current">69</span><a class="page-number" href="/page/70/#content-inner">70</a><span class="space">&hellip;</span><a class="page-number" href="/page/83/#content-inner">83</a><a class="extend next" rel="next" href="/page/70/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">文KRIFE齐</div><div class="author-info__description">目前正处于搭建测试环节</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">823</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">109</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/07/01/hello-world/" title="欢迎来到文KRIFE齐的博客！">欢迎来到文KRIFE齐的博客！</a><time datetime="2024-07-01T11:46:20.391Z" title="发表于 2024-07-01 19:46:20">2024-07-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/16/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S3%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E9%80%8F%E6%98%8E%E6%95%88%E6%9E%9C/" title="US3S3——Shader入门-透明效果">US3S3——Shader入门-透明效果</a><time datetime="2024-06-16T11:23:09.000Z" title="发表于 2024-06-16 19:23:09">2024-06-16</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/16/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S2%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E7%BA%B9%E7%90%86%E6%95%88%E6%9E%9C/" title="US3S2——Shader入门-纹理效果">US3S2——Shader入门-纹理效果</a><time datetime="2024-06-16T11:22:01.000Z" title="发表于 2024-06-16 19:22:01">2024-06-16</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/16/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/" title="US3S1——Shader入门-光照效果">US3S1——Shader入门-光照效果</a><time datetime="2024-06-16T11:21:34.000Z" title="发表于 2024-06-16 19:21:34">2024-06-16</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/16/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/" title="US3——Shader开发知识">US3——Shader开发知识</a><time datetime="2024-06-16T11:14:03.000Z" title="发表于 2024-06-16 19:14:03">2024-06-16</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+Cell Size：网格单元格的大小
+
+
+Cell Gap：网格之间的间隔大小
+
+
+Cell Layout：网格单元的形状和排列
+
+Rectangle：矩形
+Hexagon：六边形
+Isometric：等距布局，单元格为菱形
+Isometric Z as Y：等距布局，但Unity将单元格Z轴转换为局部Y坐标
+
+
+
+Cell Swizzle：Unity将XYZ单元格坐标重新排序为你选择的类型
+
+
+Tilemap
+​​
+
+Animation Frame Rate：Unity播放瓦片动画的速率。相当于倍速
+Color：瓦片色调颜色
+Tile Anchor：瓦片的锚点偏移
+Orientation：瓦片地图上瓦片的方向。
+相当于2D平面使用的是Unity中的哪两个轴
+
+Tilemap Renderer
+​​​
+
+
+Sort Order：设置所选瓦片地图上的瓦片排序方向
+
+
+Mode：渲染器的渲染模式
+
+Chunk：按位置对瓦片进行分组
+并将瓦片精灵一起批处理进行渲染，性能较好
+Individual：单独渲染每个瓦片，会考 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/08/01/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U3%E2%80%94%E2%80%94Unity%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/U3L12%E2%80%94%E2%80%94Tilemap%E7%93%A6%E7%89%87%E5%9C%B0%E5%9B%BE/U3L12-1%E2%80%94%E2%80%94%E7%93%A6%E7%89%87%E8%B5%84%E6%BA%90/" title="U3L12-1——瓦片资源">U3L12-1——瓦片资源</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-08-01T13:47:08.000Z" title="发表于 2023-08-01 21:47:08">2023-08-01</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U3%E2%80%94%E2%80%94Unity%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/">U3——Unity核心系列</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U3%E2%80%94%E2%80%94Unity%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/U3L12%E2%80%94%E2%80%94Tilemap%E7%93%A6%E7%89%87%E5%9C%B0%E5%9B%BE/">U3L12——Tilemap瓦片地图</a></span></div><div class="content">U3L12-1——瓦片资源
+从PackageManager中引入Tilemap包
+21版2D模板项目创建即自带Tilemap包，无需手动导入，如需导入在PackageManager中引入即可
+Tilemap的最小单位——“瓦片”
+首先导入学习用资源
+
+
+方法一：Assets——&gt;Create——&gt;Tile
+(21版没有这种方法，直接用方法二)
+
+
+方法二：在Tile Palette瓦片调色板窗口创建
+
+首先新建一个瓦片地图编辑文件
+将资源拖入到窗口中选择要保存的路径
+
+
+
+瓦片参数相关
+​​
+
+
+Preview：预览图
+
+
+Sprite：瓦片关联的精灵纹理
+
+
+Color：瓦片色调颜色
+
+
+Collider Type：碰撞器类型
+
+None：不生成碰撞器
+Sprite：基于精灵轮廓生成碰撞器形状
+Grid：基于瓦片单元格生成碰撞器形状
+
+
+
+</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/68/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/68/#content-inner">68</a><span class="page-number current">69</span><a class="page-number" href="/page/70/#content-inner">70</a><span class="space">&hellip;</span><a class="page-number" href="/page/84/#content-inner">84</a><a class="extend next" rel="next" href="/page/70/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">文KRIFE齐</div><div class="author-info__description">目前正处于搭建测试环节</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">834</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">113</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/07/01/hello-world/" title="欢迎来到文KRIFE齐的博客！">欢迎来到文KRIFE齐的博客！</a><time datetime="2024-07-01T11:46:20.391Z" title="发表于 2024-07-01 19:46:20">2024-07-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/US3S1L5%E2%80%94%E2%80%94Phong%E5%85%89%E7%85%A7%E6%A8%A1%E5%9E%8B/" title="US3S1L5——Phong光照模型">US3S1L5——Phong光照模型</a><time datetime="2024-06-25T14:33:57.000Z" title="发表于 2024-06-25 22:33:57">2024-06-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/US3S1L4%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B/US3S1L4-2%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B%E7%9A%84%E9%80%90%E7%89%87%E5%85%83%E5%85%89%E7%85%A7/" title="US3S1L4-2——Phong式高光反射模型的逐片元光照">US3S1L4-2——Phong式高光反射模型的逐片元光照</a><time datetime="2024-06-25T13:16:37.000Z" title="发表于 2024-06-25 21:16:37">2024-06-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/US3S1L4%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B/US3S1L4-1%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B%E7%9A%84%E9%80%90%E9%A1%B6%E7%82%B9%E5%85%89%E7%85%A7/" title="US3S1L4-1——Phong式高光反射模型的逐顶点光照">US3S1L4-1——Phong式高光反射模型的逐顶点光照</a><time datetime="2024-06-25T13:16:05.000Z" title="发表于 2024-06-25 21:16:05">2024-06-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/25/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/US3S1L4%E2%80%94%E2%80%94Phong%E5%BC%8F%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B/" title="US3S1L4——Phong式高光反射模型">US3S1L4——Phong式高光反射模型</a><time datetime="2024-06-25T10:14:12.000Z" title="发表于 2024-06-25 18:14:12">2024-06-25</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
             <i class="fas fa-folder-open"></i>
             <span>分类</span>
             <a class="card-more-btn" href="/categories/" title="查看更多">
     <i class="fas fa-angle-right"></i></a>
             </div>
             <ul class="card-category-list" id="aside-cat-list">
-            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><span class="card-category-list-name">Unity就业路线学习笔记</span><span class="card-category-list-count">822</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94C-%E7%AC%94%E8%AE%B0/"><span class="card-category-list-name">CS——C#笔记</span><span class="card-category-list-count">49</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94C-%E7%AC%94%E8%AE%B0/CS1%E2%80%94%E2%80%94C-%E5%85%A5%E9%97%A8%E7%B3%BB%E5%88%97/"><span class="card-category-list-name">CS1——C#入门系列</span><span class="card-category-list-count">22</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94C-%E7%AC%94%E8%AE%B0/CS2%E2%80%94%E2%80%94C-%E5%9F%BA%E7%A1%80%E7%B3%BB%E5%88%97/"><span class="card-category-list-name">CS2——C#基础系列</span><span class="card-category-list-count">3</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94C-%E7%AC%94%E8%AE%B0/CS3%E2%80%94%E2%80%94C-%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/"><span class="card-category-list-name">CS3——C#核心系列</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94C-%E7%AC%94%E8%AE%B0/CS4%E2%80%94%E2%80%94C-%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/"><span class="card-category-list-name">CS4——C#进阶系列</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94C-%E7%AC%94%E8%AE%B0/CS5%E2%80%94%E2%80%94C-%E7%9F%A5%E8%AF%86%E8%A1%A5%E5%85%85/"><span class="card-category-list-name">CS5——C#知识补充</span><span class="card-category-list-count">16</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94C-%E7%AC%94%E8%AE%B0/CS5%E2%80%94%E2%80%94C-%E7%9F%A5%E8%AF%86%E8%A1%A5%E5%85%85/CS5L7%E2%80%94%E2%80%94C-5-%E5%8A%9F%E8%83%BD%E5%92%8C%E8%AF%AD%E6%B3%95/"><span class="card-category-list-name">CS5L7——C# 5 功能和语法</span><span class="card-category-list-count">2</span></a></li></ul></li></ul></li></ul></li>
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><span class="card-category-list-name">Unity就业路线学习笔记</span><span class="card-category-list-count">833</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94C-%E7%AC%94%E8%AE%B0/"><span class="card-category-list-name">CS——C#笔记</span><span class="card-category-list-count">49</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94C-%E7%AC%94%E8%AE%B0/CS1%E2%80%94%E2%80%94C-%E5%85%A5%E9%97%A8%E7%B3%BB%E5%88%97/"><span class="card-category-list-name">CS1——C#入门系列</span><span class="card-category-list-count">22</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94C-%E7%AC%94%E8%AE%B0/CS2%E2%80%94%E2%80%94C-%E5%9F%BA%E7%A1%80%E7%B3%BB%E5%88%97/"><span class="card-category-list-name">CS2——C#基础系列</span><span class="card-category-list-count">3</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94C-%E7%AC%94%E8%AE%B0/CS3%E2%80%94%E2%80%94C-%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/"><span class="card-category-list-name">CS3——C#核心系列</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94C-%E7%AC%94%E8%AE%B0/CS4%E2%80%94%E2%80%94C-%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/"><span class="card-category-list-name">CS4——C#进阶系列</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94C-%E7%AC%94%E8%AE%B0/CS5%E2%80%94%E2%80%94C-%E7%9F%A5%E8%AF%86%E8%A1%A5%E5%85%85/"><span class="card-category-list-name">CS5——C#知识补充</span><span class="card-category-list-count">16</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94C-%E7%AC%94%E8%AE%B0/CS5%E2%80%94%E2%80%94C-%E7%9F%A5%E8%AF%86%E8%A1%A5%E5%85%85/CS5L7%E2%80%94%E2%80%94C-5-%E5%8A%9F%E8%83%BD%E5%92%8C%E8%AF%AD%E6%B3%95/"><span class="card-category-list-name">CS5L7——C# 5 功能和语法</span><span class="card-category-list-count">2</span></a></li></ul></li></ul></li></ul></li>
             </ul></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span><a class="card-more-btn" href="/archives/" title="查看更多">
-    <i class="fas fa-angle-right"></i></a></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/07/"><span class="card-archive-list-date">七月 2024</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/06/"><span class="card-archive-list-date">六月 2024</span><span class="card-archive-list-count">40</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/05/"><span class="card-archive-list-date">五月 2024</span><span class="card-archive-list-count">56</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/04/"><span class="card-archive-list-date">四月 2024</span><span class="card-archive-list-count">127</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/03/"><span class="card-archive-list-date">三月 2024</span><span class="card-archive-list-count">135</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/02/"><span class="card-archive-list-date">二月 2024</span><span class="card-archive-list-count">62</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/01/"><span class="card-archive-list-date">一月 2024</span><span class="card-archive-list-count">31</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/12/"><span class="card-archive-list-date">十二月 2023</span><span class="card-archive-list-count">2</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">823</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2024-07-03T02:26:12.231Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By 文KRIFE齐</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
+    <i class="fas fa-angle-right"></i></a></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/07/"><span class="card-archive-list-date">七月 2024</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/06/"><span class="card-archive-list-date">六月 2024</span><span class="card-archive-list-count">51</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/05/"><span class="card-archive-list-date">五月 2024</span><span class="card-archive-list-count">56</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/04/"><span class="card-archive-list-date">四月 2024</span><span class="card-archive-list-count">127</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/03/"><span class="card-archive-list-date">三月 2024</span><span class="card-archive-list-count">135</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/02/"><span class="card-archive-list-date">二月 2024</span><span class="card-archive-list-count">62</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/01/"><span class="card-archive-list-date">一月 2024</span><span class="card-archive-list-count">31</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/12/"><span class="card-archive-list-date">十二月 2023</span><span class="card-archive-list-count">2</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">834</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2024-07-03T02:34:08.785Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By 文KRIFE齐</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
