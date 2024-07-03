@@ -7,7 +7,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png">
 <meta property="article:published_time" content="2023-07-31T11:45:05.000Z">
-<meta property="article:modified_time" content="2024-07-02T03:56:27.000Z">
+<meta property="article:modified_time" content="2024-07-03T05:13:50.229Z">
 <meta property="article:author" content="文KRIFE齐">
 <meta property="article:tag" content="blog">
 <meta name="twitter:card" content="summary">
@@ -56,7 +56,7 @@
   isHome: false,
   isHighlightShrink: false,
   isToc: true,
-  postUpdate: '2024-07-02 11:56:27'
+  postUpdate: '2024-07-03 13:13:50'
 }</script><script>(win=>{
       win.saveToLocal = {
         set: (key, value, ttl) => {
@@ -153,7 +153,7 @@
         }
       }
       detectApple()
-    })(window)</script><meta name="generator" content="Hexo 7.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">834</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">113</div></a></div><hr class="custom-hr"/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="文KRIFE齐的博客"><span class="site-name">文KRIFE齐的博客</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">U3L9-5——2D物理系统之效应器</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-07-31T11:45:05.000Z" title="发表于 2023-07-31 19:45:05">2023-07-31</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-07-02T03:56:27.000Z" title="更新于 2024-07-02 11:56:27">2024-07-02</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U3%E2%80%94%E2%80%94Unity%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/">U3——Unity核心系列</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U3%E2%80%94%E2%80%94Unity%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/U3L9%E2%80%94%E2%80%942D%E7%89%A9%E7%90%86%E7%B3%BB%E7%BB%9F/">U3L9——2D物理系统</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="U3L9-5——2D物理系统之效应器"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1>U3L9-5——2D物理系统之效应器</h1>
+    })(window)</script><meta name="generator" content="Hexo 7.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">834</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">113</div></a></div><hr class="custom-hr"/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="文KRIFE齐的博客"><span class="site-name">文KRIFE齐的博客</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">U3L9-5——2D物理系统之效应器</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-07-31T11:45:05.000Z" title="发表于 2023-07-31 19:45:05">2023-07-31</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-07-03T05:13:50.229Z" title="更新于 2024-07-03 13:13:50">2024-07-03</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U3%E2%80%94%E2%80%94Unity%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/">U3——Unity核心系列</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U3%E2%80%94%E2%80%94Unity%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/U3L9%E2%80%94%E2%80%942D%E7%89%A9%E7%90%86%E7%B3%BB%E7%BB%9F/">U3L9——2D物理系统</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="U3L9-5——2D物理系统之效应器"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1>U3L9-5——2D物理系统之效应器</h1>
 <h1>效应器</h1>
 <p>2D效应器是配合2D碰撞器一起使用<br>
 可以让游戏对象在相互接触时产生一些特殊的物理作用力<br>
@@ -164,7 +164,7 @@
 <h2 id="不同种类2D效应器的使用">不同种类2D效应器的使用</h2>
 <h3 id="区域效应器">区域效应器</h3>
 <p>主要作用：在一个区域内让游戏对象受到力和扭矩力的作用</p>
-<p>​<img src="assets/image-20230731232902-i0ezvfd.png" alt="image">​</p>
+<p>​<img src="/assets/image-20230731232902-i0ezvfd.png" alt="image">​</p>
 <ul>
 <li>
 <p>Use Collider Mask：是否启用碰撞器遮罩，如果开启才会出现下面的Collider Mask，可以通过选择层，决定该效应器只会作用于哪些层的对象</p>
@@ -197,7 +197,7 @@
 </ul>
 <h3 id="浮力效应器">浮力效应器</h3>
 <p>主要作用：模拟流体行为，浮动和阻力相关设置，让玩家在该区域看起来像在水里移动</p>
-<p>​<img src="assets/image-20230731234746-kjfgosa.png" alt="image">​</p>
+<p>​<img src="/assets/image-20230731234746-kjfgosa.png" alt="image">​</p>
 <ul>
 <li>Density：流体密度，密度较大，碰撞体会下沉，密度越小碰撞体会上浮 密度和流体相同的碰撞体会浮在流体中</li>
 <li>Surface Level：定义浮力流体的表面位置，对象高于此线时，不会对其施加浮力，以下或者相交会施加浮力。沿世界Y轴偏移</li>
@@ -209,7 +209,7 @@
 </ul>
 <h3 id="点效应器">点效应器</h3>
 <p>主要作用：模拟磁铁 吸引或者排斥的效果</p>
-<p>​<img src="assets/image-20230801001639-t3bo2ua.png" alt="image">​</p>
+<p>​<img src="/assets/image-20230801001639-t3bo2ua.png" alt="image">​</p>
 <ul>
 <li>
 <p>Force Magnitude：施加力的大小</p>
@@ -245,7 +245,7 @@
 </ul>
 <h3 id="平台效应器">平台效应器</h3>
 <p>主要作用：2D游戏当中的平台或可往上跳跃的墙壁</p>
-<p>​<img src="assets/image-20230801002322-az03fb0.png" alt="image">​</p>
+<p>​<img src="/assets/image-20230801002322-az03fb0.png" alt="image">​</p>
 <ul>
 <li>Rotational Offset：旋转偏移量，控制平台角度偏移</li>
 <li>Use One Way：是否使用单向碰撞行为</li>
@@ -257,7 +257,7 @@
 </ul>
 <h3 id="表面效应器">表面效应器</h3>
 <p>主要作用：模拟传送带</p>
-<p>​<img src="assets/image-20230801003443-6kpt5y8.png" alt="image">​</p>
+<p>​<img src="/assets/image-20230801003443-6kpt5y8.png" alt="image">​</p>
 <ul>
 <li>Speed：表面保持的速度</li>
 <li>Speed Variation：速度的随机增加值</li>

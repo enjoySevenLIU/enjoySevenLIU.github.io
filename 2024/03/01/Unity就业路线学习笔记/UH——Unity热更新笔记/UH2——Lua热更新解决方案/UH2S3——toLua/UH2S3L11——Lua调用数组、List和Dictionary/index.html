@@ -7,7 +7,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png">
 <meta property="article:published_time" content="2024-03-01T06:06:20.000Z">
-<meta property="article:modified_time" content="2024-07-02T03:56:44.000Z">
+<meta property="article:modified_time" content="2024-07-03T05:13:50.454Z">
 <meta property="article:author" content="文KRIFE齐">
 <meta property="article:tag" content="blog">
 <meta name="twitter:card" content="summary">
@@ -56,7 +56,7 @@
   isHome: false,
   isHighlightShrink: false,
   isToc: true,
-  postUpdate: '2024-07-02 11:56:44'
+  postUpdate: '2024-07-03 13:13:50'
 }</script><script>(win=>{
       win.saveToLocal = {
         set: (key, value, ttl) => {
@@ -153,7 +153,7 @@
         }
       }
       detectApple()
-    })(window)</script><meta name="generator" content="Hexo 7.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">834</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">113</div></a></div><hr class="custom-hr"/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="文KRIFE齐的博客"><span class="site-name">文KRIFE齐的博客</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">UH2S3L11——Lua调用数组、List和Dictionary</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-03-01T06:06:20.000Z" title="发表于 2024-03-01 14:06:20">2024-03-01</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-07-02T03:56:44.000Z" title="更新于 2024-07-02 11:56:44">2024-07-02</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UH%E2%80%94%E2%80%94Unity%E7%83%AD%E6%9B%B4%E6%96%B0%E7%AC%94%E8%AE%B0/">UH——Unity热更新笔记</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UH%E2%80%94%E2%80%94Unity%E7%83%AD%E6%9B%B4%E6%96%B0%E7%AC%94%E8%AE%B0/UH2%E2%80%94%E2%80%94Lua%E7%83%AD%E6%9B%B4%E6%96%B0%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">UH2——Lua热更新解决方案</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UH%E2%80%94%E2%80%94Unity%E7%83%AD%E6%9B%B4%E6%96%B0%E7%AC%94%E8%AE%B0/UH2%E2%80%94%E2%80%94Lua%E7%83%AD%E6%9B%B4%E6%96%B0%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/UH2S3%E2%80%94%E2%80%94toLua/">UH2S3——toLua</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="UH2S3L11——Lua调用数组、List和Dictionary"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1>UH2S3L11——Lua调用数组、List和Dictionary</h1>
+    })(window)</script><meta name="generator" content="Hexo 7.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">834</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">113</div></a></div><hr class="custom-hr"/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="文KRIFE齐的博客"><span class="site-name">文KRIFE齐的博客</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">UH2S3L11——Lua调用数组、List和Dictionary</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-03-01T06:06:20.000Z" title="发表于 2024-03-01 14:06:20">2024-03-01</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-07-03T05:13:50.454Z" title="更新于 2024-07-03 13:13:50">2024-07-03</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UH%E2%80%94%E2%80%94Unity%E7%83%AD%E6%9B%B4%E6%96%B0%E7%AC%94%E8%AE%B0/">UH——Unity热更新笔记</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UH%E2%80%94%E2%80%94Unity%E7%83%AD%E6%9B%B4%E6%96%B0%E7%AC%94%E8%AE%B0/UH2%E2%80%94%E2%80%94Lua%E7%83%AD%E6%9B%B4%E6%96%B0%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">UH2——Lua热更新解决方案</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UH%E2%80%94%E2%80%94Unity%E7%83%AD%E6%9B%B4%E6%96%B0%E7%AC%94%E8%AE%B0/UH2%E2%80%94%E2%80%94Lua%E7%83%AD%E6%9B%B4%E6%96%B0%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/UH2S3%E2%80%94%E2%80%94toLua/">UH2S3——toLua</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="UH2S3L11——Lua调用数组、List和Dictionary"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1>UH2S3L11——Lua调用数组、List和Dictionary</h1>
 <h2 id="本章代码关键字">本章代码关键字</h2>
 <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">System.Array.CreateInstance()								<span class="comment">--创建数组</span></span><br><span class="line">System.Collections.Generic.List_泛型参数()					<span class="comment">--创建列表，需要先在CustomSetting中去添加对应类型</span></span><br><span class="line">System.Collections.Generic.Dictionary_键泛型参数_值泛型参数()	<span class="comment">--创建字典，需要先在CustomSetting中去添加对应类型</span></span><br><span class="line">字典:TryGetValue()											<span class="comment">--尝试获取值，以字符串为键的的字典只能通过该方法获取值</span></span><br></pre></td></tr></table></figure>
 <h2 id="Lua调用C-数组">Lua调用C#数组</h2>
@@ -163,35 +163,35 @@
 <li>
 <p>访问数组的长度，直接使用<code>Length</code>​即可</p>
 <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 自定义类，需要在CustomSetting中去添加并生成</span></span><br><span class="line"><span class="keyword">local</span> obj = Lesson3()</span><br><span class="line"><span class="built_in">print</span>(obj.array.Length)</span><br></pre></td></tr></table></figure>
-<p>​<img src="assets/image-20240301142019-ec8upqw.png" alt="image">​</p>
+<p>​<img src="/assets/image-20240301142019-ec8upqw.png" alt="image">​</p>
 </li>
 <li>
 <p>访问数组的元素，直接使用中括号，<strong>注意！C#的数组还是从0开始的！</strong></p>
 <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(obj.array[<span class="number">0</span>])</span><br></pre></td></tr></table></figure>
-<p>​<img src="assets/image-20240301142030-108u27f.png" alt="image">​</p>
+<p>​<img src="/assets/image-20240301142030-108u27f.png" alt="image">​</p>
 </li>
 <li>
 <p>查找元素位置</p>
 <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">&quot;查找元素位置：&quot;</span> .. obj.array:IndexOf(<span class="number">2</span>))</span><br></pre></td></tr></table></figure>
-<p>​<img src="assets/image-20240301142039-m3xy2ms.png" alt="image">​</p>
+<p>​<img src="/assets/image-20240301142039-m3xy2ms.png" alt="image">​</p>
 </li>
 <li>
 <p>遍历数组</p>
 <p><strong>注意！C#的数组还是从0开始的！</strong></p>
 <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i = <span class="number">1</span>, obj.array.Length - <span class="number">1</span> <span class="keyword">do</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Array&quot;</span> .. obj.array[i])</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-<p>​<img src="assets/image-20240301142507-iv5eoue.png" alt="image">​</p>
+<p>​<img src="/assets/image-20240301142507-iv5eoue.png" alt="image">​</p>
 <p>toLua比xLua多了几种遍历方式</p>
 <ul>
 <li>
 <p>迭代器遍历</p>
 <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> iter = obj.array:GetEnumerator()</span><br><span class="line"><span class="keyword">while</span> iter:MoveNext() <span class="keyword">do</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;iter: &quot;</span> .. iter.Current)</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-<p>​<img src="assets/image-20240301142520-9ze7dm5.png" alt="image">​</p>
+<p>​<img src="/assets/image-20240301142520-9ze7dm5.png" alt="image">​</p>
 </li>
 <li>
 <p>数组转table遍历</p>
 <p>注意！将数组转为table后，就要按照lua的方式遍历，索引也从1开始</p>
 <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> t = obj.array:ToTable()</span><br><span class="line"><span class="keyword">for</span> i = <span class="number">1</span>, #t <span class="keyword">do</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;table: &quot;</span> .. t[i])</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-<p>​<img src="assets/image-20240301142627-i0g1sv6.png" alt="image">​</p>
+<p>​<img src="/assets/image-20240301142627-i0g1sv6.png" alt="image">​</p>
 </li>
 </ul>
 </li>
@@ -213,17 +213,17 @@
 <p>列表调用增删查成员方法，不要忘记用冒号！！！</p>
 <p>获取列表中的值正常传入索引即可</p>
 <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">obj.list:Add(<span class="number">1</span>)</span><br><span class="line">obj.list:Add(<span class="number">10</span>)</span><br><span class="line">obj.list:Add(<span class="number">15</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(obj.list[<span class="number">2</span>])</span><br></pre></td></tr></table></figure>
-<p>​<img src="assets/image-20240302134216-hcc3g7t.png" alt="image">​</p>
+<p>​<img src="/assets/image-20240302134216-hcc3g7t.png" alt="image">​</p>
 </li>
 <li>
 <p>获取列表长度</p>
 <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">&quot;长度：&quot;</span> .. obj.list.Count)</span><br></pre></td></tr></table></figure>
-<p>​<img src="assets/image-20240302134336-sivfjmd.png" alt="image">​</p>
+<p>​<img src="/assets/image-20240302134336-sivfjmd.png" alt="image">​</p>
 </li>
 <li>
 <p>遍历列表，索引从1开始！！！</p>
 <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i = <span class="number">0</span>, obj.list.Count - <span class="number">1</span> <span class="keyword">do</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;遍历：&quot;</span> .. obj.list[i])</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-<p>​<img src="assets/image-20240302134501-z893vrf.png" alt="image">​</p>
+<p>​<img src="/assets/image-20240302134501-z893vrf.png" alt="image">​</p>
 </li>
 <li>
 <p>创建列表</p>
@@ -232,7 +232,7 @@
 <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">class</span> <span class="title">CustomSettings</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="comment">//...</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> BindType[] customTypeList =</span><br><span class="line">    &#123;</span><br><span class="line">		<span class="comment">//...</span></span><br><span class="line">        _GT(<span class="keyword">typeof</span>(List&lt;<span class="built_in">string</span>&gt;)),</span><br><span class="line">		<span class="comment">//...</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>完成上述步骤后，引用命名空间<code>System.Collections.Generic</code>​，使用固定写法<code>List_string</code>​来创建列表</p>
 <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> list2 = System.Collections.Generic.List_string()</span><br><span class="line">list2:Add(<span class="string">&quot;123&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(list2[<span class="number">0</span>])</span><br></pre></td></tr></table></figure>
-<p>​<img src="assets/image-20240302135041-35dgdf3.png" alt="image">​</p>
+<p>​<img src="/assets/image-20240302135041-35dgdf3.png" alt="image">​</p>
 </li>
 </ul>
 <h2 id="Lua调用C-Dictionary">Lua调用C#Dictionary</h2>
@@ -242,15 +242,15 @@
 <li>
 <p>获取字典中的值正常传入键即可</p>
 <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">obj.dic:Add(<span class="number">1</span>, <span class="string">&quot;123&quot;</span>)</span><br><span class="line">obj.dic:Add(<span class="number">2</span>, <span class="string">&quot;234&quot;</span>)</span><br><span class="line">obj.dic:Add(<span class="number">3</span>, <span class="string">&quot;345&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(obj.dic[<span class="number">1</span>])</span><br></pre></td></tr></table></figure>
-<p>​<img src="assets/image-20240302135344-x11akj7.png" alt="image">​</p>
+<p>​<img src="/assets/image-20240302135344-x11akj7.png" alt="image">​</p>
 </li>
 <li>
 <p>遍历字典，toLua不能使用pairs去遍历字典，toLua中要用迭代器来进行遍历</p>
 <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> iter = obj.dic:GetEnumerator()</span><br><span class="line"><span class="keyword">while</span> iter:MoveNext() <span class="keyword">do</span></span><br><span class="line">    <span class="keyword">local</span> v = iter.Current</span><br><span class="line">    <span class="built_in">print</span>(v.Key .. <span class="string">&quot;_&quot;</span> .. v.Value)</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-<p>​<img src="assets/image-20240302135613-opwou21.png" alt="image"></p>
+<p>​<img src="/assets/image-20240302135613-opwou21.png" alt="image"></p>
 <p>也可以单独遍历键或者值</p>
 <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 遍历键</span></span><br><span class="line"><span class="keyword">local</span> keyIter = obj.dic.Keys:GetEnumerator()</span><br><span class="line"><span class="keyword">while</span> keyIter:MoveNext() <span class="keyword">do</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;键：&quot;</span> .. keyIter.Current)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 遍历值</span></span><br><span class="line"><span class="keyword">local</span> valueIter = obj.dic.Values:GetEnumerator()</span><br><span class="line"><span class="keyword">while</span> valueIter:MoveNext() <span class="keyword">do</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;值：&quot;</span> .. valueIter.Current)</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-<p>​<img src="assets/image-20240302140040-mp8o00o.png" alt="image">​</p>
+<p>​<img src="/assets/image-20240302140040-mp8o00o.png" alt="image">​</p>
 </li>
 <li>
 <p>字典的创建</p>
@@ -259,11 +259,11 @@
 <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">class</span> <span class="title">CustomSettings</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="comment">//...</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> BindType[] customTypeList =</span><br><span class="line">    &#123;</span><br><span class="line">		<span class="comment">//...</span></span><br><span class="line">        _GT(<span class="keyword">typeof</span>(Dictionary&lt;<span class="built_in">int</span>, <span class="built_in">string</span>&gt;)),</span><br><span class="line">        _GT(<span class="keyword">typeof</span>(Dictionary&lt;<span class="built_in">string</span>, <span class="built_in">int</span>&gt;)),</span><br><span class="line">		<span class="comment">//...</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>完成上述步骤后，引用命名空间<code>System.Collections.Generic</code>​，使用固定写法<code>Dictionary_int_string</code>​来创建列表</p>
 <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">&quot;创建Dic&quot;</span>)</span><br><span class="line"><span class="keyword">local</span> dic2 = System.Collections.Generic.Dictionary_int_string()</span><br><span class="line">dic2:Add(<span class="number">10</span>, <span class="string">&quot;123&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(dic2[<span class="number">10</span>])</span><br></pre></td></tr></table></figure>
-<p>​<img src="assets/image-20240302140537-7gvquvk.png" alt="image">​</p>
+<p>​<img src="/assets/image-20240302140537-7gvquvk.png" alt="image">​</p>
 <p>注意！toLua使用Dictionary不能直接通过字符串作为键来访问值，否则会报错<br>
 需要调用<code>TryGetValue()</code>​这种方法</p>
 <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> dic3 = System.Collections.Generic.Dictionary_string_int()</span><br><span class="line">dic3:Add(<span class="string">&quot;123&quot;</span>, <span class="number">88888</span>)</span><br><span class="line"><span class="comment">-- print(dic3[&quot;123&quot;])       --会报错</span></span><br><span class="line"><span class="keyword">local</span> b, v = dic:TryGetValue(<span class="string">&quot;123&quot;</span>, <span class="literal">nil</span>)</span><br><span class="line"><span class="built_in">print</span>(v)</span><br></pre></td></tr></table></figure>
-<p>​<img src="assets/image-20240302140844-igbbgie.png" alt="image">​</p>
+<p>​<img src="/assets/image-20240302140844-igbbgie.png" alt="image">​</p>
 </li>
 </ul>
 <p>‍</p>

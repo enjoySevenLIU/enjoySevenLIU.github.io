@@ -7,7 +7,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png">
 <meta property="article:published_time" content="2023-08-09T18:46:51.000Z">
-<meta property="article:modified_time" content="2024-07-02T03:56:32.000Z">
+<meta property="article:modified_time" content="2024-07-03T05:13:50.218Z">
 <meta property="article:author" content="文KRIFE齐">
 <meta property="article:tag" content="blog">
 <meta name="twitter:card" content="summary">
@@ -56,7 +56,7 @@
   isHome: false,
   isHighlightShrink: false,
   isToc: true,
-  postUpdate: '2024-07-02 11:56:32'
+  postUpdate: '2024-07-03 13:13:50'
 }</script><script>(win=>{
       win.saveToLocal = {
         set: (key, value, ttl) => {
@@ -153,16 +153,16 @@
         }
       }
       detectApple()
-    })(window)</script><meta name="generator" content="Hexo 7.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">834</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">113</div></a></div><hr class="custom-hr"/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="文KRIFE齐的博客"><span class="site-name">文KRIFE齐的博客</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">U3L20-1——导航网格的生成(NavMesh)</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-08-09T18:46:51.000Z" title="发表于 2023-08-10 02:46:51">2023-08-10</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-07-02T03:56:32.000Z" title="更新于 2024-07-02 11:56:32">2024-07-02</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U3%E2%80%94%E2%80%94Unity%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/">U3——Unity核心系列</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U3%E2%80%94%E2%80%94Unity%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/U3L20%E2%80%94%E2%80%94%E5%AF%BC%E8%88%AA%E5%AF%BB%E8%B7%AF%E7%B3%BB%E7%BB%9F/">U3L20——导航寻路系统</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="U3L20-1——导航网格的生成(NavMesh)"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1>U3L20-1——导航网格的生成(NavMesh)</h1>
+    })(window)</script><meta name="generator" content="Hexo 7.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">834</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">113</div></a></div><hr class="custom-hr"/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="文KRIFE齐的博客"><span class="site-name">文KRIFE齐的博客</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">U3L20-1——导航网格的生成(NavMesh)</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-08-09T18:46:51.000Z" title="发表于 2023-08-10 02:46:51">2023-08-10</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-07-03T05:13:50.218Z" title="更新于 2024-07-03 13:13:50">2024-07-03</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U3%E2%80%94%E2%80%94Unity%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/">U3——Unity核心系列</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U3%E2%80%94%E2%80%94Unity%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/U3L20%E2%80%94%E2%80%94%E5%AF%BC%E8%88%AA%E5%AF%BB%E8%B7%AF%E7%B3%BB%E7%BB%9F/">U3L20——导航寻路系统</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="U3L20-1——导航网格的生成(NavMesh)"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1>U3L20-1——导航网格的生成(NavMesh)</h1>
 <h2 id="准备地形">准备地形</h2>
 <p>在进行导航寻路网格生成时，第一步是需要有地形，地形由美术同学制作</p>
 <h2 id="打开导航网格数据窗口">打开导航网格数据窗口</h2>
-<p>​<img src="assets/image-20230810152344-0kd9c3h.png" alt="image">​</p>
+<p>​<img src="/assets/image-20230810152344-0kd9c3h.png" alt="image">​</p>
 <p>Window ——&gt; AI ——&gt; Navigation 打开Unity内置的导航网格生成窗口</p>
 <h2 id="参数相关">参数相关</h2>
 <h3 id="Object-场景对象设置页签">Object 场景对象设置页签</h3>
 <p>在这里设置需要烘焙导航网格的地形对象，以及该对象的地形性质</p>
-<p>​<img src="assets/image-20230810152804-twb8907.png" alt="image">​</p>
+<p>​<img src="/assets/image-20230810152804-twb8907.png" alt="image">​</p>
 <ul>
 <li>
 <p>Sceme Filter： 场景过滤器，配合Hierarchy窗口使用</p>
@@ -187,7 +187,7 @@
 </ul>
 <h3 id="Bake-导航数据烘焙页签">Bake 导航数据烘焙页签</h3>
 <p>根据需要导航的对象的各种情况（大小，爬坡能力等），决定导航网格如何烘培</p>
-<p>​<img src="assets/image-20230810153237-ef49rxc.png" alt="image">​</p>
+<p>​<img src="/assets/image-20230810153237-ef49rxc.png" alt="image">​</p>
 <ul>
 <li>
 <p><strong>Agent Radius 代理半径 决定了烘焙边缘精确度控制平台可行走区域和边缘可行走区域****半径越窄，可行走区域就越大<br>
@@ -241,7 +241,7 @@
 </ul>
 <h3 id="Areas-导航地区页签">Areas 导航地区页签</h3>
 <p>配合Object页签使用，用来决定各个地形的寻路消耗</p>
-<p>​<img src="assets/image-20230810155417-im1fbod.png" alt="image">​</p>
+<p>​<img src="/assets/image-20230810155417-im1fbod.png" alt="image">​</p>
 <ul>
 <li>Name 区域名字</li>
 <li><strong>Cost 寻路消耗<br>
@@ -249,7 +249,7 @@
 </ul>
 <h3 id="Agents-代理页签">Agents 代理页签</h3>
 <p>用于配置寻路代理信息，参数和烘培页签上差不多</p>
-<p>​<img src="assets/image-20230810160209-2amer6j.png" alt="image"></p>
+<p>​<img src="/assets/image-20230810160209-2amer6j.png" alt="image"></p>
 <ul>
 <li>可以为不同的需要导航的对象，设置不同的代理，<br>
 以应对不同对象的寻路情况</li>

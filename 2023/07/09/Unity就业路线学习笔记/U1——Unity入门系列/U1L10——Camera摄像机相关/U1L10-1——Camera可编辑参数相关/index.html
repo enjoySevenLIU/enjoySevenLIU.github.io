@@ -7,7 +7,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png">
 <meta property="article:published_time" content="2023-07-09T11:43:30.000Z">
-<meta property="article:modified_time" content="2024-07-02T03:56:23.000Z">
+<meta property="article:modified_time" content="2024-07-03T05:13:50.168Z">
 <meta property="article:author" content="文KRIFE齐">
 <meta property="article:tag" content="blog">
 <meta name="twitter:card" content="summary">
@@ -56,7 +56,7 @@
   isHome: false,
   isHighlightShrink: false,
   isToc: true,
-  postUpdate: '2024-07-02 11:56:23'
+  postUpdate: '2024-07-03 13:13:50'
 }</script><script>(win=>{
       win.saveToLocal = {
         set: (key, value, ttl) => {
@@ -153,10 +153,10 @@
         }
       }
       detectApple()
-    })(window)</script><meta name="generator" content="Hexo 7.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">834</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">113</div></a></div><hr class="custom-hr"/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="文KRIFE齐的博客"><span class="site-name">文KRIFE齐的博客</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">U1L10-1——Camera可编辑参数相关</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-07-09T11:43:30.000Z" title="发表于 2023-07-09 19:43:30">2023-07-09</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-07-02T03:56:23.000Z" title="更新于 2024-07-02 11:56:23">2024-07-02</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U1%E2%80%94%E2%80%94Unity%E5%85%A5%E9%97%A8%E7%B3%BB%E5%88%97/">U1——Unity入门系列</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U1%E2%80%94%E2%80%94Unity%E5%85%A5%E9%97%A8%E7%B3%BB%E5%88%97/U1L10%E2%80%94%E2%80%94Camera%E6%91%84%E5%83%8F%E6%9C%BA%E7%9B%B8%E5%85%B3/">U1L10——Camera摄像机相关</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="U1L10-1——Camera可编辑参数相关"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1>U1L10-1——Camera可编辑参数相关</h1>
+    })(window)</script><meta name="generator" content="Hexo 7.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">834</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">113</div></a></div><hr class="custom-hr"/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="文KRIFE齐的博客"><span class="site-name">文KRIFE齐的博客</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">U1L10-1——Camera可编辑参数相关</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-07-09T11:43:30.000Z" title="发表于 2023-07-09 19:43:30">2023-07-09</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-07-03T05:13:50.168Z" title="更新于 2024-07-03 13:13:50">2024-07-03</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U1%E2%80%94%E2%80%94Unity%E5%85%A5%E9%97%A8%E7%B3%BB%E5%88%97/">U1——Unity入门系列</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U1%E2%80%94%E2%80%94Unity%E5%85%A5%E9%97%A8%E7%B3%BB%E5%88%97/U1L10%E2%80%94%E2%80%94Camera%E6%91%84%E5%83%8F%E6%9C%BA%E7%9B%B8%E5%85%B3/">U1L10——Camera摄像机相关</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="U1L10-1——Camera可编辑参数相关"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1>U1L10-1——Camera可编辑参数相关</h1>
 <h1>Camera窗口</h1>
 <p>Camera组件参数如下：</p>
-<p>​<img src="assets/image-20230709194529-uwx9s6r.png" alt="image">​</p>
+<p>​<img src="/assets/image-20230709194529-uwx9s6r.png" alt="image">​</p>
 <ul>
 <li>
 <p>Clear Flags - 清除背景方式</p>
@@ -194,7 +194,7 @@
 <li>Vertical - 以竖直方向夹角为准</li>
 <li>Horizontal - 以水平方向夹角为准</li>
 </ul>
-<p>​<img src="assets/image-20230812154947-893ykyi.png" alt="image">​</p>
+<p>​<img src="/assets/image-20230812154947-893ykyi.png" alt="image">​</p>
 </li>
 <li>
 <p>Field of view (FOV) - 视口大小，决定视锥开口角度</p>
@@ -215,11 +215,11 @@
 </li>
 <li>
 <p>orthographic 正交摄像机（一般用于2D游戏制作）</p>
-<p>​<img src="assets/image-20240604144647-45ahful.png" alt="image">​</p>
+<p>​<img src="/assets/image-20240604144647-45ahful.png" alt="image">​</p>
 <ul>
 <li>
 <p><strong>Size - 摄制范围，视锥体竖直方向上的一半</strong></p>
-<p>​<img src="assets/image-20240604145107-sn8mp3m.png" alt="image">​</p>
+<p>​<img src="/assets/image-20240604145107-sn8mp3m.png" alt="image">​</p>
 </li>
 </ul>
 </li>
@@ -271,10 +271,10 @@
 </ul>
 <h2 id="Render-Texture-将摄像机拍摄到的内容添加到一个贴图上">Render Texture - 将摄像机拍摄到的内容添加到一个贴图上</h2>
 <p>先在Project窗口上创建一个Render Texture</p>
-<p>​<img src="assets/image-20240411160211-b8q8oqt.png" alt="image">​</p>
+<p>​<img src="/assets/image-20240411160211-b8q8oqt.png" alt="image">​</p>
 <p>然后单独为该Render Texture创建一个摄像机用来拍摄，再将该Render Texture挂载到新摄像机上<br>
 其中，这个摄像机最好要先设置好Clear Flags属性以及Culling Mask属性，避免渲染问题</p>
-<p>​<img src="assets/image-20240411160814-gs11ftx.png" alt="image">​</p>
+<p>​<img src="/assets/image-20240411160814-gs11ftx.png" alt="image">​</p>
 <p>之后，这个Render Texture就可以添加到：</p>
 <ul>
 <li>GUI的GUIContent​的<code>Image</code>​上</li>

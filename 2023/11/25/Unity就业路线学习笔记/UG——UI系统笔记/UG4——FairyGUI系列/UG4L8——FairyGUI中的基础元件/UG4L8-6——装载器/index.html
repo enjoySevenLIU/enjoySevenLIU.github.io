@@ -7,7 +7,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png">
 <meta property="article:published_time" content="2023-11-25T10:47:37.000Z">
-<meta property="article:modified_time" content="2024-07-02T03:57:02.000Z">
+<meta property="article:modified_time" content="2024-07-03T05:13:50.414Z">
 <meta property="article:author" content="文KRIFE齐">
 <meta property="article:tag" content="blog">
 <meta name="twitter:card" content="summary">
@@ -56,7 +56,7 @@
   isHome: false,
   isHighlightShrink: false,
   isToc: true,
-  postUpdate: '2024-07-02 11:57:02'
+  postUpdate: '2024-07-03 13:13:50'
 }</script><script>(win=>{
       win.saveToLocal = {
         set: (key, value, ttl) => {
@@ -153,7 +153,7 @@
         }
       }
       detectApple()
-    })(window)</script><meta name="generator" content="Hexo 7.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">834</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">113</div></a></div><hr class="custom-hr"/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="文KRIFE齐的博客"><span class="site-name">文KRIFE齐的博客</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">UG4L8-6——装载器</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-11-25T10:47:37.000Z" title="发表于 2023-11-25 18:47:37">2023-11-25</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-07-02T03:57:02.000Z" title="更新于 2024-07-02 11:57:02">2024-07-02</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UG%E2%80%94%E2%80%94UI%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0/">UG——UI系统笔记</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UG%E2%80%94%E2%80%94UI%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0/UG4%E2%80%94%E2%80%94FairyGUI%E7%B3%BB%E5%88%97/">UG4——FairyGUI系列</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UG%E2%80%94%E2%80%94UI%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0/UG4%E2%80%94%E2%80%94FairyGUI%E7%B3%BB%E5%88%97/UG4L8%E2%80%94%E2%80%94FairyGUI%E4%B8%AD%E7%9A%84%E5%9F%BA%E7%A1%80%E5%85%83%E4%BB%B6/">UG4L8——FairyGUI中的基础元件</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="UG4L8-6——装载器"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1>UG4L8-6——装载器</h1>
+    })(window)</script><meta name="generator" content="Hexo 7.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">834</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">113</div></a></div><hr class="custom-hr"/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="文KRIFE齐的博客"><span class="site-name">文KRIFE齐的博客</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">UG4L8-6——装载器</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-11-25T10:47:37.000Z" title="发表于 2023-11-25 18:47:37">2023-11-25</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-07-03T05:13:50.414Z" title="更新于 2024-07-03 13:13:50">2024-07-03</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UG%E2%80%94%E2%80%94UI%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0/">UG——UI系统笔记</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UG%E2%80%94%E2%80%94UI%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0/UG4%E2%80%94%E2%80%94FairyGUI%E7%B3%BB%E5%88%97/">UG4——FairyGUI系列</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UG%E2%80%94%E2%80%94UI%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0/UG4%E2%80%94%E2%80%94FairyGUI%E7%B3%BB%E5%88%97/UG4L8%E2%80%94%E2%80%94FairyGUI%E4%B8%AD%E7%9A%84%E5%9F%BA%E7%A1%80%E5%85%83%E4%BB%B6/">UG4L8——FairyGUI中的基础元件</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="UG4L8-6——装载器"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1>UG4L8-6——装载器</h1>
 <h2 id="本章代码关键字">本章代码关键字</h2>
 <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">GLoader									<span class="comment">//装载器类</span></span><br><span class="line">gObject.asLoader						<span class="comment">//将元件对象as成装载器对象返回</span></span><br><span class="line">gLoader.url								<span class="comment">//装载器所用的资源的url</span></span><br><span class="line">gLoader.movieClip						<span class="comment">//获取装载器装载的动画或者图片</span></span><br><span class="line">gLoader.component						<span class="comment">//获取装载器装载的组件</span></span><br><span class="line">gLoader.texture							<span class="comment">//装载Unity的贴图的属性</span></span><br><span class="line">UIObjectFactory.SetLoaderExtension()	<span class="comment">//注册拥有自定义加载方法的GLoader派生类</span></span><br></pre></td></tr></table></figure>
 <h1>装载器</h1>
@@ -164,22 +164,22 @@
 <ol>
 <li>
 <p>左侧选择装载器图标，在舞台上进行创建</p>
-<p>​<img src="assets/image-20231125185146-8oyi26r.png" alt="image">​</p>
+<p>​<img src="/assets/image-20231125185146-8oyi26r.png" alt="image">​</p>
 </li>
 <li>
 <p>选择想要变成装载器的元件右键，点击替换元件选择装载器</p>
-<p>​<img src="assets/image-20231125185238-94mmb5y.png" alt="image">​</p>
+<p>​<img src="/assets/image-20231125185238-94mmb5y.png" alt="image">​</p>
 </li>
 </ol>
 <h2 id="装载器相关属性">装载器相关属性</h2>
-<p>​<img src="assets/image-20231125185259-kgm3xzb.png" alt="image">​</p>
+<p>​<img src="/assets/image-20231125185259-kgm3xzb.png" alt="image">​</p>
 <ul>
 <li>
 <p>URL：资源路径（图片、动画、组件）</p>
 </li>
 <li>
 <p>发布时清除：如果选中该选项，发布时会自动清空这里设置的值</p>
-<p>​<img src="assets/image-20231125185536-wqnn36i.png" alt="image"></p>
+<p>​<img src="/assets/image-20231125185536-wqnn36i.png" alt="image"></p>
 </li>
 <li>
 <p>自动大小：如果选中该选项，则装载器的尺寸会自动适配图片大小<br>
@@ -187,7 +187,7 @@
 </li>
 <li>
 <p>填充处理</p>
-<p>​<img src="assets/image-20231125185351-2y4jtr9.png" alt="image">​</p>
+<p>​<img src="/assets/image-20231125185351-2y4jtr9.png" alt="image">​</p>
 <ul>
 <li>无 ：内容不会发生任何缩放。</li>
 <li>等比缩放（显示全部）：按照最小比率缩放，不变形，一边可能留空白。</li>

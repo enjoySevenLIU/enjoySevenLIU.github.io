@@ -7,7 +7,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png">
 <meta property="article:published_time" content="2024-03-22T12:31:12.000Z">
-<meta property="article:modified_time" content="2024-07-02T03:57:14.000Z">
+<meta property="article:modified_time" content="2024-07-03T05:13:50.270Z">
 <meta property="article:author" content="文KRIFE齐">
 <meta property="article:tag" content="blog">
 <meta name="twitter:card" content="summary">
@@ -56,7 +56,7 @@
   isHome: false,
   isHighlightShrink: false,
   isToc: true,
-  postUpdate: '2024-07-02 11:57:14'
+  postUpdate: '2024-07-03 13:13:50'
 }</script><script>(win=>{
       win.saveToLocal = {
         set: (key, value, ttl) => {
@@ -153,7 +153,7 @@
         }
       }
       detectApple()
-    })(window)</script><meta name="generator" content="Hexo 7.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">834</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">113</div></a></div><hr class="custom-hr"/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="文KRIFE齐的博客"><span class="site-name">文KRIFE齐的博客</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">UEDL12——AssetDatabase公共类</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-03-22T12:31:12.000Z" title="发表于 2024-03-22 20:31:12">2024-03-22</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-07-02T03:57:14.000Z" title="更新于 2024-07-02 11:57:14">2024-07-02</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UED%E2%80%94%E2%80%94Unity%E7%BC%96%E8%BE%91%E5%99%A8%E6%8B%93%E5%B1%95/">UED——Unity编辑器拓展</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="UEDL12——AssetDatabase公共类"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1>UEDL12——AssetDatabase公共类</h1>
+    })(window)</script><meta name="generator" content="Hexo 7.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">834</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">113</div></a></div><hr class="custom-hr"/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="文KRIFE齐的博客"><span class="site-name">文KRIFE齐的博客</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">UEDL12——AssetDatabase公共类</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-03-22T12:31:12.000Z" title="发表于 2024-03-22 20:31:12">2024-03-22</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-07-03T05:13:50.270Z" title="更新于 2024-07-03 13:13:50">2024-07-03</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UED%E2%80%94%E2%80%94Unity%E7%BC%96%E8%BE%91%E5%99%A8%E6%8B%93%E5%B1%95/">UED——Unity编辑器拓展</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="UEDL12——AssetDatabase公共类"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1>UEDL12——AssetDatabase公共类</h1>
 <h2 id="本章代码关键字">本章代码关键字</h2>
 <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">AssetDatabase										<span class="comment">//用于在编辑器环境中管理和操作项目中的资源（Assets）的编辑器公共类</span></span><br><span class="line">AssetDatabase.CreateAsset()							<span class="comment">//将内存内的资源创建为工程下的本地文件，不能在StreamingAssets中创建资源，不能创建预设体</span></span><br><span class="line">AssetDatabase.CreateFolder()						<span class="comment">//在工程文件夹下创建文件夹</span></span><br><span class="line">AssetDatabase.CopyAsset()							<span class="comment">//将工程下的某个资源复制到工程下的另一个文件夹</span></span><br><span class="line">AssetDatabase.MoveAsset()							<span class="comment">//将工程下的某个资源移动到工程下的另一个文件夹</span></span><br><span class="line">AssetDatabase.DeleteAsset()							<span class="comment">//将工程下的某个资源删除</span></span><br><span class="line">AssetDatabase.DeleteAssets()						<span class="comment">//批量删除一些资源，会将批量删除失败的资源路径添加到传入的列表内</span></span><br><span class="line">AssetDatabase.GetAssetPath()						<span class="comment">//获取某个资源在工程下的路径</span></span><br><span class="line">AssetDatabase.LoadAssetAtPath()						<span class="comment">//读取工程内某个文件的路径</span></span><br><span class="line">AssetDatabase.LoadAllAssetsAtPath()					<span class="comment">//根据工程下的路径加载所有资源，可以批量加载某个图集里的所有Sprite</span></span><br><span class="line">AssetDatabase.Refresh()								<span class="comment">//刷新Project窗口</span></span><br><span class="line">AssetDatabase.GetImplicitAssetBundleName()			<span class="comment">//获取工程下的某个资源所属的AB包名</span></span><br><span class="line">AssetDatabase.LoadAllAssetRepresentationsAtPath()	<span class="comment">//根据工程下的路径加载项目视图内可见的子资源，可加载图集里的所有Sprite，返回值不包括图集文件本身</span></span><br></pre></td></tr></table></figure>
 <h1>AssetDatabase</h1>
@@ -181,7 +181,7 @@
 <p>注意：不能在StreamingAssets中创建资源，不能创建预设体（预设体创建之后会讲）<br>
 只能创建资源相关，例如材质球等，路径需要写后缀</p>
  <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (GUILayout.Button(<span class="string">&quot;创建资源&quot;</span>))</span><br><span class="line">&#123;</span><br><span class="line">    Material material = <span class="keyword">new</span> Material(Shader.Find(<span class="string">&quot;Specular&quot;</span>));      <span class="comment">//使用Unity自带的Shader</span></span><br><span class="line">    AssetDatabase.CreateAsset(material, <span class="string">&quot;Assets/Resources/MyMaterial.mat&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>效果如下：<img src="assets/image-20240407195611-cls08uo.png" alt="image">​</p>
+<p>效果如下：<img src="/assets/image-20240407195611-cls08uo.png" alt="image">​</p>
 </li>
 <li>
 <p>​<code>AssetDatabase.CreateFolder()</code>​ 创建文件夹，路径从 <code>Assets/...</code>​ 开始</p>
@@ -190,7 +190,7 @@
 <li>参数二：创建的文件夹名</li>
 </ul>
  <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (GUILayout.Button(<span class="string">&quot;创建文件夹&quot;</span>))</span><br><span class="line">&#123;</span><br><span class="line">    AssetDatabase.CreateFolder(<span class="string">&quot;Assets/Resources&quot;</span>, <span class="string">&quot;MyTestFolder&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>效果如下：​<img src="assets/image-20240407200028-bro420t.png" alt="image">​</p>
+<p>效果如下：​<img src="/assets/image-20240407200028-bro420t.png" alt="image">​</p>
 </li>
 <li>
 <p>​<code>AssetDatabase.CopyAsset()</code>​ 拷贝资源，路径从 <code>Assets/...</code>​ 开始</p>
@@ -200,7 +200,7 @@
 </ul>
 <p>注意：需要写后缀名</p>
  <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (GUILayout.Button(<span class="string">&quot;拷贝资源&quot;</span>))</span><br><span class="line">&#123;</span><br><span class="line">    AssetDatabase.CopyAsset(<span class="string">&quot;Assets/Editor Default Resources/EditorTeach.png&quot;</span>, <span class="string">&quot;Assets/Resources/MyTestFolder/EditorTeach.png&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>效果如下：<img src="assets/image-20240407200531-8vxnzds.png" alt="image">​</p>
+<p>效果如下：<img src="/assets/image-20240407200531-8vxnzds.png" alt="image">​</p>
 </li>
 <li>
 <p>​<code>AssetDatabase.MoveAsset()</code>​ 移动资源，路径从 <code>Assets/...</code>​ 开始</p>
@@ -211,7 +211,7 @@
 <p>注意：需要写后缀名</p>
  <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (GUILayout.Button(<span class="string">&quot;移动资源&quot;</span>))</span><br><span class="line">&#123;</span><br><span class="line">    AssetDatabase.MoveAsset(<span class="string">&quot;Assets/Resources/MyTestFolder/EditorTeach.png&quot;</span>, <span class="string">&quot;Assets/Resources//EditorTeach.png&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>效果如下：<br>
-​<img src="assets/image-20240407200832-yqejcup.png" alt="image"><img src="assets/image-20240407200851-0shcfu4.png" alt="image">​</p>
+​<img src="/assets/image-20240407200832-yqejcup.png" alt="image"><img src="/assets/image-20240407200851-0shcfu4.png" alt="image">​</p>
 </li>
 <li>
 <p>​<code>AssetDatabase.DeleteAsset()</code>​删除资源，路径从 <code>Assets/...</code>​ 开始</p>
@@ -221,8 +221,8 @@
  <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (GUILayout.Button(<span class="string">&quot;删除资源&quot;</span>))</span><br><span class="line">&#123;</span><br><span class="line">    AssetDatabase.DeleteAsset(<span class="string">&quot;Assets/Resources/EditorTeach.png&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>注意：需要写后缀名</p>
 <p>效果如下：<br>
-​<img src="assets/image-20240407201340-da81r49.png" alt="image"><br>
-​<img src="assets/image-20240407201453-ak3bz68.png" alt="image">​</p>
+​<img src="/assets/image-20240407201340-da81r49.png" alt="image"><br>
+​<img src="/assets/image-20240407201453-ak3bz68.png" alt="image">​</p>
 </li>
 <li>
 <p>​<code>AssetDatabase.DeleteAssets()</code>​ 批量删除资源，路径从 <code>Assets/...</code>​ 开始</p>
@@ -232,8 +232,8 @@
 </ul>
  <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (GUILayout.Button(<span class="string">&quot;批量删除资源&quot;</span>))</span><br><span class="line">&#123;</span><br><span class="line">    List&lt;<span class="built_in">string</span>&gt; failList = <span class="keyword">new</span> List&lt;<span class="built_in">string</span>&gt;();</span><br><span class="line">    AssetDatabase.DeleteAssets(<span class="keyword">new</span> <span class="built_in">string</span>[] &#123; </span><br><span class="line">        <span class="string">&quot;Assets/Resources/EditorTeach.png&quot;</span>,</span><br><span class="line">        <span class="string">&quot;Assets/Resources/EditorTeach2.png&quot;</span>,</span><br><span class="line">    &#125;, failList);</span><br><span class="line">    <span class="keyword">for</span> (<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; failList.Count; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        Debug.Log(failList[i]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>效果如下：<br>
-​<img src="assets/image-20240407201850-mdezumv.png" alt="image"><br>
-​<img src="assets/image-20240407202027-58xh9md.png" alt="image">​</p>
+​<img src="/assets/image-20240407201850-mdezumv.png" alt="image"><br>
+​<img src="/assets/image-20240407202027-58xh9md.png" alt="image">​</p>
 </li>
 <li>
 <p>​<code>AssetDatabase.GetAssetPath()</code>​获取资源路径 可以配合Selection​选中资源一起使用</p>
@@ -242,7 +242,7 @@
 <li>返回值：资源的路径，该路径是基于工程所在的路径的，路径从 <code>Assets/...</code>​ 开始，如果传入的资源找不到会返回空字符串</li>
 </ul>
  <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (GUILayout.Button(<span class="string">&quot;获取资源路径&quot;</span>))</span><br><span class="line">&#123;</span><br><span class="line">    Debug.Log(AssetDatabase.GetAssetPath(Selection.activeObject));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>效果如下：<img src="assets/image-20240407202525-oj89kfa.png" alt="image">​</p>
+<p>效果如下：<img src="/assets/image-20240407202525-oj89kfa.png" alt="image">​</p>
 </li>
 <li>
 <p>​<code>AssetDatabase.LoadAssetAtPath()</code>​ 根据路径加载资源，路径从<code>Assets/</code>​开始</p>
@@ -252,7 +252,7 @@
 <li>参数二：资源的类型（该参数可以由泛型参数代替）</li>
 </ul>
  <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (GUILayout.Button(<span class="string">&quot;加载资源&quot;</span>))</span><br><span class="line">&#123;</span><br><span class="line">    Texture tex = AssetDatabase.LoadAssetAtPath&lt;Texture&gt;(<span class="string">&quot;Assets/Resources/EditorTeach.png&quot;</span>);</span><br><span class="line">    Debug.Log(tex.name);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>效果如下：<img src="assets/image-20240407203146-gt1j1nx.png" alt="image">​</p>
+<p>效果如下：<img src="/assets/image-20240407203146-gt1j1nx.png" alt="image">​</p>
 </li>
 <li>
 <p>​<code>AssetDatabase.LoadAllAssetsAtPath()</code>​ 根据路径加载资源，同时返回该资源本身和该资源的子资源，路径从<code>Assets/</code>​开始</p>
@@ -263,7 +263,7 @@
 <li>返回值：批量加载出来的资源数组，如果加载的是图集资源，则返回的数组第一个元素是图集本身，后面的全是图集内的<code>Sprite</code>​</li>
 </ul>
  <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (GUILayout.Button(<span class="string">&quot;加载图集&quot;</span>))</span><br><span class="line">&#123;</span><br><span class="line">    Object[] atlas = AssetDatabase.LoadAllAssetsAtPath(<span class="string">&quot;Assets/Resources/Mario.png&quot;</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; atlas.Length; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        Debug.Log(atlas[i].name);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>效果如下：<img src="assets/image-20240407204047-cf53rw7.png" alt="image">​</p>
+<p>效果如下：<img src="/assets/image-20240407204047-cf53rw7.png" alt="image">​</p>
 </li>
 <li>
 <p>​<code>AssetDatabase.Refresh()</code>​ 刷新Project窗口内容，当对资源进行移动、导入、删除等操作后，需要执行刷新</p>
@@ -271,8 +271,8 @@
 因此需要使用该方法刷新Project窗口，让我们看到资源</p>
  <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (GUILayout.Button(<span class="string">&quot;刷新资源窗口&quot;</span>))</span><br><span class="line">&#123;</span><br><span class="line">    File.WriteAllText(Application.dataPath + <span class="string">&quot;/Resources/test2.txt&quot;</span>, <span class="string">&quot;123123123&quot;</span>);</span><br><span class="line">    AssetDatabase.Refresh();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>效果如下：<br>
-​<img src="assets/image-20240407205239-0fcqm3z.png" alt="image">​</p>
-<p>​<img src="assets/image-20240407205350-oua3s1u.png" alt="image">​</p>
+​<img src="/assets/image-20240407205239-0fcqm3z.png" alt="image">​</p>
+<p>​<img src="/assets/image-20240407205350-oua3s1u.png" alt="image">​</p>
 </li>
 <li>
 <p>​<code>AssetDatabase.GetImplicitAssetBundleName()</code>​ 返回资源所属的AB包名，路径从<code>Assets/</code>​开始</p>
@@ -282,7 +282,7 @@
 <li>返回值：资源所属AB包名字</li>
 </ul>
  <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (GUILayout.Button(<span class="string">&quot;获取资源来自哪个AB包&quot;</span>))</span><br><span class="line">&#123;</span><br><span class="line">    Debug.Log(AssetDatabase.GetImplicitAssetBundleName(<span class="string">&quot;Assets/Gizmos/MyIcon.png&quot;</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>显示效果：<img src="assets/image-20240407210624-cbplm5b.png" alt="image">​</p>
+<p>显示效果：<img src="/assets/image-20240407210624-cbplm5b.png" alt="image">​</p>
 </li>
 <li>
 <p>​<code>AssetDatabase.LoadAllAssetRepresentationsAtPath()</code>​ 返回在项目视图中可见的子资源，路径从<code>Assets/</code>​开始</p>
@@ -294,7 +294,7 @@
 <li>返回值：批量加载出来的资源数组，如果加载的是图集资源，则返回的数组全是图集内的<code>Sprite</code>​</li>
 </ul>
  <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (GUILayout.Button(<span class="string">&quot;不加载图集文件本身的加载图集&quot;</span>))</span><br><span class="line">&#123;</span><br><span class="line">    Object[] atlas = AssetDatabase.LoadAllAssetRepresentationsAtPath(<span class="string">&quot;Assets/Resources/Mario.png&quot;</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; atlas.Length; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        Debug.Log(atlas[i].name);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>显示效果：<img src="assets/image-20240418125501-g3e6nmg.png" alt="image">​</p>
+<p>显示效果：<img src="/assets/image-20240418125501-g3e6nmg.png" alt="image">​</p>
 </li>
 </ol>
 <p>‍</p>

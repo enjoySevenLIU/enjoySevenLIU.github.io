@@ -7,7 +7,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png">
 <meta property="article:published_time" content="2023-11-04T07:07:45.000Z">
-<meta property="article:modified_time" content="2024-07-02T03:56:34.000Z">
+<meta property="article:modified_time" content="2024-07-03T05:13:50.237Z">
 <meta property="article:author" content="文KRIFE齐">
 <meta property="article:tag" content="blog">
 <meta name="twitter:card" content="summary">
@@ -56,7 +56,7 @@
   isHome: false,
   isHighlightShrink: false,
   isToc: true,
-  postUpdate: '2024-07-02 11:56:34'
+  postUpdate: '2024-07-03 13:13:50'
 }</script><script>(win=>{
       win.saveToLocal = {
         set: (key, value, ttl) => {
@@ -153,7 +153,7 @@
         }
       }
       detectApple()
-    })(window)</script><meta name="generator" content="Hexo 7.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">834</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">113</div></a></div><hr class="custom-hr"/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="文KRIFE齐的博客"><span class="site-name">文KRIFE齐的博客</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">U4S1L7——Input Action类</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-11-04T07:07:45.000Z" title="发表于 2023-11-04 15:07:45">2023-11-04</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-07-02T03:56:34.000Z" title="更新于 2024-07-02 11:56:34">2024-07-02</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U4%E2%80%94%E2%80%94Unity%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/">U4——Unity进阶系列</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U4%E2%80%94%E2%80%94Unity%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/U4S1%E2%80%94%E2%80%94%E8%BE%93%E5%85%A5%E7%B3%BB%E7%BB%9F-InputSystem/">U4S1——输入系统 InputSystem</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="U4S1L7——Input Action类"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1>U4S1L7——Input Action类</h1>
+    })(window)</script><meta name="generator" content="Hexo 7.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">834</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">113</div></a></div><hr class="custom-hr"/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="文KRIFE齐的博客"><span class="site-name">文KRIFE齐的博客</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">U4S1L7——Input Action类</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-11-04T07:07:45.000Z" title="发表于 2023-11-04 15:07:45">2023-11-04</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-07-03T05:13:50.237Z" title="更新于 2024-07-03 13:13:50">2024-07-03</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U4%E2%80%94%E2%80%94Unity%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/">U4——Unity进阶系列</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U4%E2%80%94%E2%80%94Unity%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/U4S1%E2%80%94%E2%80%94%E8%BE%93%E5%85%A5%E7%B3%BB%E7%BB%9F-InputSystem/">U4S1——输入系统 InputSystem</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="U4S1L7——Input Action类"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1>U4S1L7——Input Action类</h1>
 <h2 id="本章代码关键字">本章代码关键字</h2>
 <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">InputAction                    <span class="comment">//输入动作类，InputSystem输入监听触发相关的主要内容</span></span><br><span class="line">inputAction.Enable()           <span class="comment">//输入监听激活方法</span></span><br><span class="line">inputAction.started            <span class="comment">//开始操作时触发的委托</span></span><br><span class="line">inputAction.performed          <span class="comment">//真正触发时的委托</span></span><br><span class="line">inputAction.canceled           <span class="comment">//结束输入时触发的委托</span></span><br><span class="line">CallbackContext                <span class="comment">//输入监听回调信息类，所有作为输入监听方法都需要用这个来作为参数</span></span><br><span class="line">callbackContext.phase          <span class="comment">//当前输入状态</span></span><br><span class="line">callbackContext.action         <span class="comment">//输入动作行为也就是InputAction对象信息，即触发者传入自己</span></span><br><span class="line">callbackContext.control        <span class="comment">//控件信息，传入触发这次监听方法的输入控件名</span></span><br><span class="line">callbackContext.ReadValue&lt;&gt;    <span class="comment">//输入值，泛型内填入的类型有输入控件本身决定</span></span><br><span class="line">callbackContext.duration       <span class="comment">//输入持续时间</span></span><br><span class="line">callbackContext.startTime      <span class="comment">//输入开始时的时间</span></span><br></pre></td></tr></table></figure>
 <h1>InputAction</h1>
@@ -162,22 +162,22 @@
 当输入触发时，我们只需要把精力花在输入触发后的逻辑处理上</p>
 <p>我们在想要用于处理输入动作的类中，申明对应的<code>InputAction</code>​类型的成员变量（注意：需要引用命名空间<code>UnityEngine.InputSystem</code>​）</p>
 <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Lesson7</span> : <span class="title">MonoBehaviour</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> InputAction move;</span><br><span class="line">    <span class="keyword">public</span> InputAction Fire;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>​<img src="assets/image-20231104151347-2hd2k9e.png" alt="image">​</p>
+<p>​<img src="/assets/image-20231104151347-2hd2k9e.png" alt="image">​</p>
 <h2 id="InputAction参数相关">InputAction参数相关</h2>
-<p>​<img src="assets/image-20231104151536-b284a38.png" alt="image"></p>
+<p>​<img src="/assets/image-20231104151536-b284a38.png" alt="image"></p>
 <ul>
 <li>
-<p>点击齿轮<img src="assets/image-20231104151636-4yjyxz3.png" alt="image"> 输入设置</p>
-<p>​<img src="assets/image-20231104201002-irjwc1k.png" alt="image">​</p>
+<p>点击齿轮<img src="/assets/image-20231104151636-4yjyxz3.png" alt="image"> 输入设置</p>
+<p>​<img src="/assets/image-20231104201002-irjwc1k.png" alt="image">​</p>
 <ul>
 <li>
 <h4 id="Actions-输入动作设置-设置输入的类型，筛选控制的类型">Actions 输入动作设置 - 设置输入的类型，筛选控制的类型</h4>
 <p>设置检测哪些输入</p>
-<p>​<img src="assets/image-20231104151847-ktu43m2.png" alt="image">​</p>
+<p>​<img src="/assets/image-20231104151847-ktu43m2.png" alt="image">​</p>
 <ul>
 <li>
 <p>Action Type：动作类型</p>
-<p>​<img src="assets/image-20231104152008-47uawm3.png" alt="image">​</p>
+<p>​<img src="/assets/image-20231104152008-47uawm3.png" alt="image">​</p>
 <ul>
 <li>Value：值类型，<strong>主要用于状态连续更改的输入</strong>，<br>
 例如鼠标的移动，手柄的摇杆。<br>
@@ -194,7 +194,7 @@
 <p>在这里选择对应的类型，之后在选择对应设备按键相关属性时，会根据你选择内容的不同，筛选对应内容<br>
 这上面显示的内容就是各设备属性的返回值类型，<strong>当你选择他们后，非选择的类型将不会在之后的按键设置中出现</strong><br>
 很多内容我们基本用不到，<strong>相当于是在这里筛选输入设备的返回值</strong></p>
-<p>​<img src="assets/image-20231104152304-5tuadk4.png" alt="image">​</p>
+<p>​<img src="/assets/image-20231104152304-5tuadk4.png" alt="image">​</p>
 <ul>
 <li>Any - 任何值</li>
 <li>Analog - 模拟值，浮点数</li>
@@ -218,7 +218,7 @@
 <h4 id="Interactions-相互作用设置-处理特殊行为">Interactions 相互作用设置 - 处理特殊行为</h4>
 <p><strong>用于特殊输入，比如长按、多次点击等等，</strong><br>
 当满足条件时才会触发这个行为（设置长按时间、点击次数等等）</p>
-<p>​<img src="assets/image-20231104152723-22r51oq.png" alt="image">​</p>
+<p>​<img src="/assets/image-20231104152723-22r51oq.png" alt="image">​</p>
 <ul>
 <li>
 <p>3个委托事件（这个事件在之后的代码里使用）</p>
@@ -230,7 +230,7 @@
 </li>
 <li>
 <p>特殊输入类型及参数</p>
-<p>​<img src="assets/image-20231104153203-vl15mx8.png" alt="image"></p>
+<p>​<img src="/assets/image-20231104153203-vl15mx8.png" alt="image"></p>
 <p>以下的选项里几乎每个参数都有默认值，可以在InputSystemPackage里修改这些默认值</p>
 <ul>
 <li>
@@ -253,7 +253,7 @@
 当大于等于这个值则认为按钮按下了。</strong></p>
 </li>
 </ol>
-<p>​<img src="assets/image-20231104153439-vg3viqz.png" alt="image">​</p>
+<p>​<img src="/assets/image-20231104153439-vg3viqz.png" alt="image">​</p>
 </li>
 <li>
 <p>Tap - 和 Hold 相反，<strong>需要在一段时间内按下松开来触发。</strong></p>
@@ -276,7 +276,7 @@
 当大于等于这个值则认为按钮按下了。</strong></p>
 </li>
 </ol>
-<p>​<img src="assets/image-20231104153843-9u68pdc.png" alt="image">​</p>
+<p>​<img src="/assets/image-20231104153843-9u68pdc.png" alt="image">​</p>
 </li>
 <li>
 <p>SlowTap - <strong>保持一段时间操作后松开才触发</strong></p>
@@ -284,7 +284,7 @@
 但是它在<strong>按住时间大于等于Max Tap Duriation的时候，<br>
 并不会立刻触发performed，</strong><br>
 而是会<strong>在松开的时候才触发performed</strong></p>
-<p>​<img src="assets/image-20231104154454-5lqvbf3.png" alt="image">​</p>
+<p>​<img src="/assets/image-20231104154454-5lqvbf3.png" alt="image">​</p>
 <p>Press Point：<br>
 在Input System中，每个按钮都有对应的浮点值，<br>
 例如普通的按钮，将会在0（未按下）和1（按下）之间。<br>
@@ -316,14 +316,14 @@ Max Tap Spacing为<strong>每次点击之间的间隔</strong><br>
 当大于等于这个值则认为按钮按下了。</strong></p>
 </li>
 </ul>
-<p>​<img src="assets/image-20231104154745-aejxhbo.png" alt="image">​</p>
+<p>​<img src="/assets/image-20231104154745-aejxhbo.png" alt="image">​</p>
 </li>
 <li>
 <p>Press - 可以实现类似按钮的操作</p>
 <ul>
 <li>
 <p>Trigger Behavior - 触发行为</p>
-<p>​<img src="assets/image-20231104155311-r5g07ja.png" alt="image">​</p>
+<p>​<img src="/assets/image-20231104155311-r5g07ja.png" alt="image">​</p>
 <ul>
 <li>
 <p>Press Only：</p>
@@ -351,7 +351,7 @@ Max Tap Spacing为<strong>每次点击之间的间隔</strong><br>
 当大于等于这个值则认为按钮按下了。</strong></p>
 </li>
 </ul>
-<p>​<img src="assets/image-20231104155027-s5q5pqn.png" alt="image">​</p>
+<p>​<img src="/assets/image-20231104155027-s5q5pqn.png" alt="image">​</p>
 </li>
 </ul>
 </li>
@@ -360,31 +360,31 @@ Max Tap Spacing为<strong>每次点击之间的间隔</strong><br>
 <li>
 <h4 id="Processors-值处理加工设置-将输入的值进行一次加工">Processors 值处理加工设置 - 将输入的值进行一次加工</h4>
 <p>对得到的值进行处理加工<br>
-​<img src="assets/image-20231104155648-91c65s0.png" alt="image">​</p>
+​<img src="/assets/image-20231104155648-91c65s0.png" alt="image">​</p>
 <ul>
 <li>
 <p>Clamp - 将输入值钳制到[min…max]范围</p>
-<p>​<img src="assets/image-20231104155924-52n5ruq.png" alt="image">​</p>
+<p>​<img src="/assets/image-20231104155924-52n5ruq.png" alt="image">​</p>
 </li>
 <li>
 <p>Invert - 反转控件中的值（即，将值乘以-1）</p>
 </li>
 <li>
 <p>Invert Vector 2 - 反转控件中的值（即，将值乘以-1）</p>
-<p>​<img src="assets/image-20231104160013-vdr5f8m.png" alt="image"><br>
+<p>​<img src="/assets/image-20231104160013-vdr5f8m.png" alt="image"><br>
 如果invertX为真，则反转矢量的x轴；<br>
 如果invertY为真，则反转矢量的y轴。</p>
 </li>
 <li>
 <p>Invert Vector 3 - 反转控件中的值（即，将值乘以-1）</p>
-<p>​<img src="assets/image-20231104160117-emz6g4d.png" alt="image">​<br>
+<p>​<img src="/assets/image-20231104160117-emz6g4d.png" alt="image">​<br>
 如果反转x为真，则反转矢量的x轴；<br>
 如果反转y为真，则反转y轴；<br>
 如果反转z为真，则反转z轴。</p>
 </li>
 <li>
 <p><strong>Normalize - 单位化</strong></p>
-<p>​<img src="assets/image-20231104160203-7040z42.png" alt="image">​</p>
+<p>​<img src="/assets/image-20231104160203-7040z42.png" alt="image">​</p>
 <p>如果Min &gt;= Zero，则将[min…max]范围内的输入值规格化为无符号规格化形式[0…1]，<br>
 如果Min &lt; Zero，则将输入值规格化为有符号规格化形式[-1…1]。</p>
 </li>
@@ -396,19 +396,19 @@ Max Tap Spacing为<strong>每次点击之间的间隔</strong><br>
 </li>
 <li>
 <p>Scale - 将所有输入值乘以系数</p>
-<p>​<img src="assets/image-20231104160415-d83dynb.png" alt="image">​</p>
+<p>​<img src="/assets/image-20231104160415-d83dynb.png" alt="image">​</p>
 </li>
 <li>
 <p>Scale Vector 2 - 将所有输入值沿x轴乘以x，沿y轴乘以y</p>
-<p>​<img src="assets/image-20231104160558-4i9iqqr.png" alt="image">​</p>
+<p>​<img src="/assets/image-20231104160558-4i9iqqr.png" alt="image">​</p>
 </li>
 <li>
 <p>Scale Vector 3 - 将所有输入值沿x轴乘以x，沿y轴乘以y，沿z轴乘以z</p>
-<p>​<img src="assets/image-20231104160619-14r9o9r.png" alt="image">​</p>
+<p>​<img src="/assets/image-20231104160619-14r9o9r.png" alt="image">​</p>
 </li>
 <li>
 <p><strong>Axis Deadzone - axis死区处理器，缩放控件的值，使绝对值小于最小值的任何值为0，绝对值大于最大值的任何值为1或-1。</strong></p>
-<p>​<img src="assets/image-20231104160707-alfzwio.png" alt="image">​</p>
+<p>​<img src="/assets/image-20231104160707-alfzwio.png" alt="image">​</p>
 <p>许多控件没有精确的静止点（也就是说，当控件位于中心时，它们并不总是精确报告0），<br>
 换句话来说，<strong>有些轴即使我们没有主动的输入，但依然有很小的值在输入进去，这会导致诸如操控的角色在无意间缓慢移动这种问题！</strong><br>
 在死区处理器上<strong>使用最小值可避免此类控件的无意输入。</strong><br>
@@ -418,7 +418,7 @@ Max Tap Spacing为<strong>每次点击之间的间隔</strong><br>
 <li>
 <p><strong>Stick Deadzone - 摇杆死区处理器，缩放Vector2控件（如摇杆）的值，</strong><br>
 以便任何幅值小于最小值的输入向量都将得到（0,0），而任何幅值大于最大值的输入向量都将规格化为长度1。</p>
-<p>​<img src="assets/image-20231104160947-lh6ic7o.png" alt="image">​</p>
+<p>​<img src="/assets/image-20231104160947-lh6ic7o.png" alt="image">​</p>
 <p>许多控件没有精确的静止点（也就是说，当控件位于中心时，它们并不总是精确地报告（0,0）），<br>
 换句话来说，<strong>有些摇杆即使我们没有主动的去动它，但依然有很小的值在输入进去，这会导致诸如操控的角色在无意间缓慢移动这种问题！</strong><br>
 在死区处理器上使用最小值可避免此类控件的无意输入。<br>
@@ -430,8 +430,8 @@ Max Tap Spacing为<strong>每次点击之间的间隔</strong><br>
 </ul>
 </li>
 <li>
-<p>点击+号 <img src="assets/image-20231104162020-uzgs81y.png" alt="image"> 创建输入</p>
-<p>​<img src="assets/image-20231104201023-0vfmw19.png" alt="image">​</p>
+<p>点击+号 <img src="/assets/image-20231104162020-uzgs81y.png" alt="image"> 创建输入</p>
+<p>​<img src="/assets/image-20231104201023-0vfmw19.png" alt="image">​</p>
 <p>在这里创建一个输入后，点击创建出来的<No Binding>即可设置接受何种输入，<br>
 <strong>可以添加多个输入以触发这个成员对应的监听事件，例如跨平台游戏就可以添加不同平台的各种输入</strong><br>
 具体添加监听事件的方法请看这个——&gt;InputAction的使用，<br>
@@ -440,17 +440,17 @@ Max Tap Spacing为<strong>每次点击之间的间隔</strong><br>
 <li>
 <p>Add Binding<br>
 添加新的输入绑定（单按键输入）</p>
-<p>​<img src="assets/image-20231104205618-q06jsvr.png" alt="image">​</p>
+<p>​<img src="/assets/image-20231104205618-q06jsvr.png" alt="image">​</p>
 </li>
 <li>
 <p>Add Positive\Negative Binding<sup>(2019版前的名称是：Add 1D Axis Composite)</sup><br>
 添加1D轴组合（类似Input中的水平竖直热键，返回-1~1之间的一个值）</p>
-<p>​<img src="assets/image-20231104212017-vr6ibqj.png" alt="image">​</p>
+<p>​<img src="/assets/image-20231104212017-vr6ibqj.png" alt="image">​</p>
 <ul>
 <li>Negative：负面按键，例如 0~-1</li>
 <li>Positive：正向按键，例如 0~1</li>
 </ul>
-<p>​<img src="assets/image-20231104212051-33hh90w.png" alt="image">​</p>
+<p>​<img src="/assets/image-20231104212051-33hh90w.png" alt="image">​</p>
 <ul>
 <li>
 <p>Composite Type：复合类型</p>
@@ -474,14 +474,14 @@ Max Tap Spacing为<strong>每次点击之间的间隔</strong><br>
 <li>
 <p>Add Up\Down\Left\Right Composite<sup>( 2019版前的名称是：Add 2D Vector Composite)</sup>​<br>
 添加2D向量组合（类似将Input中的水平竖直热键组合在一起，得到的Vector中的x，y分别表示两个轴）</p>
-<p>​​<img src="assets/image-20231104213336-ndiny76.png" alt="image">​​</p>
+<p>​​<img src="/assets/image-20231104213336-ndiny76.png" alt="image">​​</p>
 <ul>
 <li>Up:上 ( 0 , 1 )</li>
 <li>Down：下 ( 0 , -1 )</li>
 <li>Left：左 ( -1 , 0 )</li>
 <li>Right：右 ( 1 , 0 )</li>
 </ul>
-<p>​<img src="assets/image-20231104213007-7i6b50k.png" alt="image">​</p>
+<p>​<img src="/assets/image-20231104213007-7i6b50k.png" alt="image">​</p>
 <ul>
 <li>
 <p>Composite Type：复合类型</p>
@@ -499,12 +499,12 @@ Max Tap Spacing为<strong>每次点击之间的间隔</strong><br>
 <li>
 <p>Add Up\Down\Left\Right\Forward\Backward Composite<br>
 添加3D向量组合（类似于上面的2D向量组合，多加了一个轴，得到Vector3中的x，y，z分别表示三个轴）</p>
-<p>​<img src="assets/image-20231104213402-ur92cfq.png" alt="image">​</p>
+<p>​<img src="/assets/image-20231104213402-ur92cfq.png" alt="image">​</p>
 </li>
 <li>
 <p>Add Button With One Modifier Composite<br>
 添加带有一个复合修改器的按钮（可以理解为双组合键， 比如Ctrl+C、Ctrl+V）</p>
-<p>​<img src="assets/image-20231104214035-yc8wmn9.png" alt="image">​</p>
+<p>​<img src="/assets/image-20231104214035-yc8wmn9.png" alt="image">​</p>
 <ul>
 <li>Modifier：复合输入内容</li>
 <li>Binding：输入内容<sup>（在2020版及以前，这里的名称是Button）</sup></li>
@@ -514,7 +514,7 @@ Max Tap Spacing为<strong>每次点击之间的间隔</strong><br>
 <li>
 <p>Add Button With Two Modifier Composite<br>
 添加带有两个复合修改器的按钮（可以理解为三组合键，比如Ctrl+K+U）</p>
-<p>​<img src="assets/image-20231104214907-36h36zx.png" alt="image">​</p>
+<p>​<img src="/assets/image-20231104214907-36h36zx.png" alt="image">​</p>
 <ul>
 <li>Modifier：复合输入内容1</li>
 <li>Modifier：复合输入内容2</li>
@@ -547,7 +547,7 @@ Max Tap Spacing为<strong>每次点击之间的间隔</strong><br>
 </ul>
 </li>
 </ul>
-<p>​<img src="assets/image-20231104202146-rxvbriv.png" alt="image">​</p>
+<p>​<img src="/assets/image-20231104202146-rxvbriv.png" alt="image">​</p>
 </li>
 </ul>
 <h2 id="InputAction的使用">InputAction的使用</h2>
@@ -563,7 +563,7 @@ Max Tap Spacing为<strong>每次点击之间的间隔</strong><br>
 <p>涉及操作监听的成员变量都是委托，需要向委托传入参数为InputAction.CallbackContext​​​（是<code>InputAction</code>​​​的内部结构体）的方法<br>
 触发这些委托方法的输入方式由Inspector窗口内对该<code>InputAction</code>​​​的成员的设置决定，具体请看InputAction参数相关</p>
 <p>这里演示的结果是绑定了鼠标左键和键盘A键的效果，也就是说，按下鼠标左键和按下A键都会触发下面的代码<br>
-​<img src="assets/image-20231104210559-uv0e1ee.png" alt="image">​</p>
+​<img src="/assets/image-20231104210559-uv0e1ee.png" alt="image">​</p>
 <ul>
 <li>
 <h4 id="开始操作">开始操作</h4>
@@ -571,7 +571,7 @@ Max Tap Spacing为<strong>每次点击之间的间隔</strong><br>
 ​<code>inputAction.started</code>​​是一个事件委托，由外部加入参数为<code>InputAction.CallbackContext</code>​​的监听方法，由监听方法来监听开始操作的输入</p>
 <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> InputAction move;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Start</span>()</span></span><br><span class="line">&#123;</span><br><span class="line">    move.Enable();</span><br><span class="line">    move.started += TestFunc;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">TestFunc</span>(<span class="params">InputAction.CallbackContext context</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    print(<span class="string">&quot;开始操作&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>结果：<br>
-​<img src="assets/image-20231104205931-ud160og.png" alt="image">​</p>
+​<img src="/assets/image-20231104205931-ud160og.png" alt="image">​</p>
 </li>
 <li>
 <h4 id="真正触发">真正触发</h4>
@@ -579,14 +579,14 @@ Max Tap Spacing为<strong>每次点击之间的间隔</strong><br>
 ​<code>inputAction.performed</code>​​是一个事件委托，由外部加入参数为<code>InputAction.CallbackContext</code>​​的监听方法，由监听方法来监听真正触发的输入</p>
 <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> InputAction move;</span><br><span class="line"><span class="keyword">public</span> InputAction Fire;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Start</span>()</span></span><br><span class="line">&#123;</span><br><span class="line">    move.Enable();</span><br><span class="line">    move.performed += (context) =&gt;</span><br><span class="line">    &#123;</span><br><span class="line">        print(<span class="string">&quot;触发事件调用&quot;</span>);</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>结果：<br>
-​<img src="assets/image-20231104210010-7dngxvx.png" alt="image">​</p>
+​<img src="/assets/image-20231104210010-7dngxvx.png" alt="image">​</p>
 </li>
 <li>
 <h4 id="结束操作">结束操作</h4>
 <p>这个结束操作指的是，该<code>InputAction</code>​​绑定的输入方法都结束输入时就会触发<br>
 ​<code>inputAction.canceled</code>​​是一个事件委托，由外部加入参数为<code>InputAction.CallbackContext</code>​​的监听方法，由监听方法来监听结束操作的输入</p>
 <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> InputAction move;</span><br><span class="line"><span class="keyword">public</span> InputAction Fire;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Start</span>()</span></span><br><span class="line">&#123;</span><br><span class="line">    move.Enable();</span><br><span class="line">    move.canceled += (context) =&gt;</span><br><span class="line">    &#123;</span><br><span class="line">        print(<span class="string">&quot;结束事件调用&quot;</span>);</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>​<img src="assets/image-20231104210024-1nzah3n.png" alt="image">​</p>
+<p>​<img src="/assets/image-20231104210024-1nzah3n.png" alt="image">​</p>
 </li>
 </ul>
 </li>
@@ -605,22 +605,22 @@ Max Tap Spacing为<strong>每次点击之间的间隔</strong><br>
 <li>结束 <code>Canceled</code>​​</li>
 </ul>
 <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">move.performed += (context) =&gt;</span><br><span class="line">&#123;</span><br><span class="line">    print(<span class="string">&quot;触发事件调用&quot;</span>);</span><br><span class="line">    <span class="comment">//当前状态</span></span><br><span class="line">    print(callbackContext.phase);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>​<img src="assets/image-20231104210132-m247sls.png" alt="image">​</p>
+<p>​<img src="/assets/image-20231104210132-m247sls.png" alt="image">​</p>
 </li>
 <li>
 <h4 id="动作行为信息">动作行为信息</h4>
 <p>其实这里的<code>action</code>​​就是上面声明的<code>InputAction</code>​​成员变量</p>
 <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> InputAction move;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Start</span>()</span></span><br><span class="line">&#123;</span><br><span class="line">    move.Enable();</span><br><span class="line">    move.performed += (callbackContext) =&gt;</span><br><span class="line">    &#123;</span><br><span class="line">        print(<span class="string">&quot;触发事件调用&quot;</span>);</span><br><span class="line">        <span class="comment">//动作行为信息 </span></span><br><span class="line">        print(callbackContext.action.name);</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>​<img src="assets/image-20231104210141-v5qoox2.png" alt="image">​</p>
+<p>​<img src="/assets/image-20231104210141-v5qoox2.png" alt="image">​</p>
 </li>
 <li>
 <h4 id="控件信息">控件信息</h4>
 <p>得到输入设备的信息</p>
 <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">move.performed += (context) =&gt;</span><br><span class="line">&#123;</span><br><span class="line">    print(<span class="string">&quot;触发事件调用&quot;</span>);</span><br><span class="line">    <span class="comment">//控件(设备)信息</span></span><br><span class="line">    print(callbackContext.control.name);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <p>按下鼠标左键时：<br>
-​<img src="assets/image-20231104210149-r3zf960.png" alt="image"><br>
+​<img src="/assets/image-20231104210149-r3zf960.png" alt="image"><br>
 按下键盘A键时：<br>
-​<img src="assets/image-20231104210702-77f9h0i.png" alt="image">​</p>
+​<img src="/assets/image-20231104210702-77f9h0i.png" alt="image">​</p>
 </li>
 <li>
 <h4 id="获取值">获取值</h4>
@@ -631,13 +631,13 @@ Max Tap Spacing为<strong>每次点击之间的间隔</strong><br>
 <h4 id="持续时间">持续时间</h4>
 <p>操作持续的时间</p>
 <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">move.performed += (context) =&gt;</span><br><span class="line">&#123;</span><br><span class="line">    print(<span class="string">&quot;触发事件调用&quot;</span>);</span><br><span class="line">    <span class="comment">//持续时间</span></span><br><span class="line">    print(callbackContext.duration);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>​<img src="assets/image-20231104210252-x49c1qg.png" alt="image">​</p>
+<p>​<img src="/assets/image-20231104210252-x49c1qg.png" alt="image">​</p>
 </li>
 <li>
 <h4 id="开始时间">开始时间</h4>
 <p>操作开始的时间</p>
 <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">move.performed += (context) =&gt;</span><br><span class="line">&#123;</span><br><span class="line">    print(<span class="string">&quot;触发事件调用&quot;</span>);</span><br><span class="line">    <span class="comment">//开始时间</span></span><br><span class="line">    print(callbackContext.startTime);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>​<img src="assets/image-20231104210259-blfudga.png" alt="image">​</p>
+<p>​<img src="/assets/image-20231104210259-blfudga.png" alt="image">​</p>
 </li>
 </ul>
 </li>
@@ -645,12 +645,12 @@ Max Tap Spacing为<strong>每次点击之间的间隔</strong><br>
 <h2 id="特殊输入设置">特殊输入设置</h2>
 <p>如果要修改特殊输入的默认值，需要修改Input System Package，它在Project Setting内</p>
 <p>如果要修改Input System Package的内容的话，我们需要先创建一个设置的配置文件，点击Create setting asset即可<br>
-​<img src="assets/image-20231104221827-ivz9d5o.png" alt="image"><br>
+​<img src="/assets/image-20231104221827-ivz9d5o.png" alt="image"><br>
 点击后创建这个文件<br>
-​<img src="assets/image-20231104222011-lconeyk.png" alt="image"><br>
+​<img src="/assets/image-20231104222011-lconeyk.png" alt="image"><br>
 如果要放弃配置文件带来的修改，直接删除创建的文件即可</p>
 <h3 id="Input-Syetem-Package-参数相关">Input Syetem Package 参数相关</h3>
-<p>​​​<img src="assets/image-20231104222548-6q51yd5.png" alt="image">​​​</p>
+<p>​​​<img src="/assets/image-20231104222548-6q51yd5.png" alt="image">​​​</p>
 <ul>
 <li>
 <p>UpdateMode：更新模式</p>

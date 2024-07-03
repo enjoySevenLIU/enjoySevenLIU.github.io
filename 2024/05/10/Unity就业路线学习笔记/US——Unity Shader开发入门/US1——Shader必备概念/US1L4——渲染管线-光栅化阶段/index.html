@@ -7,7 +7,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png">
 <meta property="article:published_time" content="2024-05-10T06:40:55.000Z">
-<meta property="article:modified_time" content="2024-07-02T03:57:25.000Z">
+<meta property="article:modified_time" content="2024-07-03T05:13:50.526Z">
 <meta property="article:author" content="文KRIFE齐">
 <meta property="article:tag" content="blog">
 <meta name="twitter:card" content="summary">
@@ -56,7 +56,7 @@
   isHome: false,
   isHighlightShrink: false,
   isToc: true,
-  postUpdate: '2024-07-02 11:57:25'
+  postUpdate: '2024-07-03 13:13:50'
 }</script><script>(win=>{
       win.saveToLocal = {
         set: (key, value, ttl) => {
@@ -153,7 +153,7 @@
         }
       }
       detectApple()
-    })(window)</script><meta name="generator" content="Hexo 7.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">834</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">113</div></a></div><hr class="custom-hr"/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="文KRIFE齐的博客"><span class="site-name">文KRIFE齐的博客</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">US1L4——渲染管线-光栅化阶段</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-05-10T06:40:55.000Z" title="发表于 2024-05-10 14:40:55">2024-05-10</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-07-02T03:57:25.000Z" title="更新于 2024-07-02 11:57:25">2024-07-02</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity-Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/">US——Unity Shader开发入门</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity-Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US1%E2%80%94%E2%80%94Shader%E5%BF%85%E5%A4%87%E6%A6%82%E5%BF%B5/">US1——Shader必备概念</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="US1L4——渲染管线-光栅化阶段"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1>US1L4——渲染管线-光栅化阶段</h1>
+    })(window)</script><meta name="generator" content="Hexo 7.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">834</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">113</div></a></div><hr class="custom-hr"/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="文KRIFE齐的博客"><span class="site-name">文KRIFE齐的博客</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">US1L4——渲染管线-光栅化阶段</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-05-10T06:40:55.000Z" title="发表于 2024-05-10 14:40:55">2024-05-10</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-07-03T05:13:50.526Z" title="更新于 2024-07-03 13:13:50">2024-07-03</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity-Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/">US——Unity Shader开发入门</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity-Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US1%E2%80%94%E2%80%94Shader%E5%BF%85%E5%A4%87%E6%A6%82%E5%BF%B5/">US1——Shader必备概念</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="US1L4——渲染管线-光栅化阶段"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1>US1L4——渲染管线-光栅化阶段</h1>
 <h2 id="知识必备——像素">知识必备——像素</h2>
 <p>像素是计算机图形学中的基本概念，它是组成图像的最小可控单位，具有位置和属性，用于表示图像中的颜色和其他信息<br>
 它是二位图像中的一个点，每个像素都占据屏幕上的一个固定位置<br>
@@ -167,10 +167,10 @@
 <p>渲染管线（流水线）中的光栅化，主要是<strong>GPU主导的阶段</strong><br>
 <strong>它为渲染完成的最主要的工作就是 确定片元最终是否被渲染，并且确定片元的最终渲染颜色效果等</strong><br>
 在光栅化阶段中，我们主要通过自定义 <strong><u>片元着色器</u></strong>  ****  阶段，为我们带来一些不同的表现效果</p>
-<p>​<img src="assets/image-20240510144740-ik8k3tu.png" alt="image">​</p>
+<p>​<img src="/assets/image-20240510144740-ik8k3tu.png" alt="image">​</p>
 <p>渲染管线的光栅化阶段同样由GPU主导，同样我们无法拥有绝对的控制权，同样GPU为我们开放了部分控制权<br>
 <strong>光栅化阶段主要做的事情是根据几何阶段输入的信息计算每个图元覆盖哪些像素，以及为这些像素计算他们的颜色等等工作</strong></p>
-<p>​<img src="assets/image-20240510145044-g31trd5.png" alt="image">​</p>
+<p>​<img src="/assets/image-20240510145044-g31trd5.png" alt="image">​</p>
 <ul>
 <li>
 <p>三角形设置：</p>
@@ -184,7 +184,7 @@
 <p>该阶段主要根据三角形设置中计算出的三角形网格数据，检查每个像素是否被一个三角形网格所覆盖<br>
 <strong>如果覆盖的话，就会生成一个片元（包含屏幕坐标、深度、法线等等信息）</strong><br>
 这个阶段也被成为扫描变换</p>
-<p>​<img src="assets/image-20240510145619-7y66s28.png" alt="image">​</p>
+<p>​<img src="/assets/image-20240510145619-7y66s28.png" alt="image">​</p>
 <p>在<strong>三角形遍历</strong>这个小阶段，GPU主要做的事情就是<strong>根据三角形网格信息得到被它们覆盖的片元序列</strong></p>
 </li>
 <li>
@@ -228,7 +228,7 @@
 <p>深度测试的主要目的是确保在渲染时，像素按照正确的深度（距离相机的距离）顺序进行绘制，从而创建正确的遮挡关系和透视效果<br>
 在渲染场景之前，<strong>深度缓冲被初始化为最大深度值，表示所有像素都在相机之外。</strong><br>
 在渲染过程中，对于每个像素，深度测试会将当前像素的深度值与深度缓冲中对应位置的值进行比较。</p>
-<p>​<img src="assets/image-20240612211652-cdg1xnh.png" alt="image">​​<img src="assets/%E6%B7%B1%E5%BA%A6%E6%B5%8B%E8%AF%95%E5%9B%BE-20240612210658-10voptu.png" alt="深度测试图">​</p>
+<p>​<img src="/assets/image-20240612211652-cdg1xnh.png" alt="image">​​<img src="assets/%E6%B7%B1%E5%BA%A6%E6%B5%8B%E8%AF%95%E5%9B%BE-20240612210658-10voptu.png" alt="深度测试图">​</p>
 <p>可以简单理解为，深度测试就是用来确认 不同模型所占的同一块屏幕区域 到底需要渲染哪一个模型上对应的颜色<br>
 深度测试会依次将 <strong>模型所占屏幕上的片元的深度值（Z-Buffer） 与 对应像素的深度缓冲的深度值 比较，</strong></p>
 <p><strong>如果这个片元的深度值比深度缓冲区的深度值更小（也就是说离摄像机更近），则通过深度测试，将会被渲染</strong></p>
@@ -246,7 +246,7 @@
 <p>对于一个通过了深度渲染的片元，如果模型开启了深度写入，则该片元的深度值将被写入到深度缓冲内，与后面的片元进行比较</p>
 <p>对于深度写入，一般半透明的模型是不会开启深度写入的，举例：<br>
 假设存在A,B,C三个平面，遮挡关系如下图，其中距离摄像机从近到远的平面依次为：C —— A —— B</p>
-<p>​<img src="assets/image-20240612213823-gyk6xo5.png" alt="image">​</p>
+<p>​<img src="/assets/image-20240612213823-gyk6xo5.png" alt="image">​</p>
 <p>因此，如果C的和其他平面占屏幕的公共区域的片元开启了深度写入，则A和B与将不能通过深度测试，A和B对应的片元也不会被渲染</p>
 <p>但是，如果C是半透明平面，显然我们需要结合后面的A和B的片元的颜色去混合渲染，<br>
 这时我们不能开启C的深度写入，这样A和B对应的片元还是会通过深度测试，可以被渲染出来</p>

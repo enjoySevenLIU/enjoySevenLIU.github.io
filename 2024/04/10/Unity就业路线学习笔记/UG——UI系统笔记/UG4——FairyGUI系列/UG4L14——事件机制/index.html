@@ -7,7 +7,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png">
 <meta property="article:published_time" content="2024-04-10T13:17:58.000Z">
-<meta property="article:modified_time" content="2024-07-02T03:57:06.000Z">
+<meta property="article:modified_time" content="2024-07-03T05:13:50.386Z">
 <meta property="article:author" content="文KRIFE齐">
 <meta property="article:tag" content="blog">
 <meta name="twitter:card" content="summary">
@@ -56,7 +56,7 @@
   isHome: false,
   isHighlightShrink: false,
   isToc: true,
-  postUpdate: '2024-07-02 11:57:06'
+  postUpdate: '2024-07-03 13:13:50'
 }</script><script>(win=>{
       win.saveToLocal = {
         set: (key, value, ttl) => {
@@ -153,7 +153,7 @@
         }
       }
       detectApple()
-    })(window)</script><meta name="generator" content="Hexo 7.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">834</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">113</div></a></div><hr class="custom-hr"/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="文KRIFE齐的博客"><span class="site-name">文KRIFE齐的博客</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">UG4L14——事件机制</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-04-10T13:17:58.000Z" title="发表于 2024-04-10 21:17:58">2024-04-10</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-07-02T03:57:06.000Z" title="更新于 2024-07-02 11:57:06">2024-07-02</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UG%E2%80%94%E2%80%94UI%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0/">UG——UI系统笔记</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UG%E2%80%94%E2%80%94UI%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0/UG4%E2%80%94%E2%80%94FairyGUI%E7%B3%BB%E5%88%97/">UG4——FairyGUI系列</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="UG4L14——事件机制"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1>UG4L14——事件机制</h1>
+    })(window)</script><meta name="generator" content="Hexo 7.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">834</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">113</div></a></div><hr class="custom-hr"/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="文KRIFE齐的博客"><span class="site-name">文KRIFE齐的博客</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">UG4L14——事件机制</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-04-10T13:17:58.000Z" title="发表于 2024-04-10 21:17:58">2024-04-10</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-07-03T05:13:50.386Z" title="更新于 2024-07-03 13:13:50">2024-07-03</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UG%E2%80%94%E2%80%94UI%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0/">UG——UI系统笔记</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UG%E2%80%94%E2%80%94UI%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0/UG4%E2%80%94%E2%80%94FairyGUI%E7%B3%BB%E5%88%97/">UG4——FairyGUI系列</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="UG4L14——事件机制"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1>UG4L14——事件机制</h1>
 <h2 id="本章代码关键字">本章代码关键字</h2>
 <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">eventContext.StopPropagation()		<span class="comment">//打断事件的冒泡传递</span></span><br><span class="line">eventContext.CaptureTouch()			<span class="comment">//按下后移动到对象外部抬起依然可以触发抬起</span></span><br></pre></td></tr></table></figure>
 <h2 id="事件触发时的传递机制">事件触发时的传递机制</h2>
@@ -162,20 +162,20 @@
 C——&gt;B——&gt;A——&gt;面板——&gt;<code>GRoot</code>​<br>
 它的事件触发的先后顺序也是如此，这种传递过程叫做<strong>冒泡传递机制</strong></p>
 <p>以面板右上角的按钮为例：</p>
-<p>​<img src="assets/image-20240410222811-vxgcy5n.png" alt="image">​</p>
+<p>​<img src="/assets/image-20240410222811-vxgcy5n.png" alt="image">​</p>
 <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">TeachPanel panel = UIManager.Instance.ShowPanel&lt;TeachPanel&gt;(<span class="string">&quot;teach&quot;</span>);</span><br><span class="line">panel.m_btnTest.onTouchBegin.Add(() =&gt;</span><br><span class="line">&#123;</span><br><span class="line">    print(<span class="string">&quot;按钮按下&quot;</span>);</span><br><span class="line">&#125;);</span><br><span class="line">panel.onTouchBegin.Add(() =&gt;</span><br><span class="line">&#123;</span><br><span class="line">    print(<span class="string">&quot;面板按下&quot;</span>);</span><br><span class="line">&#125;);</span><br><span class="line">GRoot.inst.onTouchBegin.Add(() =&gt;</span><br><span class="line">&#123;</span><br><span class="line">    print(<span class="string">&quot;GRoot按下&quot;</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>输出：<img src="assets/image-20240410222824-6q4kh1y.png" alt="image">​</p>
+<p>输出：<img src="/assets/image-20240410222824-6q4kh1y.png" alt="image">​</p>
 <p>如果你想打断冒泡传递，可以通过 监听函数中的 <code>EventContext</code>​ 参数中的 <code>StopPropagation</code>​方法 进行打断</p>
 <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">TeachPanel panel = UIManager.Instance.ShowPanel&lt;TeachPanel&gt;(<span class="string">&quot;teach&quot;</span>);</span><br><span class="line">panel.m_btnTest.onTouchBegin.Add((contextdata) =&gt;</span><br><span class="line">&#123;</span><br><span class="line">    print(<span class="string">&quot;按钮按下&quot;</span>);</span><br><span class="line">    contextdata.StopPropagation();</span><br><span class="line">&#125;);</span><br><span class="line">panel.onTouchBegin.Add(() =&gt;</span><br><span class="line">&#123;</span><br><span class="line">    print(<span class="string">&quot;面板按下&quot;</span>);</span><br><span class="line">&#125;);</span><br><span class="line">GRoot.inst.onTouchBegin.Add(() =&gt;</span><br><span class="line">&#123;</span><br><span class="line">    print(<span class="string">&quot;GRoot按下&quot;</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>输出：<img src="assets/image-20240410222916-qtg7apz.png" alt="image">​</p>
+<p>输出：<img src="/assets/image-20240410222916-qtg7apz.png" alt="image">​</p>
 <h2 id="事件监听的两种委托">事件监听的两种委托</h2>
 <ul>
 <li>
 <p>无参委托 <code>EventCallback0</code>​</p>
 <p>在<code>GObject</code>​中所有的添加或者移除监听事件的方法（例如gObject.onClick.Add()​，匿名函数（lambda表达式）不能指定移除）<br>
 都有使用无参委托<code>EventCallback0</code>​参数的重载，这种委托需要的监听方法是不需要参数的</p>
-<p>​<img src="assets/image-20240410223403-6z8h9by.png" alt="image">​</p>
-<p>​<img src="assets/image-20240410223519-xiwzu98.png" alt="image">​</p>
+<p>​<img src="/assets/image-20240410223403-6z8h9by.png" alt="image">​</p>
+<p>​<img src="/assets/image-20240410223519-xiwzu98.png" alt="image">​</p>
 <p>当监听方法不需要额外消息时，就可以使用该无参委托 <code>EventCallback0</code>​ 参数重载</p>
 <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">panel.onTouchBegin.Add(() =&gt;</span><br><span class="line">&#123;</span><br><span class="line">    print(<span class="string">&quot;面板按下&quot;</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 </li>
@@ -183,8 +183,8 @@ C——&gt;B——&gt;A——&gt;面板——&gt;<code>GRoot</code>​<br>
 <p>有参委托 <code>EventCallback1</code>​</p>
 <p>在<code>GObject</code>​中所有的添加或者移除监听事件的方法（例如gObject.onClick.Add()​，匿名函数（lambda表达式）不能指定移除）<br>
 都有使用有参委托<code>EventCallback1</code>​参数的重载，这种委托需要的监听方法需要一个<code>EventContext</code>​参数</p>
-<p>​<img src="assets/image-20240410223800-sdf72w4.png" alt="image"></p>
-<p>​<img src="assets/image-20240410223816-o3qe1sf.png" alt="image">​</p>
+<p>​<img src="/assets/image-20240410223800-sdf72w4.png" alt="image"></p>
+<p>​<img src="/assets/image-20240410223816-o3qe1sf.png" alt="image">​</p>
 <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">panel.m_btnTest.onTouchBegin.Add((contextdata) =&gt;</span><br><span class="line">&#123;</span><br><span class="line">    print(<span class="string">&quot;按钮按下&quot;</span>);</span><br><span class="line">    contextdata.StopPropagation();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
@@ -197,7 +197,7 @@ C——&gt;B——&gt;A——&gt;面板——&gt;<code>GRoot</code>​<br>
 <p>如果想要获取进入了哪个元件，需要使用带<code>EventContext</code>​参数的委托，<br>
 通过<code>sender</code>​属性去获取发生事件的元件，再转为<code>GObject</code>​去获取名字</p>
 <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Start</span>()</span></span><br><span class="line">&#123;</span><br><span class="line">    TeachPanel panel = UIManager.Instance.ShowPanel&lt;TeachPanel&gt;(</span><br><span class="line">    panel.m_btnTest.onRollOver.Add(InObject);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">InObject</span>(<span class="params">EventContext eventData</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    print(<span class="string">&quot;进入了某个对象&quot;</span> + (eventData.sender <span class="keyword">as</span> GObject).name);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>鼠标进入元件后输出：<img src="assets/image-20240410202636-qy2scq2.png" alt="image">​</p>
+<p>鼠标进入元件后输出：<img src="/assets/image-20240410202636-qy2scq2.png" alt="image">​</p>
 </blockquote>
 </li>
 <li>
@@ -216,7 +216,7 @@ C——&gt;B——&gt;A——&gt;面板——&gt;<code>GRoot</code>​<br>
 <p>如果要得到鼠标移动的坐标，需要使用带<code>EventContext</code>​参数的委托，对传入的<code>EventContext</code>​参数通过<code>inputEvent.x/y</code>​得到移动位置</p>
 <p>注意！得到是物理屏幕坐标，如果想要使用UI坐标需要使用<code>GlobalToLocal</code>​进行一次转换</p>
 <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">TeachPanel panel = UIManager.Instance.ShowPanel&lt;TeachPanel&gt;(<span class="string">&quot;teach&quot;</span>);</span><br><span class="line">panel.m_btnTest.onTouchBegin.Add((data) =&gt;</span><br><span class="line">&#123;</span><br><span class="line">    print(<span class="string">&quot;按下&quot;</span>);</span><br><span class="line">    <span class="comment">//如果想要获取鼠标哪个键按下：0左键 1右键 2中键</span></span><br><span class="line">    print(data.inputEvent.button);</span><br><span class="line">&#125;);</span><br><span class="line">panel.m_btnTest.onTouchMove.Add((data) =&gt;</span><br><span class="line">&#123;</span><br><span class="line">    print(<span class="string">&quot;移动&quot;</span>);</span><br><span class="line">	print(<span class="keyword">new</span> Vector2(data.inputEvent.x, data.inputEvent.y));</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>在按下按钮时移动输出：<img src="assets/image-20240410204643-5s2wwqg.png" alt="image">​</p>
+<p>在按下按钮时移动输出：<img src="/assets/image-20240410204643-5s2wwqg.png" alt="image">​</p>
 </blockquote>
 </li>
 <li>
@@ -225,7 +225,7 @@ C——&gt;B——&gt;A——&gt;面板——&gt;<code>GRoot</code>​<br>
 <blockquote>
 <p>获取键盘输入的是哪个键，需要使用带<code>EventContext</code>​参数的方法，通过<code>inputEvent.keyCode</code>​来获取</p>
 <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Stage.inst.onKeyDown.Add((data) =&gt;</span><br><span class="line">&#123;</span><br><span class="line">    print(data.inputEvent.keyCode);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>按下按键时输出：<img src="assets/image-20240410224822-12sq9by.png" alt="image">​</p>
+<p>按下按键时输出：<img src="/assets/image-20240410224822-12sq9by.png" alt="image">​</p>
 </blockquote>
 </li>
 <li>
@@ -248,7 +248,7 @@ C——&gt;B——&gt;A——&gt;面板——&gt;<code>GRoot</code>​<br>
 <blockquote>
 <p>如果你想打断冒泡传递，可以通过 监听函数中的 <code>EventContext</code>​ 参数中的 <code>StopPropagation</code>​方法 进行打断</p>
 <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">TeachPanel panel = UIManager.Instance.ShowPanel&lt;TeachPanel&gt;(<span class="string">&quot;teach&quot;</span>);</span><br><span class="line">panel.m_btnTest.onTouchBegin.Add((contextdata) =&gt;</span><br><span class="line">&#123;</span><br><span class="line">    print(<span class="string">&quot;按钮按下&quot;</span>);</span><br><span class="line">    contextdata.StopPropagation();</span><br><span class="line">&#125;);</span><br><span class="line">panel.onTouchBegin.Add(() =&gt;</span><br><span class="line">&#123;</span><br><span class="line">    print(<span class="string">&quot;面板按下&quot;</span>);</span><br><span class="line">&#125;);</span><br><span class="line">GRoot.inst.onTouchBegin.Add(() =&gt;</span><br><span class="line">&#123;</span><br><span class="line">    print(<span class="string">&quot;GRoot按下&quot;</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>输出：<img src="assets/image-20240410222916-qtg7apz.png" alt="image">​</p>
+<p>输出：<img src="/assets/image-20240410222916-qtg7apz.png" alt="image">​</p>
 </blockquote>
 </li>
 <li>

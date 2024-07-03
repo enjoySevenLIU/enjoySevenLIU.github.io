@@ -7,7 +7,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png">
 <meta property="article:published_time" content="2024-03-16T14:54:35.000Z">
-<meta property="article:modified_time" content="2024-07-02T03:57:12.000Z">
+<meta property="article:modified_time" content="2024-07-03T05:13:50.520Z">
 <meta property="article:author" content="文KRIFE齐">
 <meta property="article:tag" content="blog">
 <meta name="twitter:card" content="summary">
@@ -56,7 +56,7 @@
   isHome: false,
   isHighlightShrink: false,
   isToc: true,
-  postUpdate: '2024-07-02 11:57:12'
+  postUpdate: '2024-07-03 13:13:50'
 }</script><script>(win=>{
       win.saveToLocal = {
         set: (key, value, ttl) => {
@@ -153,7 +153,7 @@
         }
       }
       detectApple()
-    })(window)</script><meta name="generator" content="Hexo 7.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">834</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">113</div></a></div><hr class="custom-hr"/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="文KRIFE齐的博客"><span class="site-name">文KRIFE齐的博客</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">UN5L4——Protobuf</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-03-16T14:54:35.000Z" title="发表于 2024-03-16 22:54:35">2024-03-16</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-07-02T03:57:12.000Z" title="更新于 2024-07-02 11:57:12">2024-07-02</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UN%E2%80%94%E2%80%94Unity%E7%BD%91%E7%BB%9C%E5%BC%80%E5%8F%91%E7%9B%B8%E5%85%B3/">UN——Unity网络开发相关</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UN%E2%80%94%E2%80%94Unity%E7%BD%91%E7%BB%9C%E5%BC%80%E5%8F%91%E7%9B%B8%E5%85%B3/UN5%E2%80%94%E2%80%94%E7%BD%91%E7%BB%9C%E6%B6%88%E6%81%AF%E5%A4%84%E7%90%86%E7%9B%B8%E5%85%B3/">UN5——网络消息处理相关</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="UN5L4——Protobuf"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1>UN5L4——Protobuf</h1>
+    })(window)</script><meta name="generator" content="Hexo 7.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">834</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">113</div></a></div><hr class="custom-hr"/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="文KRIFE齐的博客"><span class="site-name">文KRIFE齐的博客</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">UN5L4——Protobuf</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-03-16T14:54:35.000Z" title="发表于 2024-03-16 22:54:35">2024-03-16</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-07-03T05:13:50.520Z" title="更新于 2024-07-03 13:13:50">2024-07-03</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UN%E2%80%94%E2%80%94Unity%E7%BD%91%E7%BB%9C%E5%BC%80%E5%8F%91%E7%9B%B8%E5%85%B3/">UN——Unity网络开发相关</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UN%E2%80%94%E2%80%94Unity%E7%BD%91%E7%BB%9C%E5%BC%80%E5%8F%91%E7%9B%B8%E5%85%B3/UN5%E2%80%94%E2%80%94%E7%BD%91%E7%BB%9C%E6%B6%88%E6%81%AF%E5%A4%84%E7%90%86%E7%9B%B8%E5%85%B3/">UN5——网络消息处理相关</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="UN5L4——Protobuf"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1>UN5L4——Protobuf</h1>
 <h1>Protobuf</h1>
 <p>Protobuf全称是protocol-buffers（协议缓冲区），是谷歌提供给开发者的一个开源的协议生成工具<br>
 它的主要工作原理和我们之前做的自定义协议工具类似，只不过它更加的完善，可以基于协议配置文件生成<br>
@@ -176,7 +176,7 @@ C++、Java、C#、Objective-C、PHP、Python、Ruby、Go等等语言的代码文
 <li>
 <p>下载<code>protobuf-csharp</code>​</p>
 <p>（注：在2024年的今天，已经不需要选择特定语言的安装包，直接下载github上release中的最近<strong>非</strong>​<strong>​<code>Pre-Release</code>​</strong>​<strong>版本</strong>即可）<br>
-​<img src="assets/image-20240320151143-d161z0r.png" alt="image">​</p>
+​<img src="/assets/image-20240320151143-d161z0r.png" alt="image">​</p>
 <p>解压后里面已经包含了所有语言的Protobuf相关</p>
 </li>
 <li>
@@ -186,19 +186,19 @@ C++、Java、C#、Objective-C、PHP、Python、Ruby、Go等等语言的代码文
 <p>选择<code>Google.Protobuf</code>​右键生成 dll文件</p>
 <blockquote>
 <h3 id="生成时无法解析-NET-SDK报错问题"><a target="_blank" rel="noopener" href="http://xn--vnuu8f4bv4gy1lxmnln9a.NET">生成时无法解析.NET</a> SDK报错问题</h3>
-<p>请注意：如果生成时报错：<img src="assets/image-20240320151257-hx5b8m0.png" alt="image">​</p>
+<p>请注意：如果生成时报错：<img src="/assets/image-20240320151257-hx5b8m0.png" alt="image">​</p>
 <p><a target="_blank" rel="noopener" href="http://xn--4gqta1hrcyvq7bx1rbmgyufc9gv57abrcl48cntit1e184c5m1avv0a.NET">这是因为你的电脑上安装了另外一个版本.NET</a> SDK导致的，<a target="_blank" rel="noopener" href="http://xn--siqu1ab08cj87bxpjehf915bvl8assb394e.NET">你需要修改为你所安装的.NET</a> SDK<br>
 <a target="_blank" rel="noopener" href="http://xn--6iqsfyg1v602b92c164aow1a7l7a.NET">如何查看安装了什么.NET</a> SDK，使用cmd或者powershell，输入<code>dotnet --list-sdks</code>​，<a target="_blank" rel="noopener" href="http://xn--6qq12hwk368buxaz5p5rbx33du8a.NET">即可查看你所拥有的.NET</a> SDK</p>
-<p>​<img src="assets/image-20240320152148-q7k1ls6.png" alt="image">​</p>
+<p>​<img src="/assets/image-20240320152148-q7k1ls6.png" alt="image">​</p>
 <p>然后，在你下载的protobuf文件夹里找到一个叫<code>global.json</code>​的文件，将其中的<code>version</code><a href="http://xn--zugz13phzai66cuxac6h63d3z8b.NET">​改为你所拥有的.NET</a> SDK<br>
 <strong>注意：下图内的</strong>​<strong>​<code>version</code>​</strong>​<strong><a target="_blank" rel="noopener" href="http://xn--fhqsf8n3s9bv5otdw01g3y6cgba85z8w7bs6usyv.NET">具体输入什么由你电脑上安装的.NET</a> SDK版本为准，下图的8.0.202仅代表笔者的版本</strong></p>
-<p>​<img src="assets/image-20240320151754-g8igvjf.png" alt="image">​</p>
+<p>​<img src="/assets/image-20240320151754-g8igvjf.png" alt="image">​</p>
 <p>修改完毕后，重新生成</p>
 </blockquote>
 </li>
 <li>
 <p>在<code>csharp\src\Google.Protobuf\bin\Debug</code>​路径下找到对应.net版本的dll文件（我们使用4.5即可）</p>
-<p>​<img src="assets/image-20240320152623-ie58sgi.png" alt="image">​</p>
+<p>​<img src="/assets/image-20240320152623-ie58sgi.png" alt="image">​</p>
 </li>
 <li>
 <p>将net45中的dll文件导入到Unity工程中的Plugins插件文件夹中</p>
@@ -211,7 +211,7 @@ C++、Java、C#、Objective-C、PHP、Python、Ruby、Go等等语言的代码文
 </li>
 <li>
 <p>下载protoc-版本-win32或者64（没看到的话，记得点一下<code>Show all __ assets</code>​）</p>
-<p>​<img src="assets/image-20240320153522-qwjuz1z.png" alt="image">​</p>
+<p>​<img src="/assets/image-20240320153522-qwjuz1z.png" alt="image">​</p>
 </li>
 <li>
 <p>解压后获取bin文件夹中的protoc.exe可执行文件，<br>

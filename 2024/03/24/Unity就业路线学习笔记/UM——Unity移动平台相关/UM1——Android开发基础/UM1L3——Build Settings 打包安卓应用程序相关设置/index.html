@@ -7,7 +7,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png">
 <meta property="article:published_time" content="2024-03-24T12:13:54.000Z">
-<meta property="article:modified_time" content="2024-07-02T03:57:18.000Z">
+<meta property="article:modified_time" content="2024-07-03T05:13:50.483Z">
 <meta property="article:author" content="文KRIFE齐">
 <meta property="article:tag" content="blog">
 <meta name="twitter:card" content="summary">
@@ -56,7 +56,7 @@
   isHome: false,
   isHighlightShrink: false,
   isToc: true,
-  postUpdate: '2024-07-02 11:57:18'
+  postUpdate: '2024-07-03 13:13:50'
 }</script><script>(win=>{
       win.saveToLocal = {
         set: (key, value, ttl) => {
@@ -153,15 +153,15 @@
         }
       }
       detectApple()
-    })(window)</script><meta name="generator" content="Hexo 7.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">834</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">113</div></a></div><hr class="custom-hr"/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="文KRIFE齐的博客"><span class="site-name">文KRIFE齐的博客</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">UM1L3——Build Settings 打包安卓应用程序相关设置</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-03-24T12:13:54.000Z" title="发表于 2024-03-24 20:13:54">2024-03-24</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-07-02T03:57:18.000Z" title="更新于 2024-07-02 11:57:18">2024-07-02</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UM%E2%80%94%E2%80%94Unity%E7%A7%BB%E5%8A%A8%E5%B9%B3%E5%8F%B0%E7%9B%B8%E5%85%B3/">UM——Unity移动平台相关</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UM%E2%80%94%E2%80%94Unity%E7%A7%BB%E5%8A%A8%E5%B9%B3%E5%8F%B0%E7%9B%B8%E5%85%B3/UM1%E2%80%94%E2%80%94Android%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%80/">UM1——Android开发基础</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="UM1L3——Build Settings 打包安卓应用程序相关设置"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1>UM1L3——Build Settings 打包安卓应用程序相关设置</h1>
+    })(window)</script><meta name="generator" content="Hexo 7.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">834</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">113</div></a></div><hr class="custom-hr"/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="文KRIFE齐的博客"><span class="site-name">文KRIFE齐的博客</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">UM1L3——Build Settings 打包安卓应用程序相关设置</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-03-24T12:13:54.000Z" title="发表于 2024-03-24 20:13:54">2024-03-24</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-07-03T05:13:50.483Z" title="更新于 2024-07-03 13:13:50">2024-07-03</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UM%E2%80%94%E2%80%94Unity%E7%A7%BB%E5%8A%A8%E5%B9%B3%E5%8F%B0%E7%9B%B8%E5%85%B3/">UM——Unity移动平台相关</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UM%E2%80%94%E2%80%94Unity%E7%A7%BB%E5%8A%A8%E5%B9%B3%E5%8F%B0%E7%9B%B8%E5%85%B3/UM1%E2%80%94%E2%80%94Android%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%80/">UM1——Android开发基础</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="UM1L3——Build Settings 打包安卓应用程序相关设置"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1>UM1L3——Build Settings 打包安卓应用程序相关设置</h1>
 <h2 id="Build-Settings（打包安卓应用程序相关设置）">Build Settings（打包安卓应用程序相关设置）</h2>
-<p>​<img src="assets/image-20240324210736-2ffxxbm.png" alt="image">​<br>
+<p>​<img src="/assets/image-20240324210736-2ffxxbm.png" alt="image">​<br>
 新版本特有参数：<br>
-​<img src="assets/image-20240324210724-4t34hjd.png" alt="image">​</p>
+​<img src="/assets/image-20240324210724-4t34hjd.png" alt="image">​</p>
 <ul>
 <li>
 <p><strong>Texture Compression：纹理压缩 设置发布后的纹理压缩格式</strong></p>
-<p>​<img src="assets/image-20240324201711-tk2fr6f.png" alt="image">​</p>
+<p>​<img src="/assets/image-20240324201711-tk2fr6f.png" alt="image">​</p>
 <ul>
 <li>Use Player Settings: 使用在播放器设置中设置的纹理压缩格式</li>
 <li><strong>ETC：使用ETC格式（推荐）</strong></li>
@@ -180,7 +180,7 @@
 <li>
 <p><strong>ETC2 fallback：ETC2回退<br>
 当Unity用于不支持ETC2的安卓设备时的RGBA纹理格式</strong></p>
-<p>​<img src="assets/image-20240324202011-h6skhq3.png" alt="image">​</p>
+<p>​<img src="/assets/image-20240324202011-h6skhq3.png" alt="image">​</p>
 <ul>
 <li>
 <p><strong>32-bit：32位 以全分辨率存储RGBA纹理（推荐）</strong></p>
@@ -223,7 +223,7 @@
 <li>
 <p><strong>Create symbols.zip：创建 符号压缩文件</strong></p>
 <p>用于在安卓上开发出现问题时调试，而不是最终发布时使用</p>
-<p>​<img src="assets/image-20240324205425-68j6ntk.png" alt="image">​</p>
+<p>​<img src="/assets/image-20240324205425-68j6ntk.png" alt="image">​</p>
 <p>符号文件可以帮助我们调试应用程序<br>
 Unity会生成一个包含本机Unity库的符号文件的包<br>
 它包含一个表，将活动内存地址转换为我们可以使用的信息，<br>
@@ -240,7 +240,7 @@ Unity会生成一个包含本机Unity库的符号文件的包<br>
 </li>
 <li>
 <p><strong>Run Device：运行的设备</strong></p>
-<p>​<img src="assets/image-20240324205950-hfc3yqu.png" alt="image">​</p>
+<p>​<img src="/assets/image-20240324205950-hfc3yqu.png" alt="image">​</p>
 <blockquote>
 <p>笔者这里连接了自己的手机，因此会有第三个选项</p>
 </blockquote>
@@ -251,7 +251,7 @@ Unity会生成一个包含本机Unity库的符号文件的包<br>
 <li>
 <p><strong>Build to Device：构建到设备</strong></p>
 <p>需要勾选下边的选项才可用使用</p>
-<p>​<img src="assets/image-20240324210337-6qo39wz.png" alt="image">​</p>
+<p>​<img src="/assets/image-20240324210337-6qo39wz.png" alt="image">​</p>
 <p>不创建完整的构建，<br>
 而是将发生修改的单个文件直接部署到设备上<br>
 相对来说更加快速，方便调试</p>
@@ -275,7 +275,7 @@ Unity会生成一个包含本机Unity库的符号文件的包<br>
 <li>
 <p><strong>Script Debugging：是否允许调试应用程序的脚本文件</strong></p>
 <p>勾选后，可以在脚本里打断点查看运行</p>
-<p>​<img src="assets/image-20240324210238-hmni5qm.png" alt="image">​</p>
+<p>​<img src="/assets/image-20240324210238-hmni5qm.png" alt="image">​</p>
 <ul>
 <li>Wait For Managed Debugger 是否等待托管调试器<br>
 程序在运行脚本代码之前是否等待调试器连接</li>
@@ -284,7 +284,7 @@ Unity会生成一个包含本机Unity库的符号文件的包<br>
 <li>
 <p>Compression Method：压缩方法</p>
 <p>Unity在构建时压缩项目中数据的方式</p>
-<p>​<img src="assets/image-20240324210458-539f5ha.png" alt="image">​</p>
+<p>​<img src="/assets/image-20240324210458-539f5ha.png" alt="image">​</p>
 <ul>
 <li>
 <p>Default：默认使用ZIP</p>

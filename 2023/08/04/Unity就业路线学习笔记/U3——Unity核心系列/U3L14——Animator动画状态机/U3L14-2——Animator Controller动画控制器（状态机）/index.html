@@ -7,7 +7,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png">
 <meta property="article:published_time" content="2023-08-04T12:43:39.000Z">
-<meta property="article:modified_time" content="2024-07-02T03:56:29.000Z">
+<meta property="article:modified_time" content="2024-07-03T05:13:50.200Z">
 <meta property="article:author" content="文KRIFE齐">
 <meta property="article:tag" content="blog">
 <meta name="twitter:card" content="summary">
@@ -56,7 +56,7 @@
   isHome: false,
   isHighlightShrink: false,
   isToc: true,
-  postUpdate: '2024-07-02 11:56:29'
+  postUpdate: '2024-07-03 13:13:50'
 }</script><script>(win=>{
       win.saveToLocal = {
         set: (key, value, ttl) => {
@@ -153,7 +153,7 @@
         }
       }
       detectApple()
-    })(window)</script><meta name="generator" content="Hexo 7.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">834</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">113</div></a></div><hr class="custom-hr"/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="文KRIFE齐的博客"><span class="site-name">文KRIFE齐的博客</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">U3L14-2——Animator Controller动画控制器（状态机）</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-08-04T12:43:39.000Z" title="发表于 2023-08-04 20:43:39">2023-08-04</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-07-02T03:56:29.000Z" title="更新于 2024-07-02 11:56:29">2024-07-02</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U3%E2%80%94%E2%80%94Unity%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/">U3——Unity核心系列</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U3%E2%80%94%E2%80%94Unity%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/U3L14%E2%80%94%E2%80%94Animator%E5%8A%A8%E7%94%BB%E7%8A%B6%E6%80%81%E6%9C%BA/">U3L14——Animator动画状态机</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="U3L14-2——Animator Controller动画控制器（状态机）"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1>U3L14-2——Animator Controller动画控制器（状态机）</h1>
+    })(window)</script><meta name="generator" content="Hexo 7.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">834</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">113</div></a></div><hr class="custom-hr"/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="文KRIFE齐的博客"><span class="site-name">文KRIFE齐的博客</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">U3L14-2——Animator Controller动画控制器（状态机）</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-08-04T12:43:39.000Z" title="发表于 2023-08-04 20:43:39">2023-08-04</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-07-03T05:13:50.200Z" title="更新于 2024-07-03 13:13:50">2024-07-03</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U3%E2%80%94%E2%80%94Unity%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/">U3——Unity核心系列</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U3%E2%80%94%E2%80%94Unity%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/U3L14%E2%80%94%E2%80%94Animator%E5%8A%A8%E7%94%BB%E7%8A%B6%E6%80%81%E6%9C%BA/">U3L14——Animator动画状态机</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="U3L14-2——Animator Controller动画控制器（状态机）"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1>U3L14-2——Animator Controller动画控制器（状态机）</h1>
 <h2 id="创建动画状态机">创建动画状态机</h2>
 <ol>
 <li>通过为场景中物体创建动画时自动创建</li>
@@ -161,14 +161,14 @@
 </ol>
 <h2 id="基础使用——初识动画状态机窗口">基础使用——初识动画状态机窗口</h2>
 <h3 id="左侧面板">左侧面板</h3>
-<p>​<img src="assets/image-20230804205440-6dnjixv.png" alt="image">​</p>
+<p>​<img src="/assets/image-20230804205440-6dnjixv.png" alt="image">​</p>
 <ul>
 <li>Layers：动画层级页签，为动画添加更多的层级，层级权重高的动画播放会覆盖层级权重低的</li>
 <li>Parameters：参数页签，为动画状态机添加控制状态切换的参数</li>
 <li>眼睛图标：显隐左侧面板</li>
 </ul>
 <h3 id="右侧面板">右侧面板</h3>
-<p>​<img src="assets/image-20230804205520-awd3hfa.png" alt="image">​</p>
+<p>​<img src="/assets/image-20230804205520-awd3hfa.png" alt="image">​</p>
 <ul>
 <li>
 <p>网格化布局区域： 主要用于编辑状态之前的切换关系</p>
@@ -214,12 +214,12 @@
 <li>
 <p>在左侧面板点击参数页签<br>
 可以在这里添加四种类型的切换条件</p>
-<p>​<img src="assets/image-20230804212036-iiq3ysa.png" alt="image">​</p>
+<p>​<img src="/assets/image-20230804212036-iiq3ysa.png" alt="image">​</p>
 </li>
 <li>
 <p>左侧的值可以改变，也可以通过代码设置<br>
 这里的值将用于切换连线的条件判断</p>
-<p><img src="assets/image-20230804213350-x0iq8wm.png" alt="image">​</p>
+<p><img src="/assets/image-20230804213350-x0iq8wm.png" alt="image">​</p>
 </li>
 </ol>
 <h2 id="基础使用——设置动画间切换条件">基础使用——设置动画间切换条件</h2>
@@ -228,7 +228,7 @@
 <p>添加切换条件后<br>
 选择一条切换连线，将添加好的条件加入到其条件列表内<br>
 在这里设置当该切换条件 满足什么条件时 就切换（根据切换条件类型选择）如果有多个切换条件，则都满足时才能切换</p>
-<p>​<img src="assets/image-20230804212157-noy8ska.png" alt="image">​​​</p>
+<p>​<img src="/assets/image-20230804212157-noy8ska.png" alt="image">​​​</p>
 </li>
 <li>
 <p>float类型切换条件 可选 大于、小于 某个值<br>
@@ -241,7 +241,7 @@ trigger类型切换条件 较为特殊：当trigger激活（即选中了trigger�
 <h2 id="补充：关于动画切换的延时切换">补充：关于动画切换的延时切换</h2>
 <p>有时修改状态机条件使一个动画切换到另一个动画时，会有延迟（先等前一个动画执行完毕）<br>
 如果不想要这种延时，在该切换对应的 切换连线中 关闭Has Exit Time即可</p>
-<p>​<img src="assets/image-20230804230129-nwp260t.png" alt="image">​</p>
+<p>​<img src="/assets/image-20230804230129-nwp260t.png" alt="image">​</p>
 <h2 id="补充：关于Animation窗口内各状态和连线的参数">补充：关于Animation窗口内各状态和连线的参数</h2>
 <p>一般状态相关</p>
 <p>连线相关</p>

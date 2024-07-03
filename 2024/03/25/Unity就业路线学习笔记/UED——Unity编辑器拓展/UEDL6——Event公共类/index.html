@@ -7,7 +7,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png">
 <meta property="article:published_time" content="2024-03-25T14:44:38.000Z">
-<meta property="article:modified_time" content="2024-07-02T03:57:15.000Z">
+<meta property="article:modified_time" content="2024-07-03T05:13:50.276Z">
 <meta property="article:author" content="文KRIFE齐">
 <meta property="article:tag" content="blog">
 <meta name="twitter:card" content="summary">
@@ -56,7 +56,7 @@
   isHome: false,
   isHighlightShrink: false,
   isToc: true,
-  postUpdate: '2024-07-02 11:57:15'
+  postUpdate: '2024-07-03 13:13:50'
 }</script><script>(win=>{
       win.saveToLocal = {
         set: (key, value, ttl) => {
@@ -153,7 +153,7 @@
         }
       }
       detectApple()
-    })(window)</script><meta name="generator" content="Hexo 7.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">834</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">113</div></a></div><hr class="custom-hr"/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="文KRIFE齐的博客"><span class="site-name">文KRIFE齐的博客</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">UEDL6——Event公共类</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-03-25T14:44:38.000Z" title="发表于 2024-03-25 22:44:38">2024-03-25</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-07-02T03:57:15.000Z" title="更新于 2024-07-02 11:57:15">2024-07-02</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UED%E2%80%94%E2%80%94Unity%E7%BC%96%E8%BE%91%E5%99%A8%E6%8B%93%E5%B1%95/">UED——Unity编辑器拓展</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="UEDL6——Event公共类"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1>UEDL6——Event公共类</h1>
+    })(window)</script><meta name="generator" content="Hexo 7.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">834</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">113</div></a></div><hr class="custom-hr"/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="文KRIFE齐的博客"><span class="site-name">文KRIFE齐的博客</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">UEDL6——Event公共类</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-03-25T14:44:38.000Z" title="发表于 2024-03-25 22:44:38">2024-03-25</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-07-03T05:13:50.276Z" title="更新于 2024-07-03 13:13:50">2024-07-03</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UED%E2%80%94%E2%80%94Unity%E7%BC%96%E8%BE%91%E5%99%A8%E6%8B%93%E5%B1%95/">UED——Unity编辑器拓展</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="UEDL6——Event公共类"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1>UEDL6——Event公共类</h1>
 <h2 id="本章代码关键字">本章代码关键字</h2>
 <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">Event.current					<span class="comment">//获取当前事件</span></span><br><span class="line">Event.current.alt				<span class="comment">//判断alt键是否按下</span></span><br><span class="line">Event.current.shift				<span class="comment">//shift键是否按下</span></span><br><span class="line">Event.current.control			<span class="comment">//ctrl键是否按下</span></span><br><span class="line">Event.current.isMouse			<span class="comment">//是否是鼠标事件</span></span><br><span class="line">Event.current.button			<span class="comment">//判断鼠标左中右键，0,1,2 分别代表 左,右,中</span></span><br><span class="line">Event.current.mousePosition		<span class="comment">//鼠标相对于窗口坐标系的位置</span></span><br><span class="line">Event.current.isKey				<span class="comment">//判断是否是键盘输入</span></span><br><span class="line">Event.current.character			<span class="comment">//获取键盘输入的字符</span></span><br><span class="line">Event.current.keyCode			<span class="comment">//获取键盘输入对应的KeyCode</span></span><br><span class="line">Event.current.type				<span class="comment">//判断输入类型</span></span><br><span class="line">EventType						<span class="comment">//表示Event的类型</span></span><br><span class="line">Event.current.capsLock			<span class="comment">//是否锁定大写 对应键盘上capslock键是否开启</span></span><br><span class="line">Event.current.command			<span class="comment">//Windows键或Command键（苹果使用）是否按下</span></span><br><span class="line">Event.current.commandName		<span class="comment">//键盘事件 返回的是字符串 可以用来判断是否触发了对应的键盘事件</span></span><br><span class="line">Event.current.delta				<span class="comment">//鼠标间隔移动距离</span></span><br><span class="line">Event.current.functionKey		<span class="comment">//是否是功能键输入</span></span><br><span class="line">Event.current.numeric			<span class="comment">//小键盘是否开启</span></span><br><span class="line">Event.current.Use()				<span class="comment">//避免组合键冲突，在处理完对应输入事件后，调用该方法，可以阻止事件继续派发，防止和Unity其他编辑器事件逻辑冲突</span></span><br></pre></td></tr></table></figure>
 <h1>Event</h1>
@@ -175,52 +175,52 @@
 <li>
 <p>alt键是否按下 <code>Event.current.alt</code>​</p>
  <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (Event.current.alt)</span><br><span class="line">    Debug.Log(<span class="string">&quot;alt键按下了！&quot;</span>);</span><br></pre></td></tr></table></figure>
-<p>​<img src="assets/image-20240328172100-c2u8brs.png" alt="image">​</p>
+<p>​<img src="/assets/image-20240328172100-c2u8brs.png" alt="image">​</p>
 </li>
 <li>
 <p>shift键是否按下 <code>Event.current.shift</code>​</p>
  <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (Event.current.shift)</span><br><span class="line">    Debug.Log(<span class="string">&quot;shift键按下了！&quot;</span>);</span><br></pre></td></tr></table></figure>
-<p>​<img src="assets/image-20240328172051-6kouc87.png" alt="image">​</p>
+<p>​<img src="/assets/image-20240328172051-6kouc87.png" alt="image">​</p>
 </li>
 <li>
 <p>ctrl键是否按下 <code>Event.current.control</code>​</p>
  <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (Event.current.control)</span><br><span class="line">    Debug.Log(<span class="string">&quot;ctrl键按下了！&quot;</span>);</span><br></pre></td></tr></table></figure>
-<p>​<img src="assets/image-20240328172244-15may29.png" alt="image">​</p>
+<p>​<img src="/assets/image-20240328172244-15may29.png" alt="image">​</p>
 </li>
 <li>
 <p>是否是鼠标事件 <code>Event.current.isMouse</code>​</p>
  <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (Event.current.isMouse)</span><br><span class="line">    Debug.Log(<span class="string">&quot;鼠标相关事件&quot;</span>);</span><br></pre></td></tr></table></figure>
 <p>按下鼠标上的左键中键右键就会输出该消息</p>
-<p>​<img src="assets/image-20240328172251-8v7o4rs.png" alt="image">​</p>
+<p>​<img src="/assets/image-20240328172251-8v7o4rs.png" alt="image">​</p>
 </li>
 <li>
 <p>判断鼠标左中右键 <code>Evnet.current.button</code>​ (0,1,2 分别代表 左,右,中 如果大于2可能是其他鼠标按键)</p>
  <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (Event.current.isMouse)</span><br><span class="line">&#123;</span><br><span class="line">    Debug.Log(<span class="string">&quot;鼠标相关事件&quot;</span>);</span><br><span class="line">    Debug.Log(Event.current.button);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>依次按下左键，中键，右键输出的内容</p>
-<p>​<img src="assets/image-20240328172618-tqctx6p.png" alt="image">​</p>
+<p>​<img src="/assets/image-20240328172618-tqctx6p.png" alt="image">​</p>
 </li>
 <li>
 <p>鼠标位置 <code>Event.current.mousePosition</code>​，输出鼠标相对于窗口坐标系位置的Vector2值</p>
  <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (Event.current.isMouse)</span><br><span class="line">&#123;</span><br><span class="line">    Debug.Log(<span class="string">&quot;鼠标相关事件&quot;</span>);</span><br><span class="line">    Debug.Log(Event.current.button);</span><br><span class="line">    Debug.Log(<span class="string">&quot;鼠标位置: &quot;</span> + Event.current.mousePosition);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>焦点在窗口上时，按下鼠标键拖动鼠标</p>
-<p>​<img src="assets/image-20240328172847-krg742v.png" alt="image">​</p>
+<p>​<img src="/assets/image-20240328172847-krg742v.png" alt="image">​</p>
 </li>
 <li>
 <p>判断是否是键盘输入 <code>Event.current.isKey</code>​</p>
  <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (Event.current.isKey)</span><br><span class="line">&#123;</span><br><span class="line">    Debug.Log(<span class="string">&quot;键盘相关事件&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>​<img src="assets/image-20240328173215-rw1ia5y.png" alt="image">​</p>
+<p>​<img src="/assets/image-20240328173215-rw1ia5y.png" alt="image">​</p>
 </li>
 <li>
 <p>获取键盘输入的字符 <code>Event.current.character</code>​</p>
 <p>输出的是输入的字符<code>char</code>​，输出结果收到是否按下Shift键影响，按下shift键会输出大写字母</p>
  <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (Event.current.isKey)</span><br><span class="line">&#123;</span><br><span class="line">    Debug.Log(<span class="string">&quot;键盘相关事件&quot;</span>);</span><br><span class="line">    Debug.Log(<span class="string">&quot;Character: &quot;</span> + Event.current.character);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>​<img src="assets/image-20240328173603-zywbr56.png" alt="image">​</p>
+<p>​<img src="/assets/image-20240328173603-zywbr56.png" alt="image">​</p>
 </li>
 <li>
 <p>获取键盘输入对应的<code>KeyCode</code>​：<code>Event.current.keyCode</code>​</p>
 <p>输出的是<code>KeyCode</code>​枚举，输出结果不受大小写影响</p>
  <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (Event.current.isKey)</span><br><span class="line">&#123;</span><br><span class="line">    Debug.Log(<span class="string">&quot;键盘相关事件&quot;</span>);</span><br><span class="line">    Debug.Log(<span class="string">&quot;KeyCode: &quot;</span> + Event.current.keyCode);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>​<img src="assets/image-20240328173553-kbw55ae.png" alt="image">​</p>
+<p>​<img src="/assets/image-20240328173553-kbw55ae.png" alt="image">​</p>
 </li>
 <li>
 <p>判断输入类型 <code>Event.current.type</code>​</p>
@@ -231,7 +231,7 @@
 <li>
 <p>是否锁定大写 对应键盘上capslock键是否开启 <code>Event.current.capsLock</code>​</p>
  <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (Event.current.capsLock)</span><br><span class="line">    Debug.Log(<span class="string">&quot;大小写锁定开启&quot;</span>);</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    Debug.Log(<span class="string">&quot;大小写锁定关闭&quot;</span>);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>​<img src="assets/image-20240328174915-wkghlal.png" alt="image">​</p>
+<p>​<img src="/assets/image-20240328174915-wkghlal.png" alt="image">​</p>
 </li>
 <li>
 <p>Windows键或Command键（苹果使用）是否按下 <code>Event.current.command</code>​</p>
@@ -254,7 +254,7 @@
 <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (Event.current.commandName == <span class="string">&quot;Cut&quot;</span>)</span><br><span class="line">    Debug.Log(<span class="string">&quot;按下了ctrl + x&quot;</span>);</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<p>​<img src="assets/image-20240328175700-v3ni2jb.png" alt="image">​</p>
+<p>​<img src="/assets/image-20240328175700-v3ni2jb.png" alt="image">​</p>
 </li>
 <li>
 <p>鼠标间隔移动距离 <code>Event.current.delta</code>​</p>
@@ -265,7 +265,7 @@
 <p>是否是功能键输入 <code>Event.current.functionKey</code>​</p>
 <p>功能键指小键盘中的 方向键, page up, page down, backspace等等</p>
  <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (Event.current.functionKey)</span><br><span class="line">    Debug.Log(<span class="string">&quot;功能键按下了&quot;</span>);</span><br></pre></td></tr></table></figure>
-<p>​<img src="assets/image-20240328180043-14l1i1u.png" alt="image">​</p>
+<p>​<img src="/assets/image-20240328180043-14l1i1u.png" alt="image">​</p>
 </li>
 <li>
 <p>小键盘是否开启<sup>（笔者未能触发，原因不明）</sup> <code>Event.current.numeric</code>​</p>

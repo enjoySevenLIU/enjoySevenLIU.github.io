@@ -7,7 +7,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png">
 <meta property="article:published_time" content="2024-06-04T05:43:23.000Z">
-<meta property="article:modified_time" content="2024-07-02T03:57:26.000Z">
+<meta property="article:modified_time" content="2024-07-03T05:13:50.532Z">
 <meta property="article:author" content="文KRIFE齐">
 <meta property="article:tag" content="blog">
 <meta name="twitter:card" content="summary">
@@ -56,7 +56,7 @@
   isHome: false,
   isHighlightShrink: false,
   isToc: true,
-  postUpdate: '2024-07-02 11:57:26'
+  postUpdate: '2024-07-03 13:13:50'
 }</script><script>(win=>{
       win.saveToLocal = {
         set: (key, value, ttl) => {
@@ -153,7 +153,7 @@
         }
       }
       detectApple()
-    })(window)</script><meta name="generator" content="Hexo 7.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">834</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">113</div></a></div><hr class="custom-hr"/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="文KRIFE齐的博客"><span class="site-name">文KRIFE齐的博客</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">US2S1L14——齐次裁剪空间</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-06-04T05:43:23.000Z" title="发表于 2024-06-04 13:43:23">2024-06-04</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-07-02T03:57:26.000Z" title="更新于 2024-07-02 11:57:26">2024-07-02</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity-Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/">US——Unity Shader开发入门</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity-Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US2%E2%80%94%E2%80%94Shader%E5%BF%85%E5%A4%87%E5%9F%BA%E7%A1%80/">US2——Shader必备基础</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity-Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US2%E2%80%94%E2%80%94Shader%E5%BF%85%E5%A4%87%E5%9F%BA%E7%A1%80/US2S1%E2%80%94%E2%80%94%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E5%8F%8A%E5%9D%90%E6%A0%87%E7%A9%BA%E9%97%B4%E5%8F%98%E6%8D%A2/">US2S1——线性代数及坐标空间变换</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="US2S1L14——齐次裁剪空间"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1>US2S1L14——齐次裁剪空间</h1>
+    })(window)</script><meta name="generator" content="Hexo 7.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">834</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">113</div></a></div><hr class="custom-hr"/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="文KRIFE齐的博客"><span class="site-name">文KRIFE齐的博客</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">US2S1L14——齐次裁剪空间</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-06-04T05:43:23.000Z" title="发表于 2024-06-04 13:43:23">2024-06-04</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-07-03T05:13:50.532Z" title="更新于 2024-07-03 13:13:50">2024-07-03</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity-Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/">US——Unity Shader开发入门</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity-Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US2%E2%80%94%E2%80%94Shader%E5%BF%85%E5%A4%87%E5%9F%BA%E7%A1%80/">US2——Shader必备基础</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity-Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US2%E2%80%94%E2%80%94Shader%E5%BF%85%E5%A4%87%E5%9F%BA%E7%A1%80/US2S1%E2%80%94%E2%80%94%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E5%8F%8A%E5%9D%90%E6%A0%87%E7%A9%BA%E9%97%B4%E5%8F%98%E6%8D%A2/">US2S1——线性代数及坐标空间变换</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="US2S1L14——齐次裁剪空间"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1>US2S1L14——齐次裁剪空间</h1>
 <h2 id="视锥体">视锥体</h2>
 <p>在渲染管线中，顶点、法线等相关模型数据会经过以下的空间变换（详见：US2S1L10——坐标空间的变换）<br>
 模型空间 → 世界空间 → 观察空间 → 裁剪空间 → 屏幕空间</p>
@@ -162,9 +162,9 @@
 而摄像机中有一个非常重要的概念，就是<strong>视锥体</strong>。</p>
 <p>摄像机的<strong>视锥体是在三维空间中表示摄像机可见区域的虚拟体积</strong>，它类似一个<strong>六面体的形状</strong>，根据摄像机的属性和投影方式而定。<br>
 <strong>视锥体定义了摄像机在场景中能够看到的物体区域，超出这个区域的物体将在渲染时被裁减掉，从而提高渲染性能。</strong></p>
-<p>​<img src="assets/image-20240604134930-2x0oym8.png" alt="image">​</p>
+<p>​<img src="/assets/image-20240604134930-2x0oym8.png" alt="image">​</p>
 <p>透视投影摄像机（视锥体形似金字塔，一般3D游戏使用）</p>
-<p><img src="assets/image-20240604135039-n290m94.png" alt="image">​</p>
+<p><img src="/assets/image-20240604135039-n290m94.png" alt="image">​</p>
 <p>透视投影摄像机（视锥体形似立方体，一般横板2D游戏使用）</p>
 <p>视锥体主要包含几种重要部分：</p>
 <ul>
@@ -176,11 +176,11 @@
 </li>
 <li>
 <p>透视投影中，视锥体类似一个金字塔形状，远裁剪面比近裁剪面大，所以产生透视效果，也就是近大远小</p>
-<p>​<img src="assets/image-20240604135602-3gcc49l.png" alt="image">​</p>
+<p>​<img src="/assets/image-20240604135602-3gcc49l.png" alt="image">​</p>
 </li>
 <li>
 <p>正交投影中，视锥体类似于长方体的形状，远近裁剪平面大小一致，不会产生透视效果，即无论多远都一样大</p>
-<p>​<img src="assets/image-20240604135623-f3mxmu1.png" alt="image">​</p>
+<p>​<img src="/assets/image-20240604135623-f3mxmu1.png" alt="image">​</p>
 </li>
 </ul>
 <p>之前提到，我们希望根据视锥体围成的区域对顶点等数据进行裁剪，<br>
@@ -194,7 +194,7 @@
 <p>很多同学可能都是第一次听到这个名词，在以前的数学学科当中可能都没有学习过。<br>
 齐次裁剪空间 是一个三维空间，<strong>是在计算机图形学中用于在图形渲染过程中进行裁剪和投影的。</strong><br>
 <strong>它的坐标范围为（-1,-1,-1）到（1,1,1），<strong>​</strong><u>超出这个范围的坐标在渲染时会被裁减掉，只会保留范围内的坐标。</u></strong></p>
-<p>​<img src="assets/image-20240604140155-408lr3q.png" alt="image">​</p>
+<p>​<img src="/assets/image-20240604140155-408lr3q.png" alt="image">​</p>
 <p>我们之后的几节课主要要学习的就是视锥体的 透视投影 和 正交投影 对应的裁剪矩阵（投影矩阵）<br>
 通过裁剪矩阵我们就可以将观察空间中的数据转换到齐次裁剪空间中了。</p>
 <p><strong><u>目前只要知道。齐次裁剪空间是通过将摄像机的视锥体投影到一个规范化的立方体而转换来的。这个立方体就是齐次裁剪空间。</u></strong></p>
