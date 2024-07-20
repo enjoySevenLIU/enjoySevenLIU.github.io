@@ -54,7 +54,7 @@
   isHome: true,
   isHighlightShrink: false,
   isToc: false,
-  postUpdate: '2024-07-20 21:25:48'
+  postUpdate: '2024-07-21 00:41:10'
 }</script><script>(win=>{
       win.saveToLocal = {
         set: (key, value, ttl) => {
@@ -151,215 +151,432 @@
         }
       }
       detectApple()
-    })(window)</script><meta name="generator" content="Hexo 7.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/Blue_Ice.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">851</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">119</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="https://enjoysevenliu.github.io/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page fixed" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="文KRIFE齐的博客"><img class="site-icon" src="/img/Blue_Ice.png"/><span class="site-name">文KRIFE齐的博客</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="https://enjoysevenliu.github.io/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">文KRIFE齐的博客</h1><div id="site_social_icons"><a class="social-icon" href="https://github.com/enjoySevenLIU" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/08/13/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UG%E2%80%94%E2%80%94UI%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0/UG3%E2%80%94%E2%80%94UGUI%E7%B3%BB%E5%88%97/UG3L4%E2%80%94%E2%80%94Toggle%20%E5%8D%95%E9%80%89%E6%A1%86/" title="UG3L4——Toggle 单选框">UG3L4——Toggle 单选框</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-08-12T18:06:41.000Z" title="发表于 2023-08-13 02:06:41">2023-08-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UG%E2%80%94%E2%80%94UI%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0/">UG——UI系统笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UG%E2%80%94%E2%80%94UI%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0/UG3%E2%80%94%E2%80%94UGUI%E7%B3%BB%E5%88%97/">UG3——UGUI系列</a></span></div><div class="content">UG3L4——Toggle 单选框
-Toggle
-Toggle是开关组件
-是UGUI中用于处理玩家单选框多选框相关交互的关键组件
-开关组件 默认是多选框
-可以通过配合ToggleGroup组件制作为单选框
-默认创建的Toggle由4个对象组成
-父对象——Toggle组件依附
-子对象——背景图（必备）、选中图（必备）、说明文字（可选）
-本章代码关键字
-12345Toggle                                 //单选框类ToggleGroup                            //单选框组合类toggle.isOn                            //是否处于激活状态toggleGroup.ActiveToggles()            //该方法是迭代器，通过foreach循环可以得到该toggleGroup下哪个toggle是激活的toggle.onValueChanged.AddListener()    //向toggle添加当toggle选中情况变化时执行的函数
-Toggle 参数相关
-​​
+    })(window)</script><meta name="generator" content="Hexo 7.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/Blue_Ice.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">873</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">120</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="https://enjoysevenliu.github.io/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page fixed" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="文KRIFE齐的博客"><img class="site-icon" src="/img/Blue_Ice.png"/><span class="site-name">文KRIFE齐的博客</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="https://enjoysevenliu.github.io/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">文KRIFE齐的博客</h1><div id="site_social_icons"><a class="social-icon" href="https://github.com/enjoySevenLIU" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/08/22/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/CS3%E2%80%94%E2%80%94CSharp%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/" title="CS3——CSharp核心系列">CS3——CSharp核心系列</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-08-22T06:11:11.000Z" title="发表于 2023-08-22 14:11:11">2023-08-22</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/">CS——CSharp笔记</a></span></div><div class="content">CS3——CSharp核心系列
+（笔记未开始迁移）
 
 
-In ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/08/13/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UG%E2%80%94%E2%80%94UI%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0/UG3%E2%80%94%E2%80%94UGUI%E7%B3%BB%E5%88%97/UG3L3%E2%80%94%E2%80%94Button%20%E6%8C%89%E9%92%AE/" title="UG3L3——Button 按钮">UG3L3——Button 按钮</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-08-12T18:06:36.000Z" title="发表于 2023-08-13 02:06:36">2023-08-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UG%E2%80%94%E2%80%94UI%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0/">UG——UI系统笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UG%E2%80%94%E2%80%94UI%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0/UG3%E2%80%94%E2%80%94UGUI%E7%B3%BB%E5%88%97/">UG3——UGUI系列</a></span></div><div class="content">UG3L3——Button 按钮
-Button
-Button是按钮组件
-是UGUI中用于处理玩家按钮相关交互的关键组件
-默认创建的Button由2个对象组成
-父对象——Button组件依附对象 同时挂载了一个Image组件 作为按钮背景图
-子对象——按钮文本（可选）
-本章代码关键字
-1234Button                                //按钮类button.onClick.AddListener()          //向按钮添加监听函数button.onClick.RemoveListener()       //移除按钮的指定监听函数button.onClick.RemoveAllListeners()   //移除按钮的全部监听函数
-Button 参数相关
-​​
+语法知识
 
 
-Interactable：是否接受输入
+面向对象的概念
 
 
-Transition：响应用户输入的过渡效果
+面向对象—封装
 
-
-None：没有状态变化效果
-
-
-ColorTint：用颜色表示不同状态的变化
-​​
-
-TargetGraphic：控制的目标图形
-Normal Color：正常状态颜色
-Highlighte ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/08/12/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UG%E2%80%94%E2%80%94UI%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0/UG3%E2%80%94%E2%80%94UGUI%E7%B3%BB%E5%88%97/UG3L2%E2%80%94%E2%80%94%E4%B8%89%E5%A4%A7%E5%9F%BA%E7%A1%80%E6%8E%A7%E4%BB%B6/UG3L2-3%E2%80%94%E2%80%94RawImage%20%E5%8E%9F%E5%A7%8B%E5%9B%BE%E5%83%8F/" title="UG3L2-3——RawImage 原始图像">UG3L2-3——RawImage 原始图像</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-08-12T15:43:26.000Z" title="发表于 2023-08-12 23:43:26">2023-08-12</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UG%E2%80%94%E2%80%94UI%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0/">UG——UI系统笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UG%E2%80%94%E2%80%94UI%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0/UG3%E2%80%94%E2%80%94UGUI%E7%B3%BB%E5%88%97/">UG3——UGUI系列</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UG%E2%80%94%E2%80%94UI%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0/UG3%E2%80%94%E2%80%94UGUI%E7%B3%BB%E5%88%97/UG3L2%E2%80%94%E2%80%94%E4%B8%89%E5%A4%A7%E5%9F%BA%E7%A1%80%E6%8E%A7%E4%BB%B6/">UG3L2——三大基础控件</a></span></div><div class="content">UG3L2-3——RawImage 原始图像
-RawImage
-RawImage是原始图像组件，是UGUI中用于显示任何纹理图片的关键组件，它可以显示包括但不限于Sprite​类型的贴图
-它和Image的区别是，一般RawImage用于显示大图(背景图，不需要打入图集的图片，网络下载的图等等)
-本章代码关键字
-123RawImage            //RawImage的类rawImage.texture    //修改RawImage显示的图片rawImage.uvRect     //修改rawImage的UI矩形的偏移和大小
-RawImage 参数相关
-RawImage的Texture显示图片的格式并不要求是Sprite类型的
-​​
-
-Texture：图像纹理
-UV Rect：图像在UI矩形内的偏移和大小
-位置偏移X和Y（取值0~1） 大小偏移W和H（取值0~1）
-改变他们图像边缘将进行拉伸来填充UV矩形周围的空间
-
-代码控制RawIamge
-代码更新大图
-12RawImage rawImage = this.GetComponent&lt;RawImage&gt;();r ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/08/12/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UG%E2%80%94%E2%80%94UI%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0/UG3%E2%80%94%E2%80%94UGUI%E7%B3%BB%E5%88%97/UG3L2%E2%80%94%E2%80%94%E4%B8%89%E5%A4%A7%E5%9F%BA%E7%A1%80%E6%8E%A7%E4%BB%B6/UG3L2-2%E2%80%94%E2%80%94Text%20%E6%96%87%E6%9C%AC/" title="UG3L2-2——Text 文本">UG3L2-2——Text 文本</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-08-12T15:43:23.000Z" title="发表于 2023-08-12 23:43:23">2023-08-12</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UG%E2%80%94%E2%80%94UI%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0/">UG——UI系统笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UG%E2%80%94%E2%80%94UI%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0/UG3%E2%80%94%E2%80%94UGUI%E7%B3%BB%E5%88%97/">UG3——UGUI系列</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UG%E2%80%94%E2%80%94UI%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0/UG3%E2%80%94%E2%80%94UGUI%E7%B3%BB%E5%88%97/UG3L2%E2%80%94%E2%80%94%E4%B8%89%E5%A4%A7%E5%9F%BA%E7%A1%80%E6%8E%A7%E4%BB%B6/">UG3L2——三大基础控件</a></span></div><div class="content">UG3L2-2——Text 文本
-Text
-Text是文本组件
-是UGUI中用于显示文本的关键组件
-关于Text Mesh Pro
-TextMesh Pro是Unity收购的一个第三方插件，现在已经自动内置到编辑器中
-原来的文本渲染存在模糊等问题，而TextMeshPro无论在什么分辨率和UI放大的情况下，都能生产清晰的文字，并且没有额外的性能消耗
-可以说TextMesh Pro是Unity的终极文本解决方案。它是Unity的UI Text和Text Mesh网格的完美替代品。
-但是！TextMeshPro本身对多语言支持并不友好，若不进行额外操作，它并不能直接显示中文等内容！
-在Unity2021版里，涉及显示文字相关的UI已经全部换上了使用Text Mesh Pro的版本，而以前的版本被放入了Legacy（旧版）内
-但是，出于课上内容同步，以及TextMeshPro本身缺陷等原因，本系列依然基于旧版内容进行学习
-关于Text Mesh Pro具体内容会在Unity进阶里进一步讲解
-本章代码关键字
-12Text         //Text类text.text    //text的显 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/08/12/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UG%E2%80%94%E2%80%94UI%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0/UG3%E2%80%94%E2%80%94UGUI%E7%B3%BB%E5%88%97/UG3L2%E2%80%94%E2%80%94%E4%B8%89%E5%A4%A7%E5%9F%BA%E7%A1%80%E6%8E%A7%E4%BB%B6/UG3L2-1%E2%80%94%E2%80%94Image%20%E5%9B%BE%E5%83%8F/" title="UG3L2-1——Image 图像">UG3L2-1——Image 图像</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-08-12T15:43:18.000Z" title="发表于 2023-08-12 23:43:18">2023-08-12</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UG%E2%80%94%E2%80%94UI%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0/">UG——UI系统笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UG%E2%80%94%E2%80%94UI%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0/UG3%E2%80%94%E2%80%94UGUI%E7%B3%BB%E5%88%97/">UG3——UGUI系列</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UG%E2%80%94%E2%80%94UI%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0/UG3%E2%80%94%E2%80%94UGUI%E7%B3%BB%E5%88%97/UG3L2%E2%80%94%E2%80%94%E4%B8%89%E5%A4%A7%E5%9F%BA%E7%A1%80%E6%8E%A7%E4%BB%B6/">UG3L2——三大基础控件</a></span></div><div class="content">UG3L2-1——Image 图像
-Image
-​Image​是图像组件，是UGUI中用于显示精灵图片的关键组件
-除了背景图等大图，一般都使用Image来显示UI中的图片元素
-本章代码关键字
-123UnityEngine.UI    //UGUI相关内容的命名空间Image             //Image类image.sprite      //Image的当前的图片属性
-Image 参数相关
-Image不需要像NGUI设置层级来调整渲染顺序，直接在Hierarchy窗口上调整各个Image的顺序即可调整，越在下面越后渲染
-​​
-
-
-Source Image：图片来源（图片类型必须是“精灵”类型）
-
-
-Color：图像的颜色
-
-
-Material：图像的材质（一般不修改，会使用UI的默认材质）
-
-
-Raycast Target：是否作为射线检测的目标
-（如果不勾选将不会响应射线检测）
-
-
-Raycast Padding：射线检测范围设置
-
-可以通过设置上下左右四个边来改变其射线检测范围
+类和对象
+成员变量和访问修饰符
+成员方法
+构造函数和析构函数
+成员属性
+索引器
+静态成员
+静态类和静态构造函数
+拓展方法
+运算符重载
+内部类和分部类
 
 
 
-Maskable：是否能被遮罩（之后结合遮罩相关知识点进行讲解）
+面向对象—继承
 
-
-Image Ty ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/08/12/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UG%E2%80%94%E2%80%94UI%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0/UG3%E2%80%94%E2%80%94UGUI%E7%B3%BB%E5%88%97/UG3L2%E2%80%94%E2%80%94%E4%B8%89%E5%A4%A7%E5%9F%BA%E7%A1%80%E6%8E%A7%E4%BB%B6/" title="UG3L2——三大基础控件">UG3L2——三大基础控件</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-08-12T15:42:24.000Z" title="发表于 2023-08-12 23:42:24">2023-08-12</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UG%E2%80%94%E2%80%94UI%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0/">UG——UI系统笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UG%E2%80%94%E2%80%94UI%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0/UG3%E2%80%94%E2%80%94UGUI%E7%B3%BB%E5%88%97/">UG3——UGUI系列</a></span></div><div class="content">UG3L2——三大基础控件
-
-Image 图片
-Text 文本控件
-RawImage （原始图片）大图控件
-
-</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/08/12/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UG%E2%80%94%E2%80%94UI%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0/UG3%E2%80%94%E2%80%94UGUI%E7%B3%BB%E5%88%97/UG3L1%E2%80%94%E2%80%94%E5%85%AD%E5%A4%A7%E5%9F%BA%E7%A1%80%E7%BB%84%E4%BB%B6/UG3L1-4%E2%80%94%E2%80%94Event%20System%20%E5%92%8C%20Standalone%20Input%20Module/" title="UG3L1-4——Event System 和 Standalone Input Module">UG3L1-4——Event System 和 Standalone Input Module</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-08-12T07:26:26.000Z" title="发表于 2023-08-12 15:26:26">2023-08-12</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UG%E2%80%94%E2%80%94UI%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0/">UG——UI系统笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UG%E2%80%94%E2%80%94UI%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0/UG3%E2%80%94%E2%80%94UGUI%E7%B3%BB%E5%88%97/">UG3——UGUI系列</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UG%E2%80%94%E2%80%94UI%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0/UG3%E2%80%94%E2%80%94UGUI%E7%B3%BB%E5%88%97/UG3L1%E2%80%94%E2%80%94%E5%85%AD%E5%A4%A7%E5%9F%BA%E7%A1%80%E7%BB%84%E4%BB%B6/">UG3L1——六大基础组件</a></span></div><div class="content">UG3L1-4——Event System 和 Standalone Input Module
-EventSystem和Standalone Input Module组件
-他们主要是用于输入事件监听管理和分发的
-如果没有了他们
-那么UI中的所有输入事件将不会被响应
-他们的参数相关了解即可，一般情况下不会去修改
-本章代码关键字
-1EventSystem.current.IsPointerOverGameObject()    //获取本帧输入是否点击到了UI控件
-Event System
-Event System意思是事件系统
-它是用于管理玩家的输入事件并分发给各UI控件
-它是事件逻辑处理模块
-所有的UI事件都通过EventSystem组件中轮询检测并做相应的执行
-它类似一个中转站，和许多模块一起共同协作
-如果没有它，所有点击、拖曳等等行为都不会被响应
-Event System 参数相关
-​​
-
-First Selected：首先选择的游戏对象，可以设置游戏一开始的默认选择
-Send Navigation Events：是否允许导航事件（移动/按下/取消）
-Drag Threshold： ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/08/12/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UG%E2%80%94%E2%80%94UI%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0/UG3%E2%80%94%E2%80%94UGUI%E7%B3%BB%E5%88%97/UG3L1%E2%80%94%E2%80%94%E5%85%AD%E5%A4%A7%E5%9F%BA%E7%A1%80%E7%BB%84%E4%BB%B6/UG3L1-5%E2%80%94%E2%80%94Rect%20Transform%20%E7%9F%A9%E5%BD%A2%E5%8F%98%E6%8D%A2/" title="UG3L1-5——Rect Transform 矩形变换">UG3L1-5——Rect Transform 矩形变换</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-08-12T07:26:17.000Z" title="发表于 2023-08-12 15:26:17">2023-08-12</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UG%E2%80%94%E2%80%94UI%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0/">UG——UI系统笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UG%E2%80%94%E2%80%94UI%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0/UG3%E2%80%94%E2%80%94UGUI%E7%B3%BB%E5%88%97/">UG3——UGUI系列</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UG%E2%80%94%E2%80%94UI%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0/UG3%E2%80%94%E2%80%94UGUI%E7%B3%BB%E5%88%97/UG3L1%E2%80%94%E2%80%94%E5%85%AD%E5%A4%A7%E5%9F%BA%E7%A1%80%E7%BB%84%E4%BB%B6/">UG3L1——六大基础组件</a></span></div><div class="content">UG3L1-5——Rect Transform 矩形变换
-RectTransform
-​RectTransform​意思是矩形变换，它继承于Transform​，是专门用于处理UI元素位置大小相关的组件
-​Transform​组件只处理位置、角度、缩放，​RectTransform​在此基础上加入了矩形相关，将UI元素当做一个矩形来处理
-加入了中心点、锚点、长宽等属性， 其目的是更加方便的控制其大小以及分辨率自适应中的位置适应
-​RectTransform​是专门用于控制UI尺寸大小对齐方式的组件
-我们要搞清锚点、轴心点的作用，它主要可以帮助我们进行分辨率变化时位置的自适应（9宫格布局）
-我们需要熟练使用该组件
-参数相关
-​
-​​
-
-
-Pivot：轴心(中心)点，取值范围0~1
-
-
-Anchors(相对父矩形锚点)：
-
-Min是矩形锚点范围X和Y的最小值
-Max是矩形锚点范围X和Y的最大值
-取值范围都是0~1
-锚点可以是一个点，也可以设置为一个范围或者一条线
+继承的基本规则
+里氏替换原则
+继承中的构造函数
+万物之父和装箱拆箱
+密封类
 
 
 
-Pos(X,Y,Z)：轴心点(中心点)相对锚点的位置
+面向对象—多态
+
+vob
+抽象类和抽象方法
+接口
+密封方法
 
 
-Width/Height：矩形的宽高，变化相对于轴心点的位置
 
- ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/08/12/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UG%E2%80%94%E2%80%94UI%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0/UG3%E2%80%94%E2%80%94UGUI%E7%B3%BB%E5%88%97/UG3L1%E2%80%94%E2%80%94%E5%85%AD%E5%A4%A7%E5%9F%BA%E7%A1%80%E7%BB%84%E4%BB%B6/UG3L1-3%E2%80%94%E2%80%94Graphic%20Raycaster%20%E5%9B%BE%E5%BD%A2%E5%B0%84%E7%BA%BF%E6%8A%95%E5%B0%84%E5%99%A8/" title="UG3L1-3——Graphic Raycaster 图形射线投射器">UG3L1-3——Graphic Raycaster 图形射线投射器</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-08-12T07:26:12.000Z" title="发表于 2023-08-12 15:26:12">2023-08-12</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UG%E2%80%94%E2%80%94UI%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0/">UG——UI系统笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UG%E2%80%94%E2%80%94UI%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0/UG3%E2%80%94%E2%80%94UGUI%E7%B3%BB%E5%88%97/">UG3——UGUI系列</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UG%E2%80%94%E2%80%94UI%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0/UG3%E2%80%94%E2%80%94UGUI%E7%B3%BB%E5%88%97/UG3L1%E2%80%94%E2%80%94%E5%85%AD%E5%A4%A7%E5%9F%BA%E7%A1%80%E7%BB%84%E4%BB%B6/">UG3L1——六大基础组件</a></span></div><div class="content">UG3L1-3——Graphic Raycaster 图形射线投射器
-Graphic Raycaster
-Graphic Raycaster意思是图形射线投射器
-它是用于检测UI输入事件的射线发射器
-它主要负责通过射线检测玩家和UI元素的交互
-判断是否点击到了UI元素
-Graphic Raycaster 参数相关
-​​
+面向对象关联知识点
 
-Ignore Reversed Graphics：是否忽略反转图形
-Blocking Objects：射线被哪些类型的碰撞器阻挡
-（在覆盖渲染模式下无效）
-Blocking Mask：射线被哪些层级的碰撞器阻挡
-（在覆盖渲染模式下无效）
+万物之父中的方法
+String
+StringBuilder
+结构体和类的区别
+抽象类和接口的区别
+
+
+
+
 
 ‍
-</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/08/12/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UG%E2%80%94%E2%80%94UI%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0/UG3%E2%80%94%E2%80%94UGUI%E7%B3%BB%E5%88%97/UG3L1%E2%80%94%E2%80%94%E5%85%AD%E5%A4%A7%E5%9F%BA%E7%A1%80%E7%BB%84%E4%BB%B6/UG3L1-2%E2%80%94%E2%80%94Canvas%20Scaler%20%E7%94%BB%E5%B8%83%E7%BC%A9%E6%94%BE%E6%8E%A7%E5%88%B6%E5%99%A8/" title="UG3L1-2——Canvas Scaler 画布缩放控制器">UG3L1-2——Canvas Scaler 画布缩放控制器</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-08-12T07:26:09.000Z" title="发表于 2023-08-12 15:26:09">2023-08-12</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UG%E2%80%94%E2%80%94UI%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0/">UG——UI系统笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UG%E2%80%94%E2%80%94UI%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0/UG3%E2%80%94%E2%80%94UGUI%E7%B3%BB%E5%88%97/">UG3——UGUI系列</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UG%E2%80%94%E2%80%94UI%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0/UG3%E2%80%94%E2%80%94UGUI%E7%B3%BB%E5%88%97/UG3L1%E2%80%94%E2%80%94%E5%85%AD%E5%A4%A7%E5%9F%BA%E7%A1%80%E7%BB%84%E4%BB%B6/">UG3L1——六大基础组件</a></span></div><div class="content">UG3L1-2——Canvas Scaler 画布缩放控制器
-Canvas Scaler
-​CanvasScaler​意思是画布缩放控制器
-它是用于分辨率自适应的组件
-它主要负责在不同分辨率下UI控件大小自适应
-它并不负责位置，位置由之后的RectTransform​组件负责
-它主要提供了三种用于分辨率自适应的模式
-我们可以选择符合我们项目需求的方式进行分辨率自适应
-必备知识点
+</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/08/22/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/CS2%E2%80%94%E2%80%94CSharp%E5%9F%BA%E7%A1%80%E7%B3%BB%E5%88%97/" title="CS2——CSharp基础系列">CS2——CSharp基础系列</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-08-22T06:08:20.000Z" title="发表于 2023-08-22 14:08:20">2023-08-22</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/">CS——CSharp笔记</a></span></div><div class="content">CS2——CSharp基础系列
+C#四部曲第二部分——系列代号CS2
+在上一系列里，我们学习了C#最基本的逻辑，主要函数以内的内容，包括各种变量、运算符和基础逻辑
+本系列将走出main​函数，接触到复杂数据类型，值和引用，函数相关，初步接触排序
 
-屏幕分辨率 —— 当前设备的分辨率，编辑器下Game窗口中可以查看到
-参考分辨率 —— 在其中一种适配模式中出现的关键参数，参与分辨率自适应的计算
-画布宽高和缩放系数 —— 分辨率自适应会改变的参数，通过屏幕分辨率和参考分辨率计算而来
 
-分辨率大小自适应 —— 通过一定的算法以屏幕分辨率和参考分辨率参与计算得出缩放系数
-该结果会影响所有UI控件的缩放大小
-屏幕分辨率
+复杂数据类型概述
+
+
+枚举
+
+
+数组
+
+一维数组
+二维数组
+交错数组
+
+
+
+
+
+值类型和引用类型
+
+值类型和引用类型在使用和存储上的区别
+特殊的引用类型string
+
+
+
+函数
+
+函数基础
+ref和out
+变长参数和参数默认值
+函数重载
+递归函数
+
+
+
+复杂数据类型—结构体
+
+
+排序初探
+
+冒泡排序
+选择排序
+
+
+
+</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/08/22/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U1%E2%80%94%E2%80%94Unity%E5%85%A5%E9%97%A8%E7%B3%BB%E5%88%97/U1L0%E2%80%94%E2%80%94Unity%E7%8E%AF%E5%A2%83%EF%BC%8C%E7%95%8C%E9%9D%A2%E5%8F%8A%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/U1L0-2%E2%80%94%E2%80%94Unity%E7%95%8C%E9%9D%A2%E5%9F%BA%E7%A1%80/" title="U1L0-2——Unity界面基础">U1L0-2——Unity界面基础</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-08-21T19:40:42.000Z" title="发表于 2023-08-22 03:40:42">2023-08-22</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U1%E2%80%94%E2%80%94Unity%E5%85%A5%E9%97%A8%E7%B3%BB%E5%88%97/">U1——Unity入门系列</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U1%E2%80%94%E2%80%94Unity%E5%85%A5%E9%97%A8%E7%B3%BB%E5%88%97/U1L0%E2%80%94%E2%80%94Unity%E7%8E%AF%E5%A2%83%EF%BC%8C%E7%95%8C%E9%9D%A2%E5%8F%8A%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/">U1L0——Unity环境，界面及工作原理</a></span></div><div class="content">U1L0-2——Unity界面基础
+Unity界面基础
+关于Unity的界面详细说明，可看这里 ——&gt; Unity 的界面 - Unity 手册
+Scene和Hierarchy窗口
+Scene（场景）和Hierarchy（层级）
 ​​
-Game窗口中的Stats统计数据窗口，看到的当前“屏幕”分辨率
-它会参与分辨率自适应的计算
-画布大小和缩放系数
+场景窗口和层级窗口是息息相关的
+层级窗口中看到的内容就是场景窗口中的显示对象
+Hierarchy层级窗口
 ​​
-选中Canvas对象后
-在RectTransform组件中看到的宽高和缩放
-宽高 * 缩放系数 = 屏幕分辨率
-Refe ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/63/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/63/#content-inner">63</a><span class="page-number current">64</span><a class="page-number" href="/page/65/#content-inner">65</a><span class="space">&hellip;</span><a class="page-number" href="/page/86/#content-inner">86</a><a class="extend next" rel="next" href="/page/65/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/Blue_Ice.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">文KRIFE齐</div><div class="author-info__description">正在努力学习Unity，希望下半年可以找到实习</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">851</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">119</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/enjoySevenLIU"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/enjoySevenLIU" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">找到实习，但家遇变故，因此本周和下周暂不更新，抱歉！</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/07/10/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S2%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E7%BA%B9%E7%90%86%E6%95%88%E6%9E%9C/US3S2L2%E2%80%94%E2%80%94%E7%BA%B9%E7%90%86%E7%9B%B8%E5%85%B3%E8%AE%BE%E7%BD%AE/" title="US3S2L2——纹理相关设置">US3S2L2——纹理相关设置</a><time datetime="2024-07-10T14:34:04.000Z" title="发表于 2024-07-10 22:34:04">2024-07-10</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/07/10/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S2%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E7%BA%B9%E7%90%86%E6%95%88%E6%9E%9C/US3S2L1%E2%80%94%E2%80%94%E7%BA%B9%E7%90%86%E9%A2%9C%E8%89%B2%E9%87%87%E6%A0%B7/" title="US3S2L1——纹理颜色采样">US3S2L1——纹理颜色采样</a><time datetime="2024-07-10T13:19:45.000Z" title="发表于 2024-07-10 21:19:45">2024-07-10</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/07/07/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/US3S1L9%E2%80%94%E2%80%94Unity%E5%86%85%E7%BD%AE%E5%85%89%E7%85%A7%E8%AE%A1%E7%AE%97%E7%9B%B8%E5%85%B3%E5%87%BD%E6%95%B0/" title="US3S1L9——Unity内置光照计算相关函数">US3S1L9——Unity内置光照计算相关函数</a><time datetime="2024-07-07T05:43:41.000Z" title="发表于 2024-07-07 13:43:41">2024-07-07</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/07/07/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/US3S1L8%E2%80%94%E2%80%94%E9%80%90%E7%89%87%E5%85%83%E6%AF%94%E9%80%90%E9%A1%B6%E7%82%B9%E6%9B%B4%E5%85%89%E6%BB%91%E7%9A%84%E5%8E%9F%E5%9B%A0/" title="US3S1L8——逐片元比逐顶点更光滑的原因">US3S1L8——逐片元比逐顶点更光滑的原因</a><time datetime="2024-07-07T05:43:26.000Z" title="发表于 2024-07-07 13:43:26">2024-07-07</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/07/07/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S1%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E5%85%89%E7%85%A7%E6%95%88%E6%9E%9C/US3S1L7%E2%80%94%E2%80%94Blinn-Phong%E5%85%89%E7%85%A7%E6%A8%A1%E5%9E%8B/US3S1L7-2%E2%80%94%E2%80%94Blinn-Phong%E5%85%89%E7%85%A7%E6%A8%A1%E5%9E%8B%E7%9A%84%E9%80%90%E7%89%87%E5%85%83%E5%85%89%E7%85%A7/" title="US3S1L7-2——Blinn-Phong光照模型的逐片元光照">US3S1L7-2——Blinn-Phong光照模型的逐片元光照</a><time datetime="2024-07-07T05:01:06.000Z" title="发表于 2024-07-07 13:01:06">2024-07-07</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+我们可以在Hierarchy窗口中创建或拖入各种游戏对象
+比如：模型、光源、图片UI等等内容
+层级窗口中显示的，就是一个场景中的所有对象
+在此窗口右键，可创建一些简单的3D物体，
+并对对象进行一些简单操作（复制，粘贴，克隆等）
+在物体前，可以选择是否显示和是否可选。
+Scene场景窗口
+窗口上方工具条内容
+​​
+
+
+渲染模式
+
+Shaded：着色器模式
+Wireframe：网格模式
+
+
+
+2D、3D视图切换
+
+
+光源、音效、特效显示开启
+
+
+打开或关闭 Scene 视图音频效果
+
+
+特效按钮和菜单
+
+
+场景可见性开关
+
+
+摄像机设置菜单
+
+
+Gizmos：辅助功能，控制场景上提示图标等
+
+
+‍
+坐标轴
+​​
+关于Unity中的3D世界坐标 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/08/22/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U1%E2%80%94%E2%80%94Unity%E5%85%A5%E9%97%A8%E7%B3%BB%E5%88%97/U1L0%E2%80%94%E2%80%94Unity%E7%8E%AF%E5%A2%83%EF%BC%8C%E7%95%8C%E9%9D%A2%E5%8F%8A%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/U1L0-1%E2%80%94%E2%80%94Unity%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" title="U1L0-1——Unity环境搭建">U1L0-1——Unity环境搭建</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-08-21T19:26:46.000Z" title="发表于 2023-08-22 03:26:46">2023-08-22</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U1%E2%80%94%E2%80%94Unity%E5%85%A5%E9%97%A8%E7%B3%BB%E5%88%97/">U1——Unity入门系列</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U1%E2%80%94%E2%80%94Unity%E5%85%A5%E9%97%A8%E7%B3%BB%E5%88%97/U1L0%E2%80%94%E2%80%94Unity%E7%8E%AF%E5%A2%83%EF%BC%8C%E7%95%8C%E9%9D%A2%E5%8F%8A%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/">U1L0——Unity环境，界面及工作原理</a></span></div><div class="content">U1L0-1——Unity环境搭建
+Unity引擎
+何为游戏引擎
+游戏引擎是指一些已编写好的可编辑电脑游戏系统或者一些交互式实时图像应用程序的核心组件。
+这些系统为游戏设计者提供各种编写游戏所需的各种工具，
+其目的在于让游戏设计者能容易和快速地做出游戏程序而不用由零开始。
+通俗来讲：游戏引擎就是专门做游戏的软件。它提供了很多现成的功能供我们使用让开发游戏事半功倍
+游戏引擎对于我们的意义
+
+降低做游戏的门槛……不用学太多的专业知识
+提升游戏开发的效率……不用从零开始
+
+如何学习Unity
+Unity相当于就是一个游戏开发工具包，我们只要学会使用工具包中的各个工具即可
+而使用这些工具的媒介就是我们已经学习完毕的C#程序语言
+总结
+
+什么是游戏引擎 —— 开发游戏的软件
+游戏引擎对于我们的意义 —— 门槛低，效率高
+如何学习游戏引擎 —— 软件操作、公共API、核心系统
+
+Unity就是一个做游戏的工具软件，它可以让开发游戏事半功倍。
+我们将通过我们学习的C#程序语言，作为和这个工具沟通的媒介，制作出最终的游戏产品。
+软件下载与安装
+首先，你需要下载一个Unity Hub——Unity Hu ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/08/22/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U1%E2%80%94%E2%80%94Unity%E5%85%A5%E9%97%A8%E7%B3%BB%E5%88%97/U1L0%E2%80%94%E2%80%94Unity%E7%8E%AF%E5%A2%83%EF%BC%8C%E7%95%8C%E9%9D%A2%E5%8F%8A%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/" title="U1L0——Unity环境，界面及工作原理">U1L0——Unity环境，界面及工作原理</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-08-21T19:13:05.000Z" title="发表于 2023-08-22 03:13:05">2023-08-22</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U1%E2%80%94%E2%80%94Unity%E5%85%A5%E9%97%A8%E7%B3%BB%E5%88%97/">U1——Unity入门系列</a></span></div><div class="content">U1L0——Unity环境，界面及工作原理
+本笔记内容主要涉及Unity入门的前三部分，环境搭建，界面基础，工作原理等内容
+由于某些历史原因，在最初版的笔记里缺少了对这些知识的记录，因此缺少了这些部分的笔记
+通过整理提取他人的笔记，本部分内容得到补全，特别感谢盘子ssa整理的笔记，
+为了避免对已有笔记编号的过多修改，该部分内容特开编号U1L0，将所有相关内容记录该文件下
+
+
+Unity环境搭建
+
+Unity引擎是什么
+软件下载和安装
+新建工程和工程文件夹
+
+
+
+Unity界面基础
+
+Scene和Hierarchy窗口
+Game和Project窗口
+Inspector和Console窗口
+工具栏与父子关系
+
+
+
+Unity工作原理
+
+反射机制和游戏场景
+预设体和资源包的导入导出
+
+
+
+‍
+</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/08/22/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U4%E2%80%94%E2%80%94Unity%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/" title="U4——Unity进阶系列">U4——Unity进阶系列</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-08-21T19:08:16.000Z" title="发表于 2023-08-22 03:08:16">2023-08-22</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a></span></div><div class="content">U4——Unity进阶系列
+Unity进阶系列的课程繁多且关系并不密切，且由多个课程组合而成，因此该系列最终的笔记形式可能和这个目录所写的差别较大！
+Unity四部曲第四部分——系列代号U4
+由于进阶分开成课，每个单独的课程会按照U4S1、U4S2这样的形式来作为代号（S编号取决于笔者的学习顺序）
+本系列主要涉及
+
+核心系统相关
+功能相关
+插件相关
+优化相关
+
+（预计该系列的内容如下面的目录所示，可能最后会有所调整，最后该系列更新完毕会重新整理，因此该目录为临时的目录）
+
+
+核心系统
+
+输入系统相关 
+资源寻址系统 Addressables
+物理系统之铰链和布料
+粒子系统
+光照系统
+DOTS（暂时放弃）
+Time Line
+地形系统
+
+
+
+插件相关
+
+Text Mesh Pro
+Do Tween
+
+
+
+功能相关
+
+视频播放
+Scriptable Object
+Animation Curve
+WWW 和 UnityWebRequest（该部分属于Unity网络开发）
+
+
+
+优化相关
+
+何为优化
+性能检测窗口
+静态批处理
+动态批处理
+网格合并
+
+
+
+‍
+</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/08/22/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UG%E2%80%94%E2%80%94UI%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0/UG4%E2%80%94%E2%80%94FairyGUI%E7%B3%BB%E5%88%97/" title="UG4——FairyGUI系列">UG4——FairyGUI系列</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-08-21T19:07:31.000Z" title="发表于 2023-08-22 03:07:31">2023-08-22</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UG%E2%80%94%E2%80%94UI%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0/">UG——UI系统笔记</a></span></div><div class="content">UG4——FairyGUI系列
+UI系统第四部分——系列代号UG4
+FairyGUI
+FairyGUI是跨引擎的开源UI解决方案，它包含一个UI编辑器，以及多个流行游戏引擎的运行库(SDK)
+支持包括 Unity、Unreal、Cocos2dx、Egret、Laya、Flash 等等游戏引擎、
+需要时可以在FairyGUI官网上去查看官方文档：
+编辑器教程：编辑器使用基础 - 编辑器教程 | FairyGUI
+UnitySDK教程：特色功能 - Unity SDK 教程 | FairyGUI
+FairyGUI编辑器部分功能专业版才有
+本系列学习内容：
+
+
+FairyGUI基础
+
+
+基础必备
+
+
+FairyGUI编辑器下载和UnitySDK下载
+
+
+编辑器基础使用
+
+
+项目设置
+
+
+包的概念
+
+
+组件
+
+
+发布UI
+
+
+使用发布的UI
+
+加载包
+UIPanel加载界面
+动态加载界面
+StageCaera和UIContentScaler
+UIConfig
+
+
+
+
+
+FairyGUI中的基础元件
+
+
+元件
+
+
+图片
+
+
+图形
+
+
+动画
+
+序列帧动画元件
+骨骼动画元件
+
+
+
+装载器
+
+
+3D装 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/08/22/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UD%E2%80%94%E2%80%94Unity%E6%95%B0%E6%8D%AE%E6%8C%81%E4%B9%85%E5%8C%96%E7%AC%94%E8%AE%B0/UD4%E2%80%94%E2%80%94%E4%BA%8C%E8%BF%9B%E5%88%B6%E7%B3%BB%E5%88%97/" title="UD4——二进制系列">UD4——二进制系列</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-08-21T19:06:48.000Z" title="发表于 2023-08-22 03:06:48">2023-08-22</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UD%E2%80%94%E2%80%94Unity%E6%95%B0%E6%8D%AE%E6%8C%81%E4%B9%85%E5%8C%96%E7%AC%94%E8%AE%B0/">UD——Unity数据持久化笔记</a></span></div><div class="content">UD4——二进制系列
+数据持久化第四部分——系列代号UD4
+二进制文件
+二进制是计算技术中广泛采用的一种数制。二进制数据是用0和1两个数码来表示的数，它的基数为2，进位规则是“逢二进一”
+计算机中存储的数据本质上都是2进制数的存储，在计算机中位（bit）是最小的存储单位，1位就是一个0或者一个1
+也就是说一个文件的数据本质上都是由n个0和1组合而成的，通过不同的解析规则最终呈现在我们的眼前。
+本系列学习内容
+
+
+各类型数据转字节数据
+
+
+文件操作相关
+
+文件相关
+文件流相关
+文件夹相关
+
+
+
+C#类对象的序列化和反序列化
+
+序列化
+反序列化
+加密
+
+
+
+知识补充
+
+
+Unity中添加菜单栏功能
+
+
+Excel数据读取
+
+导入Excel相关Dll包
+Excel数据读取
+
+
+
+
+
+学习二进制的原因
+之前我们学过的xml和json都是用特定的字符串组合规则来读写数据的。
+清晰易懂是他们的共同好处，但是也是一把双刃剑，
+比如如果我们用xml或者json存储数据，只要玩家找到对应的存储信息，就能够快速修改其中的内容。
+而且由于他们把数据转换成了对应的xml或者json字符串，我们最终在存储数据时 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/08/13/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UG%E2%80%94%E2%80%94UI%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0/UG3%E2%80%94%E2%80%94UGUI%E7%B3%BB%E5%88%97/UG3L18%E2%80%94%E2%80%94Canvas%20Group%20%E7%94%BB%E5%B8%83%E7%BB%84/" title="UG3L18——Canvas Group 画布组">UG3L18——Canvas Group 画布组</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-08-12T18:13:14.000Z" title="发表于 2023-08-13 02:13:14">2023-08-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UG%E2%80%94%E2%80%94UI%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0/">UG——UI系统笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UG%E2%80%94%E2%80%94UI%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0/UG3%E2%80%94%E2%80%94UGUI%E7%B3%BB%E5%88%97/">UG3——UGUI系列</a></span></div><div class="content">UG3L18——Canvas Group 画布组
+问题：如何整体控制一个面板的淡入淡出等
+如果我们想要整体控制一个面板的淡入淡出 或者 整体禁用
+使用目前学习的知识点 是无法方便快捷的设置的
+Canvas Group
+为面板父对象添加 CanvasGroup组件 即可整体控制
+Canvas Group 参数相关
+​​
+
+Alpha：整体透明度控制
+Interactable：整体启用禁用设置
+Blocks Raycasts：整体射线检测设置
+Ignore Parent Groups：是否忽略父级CanvasGroup的作用
+
+‍
+</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/08/13/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UG%E2%80%94%E2%80%94UI%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0/UG3%E2%80%94%E2%80%94UGUI%E7%B3%BB%E5%88%97/UG3L17%E2%80%94%E2%80%94%E8%87%AA%E5%8A%A8%E5%B8%83%E5%B1%80%E7%BB%84%E4%BB%B6/" title="UG3L17——自动布局组件">UG3L17——自动布局组件</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-08-12T18:12:58.000Z" title="发表于 2023-08-13 02:12:58">2023-08-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UG%E2%80%94%E2%80%94UI%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0/">UG——UI系统笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UG%E2%80%94%E2%80%94UI%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0/UG3%E2%80%94%E2%80%94UGUI%E7%B3%BB%E5%88%97/">UG3——UGUI系列</a></span></div><div class="content">UG3L17——自动布局组件
+自动布局
+虽然UGUI的RectTransform已经非常方便的可以帮助我们快速布局
+但UGUI中还提供了很多可以帮助我们对UI控件进行自动布局的组件
+他们可以帮助我们自动的设置UI控件的位置和大小等
+自动布局的工作方式一般是
+自动布局控制组件 + 布局元素 = 自动布局
+自动布局控制组件：Unity提供了很多用于自动布局的管理性质的组件用于布局
+布局元素：具备布局属性的对象们，这里主要是指具备RectTransform的UI组件
+布局元素的布局属性
+在Inspector窗口左下角选择Layout Properties
+要参与自动布局的布局元素必须包含布局属性
+布局属性主要有以下几条
+Minmum width：该布局元素应具有的最小宽度
+Minmum height：该布局元素应具有的最小高度
+Preferred width：在分配额外可用宽度之前，此布局元素应具有的宽度
+Preferred height：在分配额外可用高度之前，此布局元素应具有的高度
+Flexible width：此布局元素应相对于其同级而填充的额外可用宽度的相对量
+Flexible he ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/63/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/63/#content-inner">63</a><span class="page-number current">64</span><a class="page-number" href="/page/65/#content-inner">65</a><span class="space">&hellip;</span><a class="page-number" href="/page/88/#content-inner">88</a><a class="extend next" rel="next" href="/page/65/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/Blue_Ice.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">文KRIFE齐</div><div class="author-info__description">正在努力学习Unity，希望下半年可以找到实习</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">873</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">120</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/enjoySevenLIU"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/enjoySevenLIU" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">找到实习，但家遇变故，因此本周和下周暂不更新，抱歉！</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/07/20/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/CS2%E2%80%94%E2%80%94CSharp%E5%9F%BA%E7%A1%80%E7%B3%BB%E5%88%97/CS2L13%E2%80%94%E2%80%94%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F/" title="CS2L13——选择排序">CS2L13——选择排序</a><time datetime="2024-07-20T15:08:21.000Z" title="发表于 2024-07-20 23:08:21">2024-07-20</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/07/20/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/CS2%E2%80%94%E2%80%94CSharp%E5%9F%BA%E7%A1%80%E7%B3%BB%E5%88%97/CS2L12%E2%80%94%E2%80%94%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F/" title="CS2L12——冒泡排序">CS2L12——冒泡排序</a><time datetime="2024-07-20T14:47:17.000Z" title="发表于 2024-07-20 22:47:17">2024-07-20</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/07/20/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/CS2%E2%80%94%E2%80%94CSharp%E5%9F%BA%E7%A1%80%E7%B3%BB%E5%88%97/CS2L11%E2%80%94%E2%80%94%E5%A4%8D%E6%9D%82%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E2%80%94%E7%BB%93%E6%9E%84%E4%BD%93/" title="CS2L11——复杂数据类型—结构体">CS2L11——复杂数据类型—结构体</a><time datetime="2024-07-20T14:17:41.000Z" title="发表于 2024-07-20 22:17:41">2024-07-20</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/07/20/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/CS2%E2%80%94%E2%80%94CSharp%E5%9F%BA%E7%A1%80%E7%B3%BB%E5%88%97/CS2L10%E2%80%94%E2%80%94%E9%80%92%E5%BD%92%E5%87%BD%E6%95%B0/" title="CS2L10——递归函数">CS2L10——递归函数</a><time datetime="2024-07-20T13:53:39.000Z" title="发表于 2024-07-20 21:53:39">2024-07-20</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/07/20/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/CS2%E2%80%94%E2%80%94CSharp%E5%9F%BA%E7%A1%80%E7%B3%BB%E5%88%97/CS2L9%E2%80%94%E2%80%94%E5%87%BD%E6%95%B0%E9%87%8D%E8%BD%BD/" title="CS2L9——函数重载">CS2L9——函数重载</a><time datetime="2024-07-20T13:45:55.000Z" title="发表于 2024-07-20 21:45:55">2024-07-20</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
             <i class="fas fa-folder-open"></i>
             <span>分类</span>
             <a class="card-more-btn" href="/categories/" title="查看更多">
     <i class="fas fa-angle-right"></i></a>
             </div>
             <ul class="card-category-list" id="aside-cat-list">
-            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><span class="card-category-list-name">Unity就业路线学习笔记</span><span class="card-category-list-count">850</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/"><span class="card-category-list-name">CS——CSharp笔记</span><span class="card-category-list-count">49</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/CS1%E2%80%94%E2%80%94CSharp%E5%85%A5%E9%97%A8%E7%B3%BB%E5%88%97/"><span class="card-category-list-name">CS1——CSharp入门系列</span><span class="card-category-list-count">22</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/CS2%E2%80%94%E2%80%94CSharp%E5%9F%BA%E7%A1%80%E7%B3%BB%E5%88%97/"><span class="card-category-list-name">CS2——CSharp基础系列</span><span class="card-category-list-count">3</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/CS3%E2%80%94%E2%80%94CSharp%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/"><span class="card-category-list-name">CS3——CSharp核心系列</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/CS4%E2%80%94%E2%80%94CSharp%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/"><span class="card-category-list-name">CS4——CSharp进阶系列</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/CS5%E2%80%94%E2%80%94CSharp%E7%9F%A5%E8%AF%86%E8%A1%A5%E5%85%85/"><span class="card-category-list-name">CS5——CSharp知识补充</span><span class="card-category-list-count">16</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/CS5%E2%80%94%E2%80%94CSharp%E7%9F%A5%E8%AF%86%E8%A1%A5%E5%85%85/CS5L7%E2%80%94%E2%80%94CSharp-5-%E5%8A%9F%E8%83%BD%E5%92%8C%E8%AF%AD%E6%B3%95/"><span class="card-category-list-name">CS5L7——CSharp 5 功能和语法</span><span class="card-category-list-count">2</span></a></li></ul></li></ul></li></ul></li>
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><span class="card-category-list-name">Unity就业路线学习笔记</span><span class="card-category-list-count">872</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/"><span class="card-category-list-name">CS——CSharp笔记</span><span class="card-category-list-count">62</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/CS1%E2%80%94%E2%80%94CSharp%E5%85%A5%E9%97%A8%E7%B3%BB%E5%88%97/"><span class="card-category-list-name">CS1——CSharp入门系列</span><span class="card-category-list-count">22</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/CS2%E2%80%94%E2%80%94CSharp%E5%9F%BA%E7%A1%80%E7%B3%BB%E5%88%97/"><span class="card-category-list-name">CS2——CSharp基础系列</span><span class="card-category-list-count">13</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/CS3%E2%80%94%E2%80%94CSharp%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/"><span class="card-category-list-name">CS3——CSharp核心系列</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/CS4%E2%80%94%E2%80%94CSharp%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/"><span class="card-category-list-name">CS4——CSharp进阶系列</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/CS5%E2%80%94%E2%80%94CSharp%E7%9F%A5%E8%AF%86%E8%A1%A5%E5%85%85/"><span class="card-category-list-name">CS5——CSharp知识补充</span><span class="card-category-list-count">19</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/CS5%E2%80%94%E2%80%94CSharp%E7%9F%A5%E8%AF%86%E8%A1%A5%E5%85%85/CS5L13%E2%80%94%E2%80%94LINQ%E5%85%A5%E9%97%A8%E5%AE%9E%E4%BE%8B/"><span class="card-category-list-name">CS5L13——LINQ入门实例</span><span class="card-category-list-count">3</span></a></li></ul></li></ul></li></ul></li>
             </ul></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span><a class="card-more-btn" href="/archives/" title="查看更多">
-    <i class="fas fa-angle-right"></i></a></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/07/"><span class="card-archive-list-date">七月 2024</span><span class="card-archive-list-count">15</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/06/"><span class="card-archive-list-date">六月 2024</span><span class="card-archive-list-count">54</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/05/"><span class="card-archive-list-date">五月 2024</span><span class="card-archive-list-count">56</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/04/"><span class="card-archive-list-date">四月 2024</span><span class="card-archive-list-count">127</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/03/"><span class="card-archive-list-date">三月 2024</span><span class="card-archive-list-count">135</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/02/"><span class="card-archive-list-date">二月 2024</span><span class="card-archive-list-count">62</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/01/"><span class="card-archive-list-date">一月 2024</span><span class="card-archive-list-count">31</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/12/"><span class="card-archive-list-date">十二月 2023</span><span class="card-archive-list-count">2</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">851</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2024-07-20T13:25:45.195Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By 文KRIFE齐</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>
+    <i class="fas fa-angle-right"></i></a></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/07/"><span class="card-archive-list-date">七月 2024</span><span class="card-archive-list-count">37</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/06/"><span class="card-archive-list-date">六月 2024</span><span class="card-archive-list-count">54</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/05/"><span class="card-archive-list-date">五月 2024</span><span class="card-archive-list-count">56</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/04/"><span class="card-archive-list-date">四月 2024</span><span class="card-archive-list-count">127</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/03/"><span class="card-archive-list-date">三月 2024</span><span class="card-archive-list-count">135</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/02/"><span class="card-archive-list-date">二月 2024</span><span class="card-archive-list-count">62</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/01/"><span class="card-archive-list-date">一月 2024</span><span class="card-archive-list-count">31</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/12/"><span class="card-archive-list-date">十二月 2023</span><span class="card-archive-list-count">2</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">873</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2024-07-20T16:41:07.234Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By 文KRIFE齐</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>
