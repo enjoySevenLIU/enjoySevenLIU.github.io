@@ -1,0 +1,205 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>CS3L3——成员变量和访问修饰符 | 文KRIFE齐的博客</title><meta name="author" content="文KRIFE齐"><meta name="copyright" content="文KRIFE齐"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="CS3L3——成员变量和访问修饰符 本章代码关键字 123public        &#x2F;&#x2F;公共的 自己（内部）和别人（外部）都能访问和使用private        &#x2F;&#x2F;私有的 自己（内部）才能访问和使用protected    &#x2F;&#x2F;保护的 自己（内部）和子类（继承）才能访问和使用 成员变量 成员变量申明在类语句块中，用来描述对象的特征，成员变量可以是任意变量类型，数量不做限制 修饰类成员的访问">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CS3L3——成员变量和访问修饰符">
+<meta property="og:url" content="https://enjoysevenliu.github.io/2024/09/02/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/CS3%E2%80%94%E2%80%94CSharp%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/CS3L3%E2%80%94%E2%80%94%E6%88%90%E5%91%98%E5%8F%98%E9%87%8F%E5%92%8C%E8%AE%BF%E9%97%AE%E4%BF%AE%E9%A5%B0%E7%AC%A6/index.html">
+<meta property="og:site_name" content="文KRIFE齐的博客">
+<meta property="og:description" content="CS3L3——成员变量和访问修饰符 本章代码关键字 123public        &#x2F;&#x2F;公共的 自己（内部）和别人（外部）都能访问和使用private        &#x2F;&#x2F;私有的 自己（内部）才能访问和使用protected    &#x2F;&#x2F;保护的 自己（内部）和子类（继承）才能访问和使用 成员变量 成员变量申明在类语句块中，用来描述对象的特征，成员变量可以是任意变量类型，数量不做限制 修饰类成员的访问">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://enjoysevenliu.github.io/img/Blue_Ice.png">
+<meta property="article:published_time" content="2024-09-02T04:53:43.000Z">
+<meta property="article:modified_time" content="2024-09-05T02:57:03.000Z">
+<meta property="article:author" content="文KRIFE齐">
+<meta property="article:tag" content="blog">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://enjoysevenliu.github.io/img/Blue_Ice.png"><link rel="shortcut icon" href="/img/Blue_Ice.png"><link rel="canonical" href="https://enjoysevenliu.github.io/2024/09/02/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/CS3%E2%80%94%E2%80%94CSharp%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/CS3L3%E2%80%94%E2%80%94%E6%88%90%E5%91%98%E5%8F%98%E9%87%8F%E5%92%8C%E8%AE%BF%E9%97%AE%E4%BF%AE%E9%A5%B0%E7%AC%A6/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'CS3L3——成员变量和访问修饰符',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-09-05 10:57:03'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/Blue_Ice.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">898</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">119</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="https://enjoysevenliu.github.io/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="文KRIFE齐的博客"><img class="site-icon" src="/img/Blue_Ice.png"/><span class="site-name">文KRIFE齐的博客</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="https://enjoysevenliu.github.io/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">CS3L3——成员变量和访问修饰符</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-09-02T04:53:43.000Z" title="发表于 2024-09-02 12:53:43">2024-09-02</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-09-05T02:57:03.000Z" title="更新于 2024-09-05 10:57:03">2024-09-05</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/">CS——CSharp笔记</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/CS3%E2%80%94%E2%80%94CSharp%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/">CS3——CSharp核心系列</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="CS3L3——成员变量和访问修饰符"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1>CS3L3——成员变量和访问修饰符</h1>
+<h2 id="本章代码关键字">本章代码关键字</h2>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span>        <span class="comment">//公共的 自己（内部）和别人（外部）都能访问和使用</span></span><br><span class="line"><span class="keyword">private</span>        <span class="comment">//私有的 自己（内部）才能访问和使用</span></span><br><span class="line"><span class="keyword">protected</span>    <span class="comment">//保护的 自己（内部）和子类（继承）才能访问和使用</span></span><br></pre></td></tr></table></figure>
+<h1>成员变量</h1>
+<p>成员变量申明在类语句块中，用来描述对象的特征，成员变量可以是任意变量类型，数量不做限制</p>
+<h2 id="修饰类成员的访问修饰符">修饰类成员的访问修饰符</h2>
+<p>我们在 结构体 已经接触了访问修饰符，在这里修饰类成员变量和方法，它决定了成员变量或者方法是否能被外部使用</p>
+<ul>
+<li>​<code>public</code>​ —— 公共的 自己（内部）和别人（外部）都能访问和使用</li>
+<li>​<code>private</code>​ —— 私有的 自己（内部）才能访问和使用 不写访问修饰符就默认 <code>private</code>​</li>
+<li>​<code>protected</code>​ —— 保护的 自己（内部）和子类（继承）才能访问和使用，这个访问修饰符在讲到 继承 时会展现作用</li>
+</ul>
+<p>目前它们决定类内部的成员 的 访问权限</p>
+<p>这里是修饰类的成员的访问修饰符，对于修饰类的访问修饰符详见 CS3L22——命名空间 的：((20240904193522-f3rq819 ‘internal’))</p>
+<h2 id="成员变量的声明">成员变量的声明</h2>
+<p>成员变量是否赋值根据需求来定，如果赋值，则该变量会在实例化时就会自动赋值，相当于指定这个成员变量的默认值</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">enum</span> E_Sex</span><br><span class="line">&#123;</span><br><span class="line">    male,</span><br><span class="line">    female</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title">Person</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">//特征——成员变量</span></span><br><span class="line">    <span class="comment">//姓名</span></span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">string</span> name;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">int</span> age;</span><br><span class="line">    <span class="keyword">public</span> E_Sex sex = E_Sex.male; <span class="comment">//初始化赋值，后续可以改，按照需求决定是否初始化</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> Person girlFriend;  <span class="comment">//与结构体不同，类里面可以用类变量，甚至可以用与自己相同类的变量类型，因为是引用类型</span></span><br><span class="line">    <span class="keyword">public</span> Person[] friend;    <span class="comment">//类的成员变量可以用任何变量类型</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> Position pos;</span><br><span class="line">    <span class="comment">//在类里实例化一个 与自己不同类的成员变量是可以的</span></span><br><span class="line">    <span class="keyword">public</span> Pet pet = <span class="keyword">new</span> Pet();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>和结构体不同，类可以声明自己类型的成员变量，因为在声明类变量不赋值默认是 <code>null</code>​，不会调用构造函数，但是不能对它实例化！</p>
+<blockquote>
+<h4 id="注意！">注意！</h4>
+<p>如果要在类中申明一个与自己相同类型的成员变量时 不可以对它实例化！！！！！（<code>null</code>​ 除外）<br>
+举例来说 我有一个女朋友 而我的女朋友里还有一个女朋友 这种抽象是错误的<br>
+程序运行来说 如果在类里实例化 与自己相同类型的成员变量<br>
+那么会导致实例化该类时 类内部的成员变量会再次实例化该类，造成无限递归，导致栈溢出！程序崩溃！！！</p>
+<p>下面这段代码只要执行就会报错：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title">Person</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> Person girlFriend = <span class="keyword">new</span> Person();    <span class="comment">// error: Stack overflow.</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">internal</span> <span class="keyword">class</span> <span class="title">Program</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"><span class="built_in">string</span>[] args</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        Person p = <span class="keyword">new</span> Person();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Stack overflow.</span><br><span class="line">Repeat <span class="number">19282</span> times:</span><br><span class="line">--------------------------------</span><br><span class="line">   at lesson2_封装_成员变量和访问修饰符.Person..ctor()</span><br><span class="line">--------------------------------</span><br><span class="line">   at lesson2_封装_成员变量和访问修饰符.Program.Main(System.String[])</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h2 id="成员变量的使用和初始值">成员变量的使用和初始值</h2>
+<p>在上文的类声明中，虽然我们没有给成员变量赋值，但是它们其实都是有自己的默认值的</p>
+<ul>
+<li>值类型初始值 数字类型 默认值都是0，<code>bool</code>​ 类型 <code>false</code>​，<code>char</code>​ 类型 <code>''</code>​ (空字符)</li>
+<li>引用类型初始值 是 <code>null</code>​</li>
+</ul>
+<p>可以用 <code>default()</code>​ 来获取变量类型的默认初始值</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Console.WriteLine(<span class="literal">default</span>(<span class="built_in">int</span>));</span><br><span class="line">Console.WriteLine(<span class="literal">default</span>(<span class="built_in">bool</span>));</span><br><span class="line">Console.WriteLine(<span class="literal">default</span>(Person));        <span class="comment">// null</span></span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0</span></span><br><span class="line"><span class="literal">false</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>在类的外部要调用成员变量，类对象需要先实例化，且这个成员变量必须是 <code>public</code>​ 的（子类的情况到继承时会说）</p>
+<p>外部想要调用类对象的成员变量，只需要 <code>对象.成员变量</code>​ 即可</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title">Person</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">string</span> name;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">int</span> age;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">internal</span> <span class="keyword">class</span> <span class="title">Program</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"><span class="built_in">string</span>[] args</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        Person p = <span class="keyword">new</span> Person();</span><br><span class="line">        p.name = <span class="string">$&quot;MrTang&quot;</span>;</span><br><span class="line">        p.age = <span class="number">20</span>;</span><br><span class="line">        Console.WriteLine(p.age);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">20</span></span><br></pre></td></tr></table></figure>
+<p>‍</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a target="_blank" rel="noopener" href="https://github.com/enjoySevenLIU">文KRIFE齐</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://enjoysevenliu.github.io/2024/09/02/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/CS3%E2%80%94%E2%80%94CSharp%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/CS3L3%E2%80%94%E2%80%94%E6%88%90%E5%91%98%E5%8F%98%E9%87%8F%E5%92%8C%E8%AE%BF%E9%97%AE%E4%BF%AE%E9%A5%B0%E7%AC%A6/">https://enjoysevenliu.github.io/2024/09/02/Unity就业路线学习笔记/CS——CSharp笔记/CS3——CSharp核心系列/CS3L3——成员变量和访问修饰符/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://enjoysevenliu.github.io" target="_blank">文KRIFE齐的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/img/Blue_Ice.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2024/09/02/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/CS3%E2%80%94%E2%80%94CSharp%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/CS3L4%E2%80%94%E2%80%94%E6%88%90%E5%91%98%E6%96%B9%E6%B3%95/" title="CS3L4——成员方法"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">CS3L4——成员方法</div></div></a></div><div class="next-post pull-right"><a href="/2024/07/22/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/MI%E2%80%94%E2%80%94%E6%A8%A1%E6%8B%9F%E9%9D%A2%E8%AF%95%E9%A2%98%E6%95%B4%E7%90%86/MIL10%E2%80%94%E2%80%94%E6%A8%A1%E6%8B%9F%E9%9D%A2%E8%AF%95%E9%A2%98/" title="MIL10——模拟面试题"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">MIL10——模拟面试题</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/Blue_Ice.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">文KRIFE齐</div><div class="author-info__description">正在努力学习Unity，希望下半年可以找到实习</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">898</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">119</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/enjoySevenLIU"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/enjoySevenLIU" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">找到实习，但家遇变故，因此本周和下周暂不更新，抱歉！</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">CS3L3——成员变量和访问修饰符</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%AC%E7%AB%A0%E4%BB%A3%E7%A0%81%E5%85%B3%E9%94%AE%E5%AD%97"><span class="toc-number">1.1.</span> <span class="toc-text">本章代码关键字</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">2.</span> <span class="toc-text">成员变量</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%AE%E9%A5%B0%E7%B1%BB%E6%88%90%E5%91%98%E7%9A%84%E8%AE%BF%E9%97%AE%E4%BF%AE%E9%A5%B0%E7%AC%A6"><span class="toc-number">2.1.</span> <span class="toc-text">修饰类成员的访问修饰符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%88%90%E5%91%98%E5%8F%98%E9%87%8F%E7%9A%84%E5%A3%B0%E6%98%8E"><span class="toc-number">2.2.</span> <span class="toc-text">成员变量的声明</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B3%A8%E6%84%8F%EF%BC%81"><span class="toc-number">2.2.0.1.</span> <span class="toc-text">注意！</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%88%90%E5%91%98%E5%8F%98%E9%87%8F%E7%9A%84%E4%BD%BF%E7%94%A8%E5%92%8C%E5%88%9D%E5%A7%8B%E5%80%BC"><span class="toc-number">2.3.</span> <span class="toc-text">成员变量的使用和初始值</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/09/04/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/CS3%E2%80%94%E2%80%94CSharp%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/CS3SL3%E2%80%94%E2%80%94%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E4%B8%83%E5%A4%A7%E5%8E%9F%E5%88%99/" title="CS3SL3——面向对象七大原则">CS3SL3——面向对象七大原则</a><time datetime="2024-09-04T14:38:41.000Z" title="发表于 2024-09-04 22:38:41">2024-09-04</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/09/04/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/CS3%E2%80%94%E2%80%94CSharp%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/CS3SL2%E2%80%94%E2%80%94UML%E7%B1%BB%E5%9B%BE/" title="CS3SL2——UML类图">CS3SL2——UML类图</a><time datetime="2024-09-04T14:29:53.000Z" title="发表于 2024-09-04 22:29:53">2024-09-04</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/09/04/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/CS3%E2%80%94%E2%80%94CSharp%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/CS3SL1%E2%80%94%E2%80%94%E5%A4%9A%E8%84%9A%E6%9C%AC%E6%96%87%E4%BB%B6/" title="CS3SL1——多脚本文件">CS3SL1——多脚本文件</a><time datetime="2024-09-04T14:00:15.000Z" title="发表于 2024-09-04 22:00:15">2024-09-04</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/09/04/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/CS3%E2%80%94%E2%80%94CSharp%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/CS3L27%E2%80%94%E2%80%94%E6%8A%BD%E8%B1%A1%E7%B1%BB%E5%92%8C%E6%8E%A5%E5%8F%A3%E7%9A%84%E5%8C%BA%E5%88%AB/" title="CS3L27——抽象类和接口的区别">CS3L27——抽象类和接口的区别</a><time datetime="2024-09-04T13:55:16.000Z" title="发表于 2024-09-04 21:55:16">2024-09-04</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/09/04/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/CS3%E2%80%94%E2%80%94CSharp%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/CS3L26%E2%80%94%E2%80%94%E7%BB%93%E6%9E%84%E4%BD%93%E5%92%8C%E7%B1%BB%E7%9A%84%E5%8C%BA%E5%88%AB/" title="CS3L26——结构体和类的区别">CS3L26——结构体和类的区别</a><time datetime="2024-09-04T13:49:10.000Z" title="发表于 2024-09-04 21:49:10">2024-09-04</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By 文KRIFE齐</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>

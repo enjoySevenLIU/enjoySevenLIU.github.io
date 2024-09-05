@@ -54,7 +54,7 @@
   isHome: true,
   isHighlightShrink: false,
   isToc: false,
-  postUpdate: '2024-07-21 00:41:10'
+  postUpdate: '2024-09-05 11:03:51'
 }</script><script>(win=>{
       win.saveToLocal = {
         set: (key, value, ttl) => {
@@ -151,163 +151,224 @@
         }
       }
       detectApple()
-    })(window)</script><meta name="generator" content="Hexo 7.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/Blue_Ice.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">873</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">120</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="https://enjoysevenliu.github.io/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page fixed" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="文KRIFE齐的博客"><img class="site-icon" src="/img/Blue_Ice.png"/><span class="site-name">文KRIFE齐的博客</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="https://enjoysevenliu.github.io/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">文KRIFE齐的博客</h1><div id="site_social_icons"><a class="social-icon" href="https://github.com/enjoySevenLIU" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/11/15/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U4%E2%80%94%E2%80%94Unity%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/U4S2%E2%80%94%E2%80%94%E6%95%B0%E6%8D%AE%E9%85%8D%E7%BD%AE%E5%AD%98%E5%82%A8%E5%9F%BA%E7%B1%BB%20ScriptableObject/U4S2L1%E2%80%94%E2%80%94ScriptableObject%20%E6%95%B0%E6%8D%AE%E6%96%87%E4%BB%B6%E7%9A%84%E5%88%9B%E5%BB%BA/" title="U4S2L1——ScriptableObject 数据文件的创建">U4S2L1——ScriptableObject 数据文件的创建</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-11-15T14:18:16.000Z" title="发表于 2023-11-15 22:18:16">2023-11-15</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U4%E2%80%94%E2%80%94Unity%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/">U4——Unity进阶系列</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U4%E2%80%94%E2%80%94Unity%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/U4S2%E2%80%94%E2%80%94%E6%95%B0%E6%8D%AE%E9%85%8D%E7%BD%AE%E5%AD%98%E5%82%A8%E5%9F%BA%E7%B1%BB-ScriptableObject/">U4S2——数据配置存储基类 ScriptableObject</a></span></div><div class="content">U4S2L1——ScriptableObject 数据文件的创建
+    })(window)</script><meta name="generator" content="Hexo 7.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/Blue_Ice.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">898</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">119</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="https://enjoysevenliu.github.io/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page fixed" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="文KRIFE齐的博客"><img class="site-icon" src="/img/Blue_Ice.png"/><span class="site-name">文KRIFE齐的博客</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="https://enjoysevenliu.github.io/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">文KRIFE齐的博客</h1><div id="site_social_icons"><a class="social-icon" href="https://github.com/enjoySevenLIU" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/11/24/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UG%E2%80%94%E2%80%94UI%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0/UG4%E2%80%94%E2%80%94FairyGUI%E7%B3%BB%E5%88%97/UG4L7%E2%80%94%E2%80%94%E4%BD%BF%E7%94%A8%E5%8F%91%E5%B8%83%E7%9A%84UI/UG4L7-4%E2%80%94%E2%80%94StageCamera%E5%92%8CUIContentScaler/" title="UG4L7-4——StageCamera和UIContentScaler">UG4L7-4——StageCamera和UIContentScaler</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-11-24T07:32:21.000Z" title="发表于 2023-11-24 15:32:21">2023-11-24</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UG%E2%80%94%E2%80%94UI%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0/">UG——UI系统笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UG%E2%80%94%E2%80%94UI%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0/UG4%E2%80%94%E2%80%94FairyGUI%E7%B3%BB%E5%88%97/">UG4——FairyGUI系列</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UG%E2%80%94%E2%80%94UI%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0/UG4%E2%80%94%E2%80%94FairyGUI%E7%B3%BB%E5%88%97/UG4L7%E2%80%94%E2%80%94%E4%BD%BF%E7%94%A8%E5%8F%91%E5%B8%83%E7%9A%84UI/">UG4L7——使用发布的UI</a></span></div><div class="content">UG4L7-4——StageCamera和UIContentScaler
+StageCamera
+StageCamera就是FairyGUI所用的摄像机
+创建StageCamera
+
+
+方式一：在Hierarchy窗口点击右键——&gt;FairyGUI——&gt;UI Camera
+​​
+
+
+方式二：在创建UIPanel或者第一次动态创建UI时，会自动添加一个StageCamera
+
+
+StageCamera重要属性
+StageCamera中摄像机相关属性我们不需要修改它
+只有UICamera组件中的Constant Size对于我们来说需要注意
+​​
+
+
+Constant Size：是否使用固定的相机大小，默认true
+该选项影响粒子效果的缩放
+
+为true时，屏幕放大或缩小，
+粒子效果也会随着放大和缩小，适用于手机平台
+为false时，屏幕放大或缩小，
+粒子效果不会随着放大和缩小，使用与PC平台
+
+根据自己游戏面向的平台决定是否勾选
+
+
+UIContentScaler
+该组件是用来分辨率自适应的，场景上任何一个对象挂载都可以，并不需要每个场景都挂
+也可以不使用UIContentS ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/11/24/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UG%E2%80%94%E2%80%94UI%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0/UG4%E2%80%94%E2%80%94FairyGUI%E7%B3%BB%E5%88%97/UG4L7%E2%80%94%E2%80%94%E4%BD%BF%E7%94%A8%E5%8F%91%E5%B8%83%E7%9A%84UI/UG4L7-3%E2%80%94%E2%80%94%E5%8A%A8%E6%80%81%E5%8A%A0%E8%BD%BD%E7%95%8C%E9%9D%A2/" title="UG4L7-3——动态加载界面">UG4L7-3——动态加载界面</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-11-24T05:59:51.000Z" title="发表于 2023-11-24 13:59:51">2023-11-24</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UG%E2%80%94%E2%80%94UI%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0/">UG——UI系统笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UG%E2%80%94%E2%80%94UI%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0/UG4%E2%80%94%E2%80%94FairyGUI%E7%B3%BB%E5%88%97/">UG4——FairyGUI系列</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UG%E2%80%94%E2%80%94UI%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0/UG4%E2%80%94%E2%80%94FairyGUI%E7%B3%BB%E5%88%97/UG4L7%E2%80%94%E2%80%94%E4%BD%BF%E7%94%A8%E5%8F%91%E5%B8%83%E7%9A%84UI/">UG4L7——使用发布的UI</a></span></div><div class="content">UG4L7-3——动态加载界面
 本章代码关键字
-123456ScriptableObject                        //数据配置存储基类，自定义的数据资源文件需要继承它[CreateAssetMenu()]                     //通过菜单创建资源特性，参数分别是是默认文件名，为在Asset/Create菜单中显示的名字，排序优先级ScriptableObject.CreateInstance&lt;&gt;()     //创建数据资源文件的方法，泛型参数为要创建的ScriptableObject派生类AssetDatabase.CreateAsset()             //传入要保存的资源文件和存储路径，在指定目录下创建文件AssetDatabase.SaveAssets()              //将创建的资源文件保存下来AssetDatabase.Refresh()                 //刷新Project窗口
-ScriptableObject数据文件的创建
-创建Scri ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/11/15/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U4%E2%80%94%E2%80%94Unity%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/U4S2%E2%80%94%E2%80%94%E6%95%B0%E6%8D%AE%E9%85%8D%E7%BD%AE%E5%AD%98%E5%82%A8%E5%9F%BA%E7%B1%BB%20ScriptableObject/" title="U4S2——数据配置存储基类 ScriptableObject">U4S2——数据配置存储基类 ScriptableObject</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-11-15T14:03:50.000Z" title="发表于 2023-11-15 22:03:50">2023-11-15</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U4%E2%80%94%E2%80%94Unity%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/">U4——Unity进阶系列</a></span></div><div class="content">U4S2——数据配置存储基类 ScriptableObject
-ScriptableObject
-ScriptableObject是Unity提供的一个数据配置存储基类
-它是一个可以用来保存大量数据的数据容器，就像是可以自定义的数据资源文件
-它是一个类似MonoBehavior的基类，需要我们继承它来进行使用
-它的主要作用是：
-
-数据复用（多个对象用同一个数据）
-配置文件（配置游戏中的数据）
-编辑模式下的数据持久化
-
-主要讲解内容
-
-ScriptableObject是什么
-Unity提供的一个数据存储基类
-ScriptableObject的好处
-文件配置、数据复用、更好的处理数据带来的多态行为
-
-本系列学习内容：
-
-
-ScriptableObject 数据文件的创建
-
-
-ScriptableObject 数据文件的使用
-
-
-ScriptableObject 非持久数据
-
-
-ScriptableObject 让其真正意义上的持久
-
-
-ScriptableObject 的应用
-
-配置数据
-复用数据
-数据带来的多态行为
-单例模式化的获取数据
-
-
-
-数据复用
-比如一个子弹对象，以前我们通过面向 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/11/15/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UFW%E2%80%94%E2%80%94%E7%A8%8B%E5%BA%8F%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3%E7%AC%94%E8%AE%B0/UMVC%E2%80%94%E2%80%94Unity%E7%9A%84MVC%E6%80%9D%E6%83%B3/UMVCSL7%E2%80%94%E2%80%94PureMVC%E6%A1%86%E6%9E%B6UI%E5%AE%9E%E4%BE%8B/" title="UMVCSL7——PureMVC框架UI实例">UMVCSL7——PureMVC框架UI实例</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-11-15T10:11:02.000Z" title="发表于 2023-11-15 18:11:02">2023-11-15</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UFW%E2%80%94%E2%80%94%E7%A8%8B%E5%BA%8F%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3%E7%AC%94%E8%AE%B0/">UFW——程序框架相关笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UFW%E2%80%94%E2%80%94%E7%A8%8B%E5%BA%8F%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3%E7%AC%94%E8%AE%B0/UMVC%E2%80%94%E2%80%94Unity%E7%9A%84MVC%E6%80%9D%E6%83%B3/">UMVC——Unity的MVC思想</a></span></div><div class="content">UMVCSL7——PureMVC框架UI实例
-注意！需要先将前面6节课的内容看完再来接着看这里的内容
+123456789101112131415161718192021222324252627282930313233343536373839//GRoot相关GRoot                                //动态创建UI时会自动创建的根对象GRoot.inst.SetContentScaleFactor()    //设置适配（分辨率自适应）GRoot.inst.AddChild()                //创建好的UI对象添加为GRoot子对象//加载GComponent相关UIPackage.CreateObject()            //从包内同步加载UIPackage.CreateObjectAsync()        //从包内异步加载//GComponent相关GObject                                //元件类，GComponent的父类gObject.asCom                        //返回将GObject对象as成 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/11/24/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UG%E2%80%94%E2%80%94UI%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0/UG4%E2%80%94%E2%80%94FairyGUI%E7%B3%BB%E5%88%97/UG4L7%E2%80%94%E2%80%94%E4%BD%BF%E7%94%A8%E5%8F%91%E5%B8%83%E7%9A%84UI/UG4L7-2%E2%80%94%E2%80%94UIPanel%E5%8A%A0%E8%BD%BD%E7%95%8C%E9%9D%A2/" title="UG4L7-2——UIPanel加载界面">UG4L7-2——UIPanel加载界面</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-11-24T05:12:16.000Z" title="发表于 2023-11-24 13:12:16">2023-11-24</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UG%E2%80%94%E2%80%94UI%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0/">UG——UI系统笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UG%E2%80%94%E2%80%94UI%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0/UG4%E2%80%94%E2%80%94FairyGUI%E7%B3%BB%E5%88%97/">UG4——FairyGUI系列</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UG%E2%80%94%E2%80%94UI%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0/UG4%E2%80%94%E2%80%94FairyGUI%E7%B3%BB%E5%88%97/UG4L7%E2%80%94%E2%80%94%E4%BD%BF%E7%94%A8%E5%8F%91%E5%B8%83%E7%9A%84UI/">UG4L7——使用发布的UI</a></span></div><div class="content">UG4L7-2——UIPanel加载界面
+值得一提的是，使用UIPanel加载页面可以一开始将页面加载好的这种模式
+UIPanel一般用来做3DUI，它可以更加方便的挂载到任意GameObject上
+优点是可以直接摆放在场景中，但是一般的UI界面不建议使用UIPanel，因为随着UI的增多，项目的变大，通过它管理UI非常的麻烦
+如果是动态加载界面，其实是有更好的方法，在下一章讲述
 本章代码关键字
-12345678Notifier.Facade                //继承了Notifier的类（SimpleCommand、Mediator、Proxy都继承了该类）可以直接调用场景上唯一的FacadeNotifier.SendNotification()    //继承了Notifier的类可以直接发送通知Facade.HasMediator()           //传入Mediator的名字，检测是否有该MediatorFacade.RegisterMediator()      //传入Mediator对象，注册MediatorFacade.RetrieveMediator()      //传入Mediator的名字，获取特定的MediatorFacade.HasProxy()              //传入Proxy的名字，检测是否有该ProxyFacade.RegisterProxy()         //传入Proxy对象，注册Pr ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/11/15/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UFW%E2%80%94%E2%80%94%E7%A8%8B%E5%BA%8F%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3%E7%AC%94%E8%AE%B0/UMVC%E2%80%94%E2%80%94Unity%E7%9A%84MVC%E6%80%9D%E6%83%B3/UMVCSL6%E2%80%94%E2%80%94Facade%E5%92%8CCommand/" title="UMVCSL6——Facade和Command">UMVCSL6——Facade和Command</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-11-15T04:29:42.000Z" title="发表于 2023-11-15 12:29:42">2023-11-15</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UFW%E2%80%94%E2%80%94%E7%A8%8B%E5%BA%8F%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3%E7%AC%94%E8%AE%B0/">UFW——程序框架相关笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UFW%E2%80%94%E2%80%94%E7%A8%8B%E5%BA%8F%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3%E7%AC%94%E8%AE%B0/UMVC%E2%80%94%E2%80%94Unity%E7%9A%84MVC%E6%80%9D%E6%83%B3/">UMVC——Unity的MVC思想</a></span></div><div class="content">UMVCSL6——Facade和Command
+123456789UIPanel                                        //UIPanel类，可以加载包里的组件并显示出来uiPanel.packageName                            //要加载的包名（包需要预先加载）uiPanel.componentName                          //要加载的组件名uiPanel.CreateUI()                             //将加载好的组件显示到场景上uiPanel.container.renderMode          ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/11/22/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UG%E2%80%94%E2%80%94UI%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0/UG4%E2%80%94%E2%80%94FairyGUI%E7%B3%BB%E5%88%97/UG4L7%E2%80%94%E2%80%94%E4%BD%BF%E7%94%A8%E5%8F%91%E5%B8%83%E7%9A%84UI/UG4L7-1%E2%80%94%E2%80%94Unity%E5%86%85%E5%8A%A0%E8%BD%BD%E5%8C%85/" title="UG4L7-1——Unity内加载包">UG4L7-1——Unity内加载包</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-11-22T13:40:05.000Z" title="发表于 2023-11-22 21:40:05">2023-11-22</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UG%E2%80%94%E2%80%94UI%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0/">UG——UI系统笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UG%E2%80%94%E2%80%94UI%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0/UG4%E2%80%94%E2%80%94FairyGUI%E7%B3%BB%E5%88%97/">UG4——FairyGUI系列</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UG%E2%80%94%E2%80%94UI%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0/UG4%E2%80%94%E2%80%94FairyGUI%E7%B3%BB%E5%88%97/UG4L7%E2%80%94%E2%80%94%E4%BD%BF%E7%94%A8%E5%8F%91%E5%B8%83%E7%9A%84UI/">UG4L7——使用发布的UI</a></span></div><div class="content">UG4L7-1——Unity内加载包
 本章代码关键字
-123456Facade                        //Facade基类，任何在PureMVC内作为Facade的类都应该继承该类，可以实现对PureMVC内框架下所有对象的管理facade.RegisterCommand()      //注册命令，将通知和命令绑定在一起facade.SendNotification()     //发送通知，触发监听该通知的命令和MediatorInitializeController() &#123; &#125;    //初始化控制层内容，这里应当为所有的Command命令进行注册SimpleCommand                 //即单个命令类，所有只负责一个业务且作为Command的类，应当继承该类，他必须要在Facade里注册并于通知绑定Execute() &#123; &#125;                 //当接收到绑定的通知后要执行的方法
-Facade
-Facade是PureMVC非常重要的内容，它管理了PureMVC框架下的Mo ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/11/14/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UFW%E2%80%94%E2%80%94%E7%A8%8B%E5%BA%8F%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3%E7%AC%94%E8%AE%B0/UMVC%E2%80%94%E2%80%94Unity%E7%9A%84MVC%E6%80%9D%E6%83%B3/UMVCSL5%E2%80%94%E2%80%94%E8%A7%92%E8%89%B2%E9%9D%A2%E6%9D%BFView%E5%92%8CMediator/" title="UMVCSL5——角色面板View和Mediator">UMVCSL5——角色面板View和Mediator</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-11-14T14:10:06.000Z" title="发表于 2023-11-14 22:10:06">2023-11-14</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UFW%E2%80%94%E2%80%94%E7%A8%8B%E5%BA%8F%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3%E7%AC%94%E8%AE%B0/">UFW——程序框架相关笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UFW%E2%80%94%E2%80%94%E7%A8%8B%E5%BA%8F%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3%E7%AC%94%E8%AE%B0/UMVC%E2%80%94%E2%80%94Unity%E7%9A%84MVC%E6%80%9D%E6%83%B3/">UMVC——Unity的MVC思想</a></span></div><div class="content">UMVCSL5——角色面板View和Mediator
-本章大部分知识已在上一章讲过，这里不再阐述相同内容
-View
-123456789101112131415161718192021222324252627using UnityEngine;using UnityEngine.UI;public class NewRoleView : MonoBehaviour&#123;    public Text txtLev;    public Text txtHp;    public Text txtAtk;    public Text txtDef;    public Text txtCrit;    public Text txtMiss;    public Text txtLuck;    public Button btnClose;    public Button btnLevUp;    public void UpdateInfo(PlayerDataObject data)    &#123;        txtLev.text = &quot;LV.&quot ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/11/14/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UFW%E2%80%94%E2%80%94%E7%A8%8B%E5%BA%8F%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3%E7%AC%94%E8%AE%B0/UMVC%E2%80%94%E2%80%94Unity%E7%9A%84MVC%E6%80%9D%E6%83%B3/UMVCSL4%E2%80%94%E2%80%94%E4%B8%BB%E9%9D%A2%E6%9D%BFView%E5%92%8CMediator/" title="UMVCSL4——主面板View和Mediator">UMVCSL4——主面板View和Mediator</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-11-14T13:16:38.000Z" title="发表于 2023-11-14 21:16:38">2023-11-14</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UFW%E2%80%94%E2%80%94%E7%A8%8B%E5%BA%8F%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3%E7%AC%94%E8%AE%B0/">UFW——程序框架相关笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UFW%E2%80%94%E2%80%94%E7%A8%8B%E5%BA%8F%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3%E7%AC%94%E8%AE%B0/UMVC%E2%80%94%E2%80%94Unity%E7%9A%84MVC%E6%80%9D%E6%83%B3/">UMVC——Unity的MVC思想</a></span></div><div class="content">UMVCSL4——主面板View和Mediator
-本章代码关键字
-123456789101112Mediator                      //Mediator基类，任何在PureMVC内作为Mediator中介的类都应该继承该类，可以实现对其关联ViewUI界面的操作mediator.Name                 //字符串常量，其派生类里可以覆盖该Name，使用自己的字符串作为名字mediator.ViewComponent        //该Mediator派生类对象关联的View类对象Mediator()                    //Mediator的构造函数，继承该类必须要声明构造函数调用该构造函数，用于初始化名字和关联的对象string[] ListNotificationInterests() &#123; &#125;            //Mediator要监听哪些通知的方法，返回要监听的通知字符串数组HandleNotification(INotification notification) &#123; &#125 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/11/14/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UFW%E2%80%94%E2%80%94%E7%A8%8B%E5%BA%8F%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3%E7%AC%94%E8%AE%B0/UMVC%E2%80%94%E2%80%94Unity%E7%9A%84MVC%E6%80%9D%E6%83%B3/UMVCSL3%E2%80%94%E2%80%94Model%E5%92%8CProxy/" title="UMVCSL3——Model和Proxy">UMVCSL3——Model和Proxy</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-11-14T12:01:40.000Z" title="发表于 2023-11-14 20:01:40">2023-11-14</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UFW%E2%80%94%E2%80%94%E7%A8%8B%E5%BA%8F%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3%E7%AC%94%E8%AE%B0/">UFW——程序框架相关笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UFW%E2%80%94%E2%80%94%E7%A8%8B%E5%BA%8F%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3%E7%AC%94%E8%AE%B0/UMVC%E2%80%94%E2%80%94Unity%E7%9A%84MVC%E6%80%9D%E6%83%B3/">UMVC——Unity的MVC思想</a></span></div><div class="content">UMVCSL3——Model和Proxy
-本章代码关键字
-12345Proxy                                            //Proxy基类，任何在PureMVC内作为Proxy代理的类都应该继承该类，可以实现对其关联数据的操作proxy.Name                                       //字符串常量，其派生类里可以覆盖该Name，使用自己的字符串作为名字proxy.proxyName                                  //获取该proxy派生类的Nameproxy.Data                                       //该proxy派生类对象关联的Model类对象Proxy(string proxyName, object data = null)      //Proxy的构造函数，继承该类必须要声明构造函数调用该构造函数，用于初始化名字和关联的对象
-Model
-这里的Model就是数据结构类，单纯存储内容的类
-123456789101 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/11/14/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UFW%E2%80%94%E2%80%94%E7%A8%8B%E5%BA%8F%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3%E7%AC%94%E8%AE%B0/UMVC%E2%80%94%E2%80%94Unity%E7%9A%84MVC%E6%80%9D%E6%83%B3/UMVCSL2%E2%80%94%E2%80%94%E6%A1%86%E6%9E%B6%E5%AF%BC%E5%85%A5%E5%92%8C%E9%80%9A%E7%9F%A5%E5%90%8D%E7%B1%BB/" title="UMVCSL2——框架导入和通知名类">UMVCSL2——框架导入和通知名类</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-11-14T11:23:11.000Z" title="发表于 2023-11-14 19:23:11">2023-11-14</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UFW%E2%80%94%E2%80%94%E7%A8%8B%E5%BA%8F%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3%E7%AC%94%E8%AE%B0/">UFW——程序框架相关笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UFW%E2%80%94%E2%80%94%E7%A8%8B%E5%BA%8F%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3%E7%AC%94%E8%AE%B0/UMVC%E2%80%94%E2%80%94Unity%E7%9A%84MVC%E6%80%9D%E6%83%B3/">UMVC——Unity的MVC思想</a></span></div><div class="content">UMVCSL2——框架导入和通知名类
-关于PureMVC的版本
-进入 PureMVC C# 的Github页面后，在学习阶段，我们使用其单核版本也就是标准版
-​​
-下面这个页面就是标准版
-​​
-标准版和多核版区别简单来说就是：
-下图的Facade是否有多个，标准版就只有一个
-如果是多核版，Facade对象可以有多个，用于各个子系统的管理
-​​
-导入框架
+1234567FairyGUI                        //FairyGUI相关内容的命名空间UIPackage                       //FairyGUI包的类UIPackage.AddPackage()          //通过包名，两个AB包或者一个AB包加载FairyGUI包UIPackage.RemovePackage()       //通过包名卸载FairyGUI包UIPackage.RemoveAllPackages()   //卸载所有的FairyGUI包teachPackage.LoadAllAssets()    //提前加载该包的所有贴图声音资源UIPackage.unloadBundleByFGUI    //让用于加载包的AB包不被FairyGUI处理，用于需要自行管理AB包的情况
+导入UI资源
 
 
-下载源代码，并使用Visual Studio生成dll文件（使用VS2022生成的dll文件导入到Unity2021版本下会报错！原因未知）（该方法会更加安全）
-​
-请注意！生成dll文件的操作务必不要在Unity编辑器正在打开的项目的文件夹下操作，否则会生成大量的没有必要的文件，且Unity编辑器会报错
-​
-右键选择生成即可
-之后在：源代码根目录/PureMVC/bin/Debug/(.Net版本) 路径下，得到PureMVC.dll
-将该dll文件导入到项目的Plugins文件夹下即可
-
-
-将PureMVC的核心源代码直接导入到Unity文件夹内（PureMVC文件夹下）
+直接放在Resources或者其子目录下
 ​​
 
 
-通知名类
-PureMVC结构中的这些箭头就是通 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/11/14/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UFW%E2%80%94%E2%80%94%E7%A8%8B%E5%BA%8F%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3%E7%AC%94%E8%AE%B0/UMVC%E2%80%94%E2%80%94Unity%E7%9A%84MVC%E6%80%9D%E6%83%B3/UMVCSL1%E2%80%94%E2%80%94PureMVC/" title="UMVCSL1——PureMVC">UMVCSL1——PureMVC</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-11-14T11:09:38.000Z" title="发表于 2023-11-14 19:09:38">2023-11-14</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UFW%E2%80%94%E2%80%94%E7%A8%8B%E5%BA%8F%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3%E7%AC%94%E8%AE%B0/">UFW——程序框架相关笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UFW%E2%80%94%E2%80%94%E7%A8%8B%E5%BA%8F%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3%E7%AC%94%E8%AE%B0/UMVC%E2%80%94%E2%80%94Unity%E7%9A%84MVC%E6%80%9D%E6%83%B3/">UMVC——Unity的MVC思想</a></span></div><div class="content">UMVCSL1——PureMVC
-PureMVC
-基于MVC思想和一些基础设计模式建立的一个轻量级的应用框架，是一个免费开源框架
-它最初是执行的ActionScript 3语言使用的，现在已经移植到几乎所有主流平台
+打包进AB包中
 
-PureMVC的中文文档：PureMVC_IIBP_Chinese.pdf
 
-PureMVC如何获取
-官方网址：http://puremvc.org/
-​​
-PureMVC的基本结构
-MVC + …
-
-代理模式
-中介者模式
-外观模式
-观察者模式
-单例模式
-
+纹理设置注意事项
+关于纹理设置的各个参数，详见：U3L2——图片导入概述
 ​​
 
 
-Model（数据模型）
-关联Proxy(代理)对象，负责处理数据
-
-
-View（界面）
-关联Mediator(中介)对象，负责处理界面
-
-
-Controller（业务控制）
-管理Command(命令)对象，负责处理业务逻辑
-
-
-Facade（外观）
-是MVC三者的经纪人，统管全局
-可以获取代理、中介、命令
-
-
-Notification
-通知，负责传递信息
-
-
-总结
-
-PureMVC是什么 —— 基于MVC思想的第三方开源框架
-PureMVC如何获取 —— 官方网站前往Github获取
-PureMVC的基本结构 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/11/14/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UFW%E2%80%94%E2%80%94%E7%A8%8B%E5%BA%8F%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3%E7%AC%94%E8%AE%B0/UMVC%E2%80%94%E2%80%94Unity%E7%9A%84MVC%E6%80%9D%E6%83%B3/UMVCL11%E2%80%94%E2%80%94MVE%E5%9F%BA%E6%9C%AC%E5%AE%9E%E4%BE%8B/" title="UMVCL11——MVE基本实例">UMVCL11——MVE基本实例</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-11-14T04:44:07.000Z" title="发表于 2023-11-14 12:44:07">2023-11-14</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UFW%E2%80%94%E2%80%94%E7%A8%8B%E5%BA%8F%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3%E7%AC%94%E8%AE%B0/">UFW——程序框架相关笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UFW%E2%80%94%E2%80%94%E7%A8%8B%E5%BA%8F%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3%E7%AC%94%E8%AE%B0/UMVC%E2%80%94%E2%80%94Unity%E7%9A%84MVC%E6%80%9D%E6%83%B3/">UMVC——Unity的MVC思想</a></span></div><div class="content">UMVCL11——MVE基本实例
-MVE基本实例
-还是和上一章相同的UI需求
-假设我们有一个主面板，它的各个UI控件需要的效果如下
+Tex ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/11/22/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UG%E2%80%94%E2%80%94UI%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0/UG4%E2%80%94%E2%80%94FairyGUI%E7%B3%BB%E5%88%97/UG4L6%E2%80%94%E2%80%94%E5%8F%91%E5%B8%83UI/" title="UG4L6——发布UI">UG4L6——发布UI</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-11-22T13:09:43.000Z" title="发表于 2023-11-22 21:09:43">2023-11-22</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UG%E2%80%94%E2%80%94UI%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0/">UG——UI系统笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UG%E2%80%94%E2%80%94UI%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0/UG4%E2%80%94%E2%80%94FairyGUI%E7%B3%BB%E5%88%97/">UG4——FairyGUI系列</a></span></div><div class="content">UG4L6——发布UI
+发布设置讲解
 ​​
-有一个选角面板，它的各个UI控件需要的效果如下
+
+
+页面布局
+
+包列表
+切换包设置和全局设置
+设置内容
+功能按钮
+
+
+
+全部发布 发布所有包
+
+
+仅发布定义 仅发布定义发布包列表中当前选中的包，但仅发布定义，不重新生成纹理集。
+通常发布的内容包括素材(图片、声音等)和定义文件，
+如果你没有增删改素材，那么你可以仅发布定义文件，
+避免了重新生成图集带来的时间消耗。
+
+
+发布 发布包列表中选中的包
+
+
+导出资源设置
+资源库右键——&gt;设置为导出
+认识导出的内容
+
+图集文件（可能有多张）
+配置文件（后缀为.bytes的2进制文件）
+
+设置为导出
+如果要导出编辑好的组件或者一切将会使用到的资源，你必须要将其设置为导出：
 ​​
-前置知识
-本章的代码编写使用了Unity小框架的UI管理器和UI基类以及事件中心，需要先学习这方面内容才能理解下列代码
-并基于MP的代码进行修改
-Model
-相比之前的MVC的Model，这里不再需要向自己去触发数据更新的事件，而是直接向事件中心去触发事件
-12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959697989910010110210310410510610710810911011111211311411511611711811912012112212312412512612712 ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/55/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/55/#content-inner">55</a><span class="page-number current">56</span><a class="page-number" href="/page/57/#content-inner">57</a><span class="space">&hellip;</span><a class="page-number" href="/page/88/#content-inner">88</a><a class="extend next" rel="next" href="/page/57/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/Blue_Ice.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">文KRIFE齐</div><div class="author-info__description">正在努力学习Unity，希望下半年可以找到实习</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">873</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">120</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/enjoySevenLIU"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/enjoySevenLIU" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">找到实习，但家遇变故，因此本周和下周暂不更新，抱歉！</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/07/20/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/CS2%E2%80%94%E2%80%94CSharp%E5%9F%BA%E7%A1%80%E7%B3%BB%E5%88%97/CS2L13%E2%80%94%E2%80%94%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F/" title="CS2L13——选择排序">CS2L13——选择排序</a><time datetime="2024-07-20T15:08:21.000Z" title="发表于 2024-07-20 23:08:21">2024-07-20</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/07/20/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/CS2%E2%80%94%E2%80%94CSharp%E5%9F%BA%E7%A1%80%E7%B3%BB%E5%88%97/CS2L12%E2%80%94%E2%80%94%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F/" title="CS2L12——冒泡排序">CS2L12——冒泡排序</a><time datetime="2024-07-20T14:47:17.000Z" title="发表于 2024-07-20 22:47:17">2024-07-20</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/07/20/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/CS2%E2%80%94%E2%80%94CSharp%E5%9F%BA%E7%A1%80%E7%B3%BB%E5%88%97/CS2L11%E2%80%94%E2%80%94%E5%A4%8D%E6%9D%82%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E2%80%94%E7%BB%93%E6%9E%84%E4%BD%93/" title="CS2L11——复杂数据类型—结构体">CS2L11——复杂数据类型—结构体</a><time datetime="2024-07-20T14:17:41.000Z" title="发表于 2024-07-20 22:17:41">2024-07-20</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/07/20/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/CS2%E2%80%94%E2%80%94CSharp%E5%9F%BA%E7%A1%80%E7%B3%BB%E5%88%97/CS2L10%E2%80%94%E2%80%94%E9%80%92%E5%BD%92%E5%87%BD%E6%95%B0/" title="CS2L10——递归函数">CS2L10——递归函数</a><time datetime="2024-07-20T13:53:39.000Z" title="发表于 2024-07-20 21:53:39">2024-07-20</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/07/20/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/CS2%E2%80%94%E2%80%94CSharp%E5%9F%BA%E7%A1%80%E7%B3%BB%E5%88%97/CS2L9%E2%80%94%E2%80%94%E5%87%BD%E6%95%B0%E9%87%8D%E8%BD%BD/" title="CS2L9——函数重载">CS2L9——函数重载</a><time datetime="2024-07-20T13:45:55.000Z" title="发表于 2024-07-20 21:45:55">2024-07-20</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+‍
+</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/11/22/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UG%E2%80%94%E2%80%94UI%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0/UG4%E2%80%94%E2%80%94FairyGUI%E7%B3%BB%E5%88%97/UG4L5%E2%80%94%E2%80%94%E7%BB%84%E4%BB%B6/" title="UG4L5——组件">UG4L5——组件</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-11-22T12:00:24.000Z" title="发表于 2023-11-22 20:00:24">2023-11-22</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UG%E2%80%94%E2%80%94UI%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0/">UG——UI系统笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UG%E2%80%94%E2%80%94UI%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0/UG4%E2%80%94%E2%80%94FairyGUI%E7%B3%BB%E5%88%97/">UG4——FairyGUI系列</a></span></div><div class="content">UG4L5——组件
+组件
+组件，也可以理解为组合控件，所有的UI相关内容都在其中编辑显示，是我们的最基础容器
+它可以包含一个或多个基础显示对象，也可以包含组件，我们之后编辑的所有UI内容都是以组件为容器
+比如面板，按钮，输入框等等UI内容都是基于组件制作的
+在FairyGUI的舞台编辑区域，编辑的就是组件和组件容器中的各种元件位置属性等等
+最终我们发布UI文件后，在Unity中也是以组件为最小单位进行内容加载
+创建组件
+菜单栏——&gt;资源——&gt;新建组件（或者点击快捷按钮）
+​​
+组件的关键属性
+​​
+
+
+组件
+
+
+最小\大尺寸：设置组件的尺寸限制，0表示不限制
+注意：修改尺寸限制不会修改当前的宽高，即使宽高超出限制
+这个最大最小尺寸将该组件拖入到别的组件时，你能修改这个拖入的组件的尺寸的限制
+
+
+点击轴心右侧三角形可以快速设置轴心的位置
+这个轴心影响组件的诸如旋转圆点等计算
+注意，这个轴心不参与位置的计算，
+如果要其参与，需要勾选同时作为锚点
+
+
+初始名字：当组件在编辑器内被创建时，
+自动设置组件的名称为这里设置的值
+主要作用是，FairyGUI中要求窗口框架组件命名为fra ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/11/22/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UG%E2%80%94%E2%80%94UI%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0/UG4%E2%80%94%E2%80%94FairyGUI%E7%B3%BB%E5%88%97/UG4L4%E2%80%94%E2%80%94%E5%8C%85%E7%9A%84%E6%A6%82%E5%BF%B5/" title="UG4L4——包的概念">UG4L4——包的概念</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-11-22T11:10:05.000Z" title="发表于 2023-11-22 19:10:05">2023-11-22</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UG%E2%80%94%E2%80%94UI%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0/">UG——UI系统笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UG%E2%80%94%E2%80%94UI%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0/UG4%E2%80%94%E2%80%94FairyGUI%E7%B3%BB%E5%88%97/">UG4——FairyGUI系列</a></span></div><div class="content">UG4L4——包的概念
+包的定义
+包是FairyGUI中用于组织资源的，它在文件系统中体现为一个目录，assets文件夹下的每个子目录都表示一个包
+最终我们打包时也是以包为单位进行打包的
+​​
+每个包中都有一个package.xml文件，它是用于记录这个包中的资源对应信息的，是非常重要的文件
+​​
+包发布后可以得到一个描述文件和一张或多张纹理集（图集），我们在引擎中使用时，就是根据这个描述文件使用纹理中的图片来创建UI的
+新建包
+菜单栏——&gt;资源——&gt;新建包（或者点击快捷按钮）
+包的依赖
+FairyGUI不处理包之间的依赖，假设有两个包A和B，A用到了包B中的元件，那么在使用A中内容时需要先手动加载包B相关内容
+资源URL地址
+在FairyGUI中每个资源都对应了一个资源URL地址
+选中一个资源，右键，会出现复制URL，就可以得到它的资源地址
+无论在编辑器还是代码中 我们都可以通过资源地址来得到资源
+资源地址规则：ui://包名//资源名​
+注意：该格式地址是不包含文件夹的，只需要用包名和资源名
+划分包的原则
+划分包的原则：
+不要建立交叉引用，公共资源放在公共包中，避免A用 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/11/22/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UG%E2%80%94%E2%80%94UI%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0/UG4%E2%80%94%E2%80%94FairyGUI%E7%B3%BB%E5%88%97/UG4L3%E2%80%94%E2%80%94%E9%A1%B9%E7%9B%AE%E8%AE%BE%E7%BD%AE/" title="UG4L3——项目设置">UG4L3——项目设置</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-11-22T10:48:23.000Z" title="发表于 2023-11-22 18:48:23">2023-11-22</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UG%E2%80%94%E2%80%94UI%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0/">UG——UI系统笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UG%E2%80%94%E2%80%94UI%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0/UG4%E2%80%94%E2%80%94FairyGUI%E7%B3%BB%E5%88%97/">UG4——FairyGUI系列</a></span></div><div class="content">UG4L3——项目设置
+打开项目设置
+主菜单——&gt;文件——&gt;项目设置
+​​
+项目设置相关
+​​
+项目设置的重要性
+
+可以修改实际运行的平台
+可以设置在编辑器内的一些默认值
+可以设置 方便我们使用的 字体列表 颜色列表 字体大小列表
+可以进行 分辨率自适应的基础设置
+可以编辑 项目分支、多国语言、自定义属性
+
+我们一般新建一个FGUI的工程后 最好就把这些项目基础设置 设置好
+‍
+</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/11/22/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UG%E2%80%94%E2%80%94UI%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0/UG4%E2%80%94%E2%80%94FairyGUI%E7%B3%BB%E5%88%97/UG4L2%E2%80%94%E2%80%94%E7%BC%96%E8%BE%91%E5%99%A8%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8/" title="UG4L2——编辑器基础使用">UG4L2——编辑器基础使用</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-11-22T10:26:39.000Z" title="发表于 2023-11-22 18:26:39">2023-11-22</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UG%E2%80%94%E2%80%94UI%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0/">UG——UI系统笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UG%E2%80%94%E2%80%94UI%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0/UG4%E2%80%94%E2%80%94FairyGUI%E7%B3%BB%E5%88%97/">UG4——FairyGUI系列</a></span></div><div class="content">UG4L2——编辑器基础使用
+创建新项目​​
+注意点：
+
+路径不要带中文
+是否在此位置创建新目录
+
+​​
+项目文件夹结构
+​​
+
+assets：包内容放置目录 ——&gt; package1：
+每个包一个目录。目录名就是包名
+assets_xx：分支内容放置目录，xx就是分支名称，
+多个分支存在多个类似名称的目录
+settings:配置文件放置目录
+.objs：内部数据目录。不需要进行版本管理，这里的内容不需要共享
+.fairy：项目标识文件。文件名就是项目名，可以随便修改
+
+认识主界面
+​​
+
+菜单栏
+主工具栏：常用功能按钮
+工具栏和舞台区域
+状态栏，显示控制台输出的最后一条信息，点击可打开控制台
+其它功能视图：可以随意拖动位置，也可以关闭，在主菜单-&gt;视图中可以打开关闭后的窗口
+
+资源导入支持
+可以将资源直接拖入资源库中，支持的格式：
+
+图片（PNG、JPG、TGA、SVG等）
+声音（MP3、wav等）
+动画（spine、龙骨、gif、Flash等）
+文字（TTF、位图文字）
+
+</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/11/21/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UG%E2%80%94%E2%80%94UI%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0/UG4%E2%80%94%E2%80%94FairyGUI%E7%B3%BB%E5%88%97/UG4L1%E2%80%94%E2%80%94FairyGUI%E7%BC%96%E8%BE%91%E5%99%A8%E4%B8%8B%E8%BD%BD%E5%92%8CUnitySDK%E4%B8%8B%E8%BD%BD/" title="UG4L1——FairyGUI编辑器下载和UnitySDK下载">UG4L1——FairyGUI编辑器下载和UnitySDK下载</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-11-21T13:52:03.000Z" title="发表于 2023-11-21 21:52:03">2023-11-21</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UG%E2%80%94%E2%80%94UI%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0/">UG——UI系统笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UG%E2%80%94%E2%80%94UI%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0/UG4%E2%80%94%E2%80%94FairyGUI%E7%B3%BB%E5%88%97/">UG4——FairyGUI系列</a></span></div><div class="content">UG4L1——FairyGUI编辑器下载和UnitySDK下载
+FairyGUI编辑器下载
+
+前往官网 进行下载 https://www.fairygui.com
+不想记忆网址，在搜索引擎搜索 FairyGUI 进入官网
+
+下载Unity SDK
+在Unity中的 Asset Store中搜索 FairyGUI 进行下载
+​​
+之后的学习方向
+
+先了解FairyGUI的基本工作机制，让FairyGUI和Unity建立联系
+再学习它提供的各种功能
+
+</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/55/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/55/#content-inner">55</a><span class="page-number current">56</span><a class="page-number" href="/page/57/#content-inner">57</a><span class="space">&hellip;</span><a class="page-number" href="/page/90/#content-inner">90</a><a class="extend next" rel="next" href="/page/57/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/Blue_Ice.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">文KRIFE齐</div><div class="author-info__description">正在努力学习Unity，希望下半年可以找到实习</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">898</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">119</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/enjoySevenLIU"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/enjoySevenLIU" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">找到实习，但家遇变故，因此本周和下周暂不更新，抱歉！</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/09/04/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/CS3%E2%80%94%E2%80%94CSharp%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/CS3SL3%E2%80%94%E2%80%94%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E4%B8%83%E5%A4%A7%E5%8E%9F%E5%88%99/" title="CS3SL3——面向对象七大原则">CS3SL3——面向对象七大原则</a><time datetime="2024-09-04T14:38:41.000Z" title="发表于 2024-09-04 22:38:41">2024-09-04</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/09/04/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/CS3%E2%80%94%E2%80%94CSharp%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/CS3SL2%E2%80%94%E2%80%94UML%E7%B1%BB%E5%9B%BE/" title="CS3SL2——UML类图">CS3SL2——UML类图</a><time datetime="2024-09-04T14:29:53.000Z" title="发表于 2024-09-04 22:29:53">2024-09-04</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/09/04/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/CS3%E2%80%94%E2%80%94CSharp%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/CS3SL1%E2%80%94%E2%80%94%E5%A4%9A%E8%84%9A%E6%9C%AC%E6%96%87%E4%BB%B6/" title="CS3SL1——多脚本文件">CS3SL1——多脚本文件</a><time datetime="2024-09-04T14:00:15.000Z" title="发表于 2024-09-04 22:00:15">2024-09-04</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/09/04/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/CS3%E2%80%94%E2%80%94CSharp%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/CS3L27%E2%80%94%E2%80%94%E6%8A%BD%E8%B1%A1%E7%B1%BB%E5%92%8C%E6%8E%A5%E5%8F%A3%E7%9A%84%E5%8C%BA%E5%88%AB/" title="CS3L27——抽象类和接口的区别">CS3L27——抽象类和接口的区别</a><time datetime="2024-09-04T13:55:16.000Z" title="发表于 2024-09-04 21:55:16">2024-09-04</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/09/04/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/CS3%E2%80%94%E2%80%94CSharp%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/CS3L26%E2%80%94%E2%80%94%E7%BB%93%E6%9E%84%E4%BD%93%E5%92%8C%E7%B1%BB%E7%9A%84%E5%8C%BA%E5%88%AB/" title="CS3L26——结构体和类的区别">CS3L26——结构体和类的区别</a><time datetime="2024-09-04T13:49:10.000Z" title="发表于 2024-09-04 21:49:10">2024-09-04</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
             <i class="fas fa-folder-open"></i>
             <span>分类</span>
             <a class="card-more-btn" href="/categories/" title="查看更多">
     <i class="fas fa-angle-right"></i></a>
             </div>
             <ul class="card-category-list" id="aside-cat-list">
-            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><span class="card-category-list-name">Unity就业路线学习笔记</span><span class="card-category-list-count">872</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/"><span class="card-category-list-name">CS——CSharp笔记</span><span class="card-category-list-count">62</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/CS1%E2%80%94%E2%80%94CSharp%E5%85%A5%E9%97%A8%E7%B3%BB%E5%88%97/"><span class="card-category-list-name">CS1——CSharp入门系列</span><span class="card-category-list-count">22</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/CS2%E2%80%94%E2%80%94CSharp%E5%9F%BA%E7%A1%80%E7%B3%BB%E5%88%97/"><span class="card-category-list-name">CS2——CSharp基础系列</span><span class="card-category-list-count">13</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/CS3%E2%80%94%E2%80%94CSharp%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/"><span class="card-category-list-name">CS3——CSharp核心系列</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/CS4%E2%80%94%E2%80%94CSharp%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/"><span class="card-category-list-name">CS4——CSharp进阶系列</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/CS5%E2%80%94%E2%80%94CSharp%E7%9F%A5%E8%AF%86%E8%A1%A5%E5%85%85/"><span class="card-category-list-name">CS5——CSharp知识补充</span><span class="card-category-list-count">19</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/CS5%E2%80%94%E2%80%94CSharp%E7%9F%A5%E8%AF%86%E8%A1%A5%E5%85%85/CS5L13%E2%80%94%E2%80%94LINQ%E5%85%A5%E9%97%A8%E5%AE%9E%E4%BE%8B/"><span class="card-category-list-name">CS5L13——LINQ入门实例</span><span class="card-category-list-count">3</span></a></li></ul></li></ul></li></ul></li>
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><span class="card-category-list-name">Unity就业路线学习笔记</span><span class="card-category-list-count">897</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/"><span class="card-category-list-name">CS——CSharp笔记</span><span class="card-category-list-count">90</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/CS1%E2%80%94%E2%80%94CSharp%E5%85%A5%E9%97%A8%E7%B3%BB%E5%88%97/"><span class="card-category-list-name">CS1——CSharp入门系列</span><span class="card-category-list-count">22</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/CS2%E2%80%94%E2%80%94CSharp%E5%9F%BA%E7%A1%80%E7%B3%BB%E5%88%97/"><span class="card-category-list-name">CS2——CSharp基础系列</span><span class="card-category-list-count">13</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/CS3%E2%80%94%E2%80%94CSharp%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/"><span class="card-category-list-name">CS3——CSharp核心系列</span><span class="card-category-list-count">30</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/CS4%E2%80%94%E2%80%94CSharp%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/"><span class="card-category-list-name">CS4——CSharp进阶系列</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/CS5%E2%80%94%E2%80%94CSharp%E7%9F%A5%E8%AF%86%E8%A1%A5%E5%85%85/"><span class="card-category-list-name">CS5——CSharp知识补充</span><span class="card-category-list-count">19</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/CS5%E2%80%94%E2%80%94CSharp%E7%9F%A5%E8%AF%86%E8%A1%A5%E5%85%85/CS5L13%E2%80%94%E2%80%94LINQ%E5%85%A5%E9%97%A8%E5%AE%9E%E4%BE%8B/"><span class="card-category-list-name">CS5L13——LINQ入门实例</span><span class="card-category-list-count">3</span></a></li></ul></li></ul></li></ul></li>
             </ul></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span><a class="card-more-btn" href="/archives/" title="查看更多">
-    <i class="fas fa-angle-right"></i></a></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/07/"><span class="card-archive-list-date">七月 2024</span><span class="card-archive-list-count">37</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/06/"><span class="card-archive-list-date">六月 2024</span><span class="card-archive-list-count">54</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/05/"><span class="card-archive-list-date">五月 2024</span><span class="card-archive-list-count">56</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/04/"><span class="card-archive-list-date">四月 2024</span><span class="card-archive-list-count">127</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/03/"><span class="card-archive-list-date">三月 2024</span><span class="card-archive-list-count">135</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/02/"><span class="card-archive-list-date">二月 2024</span><span class="card-archive-list-count">62</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/01/"><span class="card-archive-list-date">一月 2024</span><span class="card-archive-list-count">31</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/12/"><span class="card-archive-list-date">十二月 2023</span><span class="card-archive-list-count">2</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">873</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2024-07-20T16:41:07.234Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By 文KRIFE齐</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>
+    <i class="fas fa-angle-right"></i></a></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/09/"><span class="card-archive-list-date">九月 2024</span><span class="card-archive-list-count">26</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/07/"><span class="card-archive-list-date">七月 2024</span><span class="card-archive-list-count">39</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/06/"><span class="card-archive-list-date">六月 2024</span><span class="card-archive-list-count">51</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/05/"><span class="card-archive-list-date">五月 2024</span><span class="card-archive-list-count">56</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/04/"><span class="card-archive-list-date">四月 2024</span><span class="card-archive-list-count">127</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/03/"><span class="card-archive-list-date">三月 2024</span><span class="card-archive-list-count">135</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/02/"><span class="card-archive-list-date">二月 2024</span><span class="card-archive-list-count">62</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/01/"><span class="card-archive-list-date">一月 2024</span><span class="card-archive-list-count">31</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">898</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2024-09-05T03:03:48.319Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By 文KRIFE齐</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>

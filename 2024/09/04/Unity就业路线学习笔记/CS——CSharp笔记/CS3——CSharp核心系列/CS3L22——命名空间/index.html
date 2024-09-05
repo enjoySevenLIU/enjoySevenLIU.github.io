@@ -1,0 +1,226 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>CS3L22——命名空间 | 文KRIFE齐的博客</title><meta name="author" content="文KRIFE齐"><meta name="copyright" content="文KRIFE齐"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="CS3L22——命名空间 本章代码关键字 123namespace        &#x2F;&#x2F;命名空间关键字public            &#x2F;&#x2F;公开的类，可以被另外的工程调用internal        &#x2F;&#x2F;内部的类，不能被其他工程调用 命名空间 命名空间是用来组织和重用代码的 作用：就像是一个工具包，类就像是一件一件的工具，都是申明在命名空间中的 命名空间是个工具包 用来管理类，在不同命名空间中允">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CS3L22——命名空间">
+<meta property="og:url" content="https://enjoysevenliu.github.io/2024/09/04/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/CS3%E2%80%94%E2%80%94CSharp%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/CS3L22%E2%80%94%E2%80%94%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4/index.html">
+<meta property="og:site_name" content="文KRIFE齐的博客">
+<meta property="og:description" content="CS3L22——命名空间 本章代码关键字 123namespace        &#x2F;&#x2F;命名空间关键字public            &#x2F;&#x2F;公开的类，可以被另外的工程调用internal        &#x2F;&#x2F;内部的类，不能被其他工程调用 命名空间 命名空间是用来组织和重用代码的 作用：就像是一个工具包，类就像是一件一件的工具，都是申明在命名空间中的 命名空间是个工具包 用来管理类，在不同命名空间中允">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://enjoysevenliu.github.io/img/Blue_Ice.png">
+<meta property="article:published_time" content="2024-09-04T06:22:44.000Z">
+<meta property="article:modified_time" content="2024-09-05T03:01:18.115Z">
+<meta property="article:author" content="文KRIFE齐">
+<meta property="article:tag" content="blog">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://enjoysevenliu.github.io/img/Blue_Ice.png"><link rel="shortcut icon" href="/img/Blue_Ice.png"><link rel="canonical" href="https://enjoysevenliu.github.io/2024/09/04/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/CS3%E2%80%94%E2%80%94CSharp%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/CS3L22%E2%80%94%E2%80%94%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'CS3L22——命名空间',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-09-05 11:01:18'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/Blue_Ice.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">898</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">119</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="https://enjoysevenliu.github.io/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="文KRIFE齐的博客"><img class="site-icon" src="/img/Blue_Ice.png"/><span class="site-name">文KRIFE齐的博客</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="https://enjoysevenliu.github.io/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">CS3L22——命名空间</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-09-04T06:22:44.000Z" title="发表于 2024-09-04 14:22:44">2024-09-04</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-09-05T03:01:18.115Z" title="更新于 2024-09-05 11:01:18">2024-09-05</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/">CS——CSharp笔记</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/CS3%E2%80%94%E2%80%94CSharp%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/">CS3——CSharp核心系列</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="CS3L22——命名空间"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1>CS3L22——命名空间</h1>
+<h2 id="本章代码关键字">本章代码关键字</h2>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">namespace</span>        <span class="comment">//命名空间关键字</span></span><br><span class="line"><span class="title">public</span>            <span class="comment">//公开的类，可以被另外的工程调用</span></span><br><span class="line"><span class="title">internal</span>        <span class="comment">//内部的类，不能被其他工程调用</span></span><br></pre></td></tr></table></figure>
+<h1>命名空间</h1>
+<p>命名空间是用来组织和重用代码的</p>
+<p>作用：就像是一个工具包，类就像是一件一件的工具，都是申明在命名空间中的</p>
+<p>命名空间是个工具包 用来管理类，在不同命名空间中允许有同名类<br>
+不同命名空间中相互使用，需要引用命名空间或指明出处，命名空间可以可以包裹命名空间</p>
+<h2 id="命名空间的声明">命名空间的声明</h2>
+<p>命名空间可以分开写，甚至可以分成两个文件写，但是同一命名空间内不可以有同名类（分部类可以分开声明）</p>
+<p>基本语法如下：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">namespace</span> 命名空间名</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">class</span> 类1 &#123; ... &#125;</span><br><span class="line">    <span class="keyword">class</span> 类2 &#123; ... &#125;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>示例：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">namespace</span> <span class="title">MyGame</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">class</span> <span class="title">GameObject</span> &#123; &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//命名空间可以分开写，甚至可以分成两个文件写，但是同一命名空间内不可以有同名类</span></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">MyGame</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// class GameObject &#123; &#125;</span></span><br><span class="line">    <span class="keyword">class</span> <span class="title">Player</span> : <span class="title">GameObject</span> &#123; &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="不同命名空间中允许有同名类">不同命名空间中允许有同名类</h2>
+<p>顾名思义，在不同命名空间中允许有同名类，但如果要同时使用它们就需要注意指明命名空间</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">namespace</span> <span class="title">MyGame</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">class</span> <span class="title">GameObject</span> &#123; &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">MyGame2</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">class</span> <span class="title">GameObject</span> &#123; &#125;    <span class="comment">//在不同命名空间中允许有同名类</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="命名空间可以可以包裹命名空间">命名空间可以可以包裹命名空间</h2>
+<p>命名空间里的命名空间可以理解为工具包里的小包</p>
+<p>注意，虽然命名空间是可以嵌套的，但是如果要引用嵌套命名空间的类，<br>
+只引用父命名空间是不行的，需要在父命名空间点出子命名空间才能引用</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">namespace</span> <span class="title">MyGame</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">namespace</span> <span class="title">UI</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">class</span> <span class="title">Image</span> &#123; &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">namespace</span> <span class="title">Game</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">class</span> <span class="title">Image</span> &#123; &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>例如如果要使用 <code>UI</code>​ 的 <code>Image</code>​，那么就需要引用 <code>MyGame.UI</code>​</p>
+<h2 id="使用其他命名空间的类的方法">使用其他命名空间的类的方法</h2>
+<p>如果要正常使用别的命名空间的类，需要 <code>using 命名空间名;</code>​ 来引用命名空间，或者通过 <code>命名空间.类名</code>​ 指明出处来引用</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">namespace</span> <span class="title">MyGame</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">class</span> <span class="title">GameObject</span> &#123; &#125;</span><br><span class="line">    <span class="keyword">class</span> <span class="title">Player</span> : <span class="title">GameObject</span> &#123; &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">namespace</span> <span class="title">UI</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">class</span> <span class="title">Image</span> &#123; &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">namespace</span> <span class="title">Game</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">class</span> <span class="title">Image</span> &#123; &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">MyGame2</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">class</span> <span class="title">GameObject</span> &#123; &#125;    <span class="comment">//在不同命名空间中允许有同名类</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>假设这里要引用 <code>MyGame</code>​ 的 <code>GameObject</code>​ 类，可以使用 <code>using</code>​ 来引用命名空间<br>
+对于引用 嵌套的命名空间 的类，需要 <code>using 父命名空间.子命名空间;</code>​</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//如果要正常使用别的命名空间的类，需要using 命名空间名; 来引用命名空间</span></span><br><span class="line"><span class="keyword">using</span> MyGame;</span><br><span class="line"><span class="keyword">using</span> MyGame.UI;</span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">lesson21_</span>命名空间</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">internal</span> <span class="keyword">class</span> <span class="title">Program</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"><span class="built_in">string</span>[] args</span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            GameObject g = <span class="keyword">new</span> GameObject();</span><br><span class="line">            Image img = <span class="keyword">new</span> Image();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>也可以在类名前加上命名空间来指明出处，对于引用 嵌套的命名空间 的类，需要 <code>父命名空间.子命名空间.类名</code>​</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">namespace</span> <span class="title">lesson21_</span>命名空间</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">internal</span> <span class="keyword">class</span> <span class="title">Program</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"><span class="built_in">string</span>[] args</span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">//或者不使用using，使用指明出处的方法</span></span><br><span class="line">            MyGame.GameObject g1 = <span class="keyword">new</span> MyGame.GameObject();</span><br><span class="line">            MyGame.GameObject g2 = <span class="keyword">new</span> MyGame.GameObject();</span><br><span class="line"></span><br><span class="line">            <span class="comment">//引用命名空间里的命名空间的类 需要指明出处</span></span><br><span class="line">            MyGame.UI.Image img = <span class="keyword">new</span> MyGame.UI.Image();</span><br><span class="line">            MyGame.Game.Image img2 = <span class="keyword">new</span> MyGame.Game.Image();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注：C#10及以后会有隐式 <code>using</code>​ ，在 <code>csproj</code>​ 项目文件内设置 <code>ImplicitUsings</code>​ 属性为 <code>true</code>​ 就会开启</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Project</span> <span class="attr">Sdk</span>=<span class="string">&quot;Microsoft.NET.Sdk&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">PropertyGroup</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">OutputType</span>&gt;</span>Exe<span class="tag">&lt;/<span class="name">OutputType</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">TargetFramework</span>&gt;</span>net6.0<span class="tag">&lt;/<span class="name">TargetFramework</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ImplicitUsings</span>&gt;</span>enable<span class="tag">&lt;/<span class="name">ImplicitUsings</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">Nullable</span>&gt;</span>enable<span class="tag">&lt;/<span class="name">Nullable</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">PropertyGroup</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">Project</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>它会隐式引用一系列常用的系统的命名空间，例如 <code>System</code>​ 等，以节省代码量，但该特性不适用于当前（C#9）的Unity开发</p>
+</blockquote>
+<p>如果引用两个命名空间，而且这两个命名空间包含了两个同名的类，则直接使用同名的类就会报错，因此必须要指明出处<br>
+也可以只引用其中一个命名空间，引用命名空间的那个类就不需要再指明出处，而另一个命名空间的同名类就需要指明出处</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">namespace</span> <span class="title">MyGame</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">class</span> <span class="title">GameObject</span> &#123; &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">namespace</span> <span class="title">UI</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">class</span> <span class="title">Image</span> &#123; &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">namespace</span> <span class="title">Game</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">class</span> <span class="title">Image</span> &#123; &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">MyGame2</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">class</span> <span class="title">GameObject</span> &#123; &#125;    <span class="comment">//在不同命名空间中允许有同名类</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> MyGame;</span><br><span class="line"><span class="keyword">using</span> MyGame2;</span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> MyGame.UI;</span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">lesson21_</span>命名空间</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">internal</span> <span class="keyword">class</span> <span class="title">Program</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"><span class="built_in">string</span>[] args</span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            MyGame.GameObject g1 = <span class="keyword">new</span> MyGame.GameObject();</span><br><span class="line">            MyGame2.GameObject g2 = <span class="keyword">new</span> MyGame2.GameObject();</span><br><span class="line"></span><br><span class="line">            Image img1 = <span class="keyword">new</span> Image();                            <span class="comment">// 这里默认会使用MyGame.UI的Image</span></span><br><span class="line">            MyGame.Game.Image img2 = <span class="keyword">new</span> MyGame.Game.Image()    <span class="comment">// 这样才能使用另一个命名空间的同名Image</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="关于修饰类的访问修饰符">关于修饰类的访问修饰符</h2>
+<blockquote>
+<p>注意！这里是修饰类的访问修饰符，和修饰类中成员的访问修饰符的作用不同</p>
+</blockquote>
+<ul>
+<li>
+<p>​<code>public</code>​ —— 命名空间中的类，可以被外部工程调用</p>
+</li>
+<li>
+<p>​<code>internal</code>​ —— 只能在该程序集里使用，只能在该项目内使用，不加修饰的类，默认为 <code>internal</code>​</p>
+<p>何为程序集，一个解决方案内可以有多个工程，这些工程就是一个个的程序集，不同的工程会编译为不同的可执行文件</p>
+<p>​<img src="/assets/image-20240904195007-a7cnoxu.png" alt="image">​</p>
+<p>不同的工程之间可以相互引用，引用后，就可以使用其他工程里的 <code>public</code>​ 类，只要命名空间写清楚</p>
+<p>假设工程A有一个 <code>internal</code>​ 类，即使 项目B 引用了 项目A ，项目B 也不能引用工程A的 <code>internal</code>​ 类</p>
+</li>
+<li>
+<p>​abstract​ —— 抽象类</p>
+</li>
+<li>
+<p>​sealed​ —— 密封类</p>
+</li>
+<li>
+<p>​partial​  —— 分部类</p>
+</li>
+</ul>
+<p>‍</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a target="_blank" rel="noopener" href="https://github.com/enjoySevenLIU">文KRIFE齐</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://enjoysevenliu.github.io/2024/09/04/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/CS3%E2%80%94%E2%80%94CSharp%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/CS3L22%E2%80%94%E2%80%94%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4/">https://enjoysevenliu.github.io/2024/09/04/Unity就业路线学习笔记/CS——CSharp笔记/CS3——CSharp核心系列/CS3L22——命名空间/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://enjoysevenliu.github.io" target="_blank">文KRIFE齐的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/img/Blue_Ice.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2024/09/04/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/CS3%E2%80%94%E2%80%94CSharp%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/CS3L26%E2%80%94%E2%80%94%E7%BB%93%E6%9E%84%E4%BD%93%E5%92%8C%E7%B1%BB%E7%9A%84%E5%8C%BA%E5%88%AB/" title="CS3L26——结构体和类的区别"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">CS3L26——结构体和类的区别</div></div></a></div><div class="next-post pull-right"><a href="/2024/09/04/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/CS3%E2%80%94%E2%80%94CSharp%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/CS3L23%E2%80%94%E2%80%94object%E4%B8%AD%E7%9A%84%E6%96%B9%E6%B3%95/" title="CS3L23——object中的方法"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">CS3L23——object中的方法</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/Blue_Ice.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">文KRIFE齐</div><div class="author-info__description">正在努力学习Unity，希望下半年可以找到实习</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">898</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">119</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/enjoySevenLIU"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/enjoySevenLIU" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">找到实习，但家遇变故，因此本周和下周暂不更新，抱歉！</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">CS3L22——命名空间</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%AC%E7%AB%A0%E4%BB%A3%E7%A0%81%E5%85%B3%E9%94%AE%E5%AD%97"><span class="toc-number">1.1.</span> <span class="toc-text">本章代码关键字</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">2.</span> <span class="toc-text">命名空间</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4%E7%9A%84%E5%A3%B0%E6%98%8E"><span class="toc-number">2.1.</span> <span class="toc-text">命名空间的声明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8D%E5%90%8C%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4%E4%B8%AD%E5%85%81%E8%AE%B8%E6%9C%89%E5%90%8C%E5%90%8D%E7%B1%BB"><span class="toc-number">2.2.</span> <span class="toc-text">不同命名空间中允许有同名类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4%E5%8F%AF%E4%BB%A5%E5%8F%AF%E4%BB%A5%E5%8C%85%E8%A3%B9%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4"><span class="toc-number">2.3.</span> <span class="toc-text">命名空间可以可以包裹命名空间</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E5%85%B6%E4%BB%96%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4%E7%9A%84%E7%B1%BB%E7%9A%84%E6%96%B9%E6%B3%95"><span class="toc-number">2.4.</span> <span class="toc-text">使用其他命名空间的类的方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E4%BF%AE%E9%A5%B0%E7%B1%BB%E7%9A%84%E8%AE%BF%E9%97%AE%E4%BF%AE%E9%A5%B0%E7%AC%A6"><span class="toc-number">2.5.</span> <span class="toc-text">关于修饰类的访问修饰符</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/09/04/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/CS3%E2%80%94%E2%80%94CSharp%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/CS3SL3%E2%80%94%E2%80%94%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E4%B8%83%E5%A4%A7%E5%8E%9F%E5%88%99/" title="CS3SL3——面向对象七大原则">CS3SL3——面向对象七大原则</a><time datetime="2024-09-04T14:38:41.000Z" title="发表于 2024-09-04 22:38:41">2024-09-04</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/09/04/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/CS3%E2%80%94%E2%80%94CSharp%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/CS3SL2%E2%80%94%E2%80%94UML%E7%B1%BB%E5%9B%BE/" title="CS3SL2——UML类图">CS3SL2——UML类图</a><time datetime="2024-09-04T14:29:53.000Z" title="发表于 2024-09-04 22:29:53">2024-09-04</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/09/04/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/CS3%E2%80%94%E2%80%94CSharp%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/CS3SL1%E2%80%94%E2%80%94%E5%A4%9A%E8%84%9A%E6%9C%AC%E6%96%87%E4%BB%B6/" title="CS3SL1——多脚本文件">CS3SL1——多脚本文件</a><time datetime="2024-09-04T14:00:15.000Z" title="发表于 2024-09-04 22:00:15">2024-09-04</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/09/04/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/CS3%E2%80%94%E2%80%94CSharp%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/CS3L27%E2%80%94%E2%80%94%E6%8A%BD%E8%B1%A1%E7%B1%BB%E5%92%8C%E6%8E%A5%E5%8F%A3%E7%9A%84%E5%8C%BA%E5%88%AB/" title="CS3L27——抽象类和接口的区别">CS3L27——抽象类和接口的区别</a><time datetime="2024-09-04T13:55:16.000Z" title="发表于 2024-09-04 21:55:16">2024-09-04</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/09/04/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/CS3%E2%80%94%E2%80%94CSharp%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/CS3L26%E2%80%94%E2%80%94%E7%BB%93%E6%9E%84%E4%BD%93%E5%92%8C%E7%B1%BB%E7%9A%84%E5%8C%BA%E5%88%AB/" title="CS3L26——结构体和类的区别">CS3L26——结构体和类的区别</a><time datetime="2024-09-04T13:49:10.000Z" title="发表于 2024-09-04 21:49:10">2024-09-04</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By 文KRIFE齐</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>
