@@ -54,7 +54,7 @@
   isHome: true,
   isHighlightShrink: false,
   isToc: false,
-  postUpdate: '2024-10-20 16:31:45'
+  postUpdate: '2024-11-07 08:55:08'
 }</script><script>(win=>{
       win.saveToLocal = {
         set: (key, value, ttl) => {
@@ -151,197 +151,198 @@
         }
       }
       detectApple()
-    })(window)</script><meta name="generator" content="Hexo 7.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/Blue_Ice.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">937</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">120</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="https://enjoysevenliu.github.io/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page fixed" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="文KRIFE齐的博客"><img class="site-icon" src="/img/Blue_Ice.png"/><span class="site-name">文KRIFE齐的博客</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="https://enjoysevenliu.github.io/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">文KRIFE齐的博客</h1><div id="site_social_icons"><a class="social-icon" href="https://github.com/enjoySevenLIU" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/04/01/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UM%E2%80%94%E2%80%94Unity%E7%A7%BB%E5%8A%A8%E5%B9%B3%E5%8F%B0%E7%9B%B8%E5%85%B3/UM2%E2%80%94%E2%80%94Java/UM2L14%E2%80%94%E2%80%94%E9%9B%86%E5%90%88%E7%B1%BB/" title="UM2L14——集合类">UM2L14——集合类</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-04-01T08:52:35.000Z" title="发表于 2024-04-01 16:52:35">2024-04-01</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UM%E2%80%94%E2%80%94Unity%E7%A7%BB%E5%8A%A8%E5%B9%B3%E5%8F%B0%E7%9B%B8%E5%85%B3/">UM——Unity移动平台相关</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UM%E2%80%94%E2%80%94Unity%E7%A7%BB%E5%8A%A8%E5%B9%B3%E5%8F%B0%E7%9B%B8%E5%85%B3/UM2%E2%80%94%E2%80%94Java/">UM2——Java</a></span></div><div class="content">UM2L14——集合类
-Java中各集合类之间的关系
-Java中的集合类就类似C#中的List​和Dictionary​的存在
-主要用于批量存储对象，并且可以动态添加，动态删除
-Java的集合类继承关系如下：
-​Collection​（接口）:
-
-
-​Set​（接口）
-
-​HashSet​
-​TreeSet​
-
-
-
-​List​（接口）
-
-​ArrayList​
-​LinkedList​
-
-
-
-​Map​（接口）:
-
-​HashMap​
-​TreeMap​
-
-Collection接口中的方法
-
-​add(E e)​ 添加元素
-​remove(Object o)​ 移除元素
-​clear()​ 清空元素
-​isEmpty()​ 是否为空
-​iterator()​ 获取迭代器，可以用于遍历
-​size()​ 集合中元素个数
-​contains()​ 判断元素是否存在
-​toArray()​ 将容器中元素转为数组
-
-List接口中的方法
-由于Java不存在索引器，因此，需要使用 get​ 和 set​ 来通过索引获取和修改元素
-
-​get(int index)​ 获取指定位置元素
-​set( ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/04/01/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UM%E2%80%94%E2%80%94Unity%E7%A7%BB%E5%8A%A8%E5%B9%B3%E5%8F%B0%E7%9B%B8%E5%85%B3/UM2%E2%80%94%E2%80%94Java/UM2L13%E2%80%94%E2%80%94Java%E6%B3%9B%E5%9E%8B/" title="UM2L13——Java泛型">UM2L13——Java泛型</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-04-01T08:15:26.000Z" title="发表于 2024-04-01 16:15:26">2024-04-01</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UM%E2%80%94%E2%80%94Unity%E7%A7%BB%E5%8A%A8%E5%B9%B3%E5%8F%B0%E7%9B%B8%E5%85%B3/">UM——Unity移动平台相关</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UM%E2%80%94%E2%80%94Unity%E7%A7%BB%E5%8A%A8%E5%B9%B3%E5%8F%B0%E7%9B%B8%E5%85%B3/UM2%E2%80%94%E2%80%94Java/">UM2——Java</a></span></div><div class="content">UM2L13——Java泛型
-Java泛型
-Java中泛型使用的基本规则和C#中一致 （泛型在java底层的实现和C#完全不同） ，泛型可以代表一切类型，主要使用上就是泛型类和泛型方法，主要区别如下：
-
-泛型方法写法和使用不同
-泛型约束不同
-泛型类型通配符 ?​
-一些基础类型必须写他们的包装类名，不能写变量类型（例如int​就需要写Integer​）
-
-泛型基本用法
-泛型类的声明和使用如下：
-1234567public class TestT&lt;T&gt; &#123;    public T testValue;    public T testFun(T t) &#123;        return t;    &#125;&#125;
-1234567public class Lesson16 &#123;    public static void main(String[] args) &#123;        TestT&lt;Float&gt; obj = new TestT&lt;&gt;();        obj.testValue = 11f;        ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/04/01/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UM%E2%80%94%E2%80%94Unity%E7%A7%BB%E5%8A%A8%E5%B9%B3%E5%8F%B0%E7%9B%B8%E5%85%B3/UM2%E2%80%94%E2%80%94Java/UM2L12%E2%80%94%E2%80%94StringBuilder/" title="UM2L12——StringBuilder">UM2L12——StringBuilder</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-04-01T07:54:44.000Z" title="发表于 2024-04-01 15:54:44">2024-04-01</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UM%E2%80%94%E2%80%94Unity%E7%A7%BB%E5%8A%A8%E5%B9%B3%E5%8F%B0%E7%9B%B8%E5%85%B3/">UM——Unity移动平台相关</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UM%E2%80%94%E2%80%94Unity%E7%A7%BB%E5%8A%A8%E5%B9%B3%E5%8F%B0%E7%9B%B8%E5%85%B3/UM2%E2%80%94%E2%80%94Java/">UM2——Java</a></span></div><div class="content">UM2L12——StringBuilder
-本章代码关键字
-1234stringBuilder.append()        //添加字符串stringBuilder.insert()        //在指定索引处插入字符串stringBuilder.delete()        //删除指定范围内的字符串stringBuilder.toString()    //将stringBuilder转换为字符串
-StringBuilder
-Java中的StringBuilder​和C#基本一致，主要是用于处理会频繁修改的字符串的
-如果你的字符串变量会频繁被修改，建议使用StringBuilder​可以帮助我们节约性能
-StringBuilder节约性能的体现
-下面的代码会分别输出String​字符串拼接10000次和StringBuilder​字符串拼接10000次所消耗的时间（单位：毫秒）：
-12345678910111213String str = new String(&quot;&quot;);long startTime = System.currentTimeMillis( ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/04/01/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UM%E2%80%94%E2%80%94Unity%E7%A7%BB%E5%8A%A8%E5%B9%B3%E5%8F%B0%E7%9B%B8%E5%85%B3/UM2%E2%80%94%E2%80%94Java/UM2L11%E2%80%94%E2%80%94String/" title="UM2L11——String">UM2L11——String</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-04-01T06:36:58.000Z" title="发表于 2024-04-01 14:36:58">2024-04-01</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UM%E2%80%94%E2%80%94Unity%E7%A7%BB%E5%8A%A8%E5%B9%B3%E5%8F%B0%E7%9B%B8%E5%85%B3/">UM——Unity移动平台相关</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UM%E2%80%94%E2%80%94Unity%E7%A7%BB%E5%8A%A8%E5%B9%B3%E5%8F%B0%E7%9B%B8%E5%85%B3/UM2%E2%80%94%E2%80%94Java/">UM2——Java</a></span></div><div class="content">UM2L11——String
-本章代码关键字
-123456789101112131415string.equals()                    //对比字符串的值是否相同string.equalsIgnoreCase()        //对比字符串的忽略大小写的值是否相同string.length()                    //获取字符串长度string.indexOf()                //正向查找字符串中的某个字符或字符串，返回其索引，不存在返回-1string.lastIndexOf()            //反向查找字符串中的某个字符或字符串，返回其索引，不存在返回-1string.charAt()                    //通过索引获取某个字符串string.substring()                //截取子字符串，左包含又不包含string.trim()                    //删除字符串左右两边的空格string.replace()                //字符串 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/04/01/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UM%E2%80%94%E2%80%94Unity%E7%A7%BB%E5%8A%A8%E5%B9%B3%E5%8F%B0%E7%9B%B8%E5%85%B3/UM4%E2%80%94%E2%80%94Android%20SDK%20%E6%8E%A5%E5%85%A5%EF%BC%88%E4%BB%A5%E7%99%BE%E5%BA%A6%E5%AE%9A%E4%BD%8DSDK%E4%B8%BA%E4%BE%8B%EF%BC%89/" title="UM4——Android SDK 接入（以百度定位SDK为例）">UM4——Android SDK 接入（以百度定位SDK为例）</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-04-01T04:33:04.000Z" title="发表于 2024-04-01 12:33:04">2024-04-01</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UM%E2%80%94%E2%80%94Unity%E7%A7%BB%E5%8A%A8%E5%B9%B3%E5%8F%B0%E7%9B%B8%E5%85%B3/">UM——Unity移动平台相关</a></span></div><div class="content">UM4——Android SDK 接入（以百度定位SDK为例）
-SDK
-SDK是Software Development Kit（软件开发包）的简写
-一般都是一些软件工程师为特定的软件包、软件框架、硬件平台、操作系统等建立应用软件时的开发工具的集合
-说人话：
-SDK就是程序员针对某些操作系统（比如Windows、Android、IOS）写好的代码，这些代码用于完成某些功能逻辑
-操作系统的不同，那么对应的开发语言也就不同，比如Android平台可能是基于Java写的，IOS平台可能是基于Objective-C写的等等
-本系列学习内容（以接入百度定位SDK为例）
-
-交互项目创建
-接入所有第三方SDK的套路
-获取SDK完成准备工作
-配置修改、权限修改
-Unity调用对应API
-打包测试
-
-为什么要接入SDK？
-很多游戏或软件的第三方功能都是第三方平台提供的
-我们想要在产品中使用这些功能，就需要接入这些第三方的SDK
-比如游戏内的 支付宝支付功能、微信支付功能、各平台登录功能、数据统计功能等等
-举例：
-我们制作的游戏找到了代理商 为腾讯，腾讯要求能够支持QQ号登录、微信登录
-这时我们就需要接入 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/04/01/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UM%E2%80%94%E2%80%94Unity%E7%A7%BB%E5%8A%A8%E5%B9%B3%E5%8F%B0%E7%9B%B8%E5%85%B3/UM3%E2%80%94%E2%80%94Unity%20%E5%92%8C%20Android%20%E4%BA%A4%E4%BA%92/" title="UM3——Unity 和 Android 交互">UM3——Unity 和 Android 交互</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-04-01T04:32:48.000Z" title="发表于 2024-04-01 12:32:48">2024-04-01</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UM%E2%80%94%E2%80%94Unity%E7%A7%BB%E5%8A%A8%E5%B9%B3%E5%8F%B0%E7%9B%B8%E5%85%B3/">UM——Unity移动平台相关</a></span></div><div class="content">UM3——Unity 和 Android 交互
-Unity 和 Android 交互
-Unity和Android之间的交互主要指，在发布安卓项目时，我们可以
-
-在Unity相关代码中调用Android相关内容
-在Android相关代码中调用Unity相关内容
-
-要达到这样的目的，我们需要建立Android项目，将Android项目以jar包或aar包的形式导入Unity后进行交互，再一起打包
-其中，jar和aar包都是归档文件
-
-
-jar包：
-jar包 包含Android项目中的脚本文件和清单文件，不包含资源文件，jar包导入其他工程后，其他工程可以方便引用源码
-
-
-aar包：
-aar包是Android Studio下打包Android工程中的src(脚本文件)、res(资源文件)、lib(库文件)后生成的打包文件，
-aar包导入其他工程后，其他工程可以方便引用源码和资源文件
-
-
-注意：用Android Studio打包时一般以aar包形式，用Eclipse打包时一般以jar包形式
-简单记忆：jar和aar有点类似C#中的dll文件，只是规则和结构不同，我们可以将这些包放到其他工程中使 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/04/01/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UM%E2%80%94%E2%80%94Unity%E7%A7%BB%E5%8A%A8%E5%B9%B3%E5%8F%B0%E7%9B%B8%E5%85%B3/UM2%E2%80%94%E2%80%94Java/UM2L10%E2%80%94%E2%80%94%E5%86%85%E9%83%A8%E7%B1%BB/" title="UM2L10——内部类">UM2L10——内部类</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-04-01T04:28:06.000Z" title="发表于 2024-04-01 12:28:06">2024-04-01</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UM%E2%80%94%E2%80%94Unity%E7%A7%BB%E5%8A%A8%E5%B9%B3%E5%8F%B0%E7%9B%B8%E5%85%B3/">UM——Unity移动平台相关</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UM%E2%80%94%E2%80%94Unity%E7%A7%BB%E5%8A%A8%E5%B9%B3%E5%8F%B0%E7%9B%B8%E5%85%B3/UM2%E2%80%94%E2%80%94Java/">UM2——Java</a></span></div><div class="content">UM2L10——内部类
-内部类
-Java中的内部类和C#中区别较大，在使用时一定要注意他们的区别之处
-
-Java中的内部类在外部使用时必须伴随包裹它的外部类的出现而出现
-外部类中的所有内容（包括私有）都可以直接在内部类中使用
-内部类和外部类中的同名成员，通过this​ 和 外部类.this​来区分
-
-匿名类使用较少，主要做了解，能看懂即可
-Java中的内部类的使用
-注意：Java中的内部类的使用和C#有很大的不同
-
-
-Java中的内部类在外部使用时必须伴随包裹它的外部类的出现而出现，声明语法为：
- 12外部类 outer = new 外部类();外部类.内部类 inner = outer.new 内部类();
-也就是说，在外部使用非静态的内部类，必须要先实例化一个外部类对象，再通过这个外部类对象实例化内部类，实际例子：
- 12Outer outer = new Outer();Outer.Inner inner = outer.new Inner();
-
-
-外部类中的所有内容（包括私有）都可以直接在内部类中使用
-因为内部类是基于外部类实例化的，因此是可以使用外部类对象的成员
- 1234 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/04/01/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UM%E2%80%94%E2%80%94Unity%E7%A7%BB%E5%8A%A8%E5%B9%B3%E5%8F%B0%E7%9B%B8%E5%85%B3/UM2%E2%80%94%E2%80%94Java/UM2L9%E2%80%94%E2%80%94%E5%8C%85/" title="UM2L9——包">UM2L9——包</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-04-01T04:15:49.000Z" title="发表于 2024-04-01 12:15:49">2024-04-01</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UM%E2%80%94%E2%80%94Unity%E7%A7%BB%E5%8A%A8%E5%B9%B3%E5%8F%B0%E7%9B%B8%E5%85%B3/">UM——Unity移动平台相关</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UM%E2%80%94%E2%80%94Unity%E7%A7%BB%E5%8A%A8%E5%B9%B3%E5%8F%B0%E7%9B%B8%E5%85%B3/UM2%E2%80%94%E2%80%94Java/">UM2——Java</a></span></div><div class="content">UM2L9——包
-本章代码关键字
-123package            //指明类属于哪个包import            //导入包import static    //静态导入包
-Java的包
-Java中的包（package​）类似C#中的命名空间，主要用于解决类名冲突
-同名类做不同逻辑时，可以将两个类放到两个不同的包中
-Java中的包概念和使用类似C#中的命名空间
-但是相对C#中的命名空间来说，Java中需要自己先创建包
-在文件的开头使用package​语句指定放到哪个包下，即可将该类放到包内
-但是要注意，该语句后的包名需要和java文件所在的文件夹路径对应上，否则报错
-1234package com.taikr.java.test;public class test2 &#123;&#125;
-​​
-在资源管理器内可以看到，所谓的包其实就是文件夹，包名中用点分割的字段就代表一个文件夹
-如图就是com.taikr.java.test​的文件路径
-​​
-包名规则
-
-多人完成，版权属于发起者：indi.发起这名.项目名.模块名....​
-独立完成，公开，版权属于个人：per ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/03/31/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UM%E2%80%94%E2%80%94Unity%E7%A7%BB%E5%8A%A8%E5%B9%B3%E5%8F%B0%E7%9B%B8%E5%85%B3/UM2%E2%80%94%E2%80%94Java/UM2L8%E2%80%94%E2%80%94%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/" title="UM2L8——面向对象">UM2L8——面向对象</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-03-31T13:15:58.000Z" title="发表于 2024-03-31 21:15:58">2024-03-31</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UM%E2%80%94%E2%80%94Unity%E7%A7%BB%E5%8A%A8%E5%B9%B3%E5%8F%B0%E7%9B%B8%E5%85%B3/">UM——Unity移动平台相关</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UM%E2%80%94%E2%80%94Unity%E7%A7%BB%E5%8A%A8%E5%B9%B3%E5%8F%B0%E7%9B%B8%E5%85%B3/UM2%E2%80%94%E2%80%94Java/">UM2——Java</a></span></div><div class="content">UM2L8——面向对象
-本章代码关键字
-123456789class                //类的声明关键字finalize() &#123; &#125;        //在对象成为垃圾后，开始GC时，如果对象存在finalize()方法，会先执行一次该方法，下次GC才会回收该方法extends                //类的继承关键字instanceof            //判断某个对象是否是某个类型，类似于C#的is关键字final                //此关键字修饰的类不能再被继承，修饰的方法不能再被重写，修饰的变量不能修改（等同于常量）super                //调用父类的方法的关键字abstract            //抽象类和抽象方法关键字interface            //接口声明关键字implements            //类继承接口关键字
-面向对象
-面向对象回顾
-概念：万物皆对象
-用程序来抽象（形容）对象，用面向对象的思想来编程
-面向对象三大特性是封装、继承、多态
+    })(window)</script><meta name="generator" content="Hexo 7.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/Blue_Ice.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">947</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">120</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="https://enjoysevenliu.github.io/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page fixed" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="文KRIFE齐的博客"><img class="site-icon" src="/img/Blue_Ice.png"/><span class="site-name">文KRIFE齐的博客</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="https://enjoysevenliu.github.io/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">文KRIFE齐的博客</h1><div id="site_social_icons"><a class="social-icon" href="https://github.com/enjoySevenLIU" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/04/04/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UM%E2%80%94%E2%80%94Unity%E7%A7%BB%E5%8A%A8%E5%B9%B3%E5%8F%B0%E7%9B%B8%E5%85%B3/UM3%E2%80%94%E2%80%94Unity%20%E5%92%8C%20Android%20%E4%BA%A4%E4%BA%92/UM3L6%E2%80%94%E2%80%94Android%E4%B8%AD%E5%B5%8C%E5%85%A5Unity%E5%86%85%E5%AE%B9/" title="UM3L6——Android中嵌入Unity内容">UM3L6——Android中嵌入Unity内容</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-04-04T06:13:29.000Z" title="发表于 2024-04-04 14:13:29">2024-04-04</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UM%E2%80%94%E2%80%94Unity%E7%A7%BB%E5%8A%A8%E5%B9%B3%E5%8F%B0%E7%9B%B8%E5%85%B3/">UM——Unity移动平台相关</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UM%E2%80%94%E2%80%94Unity%E7%A7%BB%E5%8A%A8%E5%B9%B3%E5%8F%B0%E7%9B%B8%E5%85%B3/UM3%E2%80%94%E2%80%94Unity-%E5%92%8C-Android-%E4%BA%A4%E4%BA%92/">UM3——Unity 和 Android 交互</a></span></div><div class="content">UM3L6——Android中嵌入Unity内容
+Android中嵌入Unity内容
+在进行Android开发时，可能会有需求显示Unity开发的3D内容，一开始我们启动的是Android应用程序中的Activity
+通过Activity我们想要打开Unity开发的内容进行展示，这就是Android中嵌入Unity内容的意思
 注意：
-面向对象是一种 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/03/31/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UM%E2%80%94%E2%80%94Unity%E7%A7%BB%E5%8A%A8%E5%B9%B3%E5%8F%B0%E7%9B%B8%E5%85%B3/UM2%E2%80%94%E2%80%94Java/UM2L7%E2%80%94%E2%80%94%E5%87%BD%E6%95%B0/" title="UM2L7——函数">UM2L7——函数</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-03-31T11:41:40.000Z" title="发表于 2024-03-31 19:41:40">2024-03-31</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UM%E2%80%94%E2%80%94Unity%E7%A7%BB%E5%8A%A8%E5%B9%B3%E5%8F%B0%E7%9B%B8%E5%85%B3/">UM——Unity移动平台相关</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UM%E2%80%94%E2%80%94Unity%E7%A7%BB%E5%8A%A8%E5%B9%B3%E5%8F%B0%E7%9B%B8%E5%85%B3/UM2%E2%80%94%E2%80%94Java/">UM2——Java</a></span></div><div class="content">UM2L7——函数
-函数
-Java中函数的使用和C#基本一致，区别主要是：
+Android中嵌入Unity存在限制问题，退出 Unity 所在的 Activity 会退出整个App，不能达到我们想要的需求
+所以如果存在 Android 和 Unity 混合开发的情况，建议采用上节课的Unity中嵌入Android的方式
+本节课内容主要做为拓展知识
+新建Unity测试项目
 
-Java中没有ref​和out​关键字
-Java中可变参数写法有些许不同，用…表示可变参数
-Java中函数参数没有默认参数的用法，即不能为参数添加默认值
-Java中函数的命名方式 用的是驼峰命名法
 
-Java中的函数和C#对比
-Java中函数和C中函数的使用基本一致函数的声明、重载、使用等就按照C中的基础规则使用即可
-主要区别如下：
+在该项目中添加一些测试内容，比如方块旋转
+ 123456789using UnityEngine;public class Test : MonoBehaviour&#123;    void Update()    &#123;        this.transform.Rotate(Vector3.up * 20 * Time.deltaTime);   ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/04/02/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UM%E2%80%94%E2%80%94Unity%E7%A7%BB%E5%8A%A8%E5%B9%B3%E5%8F%B0%E7%9B%B8%E5%85%B3/UM3%E2%80%94%E2%80%94Unity%20%E5%92%8C%20Android%20%E4%BA%A4%E4%BA%92/UM3L5%E2%80%94%E2%80%94Unity%E4%B8%AD%E5%B5%8C%E5%85%A5Android%E5%86%85%E5%AE%B9/" title="UM3L5——Unity中嵌入Android内容">UM3L5——Unity中嵌入Android内容</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-04-02T14:16:41.000Z" title="发表于 2024-04-02 22:16:41">2024-04-02</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UM%E2%80%94%E2%80%94Unity%E7%A7%BB%E5%8A%A8%E5%B9%B3%E5%8F%B0%E7%9B%B8%E5%85%B3/">UM——Unity移动平台相关</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UM%E2%80%94%E2%80%94Unity%E7%A7%BB%E5%8A%A8%E5%B9%B3%E5%8F%B0%E7%9B%B8%E5%85%B3/UM3%E2%80%94%E2%80%94Unity-%E5%92%8C-Android-%E4%BA%A4%E4%BA%92/">UM3——Unity 和 Android 交互</a></span></div><div class="content">UM3L5——Unity中嵌入Android内容
+Unity中嵌入Android内容
+从 UM3L4——Android开发必备原理 中我们知道
+在Android开发中Activity（活动）就是我们看到的一个界面（屏幕）
+那么所谓的 Unity中嵌入Android内容 就是 通过Unity打开Android中制作好的Activity
+让Unity可以和Android中制作的功能进行交互
+注意：学习这部分知识我们只学习Unity如何开启Android中的Activity，具体的安卓开发相关需要自行学习安卓相关知识，不属于本课程范围内！
+Unity中嵌入Android内容的关键点就是：最终打包时，我们需要在Unity中打包出安卓工程包后再使用Android Studio进行打包
+根据各种报错信息来一步步的解决问题，缺少什么就添加什么，配置有问题就修改配置
+如果以后有需求需要嵌入安卓相关内容，那么需要系统的学习一些安卓开发的相关知识，可以购买一些安卓开发相关书籍来学习
+Activity创建
+在Android项目中新建一个Activity并生成aar包
 
-Java中没有ref​和out​关键字
-Java中可变参数写法有些许不同
-Java中函数参数没有默认参数用法，即不能为参数添加默认值
 
-复习函数基本概念
-函数（方法）本质是一块具有名称的代码块，可以使用函数（方法）的名称来执行该代码块
-函数（方法）是封装代码进行重复使用的一种机制
-函数（方法）的主要作用
+打开之前学习Unity和Androi ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/04/02/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UM%E2%80%94%E2%80%94Unity%E7%A7%BB%E5%8A%A8%E5%B9%B3%E5%8F%B0%E7%9B%B8%E5%85%B3/UM3%E2%80%94%E2%80%94Unity%20%E5%92%8C%20Android%20%E4%BA%A4%E4%BA%92/UM3L4%E2%80%94%E2%80%94Android%E5%BC%80%E5%8F%91%E5%BF%85%E5%A4%87%E5%8E%9F%E7%90%86/" title="UM3L4——Android开发必备原理">UM3L4——Android开发必备原理</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-04-02T14:04:18.000Z" title="发表于 2024-04-02 22:04:18">2024-04-02</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UM%E2%80%94%E2%80%94Unity%E7%A7%BB%E5%8A%A8%E5%B9%B3%E5%8F%B0%E7%9B%B8%E5%85%B3/">UM——Unity移动平台相关</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UM%E2%80%94%E2%80%94Unity%E7%A7%BB%E5%8A%A8%E5%B9%B3%E5%8F%B0%E7%9B%B8%E5%85%B3/UM3%E2%80%94%E2%80%94Unity-%E5%92%8C-Android-%E4%BA%A4%E4%BA%92/">UM3——Unity 和 Android 交互</a></span></div><div class="content">UM3L4——Android开发必备原理
+Android应用程序的基本构成
 
-封装代码
-提升代码复用率（少写点代码）
-抽象行为
 
-Java的函数写在哪里
-​class​语句块中，Java中没有结构体，所以不存在结构体语句块
-Java函数基本语法
-12345678910   1      2      3                4修饰符 返回类型 ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/33/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/33/#content-inner">33</a><span class="page-number current">34</span><a class="page-number" href="/page/35/#content-inner">35</a><span class="space">&hellip;</span><a class="page-number" href="/page/94/#content-inner">94</a><a class="extend next" rel="next" href="/page/35/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/Blue_Ice.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">文KRIFE齐</div><div class="author-info__description">正在努力学习Unity，希望下半年可以找到实习</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">937</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">120</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/enjoySevenLIU"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/enjoySevenLIU" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">恢复更新了，但是更新会变缓，取决于实习工作量多大</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/10/20/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U4%E2%80%94%E2%80%94Unity%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/U4S5%E2%80%94%E2%80%94Text%20Mesh%20Pro/U4S5L22%E2%80%94%E2%80%94%E5%85%B6%E4%BB%96%E5%B7%A5%E5%85%B7%E7%B1%BB/" title="U4S5L22——其他工具类">U4S5L22——其他工具类</a><time datetime="2024-10-20T08:16:07.000Z" title="发表于 2024-10-20 16:16:07">2024-10-20</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/10/20/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U4%E2%80%94%E2%80%94Unity%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/U4S5%E2%80%94%E2%80%94Text%20Mesh%20Pro/U4S5L21%E2%80%94%E2%80%94TMP_TextUtilities/" title="U4S5L21——TMP_TextUtilities">U4S5L21——TMP_TextUtilities</a><time datetime="2024-10-20T07:37:11.000Z" title="发表于 2024-10-20 15:37:11">2024-10-20</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/10/20/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U4%E2%80%94%E2%80%94Unity%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/U4S5%E2%80%94%E2%80%94Text%20Mesh%20Pro/U4S5L20%E2%80%94%E2%80%94TMP_TextEventHandler/" title="U4S5L20——TMP_TextEventHandler">U4S5L20——TMP_TextEventHandler</a><time datetime="2024-10-20T06:27:58.000Z" title="发表于 2024-10-20 14:27:58">2024-10-20</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/10/19/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U4%E2%80%94%E2%80%94Unity%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/U4S5%E2%80%94%E2%80%94Text%20Mesh%20Pro/U4S5L19%E2%80%94%E2%80%94SDF%20%E6%9D%90%E8%B4%A8%E7%90%83%E5%92%8C%E5%8F%82%E6%95%B0%E8%AE%BE%E7%BD%AE/" title="U4S5L19——SDF 材质球和参数设置">U4S5L19——SDF 材质球和参数设置</a><time datetime="2024-10-19T10:37:05.000Z" title="发表于 2024-10-19 18:37:05">2024-10-19</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/10/19/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U4%E2%80%94%E2%80%94Unity%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/U4S5%E2%80%94%E2%80%94Text%20Mesh%20Pro/U4S5L18%E2%80%94%E2%80%94TMP%E5%9F%BA%E6%9C%AC%E8%AE%BE%E7%BD%AE/" title="U4S5L18——TMP基本设置">U4S5L18——TMP基本设置</a><time datetime="2024-10-19T10:15:58.000Z" title="发表于 2024-10-19 18:15:58">2024-10-19</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+Android SDK：提供了用于开发Android应用程序的各种API和工具
+
+
+编程语言：使用Java或者Kotlin语言进行开发，他们提供了丰富的库和API
+
+
+XML配置文件：Android应用程序使用XML来定义UI布局、样式和资源信息等
+
+
+应用程序组件组成
+Android应用程序有四种组件组成：
+
+
+Activity（活动）
+主要用于实现用户界面，代表一个屏幕或窗口，包含了各种UI组件，按钮，文本，输入框等等
+
+
+Service（服务）
+是一种可以在后台执行长时间运行操作的组件，没有用户界面，一般用于处理和交互无关的逻辑
+比如：上传、下载、音乐播放等
+
+
+Broadcast Receiver（广播接收器）
+主要用于接受系统或者其他应用程序发出的广播消息
+消息可以来自系统事件（比如网络连接变化、设备启动等），也可以来自其它应用程序
+
+
+Content Provider（内容提供程序）
+用于管理应用程序数据，可以让其它应用程序或系统访问本应用中的数据，也可以让本应用访问其它应用或系统的数据
+比如用 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/04/02/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UM%E2%80%94%E2%80%94Unity%E7%A7%BB%E5%8A%A8%E5%B9%B3%E5%8F%B0%E7%9B%B8%E5%85%B3/UM3%E2%80%94%E2%80%94Unity%20%E5%92%8C%20Android%20%E4%BA%A4%E4%BA%92/UM3L3%E2%80%94%E2%80%94Android%E4%B8%AD%E8%B0%83%E7%94%A8Unity%E5%86%85%E5%AE%B9/" title="UM3L3——Android中调用Unity内容">UM3L3——Android中调用Unity内容</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-04-02T13:44:00.000Z" title="发表于 2024-04-02 21:44:00">2024-04-02</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UM%E2%80%94%E2%80%94Unity%E7%A7%BB%E5%8A%A8%E5%B9%B3%E5%8F%B0%E7%9B%B8%E5%85%B3/">UM——Unity移动平台相关</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UM%E2%80%94%E2%80%94Unity%E7%A7%BB%E5%8A%A8%E5%B9%B3%E5%8F%B0%E7%9B%B8%E5%85%B3/UM3%E2%80%94%E2%80%94Unity-%E5%92%8C-Android-%E4%BA%A4%E4%BA%92/">UM3——Unity 和 Android 交互</a></span></div><div class="content">UM3L3——Android中调用Unity内容
+本章代码关键字
+1UnityPlayer.UnitySendMessage()    //在安卓内执行Unity内内容，传入场景上的对象，再传入要调用的脚本的方法，再传入字符串参数
+Android调用Unity规则
+Android调用Unity相对比较简单，在Android端使用 UnityPlayer.UnitySendMessage​ API即可
+想要被Android端调用的Unity函数
+
+需要写在继承MonoBehaviour​的脚本中
+需要挂载在场景中处于激活状态的GameObject上
+
+交互时，在Android端调用API：UnityPlayer.UnitySendMessage(&quot;对象名&quot;, &quot;函数名&quot;, &quot;参数信息&quot;)​
+注意：该API中的参数只能是String​类型或者为null​
+测试交互
+
+
+在Unity端创建测试脚本，编写测试函数
+假设要调用这个类下的TestAndroidCallUnity​，让屏幕上的UI输出传入的字符串
+ 123456789101 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/04/02/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UM%E2%80%94%E2%80%94Unity%E7%A7%BB%E5%8A%A8%E5%B9%B3%E5%8F%B0%E7%9B%B8%E5%85%B3/UM3%E2%80%94%E2%80%94Unity%20%E5%92%8C%20Android%20%E4%BA%A4%E4%BA%92/UM3L2%E2%80%94%E2%80%94Unity%E4%B8%AD%E8%B0%83%E7%94%A8Android%E5%86%85%E5%AE%B9/" title="UM3L2——Unity中调用Android内容">UM3L2——Unity中调用Android内容</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-04-02T12:38:19.000Z" title="发表于 2024-04-02 20:38:19">2024-04-02</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UM%E2%80%94%E2%80%94Unity%E7%A7%BB%E5%8A%A8%E5%B9%B3%E5%8F%B0%E7%9B%B8%E5%85%B3/">UM——Unity移动平台相关</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UM%E2%80%94%E2%80%94Unity%E7%A7%BB%E5%8A%A8%E5%B9%B3%E5%8F%B0%E7%9B%B8%E5%85%B3/UM3%E2%80%94%E2%80%94Unity-%E5%92%8C-Android-%E4%BA%A4%E4%BA%92/">UM3——Unity 和 Android 交互</a></span></div><div class="content">UM3L2——Unity中调用Android内容
+本章代码关键字
+123456789AndroidJavaClass                    //安卓Java类，可以通过包名以及类名实例化androidJavaClass.GetStatic&lt;&gt;()        //获取安卓Java类对象的方法，需要传入参数AndroidJavaObject                    //安卓Java类对象，通过它调用安卓的arr包内的内容androidJavaObject.Get&lt;&gt;()            //获取成员变量androidJavaObject.Set&lt;&gt;()            //设置成员变量androidJavaObject.GetStatic&lt;&gt;()        //获取静态变量androidJavaObject.SetStatic&lt;&gt;()        //设置静态变量androidJavaObject.Call&lt;&gt;()            //执行成员方法android ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/04/02/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UM%E2%80%94%E2%80%94Unity%E7%A7%BB%E5%8A%A8%E5%B9%B3%E5%8F%B0%E7%9B%B8%E5%85%B3/UM3%E2%80%94%E2%80%94Unity%20%E5%92%8C%20Android%20%E4%BA%A4%E4%BA%92/UM3L1%E2%80%94%E2%80%94%E4%BA%A4%E4%BA%92%E9%A1%B9%E7%9B%AE%E5%88%9B%E5%BB%BA/" title="UM3L1——交互项目创建">UM3L1——交互项目创建</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-04-02T11:53:07.000Z" title="发表于 2024-04-02 19:53:07">2024-04-02</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UM%E2%80%94%E2%80%94Unity%E7%A7%BB%E5%8A%A8%E5%B9%B3%E5%8F%B0%E7%9B%B8%E5%85%B3/">UM——Unity移动平台相关</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UM%E2%80%94%E2%80%94Unity%E7%A7%BB%E5%8A%A8%E5%B9%B3%E5%8F%B0%E7%9B%B8%E5%85%B3/UM3%E2%80%94%E2%80%94Unity-%E5%92%8C-Android-%E4%BA%A4%E4%BA%92/">UM3——Unity 和 Android 交互</a></span></div><div class="content">UM3L1——交互项目创建
+这节课的主要目的就是创建之后用于生成aar包的Android Studio的工程，用于之后处理Unity和Android的交互逻辑
+本节课制作的aar包，是用于和Unity进行交互的安卓包，操作的步骤不能有误，否则会影响之后的交互功能制作
+创建Unity和Android Studio项目
+
+
+创建Unity项目后，切换到Android平台，设置包名和Android版本
+设置流程参考：UM1L1——新版Unity打包安卓应用程序
+
+
+创建Android Studio
+选择 Phone and Tablet，创建一个Empty Activity项目
+​​
+注意：
+
+
+包名和Minimum SDK版本要和Unity项目一致，若没有相同SDK版本，请在Android Studio中下载
+​​
+​​
+
+
+创建完成后，等待加载结束后，删除工程中两个Test项目以及res下的无用资源
+​​
+
+
+
+
+配置build.gradle文件
+
+
+在Android Studio中Project页签中切换为Project
+​​
+
+
+展开工程名下app页签，打开build.gradle文 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/04/01/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UM%E2%80%94%E2%80%94Unity%E7%A7%BB%E5%8A%A8%E5%B9%B3%E5%8F%B0%E7%9B%B8%E5%85%B3/UM2%E2%80%94%E2%80%94Java/UM2L18%E2%80%94%E2%80%94%E5%B8%B8%E7%94%A8%E7%B1%BB%E5%BA%93/" title="UM2L18——常用类库">UM2L18——常用类库</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-04-01T14:43:22.000Z" title="发表于 2024-04-01 22:43:22">2024-04-01</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UM%E2%80%94%E2%80%94Unity%E7%A7%BB%E5%8A%A8%E5%B9%B3%E5%8F%B0%E7%9B%B8%E5%85%B3/">UM——Unity移动平台相关</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UM%E2%80%94%E2%80%94Unity%E7%A7%BB%E5%8A%A8%E5%B9%B3%E5%8F%B0%E7%9B%B8%E5%85%B3/UM2%E2%80%94%E2%80%94Java/">UM2——Java</a></span></div><div class="content">UM2L18——常用类库
+常用类库指什么
+常用类库主要指Java中为了提升我们的开发效率
+预先就已经写好的一些包，这些包中提供了很多常用类
+目的是方便开发人员的使用，而无需再自己去实现
+主要有以下内容：
+
+变量类型的包装类 Integer​、Double​、Boolean​、Character​
+存储较大数据的 BigInteger​ 类和 BigDecimal​ 类
+数学计算类 Math​
+随机数类 Random​
+
+等等
+本节课主要指明方向，由于这些知识只是API的使用
+所以对于这些类的常用方法只会提及，不会举例，了解他们提供的方法名，基本就知道如何使用了
+Java中提供了很多现成的类和方法供我们使用,对他们产生印象，当自己开发时有类似需求时
+直接使用他们，可以提升我们的开发效率，因为无需我们自己去实现对应逻辑，直接使用即可
+变量的包装类
+
+
+​Number​
+它是 Byte​ Integer​ Short​ Long​ Float​ Double​类的父类
+主要方法：
+ 123456byteValue()      以byte形式返回指定的数值intValue()      以i ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/04/01/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UM%E2%80%94%E2%80%94Unity%E7%A7%BB%E5%8A%A8%E5%B9%B3%E5%8F%B0%E7%9B%B8%E5%85%B3/UM2%E2%80%94%E2%80%94Java/UM2L17%E2%80%94%E2%80%94%E6%96%B9%E6%B3%95%E7%9A%84%E5%BC%95%E7%94%A8%E5%92%8CFunction%E6%8E%A5%E5%8F%A3/" title="UM2L17——方法的引用和Function接口">UM2L17——方法的引用和Function接口</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-04-01T14:16:44.000Z" title="发表于 2024-04-01 22:16:44">2024-04-01</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UM%E2%80%94%E2%80%94Unity%E7%A7%BB%E5%8A%A8%E5%B9%B3%E5%8F%B0%E7%9B%B8%E5%85%B3/">UM——Unity移动平台相关</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UM%E2%80%94%E2%80%94Unity%E7%A7%BB%E5%8A%A8%E5%B9%B3%E5%8F%B0%E7%9B%B8%E5%85%B3/UM2%E2%80%94%E2%80%94Java/">UM2——Java</a></span></div><div class="content">UM2L17——方法的引用和Function接口
+方法的引用
+使用函数式接口去装载我们在类中声明的方法，而不是lambda表达式
+不管是使用lambda表达式还是想要引用方法，我们都需要使用函数式接口来装载
+除了Function​以外Java中还写好了很多函数式接口供我们使用，用现成的还是自己写，自己决定即可
+如何进行方法的引用
+
+
+引用静态方法 类名::静态方法名​
+ 1234567891011121314interface ITest01 &#123;    void fun();&#125;public class Lesson22 &#123;    public static void Test() &#123;        System.out.println(&quot;方法调用&quot;);    &#125;    public static void main(String[] args) &#123;        ITest01 t = Lesson22::Test;        t.fun();    &#125;&#125;
+输出：
+ 1方法调用
+
+
+ ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/04/01/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UM%E2%80%94%E2%80%94Unity%E7%A7%BB%E5%8A%A8%E5%B9%B3%E5%8F%B0%E7%9B%B8%E5%85%B3/UM2%E2%80%94%E2%80%94Java/UM2L16%E2%80%94%E2%80%94lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/" title="UM2L16——lambda表达式">UM2L16——lambda表达式</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-04-01T13:54:40.000Z" title="发表于 2024-04-01 21:54:40">2024-04-01</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UM%E2%80%94%E2%80%94Unity%E7%A7%BB%E5%8A%A8%E5%B9%B3%E5%8F%B0%E7%9B%B8%E5%85%B3/">UM——Unity移动平台相关</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UM%E2%80%94%E2%80%94Unity%E7%A7%BB%E5%8A%A8%E5%B9%B3%E5%8F%B0%E7%9B%B8%E5%85%B3/UM2%E2%80%94%E2%80%94Java/">UM2——Java</a></span></div><div class="content">UM2L16——lambda表达式
+Java中lambda表达式语法
+Java中的lambda表达式和C#中区别很大，Java中没有委托和事件
+只有通过函数式接口来存储lambda表达式来进行使用，Java的函数式接口可以充当C#中委托的角色
+基本结构：(参数) -&gt; &#123;代码块&#125;​
+基于基本结构的写法：
+
+​() -&gt; &#123;代码块&#125;;​
+​() -&gt; 结果表达式;​（相当于返回值）
+​(参数) -&gt; &#123;代码块&#125;;​
+​参数 -&gt; &#123;代码块&#125;;​ （当参数只有一个时）
+​参数 -&gt; 结果表达式;​（相当于返回值）
+​(参数1,参数2,参数3...) -&gt; &#123;代码块&#125;;​
+​(参数1,参数2,参数3...) -&gt; 结果表达式;​（相当于返回值）
+
+用于装载lambda表达式的函数式接口
+Java没有如C#那样的委托与事件，如果想要实现类似于委托那样的实现，我们可以通过函数式接口存储lambda表达式方法来实现
+函数式接口指仅仅包含一个抽象方法的接 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/04/01/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UM%E2%80%94%E2%80%94Unity%E7%A7%BB%E5%8A%A8%E5%B9%B3%E5%8F%B0%E7%9B%B8%E5%85%B3/UM2%E2%80%94%E2%80%94Java/UM2L15%E2%80%94%E2%80%94%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/" title="UM2L15——异常处理">UM2L15——异常处理</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-04-01T13:16:50.000Z" title="发表于 2024-04-01 21:16:50">2024-04-01</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UM%E2%80%94%E2%80%94Unity%E7%A7%BB%E5%8A%A8%E5%B9%B3%E5%8F%B0%E7%9B%B8%E5%85%B3/">UM——Unity移动平台相关</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UM%E2%80%94%E2%80%94Unity%E7%A7%BB%E5%8A%A8%E5%B9%B3%E5%8F%B0%E7%9B%B8%E5%85%B3/UM2%E2%80%94%E2%80%94Java/">UM2——Java</a></span></div><div class="content">UM2L15——异常处理
+本章代码关键字
+12try &#123; &#125; catch &#123; &#125; finally &#123; &#125;    //错误捕获exception.getMessage()            //获取错误消息
+Java异常处理
+Java中的异常捕获和C#中使用基本一致，语法：
+
+
+如果想要从报错类对象中获取信息，需要使用getMessage()​
+
+
+不管之前的代码块是否发生异常 finally​ 中的内容都将执行，除了以下的几种情况：
+
+​finally​ 语句块中发生异常
+在finally​之前执行了System.exit()​退出程序
+程序所在的线程销毁
+关闭CPU
+
+
+
+123456789101112131415161718192021try &#123;    //需要进行异常捕获的代码块&#125; catch (NullPointerException ex) &#123;    //空指针报错    //ex.getMessage()    //捕获异常信息&#125; catch (ArrayIndexOut ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/33/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/33/#content-inner">33</a><span class="page-number current">34</span><a class="page-number" href="/page/35/#content-inner">35</a><span class="space">&hellip;</span><a class="page-number" href="/page/95/#content-inner">95</a><a class="extend next" rel="next" href="/page/35/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/Blue_Ice.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">文KRIFE齐</div><div class="author-info__description">正在努力学习Unity，希望下半年可以找到实习</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">947</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">120</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/enjoySevenLIU"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/enjoySevenLIU" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">恢复更新了，但是更新会变缓，取决于实习工作量多大</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/11/05/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S2%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E7%BA%B9%E7%90%86%E6%95%88%E6%9E%9C/US3S2L12%E2%80%94%E2%80%94%E9%AB%98%E5%85%89%E7%BA%B9%E7%90%86%E7%BB%BC%E5%90%88%E5%AE%9E%E7%8E%B0/" title="US3S2L12——高光纹理综合实现">US3S2L12——高光纹理综合实现</a><time datetime="2024-11-05T00:34:56.000Z" title="发表于 2024-11-05 08:34:56">2024-11-05</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/11/04/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S2%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E7%BA%B9%E7%90%86%E6%95%88%E6%9E%9C/US3S2L11%E2%80%94%E2%80%94%E9%81%AE%E7%BD%A9%E7%BA%B9%E7%90%86%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/" title="US3S2L11——遮罩纹理基本概念">US3S2L11——遮罩纹理基本概念</a><time datetime="2024-11-04T01:26:51.000Z" title="发表于 2024-11-04 09:26:51">2024-11-04</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/11/04/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S2%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E7%BA%B9%E7%90%86%E6%95%88%E6%9E%9C/US3S2L10%E2%80%94%E2%80%94%E6%B8%90%E5%8F%98%E7%BA%B9%E7%90%86%E7%BB%BC%E5%90%88%E5%AE%9E%E7%8E%B0/" title="US3S2L10——渐变纹理综合实现">US3S2L10——渐变纹理综合实现</a><time datetime="2024-11-04T01:01:25.000Z" title="发表于 2024-11-04 09:01:25">2024-11-04</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/11/04/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S2%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E7%BA%B9%E7%90%86%E6%95%88%E6%9E%9C/US3S2L9%E2%80%94%E2%80%94%E6%B8%90%E5%8F%98%E7%BA%B9%E7%90%86%E5%9F%BA%E7%A1%80%E5%AE%9E%E7%8E%B0/" title="US3S2L9——渐变纹理基础实现">US3S2L9——渐变纹理基础实现</a><time datetime="2024-11-04T00:12:57.000Z" title="发表于 2024-11-04 08:12:57">2024-11-04</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/11/04/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S2%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E7%BA%B9%E7%90%86%E6%95%88%E6%9E%9C/US3S2L8%E2%80%94%E2%80%94%E6%B8%90%E5%8F%98%E7%BA%B9%E7%90%86%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/" title="US3S2L8——渐变纹理基本概念">US3S2L8——渐变纹理基本概念</a><time datetime="2024-11-04T00:00:14.000Z" title="发表于 2024-11-04 08:00:14">2024-11-04</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
             <i class="fas fa-folder-open"></i>
             <span>分类</span>
             <a class="card-more-btn" href="/categories/" title="查看更多">
     <i class="fas fa-angle-right"></i></a>
             </div>
             <ul class="card-category-list" id="aside-cat-list">
-            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><span class="card-category-list-name">Unity就业路线学习笔记</span><span class="card-category-list-count">936</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/"><span class="card-category-list-name">CS——CSharp笔记</span><span class="card-category-list-count">106</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/CS1%E2%80%94%E2%80%94CSharp%E5%85%A5%E9%97%A8%E7%B3%BB%E5%88%97/"><span class="card-category-list-name">CS1——CSharp入门系列</span><span class="card-category-list-count">22</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/CS2%E2%80%94%E2%80%94CSharp%E5%9F%BA%E7%A1%80%E7%B3%BB%E5%88%97/"><span class="card-category-list-name">CS2——CSharp基础系列</span><span class="card-category-list-count">13</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/CS3%E2%80%94%E2%80%94CSharp%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/"><span class="card-category-list-name">CS3——CSharp核心系列</span><span class="card-category-list-count">30</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/CS4%E2%80%94%E2%80%94CSharp%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/"><span class="card-category-list-name">CS4——CSharp进阶系列</span><span class="card-category-list-count">17</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/CS5%E2%80%94%E2%80%94CSharp%E7%9F%A5%E8%AF%86%E8%A1%A5%E5%85%85/"><span class="card-category-list-name">CS5——CSharp知识补充</span><span class="card-category-list-count">19</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/CS5%E2%80%94%E2%80%94CSharp%E7%9F%A5%E8%AF%86%E8%A1%A5%E5%85%85/CS5L13%E2%80%94%E2%80%94LINQ%E5%85%A5%E9%97%A8%E5%AE%9E%E4%BE%8B/"><span class="card-category-list-name">CS5L13——LINQ入门实例</span><span class="card-category-list-count">3</span></a></li></ul></li></ul></li></ul></li>
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><span class="card-category-list-name">Unity就业路线学习笔记</span><span class="card-category-list-count">946</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/"><span class="card-category-list-name">CS——CSharp笔记</span><span class="card-category-list-count">106</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/CS1%E2%80%94%E2%80%94CSharp%E5%85%A5%E9%97%A8%E7%B3%BB%E5%88%97/"><span class="card-category-list-name">CS1——CSharp入门系列</span><span class="card-category-list-count">22</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/CS2%E2%80%94%E2%80%94CSharp%E5%9F%BA%E7%A1%80%E7%B3%BB%E5%88%97/"><span class="card-category-list-name">CS2——CSharp基础系列</span><span class="card-category-list-count">13</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/CS3%E2%80%94%E2%80%94CSharp%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/"><span class="card-category-list-name">CS3——CSharp核心系列</span><span class="card-category-list-count">30</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/CS4%E2%80%94%E2%80%94CSharp%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/"><span class="card-category-list-name">CS4——CSharp进阶系列</span><span class="card-category-list-count">17</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/CS5%E2%80%94%E2%80%94CSharp%E7%9F%A5%E8%AF%86%E8%A1%A5%E5%85%85/"><span class="card-category-list-name">CS5——CSharp知识补充</span><span class="card-category-list-count">19</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/CS5%E2%80%94%E2%80%94CSharp%E7%9F%A5%E8%AF%86%E8%A1%A5%E5%85%85/CS5L13%E2%80%94%E2%80%94LINQ%E5%85%A5%E9%97%A8%E5%AE%9E%E4%BE%8B/"><span class="card-category-list-name">CS5L13——LINQ入门实例</span><span class="card-category-list-count">3</span></a></li></ul></li></ul></li></ul></li>
             </ul></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span><a class="card-more-btn" href="/archives/" title="查看更多">
-    <i class="fas fa-angle-right"></i></a></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/10/"><span class="card-archive-list-date">十月 2024</span><span class="card-archive-list-count">23</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/09/"><span class="card-archive-list-date">九月 2024</span><span class="card-archive-list-count">42</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/07/"><span class="card-archive-list-date">七月 2024</span><span class="card-archive-list-count">39</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/06/"><span class="card-archive-list-date">六月 2024</span><span class="card-archive-list-count">51</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/05/"><span class="card-archive-list-date">五月 2024</span><span class="card-archive-list-count">56</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/04/"><span class="card-archive-list-date">四月 2024</span><span class="card-archive-list-count">127</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/03/"><span class="card-archive-list-date">三月 2024</span><span class="card-archive-list-count">135</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/02/"><span class="card-archive-list-date">二月 2024</span><span class="card-archive-list-count">62</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">937</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2024-10-20T08:31:43.561Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By 文KRIFE齐</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>
+    <i class="fas fa-angle-right"></i></a></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/11/"><span class="card-archive-list-date">十一月 2024</span><span class="card-archive-list-count">6</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/10/"><span class="card-archive-list-date">十月 2024</span><span class="card-archive-list-count">27</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/09/"><span class="card-archive-list-date">九月 2024</span><span class="card-archive-list-count">42</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/07/"><span class="card-archive-list-date">七月 2024</span><span class="card-archive-list-count">39</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/06/"><span class="card-archive-list-date">六月 2024</span><span class="card-archive-list-count">51</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/05/"><span class="card-archive-list-date">五月 2024</span><span class="card-archive-list-count">56</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/04/"><span class="card-archive-list-date">四月 2024</span><span class="card-archive-list-count">127</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/03/"><span class="card-archive-list-date">三月 2024</span><span class="card-archive-list-count">135</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">947</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2024-11-07T00:55:05.407Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By 文KRIFE齐</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>

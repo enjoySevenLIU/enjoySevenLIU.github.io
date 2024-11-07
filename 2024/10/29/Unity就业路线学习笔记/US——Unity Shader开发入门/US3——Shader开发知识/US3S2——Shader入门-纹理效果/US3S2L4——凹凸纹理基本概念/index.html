@@ -1,0 +1,269 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>US3S2L4——凹凸纹理基本概念 | 文KRIFE齐的博客</title><meta name="author" content="文KRIFE齐"><meta name="copyright" content="文KRIFE齐"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="US3S2L4——凹凸纹理基本概念  纹理知识回顾 单张纹理是模型的“皮”，它决定了模型的颜色表现， 在建模时通过纹理隐射技术将顶点和纹理图片建立联系，在模型数据中记录顶点对应的UV坐标， 进行Shader开发时，利用UV坐标即可从纹理图片中取出对应位置的颜色给片元“上色”  凹凸纹理 纹理 除了可以用来进行 颜色映射 外，另外一种常见的应用就是进行 凹凸映射 凹凸映射的目的是使用一张纹理来修改模">
+<meta property="og:type" content="article">
+<meta property="og:title" content="US3S2L4——凹凸纹理基本概念">
+<meta property="og:url" content="https://enjoysevenliu.github.io/2024/10/29/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S2%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E7%BA%B9%E7%90%86%E6%95%88%E6%9E%9C/US3S2L4%E2%80%94%E2%80%94%E5%87%B9%E5%87%B8%E7%BA%B9%E7%90%86%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/index.html">
+<meta property="og:site_name" content="文KRIFE齐的博客">
+<meta property="og:description" content="US3S2L4——凹凸纹理基本概念  纹理知识回顾 单张纹理是模型的“皮”，它决定了模型的颜色表现， 在建模时通过纹理隐射技术将顶点和纹理图片建立联系，在模型数据中记录顶点对应的UV坐标， 进行Shader开发时，利用UV坐标即可从纹理图片中取出对应位置的颜色给片元“上色”  凹凸纹理 纹理 除了可以用来进行 颜色映射 外，另外一种常见的应用就是进行 凹凸映射 凹凸映射的目的是使用一张纹理来修改模">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://enjoysevenliu.github.io/img/Blue_Ice.png">
+<meta property="article:published_time" content="2024-10-29T04:04:18.000Z">
+<meta property="article:modified_time" content="2024-11-07T00:53:03.641Z">
+<meta property="article:author" content="文KRIFE齐">
+<meta property="article:tag" content="blog">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://enjoysevenliu.github.io/img/Blue_Ice.png"><link rel="shortcut icon" href="/img/Blue_Ice.png"><link rel="canonical" href="https://enjoysevenliu.github.io/2024/10/29/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S2%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E7%BA%B9%E7%90%86%E6%95%88%E6%9E%9C/US3S2L4%E2%80%94%E2%80%94%E5%87%B9%E5%87%B8%E7%BA%B9%E7%90%86%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'US3S2L4——凹凸纹理基本概念',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-11-07 08:53:03'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/Blue_Ice.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">947</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">120</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="https://enjoysevenliu.github.io/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="文KRIFE齐的博客"><img class="site-icon" src="/img/Blue_Ice.png"/><span class="site-name">文KRIFE齐的博客</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="https://enjoysevenliu.github.io/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">US3S2L4——凹凸纹理基本概念</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-10-29T04:04:18.000Z" title="发表于 2024-10-29 12:04:18">2024-10-29</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-11-07T00:53:03.641Z" title="更新于 2024-11-07 08:53:03">2024-11-07</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity-Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/">US——Unity Shader开发入门</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity-Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/">US3——Shader开发知识</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity-Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S2%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E7%BA%B9%E7%90%86%E6%95%88%E6%9E%9C/">US3S2——Shader入门-纹理效果</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="US3S2L4——凹凸纹理基本概念"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1>US3S2L4——凹凸纹理基本概念</h1>
+<blockquote>
+<h3 id="纹理知识回顾">纹理知识回顾</h3>
+<p>单张纹理是模型的“皮”，它决定了模型的颜色表现，<br>
+在建模时通过纹理隐射技术将顶点和纹理图片建立联系，在模型数据中记录顶点对应的UV坐标，<br>
+进行Shader开发时，利用UV坐标即可从纹理图片中取出对应位置的颜色给片元“上色”</p>
+</blockquote>
+<h1>凹凸纹理</h1>
+<p><strong>纹理</strong> 除了可以用来进行 <strong>颜色映射</strong> 外，另外一种常见的应用就是进行 <strong>凹凸映射</strong><br>
+凹凸映射的目的是使用一张纹理来修改模型表面的法线，让我们不需要增加顶点，而让模型看起来有凹凸效果。</p>
+<p>原理：<strong>光照的计算</strong>都会利用<strong>法线</strong>参与计算，决定最终的颜色表现效果。<br>
+那么在 <strong>计算 “假” 凹凸面时，使用“真”凹凸面的法线</strong> 参与计算，呈现出来的效果可以以假乱真</p>
+<p>左图是真实凹凸表面的光线，右图是不使用真凹凸表面的光线，<br>
+想要在非凹凸面上体现凹凸感，就需要通过<strong>法线改变光线方向，通过光照模拟出凹凸感</strong></p>
+<p>​<img src="/assets/image-20241029124452-c1hu4x8.png" alt="image">​</p>
+<p>凹凸纹理最大的作用就是让模型可以 <strong>在不添加顶点（不增加面）的情况下</strong><br>
+让模型看起来同样充满细节（凹凸感），是一种视觉上的“欺骗”技术</p>
+<p>下图就是在凹凸纹理的运用，通过一张凹凸纹理改变光照效果，让模型的表面看起来凹凸不平</p>
+<p>​<img src="/assets/image-20241029124815-ensd2kz.png" alt="image">​</p>
+<p>要进行凹凸映射，目前有两种主流方式：</p>
+<ol>
+<li>
+<p>高度纹理贴图：RGB都存储高度值，表现为一张灰度图，由于需要更多额外计算，我们一般不使用</p>
+</li>
+<li>
+<p>法线纹理贴图：RGB分别存储法线的XYZ值，有相对模型空间（彩色）和切线空间（蓝色）两种法线贴图</p>
+<p>切线空间法线贴图虽然要产生额外计算，但是能让法线贴图更加的通用，灵活，因此纹理贴图常使用 <strong>切线空间法线贴图</strong></p>
+</li>
+</ol>
+<p>通过高度纹理 或 法线纹理在不添加顶点（不增加面）的情况下让模型看起来同样充满细节（凹凸感）<br>
+原理：计算 “假” 凹凸面时，使用 “真” 凹凸面的法线参与计算</p>
+<h2 id="高度纹理贴图">高度纹理贴图</h2>
+<p>高度纹理贴图一般简称高度图，它<strong>存储了模型表面上每个点的高度信息</strong>。<br>
+通常它使用灰度图像，其中不同灰度值表示不同高度。<br>
+<strong>较亮区域通常对应较高的点，较暗的区域对应较低的点。</strong></p>
+<p>它<strong>主要用于模拟物体表面的位移。</strong></p>
+<p>​<img src="/assets/image-20241029125105-cs7vcwj.png" alt="image">​<img src="/assets/image-20241029125120-uwppo34.png" alt="image">​</p>
+<p>存储规则：图片中的某一个像素点的 <strong>RGB 值是相同的，都表示高度值</strong>，A值一般情况下为1。<strong>高度值范围一般为0~1，0代表最低，1代表最高</strong></p>
+<ul>
+<li>优点：可以通过高度图<strong>很明确的知道模型表面的凹凸情况（通过观察黑白程度来决定凹凸情况）</strong></li>
+<li>缺点：<strong>无法在 Shader 中直接得到模型表面点的法线信息</strong>，而是需要通过额外的计算得到，因此会<strong>增加性能消耗</strong>，所以我们几乎很少使用它。</li>
+</ul>
+<p>我们在使用凹凸纹理时，一般都会使用法线纹理贴图</p>
+<h2 id="法线纹理贴图">法线纹理贴图</h2>
+<p>法线纹理贴图一般简称法线贴图 或 法线纹理，它存储了模型表面上每个点的法线方向。</p>
+<p>​<img src="/assets/image-20241029125511-7stk7pg.png" alt="image">​</p>
+<p>存储规则：图片中的 <strong>RGB 值分别存储法线的X、Y、Z分量值</strong>，A值可以用于存储其他信息，比如材质光滑度等。</p>
+<ul>
+<li>优点：从法线贴图中取出的数据便是法线信息，可以直接简单处理后就参与光照计算，性能表现更好</li>
+<li>缺点：我们无法直观的看出模型表面的凹凸情况</li>
+</ul>
+<p>由于法线纹理贴图是我们之后实现“凹凸感”的主要方式，因此我们需要更详细的了解它的存储规则</p>
+<ol>
+<li>读取分量数据的规则</li>
+<li>两种法线纹理贴图的存储方式</li>
+</ol>
+<h3 id="法线纹理贴图读取分量数据的规则">法线纹理贴图读取分量数据的规则</h3>
+<p>由于法线方向 XYZ 分量范围在 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mo>−</mo><mn>1</mn><mo separator="true">,</mo><mn>1</mn><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[-1,1]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">−</span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">1</span><span class="mclose">]</span></span></span></span> 之间，而像素颜色 RGB 分量范围在 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mn>0</mn><mo separator="true">,</mo><mn>1</mn><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[0,1]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">1</span><span class="mclose">]</span></span></span></span> 之间，因此我们需要做一个映射计算</p>
+<p>存储图片时：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>像素颜色分量</mtext><mo>=</mo><mo stretchy="false">(</mo><mtext>法线方向分量</mtext><mo>+</mo><mn>1</mn><mo stretchy="false">)</mo><mo>÷</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">像素颜色分量 = (法线方向分量 + 1) \div 2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord cjk_fallback">像素颜色分量</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord cjk_fallback">法线方向分量</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">÷</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">2</span></span></span></span></p>
+<p>因此当我们取出像素分量使用时需要进行逆运算</p>
+<p>读取数据时：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>法线方向分量</mtext><mo>=</mo><mtext>像素颜色分量</mtext><mo>×</mo><mn>2</mn><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">法线方向分量 = 像素颜色分量 \times 2 - 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord cjk_fallback">法线方向分量</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.7667em;vertical-align:-0.0833em;"></span><span class="mord cjk_fallback">像素颜色分量</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span></p>
+<h3 id="两种法线纹理贴图的存储方式">两种法线纹理贴图的存储方式</h3>
+<p>法线纹理贴图中主要存储法线信息，而法线信息其实就是个方向向量，而<strong>方向向量就得有相对坐标系</strong><br>
+因此，<strong>法线贴图的存储方式按相对坐标系有两种方式</strong>：</p>
+<ul>
+<li>基于模型空间的法线纹理</li>
+<li>基于切线空间的法线纹理</li>
+</ul>
+<p>​<img src="/assets/image-20241029125511-7stk7pg.png" alt="image">​</p>
+<h4 id="基于模型空间的法线纹理">基于模型空间的法线纹理</h4>
+<p>模型数据中自带的法线数据，是定义在模型空间中的，因此最直接的存储法线贴图数据的方式，就是存储基于模型空间下的法线信息。</p>
+<blockquote>
+<p>注意：模型数据中的法线数据是 “真” 数据，也就是基于模型的真实存在的面得到的法线信息<br>
+法线贴图中对的法线数据是 “假” 数据，是通过人为添加或修改的法线数据，原本模型的面上不存在这些人为添加法线对应的凹凸面</p>
+</blockquote>
+<p>如下图所示，由于模型空间中每个点存储的法线方向是各式各样的，比如：</p>
+<ul>
+<li>法线 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>0</mn><mo separator="true">,</mo><mn>1</mn><mo separator="true">,</mo><mn>0</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(0,1,0)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">0</span><span class="mclose">)</span></span></span></span> 映射到像素后 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>像素分量</mtext><mo>=</mo><mo stretchy="false">(</mo><mtext>法线分量</mtext><mo>+</mo><mn>1</mn><mo stretchy="false">)</mo><mo>÷</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">像素分量 = (法线分量 + 1) \div 2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord cjk_fallback">像素分量</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord cjk_fallback">法线分量</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">÷</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">2</span></span></span></span> 是 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>0.5</mn><mo separator="true">,</mo><mn>1</mn><mo separator="true">,</mo><mn>0.5</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(0.5,1,0.5)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">0.5</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">0.5</span><span class="mclose">)</span></span></span></span> <span data-type="text" style="background-color: var(--b3-card-success-background); color: var(--b3-card-success-color);">绿色</span></li>
+<li>法线 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>0</mn><mo separator="true">,</mo><mo>−</mo><mn>1</mn><mo separator="true">,</mo><mn>0</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(0,-1,0)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">−</span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">0</span><span class="mclose">)</span></span></span></span> 映射到像素后 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>像素分量</mtext><mo>=</mo><mo stretchy="false">(</mo><mtext>法线分量</mtext><mo>+</mo><mn>1</mn><mo stretchy="false">)</mo><mo>÷</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">像素分量 = (法线分量 + 1) \div 2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord cjk_fallback">像素分量</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord cjk_fallback">法线分量</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">÷</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">2</span></span></span></span> 是 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>0.5</mn><mo separator="true">,</mo><mn>0</mn><mo separator="true">,</mo><mn>0.5</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(0.5,0,0.5)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">0.5</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">0.5</span><span class="mclose">)</span></span></span></span> <span data-type="text" style="background-color: var(--b3-font-background10); color: var(--b3-font-color10);">紫色</span></li>
+</ul>
+<p>​<img src="/assets/image-20241029130628-dvps3tp.png" alt="image">​</p>
+<p>因此，基于模型空间的法线纹理一般是五颜六色的，<strong>这种法线纹理贴图数据取出来直接参与 Shader 计算即可</strong><br>
+对于不需要变形的静态物体来说非常有用，因为法线方向不会随着物体的变化而变化。</p>
+<h4 id="基于切线空间的法线纹理">基于切线空间的法线纹理</h4>
+<p>虽然基于模型空间的法线纹理贴图看起来很符合计算需求，<strong>但是在实际开发时，美术同学给到我们的法线贴图一般都是基于切线空间的</strong></p>
+<p>每个顶点都有自己的切线空间，它的 XYZ 轴 及 原点 代表的信息分别如下：</p>
+<ul>
+<li>原点：顶点本身</li>
+<li>X 轴：顶点切线（通常指向纹理UV坐标的的U方向（水平方向））</li>
+<li>Z 轴：法线方向（顶点的原法线）</li>
+<li>Y 轴：X 和 Z 的叉乘结果，也被称为副切线</li>
+</ul>
+<p>​<img src="/assets/image-20241029130855-fcoqeqr.png" alt="image">​</p>
+<p>在切线空间下，如果该顶点的法线不变化（不需要“凹凸感”）<br>
+那么它的坐标是 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>0</mn><mo separator="true">,</mo><mn>0</mn><mo separator="true">,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(0,0,1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">1</span><span class="mclose">)</span></span></span></span>，因为在切线空间下，Z 轴就是原法线方向，因此：</p>
+<p>法线 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>0</mn><mo separator="true">,</mo><mn>0</mn><mo separator="true">,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(0,0,1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">1</span><span class="mclose">)</span></span></span></span> 映射到像素后 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>像素分量</mtext><mo>=</mo><mo stretchy="false">(</mo><mtext>法线分量</mtext><mo>+</mo><mn>1</mn><mo stretchy="false">)</mo><mo>÷</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">像素分量 = (法线分量 + 1) \div 2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord cjk_fallback">像素分量</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord cjk_fallback">法线分量</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">÷</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">2</span></span></span></span> 是 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>0.5</mn><mo separator="true">,</mo><mn>0.5</mn><mo separator="true">,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(0.5,0.5,1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">0.5</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">0.5</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">1</span><span class="mclose">)</span></span></span></span> 也就是 <span data-type="text" style="background-color: var(--b3-card-info-background); color: var(--b3-card-info-color);">浅蓝色</span></p>
+<p>这个浅蓝色就是 切线空间下法线贴图 存在大片蓝色的原因，<strong>因为大部分顶点的法线和模型本身法线是一致的，只有凹凸部分的颜色才会有些许差异</strong></p>
+<p>这种法线纹理贴图数据取出来后需要进行坐标空间转换，再参与 Shader 计算<br>
+<strong>由于切线空间下的法线信息与模型的局部坐标系无关，所以可以在不同的物体上重复使用相同的纹理</strong></p>
+<h4 id="使用切线空间下的法线纹理贴图的原因">使用切线空间下的法线纹理贴图的原因</h4>
+<p>之所以在实际开发时要使用切线空间下的法线贴图，原因有以下几点：</p>
+<ol>
+<li><strong>可以用于不同模型</strong> —— 基于某个模型的模型空间的法线贴图只能适配在单一模型上，无法用于其他模型</li>
+<li><strong>方便处理模型变形</strong> —— 基于顶点空间的法线贴图可以贴在不同或者变形模型的各种面上（因为切线空间的法线信息和模型的局部坐标系无关）</li>
+<li><strong>可以复用</strong> —— 一个砖块，6个面贴图都是一样的，可以只用一张法线贴图即可用于6个面计算</li>
+<li><strong>可以压缩</strong> —— 可以只存储两个轴的分量（Y 轴可通过 XZ 轴叉乘得到）</li>
+<li><strong>方便制作UV动画</strong> —— UV坐标改变可以实现凹凸移动效果，如果是模型空间下法线贴图表现会有问题</li>
+</ol>
+<p>等等</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a target="_blank" rel="noopener" href="https://github.com/enjoySevenLIU">文KRIFE齐</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://enjoysevenliu.github.io/2024/10/29/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S2%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E7%BA%B9%E7%90%86%E6%95%88%E6%9E%9C/US3S2L4%E2%80%94%E2%80%94%E5%87%B9%E5%87%B8%E7%BA%B9%E7%90%86%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/">https://enjoysevenliu.github.io/2024/10/29/Unity就业路线学习笔记/US——Unity Shader开发入门/US3——Shader开发知识/US3S2——Shader入门-纹理效果/US3S2L4——凹凸纹理基本概念/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://enjoysevenliu.github.io" target="_blank">文KRIFE齐的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/img/Blue_Ice.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2024/10/30/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S2%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E7%BA%B9%E7%90%86%E6%95%88%E6%9E%9C/US3S2L5%E2%80%94%E2%80%94%E6%B3%95%E7%BA%BF%E8%B4%B4%E5%9B%BE%E7%9A%84%E8%AE%A1%E7%AE%97%E6%96%B9%E5%BC%8F/" title="US3S2L5——法线贴图的计算方式"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">US3S2L5——法线贴图的计算方式</div></div></a></div><div class="next-post pull-right"><a href="/2024/10/28/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S2%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E7%BA%B9%E7%90%86%E6%95%88%E6%9E%9C/US3S2L3%E2%80%94%E2%80%94%E7%BA%B9%E7%90%86%E7%BB%93%E5%90%88%E5%85%89%E7%85%A7%E6%A8%A1%E5%9E%8B/" title="US3S2L3——纹理结合光照模型"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">US3S2L3——纹理结合光照模型</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/Blue_Ice.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">文KRIFE齐</div><div class="author-info__description">正在努力学习Unity，希望下半年可以找到实习</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">947</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">120</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/enjoySevenLIU"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/enjoySevenLIU" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">恢复更新了，但是更新会变缓，取决于实习工作量多大</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">US3S2L4——凹凸纹理基本概念</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BA%B9%E7%90%86%E7%9F%A5%E8%AF%86%E5%9B%9E%E9%A1%BE"><span class="toc-number">1.0.1.</span> <span class="toc-text">纹理知识回顾</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">2.</span> <span class="toc-text">凹凸纹理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%AB%98%E5%BA%A6%E7%BA%B9%E7%90%86%E8%B4%B4%E5%9B%BE"><span class="toc-number">2.1.</span> <span class="toc-text">高度纹理贴图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B3%95%E7%BA%BF%E7%BA%B9%E7%90%86%E8%B4%B4%E5%9B%BE"><span class="toc-number">2.2.</span> <span class="toc-text">法线纹理贴图</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%95%E7%BA%BF%E7%BA%B9%E7%90%86%E8%B4%B4%E5%9B%BE%E8%AF%BB%E5%8F%96%E5%88%86%E9%87%8F%E6%95%B0%E6%8D%AE%E7%9A%84%E8%A7%84%E5%88%99"><span class="toc-number">2.2.1.</span> <span class="toc-text">法线纹理贴图读取分量数据的规则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%A4%E7%A7%8D%E6%B3%95%E7%BA%BF%E7%BA%B9%E7%90%86%E8%B4%B4%E5%9B%BE%E7%9A%84%E5%AD%98%E5%82%A8%E6%96%B9%E5%BC%8F"><span class="toc-number">2.2.2.</span> <span class="toc-text">两种法线纹理贴图的存储方式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8E%E6%A8%A1%E5%9E%8B%E7%A9%BA%E9%97%B4%E7%9A%84%E6%B3%95%E7%BA%BF%E7%BA%B9%E7%90%86"><span class="toc-number">2.2.2.1.</span> <span class="toc-text">基于模型空间的法线纹理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8E%E5%88%87%E7%BA%BF%E7%A9%BA%E9%97%B4%E7%9A%84%E6%B3%95%E7%BA%BF%E7%BA%B9%E7%90%86"><span class="toc-number">2.2.2.2.</span> <span class="toc-text">基于切线空间的法线纹理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E5%88%87%E7%BA%BF%E7%A9%BA%E9%97%B4%E4%B8%8B%E7%9A%84%E6%B3%95%E7%BA%BF%E7%BA%B9%E7%90%86%E8%B4%B4%E5%9B%BE%E7%9A%84%E5%8E%9F%E5%9B%A0"><span class="toc-number">2.2.2.3.</span> <span class="toc-text">使用切线空间下的法线纹理贴图的原因</span></a></li></ol></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/11/05/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S2%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E7%BA%B9%E7%90%86%E6%95%88%E6%9E%9C/US3S2L12%E2%80%94%E2%80%94%E9%AB%98%E5%85%89%E7%BA%B9%E7%90%86%E7%BB%BC%E5%90%88%E5%AE%9E%E7%8E%B0/" title="US3S2L12——高光纹理综合实现">US3S2L12——高光纹理综合实现</a><time datetime="2024-11-05T00:34:56.000Z" title="发表于 2024-11-05 08:34:56">2024-11-05</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/11/04/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S2%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E7%BA%B9%E7%90%86%E6%95%88%E6%9E%9C/US3S2L11%E2%80%94%E2%80%94%E9%81%AE%E7%BD%A9%E7%BA%B9%E7%90%86%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/" title="US3S2L11——遮罩纹理基本概念">US3S2L11——遮罩纹理基本概念</a><time datetime="2024-11-04T01:26:51.000Z" title="发表于 2024-11-04 09:26:51">2024-11-04</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/11/04/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S2%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E7%BA%B9%E7%90%86%E6%95%88%E6%9E%9C/US3S2L10%E2%80%94%E2%80%94%E6%B8%90%E5%8F%98%E7%BA%B9%E7%90%86%E7%BB%BC%E5%90%88%E5%AE%9E%E7%8E%B0/" title="US3S2L10——渐变纹理综合实现">US3S2L10——渐变纹理综合实现</a><time datetime="2024-11-04T01:01:25.000Z" title="发表于 2024-11-04 09:01:25">2024-11-04</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/11/04/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S2%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E7%BA%B9%E7%90%86%E6%95%88%E6%9E%9C/US3S2L9%E2%80%94%E2%80%94%E6%B8%90%E5%8F%98%E7%BA%B9%E7%90%86%E5%9F%BA%E7%A1%80%E5%AE%9E%E7%8E%B0/" title="US3S2L9——渐变纹理基础实现">US3S2L9——渐变纹理基础实现</a><time datetime="2024-11-04T00:12:57.000Z" title="发表于 2024-11-04 08:12:57">2024-11-04</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/11/04/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S2%E2%80%94%E2%80%94Shader%E5%85%A5%E9%97%A8-%E7%BA%B9%E7%90%86%E6%95%88%E6%9E%9C/US3S2L8%E2%80%94%E2%80%94%E6%B8%90%E5%8F%98%E7%BA%B9%E7%90%86%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/" title="US3S2L8——渐变纹理基本概念">US3S2L8——渐变纹理基本概念</a><time datetime="2024-11-04T00:00:14.000Z" title="发表于 2024-11-04 08:00:14">2024-11-04</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By 文KRIFE齐</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>
