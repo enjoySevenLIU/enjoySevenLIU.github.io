@@ -1,0 +1,359 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>US3S4L2——前向渲染路径 | 文KRIFE齐的博客</title><meta name="author" content="文KRIFE齐"><meta name="copyright" content="文KRIFE齐"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="US3S4L2——前向渲染路径 前向渲染路径   前向渲染路径处理光照的方式 有一套划分光源 “三六九等” 的规则，将光源分成了高中低三种身份，主要通过灯光渲染模式、项目质量设置中的像素灯光计数的数量、光照强度、距离物体距离来综合判定   前向渲染路径在哪里进行光照计算  Base Pass（基础渲染通道）：主要用于处理影响该物体的一个高质量光源（平行光）、所有中（逐顶点处理）低质量（SH处理）光">
+<meta property="og:type" content="article">
+<meta property="og:title" content="US3S4L2——前向渲染路径">
+<meta property="og:url" content="https://enjoysevenliu.github.io/2024/11/23/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S4%E2%80%94%E2%80%94%E6%B8%B2%E6%9F%93%E8%B7%AF%E5%BE%84/US3S4L2%E2%80%94%E2%80%94%E5%89%8D%E5%90%91%E6%B8%B2%E6%9F%93%E8%B7%AF%E5%BE%84/index.html">
+<meta property="og:site_name" content="文KRIFE齐的博客">
+<meta property="og:description" content="US3S4L2——前向渲染路径 前向渲染路径   前向渲染路径处理光照的方式 有一套划分光源 “三六九等” 的规则，将光源分成了高中低三种身份，主要通过灯光渲染模式、项目质量设置中的像素灯光计数的数量、光照强度、距离物体距离来综合判定   前向渲染路径在哪里进行光照计算  Base Pass（基础渲染通道）：主要用于处理影响该物体的一个高质量光源（平行光）、所有中（逐顶点处理）低质量（SH处理）光">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://enjoysevenliu.github.io/img/Blue_Ice.png">
+<meta property="article:published_time" content="2024-11-23T07:25:42.000Z">
+<meta property="article:modified_time" content="2024-11-23T09:41:37.984Z">
+<meta property="article:author" content="文KRIFE齐">
+<meta property="article:tag" content="blog">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://enjoysevenliu.github.io/img/Blue_Ice.png"><link rel="shortcut icon" href="/img/Blue_Ice.png"><link rel="canonical" href="https://enjoysevenliu.github.io/2024/11/23/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S4%E2%80%94%E2%80%94%E6%B8%B2%E6%9F%93%E8%B7%AF%E5%BE%84/US3S4L2%E2%80%94%E2%80%94%E5%89%8D%E5%90%91%E6%B8%B2%E6%9F%93%E8%B7%AF%E5%BE%84/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'US3S4L2——前向渲染路径',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-11-23 17:41:37'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/Blue_Ice.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">963</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">122</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="https://enjoysevenliu.github.io/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="文KRIFE齐的博客"><img class="site-icon" src="/img/Blue_Ice.png"/><span class="site-name">文KRIFE齐的博客</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="https://enjoysevenliu.github.io/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">US3S4L2——前向渲染路径</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-11-23T07:25:42.000Z" title="发表于 2024-11-23 15:25:42">2024-11-23</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-11-23T09:41:37.984Z" title="更新于 2024-11-23 17:41:37">2024-11-23</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity-Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/">US——Unity Shader开发入门</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity-Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/">US3——Shader开发知识</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity-Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S4%E2%80%94%E2%80%94%E6%B8%B2%E6%9F%93%E8%B7%AF%E5%BE%84/">US3S4——渲染路径</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="US3S4L2——前向渲染路径"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1>US3S4L2——前向渲染路径</h1>
+<h1>前向渲染路径</h1>
+<ol>
+<li>
+<p>前向渲染路径处理光照的方式</p>
+<p>有一套划分光源 “三六九等” 的规则，将光源分成了高中低三种身份，主要通过灯光渲染模式、项目质量设置中的像素灯光计数的数量、光照强度、距离物体距离来综合判定</p>
+</li>
+<li>
+<p>前向渲染路径在哪里进行光照计算</p>
+<ul>
+<li>Base Pass（基础渲染通道）：主要用于处理影响该物体的一个高质量光源（平行光）、所有中（逐顶点处理）低质量（SH处理）光源等</li>
+<li>Additional Pass（附加渲染通道）：主要用于处理影响该物体的除平行光以外的其它高质量光源（每个高质量光源都会调用）</li>
+</ul>
+</li>
+<li>
+<p>前向渲染路径的内置光照变量和函数</p>
+<p>有了内置光照变量，我们便可以获取到前向渲染路径当中，对渲染质量有不同要求的光源们的相关数据，利用这些数据和函数在Base Pass（基础渲染通道）和 Additional Pass（附加渲染通道）中按照需求进行相关的逻辑处理即可</p>
+</li>
+</ol>
+<h2 id="前向渲染路径对处理光源的方式">前向渲染路径对处理光源的方式</h2>
+<p>前向渲染路径中会将光源分为以下 3 种处理方式：</p>
+<ol>
+<li>
+<p>逐像素处理（需要高等质量处理的光）</p>
+</li>
+<li>
+<p>逐顶点处理（需要中等质量处理的光）</p>
+</li>
+<li>
+<p>球谐函数（SH）处理（需要低等质量处理的光）</p>
+<p>其中，球谐函数处理光照的方式是将光照场景投影到球谐函数的空间中，通过一组球谐系数来表示光照。<br>
+这是一种内存换性能的方式，细节表现效果差，但是性能最佳（不需要我们自己书写，Unity底层会帮助我们进行处理）</p>
+</li>
+</ol>
+<p>这里说的处理方式，主要是针对三种质量类型的光的处理方式，具体处理这三类光源的时候，不一定非要按照上述描述的方式处理光照，<br>
+例如，高等质量处理的光实际也可以使用逐顶点光照处理，中等质量处理的光实际也可以使用逐像素光照处理<br>
+也就是说，这里所说的处理方式更多是<strong>对光源进行处理类型的划分</strong>，而非实际对光源的处理方式，所谓逐像素、逐顶点、SH 处理只是期望的处理方式</p>
+<h3 id="场景当中的各种光源采用哪种处理方式">场景当中的各种光源采用哪种处理方式</h3>
+<p>在前向渲染中，一部分最亮的灯光以逐像素处理，然后4个点光源以逐顶点方式处理，其余的灯光以SH处理</p>
+<p>一个光源是逐像素、逐顶点还是SH处理主要取决于以下几点：</p>
+<p>下面提到的渲染模式都是指的光源组件 Light​ 的 Render Mode - 渲染模式 属性：</p>
+<p>​<img src="/assets/image-20241123154007-c3qcbs8.png" alt="image">​</p>
+<ol>
+<li>
+<p>光源的 渲染模式 设置为 Not Important（不重要）的灯光始终以逐顶点或者SH的方式渲染</p>
+</li>
+<li>
+<p>光源的 渲染模式 设置为 Important（重要）的灯光始终是逐像素渲染</p>
+</li>
+<li>
+<p>最亮的平行光总是逐像素渲染</p>
+</li>
+<li>
+<p>如果逐像素光照的灯光数量少于项目质量设置中的 Pixel Light Count（像素灯光计数）的数量，那么其余比较亮的灯光将会被逐像素渲染</p>
+<p>​<img src="/assets/image-20241123154227-17rngqf.png" alt="image">​</p>
+</li>
+</ol>
+<blockquote>
+<p>注意：如果光源的 渲染模式 设置为 Auto (自动)，Unity 会根据灯光的亮度以及与物体的距离自动判断重要性</p>
+</blockquote>
+<p>举例说明：如下图，A~H 是 8 个具有相同的颜色和强度的光源，并且光源渲染模式都是 Auto(自动) 的</p>
+<p>​<img src="/assets/image-20241123154522-5f5dfrx.png" alt="image">​</p>
+<p>A~H 具有相同的颜色和强度，而和中间接受光照的物体距离则逐渐变大，因此对于中间的受光照的对象来说， A~H 的亮度是由高变低的</p>
+<p>其中最亮的光源以逐像素光照模式渲染（A~D），然后最多4个光源以逐顶点光照模式渲染（D~G），最后剩下的光源以SH模式渲染（G~H）</p>
+<p>​<img src="/assets/image-20241123154748-n4d9o7i.png" alt="image">​</p>
+<p>其中，灯光 D 既是逐像素也是逐顶点处理，灯光 G 既是逐顶点也是SH处理，<br>
+这是因为物体移动或灯光移动时，不同渲染模式的<strong>灯光交界处</strong>会出现明显瑕疵，<br>
+为了避免该问题，Unity 将不同灯光组之间进行了重叠</p>
+<p>简而言之：<strong>Unity 中有一套划分光源“三六九等”的规则，主要通过光源渲染模式、光照强度、距离物体距离、项目质量设置中像素灯光计数的数量来综合判定</strong></p>
+<p>在前向渲染路径中会将光源分成所谓的逐像素（高质量）、逐顶点（中质量）、SH（低质量）三种处理类型，<br>
+因此有了对光源的”高中低”的身份认知，（具体如何处理这三类光源不一定是按照处理类型名字描述的方式来处理）<br>
+Unity 底层就可以将这些光源的数据存储到 Shader 中对应的内置变量中，我们就可以通过这些内置变量获取到对应“身份”的光源数据，从而进行差异化的处理</p>
+<h2 id="前向渲染路径的光照计算实现位置">前向渲染路径的光照计算实现位置</h2>
+<p>前向渲染路径进行光照计算，是在Shader当中的 <code>Pass</code>​ 渲染通道中进行计算。<br>
+但是对于前向渲染来说，有两种 <code>Pass</code>​ 可以用来进行光照处理：</p>
+<ol>
+<li>
+<p>Base Pass（基础渲染通道）</p>
+<p>渲染物体的主要光照通道，用于处理主要的光照效果，<strong>主要用于计算逐像素的平行光以及所有逐顶点和SH光源</strong><br>
+可实现的效果：漫反射、高光反射、自发光、阴影、光照纹理等</p>
+ <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Pass</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// Base Pass</span></span><br><span class="line">    Tags &#123; <span class="string">&quot;LightMode&quot;</span> = <span class="string">&quot;ForwardBase&quot;</span> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>Additional Pass（附加渲染通道）</p>
+<p>渲染物体额外的光照通道，用于处理一些附加的光照效果，<strong>主要用于计算其他影响物体的逐像素光源</strong><br>
+每个光源都会执行一次该 <code>Pass</code>​，可实现的效果：描边、轮廓、辉光等</p>
+ <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Pass</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// Additional Pass</span></span><br><span class="line">    Tags &#123; <span class="string">&quot;LightMode&quot;</span> = <span class="string">&quot;ForwardAdd&quot;</span> &#125;</span><br><span class="line">    Blend One One    <span class="comment">// 用于和其他光照颜色进行混合叠加</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>对于一个前向渲染路径下的 Unity Shader，通常会定义一个 Base Pass（基础渲染通道）以及一个 Additional Pass（附加渲染通道），每次渲染时：</p>
+<ul>
+<li>
+<p><strong>一个 Base Pass 仅会执行一次</strong>（多个 Base Pass 情况除外）</p>
+<p>主要用于渲染环境光或自发光等</p>
+</li>
+<li>
+<p>一个 Additional Pass 会根据影响该物体的其他逐像素光源的数量被多次调用</p>
+<p>每个逐像素光源都会调用一次 Additional Pass，Additional Pass 由于开启了混合，渲染结果会和之前的光照颜色进行混合</p>
+</li>
+</ul>
+<blockquote>
+<p>注意：</p>
+<ol>
+<li>
+<p>Base Pass 也可以有多个，比如需要双面渲染的情况</p>
+</li>
+<li>
+<p>Base Pass 默认支持阴影， Additional Pass 默认不支持，可以通过添加 <code>#pragma multi_compile_fwdadd_fullshadows</code>​ 编译指令开启阴影</p>
+ <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">CGPROGRAM</span><br><span class="line"><span class="meta">#<span class="keyword">pragma</span> vertex vert</span></span><br><span class="line"><span class="meta">#<span class="keyword">pragma</span> fragment frag</span></span><br><span class="line">​<span class="meta">#<span class="keyword">pragma</span> multi_compile_fwdadd_fullshadows​</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 具体着色器代码实现... */</span></span><br><span class="line">ENDCG</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>这些 Pass 当中我们具体处理光照的方式是由我们自己决定的，使用逐顶点光照还是逐像素光照的计算方式，都根据我们的具体实现而定，前文提到的逐像素光源只是按照期望处理类型来分的而已</p>
+</li>
+</ol>
+</blockquote>
+<p>简而言之：</p>
+<ul>
+<li>Base Pass（基础渲染通道）：主要用于处理影响该物体的一个高质量光源（如平行光）、所有中（逐顶点处理）低质量（SH处理）光源等</li>
+<li>Additional Pass（附加渲染通道）：主要用于处理影响该物体的除平行光以外的其它高质量光源（每个高质量光源都会调用）</li>
+</ul>
+<h2 id="前向渲染路径的内置光照变量和函数">前向渲染路径的内置光照变量和函数</h2>
+<p>知道了在哪里处理对应等级的光照计算，接下来需要知道如何获取到对应“身份”的光源数据，从而进行差异化的处理</p>
+<h3 id="常用内置光照变量">常用内置光照变量</h3>
+<table>
+<thead>
+<tr>
+<th>变量名</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>​_LightColor0​</td>
+<td>​<code>float4</code>​</td>
+<td>该 <code>Pass</code>​ 当前处理的逐像素(高质量)光源的颜色</td>
+</tr>
+<tr>
+<td>​<code>_WorldSpaceLightPos0</code>​</td>
+<td>​<code>float4</code>​</td>
+<td>​<code>_WorldSpaceLightPos0.xyz</code>​ 表示该 <code>Pass</code>​ 当前处理的逐像素(高质量)光源的位置，如果该光源是平行光，那么 <code>_WorldSpaceLightPos0.w</code>​ 是 0，其他光源类型 <code>w</code>​ 为1</td>
+</tr>
+<tr>
+<td>​<code>_LightMatrix0</code>​</td>
+<td>​<code>float4x4</code>​</td>
+<td>世界空间到光源空间的变换矩阵，可以用于采样光强衰减纹理和 cookie</td>
+</tr>
+<tr>
+<td>​<code>unity_4LightPosX0</code>​、<br /><code>unity_4LightPosY0</code>​、<br /><code>unity_4LightPosZ0</code>​</td>
+<td>​<code>float4</code>​</td>
+<td>仅用于 Base Pass。前4个非重要（逐顶点处理）的点光源在世界空间中的<strong>位置</strong></td>
+</tr>
+<tr>
+<td>​<code>unity_4LightAtten0</code>​</td>
+<td>​<code>float4</code>​</td>
+<td>仅用于 Base Pass。存储了前 4 个非重要的点光源的衰减<strong>因子</strong></td>
+</tr>
+<tr>
+<td>​<code>unity_LightColor</code>​</td>
+<td>​<code>half4[4]</code>​</td>
+<td>仅用于 Base Pass。存储了前 4 个非重要的点光源的颜色</td>
+</tr>
+</tbody>
+</table>
+<h3 id="常用内置光照函数">常用内置光照函数</h3>
+<table>
+<thead>
+<tr>
+<th>函数名</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>​float3 WorldSpaceLightDir(float4 v)​</td>
+<td>仅用于前向渲染路径中。输入<strong>模型空间</strong>中顶点位置，返回<strong>世界空间</strong>中从该点到光源的光照方向。结果没有被归一化</td>
+</tr>
+<tr>
+<td>​float3 UnityWorldSpaceLightDir(float4 v)​</td>
+<td>仅用于前向渲染路径中。输入一个<strong>世界空间</strong>中的顶点位置，返回<strong>世界空间</strong>中从该点到光源的光照方向。结果没有被归一化</td>
+</tr>
+<tr>
+<td>​float3 ObjSpaceLightDir(float4 v)​</td>
+<td>仅用于前向渲染路径中。输入一个<strong>模型空间</strong>中的顶点位置，返回<strong>模型空间</strong>中从该点到光源的光照方向。结果没有被归一化</td>
+</tr>
+<tr>
+<td>​<code>float3 Shade4PointLights(/*...*/)</code>​<br />（参数过多，在表格下面列出）</td>
+<td>仅用于前向渲染路径中。计算四个点光源的光照，它的参数非常多，<br />主要用的就是刚才讲解的 <code>unity_</code>​ 相关的参数，都是非重要的点光源相关的数据。<br />可以使用它来计算逐顶点光照。返回值是四个点光源的叠加颜色</td>
+</tr>
+<tr>
+<td>…</td>
+<td>…</td>
+</tr>
+</tbody>
+</table>
+<p>其中，<code>float3 Shade4PointLights(/*...*/)</code>​ 的具体参数为：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">float3 <span class="title function_">Shade4PointLights</span><span class="params">(</span></span><br><span class="line"><span class="params">    float4 lightPosX, float4 lightPosY, float4 lightPosZ, </span></span><br><span class="line"><span class="params">    float3 lightColor0, float3 lightColor1, float3 lightColor2, float3 lightColor3, </span></span><br><span class="line"><span class="params">    float4 lightAttenSq, float3 pos, float3 normal)</span></span><br></pre></td></tr></table></figure>
+<p>简而言之：通过这些内置光照变量，我们便可以获取到前向渲染路径当中，对渲染质量有不同要求的光源们的相关数据。<br>
+我们只需要利用这些数据和函数在 Base Pass（基础渲染通道）和 Additional Pass（附加渲染通道）中按照需求进行相关的逻辑处理即可</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a target="_blank" rel="noopener" href="https://github.com/enjoySevenLIU">文KRIFE齐</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://enjoysevenliu.github.io/2024/11/23/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S4%E2%80%94%E2%80%94%E6%B8%B2%E6%9F%93%E8%B7%AF%E5%BE%84/US3S4L2%E2%80%94%E2%80%94%E5%89%8D%E5%90%91%E6%B8%B2%E6%9F%93%E8%B7%AF%E5%BE%84/">https://enjoysevenliu.github.io/2024/11/23/Unity就业路线学习笔记/US——Unity Shader开发入门/US3——Shader开发知识/US3S4——渲染路径/US3S4L2——前向渲染路径/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://enjoysevenliu.github.io" target="_blank">文KRIFE齐的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/img/Blue_Ice.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2024/11/23/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S4%E2%80%94%E2%80%94%E6%B8%B2%E6%9F%93%E8%B7%AF%E5%BE%84/US3S4L3%E2%80%94%E2%80%94%E9%A1%B6%E7%82%B9%E7%85%A7%E6%98%8E%E6%B8%B2%E6%9F%93%E8%B7%AF%E5%BE%84/" title="US3S4L3——顶点照明渲染路径"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">US3S4L3——顶点照明渲染路径</div></div></a></div><div class="next-post pull-right"><a href="/2024/11/23/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S4%E2%80%94%E2%80%94%E6%B8%B2%E6%9F%93%E8%B7%AF%E5%BE%84/US3S4L1%E2%80%94%E2%80%94%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E6%A6%82%E8%BF%B0/" title="US3S4L1——渲染管线概述"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">US3S4L1——渲染管线概述</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/Blue_Ice.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">文KRIFE齐</div><div class="author-info__description">正在努力学习Unity，希望下半年可以找到实习</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">963</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">122</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/enjoySevenLIU"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/enjoySevenLIU" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">恢复更新了，但是更新会变缓，取决于实习工作量多大</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">US3S4L2——前向渲染路径</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">2.</span> <span class="toc-text">前向渲染路径</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E5%90%91%E6%B8%B2%E6%9F%93%E8%B7%AF%E5%BE%84%E5%AF%B9%E5%A4%84%E7%90%86%E5%85%89%E6%BA%90%E7%9A%84%E6%96%B9%E5%BC%8F"><span class="toc-number">2.1.</span> <span class="toc-text">前向渲染路径对处理光源的方式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9C%BA%E6%99%AF%E5%BD%93%E4%B8%AD%E7%9A%84%E5%90%84%E7%A7%8D%E5%85%89%E6%BA%90%E9%87%87%E7%94%A8%E5%93%AA%E7%A7%8D%E5%A4%84%E7%90%86%E6%96%B9%E5%BC%8F"><span class="toc-number">2.1.1.</span> <span class="toc-text">场景当中的各种光源采用哪种处理方式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E5%90%91%E6%B8%B2%E6%9F%93%E8%B7%AF%E5%BE%84%E7%9A%84%E5%85%89%E7%85%A7%E8%AE%A1%E7%AE%97%E5%AE%9E%E7%8E%B0%E4%BD%8D%E7%BD%AE"><span class="toc-number">2.2.</span> <span class="toc-text">前向渲染路径的光照计算实现位置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E5%90%91%E6%B8%B2%E6%9F%93%E8%B7%AF%E5%BE%84%E7%9A%84%E5%86%85%E7%BD%AE%E5%85%89%E7%85%A7%E5%8F%98%E9%87%8F%E5%92%8C%E5%87%BD%E6%95%B0"><span class="toc-number">2.3.</span> <span class="toc-text">前向渲染路径的内置光照变量和函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E5%86%85%E7%BD%AE%E5%85%89%E7%85%A7%E5%8F%98%E9%87%8F"><span class="toc-number">2.3.1.</span> <span class="toc-text">常用内置光照变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E5%86%85%E7%BD%AE%E5%85%89%E7%85%A7%E5%87%BD%E6%95%B0"><span class="toc-number">2.3.2.</span> <span class="toc-text">常用内置光照函数</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/11/23/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S4%E2%80%94%E2%80%94%E6%B8%B2%E6%9F%93%E8%B7%AF%E5%BE%84/US3S4L5%E2%80%94%E2%80%94%E6%B8%B2%E6%9F%93%E8%B7%AF%E5%BE%84%E5%AF%B9%E6%AF%94/" title="US3S4L5——渲染路径对比">US3S4L5——渲染路径对比</a><time datetime="2024-11-23T09:25:14.000Z" title="发表于 2024-11-23 17:25:14">2024-11-23</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/11/23/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S4%E2%80%94%E2%80%94%E6%B8%B2%E6%9F%93%E8%B7%AF%E5%BE%84/US3S4L4%E2%80%94%E2%80%94%E5%BB%B6%E8%BF%9F%E6%B8%B2%E6%9F%93%E8%B7%AF%E5%BE%84/" title="US3S4L4——延迟渲染路径">US3S4L4——延迟渲染路径</a><time datetime="2024-11-23T08:57:40.000Z" title="发表于 2024-11-23 16:57:40">2024-11-23</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/11/23/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S4%E2%80%94%E2%80%94%E6%B8%B2%E6%9F%93%E8%B7%AF%E5%BE%84/US3S4L3%E2%80%94%E2%80%94%E9%A1%B6%E7%82%B9%E7%85%A7%E6%98%8E%E6%B8%B2%E6%9F%93%E8%B7%AF%E5%BE%84/" title="US3S4L3——顶点照明渲染路径">US3S4L3——顶点照明渲染路径</a><time datetime="2024-11-23T07:25:53.000Z" title="发表于 2024-11-23 15:25:53">2024-11-23</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/11/23/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S4%E2%80%94%E2%80%94%E6%B8%B2%E6%9F%93%E8%B7%AF%E5%BE%84/US3S4L2%E2%80%94%E2%80%94%E5%89%8D%E5%90%91%E6%B8%B2%E6%9F%93%E8%B7%AF%E5%BE%84/" title="US3S4L2——前向渲染路径">US3S4L2——前向渲染路径</a><time datetime="2024-11-23T07:25:42.000Z" title="发表于 2024-11-23 15:25:42">2024-11-23</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/11/23/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S4%E2%80%94%E2%80%94%E6%B8%B2%E6%9F%93%E8%B7%AF%E5%BE%84/US3S4L1%E2%80%94%E2%80%94%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E6%A6%82%E8%BF%B0/" title="US3S4L1——渲染管线概述">US3S4L1——渲染管线概述</a><time datetime="2024-11-23T07:16:33.000Z" title="发表于 2024-11-23 15:16:33">2024-11-23</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By 文KRIFE齐</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>
