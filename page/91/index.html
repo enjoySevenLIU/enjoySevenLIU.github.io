@@ -1,24 +1,113 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>文KRIFE齐的博客 - 笔记发布站</title><meta name="author" content="文KRIFE齐"><meta name="copyright" content="文KRIFE齐"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="正在努力学习Unity，希望下半年可以找到实习">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>文KRIFE齐的博客 - 笔记发布站</title><meta name="author" content="文KRIFE齐"><meta name="copyright" content="文KRIFE齐"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Unity就业路线的笔记终于快更新完了！">
 <meta property="og:type" content="website">
 <meta property="og:title" content="文KRIFE齐的博客">
 <meta property="og:url" content="https://enjoysevenliu.github.io/page/91/index.html">
 <meta property="og:site_name" content="文KRIFE齐的博客">
-<meta property="og:description" content="正在努力学习Unity，希望下半年可以找到实习">
+<meta property="og:description" content="Unity就业路线的笔记终于快更新完了！">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://enjoysevenliu.github.io/img/Blue_Ice.png">
+<meta property="og:image" content="https://enjoysevenliu.github.io/img/butterfly-icon.png">
 <meta property="article:author" content="文KRIFE齐">
 <meta property="article:tag" content="blog">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://enjoysevenliu.github.io/img/Blue_Ice.png"><link rel="shortcut icon" href="/img/Blue_Ice.png"><link rel="canonical" href="https://enjoysevenliu.github.io/page/91/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+<meta name="twitter:image" content="https://enjoysevenliu.github.io/img/butterfly-icon.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://enjoysevenliu.github.io/page/91/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
   root: '/',
   algolia: undefined,
-  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
   translate: undefined,
-  noticeOutdate: undefined,
-  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
   copy: {
     success: '复制成功',
-    error: '复制错误',
+    error: '复制失败',
     noSupport: '浏览器不支持'
   },
   relativeDate: {
@@ -34,10 +123,10 @@
     month: '个月前'
   },
   copyright: undefined,
-  lightbox: 'fancybox',
+  lightbox: 'null',
   Snackbar: undefined,
   infinitegrid: {
-    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
     buttonText: '加载更多'
   },
   isPhotoFigcaption: false,
@@ -54,344 +143,76 @@
   isHome: true,
   isHighlightShrink: false,
   isToc: false,
-  postUpdate: '2024-11-23 17:42:15'
-}</script><script>(win=>{
-      win.saveToLocal = {
-        set: (key, value, ttl) => {
-          if (ttl === 0) return
-          const now = Date.now()
-          const expiry = now + ttl * 86400000
-          const item = {
-            value,
-            expiry
-          }
-          localStorage.setItem(key, JSON.stringify(item))
-        },
-      
-        get: key => {
-          const itemStr = localStorage.getItem(key)
-      
-          if (!itemStr) {
-            return undefined
-          }
-          const item = JSON.parse(itemStr)
-          const now = Date.now()
-      
-          if (now > item.expiry) {
-            localStorage.removeItem(key)
-            return undefined
-          }
-          return item.value
-        }
-      }
-    
-      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
-        const script = document.createElement('script')
-        script.src = url
-        script.async = true
-        script.onerror = reject
-        script.onload = script.onreadystatechange = function() {
-          const loadState = this.readyState
-          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
-          script.onload = script.onreadystatechange = null
-          resolve()
-        }
-
-        Object.keys(attr).forEach(key => {
-          script.setAttribute(key, attr[key])
-        })
-
-        document.head.appendChild(script)
-      })
-    
-      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
-        const link = document.createElement('link')
-        link.rel = 'stylesheet'
-        link.href = url
-        if (id) link.id = id
-        link.onerror = reject
-        link.onload = link.onreadystatechange = function() {
-          const loadState = this.readyState
-          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
-          link.onload = link.onreadystatechange = null
-          resolve()
-        }
-        document.head.appendChild(link)
-      })
-    
-      win.activateDarkMode = () => {
-        document.documentElement.setAttribute('data-theme', 'dark')
-        if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
-        }
-      }
-      win.activateLightMode = () => {
-        document.documentElement.setAttribute('data-theme', 'light')
-        if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
-        }
-      }
-      const t = saveToLocal.get('theme')
-    
-        if (t === 'dark') activateDarkMode()
-        else if (t === 'light') activateLightMode()
-      
-      const asideStatus = saveToLocal.get('aside-status')
-      if (asideStatus !== undefined) {
-        if (asideStatus === 'hide') {
-          document.documentElement.classList.add('hide-aside')
-        } else {
-          document.documentElement.classList.remove('hide-aside')
-        }
-      }
-    
-      const detectApple = () => {
-        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
-          document.documentElement.classList.add('apple')
-        }
-      }
-      detectApple()
-    })(window)</script><meta name="generator" content="Hexo 7.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/Blue_Ice.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">963</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">122</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="https://enjoysevenliu.github.io/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page fixed" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="文KRIFE齐的博客"><img class="site-icon" src="/img/Blue_Ice.png"/><span class="site-name">文KRIFE齐的博客</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="https://enjoysevenliu.github.io/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">文KRIFE齐的博客</h1><div id="site_social_icons"><a class="social-icon" href="https://github.com/enjoySevenLIU" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/07/11/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U2%E2%80%94%E2%80%94Unity%E5%9F%BA%E7%A1%80%E7%B3%BB%E5%88%97/U2L5%E2%80%94%E2%80%94%E5%9B%9B%E5%85%83%E6%95%B0/" title="U2L5——四元数">U2L5——四元数</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-07-11T14:15:41.000Z" title="发表于 2023-07-11 22:15:41">2023-07-11</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U2%E2%80%94%E2%80%94Unity%E5%9F%BA%E7%A1%80%E7%B3%BB%E5%88%97/">U2——Unity基础系列</a></span></div><div class="content">U2L5——四元数
-四元数
-
-四元数，是简单的超复数。 复数是由实数加上虚数单位 i 组成，其中i²= -1。 相似地，四元数都是由实数加上三个虚数单位 i、j和k 组成，而且它们有如下的关系： i² = j² = k² = -1， iº = jº = kº = 1 , 每个四元数都是 1、i、j 和 k 的线性组合，即是四元数一般可表示为a + bi+ cj + dk，其中a、b、c 、d是实数。
-对于i、j和k本身的几何意义可以理解为一种旋转，其中i旋转代表Z轴与Y轴相交平面中Z轴正向向Y轴正向的旋转，j旋转代表X轴与Z轴相交平面中X轴正向向Z轴正向的旋转，k旋转代表Y轴与X轴相交平面中Y轴正向向X轴正向的旋转，-i、-j、-k分别代表i、j、k旋转的反向旋转。
-四元数_百度百科 (baidu.com)
-
-四元数并不是生来为了解决三维旋转，但是它的性质非常有利于表达旋转信息。
-为什么使用四元数？
-因为欧拉角表示旋转本身存在不能避免且致命的缺陷
-详细笔记U2L5-1——为什么使用四元数
-四元数的概念
-四元数解决了欧拉角的两个缺陷
-U2L5-2——四元数的概念
-四元数的常用方法
-U2L ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/07/11/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U2%E2%80%94%E2%80%94Unity%E5%9F%BA%E7%A1%80%E7%B3%BB%E5%88%97/U2L4%E2%80%94%E2%80%94Vector3%E5%90%91%E9%87%8F%E7%B3%BB%E5%88%97/U2L4-5%E2%80%94%E2%80%94%E5%90%91%E9%87%8F%E6%8F%92%E5%80%BC%E8%AE%A1%E7%AE%97/" title="U2L4-5——向量插值计算">U2L4-5——向量插值计算</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-07-11T11:42:11.000Z" title="发表于 2023-07-11 19:42:11">2023-07-11</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U2%E2%80%94%E2%80%94Unity%E5%9F%BA%E7%A1%80%E7%B3%BB%E5%88%97/">U2——Unity基础系列</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U2%E2%80%94%E2%80%94Unity%E5%9F%BA%E7%A1%80%E7%B3%BB%E5%88%97/U2L4%E2%80%94%E2%80%94Vector3%E5%90%91%E9%87%8F%E7%B3%BB%E5%88%97/">U2L4——Vector3向量系列</a></span></div><div class="content">U2L4-5——向量插值计算
-向量插值计算
-Vector3也有为向量插值计算的方法，（插值计算相关概念）
-本章代码关键字
-12Vector3.Lerp()    //向量线性插值Vector3.Slerp()    //向量球形插值
-线性插值
-一般用于跟随移动，摄像机跟随等
-对两个点进行插值计算，t的取值范围是0~1
-公式：result = start + (end - start) * t
-1A.position = Vector3.Lerp(A.position, target.position, Time.deltaTime);
-线性插值计算也有两种应用
-先快后慢趋近
-先快后慢 每帧改变start位置 位置无限接近但不会得到end位置
-123//result = start + (end - start) * t//先快后慢 每帧改变start位置 位置无限接近但不会得到end位置A.position = Vector3.Lerp(A.position, target.position, Time.deltaTime);
-匀速接近
-匀速 每帧改变时间 当&gt;=1时 得到结果
- ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/07/11/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U2%E2%80%94%E2%80%94Unity%E5%9F%BA%E7%A1%80%E7%B3%BB%E5%88%97/U2L4%E2%80%94%E2%80%94Vector3%E5%90%91%E9%87%8F%E7%B3%BB%E5%88%97/U2L4-4%E2%80%94%E2%80%94%E5%90%91%E9%87%8F%E5%8F%89%E4%B9%98/" title="U2L4-4——向量叉乘">U2L4-4——向量叉乘</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-07-11T11:41:47.000Z" title="发表于 2023-07-11 19:41:47">2023-07-11</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U2%E2%80%94%E2%80%94Unity%E5%9F%BA%E7%A1%80%E7%B3%BB%E5%88%97/">U2——Unity基础系列</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U2%E2%80%94%E2%80%94Unity%E5%9F%BA%E7%A1%80%E7%B3%BB%E5%88%97/U2L4%E2%80%94%E2%80%94Vector3%E5%90%91%E9%87%8F%E7%B3%BB%E5%88%97/">U2L4——Vector3向量系列</a></span></div><div class="content">U2L4-4——向量叉乘
-向量叉乘
-向量×向量
-向量A (Xa,Ya,Za)
-向量B (Xb,Yb,Zb)
-A x B = (X,Y,Z)
-X = YaZb - ZaYb
-Y = ZaXb - XaZb
-Z = XaYb - YaXb
-A x B 得到的向量同时垂直A和B
-A x B 向量垂直于A和B
-组成的平面 A x B = -(B x A)
-​​
-向量叉乘的几何意义是：
-假设向量 A和B 都在XZ平面上
-向量A 叉乘 向量B
-结果大于0 说明 B在A右侧
-结果小于0 说明 B在A左侧这个左侧右侧的判定标准是以OA向量方向为准
-​​
-向量叉乘对于我们的意义
-
-得到一个平面的法向量
-得到两个向量之间的左右位置关系
-
-注意！叉乘左右两边向量如果互换位置结果会变为原来的负向量，因此切记要确定叉乘的左向量和右向量
-本章代码关键字
-1Vector3.Cross(, )    //计算两个向量叉乘的方法
-叉乘计算
-Vector3提供了叉乘的方法（向量叉乘）
-1print(Vector3.Cross(A.position, B.position));
-用向量叉乘判断目标在左侧还是右侧
-12345 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/07/11/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U2%E2%80%94%E2%80%94Unity%E5%9F%BA%E7%A1%80%E7%B3%BB%E5%88%97/U2L4%E2%80%94%E2%80%94Vector3%E5%90%91%E9%87%8F%E7%B3%BB%E5%88%97/U2L4-3%E2%80%94%E2%80%94%E5%90%91%E9%87%8F%E7%82%B9%E4%B9%98/" title="U2L4-3——向量点乘">U2L4-3——向量点乘</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-07-11T11:39:39.000Z" title="发表于 2023-07-11 19:39:39">2023-07-11</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U2%E2%80%94%E2%80%94Unity%E5%9F%BA%E7%A1%80%E7%B3%BB%E5%88%97/">U2——Unity基础系列</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U2%E2%80%94%E2%80%94Unity%E5%9F%BA%E7%A1%80%E7%B3%BB%E5%88%97/U2L4%E2%80%94%E2%80%94Vector3%E5%90%91%E9%87%8F%E7%B3%BB%E5%88%97/">U2L4——Vector3向量系列</a></span></div><div class="content">U2L4-3——向量点乘
-向量点乘
-向量点乘可以用来判断对象的方位，计算两个向量之间的夹角
-点乘计算公式：
-向量A:(Xa,Ya,Za)A:(X_a,Y_a,Z_a)A:(Xa​,Ya​,Za​)
-向量B:(Xb,Yb,Zb)B:(X_b,Y_b,Z_b)B:(Xb​,Yb​,Zb​)
-A⃗⋅B⃗=Xa×Xb+Ya×Yb+Za×Zb=∣A⃗∣∣B⃗∣cos⁡θ\vec{A} \cdot \vec{B} = X_a \times X_b + Y_a \times Y_b + Z_a \times Z_b = |\vec{A}||\vec{B}|\cos\theta
-A⋅B=Xa​×Xb​+Ya​×Yb​+Za​×Zb​=∣A∣∣B∣cosθ
-向量 · 向量 = 标量
-向量点乘的几何意义是：
-一个向量到另一个向量的投影的长度
-点乘结果 &gt; 0 两个向量夹角为锐角
-点乘结果 = 0 两个向量夹角为直角
-点乘结果 &lt; 0 两个向量夹角为钝角
-我们可以用这个规律判断对方的大致方位
-​​
-它与向量模长和单位向量知识延伸出：
-如果向量和自己的点乘结果为1，则该向量为单位向量：A⋅A=x2 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/07/11/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U2%E2%80%94%E2%80%94Unity%E5%9F%BA%E7%A1%80%E7%B3%BB%E5%88%97/U2L4%E2%80%94%E2%80%94Vector3%E5%90%91%E9%87%8F%E7%B3%BB%E5%88%97/U2L4-2%E2%80%94%E2%80%94%E5%90%91%E9%87%8F%E5%8A%A0%E5%87%8F%E4%B9%98%E9%99%A4/" title="U2L4-2——向量加减乘除">U2L4-2——向量加减乘除</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-07-11T09:43:17.000Z" title="发表于 2023-07-11 17:43:17">2023-07-11</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U2%E2%80%94%E2%80%94Unity%E5%9F%BA%E7%A1%80%E7%B3%BB%E5%88%97/">U2——Unity基础系列</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U2%E2%80%94%E2%80%94Unity%E5%9F%BA%E7%A1%80%E7%B3%BB%E5%88%97/U2L4%E2%80%94%E2%80%94Vector3%E5%90%91%E9%87%8F%E7%B3%BB%E5%88%97/">U2L4——Vector3向量系列</a></span></div><div class="content">U2L4-2——向量加减乘除
-Vector3的相互计算
-Vector3基础里已经包含了Vector3基本计算
-这里将详细讲解它们的几何意义
-
-向量加法 —— 主要用于位置平移和向量计算
-向量减法 —— 主要用于位置平移和向量计算
-向量乘除法 —— 主要用于模长放大缩小
-
-向量加法
-向量A：(Xa,Ya,Za)
-向量B：(Xb,Yb,Zb)
-A + B = (Xa + Xb, Ya + Yb, Za + Zb)
-1this.transform.position += new Vector3(1, 2, 3);
-Vector3+Vector3的意义
-
-
-位置+位置 几何意义：
-两个位置相加没有任何意义
-
-
-向量+向量 几何意义：
-两个向量相加得到一个新向量
-向量 + 向量 = 向量
-口诀： 向量相加，首尾相连
-
-
-​​
-
-位置+向量 几何意义：
-位置加向量得到一个新位置
-位置 + 向量 = 位置
-向量 + 位置 = 位置
-口诀： 位置和向量相加=平移位置
-
-​​
-向量减法
-向量A(Xa,Ya,Za)
-向量B(Xb,Yb,Zb)
-A - B = (Xa - Xb, Ya - Yb, Za - ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/07/11/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U2%E2%80%94%E2%80%94Unity%E5%9F%BA%E7%A1%80%E7%B3%BB%E5%88%97/U2L4%E2%80%94%E2%80%94Vector3%E5%90%91%E9%87%8F%E7%B3%BB%E5%88%97/U2L4-1%E2%80%94%E2%80%94%E5%90%91%E9%87%8F%E6%A8%A1%E9%95%BF%E5%92%8C%E5%8D%95%E4%BD%8D%E5%90%91%E9%87%8F/" title="U2L4-1——向量模长和单位向量">U2L4-1——向量模长和单位向量</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-07-11T09:35:54.000Z" title="发表于 2023-07-11 17:35:54">2023-07-11</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U2%E2%80%94%E2%80%94Unity%E5%9F%BA%E7%A1%80%E7%B3%BB%E5%88%97/">U2——Unity基础系列</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U2%E2%80%94%E2%80%94Unity%E5%9F%BA%E7%A1%80%E7%B3%BB%E5%88%97/U2L4%E2%80%94%E2%80%94Vector3%E5%90%91%E9%87%8F%E7%B3%BB%E5%88%97/">U2L4——Vector3向量系列</a></span></div><div class="content">U2L4-1——向量模长和单位向量
-向量模长和单位向量
-得到了向量 就可以利用 Vector3​ 中提供的 成员属性 得到 模长 和 单位向量
-
-模长：相当于可以得到 两点之间的距离
-单位向量：主要是用来进行移动计算的，它不会影响我们想要的移动结果，一般是用来表示方向
-
-本章代码关键字
-12vector3.magnitude        //获取向量的模长的属性，只想要长度，排除方向vector3.normalized        //获取模长为一的单位向量的属性，只想要方向，排除长度
-向量的模长
-向量的长度（只想要长度，排除方向）
-模长 相当于可以得到 两点之间的距离
-​Vector3​中提供了获取向量模长的成员属性magnitude​
-12345print(AB.magnitude);Vector3 C = new Vector3(5, 6, 7);print(C.magnitude);print(Vector3.Distance(A, B));
-单位向量
-模长为一的单位向量（只想要方向，排除长度）
-单位向量 主要是用来进行移动计算的 它不会影响我们想要的移动结果
-单位向量=向 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/07/11/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U2%E2%80%94%E2%80%94Unity%E5%9F%BA%E7%A1%80%E7%B3%BB%E5%88%97/U2L4%E2%80%94%E2%80%94Vector3%E5%90%91%E9%87%8F%E7%B3%BB%E5%88%97/" title="U2L4——Vector3向量系列">U2L4——Vector3向量系列</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-07-10T17:37:05.000Z" title="发表于 2023-07-11 01:37:05">2023-07-11</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U2%E2%80%94%E2%80%94Unity%E5%9F%BA%E7%A1%80%E7%B3%BB%E5%88%97/">U2——Unity基础系列</a></span></div><div class="content">U2L4——Vector3向量系列
-Vector3
-对于Vector3，我们已经在Vector3基础介绍了这个结构体，它的构造方法，成员变量，基本计算，常用坐标或单位向量和计算两点距离的方法
-在这里我们将进一步介绍它
-Vector3向量必备知识
-Vector3向量必备知识
-向量模长和单位向量
-向量模长和单位向量（距离，方向）
-向量加减乘除
-向量加减乘除的几何意义（位置平移和向量计算，模长放大缩小）
-向量点乘
-向量点乘（判断对象的方位，计算两个向量之间的夹角）
-向量叉乘
-向量叉乘（得到一个平面的法向量，得到两个向量之间的左右位置关系）
-向量插值运算
-向量插值计算（用于逐帧缓动）
-</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/07/11/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U2%E2%80%94%E2%80%94Unity%E5%9F%BA%E7%A1%80%E7%B3%BB%E5%88%97/U2L3%E2%80%94%E2%80%94%E5%9D%90%E6%A0%87%E7%B3%BB/" title="U2L3——坐标系">U2L3——坐标系</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-07-10T17:01:13.000Z" title="发表于 2023-07-11 01:01:13">2023-07-11</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U2%E2%80%94%E2%80%94Unity%E5%9F%BA%E7%A1%80%E7%B3%BB%E5%88%97/">U2——Unity基础系列</a></span></div><div class="content">U2L3——坐标系
-本章代码关键字
-123456789101112131415161718192021222324252627282930//世界坐标系this.transform.position;            //对象相对于世界坐标系的位置的属性this.transform.rotation;            //对象相对于世界坐标系的旋转角度的属性，用四元数表示this.transform.eulerAngles;            //游戏对象相对于世界坐标系的角度的属性，用欧拉角表示this.transform.lossyScale;            //游戏对象相对于世界坐标系的缩放大小//物体坐标系this.transform.localPosition;            //对象相对于父对象坐标系的位置的属性this.transform.localEulerAngles;        //对象相对于父对象的坐标系的角度的属性，用欧拉角表示，这里得到的角度范围一定是0~360this.transform.localRotation;    ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/07/11/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U2%E2%80%94%E2%80%94Unity%E5%9F%BA%E7%A1%80%E7%B3%BB%E5%88%97/U2L2%E2%80%94%E2%80%94Mathf%E4%B8%89%E8%A7%92%E5%87%BD%E6%95%B0/" title="U2L2——Mathf三角函数">U2L2——Mathf三角函数</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-07-10T16:27:57.000Z" title="发表于 2023-07-11 00:27:57">2023-07-11</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U2%E2%80%94%E2%80%94Unity%E5%9F%BA%E7%A1%80%E7%B3%BB%E5%88%97/">U2——Unity基础系列</a></span></div><div class="content">U2L2——Mathf三角函数
-​Mathf​类包含了计算三角函数的方法
-注意：Mathf中的三角函数相关函数，传入的函数一定是需要弧度值！！！ （180°=1π）
-三角函数的相关知识
-
-三角函数是基本初等函数之一 ，
-是以角度（数学上最常用弧度制，下同）为自变量，角度对应任意角终边与单位圆交点坐标或其比值为因变量的函数。
-也可以等价地用与单位圆有关的各种线段的长度来定义。
-三角函数（数学名词）_百度百科 (baidu.com)
-
-
-
-
-基本函数
-英文
-缩写
-表达式
-语言描述
-
-
-
-
-正弦函数
-sine
-sin
-a/c
-∠A的对边比斜边
-
-
-余弦函数
-cosine
-cos
-b/c
-∠A的邻边比斜边
-
-
-正切函数
-tangent
-tan
-a/b
-∠A的对边比邻边
-
-
-余切函数
-cotangent
-cot
-b/a
-∠A的邻边比对边
-
-
-正割函数
-secant
-sec
-c/b
-∠A的斜边比邻边
-
-
-余割函数
-cosecant
-csc
-c/a
-∠A的斜边比对边
-
-
-
-​​
-
-反三角函数是一种基本初等函数。
-它是反正弦arcsin x，反余弦arccos x，反正切arctan x，反余切arc ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/07/10/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U2%E2%80%94%E2%80%94Unity%E5%9F%BA%E7%A1%80%E7%B3%BB%E5%88%97/U2L1%E2%80%94%E2%80%94Mathf/" title="U2L1——Mathf">U2L1——Mathf</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-07-10T15:33:50.000Z" title="发表于 2023-07-10 23:33:50">2023-07-10</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U2%E2%80%94%E2%80%94Unity%E5%9F%BA%E7%A1%80%E7%B3%BB%E5%88%97/">U2——Unity基础系列</a></span></div><div class="content">U2L1——Mathf
-Mathf
-
-​Math​ 是 C# 封装好的用于数学计算的工具类 —— 位与 System​ 命名空间中，即：System.Math​
-Mathf​ 是 Unity 中封装好的用于数学计算的工具结构体 —— 位于 UnityEngine​ 命名空间中
-
-他们都是提供来用于进行数学计算的
-区别在于：
-​Mathf​ 和 Math​ 中的相关方法几乎一样
-​Math​ 是 C# 自带的工具类 提供一些数学相关的计算方法
-​Mathf​ 是 Unity 专门封装的，不仅包含 Math 中的方法 还多了一些适用于游戏开发的方法
-所以在 Unity 开发里，使用 Mathf​ 中的方法用于数学计算即可
-本章代码关键字
-12345678910111213141516Mathf.PI                        //πMathf.Abs()                        //绝对值Mathf.CeilToInt()                //向上取整，直接加一Mathf.FloorToInt()                //向 ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/90/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/90/#content-inner">90</a><span class="page-number current">91</span><a class="page-number" href="/page/92/#content-inner">92</a><span class="space">&hellip;</span><a class="page-number" href="/page/97/#content-inner">97</a><a class="extend next" rel="next" href="/page/92/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/Blue_Ice.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">文KRIFE齐</div><div class="author-info__description">正在努力学习Unity，希望下半年可以找到实习</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">963</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">122</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/enjoySevenLIU"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/enjoySevenLIU" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">恢复更新了，但是更新会变缓，取决于实习工作量多大</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/11/23/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S4%E2%80%94%E2%80%94%E6%B8%B2%E6%9F%93%E8%B7%AF%E5%BE%84/US3S4L5%E2%80%94%E2%80%94%E6%B8%B2%E6%9F%93%E8%B7%AF%E5%BE%84%E5%AF%B9%E6%AF%94/" title="US3S4L5——渲染路径对比">US3S4L5——渲染路径对比</a><time datetime="2024-11-23T09:25:14.000Z" title="发表于 2024-11-23 17:25:14">2024-11-23</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/11/23/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S4%E2%80%94%E2%80%94%E6%B8%B2%E6%9F%93%E8%B7%AF%E5%BE%84/US3S4L4%E2%80%94%E2%80%94%E5%BB%B6%E8%BF%9F%E6%B8%B2%E6%9F%93%E8%B7%AF%E5%BE%84/" title="US3S4L4——延迟渲染路径">US3S4L4——延迟渲染路径</a><time datetime="2024-11-23T08:57:40.000Z" title="发表于 2024-11-23 16:57:40">2024-11-23</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/11/23/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S4%E2%80%94%E2%80%94%E6%B8%B2%E6%9F%93%E8%B7%AF%E5%BE%84/US3S4L3%E2%80%94%E2%80%94%E9%A1%B6%E7%82%B9%E7%85%A7%E6%98%8E%E6%B8%B2%E6%9F%93%E8%B7%AF%E5%BE%84/" title="US3S4L3——顶点照明渲染路径">US3S4L3——顶点照明渲染路径</a><time datetime="2024-11-23T07:25:53.000Z" title="发表于 2024-11-23 15:25:53">2024-11-23</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/11/23/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S4%E2%80%94%E2%80%94%E6%B8%B2%E6%9F%93%E8%B7%AF%E5%BE%84/US3S4L2%E2%80%94%E2%80%94%E5%89%8D%E5%90%91%E6%B8%B2%E6%9F%93%E8%B7%AF%E5%BE%84/" title="US3S4L2——前向渲染路径">US3S4L2——前向渲染路径</a><time datetime="2024-11-23T07:25:42.000Z" title="发表于 2024-11-23 15:25:42">2024-11-23</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/11/23/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S4%E2%80%94%E2%80%94%E6%B8%B2%E6%9F%93%E8%B7%AF%E5%BE%84/US3S4L1%E2%80%94%E2%80%94%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E6%A6%82%E8%BF%B0/" title="US3S4L1——渲染管线概述">US3S4L1——渲染管线概述</a><time datetime="2024-11-23T07:16:33.000Z" title="发表于 2024-11-23 15:16:33">2024-11-23</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+  isShuoshuo: false
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div class="page" id="body-wrap"><header class="full_page" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">文KRIFE齐的博客</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div></div></nav><div id="site-info"><h1 id="site-title">文KRIFE齐的博客</h1></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts nc" id="recent-posts"><div class="recent-post-items"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/07/11/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U2%E2%80%94%E2%80%94Unity%E5%9F%BA%E7%A1%80%E7%B3%BB%E5%88%97/U2L5%E2%80%94%E2%80%94%E5%9B%9B%E5%85%83%E6%95%B0/" title="U2L5——四元数">U2L5——四元数</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-07-11T14:15:41.000Z" title="发表于 2023-07-11 22:15:41">2023-07-11</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U2%E2%80%94%E2%80%94Unity%E5%9F%BA%E7%A1%80%E7%B3%BB%E5%88%97/">U2——Unity基础系列</a></span></div><div class="content">U2L5——四元数 四元数  四元数，是简单的超复数。 复数是由实数加上虚数单位 i 组成，其中i²= -1。 相似地，四元数都是由实数加上三个虚数单位 i、j和k 组成，而且它们有如下的关系： i² = j² = k² = -1， iº = jº = kº = 1 , 每个四元数都是 1、i、j 和 k 的线性组合，即是四元数一般可表示为a + bi+ cj + dk，其中a、b、c 、d是实数。 对于i、j和k本身的几何意义可以理解为一种旋转，其中i旋转代表Z轴与Y轴相交平面中Z轴正向向Y轴正向的旋转，j旋转代表X轴与Z轴相交平面中X轴正向向Z轴正向的旋转，k旋转代表Y轴与X轴相交平面中Y轴正向向X轴正向的旋转，-i、-j、-k分别代表i、j、k旋转的反向旋转。 四元数_百度百科...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/07/11/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U2%E2%80%94%E2%80%94Unity%E5%9F%BA%E7%A1%80%E7%B3%BB%E5%88%97/U2L4%E2%80%94%E2%80%94Vector3%E5%90%91%E9%87%8F%E7%B3%BB%E5%88%97/U2L4-5%E2%80%94%E2%80%94%E5%90%91%E9%87%8F%E6%8F%92%E5%80%BC%E8%AE%A1%E7%AE%97/" title="U2L4-5——向量插值计算">U2L4-5——向量插值计算</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-07-11T11:42:11.000Z" title="发表于 2023-07-11 19:42:11">2023-07-11</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U2%E2%80%94%E2%80%94Unity%E5%9F%BA%E7%A1%80%E7%B3%BB%E5%88%97/">U2——Unity基础系列</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U2%E2%80%94%E2%80%94Unity%E5%9F%BA%E7%A1%80%E7%B3%BB%E5%88%97/U2L4%E2%80%94%E2%80%94Vector3%E5%90%91%E9%87%8F%E7%B3%BB%E5%88%97/">U2L4——Vector3向量系列</a></span></div><div class="content">U2L4-5——向量插值计算 向量插值计算 Vector3也有为向量插值计算的方法，（插值计算相关概念） 本章代码关键字 12Vector3.Lerp()    //向量线性插值Vector3.Slerp()    //向量球形插值 线性插值 一般用于跟随移动，摄像机跟随等 对两个点进行插值计算，t的取值范围是0~1 公式：result = start + (end - start) * t 1A.position = Vector3.Lerp(A.position, target.position, Time.deltaTime); 线性插值计算也有两种应用 先快后慢趋近 先快后慢 每帧改变start位置 位置无限接近但不会得到end位置 123//result = start + (end - start) * t//先快后慢 每帧改变start位置 位置无限接近但不会得到end位置A.position = Vector3.Lerp(A.position, target.position, Time.deltaTime); 匀速接近 匀速 每帧改变时间 当&gt;=1时...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/07/11/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U2%E2%80%94%E2%80%94Unity%E5%9F%BA%E7%A1%80%E7%B3%BB%E5%88%97/U2L4%E2%80%94%E2%80%94Vector3%E5%90%91%E9%87%8F%E7%B3%BB%E5%88%97/U2L4-4%E2%80%94%E2%80%94%E5%90%91%E9%87%8F%E5%8F%89%E4%B9%98/" title="U2L4-4——向量叉乘">U2L4-4——向量叉乘</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-07-11T11:41:47.000Z" title="发表于 2023-07-11 19:41:47">2023-07-11</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U2%E2%80%94%E2%80%94Unity%E5%9F%BA%E7%A1%80%E7%B3%BB%E5%88%97/">U2——Unity基础系列</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U2%E2%80%94%E2%80%94Unity%E5%9F%BA%E7%A1%80%E7%B3%BB%E5%88%97/U2L4%E2%80%94%E2%80%94Vector3%E5%90%91%E9%87%8F%E7%B3%BB%E5%88%97/">U2L4——Vector3向量系列</a></span></div><div class="content">U2L4-4——向量叉乘 向量叉乘 向量×向量 向量A (Xa,Ya,Za) 向量B (Xb,Yb,Zb) A x B = (X,Y,Z) X = YaZb - ZaYb Y = ZaXb - XaZb Z = XaYb - YaXb A x B 得到的向量同时垂直A和B A x B 向量垂直于A和B 组成的平面 A x B = -(B x A) ​​ 向量叉乘的几何意义是： 假设向量 A和B 都在XZ平面上 向量A 叉乘 向量B 结果大于0 说明 B在A右侧 结果小于0 说明 B在A左侧这个左侧右侧的判定标准是以OA向量方向为准 ​​ 向量叉乘对于我们的意义  得到一个平面的法向量 得到两个向量之间的左右位置关系  注意！叉乘左右两边向量如果互换位置结果会变为原来的负向量，因此切记要确定叉乘的左向量和右向量 本章代码关键字 1Vector3.Cross(, )    //计算两个向量叉乘的方法 叉乘计算 Vector3提供了叉乘的方法（向量叉乘） 1print(Vector3.Cross(A.position,...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/07/11/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U2%E2%80%94%E2%80%94Unity%E5%9F%BA%E7%A1%80%E7%B3%BB%E5%88%97/U2L4%E2%80%94%E2%80%94Vector3%E5%90%91%E9%87%8F%E7%B3%BB%E5%88%97/U2L4-3%E2%80%94%E2%80%94%E5%90%91%E9%87%8F%E7%82%B9%E4%B9%98/" title="U2L4-3——向量点乘">U2L4-3——向量点乘</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-07-11T11:39:39.000Z" title="发表于 2023-07-11 19:39:39">2023-07-11</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U2%E2%80%94%E2%80%94Unity%E5%9F%BA%E7%A1%80%E7%B3%BB%E5%88%97/">U2——Unity基础系列</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U2%E2%80%94%E2%80%94Unity%E5%9F%BA%E7%A1%80%E7%B3%BB%E5%88%97/U2L4%E2%80%94%E2%80%94Vector3%E5%90%91%E9%87%8F%E7%B3%BB%E5%88%97/">U2L4——Vector3向量系列</a></span></div><div class="content">U2L4-3——向量点乘 向量点乘 向量点乘可以用来判断对象的方位，计算两个向量之间的夹角 点乘计算公式： 向量A:(Xa,Ya,Za)A:(X_a,Y_a,Z_a)A:(Xa​,Ya​,Za​) 向量B:(Xb,Yb,Zb)B:(X_b,Y_b,Z_b)B:(Xb​,Yb​,Zb​) A⃗⋅B⃗=Xa×Xb+Ya×Yb+Za×Zb=∣A⃗∣∣B⃗∣cos⁡θ\vec{A} \cdot \vec{B} = X_a \times X_b + Y_a \times Y_b + Z_a \times Z_b = |\vec{A}||\vec{B}|\cos\theta A⋅B=Xa​×Xb​+Ya​×Yb​+Za​×Zb​=∣A∣∣B∣cosθ 向量 · 向量 = 标量 向量点乘的几何意义是： 一个向量到另一个向量的投影的长度 点乘结果 &gt; 0 两个向量夹角为锐角 点乘结果 = 0 两个向量夹角为直角 点乘结果 &lt; 0...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/07/11/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U2%E2%80%94%E2%80%94Unity%E5%9F%BA%E7%A1%80%E7%B3%BB%E5%88%97/U2L4%E2%80%94%E2%80%94Vector3%E5%90%91%E9%87%8F%E7%B3%BB%E5%88%97/U2L4-2%E2%80%94%E2%80%94%E5%90%91%E9%87%8F%E5%8A%A0%E5%87%8F%E4%B9%98%E9%99%A4/" title="U2L4-2——向量加减乘除">U2L4-2——向量加减乘除</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-07-11T09:43:17.000Z" title="发表于 2023-07-11 17:43:17">2023-07-11</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U2%E2%80%94%E2%80%94Unity%E5%9F%BA%E7%A1%80%E7%B3%BB%E5%88%97/">U2——Unity基础系列</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U2%E2%80%94%E2%80%94Unity%E5%9F%BA%E7%A1%80%E7%B3%BB%E5%88%97/U2L4%E2%80%94%E2%80%94Vector3%E5%90%91%E9%87%8F%E7%B3%BB%E5%88%97/">U2L4——Vector3向量系列</a></span></div><div class="content">U2L4-2——向量加减乘除 Vector3的相互计算 Vector3基础里已经包含了Vector3基本计算 这里将详细讲解它们的几何意义  向量加法 —— 主要用于位置平移和向量计算 向量减法 —— 主要用于位置平移和向量计算 向量乘除法 —— 主要用于模长放大缩小  向量加法 向量A：(Xa,Ya,Za) 向量B：(Xb,Yb,Zb) A + B = (Xa + Xb, Ya + Yb, Za + Zb) 1this.transform.position += new Vector3(1, 2, 3); Vector3+Vector3的意义   位置+位置 几何意义： 两个位置相加没有任何意义   向量+向量 几何意义： 两个向量相加得到一个新向量 向量 + 向量 = 向量 口诀： 向量相加，首尾相连   ​​  位置+向量 几何意义： 位置加向量得到一个新位置 位置 + 向量 = 位置 向量 + 位置 = 位置 口诀： 位置和向量相加=平移位置  ​​ 向量减法 向量A(Xa,Ya,Za) 向量B(Xb,Yb,Zb) A - B = (Xa - Xb, Ya - Yb,...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/07/11/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U2%E2%80%94%E2%80%94Unity%E5%9F%BA%E7%A1%80%E7%B3%BB%E5%88%97/U2L4%E2%80%94%E2%80%94Vector3%E5%90%91%E9%87%8F%E7%B3%BB%E5%88%97/U2L4-1%E2%80%94%E2%80%94%E5%90%91%E9%87%8F%E6%A8%A1%E9%95%BF%E5%92%8C%E5%8D%95%E4%BD%8D%E5%90%91%E9%87%8F/" title="U2L4-1——向量模长和单位向量">U2L4-1——向量模长和单位向量</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-07-11T09:35:54.000Z" title="发表于 2023-07-11 17:35:54">2023-07-11</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U2%E2%80%94%E2%80%94Unity%E5%9F%BA%E7%A1%80%E7%B3%BB%E5%88%97/">U2——Unity基础系列</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U2%E2%80%94%E2%80%94Unity%E5%9F%BA%E7%A1%80%E7%B3%BB%E5%88%97/U2L4%E2%80%94%E2%80%94Vector3%E5%90%91%E9%87%8F%E7%B3%BB%E5%88%97/">U2L4——Vector3向量系列</a></span></div><div class="content">U2L4-1——向量模长和单位向量 向量模长和单位向量 得到了向量 就可以利用 Vector3​ 中提供的 成员属性 得到 模长 和 单位向量  模长：相当于可以得到 两点之间的距离 单位向量：主要是用来进行移动计算的，它不会影响我们想要的移动结果，一般是用来表示方向  本章代码关键字 12vector3.magnitude        //获取向量的模长的属性，只想要长度，排除方向vector3.normalized        //获取模长为一的单位向量的属性，只想要方向，排除长度 向量的模长 向量的长度（只想要长度，排除方向） 模长 相当于可以得到 两点之间的距离 ​Vector3​中提供了获取向量模长的成员属性magnitude​ 12345print(AB.magnitude);Vector3 C = new Vector3(5, 6, 7);print(C.magnitude);print(Vector3.Distance(A, B)); 单位向量 模长为一的单位向量（只想要方向，排除长度） 单位向量 主要是用来进行移动计算的...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/07/11/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U2%E2%80%94%E2%80%94Unity%E5%9F%BA%E7%A1%80%E7%B3%BB%E5%88%97/U2L4%E2%80%94%E2%80%94Vector3%E5%90%91%E9%87%8F%E7%B3%BB%E5%88%97/" title="U2L4——Vector3向量系列">U2L4——Vector3向量系列</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-07-10T17:37:05.000Z" title="发表于 2023-07-11 01:37:05">2023-07-11</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U2%E2%80%94%E2%80%94Unity%E5%9F%BA%E7%A1%80%E7%B3%BB%E5%88%97/">U2——Unity基础系列</a></span></div><div class="content">U2L4——Vector3向量系列 Vector3 对于Vector3，我们已经在Vector3基础介绍了这个结构体，它的构造方法，成员变量，基本计算，常用坐标或单位向量和计算两点距离的方法 在这里我们将进一步介绍它 Vector3向量必备知识 Vector3向量必备知识 向量模长和单位向量 向量模长和单位向量（距离，方向） 向量加减乘除 向量加减乘除的几何意义（位置平移和向量计算，模长放大缩小） 向量点乘 向量点乘（判断对象的方位，计算两个向量之间的夹角） 向量叉乘 向量叉乘（得到一个平面的法向量，得到两个向量之间的左右位置关系） 向量插值运算 向量插值计算（用于逐帧缓动） </div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/07/11/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U2%E2%80%94%E2%80%94Unity%E5%9F%BA%E7%A1%80%E7%B3%BB%E5%88%97/U2L3%E2%80%94%E2%80%94%E5%9D%90%E6%A0%87%E7%B3%BB/" title="U2L3——坐标系">U2L3——坐标系</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-07-10T17:01:13.000Z" title="发表于 2023-07-11 01:01:13">2023-07-11</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U2%E2%80%94%E2%80%94Unity%E5%9F%BA%E7%A1%80%E7%B3%BB%E5%88%97/">U2——Unity基础系列</a></span></div><div class="content">U2L3——坐标系 本章代码关键字 123456789101112131415161718192021222324252627282930//世界坐标系this.transform.position;            //对象相对于世界坐标系的位置的属性this.transform.rotation;            //对象相对于世界坐标系的旋转角度的属性，用四元数表示this.transform.eulerAngles;            //游戏对象相对于世界坐标系的角度的属性，用欧拉角表示this.transform.lossyScale;            //游戏对象相对于世界坐标系的缩放大小//物体坐标系this.transform.localPosition;            //对象相对于父对象坐标系的位置的属性this.transform.localEulerAngles;       ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/07/11/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U2%E2%80%94%E2%80%94Unity%E5%9F%BA%E7%A1%80%E7%B3%BB%E5%88%97/U2L2%E2%80%94%E2%80%94Mathf%E4%B8%89%E8%A7%92%E5%87%BD%E6%95%B0/" title="U2L2——Mathf三角函数">U2L2——Mathf三角函数</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-07-10T16:27:57.000Z" title="发表于 2023-07-11 00:27:57">2023-07-11</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U2%E2%80%94%E2%80%94Unity%E5%9F%BA%E7%A1%80%E7%B3%BB%E5%88%97/">U2——Unity基础系列</a></span></div><div class="content">U2L2——Mathf三角函数 ​Mathf​类包含了计算三角函数的方法 注意：Mathf中的三角函数相关函数，传入的函数一定是需要弧度值！！！ （180°=1π） 三角函数的相关知识  三角函数是基本初等函数之一 ， 是以角度（数学上最常用弧度制，下同）为自变量，角度对应任意角终边与单位圆交点坐标或其比值为因变量的函数。 也可以等价地用与单位圆有关的各种线段的长度来定义。 三角函数（数学名词）_百度百科 (baidu.com)     基本函数 英文 缩写 表达式 语言描述     正弦函数 sine sin a/c ∠A的对边比斜边   余弦函数 cosine cos b/c ∠A的邻边比斜边   正切函数 tangent tan a/b ∠A的对边比邻边   余切函数 cotangent cot b/a ∠A的邻边比对边   正割函数 secant sec c/b ∠A的斜边比邻边   余割函数 cosecant csc c/a ∠A的斜边比对边    ​​  反三角函数是一种基本初等函数。 它是反正弦arcsin x，反余弦arccos x，反正切arctan...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/07/10/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U2%E2%80%94%E2%80%94Unity%E5%9F%BA%E7%A1%80%E7%B3%BB%E5%88%97/U2L1%E2%80%94%E2%80%94Mathf/" title="U2L1——Mathf">U2L1——Mathf</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-07-10T15:33:50.000Z" title="发表于 2023-07-10 23:33:50">2023-07-10</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U2%E2%80%94%E2%80%94Unity%E5%9F%BA%E7%A1%80%E7%B3%BB%E5%88%97/">U2——Unity基础系列</a></span></div><div class="content">U2L1——Mathf Mathf  ​Math​ 是 C# 封装好的用于数学计算的工具类 —— 位与 System​ 命名空间中，即：System.Math​ Mathf​ 是 Unity 中封装好的用于数学计算的工具结构体 —— 位于 UnityEngine​ 命名空间中  他们都是提供来用于进行数学计算的 区别在于： ​Mathf​ 和 Math​ 中的相关方法几乎一样 ​Math​ 是 C# 自带的工具类 提供一些数学相关的计算方法 ​Mathf​ 是 Unity 专门封装的，不仅包含 Math 中的方法 还多了一些适用于游戏开发的方法 所以在 Unity 开发里，使用 Mathf​ 中的方法用于数学计算即可 本章代码关键字 12345678910111213141516Mathf.PI                        //πMathf.Abs()                        //绝对值Mathf.CeilToInt()                //向上取整，直接加一Mathf.FloorToInt()               ...</div></div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/90/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/90/#content-inner">90</a><span class="page-number current">91</span><a class="page-number" href="/page/92/#content-inner">92</a><span class="space">&hellip;</span><a class="page-number" href="/page/97/#content-inner">97</a><a class="extend next" rel="next" href="/page/92/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">文KRIFE齐</div><div class="author-info-description">Unity就业路线的笔记终于快更新完了！</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">963</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">122</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/11/23/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S4%E2%80%94%E2%80%94%E6%B8%B2%E6%9F%93%E8%B7%AF%E5%BE%84/US3S4L5%E2%80%94%E2%80%94%E6%B8%B2%E6%9F%93%E8%B7%AF%E5%BE%84%E5%AF%B9%E6%AF%94/" title="US3S4L5——渲染路径对比">US3S4L5——渲染路径对比</a><time datetime="2024-11-23T09:25:14.000Z" title="发表于 2024-11-23 17:25:14">2024-11-23</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/11/23/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S4%E2%80%94%E2%80%94%E6%B8%B2%E6%9F%93%E8%B7%AF%E5%BE%84/US3S4L4%E2%80%94%E2%80%94%E5%BB%B6%E8%BF%9F%E6%B8%B2%E6%9F%93%E8%B7%AF%E5%BE%84/" title="US3S4L4——延迟渲染路径">US3S4L4——延迟渲染路径</a><time datetime="2024-11-23T08:57:40.000Z" title="发表于 2024-11-23 16:57:40">2024-11-23</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/11/23/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S4%E2%80%94%E2%80%94%E6%B8%B2%E6%9F%93%E8%B7%AF%E5%BE%84/US3S4L3%E2%80%94%E2%80%94%E9%A1%B6%E7%82%B9%E7%85%A7%E6%98%8E%E6%B8%B2%E6%9F%93%E8%B7%AF%E5%BE%84/" title="US3S4L3——顶点照明渲染路径">US3S4L3——顶点照明渲染路径</a><time datetime="2024-11-23T07:25:53.000Z" title="发表于 2024-11-23 15:25:53">2024-11-23</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/11/23/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S4%E2%80%94%E2%80%94%E6%B8%B2%E6%9F%93%E8%B7%AF%E5%BE%84/US3S4L2%E2%80%94%E2%80%94%E5%89%8D%E5%90%91%E6%B8%B2%E6%9F%93%E8%B7%AF%E5%BE%84/" title="US3S4L2——前向渲染路径">US3S4L2——前向渲染路径</a><time datetime="2024-11-23T07:25:42.000Z" title="发表于 2024-11-23 15:25:42">2024-11-23</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/11/23/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S4%E2%80%94%E2%80%94%E6%B8%B2%E6%9F%93%E8%B7%AF%E5%BE%84/US3S4L1%E2%80%94%E2%80%94%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E6%A6%82%E8%BF%B0/" title="US3S4L1——渲染管线概述">US3S4L1——渲染管线概述</a><time datetime="2024-11-23T07:16:33.000Z" title="发表于 2024-11-23 15:16:33">2024-11-23</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
             <i class="fas fa-folder-open"></i>
             <span>分类</span>
             <a class="card-more-btn" href="/categories/" title="查看更多">
-    <i class="fas fa-angle-right"></i></a>
-            </div>
-            <ul class="card-category-list" id="aside-cat-list">
+      <i class="fas fa-angle-right"></i></a>
+          </div>
+          <ul class="card-category-list" id="aside-cat-list">
             <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><span class="card-category-list-name">Unity就业路线学习笔记</span><span class="card-category-list-count">962</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/"><span class="card-category-list-name">CS——CSharp笔记</span><span class="card-category-list-count">106</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/CS1%E2%80%94%E2%80%94CSharp%E5%85%A5%E9%97%A8%E7%B3%BB%E5%88%97/"><span class="card-category-list-name">CS1——CSharp入门系列</span><span class="card-category-list-count">22</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/CS2%E2%80%94%E2%80%94CSharp%E5%9F%BA%E7%A1%80%E7%B3%BB%E5%88%97/"><span class="card-category-list-name">CS2——CSharp基础系列</span><span class="card-category-list-count">13</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/CS3%E2%80%94%E2%80%94CSharp%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/"><span class="card-category-list-name">CS3——CSharp核心系列</span><span class="card-category-list-count">30</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/CS4%E2%80%94%E2%80%94CSharp%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/"><span class="card-category-list-name">CS4——CSharp进阶系列</span><span class="card-category-list-count">17</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/CS5%E2%80%94%E2%80%94CSharp%E7%9F%A5%E8%AF%86%E8%A1%A5%E5%85%85/"><span class="card-category-list-name">CS5——CSharp知识补充</span><span class="card-category-list-count">19</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/CS5%E2%80%94%E2%80%94CSharp%E7%9F%A5%E8%AF%86%E8%A1%A5%E5%85%85/CS5L13%E2%80%94%E2%80%94LINQ%E5%85%A5%E9%97%A8%E5%AE%9E%E4%BE%8B/"><span class="card-category-list-name">CS5L13——LINQ入门实例</span><span class="card-category-list-count">3</span></a></li></ul></li></ul></li></ul></li>
-            </ul></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span><a class="card-more-btn" href="/archives/" title="查看更多">
-    <i class="fas fa-angle-right"></i></a></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/11/"><span class="card-archive-list-date">十一月 2024</span><span class="card-archive-list-count">22</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/10/"><span class="card-archive-list-date">十月 2024</span><span class="card-archive-list-count">27</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/09/"><span class="card-archive-list-date">九月 2024</span><span class="card-archive-list-count">42</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/07/"><span class="card-archive-list-date">七月 2024</span><span class="card-archive-list-count">39</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/06/"><span class="card-archive-list-date">六月 2024</span><span class="card-archive-list-count">51</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/05/"><span class="card-archive-list-date">五月 2024</span><span class="card-archive-list-count">56</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/04/"><span class="card-archive-list-date">四月 2024</span><span class="card-archive-list-count">127</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/03/"><span class="card-archive-list-date">三月 2024</span><span class="card-archive-list-count">135</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">963</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2024-11-23T09:42:12.135Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By 文KRIFE齐</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>
+          </ul></div><div class="card-widget card-archives">
+    <div class="item-headline">
+      <i class="fas fa-archive"></i>
+      <span>归档</span>
+      <a class="card-more-btn" href="/archives/" title="查看更多"><i class="fas fa-angle-right"></i></a>
+    </div>
+    <ul class="card-archive-list">
+  
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2024/11/">
+          <span class="card-archive-list-date">十一月 2024</span>
+          <span class="card-archive-list-count">22</span>
+        </a>
+      </li>
+    
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2024/10/">
+          <span class="card-archive-list-date">十月 2024</span>
+          <span class="card-archive-list-count">27</span>
+        </a>
+      </li>
+    
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2024/09/">
+          <span class="card-archive-list-date">九月 2024</span>
+          <span class="card-archive-list-count">42</span>
+        </a>
+      </li>
+    
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2024/07/">
+          <span class="card-archive-list-date">七月 2024</span>
+          <span class="card-archive-list-count">39</span>
+        </a>
+      </li>
+    
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2024/06/">
+          <span class="card-archive-list-date">六月 2024</span>
+          <span class="card-archive-list-count">51</span>
+        </a>
+      </li>
+    
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2024/05/">
+          <span class="card-archive-list-date">五月 2024</span>
+          <span class="card-archive-list-count">56</span>
+        </a>
+      </li>
+    
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2024/04/">
+          <span class="card-archive-list-date">四月 2024</span>
+          <span class="card-archive-list-count">127</span>
+        </a>
+      </li>
+    
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2024/03/">
+          <span class="card-archive-list-date">三月 2024</span>
+          <span class="card-archive-list-count">135</span>
+        </a>
+      </li>
+    </ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站信息</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">963</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总浏览量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2024-12-15T07:08:02.505Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2024 By 文KRIFE齐</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>

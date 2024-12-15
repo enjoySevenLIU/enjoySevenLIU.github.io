@@ -1,24 +1,113 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>文KRIFE齐的博客 - 笔记发布站</title><meta name="author" content="文KRIFE齐"><meta name="copyright" content="文KRIFE齐"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="正在努力学习Unity，希望下半年可以找到实习">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>文KRIFE齐的博客 - 笔记发布站</title><meta name="author" content="文KRIFE齐"><meta name="copyright" content="文KRIFE齐"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Unity就业路线的笔记终于快更新完了！">
 <meta property="og:type" content="website">
 <meta property="og:title" content="文KRIFE齐的博客">
 <meta property="og:url" content="https://enjoysevenliu.github.io/page/69/index.html">
 <meta property="og:site_name" content="文KRIFE齐的博客">
-<meta property="og:description" content="正在努力学习Unity，希望下半年可以找到实习">
+<meta property="og:description" content="Unity就业路线的笔记终于快更新完了！">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://enjoysevenliu.github.io/img/Blue_Ice.png">
+<meta property="og:image" content="https://enjoysevenliu.github.io/img/butterfly-icon.png">
 <meta property="article:author" content="文KRIFE齐">
 <meta property="article:tag" content="blog">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://enjoysevenliu.github.io/img/Blue_Ice.png"><link rel="shortcut icon" href="/img/Blue_Ice.png"><link rel="canonical" href="https://enjoysevenliu.github.io/page/69/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+<meta name="twitter:image" content="https://enjoysevenliu.github.io/img/butterfly-icon.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://enjoysevenliu.github.io/page/69/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
   root: '/',
   algolia: undefined,
-  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
   translate: undefined,
-  noticeOutdate: undefined,
-  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
   copy: {
     success: '复制成功',
-    error: '复制错误',
+    error: '复制失败',
     noSupport: '浏览器不支持'
   },
   relativeDate: {
@@ -34,10 +123,10 @@
     month: '个月前'
   },
   copyright: undefined,
-  lightbox: 'fancybox',
+  lightbox: 'null',
   Snackbar: undefined,
   infinitegrid: {
-    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
     buttonText: '加载更多'
   },
   isPhotoFigcaption: false,
@@ -54,219 +143,76 @@
   isHome: true,
   isHighlightShrink: false,
   isToc: false,
-  postUpdate: '2024-11-23 17:42:15'
-}</script><script>(win=>{
-      win.saveToLocal = {
-        set: (key, value, ttl) => {
-          if (ttl === 0) return
-          const now = Date.now()
-          const expiry = now + ttl * 86400000
-          const item = {
-            value,
-            expiry
-          }
-          localStorage.setItem(key, JSON.stringify(item))
-        },
-      
-        get: key => {
-          const itemStr = localStorage.getItem(key)
-      
-          if (!itemStr) {
-            return undefined
-          }
-          const item = JSON.parse(itemStr)
-          const now = Date.now()
-      
-          if (now > item.expiry) {
-            localStorage.removeItem(key)
-            return undefined
-          }
-          return item.value
-        }
-      }
-    
-      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
-        const script = document.createElement('script')
-        script.src = url
-        script.async = true
-        script.onerror = reject
-        script.onload = script.onreadystatechange = function() {
-          const loadState = this.readyState
-          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
-          script.onload = script.onreadystatechange = null
-          resolve()
-        }
-
-        Object.keys(attr).forEach(key => {
-          script.setAttribute(key, attr[key])
-        })
-
-        document.head.appendChild(script)
-      })
-    
-      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
-        const link = document.createElement('link')
-        link.rel = 'stylesheet'
-        link.href = url
-        if (id) link.id = id
-        link.onerror = reject
-        link.onload = link.onreadystatechange = function() {
-          const loadState = this.readyState
-          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
-          link.onload = link.onreadystatechange = null
-          resolve()
-        }
-        document.head.appendChild(link)
-      })
-    
-      win.activateDarkMode = () => {
-        document.documentElement.setAttribute('data-theme', 'dark')
-        if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
-        }
-      }
-      win.activateLightMode = () => {
-        document.documentElement.setAttribute('data-theme', 'light')
-        if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
-        }
-      }
-      const t = saveToLocal.get('theme')
-    
-        if (t === 'dark') activateDarkMode()
-        else if (t === 'light') activateLightMode()
-      
-      const asideStatus = saveToLocal.get('aside-status')
-      if (asideStatus !== undefined) {
-        if (asideStatus === 'hide') {
-          document.documentElement.classList.add('hide-aside')
-        } else {
-          document.documentElement.classList.remove('hide-aside')
-        }
-      }
-    
-      const detectApple = () => {
-        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
-          document.documentElement.classList.add('apple')
-        }
-      }
-      detectApple()
-    })(window)</script><meta name="generator" content="Hexo 7.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/Blue_Ice.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">963</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">122</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="https://enjoysevenliu.github.io/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page fixed" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="文KRIFE齐的博客"><img class="site-icon" src="/img/Blue_Ice.png"/><span class="site-name">文KRIFE齐的博客</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="https://enjoysevenliu.github.io/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">文KRIFE齐的博客</h1><div id="site_social_icons"><a class="social-icon" href="https://github.com/enjoySevenLIU" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/11/05/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U4%E2%80%94%E2%80%94Unity%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/U4S1%E2%80%94%E2%80%94%E8%BE%93%E5%85%A5%E7%B3%BB%E7%BB%9F%20InputSystem/U4S1L8%E2%80%94%E2%80%94%E8%BE%93%E5%85%A5%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" title="U4S1L8——输入配置文件">U4S1L8——输入配置文件</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-11-04T16:01:22.000Z" title="发表于 2023-11-05 00:01:22">2023-11-05</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U4%E2%80%94%E2%80%94Unity%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/">U4——Unity进阶系列</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U4%E2%80%94%E2%80%94Unity%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/U4S1%E2%80%94%E2%80%94%E8%BE%93%E5%85%A5%E7%B3%BB%E7%BB%9F-InputSystem/">U4S1——输入系统 InputSystem</a></span></div><div class="content">U4S1L8——输入配置文件
-输入配置文件
-输入系统中提供了一种输入配置文件 Input Actions，你可以理解它是 InputAction​ 的集合，可以在一个文件中编辑多个 InputAction​ 的信息
-里面记录了想要处理的行为和动作（也就是 InputAction​ 的相关信息）
-我们可以在其中自己定义 InputAction​（比如：开火、移动、旋转等），然后为这个 InputAction​ 关联对应的输入动作
-之后将该配置文件和 PlayerInput​ 进行关联，PlayerInput​ 会自动帮助我们解析该文件
-当触发这些 InputAction​ 输入动作时会以分发事件的形式通知我们执行行为
-编辑输入配置文件
-
-在 Project 窗口右键 Create 创建 InputActions 配置文件（本质是json文件）
-双击创建出的文件
-双击文件进行配置
-
-​​
-配置窗口参数相关
-​​​​
-
-
-ActionMaps 行动映射窗口（多套操作规范）
-
-
-Actions 输入动作窗口（InputAction集合）
-
-
-Properties 输入操作绑定的输入属性（Inp ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/11/04/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U4%E2%80%94%E2%80%94Unity%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/U4S1%E2%80%94%E2%80%94%E8%BE%93%E5%85%A5%E7%B3%BB%E7%BB%9F%20InputSystem/U4S1L7%E2%80%94%E2%80%94Input%20Action%E7%B1%BB/" title="U4S1L7——Input Action类">U4S1L7——Input Action类</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-11-04T07:07:45.000Z" title="发表于 2023-11-04 15:07:45">2023-11-04</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U4%E2%80%94%E2%80%94Unity%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/">U4——Unity进阶系列</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U4%E2%80%94%E2%80%94Unity%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/U4S1%E2%80%94%E2%80%94%E8%BE%93%E5%85%A5%E7%B3%BB%E7%BB%9F-InputSystem/">U4S1——输入系统 InputSystem</a></span></div><div class="content">U4S1L7——Input Action类
-本章代码关键字
-123456789101112InputAction                    //输入动作类，InputSystem输入监听触发相关的主要内容inputAction.Enable()           //输入监听激活方法inputAction.started            //开始操作时触发的委托inputAction.performed          //真正触发时的委托inputAction.canceled           //结束输入时触发的委托CallbackContext                //输入监听回调信息类，所有作为输入监听方法都需要用这个来作为参数callbackContext.phase          //当前输入状态callbackContext.action         //输入动作行为也就是InputAction对象信息，即触发者传入自己callbackContext.control        //控件信息，传入触发这次监听方法的输入控件名c ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/11/04/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U4%E2%80%94%E2%80%94Unity%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/U4S1%E2%80%94%E2%80%94%E8%BE%93%E5%85%A5%E7%B3%BB%E7%BB%9F%20InputSystem/U4S1L6%E2%80%94%E2%80%94%E5%85%B6%E5%AE%83%E8%BE%93%E5%85%A5/" title="U4S1L6——其它输入">U4S1L6——其它输入</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-11-04T06:56:28.000Z" title="发表于 2023-11-04 14:56:28">2023-11-04</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U4%E2%80%94%E2%80%94Unity%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/">U4——Unity进阶系列</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U4%E2%80%94%E2%80%94Unity%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/U4S1%E2%80%94%E2%80%94%E8%BE%93%E5%85%A5%E7%B3%BB%E7%BB%9F-InputSystem/">U4S1——输入系统 InputSystem</a></span></div><div class="content">U4S1L6——其它输入
-新输入系统中的输入设备类
-
-
-常用的
-
-​Keyboard​—键盘
-Mouse​—鼠标
-Touchscreen​—触屏
-Gamepad​—手柄
-
-
-
-其它
-
-​Joystick​—摇杆
-​Pen​—电子笔
-​Sensor​（传感器）
-​Gyroscope​—陀螺仪
-​GravitySensor​—重力传感器
-加速传感器
-光照传感器
-等等
-
-
-
-要查看所有的支持的传感器 ——&gt; 请看这里： 传感器支持 | 输入系统 | 1.2.0 (unity3d.com)
-关于没有细讲的设备
-对于我们没有细讲的设备，平时在开发中不是特别常用
-如果想要学习他们的使用，最直接的方式就是看官方的文档，或者直接进到类的内部查看具体成员
-通过查看变量名和方法名即可了解使用方式
-例如：
-陀螺仪
-这里的陀螺仪命名空间需要使用​​UnityEngine.InputSystem​​ ！
-12UnityEngine.InputSystem.Gyroscope g = UnityEngine.InputSystem.Gyroscope.current;g.angularVelocity.Re ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/11/02/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U4%E2%80%94%E2%80%94Unity%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/U4S1%E2%80%94%E2%80%94%E8%BE%93%E5%85%A5%E7%B3%BB%E7%BB%9F%20InputSystem/U4S1L5%E2%80%94%E2%80%94%E6%89%8B%E6%9F%84%E8%BE%93%E5%85%A5/" title="U4S1L5——手柄输入">U4S1L5——手柄输入</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-11-02T14:45:47.000Z" title="发表于 2023-11-02 22:45:47">2023-11-02</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U4%E2%80%94%E2%80%94Unity%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/">U4——Unity进阶系列</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U4%E2%80%94%E2%80%94Unity%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/U4S1%E2%80%94%E2%80%94%E8%BE%93%E5%85%A5%E7%B3%BB%E7%BB%9F-InputSystem/">U4S1——输入系统 InputSystem</a></span></div><div class="content">U4S1L5——手柄输入
-本章代码关键字
-123456789101112131415161718192021Gamepad                            //手柄类Gamepad.current                    //获取当前可用手柄StickControl                       //摇杆类gamepad.leftStick.ReadValue()      //左摇杆方向向量gamepad.rightStick.ReadValue()     //右摇杆方向向量gamepad.leftStickButton            //左摇杆按键gamepad.rightStickButton           //右摇杆按键gamepad.dpad.up                    //方向键上键gamepad.dpad.down                  //方向键下键gamepad.dpad.left                  //方向键左键gamepad.dpad.right      ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/11/02/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U4%E2%80%94%E2%80%94Unity%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/U4S1%E2%80%94%E2%80%94%E8%BE%93%E5%85%A5%E7%B3%BB%E7%BB%9F%20InputSystem/U4S1L4%E2%80%94%E2%80%94%E8%A7%A6%E5%B1%8F%E8%BE%93%E5%85%A5/" title="U4S1L4——触屏输入">U4S1L4——触屏输入</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-11-02T13:33:58.000Z" title="发表于 2023-11-02 21:33:58">2023-11-02</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U4%E2%80%94%E2%80%94Unity%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/">U4——Unity进阶系列</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U4%E2%80%94%E2%80%94Unity%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/U4S1%E2%80%94%E2%80%94%E8%BE%93%E5%85%A5%E7%B3%BB%E7%BB%9F-InputSystem/">U4S1——输入系统 InputSystem</a></span></div><div class="content">U4S1L4——触屏输入
-本章代码关键字
-12345678910111213141516Touchscreen                                //触屏类Touchscreen.current                        //获取当前触屏设备touchscreen.touches.Count                  //得到触屏手指数量touchscreen.touches                        //得到所有触屏手指（需要遍历）touchscreen.touches[]                      //得到单个触屏手指touchControl.press.wasPressedThisFrame     //按下touchControl.press.wasReleasedThisFrame    //抬起touchControl.press.isPressed               //长按touchControl.tap.isPressed                 //点击手势 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/11/02/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U4%E2%80%94%E2%80%94Unity%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/U4S1%E2%80%94%E2%80%94%E8%BE%93%E5%85%A5%E7%B3%BB%E7%BB%9F%20InputSystem/U4S1L3%E2%80%94%E2%80%94%E9%BC%A0%E6%A0%87%E8%BE%93%E5%85%A5/" title="U4S1L3——鼠标输入">U4S1L3——鼠标输入</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-11-02T08:19:03.000Z" title="发表于 2023-11-02 16:19:03">2023-11-02</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U4%E2%80%94%E2%80%94Unity%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/">U4——Unity进阶系列</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U4%E2%80%94%E2%80%94Unity%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/U4S1%E2%80%94%E2%80%94%E8%BE%93%E5%85%A5%E7%B3%BB%E7%BB%9F-InputSystem/">U4S1——输入系统 InputSystem</a></span></div><div class="content">U4S1L3——鼠标输入
-本章代码关键字
-1234567891011121314Mouse                                   //鼠标类Mouse.current                           //获取当前鼠标设备ButtonControl                           //鼠标对象类mouse.leftButton                        //鼠标左键mouse.middleButton                      //鼠标中键mouse.rightButton                       //鼠标右键mouse.forwardButton                     //鼠标侧前键mouse.backButton                        //鼠标侧后键buttonControl.wasPressedThisFrame       //鼠标按键按下buttonControl.wasReleasedThisFrame     ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/11/02/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U4%E2%80%94%E2%80%94Unity%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/U4S1%E2%80%94%E2%80%94%E8%BE%93%E5%85%A5%E7%B3%BB%E7%BB%9F%20InputSystem/U4S1L2%E2%80%94%E2%80%94%E9%94%AE%E7%9B%98%E8%BE%93%E5%85%A5/" title="U4S1L2——键盘输入">U4S1L2——键盘输入</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-11-02T06:57:51.000Z" title="发表于 2023-11-02 14:57:51">2023-11-02</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U4%E2%80%94%E2%80%94Unity%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/">U4——Unity进阶系列</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U4%E2%80%94%E2%80%94Unity%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/U4S1%E2%80%94%E2%80%94%E8%BE%93%E5%85%A5%E7%B3%BB%E7%BB%9F-InputSystem/">U4S1——输入系统 InputSystem</a></span></div><div class="content">U4S1L2——键盘输入
-本章代码关键字
-123456789101112UnityEngine.InputSystem                //InputSystem的命名空间Keyboard                               //键盘类Keyboard.current                       //获取当前活跃的键盘设备的属性KeyControl                             //键盘按键类keyControl.wasPressedThisFrame         //该键盘按键是否在这一帧被按下keyControl.wasReleasedThisFrame        //该键盘按键是否在这一帧抬起keyControl.isPressed                   //该键盘按键是否在这一帧被按住keyboard.onTextInput                   //通过事件监听按键按下keybroad.anyKey                        //该键盘的任意 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/11/02/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U4%E2%80%94%E2%80%94Unity%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/U4S1%E2%80%94%E2%80%94%E8%BE%93%E5%85%A5%E7%B3%BB%E7%BB%9F%20InputSystem/U4S1L1%E2%80%94%E2%80%94%E5%AF%BC%E5%85%A5Input%20System/" title="U4S1L1——导入Input System">U4S1L1——导入Input System</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-11-02T06:39:14.000Z" title="发表于 2023-11-02 14:39:14">2023-11-02</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U4%E2%80%94%E2%80%94Unity%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/">U4——Unity进阶系列</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U4%E2%80%94%E2%80%94Unity%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/U4S1%E2%80%94%E2%80%94%E8%BE%93%E5%85%A5%E7%B3%BB%E7%BB%9F-InputSystem/">U4S1——输入系统 InputSystem</a></span></div><div class="content">U4S1L1——导入Input System
-InputSystem包导入
-InputSystem至少需要Unity2019版本以上才可以使用，并且需要手动安装
-安装从Package Manager里安装即可，安装时会提示：是否启用InputSystem并禁用老输入系统
-​​
-选择开启哪一种输入模式
-选择InputSystem和 老InputManager的启用情况：
-File——&gt;Build Setting
-——&gt;Player Setting
-——&gt;Other
-——&gt;Active Input Handling
-可以同时启用也可以只启用其中之一,每次启用后会重启Unity
-如果没有选择Both的话，在工程内使用其中一种被禁用的输入系统都会报错
-​​​​
-‍
-</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/11/02/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U4%E2%80%94%E2%80%94Unity%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/U4S1%E2%80%94%E2%80%94%E8%BE%93%E5%85%A5%E7%B3%BB%E7%BB%9F%20InputSystem/" title="U4S1——输入系统 InputSystem">U4S1——输入系统 InputSystem</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-11-02T06:15:12.000Z" title="发表于 2023-11-02 14:15:12">2023-11-02</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U4%E2%80%94%E2%80%94Unity%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/">U4——Unity进阶系列</a></span></div><div class="content">U4S1——输入系统 InputSystem
-InputSystem
-InputSystem 是 Unity提供的一种新的输入系统
-最新InputSystem的运行环境需要 Unity 2019.4 以上版本 + .NET 4 runtime
-它相对于老的输入系统更具拓展性和可自定义的替代方案
-说人话：InputSystem 是 Unity提供的一套更好用更方便的用于检测键盘、鼠标、手柄、摇杆等等设备输入的系统
-InputSystem和InputManager 的区别：
-
-
-老输入系统：
-InputManager是Unity的老输入系统，具体可看 ——&gt; Input
-我们需要自己写各种检测代码来判断设备输入，并处理对应逻辑
-
-
-新输入系统：
-不仅可以像老输入系统一样使用，还增加了输入配置的概念，
-新输入系统将输入操作进行封装，让我们可以在Unity内进行输入配置文件编辑
-我们不需要写代码来判断设备输入，只需要把工作重心放在逻辑处理上
-
-
-选择建议：
-
-游戏操作主要通过UI进行操作的游戏（手游，页游等）
-可以选择老输入系统InputManager
-游戏操作主要通过个各设备（手柄、鼠 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/11/01/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/CS5%E2%80%94%E2%80%94CSharp%E7%9F%A5%E8%AF%86%E8%A1%A5%E5%85%85/CS5L12%E2%80%94%E2%80%94%E6%97%A5%E6%9C%9F%E5%92%8C%E6%97%B6%E9%97%B4/" title="CS5L12——日期和时间">CS5L12——日期和时间</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-11-01T13:05:52.000Z" title="发表于 2023-11-01 21:05:52">2023-11-01</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/">CS——CSharp笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/CS5%E2%80%94%E2%80%94CSharp%E7%9F%A5%E8%AF%86%E8%A1%A5%E5%85%85/">CS5——CSharp知识补充</a></span></div><div class="content">CS5L12——日期和时间
-本章代码关键字
-12345678910111213141516171819DateTime                //C#提供给我们处理日期和时间的结构体new DateTime()          //以年、月、日、时、分、秒、毫秒初始化（一般可以不需要全部填入，有多个重载）dateTime.Year           //年dateTime.Month          //月dateTime.Day            //日dateTime.Hour           //小时dateTime.Minute         //分钟dateTime.Second         //秒dateTime.Millisecond    //毫秒dateTime.Ticks          //以格里高利历00:00:00.000年1月1日以来的100纳秒间隔数表示，一般是一个很大的数字dateTime.DayOfYear      //一年的第几天dateTime.DayOfWeek      //星期几DateTime.Now     ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/68/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/68/#content-inner">68</a><span class="page-number current">69</span><a class="page-number" href="/page/70/#content-inner">70</a><span class="space">&hellip;</span><a class="page-number" href="/page/97/#content-inner">97</a><a class="extend next" rel="next" href="/page/70/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/Blue_Ice.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">文KRIFE齐</div><div class="author-info__description">正在努力学习Unity，希望下半年可以找到实习</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">963</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">122</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/enjoySevenLIU"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/enjoySevenLIU" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">恢复更新了，但是更新会变缓，取决于实习工作量多大</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/11/23/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S4%E2%80%94%E2%80%94%E6%B8%B2%E6%9F%93%E8%B7%AF%E5%BE%84/US3S4L5%E2%80%94%E2%80%94%E6%B8%B2%E6%9F%93%E8%B7%AF%E5%BE%84%E5%AF%B9%E6%AF%94/" title="US3S4L5——渲染路径对比">US3S4L5——渲染路径对比</a><time datetime="2024-11-23T09:25:14.000Z" title="发表于 2024-11-23 17:25:14">2024-11-23</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/11/23/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S4%E2%80%94%E2%80%94%E6%B8%B2%E6%9F%93%E8%B7%AF%E5%BE%84/US3S4L4%E2%80%94%E2%80%94%E5%BB%B6%E8%BF%9F%E6%B8%B2%E6%9F%93%E8%B7%AF%E5%BE%84/" title="US3S4L4——延迟渲染路径">US3S4L4——延迟渲染路径</a><time datetime="2024-11-23T08:57:40.000Z" title="发表于 2024-11-23 16:57:40">2024-11-23</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/11/23/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S4%E2%80%94%E2%80%94%E6%B8%B2%E6%9F%93%E8%B7%AF%E5%BE%84/US3S4L3%E2%80%94%E2%80%94%E9%A1%B6%E7%82%B9%E7%85%A7%E6%98%8E%E6%B8%B2%E6%9F%93%E8%B7%AF%E5%BE%84/" title="US3S4L3——顶点照明渲染路径">US3S4L3——顶点照明渲染路径</a><time datetime="2024-11-23T07:25:53.000Z" title="发表于 2024-11-23 15:25:53">2024-11-23</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/11/23/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S4%E2%80%94%E2%80%94%E6%B8%B2%E6%9F%93%E8%B7%AF%E5%BE%84/US3S4L2%E2%80%94%E2%80%94%E5%89%8D%E5%90%91%E6%B8%B2%E6%9F%93%E8%B7%AF%E5%BE%84/" title="US3S4L2——前向渲染路径">US3S4L2——前向渲染路径</a><time datetime="2024-11-23T07:25:42.000Z" title="发表于 2024-11-23 15:25:42">2024-11-23</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/11/23/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S4%E2%80%94%E2%80%94%E6%B8%B2%E6%9F%93%E8%B7%AF%E5%BE%84/US3S4L1%E2%80%94%E2%80%94%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E6%A6%82%E8%BF%B0/" title="US3S4L1——渲染管线概述">US3S4L1——渲染管线概述</a><time datetime="2024-11-23T07:16:33.000Z" title="发表于 2024-11-23 15:16:33">2024-11-23</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+  isShuoshuo: false
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div class="page" id="body-wrap"><header class="full_page" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">文KRIFE齐的博客</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div></div></nav><div id="site-info"><h1 id="site-title">文KRIFE齐的博客</h1></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts nc" id="recent-posts"><div class="recent-post-items"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/11/05/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U4%E2%80%94%E2%80%94Unity%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/U4S1%E2%80%94%E2%80%94%E8%BE%93%E5%85%A5%E7%B3%BB%E7%BB%9F%20InputSystem/U4S1L8%E2%80%94%E2%80%94%E8%BE%93%E5%85%A5%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" title="U4S1L8——输入配置文件">U4S1L8——输入配置文件</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-11-04T16:01:22.000Z" title="发表于 2023-11-05 00:01:22">2023-11-05</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U4%E2%80%94%E2%80%94Unity%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/">U4——Unity进阶系列</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U4%E2%80%94%E2%80%94Unity%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/U4S1%E2%80%94%E2%80%94%E8%BE%93%E5%85%A5%E7%B3%BB%E7%BB%9F-InputSystem/">U4S1——输入系统 InputSystem</a></span></div><div class="content">U4S1L8——输入配置文件 输入配置文件 输入系统中提供了一种输入配置文件 Input Actions，你可以理解它是 InputAction​ 的集合，可以在一个文件中编辑多个 InputAction​ 的信息 里面记录了想要处理的行为和动作（也就是 InputAction​ 的相关信息） 我们可以在其中自己定义 InputAction​（比如：开火、移动、旋转等），然后为这个 InputAction​ 关联对应的输入动作 之后将该配置文件和 PlayerInput​ 进行关联，PlayerInput​ 会自动帮助我们解析该文件 当触发这些 InputAction​ 输入动作时会以分发事件的形式通知我们执行行为 编辑输入配置文件  在 Project 窗口右键 Create 创建 InputActions 配置文件（本质是json文件） 双击创建出的文件 双击文件进行配置  ​​ 配置窗口参数相关 ​​​​   ActionMaps 行动映射窗口（多套操作规范）   Actions 输入动作窗口（InputAction集合）   Properties...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/11/04/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U4%E2%80%94%E2%80%94Unity%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/U4S1%E2%80%94%E2%80%94%E8%BE%93%E5%85%A5%E7%B3%BB%E7%BB%9F%20InputSystem/U4S1L7%E2%80%94%E2%80%94Input%20Action%E7%B1%BB/" title="U4S1L7——Input Action类">U4S1L7——Input Action类</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-11-04T07:07:45.000Z" title="发表于 2023-11-04 15:07:45">2023-11-04</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U4%E2%80%94%E2%80%94Unity%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/">U4——Unity进阶系列</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U4%E2%80%94%E2%80%94Unity%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/U4S1%E2%80%94%E2%80%94%E8%BE%93%E5%85%A5%E7%B3%BB%E7%BB%9F-InputSystem/">U4S1——输入系统 InputSystem</a></span></div><div class="content">U4S1L7——Input Action类 本章代码关键字 123456789101112InputAction                    //输入动作类，InputSystem输入监听触发相关的主要内容inputAction.Enable()           //输入监听激活方法inputAction.started            //开始操作时触发的委托inputAction.performed          //真正触发时的委托inputAction.canceled           //结束输入时触发的委托CallbackContext                //输入监听回调信息类，所有作为输入监听方法都需要用这个来作为参数callbackContext.phase          //当前输入状态callbackContext.action         //输入动作行为也就是InputAction对象信息，即触发者传入自己callbackContext.control       ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/11/04/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U4%E2%80%94%E2%80%94Unity%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/U4S1%E2%80%94%E2%80%94%E8%BE%93%E5%85%A5%E7%B3%BB%E7%BB%9F%20InputSystem/U4S1L6%E2%80%94%E2%80%94%E5%85%B6%E5%AE%83%E8%BE%93%E5%85%A5/" title="U4S1L6——其它输入">U4S1L6——其它输入</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-11-04T06:56:28.000Z" title="发表于 2023-11-04 14:56:28">2023-11-04</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U4%E2%80%94%E2%80%94Unity%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/">U4——Unity进阶系列</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U4%E2%80%94%E2%80%94Unity%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/U4S1%E2%80%94%E2%80%94%E8%BE%93%E5%85%A5%E7%B3%BB%E7%BB%9F-InputSystem/">U4S1——输入系统 InputSystem</a></span></div><div class="content">U4S1L6——其它输入 新输入系统中的输入设备类   常用的  ​Keyboard​—键盘 Mouse​—鼠标 Touchscreen​—触屏 Gamepad​—手柄    其它  ​Joystick​—摇杆 ​Pen​—电子笔 ​Sensor​（传感器） ​Gyroscope​—陀螺仪 ​GravitySensor​—重力传感器 加速传感器 光照传感器 等等    要查看所有的支持的传感器 ——&gt; 请看这里： 传感器支持 | 输入系统 | 1.2.0 (unity3d.com) 关于没有细讲的设备 对于我们没有细讲的设备，平时在开发中不是特别常用 如果想要学习他们的使用，最直接的方式就是看官方的文档，或者直接进到类的内部查看具体成员 通过查看变量名和方法名即可了解使用方式 例如： 陀螺仪 这里的陀螺仪命名空间需要使用​​UnityEngine.InputSystem​​ ！ 12UnityEngine.InputSystem.Gyroscope g =...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/11/02/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U4%E2%80%94%E2%80%94Unity%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/U4S1%E2%80%94%E2%80%94%E8%BE%93%E5%85%A5%E7%B3%BB%E7%BB%9F%20InputSystem/U4S1L5%E2%80%94%E2%80%94%E6%89%8B%E6%9F%84%E8%BE%93%E5%85%A5/" title="U4S1L5——手柄输入">U4S1L5——手柄输入</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-11-02T14:45:47.000Z" title="发表于 2023-11-02 22:45:47">2023-11-02</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U4%E2%80%94%E2%80%94Unity%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/">U4——Unity进阶系列</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U4%E2%80%94%E2%80%94Unity%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/U4S1%E2%80%94%E2%80%94%E8%BE%93%E5%85%A5%E7%B3%BB%E7%BB%9F-InputSystem/">U4S1——输入系统 InputSystem</a></span></div><div class="content">U4S1L5——手柄输入 本章代码关键字 123456789101112131415161718192021Gamepad                            //手柄类Gamepad.current                    //获取当前可用手柄StickControl                       //摇杆类gamepad.leftStick.ReadValue()      //左摇杆方向向量gamepad.rightStick.ReadValue()     //右摇杆方向向量gamepad.leftStickButton            //左摇杆按键gamepad.rightStickButton           //右摇杆按键gamepad.dpad.up                    //方向键上键gamepad.dpad.down                  //方向键下键gamepad.dpad.left                  //方向键左键gamepad.dpad.right ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/11/02/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U4%E2%80%94%E2%80%94Unity%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/U4S1%E2%80%94%E2%80%94%E8%BE%93%E5%85%A5%E7%B3%BB%E7%BB%9F%20InputSystem/U4S1L4%E2%80%94%E2%80%94%E8%A7%A6%E5%B1%8F%E8%BE%93%E5%85%A5/" title="U4S1L4——触屏输入">U4S1L4——触屏输入</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-11-02T13:33:58.000Z" title="发表于 2023-11-02 21:33:58">2023-11-02</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U4%E2%80%94%E2%80%94Unity%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/">U4——Unity进阶系列</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U4%E2%80%94%E2%80%94Unity%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/U4S1%E2%80%94%E2%80%94%E8%BE%93%E5%85%A5%E7%B3%BB%E7%BB%9F-InputSystem/">U4S1——输入系统 InputSystem</a></span></div><div class="content">U4S1L4——触屏输入 本章代码关键字 12345678910111213141516Touchscreen                                //触屏类Touchscreen.current                        //获取当前触屏设备touchscreen.touches.Count                  //得到触屏手指数量touchscreen.touches                        //得到所有触屏手指（需要遍历）touchscreen.touches[]                      //得到单个触屏手指touchControl.press.wasPressedThisFrame     //按下touchControl.press.wasReleasedThisFrame    //抬起touchControl.press.isPressed               //长按touchControl.tap.isPressed                ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/11/02/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U4%E2%80%94%E2%80%94Unity%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/U4S1%E2%80%94%E2%80%94%E8%BE%93%E5%85%A5%E7%B3%BB%E7%BB%9F%20InputSystem/U4S1L3%E2%80%94%E2%80%94%E9%BC%A0%E6%A0%87%E8%BE%93%E5%85%A5/" title="U4S1L3——鼠标输入">U4S1L3——鼠标输入</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-11-02T08:19:03.000Z" title="发表于 2023-11-02 16:19:03">2023-11-02</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U4%E2%80%94%E2%80%94Unity%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/">U4——Unity进阶系列</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U4%E2%80%94%E2%80%94Unity%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/U4S1%E2%80%94%E2%80%94%E8%BE%93%E5%85%A5%E7%B3%BB%E7%BB%9F-InputSystem/">U4S1——输入系统 InputSystem</a></span></div><div class="content">U4S1L3——鼠标输入 本章代码关键字 1234567891011121314Mouse                                   //鼠标类Mouse.current                           //获取当前鼠标设备ButtonControl                           //鼠标对象类mouse.leftButton                        //鼠标左键mouse.middleButton                      //鼠标中键mouse.rightButton                       //鼠标右键mouse.forwardButton                     //鼠标侧前键mouse.backButton                        //鼠标侧后键buttonControl.wasPressedThisFrame       //鼠标按键按下buttonControl.wasReleasedThisFrame...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/11/02/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U4%E2%80%94%E2%80%94Unity%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/U4S1%E2%80%94%E2%80%94%E8%BE%93%E5%85%A5%E7%B3%BB%E7%BB%9F%20InputSystem/U4S1L2%E2%80%94%E2%80%94%E9%94%AE%E7%9B%98%E8%BE%93%E5%85%A5/" title="U4S1L2——键盘输入">U4S1L2——键盘输入</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-11-02T06:57:51.000Z" title="发表于 2023-11-02 14:57:51">2023-11-02</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U4%E2%80%94%E2%80%94Unity%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/">U4——Unity进阶系列</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U4%E2%80%94%E2%80%94Unity%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/U4S1%E2%80%94%E2%80%94%E8%BE%93%E5%85%A5%E7%B3%BB%E7%BB%9F-InputSystem/">U4S1——输入系统 InputSystem</a></span></div><div class="content">U4S1L2——键盘输入 本章代码关键字 123456789101112UnityEngine.InputSystem                //InputSystem的命名空间Keyboard                               //键盘类Keyboard.current                       //获取当前活跃的键盘设备的属性KeyControl                             //键盘按键类keyControl.wasPressedThisFrame         //该键盘按键是否在这一帧被按下keyControl.wasReleasedThisFrame        //该键盘按键是否在这一帧抬起keyControl.isPressed                   //该键盘按键是否在这一帧被按住keyboard.onTextInput                   //通过事件监听按键按下keybroad.anyKey                       ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/11/02/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U4%E2%80%94%E2%80%94Unity%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/U4S1%E2%80%94%E2%80%94%E8%BE%93%E5%85%A5%E7%B3%BB%E7%BB%9F%20InputSystem/U4S1L1%E2%80%94%E2%80%94%E5%AF%BC%E5%85%A5Input%20System/" title="U4S1L1——导入Input System">U4S1L1——导入Input System</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-11-02T06:39:14.000Z" title="发表于 2023-11-02 14:39:14">2023-11-02</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U4%E2%80%94%E2%80%94Unity%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/">U4——Unity进阶系列</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U4%E2%80%94%E2%80%94Unity%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/U4S1%E2%80%94%E2%80%94%E8%BE%93%E5%85%A5%E7%B3%BB%E7%BB%9F-InputSystem/">U4S1——输入系统 InputSystem</a></span></div><div class="content">U4S1L1——导入Input System InputSystem包导入 InputSystem至少需要Unity2019版本以上才可以使用，并且需要手动安装 安装从Package Manager里安装即可，安装时会提示：是否启用InputSystem并禁用老输入系统 ​​ 选择开启哪一种输入模式 选择InputSystem和 老InputManager的启用情况： File——&gt;Build Setting ——&gt;Player Setting ——&gt;Other ——&gt;Active Input Handling 可以同时启用也可以只启用其中之一,每次启用后会重启Unity 如果没有选择Both的话，在工程内使用其中一种被禁用的输入系统都会报错 ​​​​ ‍ </div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/11/02/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U4%E2%80%94%E2%80%94Unity%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/U4S1%E2%80%94%E2%80%94%E8%BE%93%E5%85%A5%E7%B3%BB%E7%BB%9F%20InputSystem/" title="U4S1——输入系统 InputSystem">U4S1——输入系统 InputSystem</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-11-02T06:15:12.000Z" title="发表于 2023-11-02 14:15:12">2023-11-02</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/U4%E2%80%94%E2%80%94Unity%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/">U4——Unity进阶系列</a></span></div><div class="content">U4S1——输入系统 InputSystem InputSystem InputSystem 是 Unity提供的一种新的输入系统 最新InputSystem的运行环境需要 Unity 2019.4 以上版本 + .NET 4 runtime 它相对于老的输入系统更具拓展性和可自定义的替代方案 说人话：InputSystem 是 Unity提供的一套更好用更方便的用于检测键盘、鼠标、手柄、摇杆等等设备输入的系统 InputSystem和InputManager 的区别：   老输入系统： InputManager是Unity的老输入系统，具体可看 ——&gt;...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/11/01/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/CS5%E2%80%94%E2%80%94CSharp%E7%9F%A5%E8%AF%86%E8%A1%A5%E5%85%85/CS5L12%E2%80%94%E2%80%94%E6%97%A5%E6%9C%9F%E5%92%8C%E6%97%B6%E9%97%B4/" title="CS5L12——日期和时间">CS5L12——日期和时间</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-11-01T13:05:52.000Z" title="发表于 2023-11-01 21:05:52">2023-11-01</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/">CS——CSharp笔记</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/CS5%E2%80%94%E2%80%94CSharp%E7%9F%A5%E8%AF%86%E8%A1%A5%E5%85%85/">CS5——CSharp知识补充</a></span></div><div class="content">CS5L12——日期和时间 本章代码关键字 12345678910111213141516171819DateTime                //C#提供给我们处理日期和时间的结构体new DateTime()          //以年、月、日、时、分、秒、毫秒初始化（一般可以不需要全部填入，有多个重载）dateTime.Year           //年dateTime.Month          //月dateTime.Day            //日dateTime.Hour           //小时dateTime.Minute         //分钟dateTime.Second         //秒dateTime.Millisecond    //毫秒dateTime.Ticks          //以格里高利历00:00:00.000年1月1日以来的100纳秒间隔数表示，一般是一个很大的数字dateTime.DayOfYear      //一年的第几天dateTime.DayOfWeek      //星期几DateTime.Now...</div></div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/68/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/68/#content-inner">68</a><span class="page-number current">69</span><a class="page-number" href="/page/70/#content-inner">70</a><span class="space">&hellip;</span><a class="page-number" href="/page/97/#content-inner">97</a><a class="extend next" rel="next" href="/page/70/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">文KRIFE齐</div><div class="author-info-description">Unity就业路线的笔记终于快更新完了！</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">963</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">122</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/11/23/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S4%E2%80%94%E2%80%94%E6%B8%B2%E6%9F%93%E8%B7%AF%E5%BE%84/US3S4L5%E2%80%94%E2%80%94%E6%B8%B2%E6%9F%93%E8%B7%AF%E5%BE%84%E5%AF%B9%E6%AF%94/" title="US3S4L5——渲染路径对比">US3S4L5——渲染路径对比</a><time datetime="2024-11-23T09:25:14.000Z" title="发表于 2024-11-23 17:25:14">2024-11-23</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/11/23/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S4%E2%80%94%E2%80%94%E6%B8%B2%E6%9F%93%E8%B7%AF%E5%BE%84/US3S4L4%E2%80%94%E2%80%94%E5%BB%B6%E8%BF%9F%E6%B8%B2%E6%9F%93%E8%B7%AF%E5%BE%84/" title="US3S4L4——延迟渲染路径">US3S4L4——延迟渲染路径</a><time datetime="2024-11-23T08:57:40.000Z" title="发表于 2024-11-23 16:57:40">2024-11-23</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/11/23/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S4%E2%80%94%E2%80%94%E6%B8%B2%E6%9F%93%E8%B7%AF%E5%BE%84/US3S4L3%E2%80%94%E2%80%94%E9%A1%B6%E7%82%B9%E7%85%A7%E6%98%8E%E6%B8%B2%E6%9F%93%E8%B7%AF%E5%BE%84/" title="US3S4L3——顶点照明渲染路径">US3S4L3——顶点照明渲染路径</a><time datetime="2024-11-23T07:25:53.000Z" title="发表于 2024-11-23 15:25:53">2024-11-23</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/11/23/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S4%E2%80%94%E2%80%94%E6%B8%B2%E6%9F%93%E8%B7%AF%E5%BE%84/US3S4L2%E2%80%94%E2%80%94%E5%89%8D%E5%90%91%E6%B8%B2%E6%9F%93%E8%B7%AF%E5%BE%84/" title="US3S4L2——前向渲染路径">US3S4L2——前向渲染路径</a><time datetime="2024-11-23T07:25:42.000Z" title="发表于 2024-11-23 15:25:42">2024-11-23</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/11/23/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S4%E2%80%94%E2%80%94%E6%B8%B2%E6%9F%93%E8%B7%AF%E5%BE%84/US3S4L1%E2%80%94%E2%80%94%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E6%A6%82%E8%BF%B0/" title="US3S4L1——渲染管线概述">US3S4L1——渲染管线概述</a><time datetime="2024-11-23T07:16:33.000Z" title="发表于 2024-11-23 15:16:33">2024-11-23</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
             <i class="fas fa-folder-open"></i>
             <span>分类</span>
             <a class="card-more-btn" href="/categories/" title="查看更多">
-    <i class="fas fa-angle-right"></i></a>
-            </div>
-            <ul class="card-category-list" id="aside-cat-list">
+      <i class="fas fa-angle-right"></i></a>
+          </div>
+          <ul class="card-category-list" id="aside-cat-list">
             <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><span class="card-category-list-name">Unity就业路线学习笔记</span><span class="card-category-list-count">962</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/"><span class="card-category-list-name">CS——CSharp笔记</span><span class="card-category-list-count">106</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/CS1%E2%80%94%E2%80%94CSharp%E5%85%A5%E9%97%A8%E7%B3%BB%E5%88%97/"><span class="card-category-list-name">CS1——CSharp入门系列</span><span class="card-category-list-count">22</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/CS2%E2%80%94%E2%80%94CSharp%E5%9F%BA%E7%A1%80%E7%B3%BB%E5%88%97/"><span class="card-category-list-name">CS2——CSharp基础系列</span><span class="card-category-list-count">13</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/CS3%E2%80%94%E2%80%94CSharp%E6%A0%B8%E5%BF%83%E7%B3%BB%E5%88%97/"><span class="card-category-list-name">CS3——CSharp核心系列</span><span class="card-category-list-count">30</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/CS4%E2%80%94%E2%80%94CSharp%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/"><span class="card-category-list-name">CS4——CSharp进阶系列</span><span class="card-category-list-count">17</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/CS5%E2%80%94%E2%80%94CSharp%E7%9F%A5%E8%AF%86%E8%A1%A5%E5%85%85/"><span class="card-category-list-name">CS5——CSharp知识补充</span><span class="card-category-list-count">19</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/CS5%E2%80%94%E2%80%94CSharp%E7%9F%A5%E8%AF%86%E8%A1%A5%E5%85%85/CS5L13%E2%80%94%E2%80%94LINQ%E5%85%A5%E9%97%A8%E5%AE%9E%E4%BE%8B/"><span class="card-category-list-name">CS5L13——LINQ入门实例</span><span class="card-category-list-count">3</span></a></li></ul></li></ul></li></ul></li>
-            </ul></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span><a class="card-more-btn" href="/archives/" title="查看更多">
-    <i class="fas fa-angle-right"></i></a></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/11/"><span class="card-archive-list-date">十一月 2024</span><span class="card-archive-list-count">22</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/10/"><span class="card-archive-list-date">十月 2024</span><span class="card-archive-list-count">27</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/09/"><span class="card-archive-list-date">九月 2024</span><span class="card-archive-list-count">42</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/07/"><span class="card-archive-list-date">七月 2024</span><span class="card-archive-list-count">39</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/06/"><span class="card-archive-list-date">六月 2024</span><span class="card-archive-list-count">51</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/05/"><span class="card-archive-list-date">五月 2024</span><span class="card-archive-list-count">56</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/04/"><span class="card-archive-list-date">四月 2024</span><span class="card-archive-list-count">127</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/03/"><span class="card-archive-list-date">三月 2024</span><span class="card-archive-list-count">135</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">963</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2024-11-23T09:42:12.135Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By 文KRIFE齐</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>
+          </ul></div><div class="card-widget card-archives">
+    <div class="item-headline">
+      <i class="fas fa-archive"></i>
+      <span>归档</span>
+      <a class="card-more-btn" href="/archives/" title="查看更多"><i class="fas fa-angle-right"></i></a>
+    </div>
+    <ul class="card-archive-list">
+  
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2024/11/">
+          <span class="card-archive-list-date">十一月 2024</span>
+          <span class="card-archive-list-count">22</span>
+        </a>
+      </li>
+    
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2024/10/">
+          <span class="card-archive-list-date">十月 2024</span>
+          <span class="card-archive-list-count">27</span>
+        </a>
+      </li>
+    
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2024/09/">
+          <span class="card-archive-list-date">九月 2024</span>
+          <span class="card-archive-list-count">42</span>
+        </a>
+      </li>
+    
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2024/07/">
+          <span class="card-archive-list-date">七月 2024</span>
+          <span class="card-archive-list-count">39</span>
+        </a>
+      </li>
+    
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2024/06/">
+          <span class="card-archive-list-date">六月 2024</span>
+          <span class="card-archive-list-count">51</span>
+        </a>
+      </li>
+    
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2024/05/">
+          <span class="card-archive-list-date">五月 2024</span>
+          <span class="card-archive-list-count">56</span>
+        </a>
+      </li>
+    
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2024/04/">
+          <span class="card-archive-list-date">四月 2024</span>
+          <span class="card-archive-list-count">127</span>
+        </a>
+      </li>
+    
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2024/03/">
+          <span class="card-archive-list-date">三月 2024</span>
+          <span class="card-archive-list-count">135</span>
+        </a>
+      </li>
+    </ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站信息</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">963</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总浏览量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2024-12-15T07:08:02.505Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2024 By 文KRIFE齐</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>
