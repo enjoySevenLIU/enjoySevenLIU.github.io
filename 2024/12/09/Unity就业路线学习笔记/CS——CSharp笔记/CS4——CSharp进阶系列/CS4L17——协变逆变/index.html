@@ -1,0 +1,247 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>CS4L17——协变逆变 | 文KRIFE齐的博客</title><meta name="author" content="文KRIFE齐"><meta name="copyright" content="文KRIFE齐"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="CS4L17——协变逆变 本章代码关键字 12out        &#x2F;&#x2F; 协变，它修饰泛型委托和泛型接口的泛型参数，使得此泛型参数只能作为返回值in        &#x2F;&#x2F; 逆变，它修饰泛型委托和泛型接口的泛型参数，使得此泛型参数只能作为参数 协变和逆变   协变：和谐的变化，自然的变化 因为 里氏替换原则 父类可以装子类，所以 子类变父类，比如 string​ 变成 object​，感受是和谐的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CS4L17——协变逆变">
+<meta property="og:url" content="https://enjoysevenliu.github.io/2024/12/09/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/CS4%E2%80%94%E2%80%94CSharp%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/CS4L17%E2%80%94%E2%80%94%E5%8D%8F%E5%8F%98%E9%80%86%E5%8F%98/index.html">
+<meta property="og:site_name" content="文KRIFE齐的博客">
+<meta property="og:description" content="CS4L17——协变逆变 本章代码关键字 12out        &#x2F;&#x2F; 协变，它修饰泛型委托和泛型接口的泛型参数，使得此泛型参数只能作为返回值in        &#x2F;&#x2F; 逆变，它修饰泛型委托和泛型接口的泛型参数，使得此泛型参数只能作为参数 协变和逆变   协变：和谐的变化，自然的变化 因为 里氏替换原则 父类可以装子类，所以 子类变父类，比如 string​ 变成 object​，感受是和谐的">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://enjoysevenliu.github.io/img/Blue_Ice.png">
+<meta property="article:published_time" content="2024-12-08T20:27:44.000Z">
+<meta property="article:modified_time" content="2024-12-18T18:23:19.000Z">
+<meta property="article:author" content="文KRIFE齐">
+<meta property="article:tag" content="blog">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://enjoysevenliu.github.io/img/Blue_Ice.png"><link rel="shortcut icon" href="/img/Blue_Ice.png"><link rel="canonical" href="https://enjoysevenliu.github.io/2024/12/09/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/CS4%E2%80%94%E2%80%94CSharp%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/CS4L17%E2%80%94%E2%80%94%E5%8D%8F%E5%8F%98%E9%80%86%E5%8F%98/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'CS4L17——协变逆变',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  isShuoshuo: false
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/Blue_Ice.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">991</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">126</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/img/Blue_Ice.png" alt="Logo"><span class="site-name">文KRIFE齐的博客</span></a><a class="nav-page-title" href="/"><span class="site-name">CS4L17——协变逆变</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">CS4L17——协变逆变</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-12-08T20:27:44.000Z" title="发表于 2024-12-09 04:27:44">2024-12-09</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-12-18T18:23:19.000Z" title="更新于 2024-12-19 02:23:19">2024-12-19</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/">CS——CSharp笔记</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/CS4%E2%80%94%E2%80%94CSharp%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/">CS4——CSharp进阶系列</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1>CS4L17——协变逆变</h1>
+<h2 id="本章代码关键字">本章代码关键字</h2>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">out</span>        <span class="comment">// 协变，它修饰泛型委托和泛型接口的泛型参数，使得此泛型参数只能作为返回值</span></span><br><span class="line"><span class="keyword">in</span>        <span class="comment">// 逆变，它修饰泛型委托和泛型接口的泛型参数，使得此泛型参数只能作为参数</span></span><br></pre></td></tr></table></figure>
+<h1>协变和逆变</h1>
+<ul>
+<li>
+<p>协变：和谐的变化，自然的变化</p>
+<p>因为 里氏替换原则 父类可以装子类，所以 子类变父类，比如 <code>string</code>​ 变成 <code>object</code>​，感受是和谐的</p>
+</li>
+<li>
+<p>逆变：逆常规的变化，不正常的变化</p>
+<p>因为 里氏替换原则 父类可以装子类 但是子类不能装父类，所以 父类变子类，比如 <code>object</code>​ 变成 <code>string</code>​，感受是不和谐的</p>
+</li>
+</ul>
+<p>协变和逆变是用来修饰泛型的：</p>
+<ul>
+<li>协变：<code>out</code>​</li>
+<li>逆变：<code>in</code>​</li>
+</ul>
+<p>用于在泛型中 修饰 泛型字母的。<strong>只有 泛型接口 和 泛型委托 能使用</strong></p>
+<p>它的作用主要是：</p>
+<ol>
+<li>
+<p>​<code>out</code>​ 修饰的泛型类型，只能作为返回值类型，<code>in</code>​ 修饰的泛型类型 只能作为 参数类型</p>
+</li>
+<li>
+<p>遵循里氏替换原则的 ，用 <code>out</code>​ 和 <code>in</code>​ 修饰的 泛型委托 可以相互装载（有父子关系的泛型）</p>
+<ul>
+<li>协变：父类泛型委托装子类泛型委托</li>
+<li>逆变：子类泛型委托装父类泛型委托</li>
+</ul>
+</li>
+</ol>
+<h2 id="协变逆变的作用">协变逆变的作用</h2>
+<p>最直观的理解其作用，就是从 返回值 和 参数 来看：</p>
+<ul>
+<li>
+<p>用 <code>out</code>​ 修饰的泛型，只能作为返回值</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="built_in">delegate</span> T <span class="title">TestOut</span>&lt;<span class="keyword">out</span> <span class="title">T</span>&gt;()</span>;</span><br><span class="line"><span class="function"><span class="built_in">delegate</span> T <span class="title">TestOut</span>&lt;<span class="keyword">out</span> <span class="title">T</span>&gt;(<span class="params">T arg</span>)</span>;    <span class="comment">// error: 变型无效: 类型参数“T”必须是在“TestOut&lt;T&gt;.Invoke(T)”上有效的 逆变式。“T”为 协变。</span></span><br><span class="line"><span class="function"><span class="built_in">delegate</span> T <span class="title">TestOut</span>&lt;<span class="title">T</span>&gt;(<span class="params">T arg</span>)</span>;</span><br><span class="line"><span class="keyword">interface</span> <span class="title">ITestOut</span>&lt;<span class="keyword">out</span> <span class="title">T</span>&gt; </span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Testin</span>(<span class="params">T t</span>)</span>;                <span class="comment">// error: 变型无效: 类型参数“T”必须是在“ITestOut&lt;T&gt;.Testin(T)”上有效的 逆变式。“T”为 协变。</span></span><br><span class="line">    <span class="function">T <span class="title">Testout</span>()</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>用 <code>in</code>​ 修饰的泛型，只能作为参数</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="built_in">delegate</span> <span class="keyword">void</span> <span class="title">TestIn</span>&lt;<span class="keyword">in</span> <span class="title">T</span>&gt;(<span class="params">T t</span>)</span>;</span><br><span class="line"><span class="function"><span class="built_in">delegate</span> T <span class="title">TestIn</span>&lt;<span class="keyword">in</span> <span class="title">T</span>&gt;(<span class="params">T t</span>)</span>;        <span class="comment">// error: 变型无效: 类型参数“T”必须是在“TestIn&lt;T&gt;.Invoke(T)”上有效的 协变式。“T”为 逆变。</span></span><br><span class="line"><span class="function"><span class="built_in">delegate</span> T <span class="title">TestIn</span>&lt;<span class="title">T</span>&gt;(<span class="params">T t</span>)</span>;</span><br><span class="line"><span class="keyword">interface</span> <span class="title">ITestIn</span>&lt;<span class="keyword">in</span> <span class="title">T</span>&gt; </span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Testin</span>(<span class="params">T t</span>)</span>;</span><br><span class="line">    <span class="function">T <span class="title">Testout</span>()</span>;                    <span class="comment">// 变型无效: 类型参数“T”必须是在“ITestIn&lt;T&gt;.Testout()”上有效的 协变式。“T”为 逆变。</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>​<code>in</code>​ 和 <code>out</code>​ 只有 泛型接口 和 泛型委托 能使用</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> <span class="title">ITest</span>&lt;<span class="keyword">in</span> <span class="title">T</span>&gt; &#123;&#125;</span><br><span class="line"><span class="function"><span class="built_in">delegate</span> T <span class="title">TestOut</span>&lt;<span class="keyword">out</span> <span class="title">T</span>&gt;()</span>;</span><br><span class="line"><span class="keyword">class</span> <span class="title">Test</span>&lt;<span class="keyword">out</span> <span class="title">T</span>&gt; &#123;&#125;            <span class="comment">// error: 变型修饰符无效。只有接口和委托类型的参数可以指定为变量。</span></span><br></pre></td></tr></table></figure>
+<p>但如果需要深度理解其作用，就需要结合里氏替换原则原则去理解：</p>
+<ul>
+<li>
+<p>协变：让 父类泛型委托/接口 可以装载 子类泛型委托/接口</p>
+<p>先声明如下内容：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="built_in">delegate</span> T <span class="title">TestOut</span>&lt;<span class="title">T</span>&gt;()</span>;    <span class="comment">// 这里没有使用协变</span></span><br><span class="line"><span class="keyword">class</span> <span class="title">Father</span> &#123;&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title">Son</span> : <span class="title">Father</span> &#123;&#125;</span><br></pre></td></tr></table></figure>
+<p>如果要让一个 父类泛型委托 直接装载 子类泛型委托变量，让父类泛型委托可以返回一个子类变量，这是做不到的：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">TestOut&lt;Son&gt; sonFunc = () =&gt; <span class="keyword">new</span> Son();</span><br><span class="line">TestOut&lt;Father&gt; fatherFunc = sonFunc;    <span class="comment">// error: 无法将类型“TestOut&lt;Son&gt;”隐式转换为“TestOut&lt;Father&gt;”</span></span><br><span class="line">Father f1 = fatherFunc();</span><br></pre></td></tr></table></figure>
+<p>这是因为，委托类型变量只能存储另一个类型完全相同的委托变量，因此，<strong>即使同一泛型委托类型的泛型参数存在父子关系，也不能装载</strong></p>
+<p>接口也是同理：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> <span class="title">ITestOut</span>&lt;<span class="title">T</span>&gt;&#123;&#125;        <span class="comment">// 这里没有使用协变</span></span><br><span class="line"><span class="keyword">class</span> <span class="title">Father</span> &#123;&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title">Son</span> : <span class="title">Father</span> &#123;&#125;</span><br></pre></td></tr></table></figure>
+<p>如果要让一个 父类泛型接口 直接装载 子类泛型接口变量，让父类泛型接口的方法可以返回一个子类变量，也是做不到的：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ITestOut&lt;Son&gt; son = <span class="keyword">new</span> TestClass&lt;Son&gt;();</span><br><span class="line">ITestOut&lt;Father&gt; father = son;    <span class="comment">// error: 无法将类型“ITestOut&lt;Son&gt;”隐式转换为“ITestOut&lt;Father&gt;”</span></span><br><span class="line">Father f2 = father.TestOut();</span><br></pre></td></tr></table></figure>
+<p>但是，如果给泛型接口或者委托的泛型参数加上 <code>out</code>​，就可以让父类泛型接口/委托变量可以装载子类泛型接口/委托变量了</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="built_in">delegate</span> T <span class="title">TestOut</span>&lt;<span class="keyword">out</span> <span class="title">T</span>&gt;()</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">interface</span> <span class="title">ITestOut</span>&lt;<span class="keyword">out</span> <span class="title">T</span>&gt;</span><br><span class="line">&#123;</span><br><span class="line">    <span class="function">T <span class="title">TestOut</span>()</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title">TestClass</span>&lt;<span class="title">T</span>&gt; : <span class="title">ITestOut</span>&lt;<span class="title">T</span>&gt;</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> T? TestOut() =&gt; <span class="literal">default</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title">Father</span> &#123;&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title">Son</span> : <span class="title">Father</span> &#123;&#125;</span><br></pre></td></tr></table></figure>
+<p>使用 <code>out</code>​ 修饰的泛型参数 <code>T</code>​，就可以让 父类泛型接口/委托变量 装载 子类泛型接口/委托变量</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">TestOut&lt;Son&gt; sonFunc = () =&gt; <span class="keyword">new</span> Son();</span><br><span class="line">TestOut&lt;Father&gt; fatherFunc = sonFunc;</span><br><span class="line">Father f1 = fatherFunc();</span><br><span class="line"></span><br><span class="line">ITestOut&lt;Son&gt; son = <span class="keyword">new</span> TestClass&lt;Son&gt;();</span><br><span class="line">ITestOut&lt;Father&gt; father = son;</span><br><span class="line">Father f2 = father.TestOut();</span><br></pre></td></tr></table></figure>
+<p>由于是父类泛型容器装子类泛型容器，符合里氏替换原则，所以是和谐的</p>
+</li>
+<li>
+<p>逆变：让 子类泛型委托/接口 可以装载 父类泛型委托/接口</p>
+<p>先声明如下内容：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="built_in">delegate</span> <span class="keyword">void</span> <span class="title">TestIn</span>&lt;<span class="title">T</span>&gt;(<span class="params">T arg</span>)</span>;        <span class="comment">// 这里没有使用逆变</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title">Father</span> </span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">DoSomething</span>()</span> &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title">Son</span> : <span class="title">Father</span> &#123;&#125;</span><br></pre></td></tr></table></figure>
+<p>如果要让一个 子类泛型委托变量 直接装载 父类泛型委托变量，然后将子类对象传入到泛型委托参数内，这是做不到的：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">TestIn&lt;Father&gt; iF = f =&gt; f.DoSomething();</span><br><span class="line">TestIn&lt;Son&gt; iS = iF;    <span class="comment">// error: 无法将类型“TestIn&lt;Father&gt;”隐式转换为“TestIn&lt;Son&gt;”</span></span><br><span class="line">iS(<span class="keyword">new</span> Son());</span><br></pre></td></tr></table></figure>
+<p>接口同理：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> <span class="title">ITestIn</span>&lt;<span class="title">T</span>&gt;</span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">TestIn</span>(<span class="params">T arg</span>)</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title">TestClass</span>&lt;<span class="title">T</span>&gt; : <span class="title">ITestIn</span>&lt;<span class="title">T</span>&gt;</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> T? <span class="keyword">value</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">TestIn</span>(<span class="params">T arg</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">value</span> = arg;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title">Father</span> &#123;&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title">Son</span> : <span class="title">Father</span> &#123;&#125;</span><br></pre></td></tr></table></figure>
+<p>如果要让一个 子类泛型接口变量 直接装载 父类泛型接口变量，然后让子类变量作为参数传入到泛型接口的方法内，也是做不到的：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ITestIn&lt;Father&gt; father = <span class="keyword">new</span> TestClass&lt;Father&gt;();</span><br><span class="line">ITestIn&lt;Son&gt; son = father;    <span class="comment">// error: 无法将类型“ITestIn&lt;Father&gt;”隐式转换为“ITestIn&lt;Son&gt;”</span></span><br><span class="line">son.TestIn(<span class="keyword">new</span> Son());</span><br></pre></td></tr></table></figure>
+<p>使用 <code>in</code>​ 修饰的泛型参数 <code>T</code>​，就可以自动根据里氏替换原则，让 子类泛型接口/委托变量 装载 父类泛型接口/委托变量</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="built_in">delegate</span> <span class="keyword">void</span> <span class="title">TestIn</span>&lt;<span class="keyword">in</span> <span class="title">T</span>&gt;(<span class="params">T arg</span>)</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">interface</span> <span class="title">ITestIn</span>&lt;<span class="keyword">in</span> <span class="title">T</span>&gt;</span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">TestIn</span>(<span class="params">T arg</span>)</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title">TestClass</span>&lt;<span class="title">T</span>&gt; : <span class="title">ITestIn</span>&lt;<span class="title">T</span>&gt;</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> T? <span class="keyword">value</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">TestIn</span>(<span class="params">T arg</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">value</span> = arg;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title">Father</span> </span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">DoSomething</span>()</span> &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title">Son</span> : <span class="title">Father</span> &#123;&#125;</span><br></pre></td></tr></table></figure>
+<p>使用 <code>in</code>​ 修饰的泛型参数 <code>T</code>​，就可以让 子类泛型接口/委托变量 装载 父类泛型接口/委托变量</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">TestIn&lt;Father&gt; fatherAction = f =&gt; f.DoSomething();</span><br><span class="line">TestIn&lt;Son&gt; sonAction = fatherAction;</span><br><span class="line">sonAction(<span class="keyword">new</span> Son());</span><br><span class="line"></span><br><span class="line">ITestIn&lt;Father&gt; father = <span class="keyword">new</span> TestClass&lt;Father&gt;();</span><br><span class="line">ITestIn&lt;Son&gt; son = father;</span><br><span class="line">son.TestIn(<span class="keyword">new</span> Son());</span><br></pre></td></tr></table></figure>
+<p>由于是 子类泛型容器 装 父类泛型容器，看起来不符合里氏替换原则，所以是逆常规的</p>
+</li>
+</ul>
+<p>‍</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://enjoysevenliu.github.io">文KRIFE齐</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://enjoysevenliu.github.io/2024/12/09/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/CS4%E2%80%94%E2%80%94CSharp%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/CS4L17%E2%80%94%E2%80%94%E5%8D%8F%E5%8F%98%E9%80%86%E5%8F%98/">https://enjoysevenliu.github.io/2024/12/09/Unity就业路线学习笔记/CS——CSharp笔记/CS4——CSharp进阶系列/CS4L17——协变逆变/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://enjoysevenliu.github.io" target="_blank">文KRIFE齐的博客</a>！</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/img/Blue_Ice.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2024/12/10/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/CS4%E2%80%94%E2%80%94CSharp%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/CS4L18%E2%80%94%E2%80%94%E5%A4%9A%E7%BA%BF%E7%A8%8B/" title="CS4L18——多线程"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">CS4L18——多线程</div></div><div class="info-2"><div class="info-item-1">CS4L18——多线程 本章代码关键字 1234567System.Threading        // 线程相关命名空间Thread                    // 线程thread.Start()            // 开启线程thread.IsBackground        // 设置线程为后台线程，当主线程执行完毕时，后台线程会被自动关闭thread.Abort()            // 中止线程，此方法已废弃，不建议使用Thread.Sleep()            // 让线程休眠一段时间（传入的单位是毫秒）lock() &#123;&#125;                //...</div></div></div></a><a class="pagination-related" href="/2024/12/09/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/CS4%E2%80%94%E2%80%94CSharp%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/CS4L16%E2%80%94%E2%80%94List%E6%8E%92%E5%BA%8F/" title="CS4L16——List排序"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">CS4L16——List排序</div></div><div class="info-2"><div class="info-item-1">CS4L16——List排序 本章代码关键字 1234list&lt;&gt;.Sort()    // List的排序方法IComparable&lt;&gt;    // 自定义类继承此接口并实现方法后，其List&lt;&gt;即可直接Sort()CompareTo()        // IComparable&lt;&gt;需要实现的方法Comparison&lt;&gt;    // 参数为两个待比较的同类型对象，返回值为int类型排序结果的委托，可以传入到Sort()内，即可直接使用排序方法 List 自带排序方法 ​List&lt;&gt;​ 自带了 Sort()​ 方法，排序结果默认是升序的，ArrayList​ 中也有 Sort​ 排序方法 系统自带的变量（int​，float​，double​…）一般都可以直接 Sort​ 123456789101112131415161718List&lt;int&gt; list = new List&lt;int&gt;() &#123; 3, 2, 6, 1, 4, 5 &#125;;string info =...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/Blue_Ice.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">文KRIFE齐</div><div class="author-info-description">Unity就业路线的笔记终于快更新完了！</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">991</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">126</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/enjoySevenLIU"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/enjoySevenLIU" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">博客项目被我搞坏了，抢修中！！！</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">CS4L17——协变逆变</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%AC%E7%AB%A0%E4%BB%A3%E7%A0%81%E5%85%B3%E9%94%AE%E5%AD%97"><span class="toc-number">1.1.</span> <span class="toc-text">本章代码关键字</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">2.</span> <span class="toc-text">协变和逆变</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%8F%E5%8F%98%E9%80%86%E5%8F%98%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="toc-number">2.1.</span> <span class="toc-text">协变逆变的作用</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/12/19/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S8%E2%80%94%E2%80%94%E9%AB%98%E7%BA%A7%E7%BA%B9%E7%90%86/US3S8L4%E2%80%94%E2%80%94%E5%8F%8D%E5%B0%84%E6%95%88%E6%9E%9C/" title="US3S8L4——反射效果">US3S8L4——反射效果</a><time datetime="2024-12-18T16:13:01.000Z" title="发表于 2024-12-19 00:13:01">2024-12-19</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/12/17/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S8%E2%80%94%E2%80%94%E9%AB%98%E7%BA%A7%E7%BA%B9%E7%90%86/US3S8L3%E2%80%94%E2%80%94%E5%8A%A8%E6%80%81%E7%94%9F%E6%88%90%E7%AB%8B%E6%96%B9%E4%BD%93%E7%BA%B9%E7%90%86/" title="US3S8L3——动态生成立方体纹理">US3S8L3——动态生成立方体纹理</a><time datetime="2024-12-17T04:49:26.000Z" title="发表于 2024-12-17 12:49:26">2024-12-17</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/12/17/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S8%E2%80%94%E2%80%94%E9%AB%98%E7%BA%A7%E7%BA%B9%E7%90%86/US3S8L2%E2%80%94%E2%80%94%E5%A4%A9%E7%A9%BA%E7%9B%92/" title="US3S8L2——天空盒">US3S8L2——天空盒</a><time datetime="2024-12-17T04:33:51.000Z" title="发表于 2024-12-17 12:33:51">2024-12-17</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/12/15/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/CS4%E2%80%94%E2%80%94CSharp%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/CS4L24%E2%80%94%E2%80%94%E5%80%BC%E7%B1%BB%E5%9E%8B%E5%92%8C%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B%E8%A1%A5%E5%85%85/" title="CS4L24——值类型和引用类型补充">CS4L24——值类型和引用类型补充</a><time datetime="2024-12-14T18:46:02.000Z" title="发表于 2024-12-15 02:46:02">2024-12-15</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/12/10/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/CS4%E2%80%94%E2%80%94CSharp%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/CS4L23%E2%80%94%E2%80%94%E7%89%B9%E6%AE%8A%E8%AF%AD%E6%B3%95/" title="CS4L23——特殊语法">CS4L23——特殊语法</a><time datetime="2024-12-10T00:34:02.000Z" title="发表于 2024-12-10 08:34:02">2024-12-10</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2024 By 文KRIFE齐</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"><script>(async () => {
+  const showKatex = () => {
+    document.querySelectorAll('#article-container .katex').forEach(el => el.classList.add('katex-show'))
+  }
+
+  if (!window.katex_js_css) {
+    window.katex_js_css = true
+    await btf.getCSS('https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css')
+    if (false) {
+      await btf.getScript('https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js')
+    }
+  }
+
+  showKatex()
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>

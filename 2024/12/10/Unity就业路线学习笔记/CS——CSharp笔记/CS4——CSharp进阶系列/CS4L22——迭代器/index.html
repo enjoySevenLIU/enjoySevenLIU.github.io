@@ -1,0 +1,236 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>CS4L22——迭代器 | 文KRIFE齐的博客</title><meta name="author" content="文KRIFE齐"><meta name="copyright" content="文KRIFE齐"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="CS4L22——迭代器 本章代码关键字 12345IEnumerable            &#x2F;&#x2F; 可迭代接口，需要实现返回迭代器IEnumerator的方法IEnumerator            &#x2F;&#x2F; 迭代器接口，内部维护一个光标来迭代获取其中的元素IEnumerable&lt;T&gt;        &#x2F;&#x2F; 可迭代泛型接口，需要实现返回迭代器IEnumerator&lt;T&gt;的方">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CS4L22——迭代器">
+<meta property="og:url" content="https://enjoysevenliu.github.io/2024/12/10/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/CS4%E2%80%94%E2%80%94CSharp%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/CS4L22%E2%80%94%E2%80%94%E8%BF%AD%E4%BB%A3%E5%99%A8/index.html">
+<meta property="og:site_name" content="文KRIFE齐的博客">
+<meta property="og:description" content="CS4L22——迭代器 本章代码关键字 12345IEnumerable            &#x2F;&#x2F; 可迭代接口，需要实现返回迭代器IEnumerator的方法IEnumerator            &#x2F;&#x2F; 迭代器接口，内部维护一个光标来迭代获取其中的元素IEnumerable&lt;T&gt;        &#x2F;&#x2F; 可迭代泛型接口，需要实现返回迭代器IEnumerator&lt;T&gt;的方">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://enjoysevenliu.github.io/img/Blue_Ice.png">
+<meta property="article:published_time" content="2024-12-10T00:33:43.000Z">
+<meta property="article:modified_time" content="2024-12-18T18:23:12.000Z">
+<meta property="article:author" content="文KRIFE齐">
+<meta property="article:tag" content="blog">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://enjoysevenliu.github.io/img/Blue_Ice.png"><link rel="shortcut icon" href="/img/Blue_Ice.png"><link rel="canonical" href="https://enjoysevenliu.github.io/2024/12/10/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/CS4%E2%80%94%E2%80%94CSharp%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/CS4L22%E2%80%94%E2%80%94%E8%BF%AD%E4%BB%A3%E5%99%A8/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'CS4L22——迭代器',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  isShuoshuo: false
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/Blue_Ice.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">991</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">126</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/img/Blue_Ice.png" alt="Logo"><span class="site-name">文KRIFE齐的博客</span></a><a class="nav-page-title" href="/"><span class="site-name">CS4L22——迭代器</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">CS4L22——迭代器</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-12-10T00:33:43.000Z" title="发表于 2024-12-10 08:33:43">2024-12-10</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-12-18T18:23:12.000Z" title="更新于 2024-12-19 02:23:12">2024-12-19</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/">CS——CSharp笔记</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/CS4%E2%80%94%E2%80%94CSharp%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/">CS4——CSharp进阶系列</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1>CS4L22——迭代器</h1>
+<h2 id="本章代码关键字">本章代码关键字</h2>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">IEnumerable            <span class="comment">// 可迭代接口，需要实现返回迭代器IEnumerator的方法</span></span><br><span class="line">IEnumerator            <span class="comment">// 迭代器接口，内部维护一个光标来迭代获取其中的元素</span></span><br><span class="line">IEnumerable&lt;T&gt;        <span class="comment">// 可迭代泛型接口，需要实现返回迭代器IEnumerator&lt;T&gt;的方法，可以限制foreach迭代的变量类型</span></span><br><span class="line">IEnumerator&lt;T&gt;        <span class="comment">// 迭代器泛型接口，内部维护一个光标来迭代获取其中的元素，迭代的类型被泛型约束</span></span><br><span class="line"><span class="keyword">yield</span> <span class="keyword">return</span>        <span class="comment">// 返回值为IEnumerator的方法可以使用的语法糖，相当于返回一个值后挂起函数，再次执行函数时会从上次yield return的地方向后执行</span></span><br></pre></td></tr></table></figure>
+<h1>迭代器</h1>
+<p>迭代器（<code>iterator</code>​）有时又称光标（<code>cursor</code>​），是程序设计的软件设计模式，<br>
+迭代器模式提供一个方法顺序访问一个聚合对象中的各个元素，而又不暴露其内部的标识</p>
+<p>从表现结果上看，迭代器是可以在容器对象（例如链表或者数组）上遍历访问的接口，设计人员无需关心容器对象的内存分配的实现细节</p>
+<p>可以用 <code>foreach</code>​ 遍历的类，都是实现了迭代器的接口</p>
+<h2 id="标准迭代器的实现方法">标准迭代器的实现方法</h2>
+<ul>
+<li>关键接口：<code>IEnumerator</code>​，<code>IEnumerable</code>​</li>
+<li>命名空间：<code>using System.Collections;</code>​</li>
+</ul>
+<p>迭代器的一个最常用的用途就是 <code>foreach</code>​ 遍历，首先拆解 <code>foreach</code>​ 遍历执行的内容</p>
+<h3 id="foreach-的本质">foreach 的本质</h3>
+<p>拆解 <code>foreach</code>​ 中具体每一步做的事情：</p>
+<ol>
+<li>
+<p>首先会调用 <code>in</code>​ 后面这个对象的 <code>GetEnumerator()</code>​ 方法，来获取 <code>IEnumerator</code>​ 对象</p>
+</li>
+<li>
+<p>执行得到的这个 <code>IEnumerator</code>​ 对象中的 <code>MoveNext()</code>​ 方法</p>
+<p>其中，前两个步骤只会执行一次！接下来就是反复循环三四步，直到第三步的 <code>MoveNext()</code>​ 返回 <code>false</code>​</p>
+</li>
+<li>
+<p>只要 <code>MoveNext()</code>​ 方法的返回值是 <code>true</code>​，就会去从 <code>IEnumerator</code>​ 的 <code>Current</code>​ 属性取值，然后赋值给 <code>in</code>​ 前面的变量，执行 <code>foreach</code>​ 语句块</p>
+</li>
+<li>
+<p>执行 <code>foreach</code>​ 语句块执行完毕，回到第三步，直到 <code>MoveNext()</code>​ 方法返回 <code>false</code>​，<code>foreach</code>​ 结束</p>
+</li>
+</ol>
+<p>因此，如果要使自定义类可以使用 <code>foreach</code>​ 遍历，<br>
+则必须要实现一个 <code>GetEnumerator</code>​ 方法，也就是 <code>IEnumerable</code>​ 内声明的方法，返回的 <code>IEnumerator</code>​ 对象就是被迭代的主体</p>
+<p>而被迭代的，实现 <code>IEnumerator</code>​ 的对象，需要在内部存储一个光标（<code>cursor</code>​），类似于当前迭代到的对象，索引之类，<br>
+然后，在 <code>MoveNext()</code>​ 方法中，需要将这个光标向后移动，让光标指向下一个对象，根据对象存在与否返回 <code>bool</code>​ 值，<br>
+如果光标移动后可以指向一个对象，就返回 <code>true</code>​，告诉外部可以通过 <code>Current</code>​ 取值，如果光标越界或溢出，就返回 <code>false</code>​，告诉外部迭代结束，<br>
+而 <code>Reset()</code>​ 方法则需要将光标移动到最开始的位置上，同时，此方法一般是在内部调用，因此，可以在 <code>GetEnumerator()</code>​ 方法处调用</p>
+<p>一个类可以通过同时继承 <code>IEnumerator</code>​ 和 <code>IEnumerable</code>​ 并实现其中的方法，也可以只继承 <code>IEnumerable</code>​，然后返回另一个 <code>IEnumerator</code>​ 对象</p>
+<p>假设自定义类同时继承 <code>IEnumerator</code>​ 和 <code>IEnumerable</code>​ 并实现其中的方法，让 <code>foreach</code>​ 可以迭代循环</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> System.Collections;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title">CustomList</span> : <span class="title">IEnumerable</span>, <span class="title">IEnumerator</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="built_in">int</span>[] list;</span><br><span class="line">    <span class="keyword">private</span> <span class="built_in">int</span> position = <span class="number">-1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">CustomList</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        list = <span class="keyword">new</span> <span class="built_in">int</span>[] &#123; <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span> &#125;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// IEnumerable需要实现的内容</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> IEnumerator <span class="title">GetEnumerator</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// IEnumerator需要实现的内容</span></span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">object</span> Current =&gt; list[position];</span><br><span class="line">    <span class="comment">// 移动光标，迭代到下一次</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="built_in">bool</span> <span class="title">MoveNext</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        position++;                         <span class="comment">// 移动光标</span></span><br><span class="line">        <span class="keyword">return</span> position &lt; list.Length;      <span class="comment">// 检测光标是否溢出越界，溢出越界就证明迭代结束</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 重置光标，一般在IEnumerable.GetEnumerator()内调用</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Reset</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        position = <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样，<code>foreach</code>​ 就可以正常迭代了</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">CustomList list = <span class="keyword">new</span> CustomList();</span><br><span class="line"><span class="keyword">foreach</span> (<span class="built_in">int</span> item <span class="keyword">in</span> list)</span><br><span class="line">&#123;</span><br><span class="line">    Console.WriteLine(item);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span></span><br><span class="line"><span class="number">2</span></span><br><span class="line"><span class="number">3</span></span><br><span class="line"><span class="number">4</span></span><br><span class="line"><span class="number">5</span></span><br><span class="line"><span class="number">6</span></span><br><span class="line"><span class="number">7</span></span><br><span class="line"><span class="number">8</span></span><br></pre></td></tr></table></figure>
+<h2 id="用-yield-return-语法糖实现迭代器">用 yield return 语法糖实现迭代器</h2>
+<p>​<code>yield return</code>​ 是 C# 提供给我们的语法糖，它可以用于返回值为 <code>IEnumerator</code>​ 的函数内<br>
+所谓语法糖，也称糖衣语法，主要作用就是将复杂逻辑简单化，可以增加程序的可读性，从而减少程序代码出错的机会</p>
+<p>​<code>yield</code>​ 关键字是配合迭代器使用，可以理解为暂时返回，保留当前的状态，<br>
+下次调用从 <code>yield return</code>​ 的位置继续，原理其实和上面的标准迭代器一样，但是 C# 帮我们自动写好了代码</p>
+<ul>
+<li>关键接口：<code>IEnumerable</code>​</li>
+<li>命名空间：<code>using System.Collections;</code>​</li>
+</ul>
+<p>让想要通过 <code>foreach</code>​ 遍历的自定义类实现接口中的方法 <code>GetEnumerator</code>​ 即可</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> System.Collections;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title">YieldTest</span> : <span class="title">IEnumerable</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="built_in">int</span>[] list;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">YieldTest</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        list = <span class="keyword">new</span> <span class="built_in">int</span>[] &#123; <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span> &#125;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> IEnumerator <span class="title">GetEnumerator</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; list.Length; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">yield</span> <span class="keyword">return</span> list[i];   <span class="comment">// 走到这里先返回一个值，下次调用的时候在接着这里继续向下执行</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>​<code>yield</code>​ 关键字背后的原理和之前实现的标准迭代器一样，只是 C# 编译器后续会根据这个关键字自动生成那些标准迭代器语句</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">YieldTest list = <span class="keyword">new</span> YieldTest();</span><br><span class="line"><span class="keyword">foreach</span> (<span class="built_in">int</span> item <span class="keyword">in</span> list)</span><br><span class="line">&#123;</span><br><span class="line">    Console.WriteLine(item);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span></span><br><span class="line"><span class="number">2</span></span><br><span class="line"><span class="number">3</span></span><br><span class="line"><span class="number">4</span></span><br><span class="line"><span class="number">5</span></span><br><span class="line"><span class="number">6</span></span><br><span class="line"><span class="number">7</span></span><br><span class="line"><span class="number">8</span></span><br></pre></td></tr></table></figure>
+<h2 id="用-yield-return-语法糖为泛型类实现迭代器">用 yield return 语法糖为泛型类实现迭代器</h2>
+<p>泛型类也可以直接使用 <code>IEnumerable</code>​ 以支持迭代器</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title">YieldTest</span>&lt;<span class="title">T</span>&gt; : <span class="title">IEnumerable</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">private</span> T[] array;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">YieldTest</span>(<span class="params">T[] array</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">this</span>.array = array;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> IEnumerator <span class="title">GetEnumerator</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; array.Length; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">yield</span> <span class="keyword">return</span> array[i];   <span class="comment">// 走到这里先返回一个值，下次调用的时候在接着这里继续向下执行</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">YieldTest&lt;<span class="built_in">string</span>&gt; list = <span class="keyword">new</span> YieldTest&lt;<span class="built_in">string</span>&gt;(<span class="keyword">new</span> <span class="built_in">string</span>[] &#123; <span class="string">&quot;aaa&quot;</span>, <span class="string">&quot;bbb&quot;</span>, <span class="string">&quot;ccc&quot;</span>, <span class="string">&quot;ddd&quot;</span>, <span class="string">&quot;eee&quot;</span> &#125;);</span><br><span class="line"><span class="keyword">foreach</span> (<span class="built_in">string</span> item <span class="keyword">in</span> list)</span><br><span class="line">&#123;</span><br><span class="line">    Console.WriteLine(item);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">aaa</span><br><span class="line">bbb</span><br><span class="line">ccc</span><br><span class="line">ddd</span><br><span class="line">eee</span><br></pre></td></tr></table></figure>
+<p>​<code>IEnumerable</code>​ 也有泛型接口：<code>IEnumerable&lt;T&gt;</code>​，它可以限制迭代器迭代的类型，同时也可以限制 <code>foreach</code>​ 循环时的变量类型，避免类型出错，<br>
+由于 <code>IEnumerable&lt;T&gt;</code>​ 继承了 <code>IEnumerable</code>​，因此实现 <code>IEnumerator&lt;T&gt; GetEnumerator()</code>​ 方法的同时，<br>
+还需要实现 <code>IEnumerator GetEnumerator()</code>​，但因为和泛型函数同名了，因此需要显式实现接口： <code>IEnumerator IEnumerable.GetEnumerator()</code>​</p>
+<p>这样，除非将 <code>IEnumerable&lt;T&gt;</code>​ 对象得到的 <code>IEnumerator&lt;T&gt;</code>​ 对象转换为 <code>IEnumerator</code>​ 对象，否则迭代器迭代的类型都是由 <code>T</code>​ 决定的：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title">YieldTest</span>&lt;<span class="title">T</span>&gt; : <span class="title">IEnumerable</span>&lt;<span class="title">T</span>&gt;</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">private</span> T[] array;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">YieldTest</span>(<span class="params">T[] array</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">this</span>.array = array;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> IEnumerator&lt;T&gt; <span class="title">GetEnumerator</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; array.Length; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">// yield return 1;          // error: 无法将类型“int”隐式转换为“T”</span></span><br><span class="line">            <span class="keyword">yield</span> <span class="keyword">return</span> array[i];      <span class="comment">// 走到这里先返回一个值，下次调用的时候在接着这里继续向下执行</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 这个函数也可以直接 return GetEnumerator()（返回值为IEnumerator&lt;T&gt;的），因为IEnumerator&lt;T&gt;是继承于IEnumerator的</span></span><br><span class="line">    IEnumerator IEnumerable.GetEnumerator()</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; array.Length; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">yield</span> <span class="keyword">return</span> <span class="number">1</span>;             <span class="comment">// 这里可以返回任意类型的值，因为IEnumerator不限制迭代器迭代的类型</span></span><br><span class="line">            <span class="keyword">yield</span> <span class="keyword">return</span> array[i];      <span class="comment">// 走到这里先返回一个值，下次调用的时候在接着这里继续向下执行</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">YieldTest&lt;<span class="built_in">string</span>&gt; list = <span class="keyword">new</span> YieldTest&lt;<span class="built_in">string</span>&gt;(<span class="keyword">new</span> <span class="built_in">string</span>[] &#123; <span class="string">&quot;aaa&quot;</span>, <span class="string">&quot;bbb&quot;</span>, <span class="string">&quot;ccc&quot;</span>, <span class="string">&quot;ddd&quot;</span>, <span class="string">&quot;eee&quot;</span> &#125;);</span><br><span class="line"><span class="keyword">foreach</span> (<span class="built_in">string</span> item <span class="keyword">in</span> list)</span><br><span class="line">&#123;</span><br><span class="line">    Console.WriteLine(item);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// foreach (int item in list) &#123;&#125;    // error: 无法将类型“int”隐式转换为“T”</span></span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">aaa</span><br><span class="line">bbb</span><br><span class="line">ccc</span><br><span class="line">ddd</span><br><span class="line">eee</span><br></pre></td></tr></table></figure>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://enjoysevenliu.github.io">文KRIFE齐</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://enjoysevenliu.github.io/2024/12/10/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/CS4%E2%80%94%E2%80%94CSharp%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/CS4L22%E2%80%94%E2%80%94%E8%BF%AD%E4%BB%A3%E5%99%A8/">https://enjoysevenliu.github.io/2024/12/10/Unity就业路线学习笔记/CS——CSharp笔记/CS4——CSharp进阶系列/CS4L22——迭代器/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://enjoysevenliu.github.io" target="_blank">文KRIFE齐的博客</a>！</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/img/Blue_Ice.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2024/12/10/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/CS4%E2%80%94%E2%80%94CSharp%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/CS4L23%E2%80%94%E2%80%94%E7%89%B9%E6%AE%8A%E8%AF%AD%E6%B3%95/" title="CS4L23——特殊语法"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">CS4L23——特殊语法</div></div><div class="info-2"><div class="info-item-1">CS4L23——特殊语法 本章代码关键字 12345678910var                                    // 隐式类型，用于声明临时变量，编译器会根据=右边的值的类型来判断变量是什么类型的，而不需要再指定变量类型new()                                // 在已知变量类型的情况下，使用new实例化对象时可以直接省略掉new关键字后面的类型?                                    // 可空类型Nullable&lt;&gt;                            // 可空值类型的包装nullable&lt;&gt;.HasValue                    // 检查可空值类型是否为nullnullable&lt;&gt;.GetValueOrDefault()        // 安全获取可空值类型值，如果为值为空，返回默认值类型的默认值，如果此时还传入了参数，会返回传入的参数?.                               ...</div></div></div></a><a class="pagination-related" href="/2024/12/10/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/CS4%E2%80%94%E2%80%94CSharp%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/CS4L19%E2%80%94%E2%80%94%E9%A2%84%E5%A4%84%E7%90%86%E5%99%A8%E6%8C%87%E4%BB%A4/" title="CS4L19——预处理器指令"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">CS4L19——预处理器指令</div></div><div class="info-2"><div class="info-item-1">CS4L19——预处理器指令 本章代码关键字 12345678910#define        // 定义一个符号#undef        // 取消定义符号// 配合定义的符号进行条件编译#if#elif#else#endif#warning    // 向编译器发出警告#error        // 向编译器报错，使编译不通过 编译器 编译器是一种翻译程序，它用于将源语言程序翻译成目标语言程序  源语言程序：某种程序设计语言写成的，比如 C#、C、C++、Java 等语言写的程序 目标语言程序：二进制数标识的伪机器代码写的程序  编译器就会将我们编写的 .cs​ 源代码文件编译为 .exe​ 或者 .dll​ 等可执行程序 预处理器指令 预处理器指令 指导编译器 在实际编译开始之前对信息进行预处理 预处理器指令 都是以 #​ 开始，预处理器指令不是语句，所以他们不以分号 ;​ 结束 常用的折叠代码块 就是 预处理器指令 常见的预处理器指令 定义符号 #define​ ​#define​：定义一个符号，类似于一个没有值的变量，必须写在写在脚本文件的最前面，一般配合...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/Blue_Ice.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">文KRIFE齐</div><div class="author-info-description">Unity就业路线的笔记终于快更新完了！</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">991</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">126</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/enjoySevenLIU"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/enjoySevenLIU" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">博客项目被我搞坏了，抢修中！！！</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">CS4L22——迭代器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%AC%E7%AB%A0%E4%BB%A3%E7%A0%81%E5%85%B3%E9%94%AE%E5%AD%97"><span class="toc-number">1.1.</span> <span class="toc-text">本章代码关键字</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">2.</span> <span class="toc-text">迭代器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%87%E5%87%86%E8%BF%AD%E4%BB%A3%E5%99%A8%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%B3%95"><span class="toc-number">2.1.</span> <span class="toc-text">标准迭代器的实现方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#foreach-%E7%9A%84%E6%9C%AC%E8%B4%A8"><span class="toc-number">2.1.1.</span> <span class="toc-text">foreach 的本质</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%A8-yield-return-%E8%AF%AD%E6%B3%95%E7%B3%96%E5%AE%9E%E7%8E%B0%E8%BF%AD%E4%BB%A3%E5%99%A8"><span class="toc-number">2.2.</span> <span class="toc-text">用 yield return 语法糖实现迭代器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%A8-yield-return-%E8%AF%AD%E6%B3%95%E7%B3%96%E4%B8%BA%E6%B3%9B%E5%9E%8B%E7%B1%BB%E5%AE%9E%E7%8E%B0%E8%BF%AD%E4%BB%A3%E5%99%A8"><span class="toc-number">2.3.</span> <span class="toc-text">用 yield return 语法糖为泛型类实现迭代器</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/12/19/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S8%E2%80%94%E2%80%94%E9%AB%98%E7%BA%A7%E7%BA%B9%E7%90%86/US3S8L4%E2%80%94%E2%80%94%E5%8F%8D%E5%B0%84%E6%95%88%E6%9E%9C/" title="US3S8L4——反射效果">US3S8L4——反射效果</a><time datetime="2024-12-18T16:13:01.000Z" title="发表于 2024-12-19 00:13:01">2024-12-19</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/12/17/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S8%E2%80%94%E2%80%94%E9%AB%98%E7%BA%A7%E7%BA%B9%E7%90%86/US3S8L3%E2%80%94%E2%80%94%E5%8A%A8%E6%80%81%E7%94%9F%E6%88%90%E7%AB%8B%E6%96%B9%E4%BD%93%E7%BA%B9%E7%90%86/" title="US3S8L3——动态生成立方体纹理">US3S8L3——动态生成立方体纹理</a><time datetime="2024-12-17T04:49:26.000Z" title="发表于 2024-12-17 12:49:26">2024-12-17</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/12/17/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S8%E2%80%94%E2%80%94%E9%AB%98%E7%BA%A7%E7%BA%B9%E7%90%86/US3S8L2%E2%80%94%E2%80%94%E5%A4%A9%E7%A9%BA%E7%9B%92/" title="US3S8L2——天空盒">US3S8L2——天空盒</a><time datetime="2024-12-17T04:33:51.000Z" title="发表于 2024-12-17 12:33:51">2024-12-17</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/12/15/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/CS4%E2%80%94%E2%80%94CSharp%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/CS4L24%E2%80%94%E2%80%94%E5%80%BC%E7%B1%BB%E5%9E%8B%E5%92%8C%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B%E8%A1%A5%E5%85%85/" title="CS4L24——值类型和引用类型补充">CS4L24——值类型和引用类型补充</a><time datetime="2024-12-14T18:46:02.000Z" title="发表于 2024-12-15 02:46:02">2024-12-15</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/12/10/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/CS4%E2%80%94%E2%80%94CSharp%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/CS4L23%E2%80%94%E2%80%94%E7%89%B9%E6%AE%8A%E8%AF%AD%E6%B3%95/" title="CS4L23——特殊语法">CS4L23——特殊语法</a><time datetime="2024-12-10T00:34:02.000Z" title="发表于 2024-12-10 08:34:02">2024-12-10</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2024 By 文KRIFE齐</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"><script>(async () => {
+  const showKatex = () => {
+    document.querySelectorAll('#article-container .katex').forEach(el => el.classList.add('katex-show'))
+  }
+
+  if (!window.katex_js_css) {
+    window.katex_js_css = true
+    await btf.getCSS('https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css')
+    if (false) {
+      await btf.getScript('https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js')
+    }
+  }
+
+  showKatex()
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>
