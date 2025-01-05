@@ -1,0 +1,345 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>US3S10L5——亮度、饱和度、对比度 | 文KRIFE齐的博客</title><meta name="author" content="文KRIFE齐"><meta name="copyright" content="文KRIFE齐"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="US3S10L5——亮度、饱和度、对比度 改变屏幕的亮度、饱和度、对比度 亮度、饱和度和对比度的计算规则是在视觉科学、色彩理论和图像处理技术的基础上逐步发展起来的， 这些规则不是由某个人发明的，而是通过多年的研究和实践得出的， 这些计算方法被广泛应用于各种图像处理工具和计算机图形学中，用于实现图像的调整和优化 颜色亮度的基本原理 想要改变图像颜色的亮度，只需要对图像的每个像素进行加法(减法-加负数">
+<meta property="og:type" content="article">
+<meta property="og:title" content="US3S10L5——亮度、饱和度、对比度">
+<meta property="og:url" content="https://enjoysevenliu.github.io/2025/01/04/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S10%E2%80%94%E2%80%94%E5%B1%8F%E5%B9%95%E5%90%8E%E6%9C%9F%E5%A4%84%E7%90%86%E6%95%88%E6%9E%9C/US3S10L5%E2%80%94%E2%80%94%E4%BA%AE%E5%BA%A6%E3%80%81%E9%A5%B1%E5%92%8C%E5%BA%A6%E3%80%81%E5%AF%B9%E6%AF%94%E5%BA%A6/index.html">
+<meta property="og:site_name" content="文KRIFE齐的博客">
+<meta property="og:description" content="US3S10L5——亮度、饱和度、对比度 改变屏幕的亮度、饱和度、对比度 亮度、饱和度和对比度的计算规则是在视觉科学、色彩理论和图像处理技术的基础上逐步发展起来的， 这些规则不是由某个人发明的，而是通过多年的研究和实践得出的， 这些计算方法被广泛应用于各种图像处理工具和计算机图形学中，用于实现图像的调整和优化 颜色亮度的基本原理 想要改变图像颜色的亮度，只需要对图像的每个像素进行加法(减法-加负数">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://enjoysevenliu.github.io/img/Blue_Ice.png">
+<meta property="article:published_time" content="2025-01-04T09:46:34.000Z">
+<meta property="article:modified_time" content="2025-01-05T11:49:28.522Z">
+<meta property="article:author" content="文KRIFE齐">
+<meta property="article:tag" content="blog">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://enjoysevenliu.github.io/img/Blue_Ice.png"><link rel="shortcut icon" href="/img/Blue_Ice.png"><link rel="canonical" href="https://enjoysevenliu.github.io/2025/01/04/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S10%E2%80%94%E2%80%94%E5%B1%8F%E5%B9%95%E5%90%8E%E6%9C%9F%E5%A4%84%E7%90%86%E6%95%88%E6%9E%9C/US3S10L5%E2%80%94%E2%80%94%E4%BA%AE%E5%BA%A6%E3%80%81%E9%A5%B1%E5%92%8C%E5%BA%A6%E3%80%81%E5%AF%B9%E6%AF%94%E5%BA%A6/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'US3S10L5——亮度、饱和度、对比度',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  isShuoshuo: false
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/Blue_Ice.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1019</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">128</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/img/Blue_Ice.png" alt="Logo"><span class="site-name">文KRIFE齐的博客</span></a><a class="nav-page-title" href="/"><span class="site-name">US3S10L5——亮度、饱和度、对比度</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">US3S10L5——亮度、饱和度、对比度</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-01-04T09:46:34.000Z" title="发表于 2025-01-04 17:46:34">2025-01-04</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-01-05T11:49:28.522Z" title="更新于 2025-01-05 19:49:28">2025-01-05</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity-Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/">US——Unity Shader开发入门</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity-Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/">US3——Shader开发知识</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity-Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S10%E2%80%94%E2%80%94%E5%B1%8F%E5%B9%95%E5%90%8E%E6%9C%9F%E5%A4%84%E7%90%86%E6%95%88%E6%9E%9C/">US3S10——屏幕后期处理效果</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1>US3S10L5——亮度、饱和度、对比度</h1>
+<h1>改变屏幕的亮度、饱和度、对比度</h1>
+<p>亮度、饱和度和对比度的计算规则是在视觉科学、色彩理论和图像处理技术的基础上逐步发展起来的，<br>
+这些规则不是由某个人发明的，而是通过多年的研究和实践得出的，<br>
+这些计算方法被广泛应用于各种图像处理工具和计算机图形学中，用于实现图像的调整和优化</p>
+<h2 id="颜色亮度的基本原理">颜色亮度的基本原理</h2>
+<p>想要改变图像颜色的亮度，只需要对图像的每个像素进行加法(减法-加负数)或乘法(除法-乘小数)运算即可实现</p>
+<ul>
+<li>增加亮度就是增加像素的 RGB 值</li>
+<li>减小亮度则是减少像素的 RGB 值</li>
+</ul>
+<p>也就是说我们只需要在 Shader 当中加入一个控制亮度的 <code>float</code>​ 类型的变量<br>
+然后用颜色的 RGB 乘以该变量或者加上该变量即可，一般我们会采用乘法的形式</p>
+<p>即：最终颜色 = 原始颜色 * 亮度变量</p>
+<ul>
+<li>亮度变量 &gt; 1 时，图像变亮</li>
+<li>亮度变量 &lt; 1 时，图像变暗</li>
+<li>亮度变量 = 1 时，图像不变</li>
+</ul>
+<h2 id="颜色饱和度的基本原理">颜色饱和度的基本原理</h2>
+<blockquote>
+<p>色彩的饱和度（saturation）指色彩的鲜艳程度，也称作纯度。在hue-saturation-value（HSV）色彩模型下，饱和度是色彩的3个属性之一，另外两个属性为色相（hue）和明度（value）；在此模型下色相的取值范围为0°到360°，饱和度和明度取值范围为 0 到 100%。在色彩学中，原色饱和度最高，随着饱和度降低，色彩变得暗淡直至成为无彩色，即失去色相的色彩。</p>
+<p><a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E9%A5%B1%E5%92%8C%E5%BA%A6/3430026">饱和度（色彩概念）_百度百科</a></p>
+</blockquote>
+<p>想要改变图像颜色的饱和度，只需要对图像的 <strong>每个像素的颜色值</strong> 相对于 <strong>灰度颜色</strong> 进行插值来实现</p>
+<blockquote>
+<p>灰度颜色（Grayscale Color）是指只含有亮度信息而没有色相和饱和度的颜色，即图像中的每个像素只有从黑到白的不同灰度级别。<br>
+在最简单的形式中，灰度图像的每个像素可以由一个值表示，这个值通常是从 0（黑色）到 255（白色）之间的整数。</p>
+<p>利用图像颜色 RGB 计算一个平均值，即可得到一个灰度值，因为人眼对不同颜色敏感度不同，因此会对三个颜色分别乘以不同的权数，用加权平均法来计算灰度值</p>
+</blockquote>
+<p>基本原理为以下三步：</p>
+<ol>
+<li>
+<p>计算灰度值（亮度）</p>
+<p>利用图像颜色RGB计算一个平均值，得到一个灰度值<br>
+但是由于人眼对不同颜色的敏感度不同，所以在计算平均值时不会直接使用算数平均：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mi>R</mi><mo>+</mo><mi>G</mi><mo>+</mo><mi>B</mi></mrow><mn>3</mn></mfrac></mrow><annotation encoding="application/x-tex">\frac{R+G+B}{3}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.2173em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8723em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">3</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.00773em;">R</span><span class="mbin mtight">+</span><span class="mord mathnormal mtight">G</span><span class="mbin mtight">+</span><span class="mord mathnormal mtight" style="margin-right:0.05017em;">B</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></p>
+<p>在图形学中我们一般使用加权平均法来计算灰度值，<br>
+所谓加权平均法就是通过对不同数据分配不同权重，计算出更符合实际情况的平均值<br>
+常用的权重基于 <a target="_blank" rel="noopener" href="https://baike.baidu.com/item/Rec.709%E8%89%B2%E5%BD%A9%E6%A0%87%E5%87%86/19034573">Rec. 709 标准</a>（高清电视和许多数字图像格式中常用的标准）</p>
+<ul>
+<li>R 红色通道的权重：0.2126</li>
+<li>G 绿色通道的权重：0.7152</li>
+<li>B 蓝色通道的权重：0.0722</li>
+</ul>
+<p>这些权重反映了人眼对绿色最敏感，对蓝色最不敏感<br>
+加权平均法公式：灰度值（亮度）<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi><mo>=</mo><mn>0.2126</mn><mo>×</mo><mi>R</mi><mo>+</mo><mn>0.7152</mn><mo>×</mo><mi>G</mi><mo>+</mo><mn>0.0722</mn><mo>×</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">L = 0.2126 \times R + 0.7152 \times G + 0.0722 \times B</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal">L</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">0.2126</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.7667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">0.7152</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.7667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">G</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">0.0722</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.05017em;">B</span></span></span></span></p>
+</li>
+<li>
+<p>生成灰度颜色</p>
+<p>利用第一步中计算出来的灰度值，生成一个灰度颜色：<code>灰度颜色 = (L, L, L)</code>​</p>
+</li>
+<li>
+<p>插值计算</p>
+<p>使用插值函数 <code>lerp</code>​，在灰度颜色和原始颜色之间进行插值运算，<br>
+插值系数就是用于控制饱和度的 <code>float</code>​ 类型的变量，公式如下：</p>
+<p>​<code>最终颜色 = lerp(灰度颜色, 原始颜色, 饱和度变量)</code>​</p>
+<p>​<code>lerp</code>​ 计算原理：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>最终颜色</mtext><mo>=</mo><mtext>灰度颜色</mtext><mo>+</mo><mo stretchy="false">(</mo><mtext>原始颜色</mtext><mo>−</mo><mtext>灰度颜色</mtext><mo stretchy="false">)</mo><mo>×</mo><mtext>饱和度变量</mtext></mrow><annotation encoding="application/x-tex">最终颜色 = 灰度颜色 + (原始颜色 − 灰度颜色) \times 饱和度变量</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord cjk_fallback">最终颜色</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.7667em;vertical-align:-0.0833em;"></span><span class="mord cjk_fallback">灰度颜色</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord cjk_fallback">原始颜色</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord cjk_fallback">灰度颜色</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord cjk_fallback">饱和度变量</span></span></span></span></p>
+<ul>
+<li>饱和度变量 = 0 时，结果为灰度颜色</li>
+<li>饱和度变量 = 1 时，保持原始颜色不变</li>
+<li>饱和度变量 = 0~1 之间时，灰度颜色和原始颜色的混合</li>
+<li>饱和度变量 &gt; 1 时，颜色的RGB值超出原始范围，从而使颜色看起来更饱和</li>
+</ul>
+</li>
+</ol>
+<h2 id="颜色对比度的基本原理">颜色对比度的基本原理</h2>
+<blockquote>
+<p>对比度指的是一幅图像中明暗区域最亮的白和最暗的黑之间不同亮度层级的测量，<br>
+差异范围越大代表对比越大，差异范围越小代表对比越小，<br>
+好的对比率 120:1 就可容易地显示生动、丰富的色彩，<br>
+当对比率高达 300:1 时，便可支持各阶的颜色。</p>
+<p><a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%AF%B9%E6%AF%94%E5%BA%A6/1196082">对比度_百度百科</a></p>
+</blockquote>
+<p>想要改变图像颜色的对比度，只需要对图像的每个像素的颜色值，相对于中性灰色进行插值来实现</p>
+<blockquote>
+<p>中性灰色，是指在 RGB 色彩模式下，R:G:B = 1:1:1 ，<br>
+即红绿蓝三色数值相等，即为中性灰，当 R=G=B=128，被称作“绝对中性灰”</p>
+</blockquote>
+<p>基本原理为以下两步：</p>
+<ol>
+<li>
+<p>声明中性灰色变量，即 RGB 都为 0.5 的颜色变量</p>
+<p>​<code>中性灰颜色 = (0.5,0.5,0.5)</code>​</p>
+</li>
+<li>
+<p>在中性灰色和原始颜色之间进行插值运算</p>
+<p>​<code>最终颜色 = lerp(中性灰色, 原始颜色, 对比度变量)</code>​</p>
+<p>​<code>lerp</code>​ 计算原理：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>最终颜色</mtext><mo>=</mo><mtext>中性灰色</mtext><mo>+</mo><mo stretchy="false">(</mo><mtext>原始颜色</mtext><mo>−</mo><mtext>中性灰色</mtext><mo stretchy="false">)</mo><mo>×</mo><mtext>对比度变量</mtext></mrow><annotation encoding="application/x-tex">最终颜色 = 中性灰色 + (原始颜色 − 中性灰色) \times 对比度变量</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord cjk_fallback">最终颜色</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.7667em;vertical-align:-0.0833em;"></span><span class="mord cjk_fallback">中性灰色</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord cjk_fallback">原始颜色</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord cjk_fallback">中性灰色</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord cjk_fallback">对比度变量</span></span></span></span></p>
+<ul>
+<li>对比度变量 = 0 时，此时对比度降到最低，变为中性灰色</li>
+<li>对比度变量 = 1 时，保持原始颜色不变</li>
+<li>对比度变量 = 0~1 之间时，降低对比度效果，图像的亮度差异减少，使图像颜色看起来更平淡</li>
+<li>对比度变量 &gt; 1 时，颜色的RGB值超出原始范围，从而使颜色亮部更亮，暗部更暗，从而增加对比度</li>
+</ul>
+</li>
+</ol>
+<h2 id="实现亮度、饱和度、对比度屏幕后期处理效果对应-Shader">实现亮度、饱和度、对比度屏幕后期处理效果对应 Shader</h2>
+<ol>
+<li>
+<p>新建一个 Shader，名为 <code>BrightnessSaturationContrast</code>​（亮度饱和度对比度），删除其中无用代码</p>
+</li>
+<li>
+<p>声明变量，并进行属性映射</p>
+<ul>
+<li>主纹理 <code>_MainTex</code>​ 2D</li>
+<li>亮度 <code>_Brightness</code>​ Float</li>
+<li>饱和度 <code>_Saturation</code>​ Float</li>
+<li>对比度 <code>_Contrast</code>​ Float</li>
+</ul>
+ <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Properties</span><br><span class="line">&#123;</span><br><span class="line">    _MainTex(<span class="string">&quot;Texture&quot;</span>, <span class="number">2</span>D) = <span class="string">&quot;white&quot;</span>&#123;&#125;</span><br><span class="line">    _Brightness(<span class="string">&quot;Brightness&quot;</span>, Float) = <span class="number">1</span>    <span class="comment">// 亮度变量</span></span><br><span class="line">    _Saturation(<span class="string">&quot;Saturation&quot;</span>, Float) = <span class="number">1</span>    <span class="comment">// 饱和度变量</span></span><br><span class="line">    _Contrast(<span class="string">&quot;Contrast&quot;</span>, Float) = <span class="number">1</span>        <span class="comment">// 对比度变量</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>设置深度测试、剔除、深度写入</p>
+<ul>
+<li>​ZTest Always​ 开启深度测试</li>
+<li>​Cull Off​ 关闭剔除</li>
+<li>​ZWrite Off​ 关闭深度写入</li>
+</ul>
+<p>这样的设置是屏幕后处理的标配，因为屏幕后处理效果相当于在场景上绘制了一个与屏幕同宽高的四边形面片<br>
+这样做的目的是避免它 <strong>“挡住”</strong> 后面的渲染物体，比如我们在 <code>OnRenderImage</code>​ 前加入 <code>[ImageEffectOpaque]</code>​ 特性时<br>
+透明物体会晚于该该屏幕后处理效果渲染，如果不关闭深度写入会影响后面的透明相关 <code>Pass</code>​</p>
+ <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Pass</span><br><span class="line">&#123;</span><br><span class="line">    ZTest Always</span><br><span class="line">    Cull Off</span><br><span class="line">    ZWrite Off</span><br><span class="line">  </span><br><span class="line">    CGPROGRAM</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">    ENDCG</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>结构体相关</p>
+<p>顶点、纹理坐标</p>
+ <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">v2f</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    float2 uv : TEXCOORD0;</span><br><span class="line">    float4 vertex : SV_POSITION;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">sampler2D _MainTex;</span><br><span class="line">float4 _MainTex_ST;</span><br><span class="line">half _Brightness;</span><br><span class="line">half _Saturation;</span><br><span class="line">half _Contrast;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>顶点着色器</p>
+<p>顶点转裁剪空间，uv缩放偏移</p>
+ <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">v2f <span class="title function_">vert</span> <span class="params">(appdata_base v)</span></span><br><span class="line">&#123;</span><br><span class="line">    v2f o;</span><br><span class="line">    o.vertex = UnityObjectToClipPos(v.vertex);  <span class="comment">// 顶点转换到裁剪空间下</span></span><br><span class="line">    o.uv = TRANSFORM_TEX(v.texcoord, _MainTex); <span class="comment">// 缩放偏移UV坐标</span></span><br><span class="line">    <span class="keyword">return</span> o;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>片元着色器</p>
+<p>对主纹理进行采样，分别利用公式计算 亮度、饱和度、对比度，返回处理后的颜色</p>
+ <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">fixed4 <span class="title function_">frag</span> <span class="params">(v2f i)</span> : SV_Target</span><br><span class="line">&#123;</span><br><span class="line">    fixed4 renderTexColor = tex2D(_MainTex, i.uv);</span><br><span class="line">    <span class="comment">// 亮度计算</span></span><br><span class="line">    fixed3 finalColor = renderTexColor.rgb * _Brightness;</span><br><span class="line">    <span class="comment">// 饱和度计算</span></span><br><span class="line">    fixed L = <span class="number">0.2126</span> * finalColor.r + <span class="number">0.7152</span> * finalColor + <span class="number">0.722</span> * finalColor.b;</span><br><span class="line">    fixed3 LColor = fixed3(L, L, L);</span><br><span class="line">    finalColor = lerp(LColor, finalColor, _Saturation);</span><br><span class="line">    <span class="comment">// 对比度计算</span></span><br><span class="line">    fixed3 avgColor = fixed3(<span class="number">0.5</span>, <span class="number">0.5</span>, <span class="number">0.5</span>);</span><br><span class="line">    finalColor = lerp(avgColor, finalColor, _Contrast);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> fixed4(finalColor.rgb, <span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>​<code>FallBack Off</code>​</p>
+<p>这里不需要后备 Shader，因为如果 Shader 不支持就直接不执行了</p>
+</li>
+</ol>
+<p>完整 Shader 代码如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line">Shader <span class="string">&quot;PostEffect/BrightnessSaturationContrast&quot;</span></span><br><span class="line">&#123;</span><br><span class="line">    Properties</span><br><span class="line">    &#123;</span><br><span class="line">        _MainTex(<span class="string">&quot;Texture&quot;</span>, <span class="number">2</span>D) = <span class="string">&quot;white&quot;</span>&#123;&#125;</span><br><span class="line">        _Brightness(<span class="string">&quot;Brightness&quot;</span>, Float) = <span class="number">1</span>    <span class="comment">// 亮度变量</span></span><br><span class="line">        _Saturation(<span class="string">&quot;Saturation&quot;</span>, Float) = <span class="number">1</span>    <span class="comment">// 饱和度变量</span></span><br><span class="line">        _Contrast(<span class="string">&quot;Contrast&quot;</span>, Float) = <span class="number">1</span>        <span class="comment">// 对比度变量</span></span><br><span class="line">    &#125;</span><br><span class="line">    SubShader</span><br><span class="line">    &#123;</span><br><span class="line">        Tags &#123; <span class="string">&quot;RenderType&quot;</span>=<span class="string">&quot;Opaque&quot;</span> &#125;</span><br><span class="line"></span><br><span class="line">        Pass</span><br><span class="line">        &#123;</span><br><span class="line">            CGPROGRAM</span><br><span class="line">            <span class="meta">#<span class="keyword">pragma</span> vertex vert</span></span><br><span class="line">            <span class="meta">#<span class="keyword">pragma</span> fragment frag</span></span><br><span class="line"></span><br><span class="line">            <span class="meta">#<span class="keyword">include</span> <span class="string">&quot;UnityCG.cginc&quot;</span></span></span><br><span class="line"></span><br><span class="line">            <span class="keyword">struct</span> v2f</span><br><span class="line">            &#123;</span><br><span class="line">                float2 uv : TEXCOORD0;</span><br><span class="line">                float4 vertex : SV_POSITION;</span><br><span class="line">            &#125;;</span><br><span class="line"></span><br><span class="line">            sampler2D _MainTex;</span><br><span class="line">            float4 _MainTex_ST;</span><br><span class="line">            half _Brightness;</span><br><span class="line">            half _Saturation;</span><br><span class="line">            half _Contrast;</span><br><span class="line"></span><br><span class="line">            v2f <span class="title function_">vert</span> <span class="params">(appdata_base v)</span></span><br><span class="line">            &#123;</span><br><span class="line">                v2f o;</span><br><span class="line">                o.vertex = UnityObjectToClipPos(v.vertex);  <span class="comment">// 顶点转换到裁剪空间下</span></span><br><span class="line">                o.uv = TRANSFORM_TEX(v.texcoord, _MainTex); <span class="comment">// 缩放偏移UV坐标</span></span><br><span class="line">                <span class="keyword">return</span> o;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            fixed4 <span class="title function_">frag</span> <span class="params">(v2f i)</span> : SV_Target</span><br><span class="line">            &#123;</span><br><span class="line">                fixed4 renderTexColor = tex2D(_MainTex, i.uv);</span><br><span class="line">                <span class="comment">// 亮度计算</span></span><br><span class="line">                fixed3 finalColor = renderTexColor.rgb * _Brightness;</span><br><span class="line">                <span class="comment">// 饱和度计算</span></span><br><span class="line">                fixed L = <span class="number">0.2126</span> * finalColor.r + <span class="number">0.7152</span> * finalColor + <span class="number">0.722</span> * finalColor.b;</span><br><span class="line">                fixed3 LColor = fixed3(L, L, L);</span><br><span class="line">                finalColor = lerp(LColor, finalColor, _Saturation);</span><br><span class="line">                <span class="comment">// 对比度计算</span></span><br><span class="line">                fixed3 avgColor = fixed3(<span class="number">0.5</span>, <span class="number">0.5</span>, <span class="number">0.5</span>);</span><br><span class="line">                finalColor = lerp(avgColor, finalColor, _Contrast);</span><br><span class="line"></span><br><span class="line">                <span class="keyword">return</span> fixed4(finalColor.rgb, <span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            ENDCG</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    Fallback Off</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="实现亮度、饱和度、对比度屏幕后期处理效果对应-C-代码">实现亮度、饱和度、对比度屏幕后期处理效果对应 C#代码</h2>
+<ol>
+<li>
+<p>创建 C# 脚本，名为 <code>BrightnessSaturationContrast</code>​（亮度饱和度对比度）</p>
+</li>
+<li>
+<p>继承屏幕后处理基类 <code>PostEffect</code>​</p>
+<p>基类代码详见：US3S10L4——屏幕后处理基类</p>
+</li>
+<li>
+<p>声明亮度饱和度对比度变量，用于控制效果变化</p>
+</li>
+<li>
+<p>重写 <code>OnRenderImage</code>​（<code>UpdateProperty</code>​）方法，在其中设置材质球对应属性</p>
+</li>
+</ol>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> UnityEngine;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">BrightnessSaturationContrast</span> : <span class="title">PostEffect</span></span><br><span class="line">&#123;</span><br><span class="line">    [<span class="meta">Range(0f, 5f)</span>]</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">float</span> Brightness = <span class="number">1f</span>;</span><br><span class="line">    [<span class="meta">Range(0f, 3f)</span>]</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">float</span> Saturation = <span class="number">1f</span>;</span><br><span class="line">    [<span class="meta">Range(0f, 5f)</span>]</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">float</span> Contrast = <span class="number">1f</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">override</span> <span class="keyword">void</span> <span class="title">UpdateProperty</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (PostEffectMaterial != <span class="literal">null</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            PostEffectMaterial.SetFloat(<span class="string">&quot;_Brightness&quot;</span>, Brightness);</span><br><span class="line">            PostEffectMaterial.SetFloat(<span class="string">&quot;_Saturation&quot;</span>, Saturation);</span><br><span class="line">            PostEffectMaterial.SetFloat(<span class="string">&quot;_Contrast&quot;</span>, Contrast);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>显示效果：</p>
+<ul>
+<li>
+<p>原始图像</p>
+<p>​<img src="/assets/image-20250104185740-6p5vgbr.jpg" alt="image-20250104185740-6p5vgbr">​</p>
+</li>
+<li>
+<p>亮度为1.5</p>
+<p>​<img src="/assets/image-20250104190000-icvbuqd.jpg" alt="image-20250104190000-icvbuqd">​</p>
+</li>
+<li>
+<p>饱和度为1.5</p>
+<p>​<img src="/assets/image-20250104190140-sjultut.jpg" alt="image-20250104190140-sjultut">​</p>
+</li>
+<li>
+<p>对比度为1.5</p>
+<p>​<img src="/assets/image-20250104190208-3af3x18.jpg" alt="image-20250104190208-3af3x18">​</p>
+</li>
+</ul>
+<p>‍</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://enjoysevenliu.github.io">文KRIFE齐</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://enjoysevenliu.github.io/2025/01/04/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S10%E2%80%94%E2%80%94%E5%B1%8F%E5%B9%95%E5%90%8E%E6%9C%9F%E5%A4%84%E7%90%86%E6%95%88%E6%9E%9C/US3S10L5%E2%80%94%E2%80%94%E4%BA%AE%E5%BA%A6%E3%80%81%E9%A5%B1%E5%92%8C%E5%BA%A6%E3%80%81%E5%AF%B9%E6%AF%94%E5%BA%A6/">https://enjoysevenliu.github.io/2025/01/04/Unity就业路线学习笔记/US——Unity Shader开发入门/US3——Shader开发知识/US3S10——屏幕后期处理效果/US3S10L5——亮度、饱和度、对比度/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://enjoysevenliu.github.io" target="_blank">文KRIFE齐的博客</a>！</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/img/Blue_Ice.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2025/01/04/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S10%E2%80%94%E2%80%94%E5%B1%8F%E5%B9%95%E5%90%8E%E6%9C%9F%E5%A4%84%E7%90%86%E6%95%88%E6%9E%9C/US3S10L6%E2%80%94%E2%80%94%E8%BE%B9%E7%BC%98%E6%A3%80%E6%B5%8B/" title="US3S10L6——边缘检测"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">US3S10L6——边缘检测</div></div><div class="info-2"><div class="info-item-1">US3S10L6——边缘检测 边缘检测效果 边缘检测效果，是一种用于突出图像中的边缘，使物体的轮廓更加明显的图像处理技术 边缘检测的主要目的是找到图像中亮度变化显著的区域，这些区域通常对应于物体的边界 边缘检测相当于利用 Shader 代码自动给屏幕图像进行描边处理，下图就是边缘检测的例子： ​​ ​​ 边缘检测效果的基本原理 一句话概括 Unity Shader 中实现边缘检测效果的基本原理： 计算每个像素的灰度值，用灰度值结合卷积核进行卷积运算，得到该像素的梯度值，  梯度值越大越靠近边界，越趋近于描边颜色 梯度值越小表明不是边界位置，越趋近于原始颜色  关键知识点：灰度值、卷积、卷积核、梯度值 灰度值 灰度值指只含有亮度信息而没有色相和饱和度的颜色，即图像中的每个像素只有从黑到白的不同灰度级别。 在最简单的形式中，灰度图像的每个像素可以由一个值表示，这个值通常是从 0（黑色）到 255（白色）之间的整数。 利用图像颜色 RGB 计算一个平均值，即可得到一个灰度值，因为人眼对不同颜色敏感度不同， 因此会对三个颜色分别乘以不同的权数，用加权平均法来计算灰度值，下面是基于...</div></div></div></a><a class="pagination-related" href="/2025/01/04/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S10%E2%80%94%E2%80%94%E5%B1%8F%E5%B9%95%E5%90%8E%E6%9C%9F%E5%A4%84%E7%90%86%E6%95%88%E6%9E%9C/US3S10L4%E2%80%94%E2%80%94%E5%B1%8F%E5%B9%95%E5%90%8E%E5%A4%84%E7%90%86%E5%9F%BA%E7%B1%BB/" title="US3S10L4——屏幕后处理基类"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">US3S10L4——屏幕后处理基类</div></div><div class="info-2"><div class="info-item-1">US3S10L4——屏幕后处理基类 本章代码关键字 1234shader.isSupported        // 判断此Shader在目标平台和硬件上是否能正确运行[ExecuteInEditMode]        // 使脚本在编辑器模式下也能执行的特性，此特性不考虑预制体模式下的情况[RequireComponent()]    // 指定某个脚本所依赖的组件，它确保当你将脚本附加到游戏对象时，所需的组件也会自动添加到该游戏对象中HideFlags                // 用于控制对象的销毁、保存和在Inspector中的可见性的枚举 知识点补充   ​Shader.isSupported​ 如何判断 Shader 在目标平台和硬件上是否能正确运行 我们可以通过获取 Shader 对象中的 isSupported​ 属性判断  如果返回 false​，说明当前平台不支持此 Shader 正确 如果返回 true​，说明当前平台能够正确运行此 ​Shader    ​[ExecuteInEditMode]​...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/Blue_Ice.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">文KRIFE齐</div><div class="author-info-description">Unity就业路线的笔记终于快更新完了！</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1019</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">128</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/enjoySevenLIU"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/enjoySevenLIU" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">博客修好了，继续学习，CSharp进阶也迁移完毕了，接下来尽快把Unity Shader给啃完，年末给博客好好整修一下</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">US3S10L5——亮度、饱和度、对比度</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">2.</span> <span class="toc-text">改变屏幕的亮度、饱和度、对比度</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A2%9C%E8%89%B2%E4%BA%AE%E5%BA%A6%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86"><span class="toc-number">2.1.</span> <span class="toc-text">颜色亮度的基本原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A2%9C%E8%89%B2%E9%A5%B1%E5%92%8C%E5%BA%A6%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86"><span class="toc-number">2.2.</span> <span class="toc-text">颜色饱和度的基本原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A2%9C%E8%89%B2%E5%AF%B9%E6%AF%94%E5%BA%A6%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86"><span class="toc-number">2.3.</span> <span class="toc-text">颜色对比度的基本原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E4%BA%AE%E5%BA%A6%E3%80%81%E9%A5%B1%E5%92%8C%E5%BA%A6%E3%80%81%E5%AF%B9%E6%AF%94%E5%BA%A6%E5%B1%8F%E5%B9%95%E5%90%8E%E6%9C%9F%E5%A4%84%E7%90%86%E6%95%88%E6%9E%9C%E5%AF%B9%E5%BA%94-Shader"><span class="toc-number">2.4.</span> <span class="toc-text">实现亮度、饱和度、对比度屏幕后期处理效果对应 Shader</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E4%BA%AE%E5%BA%A6%E3%80%81%E9%A5%B1%E5%92%8C%E5%BA%A6%E3%80%81%E5%AF%B9%E6%AF%94%E5%BA%A6%E5%B1%8F%E5%B9%95%E5%90%8E%E6%9C%9F%E5%A4%84%E7%90%86%E6%95%88%E6%9E%9C%E5%AF%B9%E5%BA%94-C-%E4%BB%A3%E7%A0%81"><span class="toc-number">2.5.</span> <span class="toc-text">实现亮度、饱和度、对比度屏幕后期处理效果对应 C#代码</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/01/05/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S11%E2%80%94%E2%80%94%E6%B7%B1%E5%BA%A6%E5%92%8C%E6%B3%95%E7%BA%BF%E7%BA%B9%E7%90%86/" title="US3S11——深度和法线纹理">US3S11——深度和法线纹理</a><time datetime="2025-01-05T11:33:25.000Z" title="发表于 2025-01-05 19:33:25">2025-01-05</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/01/05/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S10%E2%80%94%E2%80%94%E5%B1%8F%E5%B9%95%E5%90%8E%E6%9C%9F%E5%A4%84%E7%90%86%E6%95%88%E6%9E%9C/US3S11%E2%80%94%E2%80%94%E8%BF%90%E5%8A%A8%E6%A8%A1%E7%B3%8A/" title="US3S11——运动模糊">US3S11——运动模糊</a><time datetime="2025-01-05T10:11:35.000Z" title="发表于 2025-01-05 18:11:35">2025-01-05</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/01/05/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S10%E2%80%94%E2%80%94%E5%B1%8F%E5%B9%95%E5%90%8E%E6%9C%9F%E5%A4%84%E7%90%86%E6%95%88%E6%9E%9C/US3S10L8%E2%80%94%E2%80%94Bloom%E6%95%88%E6%9E%9C/" title="US3S10L8——Bloom效果">US3S10L8——Bloom效果</a><time datetime="2025-01-04T18:13:25.000Z" title="发表于 2025-01-05 02:13:25">2025-01-05</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/01/05/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S10%E2%80%94%E2%80%94%E5%B1%8F%E5%B9%95%E5%90%8E%E6%9C%9F%E5%A4%84%E7%90%86%E6%95%88%E6%9E%9C/US3S10L7%E2%80%94%E2%80%94%E9%AB%98%E6%96%AF%E6%A8%A1%E7%B3%8A/" title="US3S10L7——高斯模糊">US3S10L7——高斯模糊</a><time datetime="2025-01-04T17:19:40.000Z" title="发表于 2025-01-05 01:19:40">2025-01-05</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/01/04/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S10%E2%80%94%E2%80%94%E5%B1%8F%E5%B9%95%E5%90%8E%E6%9C%9F%E5%A4%84%E7%90%86%E6%95%88%E6%9E%9C/US3S10L6%E2%80%94%E2%80%94%E8%BE%B9%E7%BC%98%E6%A3%80%E6%B5%8B/" title="US3S10L6——边缘检测">US3S10L6——边缘检测</a><time datetime="2025-01-04T15:30:20.000Z" title="发表于 2025-01-04 23:30:20">2025-01-04</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2025 By 文KRIFE齐</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"><script>(async () => {
+  const showKatex = () => {
+    document.querySelectorAll('#article-container .katex').forEach(el => el.classList.add('katex-show'))
+  }
+
+  if (!window.katex_js_css) {
+    window.katex_js_css = true
+    await btf.getCSS('https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css')
+    if (false) {
+      await btf.getScript('https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js')
+    }
+  }
+
+  showKatex()
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>

@@ -1,0 +1,477 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>US3S10L1——网格、网格渲染器、材质、着色器等之间的关系 | 文KRIFE齐的博客</title><meta name="author" content="文KRIFE齐"><meta name="copyright" content="文KRIFE齐"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="US3S10L1——网格、网格渲染器、材质、着色器等之间的关系 网格（Mesh） 网格是一个 3D 对象的几何数据。它由顶点、边和面组成。网格描述了对象的形状和结构，定义了3D模型的轮廓。 网格中包含了模型的关键数据，比如：顶点、法线、切线、纹理坐标、顶点颜色、骨骼权重、骨骼索引、网格边界等等信息 例如，这个枪械模型下的 GunTwo，就是一个网格： ​​ 我们在 Shader 中使用的模型的数据">
+<meta property="og:type" content="article">
+<meta property="og:title" content="US3S10L1——网格、网格渲染器、材质、着色器等之间的关系">
+<meta property="og:url" content="https://enjoysevenliu.github.io/2025/01/04/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S10%E2%80%94%E2%80%94%E5%B1%8F%E5%B9%95%E5%90%8E%E6%9C%9F%E5%A4%84%E7%90%86%E6%95%88%E6%9E%9C/US3S10L1%E2%80%94%E2%80%94%E7%BD%91%E6%A0%BC%E3%80%81%E7%BD%91%E6%A0%BC%E6%B8%B2%E6%9F%93%E5%99%A8%E3%80%81%E6%9D%90%E8%B4%A8%E3%80%81%E7%9D%80%E8%89%B2%E5%99%A8%E7%AD%89%E4%B9%8B%E9%97%B4%E7%9A%84%E5%85%B3%E7%B3%BB/index.html">
+<meta property="og:site_name" content="文KRIFE齐的博客">
+<meta property="og:description" content="US3S10L1——网格、网格渲染器、材质、着色器等之间的关系 网格（Mesh） 网格是一个 3D 对象的几何数据。它由顶点、边和面组成。网格描述了对象的形状和结构，定义了3D模型的轮廓。 网格中包含了模型的关键数据，比如：顶点、法线、切线、纹理坐标、顶点颜色、骨骼权重、骨骼索引、网格边界等等信息 例如，这个枪械模型下的 GunTwo，就是一个网格： ​​ 我们在 Shader 中使用的模型的数据">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://enjoysevenliu.github.io/img/Blue_Ice.png">
+<meta property="article:published_time" content="2025-01-04T04:51:04.000Z">
+<meta property="article:modified_time" content="2025-01-05T11:49:28.519Z">
+<meta property="article:author" content="文KRIFE齐">
+<meta property="article:tag" content="blog">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://enjoysevenliu.github.io/img/Blue_Ice.png"><link rel="shortcut icon" href="/img/Blue_Ice.png"><link rel="canonical" href="https://enjoysevenliu.github.io/2025/01/04/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S10%E2%80%94%E2%80%94%E5%B1%8F%E5%B9%95%E5%90%8E%E6%9C%9F%E5%A4%84%E7%90%86%E6%95%88%E6%9E%9C/US3S10L1%E2%80%94%E2%80%94%E7%BD%91%E6%A0%BC%E3%80%81%E7%BD%91%E6%A0%BC%E6%B8%B2%E6%9F%93%E5%99%A8%E3%80%81%E6%9D%90%E8%B4%A8%E3%80%81%E7%9D%80%E8%89%B2%E5%99%A8%E7%AD%89%E4%B9%8B%E9%97%B4%E7%9A%84%E5%85%B3%E7%B3%BB/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'US3S10L1——网格、网格渲染器、材质、着色器等之间的关系',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  isShuoshuo: false
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/Blue_Ice.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1019</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">128</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/img/Blue_Ice.png" alt="Logo"><span class="site-name">文KRIFE齐的博客</span></a><a class="nav-page-title" href="/"><span class="site-name">US3S10L1——网格、网格渲染器、材质、着色器等之间的关系</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">US3S10L1——网格、网格渲染器、材质、着色器等之间的关系</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-01-04T04:51:04.000Z" title="发表于 2025-01-04 12:51:04">2025-01-04</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-01-05T11:49:28.519Z" title="更新于 2025-01-05 19:49:28">2025-01-05</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity-Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/">US——Unity Shader开发入门</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity-Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/">US3——Shader开发知识</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity-Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S10%E2%80%94%E2%80%94%E5%B1%8F%E5%B9%95%E5%90%8E%E6%9C%9F%E5%A4%84%E7%90%86%E6%95%88%E6%9E%9C/">US3S10——屏幕后期处理效果</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1>US3S10L1——网格、网格渲染器、材质、着色器等之间的关系</h1>
+<h2 id="网格（Mesh）">网格（Mesh）</h2>
+<p>网格是一个 3D 对象的几何数据。它由顶点、边和面组成。网格描述了对象的形状和结构，定义了3D模型的轮廓。<br>
+网格中包含了模型的关键数据，比如：顶点、法线、切线、纹理坐标、顶点颜色、骨骼权重、骨骼索引、网格边界等等信息</p>
+<p>例如，这个枪械模型下的 GunTwo，就是一个网格：</p>
+<p>​<img src="/assets/image-20250104125412-i74pp5q.png" alt="image">​</p>
+<p>我们在 Shader 中使用的模型的数据就来自于 Mesh，其中：</p>
+<ul>
+<li>Unity 中不带骨骼动画的模型网格数据一般在 Mesh Filter（网格过滤器）组件中进行关联</li>
+<li>带骨骼动画的模型网格数据一般在 Skinned Mesh Renderer（蒙皮网格渲染器）中进行关联</li>
+</ul>
+<h2 id="网格渲染器（Mesh-Renderer）">网格渲染器（Mesh Renderer）</h2>
+<p>网格渲染器是 Unity 中的一个组件，用于将网格绘制到屏幕上，它主要用来：</p>
+<ol>
+<li>
+<p>引用一个网格对象来获取几何数据</p>
+<p>​<code>MeshRenderer</code>​ 组件会自动寻找同一 <code>GameObject</code>​ 上 <code>MeshFilter</code>​ 组件中的网格（<code>Mesh</code>​）并将其渲染出来</p>
+<p>​<img src="/assets/image-20250104144857-6kzophu.png" alt="image">​</p>
+</li>
+<li>
+<p>引用一个或多个材质，用于定义对象的外观</p>
+<p>一般不带骨骼动画的模型都使用网格渲染器来进行渲染</p>
+</li>
+</ol>
+<p>比如：游戏中的建筑物，箱子，地面等等不需要骨骼动画的模型</p>
+<p>关于 Mesh Renderer 的具体参数，详见：<a target="_blank" rel="noopener" href="https://docs.unity3d.com/cn/2022.3/Manual/class-MeshRenderer.html">Mesh Renderer 组件 - Unity 手册</a></p>
+<p>​<img src="/assets/image-20250104135126-i02oxjf.png" alt="image">​</p>
+<ul>
+<li>
+<p>Materials 材质</p>
+<p>该属性允许你指定一个或多个材质（Material），它们定义了网格在场景中的外观。</p>
+</li>
+<li>
+<p>Lighting 光照相关</p>
+<ul>
+<li>
+<p>Cast Shadows 投射阴影，控制网格是否能够投射阴影</p>
+<p>​<img src="/assets/image-20250104133701-yhw4lb6.png" alt="image">​</p>
+<ul>
+<li>On：总是投射阴影。</li>
+<li>Off：从不投射阴影。</li>
+<li>Two Sided：双面投射阴影，适用于非封闭物体。</li>
+<li>Shadow Only：仅当计算阴影时才考虑网格。</li>
+</ul>
+</li>
+<li>
+<p>Receive Shadows 接收阴影，决定是否接收其他对象投射的阴影</p>
+</li>
+<li>
+<p>Global Illumination 全局光照（GI）相关</p>
+<p>Global Illumination（简称GI）是全局光照，是一种渲染技术，旨在模拟光线在场景中反弹的物理行为，包括直接光和间接光的效果。</p>
+<p>仅在为该场景启用了烘焙全局光照（Baked Global Illumination）或 Enlighten 实时全局光照（Enlighten Realtime Global Illumination）时，以下属性才有作用。</p>
+<ul>
+<li>
+<p>Contribute Global Illumination 添加到全局光照内</p>
+<p>将此渲染器包含在全局光照计算中，这些计算是在烘焙时进行的</p>
+<p>启用此属性会在 <code>GameObject</code>​ 的静态编辑器标志（Static Editor Flags）中启用“添加GI”（Contribute GI）标志。它对应于 <code>StaticEditorFlags.ContributeGI</code>​ API。</p>
+</li>
+<li>
+<p>Receive Global Illumination 接收全局光照</p>
+<p>让 Unity 从 烘焙的光照贴图 或者从 运行时光照探针 向此渲染器提供全局光照数据。此属性仅在启用了 Contribute Global Illumination 的情况下，此属性才可编辑。</p>
+<p>​<img src="/assets/image-20250104140050-uor33c4.png" alt="image">​</p>
+<ul>
+<li>Lightmaps 从烘焙的光照贴图接收全局光照</li>
+<li>Light Probes 从运行时光照探针接收全局光照</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Lightmapping 光照贴图相关（使用光照贴图接收全局光照才显示）</p>
+<p>仅当上文中的 Receive Global Illumination（接收全局照明）设置为 Lightmaps（光照贴图）时，此部分才可见。</p>
+<ul>
+<li>
+<p>Scale in Lightmap 在光照贴图中缩放</p>
+<p>指定此渲染器的 UV 在光照贴图中的相对大小</p>
+<p>值为 0 意味着该渲染器不会被光照贴图处理，但它仍然会对场景中的其他渲染器的光照做出贡献。大于1.0的值会增加为此渲染器使用的像素数量（即光照贴图分辨率），而小于1.0的值则会减少它。</p>
+<p>可以使用这个属性来优化光照贴图，使得重要的和细节丰富的区域能够更准确地被照亮。例如，一个孤立的建筑如果有平坦且暗色的墙面，可以使用较低的光照贴图缩放比例（小于1.0），而一组紧密排列、色彩鲜艳的摩托车则需要较高的缩放比例值。</p>
+</li>
+<li>
+<p>Stitch Seams 是否启用光照贴图接缝缝合</p>
+<p>为此渲染器启用 <a target="_blank" rel="noopener" href="https://docs.unity3d.com/cn/2022.3/Manual/Lightmapping-SeamStitching.html">Lightmap seam stitching</a>（光照贴图接缝缝合）</p>
+</li>
+<li>
+<p>Lightmap Parameters 为此渲染器选择或创建<a target="_blank" rel="noopener" href="https://docs.unity3d.com/cn/2022.3/Manual/class-LightmapParameters.html">光照贴图参数</a>资源</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Probes 探针相关</p>
+<ul>
+<li>
+<p>Light Probes 光照探针</p>
+<p>设置网格如何与光照探针（Light Probes）交互以获得间接光照</p>
+<p>​<img src="/assets/image-20250104133926-l7mgtg9.png" alt="image">​</p>
+<ul>
+<li>Off：不使用任何插值光照探针</li>
+<li>Blend Probes：使用一个插值光照探针（默认）</li>
+<li>Use Proxy Volume：使用代理体积</li>
+<li>Custom Provided：自定义条件</li>
+</ul>
+</li>
+<li>
+<p>Reflection Probes 反射探针</p>
+<p>确定网格是否以及如何使用反射探针（Reflection Probes）</p>
+<p>​<img src="/assets/image-20250104134054-ukx4478.png" alt="image">​</p>
+<ul>
+<li>Off：不使用反射探针</li>
+<li>Blend Probes：混合周围反射探针</li>
+<li>Blend Probes and Skybox：混合反射探针和天空盒</li>
+<li>Simple：使用反射探针，但不混合</li>
+</ul>
+</li>
+<li>
+<p>Anchor Override 锚点覆盖</p>
+<p>重新设置 Unity 在使用光照探针（Light Probes）或反射探针（Reflection Probes）系统时用来确定插值位置的 <code>Transform</code>​。<br>
+默认情况下，这是渲染器几何体的边界框中心。</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Additional Settings 其他设置</p>
+<ul>
+<li>
+<p>Motion Vectors 运动矢量</p>
+<p>控制是否使用运动矢量来跟踪此渲染器的每像素屏幕空间运动，这对于后期处理效果，例如运动模糊很重要。</p>
+<p>​<img src="/assets/image-20250104141523-x5wvblm.png" alt="image">​</p>
+<p>并非所有平台都支持运动矢量。有关更多信息，请参阅 <a target="_blank" rel="noopener" href="https://docs.unity3d.com/cn/2022.3/ScriptReference/SystemInfo-supportsMotionVectors.html">SystemInfo.supportsMotionVectors</a>。</p>
+<ul>
+<li>Camera Motion Only：仅使用摄像机运动来跟踪</li>
+<li>Per Object Motion：使用特定过程跟踪此渲染器的运动</li>
+<li>Force No Motion：不跟踪运动</li>
+</ul>
+</li>
+<li>
+<p>Dynamic Occlusion 动态遮挡剔除</p>
+<p>启用或禁用动态遮挡剔除，动态遮挡剔除可以帮助优化性能。<br>
+但如果需要在墙后绘制角色轮廓等效果，则此项需要禁用</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="蒙皮网格渲染器（Skinned-Mesh-Renderer）">蒙皮网格渲染器（Skinned Mesh Renderer）</h2>
+<p>蒙皮网格渲染器是一种特殊的网格渲染器，用于处理带有骨骼动画的网格。<br>
+它不仅处理网格的几何数据，还处理骨骼和权重，允许网格根据骨骼动画进行变形。<br>
+使用蒙皮网格渲染器的对象不需要再使用 <code>MeshFilter</code>​ 组件，它可以直接关联对应的网格信息</p>
+<p>一般带有动画的模型都使用蒙皮网格渲染器来进行渲染，比如：游戏中的角色、怪物、机关等等</p>
+<p>关于 Skinned Mesh Renderer 的具体参数，详见：<a target="_blank" rel="noopener" href="https://docs.unity3d.com/cn/2022.3/Manual/class-SkinnedMeshRenderer.html">Skinned Mesh Renderer component - Unity 手册</a></p>
+<p>​<img src="/assets/image-20250104130302-w972ilv.png" alt="image">​</p>
+<ul>
+<li>
+<p>Bounds 边界</p>
+<p>设置 Unity 用于确定网格何时离开屏幕的包围盒边界。在 Model 文件中导入网格和动画时，Unity 会预先计算这个边界，并在 Scene 视图中将边界显示为 Model 周围的线框。</p>
+<p>如果将 Update When Offscreen 设置为 True，则 Unity 会在每帧中重新计算这些边界，并使用这些计算值覆盖此属性。</p>
+</li>
+<li>
+<p>Quality 质量</p>
+<p>设置运行时每个顶点使用的骨骼数的上限</p>
+<p>​<img src="/assets/image-20250104144204-ilzcsdj.png" alt="image">​</p>
+<ul>
+<li>Auto 自动</li>
+<li>1 Bone 每个顶点仅使用一个骨骼</li>
+<li>2 Bones 每个顶点最多使用两个骨骼</li>
+<li>4 Bones 每个顶点最多使用四个骨骼</li>
+</ul>
+</li>
+<li>
+<p>Update When Offscreen 在屏幕外时更新</p>
+<p>启用此选项可计算每帧的 Bound，即使网格在任何一个 Camera 都不可见也是如此。禁用此选项可在游戏对象离开屏幕时停止蒙皮，并在游戏对象再次可见时恢复蒙皮。</p>
+</li>
+<li>
+<p>Mesh 网格，设置此渲染器使用的网格</p>
+<p>此网格应包含有效的绑定姿势和蒙皮权重、使用混合变形或运行布料模拟。如果网格不使用这些技术中的任何一种，请考虑使用 Mesh Renderer 和 Mesh Filter。</p>
+</li>
+<li>
+<p>Root Bone 根骨骼</p>
+<p>设置作为根骨骼的 <code>Transform</code>​。Bounds 将随此 <code>Transform</code>​ 移动</p>
+</li>
+<li>
+<p>Materials 材质</p>
+<p>该属性允许你指定一个或多个材质（Material），它们定义了网格在场景中的外观。</p>
+</li>
+<li>
+<p>Lighting 光照相关</p>
+<ul>
+<li>
+<p>Cast Shadows 投射阴影，控制网格是否能够投射阴影</p>
+<p>​<img src="/assets/image-20250104133701-yhw4lb6.png" alt="image">​</p>
+<ul>
+<li>On：总是投射阴影。</li>
+<li>Off：从不投射阴影。</li>
+<li>Two Sided：双面投射阴影，适用于非封闭物体。</li>
+<li>Shadow Only：仅当计算阴影时才考虑网格。</li>
+</ul>
+</li>
+<li>
+<p>Receive Shadows 接收阴影，决定是否接收其他对象投射的阴影</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Probes 探针相关</p>
+<ul>
+<li>
+<p>Light Probes 光照探针</p>
+<p>设置网格如何与光照探针（Light Probes）交互以获得间接光照</p>
+<p>​<img src="/assets/image-20250104133926-l7mgtg9.png" alt="image">​</p>
+<ul>
+<li>Blend Probes：混合附近光照探针的颜色。</li>
+<li>Use Proxy Volume：使用代理体积来获取光照信息。</li>
+<li>Override Bounds：覆盖默认边界并使用自定义边界。</li>
+<li>Sample Position：使用变换位置采样光照探针。</li>
+</ul>
+</li>
+<li>
+<p>Reflection Probes 反射探针</p>
+<p>确定网格是否以及如何使用反射探针（Reflection Probes）</p>
+<p>​<img src="/assets/image-20250104134054-ukx4478.png" alt="image">​</p>
+<ul>
+<li>Off：不使用反射探针。</li>
+<li>Blend Probes：混合周围反射探针。</li>
+<li>Blend Probes and Skybox：混合反射探针和天空盒。</li>
+<li>Simple：仅使用最近的反射探针。</li>
+</ul>
+</li>
+<li>
+<p>Anchor Override 锚点覆盖</p>
+<p>重新设置 Unity 在使用光照探针（Light Probes）或反射探针（Reflection Probes）系统时用来确定插值位置的 <code>Transform</code>​。<br>
+默认情况下，这是渲染器几何体的边界框中心。</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Additional Settings 其他设置</p>
+<ul>
+<li>
+<p>Skinned Motion Vectors 蒙皮运动矢量</p>
+<p>启用此选项会对网格蒙皮数据进行双重缓冲，以便 Unity 可以插入蒙皮运动并将其放入运动矢量贴图中。这会使用更多的 GPU 内存，但会产生更正确的运动矢量。</p>
+</li>
+<li>
+<p>Dynamic Occlusion 动态遮挡剔除</p>
+<p>启用或禁用动态遮挡剔除，动态遮挡剔除可以帮助优化性能。<br>
+但如果需要在墙后绘制角色轮廓等效果，则此项需要禁用</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="材质（Material）">材质（Material）</h2>
+<p>材质我们也可以称为材质球，它定义了模型网格的外观<br>
+材质包含对一个着色器的引用，并通过一组属性（例如颜色、纹理等等信息）来配置着色器<br>
+一个模型可以有多个材质，每个材质应用于模型的不同部分</p>
+<p>详细内容可见：US2S2L1——材质与Shader</p>
+<h2 id="着色器（Shader）">着色器（Shader）</h2>
+<p>Shader 是一种用于描述如何渲染图形和计算图形外观的程序，主要用于控制图形的颜色、光照、纹理和其他视觉效果<br>
+它是运行在 GPU 上的程序，用于计算每个像素的颜色，这套课中学习的知识都是和着色器有关的</p>
+<p>详细内容可见：US2S2L1——材质与Shader</p>
+<h2 id="网格、（蒙皮）网格渲染器、材质、着色器之间的关系">网格、（蒙皮）网格渲染器、材质、着色器之间的关系</h2>
+<ul>
+<li>
+<p>Mesh Renderer（网格渲染器）</p>
+<ul>
+<li>
+<p>Mesh（网格） —— MeshFilter（网格过滤器组件进行关联）</p>
+<ul>
+<li>Geometry Data（几何数据）</li>
+</ul>
+</li>
+<li>
+<p>Material（材质）</p>
+<ul>
+<li>
+<p>Shader（着色器）</p>
+</li>
+<li>
+<p>Properties（属性）</p>
+<p>颜色、纹理等属性，由 Shader 决定哪些属性暴露在材质上</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>​<img src="/assets/image-20250104132545-wf00ill.png" alt="image">​</p>
+</li>
+<li>
+<p>Skinned Mesh Renderer（蒙皮网格渲染器）</p>
+<ul>
+<li>
+<p>Mesh（网格）</p>
+<ul>
+<li>Geometry Data（几何数据）</li>
+</ul>
+</li>
+<li>
+<p>Bones &amp; Weights（骨骼与权重）</p>
+</li>
+<li>
+<p>Material（材质）</p>
+<ul>
+<li>
+<p>Shader（着色器）</p>
+</li>
+<li>
+<p>Properties（属性）</p>
+<p>颜色、纹理等属性，由 Shader 决定哪些属性暴露在材质上</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>​<img src="/assets/image-20250104133133-mcnf91b.png" alt="image">​</p>
+</li>
+</ul>
+<p>从关系中我们可以得出，由于 <code>MeshRenderer</code>​ 和 <code>SkinnedMeshRenderer</code>​ 都是 Unity 中的组件<br>
+如果想要获取、修改一个对象 Mesh（网格）、Material（材质）、材质上属性、材质关联的Shader（着色器）等等信息，都可以利用这两个组件去获取</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://enjoysevenliu.github.io">文KRIFE齐</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://enjoysevenliu.github.io/2025/01/04/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S10%E2%80%94%E2%80%94%E5%B1%8F%E5%B9%95%E5%90%8E%E6%9C%9F%E5%A4%84%E7%90%86%E6%95%88%E6%9E%9C/US3S10L1%E2%80%94%E2%80%94%E7%BD%91%E6%A0%BC%E3%80%81%E7%BD%91%E6%A0%BC%E6%B8%B2%E6%9F%93%E5%99%A8%E3%80%81%E6%9D%90%E8%B4%A8%E3%80%81%E7%9D%80%E8%89%B2%E5%99%A8%E7%AD%89%E4%B9%8B%E9%97%B4%E7%9A%84%E5%85%B3%E7%B3%BB/">https://enjoysevenliu.github.io/2025/01/04/Unity就业路线学习笔记/US——Unity Shader开发入门/US3——Shader开发知识/US3S10——屏幕后期处理效果/US3S10L1——网格、网格渲染器、材质、着色器等之间的关系/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://enjoysevenliu.github.io" target="_blank">文KRIFE齐的博客</a>！</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/img/Blue_Ice.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2025/01/04/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S10%E2%80%94%E2%80%94%E5%B1%8F%E5%B9%95%E5%90%8E%E6%9C%9F%E5%A4%84%E7%90%86%E6%95%88%E6%9E%9C/US3S10L2%E2%80%94%E2%80%94C#%E4%BB%A3%E7%A0%81%E4%BF%AE%E6%94%B9%E6%9D%90%E8%B4%A8%E5%8F%82%E6%95%B0/" title="US3S10L2——C#代码修改材质参数"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">US3S10L2——C#代码修改材质参数</div></div><div class="info-2"><div class="info-item-1">US3S10L2——C#代码修改材质参数 本章代码关键字 12345678910111213141516Renderer                        // 渲染器基类，MeshRenderer和SkinMeshRenderer都派生于此renderer.material                // 获取渲染器上使用的第一个实例化材质，也就是材质的副本，修改此属性得到的材质只会影响到一个对象renderer.sharedMaterial            // 获取渲染器上使用的第一个共享材质，修改此属性得到的材质影响到所有使用材质的对象renderer.materials                // 获取渲染器上使用的所有实例化材质renderer.sharedMaterials        // 获取渲染器上使用的所有共享材质Material                        // 材质类material.color                    // 修改材质的主颜色material.mainTexture    ...</div></div></div></a><a class="pagination-related" href="/2025/01/04/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S10%E2%80%94%E2%80%94%E5%B1%8F%E5%B9%95%E5%90%8E%E6%9C%9F%E5%A4%84%E7%90%86%E6%95%88%E6%9E%9C/" title="US3S10——屏幕后期处理效果"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">US3S10——屏幕后期处理效果</div></div><div class="info-2"><div class="info-item-1">US3S10——屏幕后期处理效果 屏幕后期处理效果 屏幕后期处理效果（Screen Post-Processing Effects）是一种在渲染管线的最后阶段应用的视觉效果， 允许你在场景渲染完成后对最终图像进行各种调整和效果处理，从而增强视觉体验， 常见的屏幕后期处理效果有：景深、模糊、色彩调整 等等 说人话：屏幕后期处理效果就是当游戏画面渲染完毕后，通过获取到该画面信息进行额外的效果处理  注意！屏幕后处理的相关脚本一般需要挂载 Camera​ 对象上  本系列学习内容：   网格、网格渲染器、材质、着色器等之间的关系   C#代码修改材质参数   屏幕后处理基本实现原理   屏幕后处理基类   屏幕后处理效果  亮度、饱和度、对比度 边缘检测 高斯模糊 Bloom效果 运动模糊    ‍ </div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/Blue_Ice.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">文KRIFE齐</div><div class="author-info-description">Unity就业路线的笔记终于快更新完了！</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1019</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">128</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/enjoySevenLIU"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/enjoySevenLIU" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">博客修好了，继续学习，CSharp进阶也迁移完毕了，接下来尽快把Unity Shader给啃完，年末给博客好好整修一下</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">US3S10L1——网格、网格渲染器、材质、着色器等之间的关系</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E6%A0%BC%EF%BC%88Mesh%EF%BC%89"><span class="toc-number">1.1.</span> <span class="toc-text">网格（Mesh）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E6%A0%BC%E6%B8%B2%E6%9F%93%E5%99%A8%EF%BC%88Mesh-Renderer%EF%BC%89"><span class="toc-number">1.2.</span> <span class="toc-text">网格渲染器（Mesh Renderer）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%92%99%E7%9A%AE%E7%BD%91%E6%A0%BC%E6%B8%B2%E6%9F%93%E5%99%A8%EF%BC%88Skinned-Mesh-Renderer%EF%BC%89"><span class="toc-number">1.3.</span> <span class="toc-text">蒙皮网格渲染器（Skinned Mesh Renderer）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9D%90%E8%B4%A8%EF%BC%88Material%EF%BC%89"><span class="toc-number">1.4.</span> <span class="toc-text">材质（Material）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9D%80%E8%89%B2%E5%99%A8%EF%BC%88Shader%EF%BC%89"><span class="toc-number">1.5.</span> <span class="toc-text">着色器（Shader）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E6%A0%BC%E3%80%81%EF%BC%88%E8%92%99%E7%9A%AE%EF%BC%89%E7%BD%91%E6%A0%BC%E6%B8%B2%E6%9F%93%E5%99%A8%E3%80%81%E6%9D%90%E8%B4%A8%E3%80%81%E7%9D%80%E8%89%B2%E5%99%A8%E4%B9%8B%E9%97%B4%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="toc-number">1.6.</span> <span class="toc-text">网格、（蒙皮）网格渲染器、材质、着色器之间的关系</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/01/05/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S11%E2%80%94%E2%80%94%E6%B7%B1%E5%BA%A6%E5%92%8C%E6%B3%95%E7%BA%BF%E7%BA%B9%E7%90%86/" title="US3S11——深度和法线纹理">US3S11——深度和法线纹理</a><time datetime="2025-01-05T11:33:25.000Z" title="发表于 2025-01-05 19:33:25">2025-01-05</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/01/05/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S10%E2%80%94%E2%80%94%E5%B1%8F%E5%B9%95%E5%90%8E%E6%9C%9F%E5%A4%84%E7%90%86%E6%95%88%E6%9E%9C/US3S11%E2%80%94%E2%80%94%E8%BF%90%E5%8A%A8%E6%A8%A1%E7%B3%8A/" title="US3S11——运动模糊">US3S11——运动模糊</a><time datetime="2025-01-05T10:11:35.000Z" title="发表于 2025-01-05 18:11:35">2025-01-05</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/01/05/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S10%E2%80%94%E2%80%94%E5%B1%8F%E5%B9%95%E5%90%8E%E6%9C%9F%E5%A4%84%E7%90%86%E6%95%88%E6%9E%9C/US3S10L8%E2%80%94%E2%80%94Bloom%E6%95%88%E6%9E%9C/" title="US3S10L8——Bloom效果">US3S10L8——Bloom效果</a><time datetime="2025-01-04T18:13:25.000Z" title="发表于 2025-01-05 02:13:25">2025-01-05</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/01/05/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S10%E2%80%94%E2%80%94%E5%B1%8F%E5%B9%95%E5%90%8E%E6%9C%9F%E5%A4%84%E7%90%86%E6%95%88%E6%9E%9C/US3S10L7%E2%80%94%E2%80%94%E9%AB%98%E6%96%AF%E6%A8%A1%E7%B3%8A/" title="US3S10L7——高斯模糊">US3S10L7——高斯模糊</a><time datetime="2025-01-04T17:19:40.000Z" title="发表于 2025-01-05 01:19:40">2025-01-05</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/01/04/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S10%E2%80%94%E2%80%94%E5%B1%8F%E5%B9%95%E5%90%8E%E6%9C%9F%E5%A4%84%E7%90%86%E6%95%88%E6%9E%9C/US3S10L6%E2%80%94%E2%80%94%E8%BE%B9%E7%BC%98%E6%A3%80%E6%B5%8B/" title="US3S10L6——边缘检测">US3S10L6——边缘检测</a><time datetime="2025-01-04T15:30:20.000Z" title="发表于 2025-01-04 23:30:20">2025-01-04</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2025 By 文KRIFE齐</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"><script>(async () => {
+  const showKatex = () => {
+    document.querySelectorAll('#article-container .katex').forEach(el => el.classList.add('katex-show'))
+  }
+
+  if (!window.katex_js_css) {
+    window.katex_js_css = true
+    await btf.getCSS('https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css')
+    if (false) {
+      await btf.getScript('https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js')
+    }
+  }
+
+  showKatex()
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>
