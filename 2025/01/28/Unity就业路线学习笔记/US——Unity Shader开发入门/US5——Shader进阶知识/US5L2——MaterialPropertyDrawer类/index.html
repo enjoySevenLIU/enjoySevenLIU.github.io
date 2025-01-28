@@ -1,0 +1,227 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>US5L2——MaterialPropertyDrawer类 | 文KRIFE齐的博客</title><meta name="author" content="文KRIFE齐"><meta name="copyright" content="文KRIFE齐"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="US5L2——MaterialPropertyDrawer类 MaterialPropertyDrawer ​MaterialPropertyDrawer​（材质属性绘制器）用于自定义材质属性在材质面板中的显示和交互方式的 材质属性通常在 Shader 中通过属性语句块定义。默认情况下，Unity 提供了一些基础的控件（如滑块、颜色选择器等） 通过继承 MaterialPropertyDrawer">
+<meta property="og:type" content="article">
+<meta property="og:title" content="US5L2——MaterialPropertyDrawer类">
+<meta property="og:url" content="https://enjoysevenliu.github.io/2025/01/28/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US5%E2%80%94%E2%80%94Shader%E8%BF%9B%E9%98%B6%E7%9F%A5%E8%AF%86/US5L2%E2%80%94%E2%80%94MaterialPropertyDrawer%E7%B1%BB/index.html">
+<meta property="og:site_name" content="文KRIFE齐的博客">
+<meta property="og:description" content="US5L2——MaterialPropertyDrawer类 MaterialPropertyDrawer ​MaterialPropertyDrawer​（材质属性绘制器）用于自定义材质属性在材质面板中的显示和交互方式的 材质属性通常在 Shader 中通过属性语句块定义。默认情况下，Unity 提供了一些基础的控件（如滑块、颜色选择器等） 通过继承 MaterialPropertyDrawer">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://enjoysevenliu.github.io/img/Blue_Ice.png">
+<meta property="article:published_time" content="2025-01-28T06:37:29.000Z">
+<meta property="article:modified_time" content="2025-01-28T12:17:14.421Z">
+<meta property="article:author" content="文KRIFE齐">
+<meta property="article:tag" content="blog">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://enjoysevenliu.github.io/img/Blue_Ice.png"><link rel="shortcut icon" href="/img/Blue_Ice.png"><link rel="canonical" href="https://enjoysevenliu.github.io/2025/01/28/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US5%E2%80%94%E2%80%94Shader%E8%BF%9B%E9%98%B6%E7%9F%A5%E8%AF%86/US5L2%E2%80%94%E2%80%94MaterialPropertyDrawer%E7%B1%BB/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'US5L2——MaterialPropertyDrawer类',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  isShuoshuo: false
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/Blue_Ice.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1048</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">132</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/img/Blue_Ice.png" alt="Logo"><span class="site-name">文KRIFE齐的博客</span></a><a class="nav-page-title" href="/"><span class="site-name">US5L2——MaterialPropertyDrawer类</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">US5L2——MaterialPropertyDrawer类</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-01-28T06:37:29.000Z" title="发表于 2025-01-28 14:37:29">2025-01-28</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-01-28T12:17:14.421Z" title="更新于 2025-01-28 20:17:14">2025-01-28</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity-Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/">US——Unity Shader开发入门</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity-Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US5%E2%80%94%E2%80%94Shader%E8%BF%9B%E9%98%B6%E7%9F%A5%E8%AF%86/">US5——Shader进阶知识</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1>US5L2——MaterialPropertyDrawer类</h1>
+<h1>MaterialPropertyDrawer</h1>
+<p>​<code>MaterialPropertyDrawer</code>​（材质属性绘制器）用于自定义材质属性在材质面板中的显示和交互方式的<br>
+材质属性通常在 Shader 中通过属性语句块定义。默认情况下，Unity 提供了一些基础的控件（如滑块、颜色选择器等）<br>
+通过继承 <code>MaterialPropertyDrawer</code>​（材质属性绘制器)，你可以为自定义 Shader 属性创建更加灵活和直观的控件</p>
+<h2 id="MaterialPropertyDrawer-和-ShaderGUI-的区别">MaterialPropertyDrawer 和 ShaderGUI 的区别</h2>
+<p>​<code>ShaderGUI</code>​ 是用来自定义整个材质面板的，<br>
+而 <code>MaterialPropertyDrawer</code>​（材质属性绘制器）是用来自定义某一个属性的<br>
+相当于可以更加精细的来进行属性自定义显示封装</p>
+<h2 id="MaterialPropertyDrawer-类的声明">MaterialPropertyDrawer 类的声明</h2>
+<ol>
+<li>
+<p>新建一个 C# 脚本，继承自 <code>MaterialPropertyDrawer</code>​ 类，<strong>类名最好以</strong> <strong>​<code>Drawer</code>​</strong> <strong>结尾</strong></p>
+</li>
+<li>
+<p>重写 <code>void OnGUI(Rect position, MaterialProperty prop, string label, MaterialEditor editor)</code>​ 方法</p>
+<p>也可以重写 <code>void OnGUI(Rect position, MaterialProperty prop, GUIContent label, MaterialEditor editor)</code>​ 方法<br>
+区别只在于是否想让控件标签的又要显示字符串又要显示图片，详见：GUIContent​</p>
+</li>
+<li>
+<p>在其中实现 UI 自定义布局</p>
+</li>
+</ol>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> UnityEditor;</span><br><span class="line"><span class="keyword">using</span> UnityEngine;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Lesson128</span> : <span class="title">MaterialPropertyDrawer</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">override</span> <span class="keyword">void</span> <span class="title">OnGUI</span>(<span class="params">Rect position, MaterialProperty prop, <span class="built_in">string</span> label, MaterialEditor editor</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">base</span>.OnGUI(position, prop, label, editor);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="MaterialPropertyDrawer-类的使用">MaterialPropertyDrawer 类的使用</h2>
+<p>假设我们要实现一个自带最大值和最小值的滑动条，最大值和最小值通过构造函数由外部提供：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> UnityEditor;</span><br><span class="line"><span class="keyword">using</span> UnityEngine;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Lesson128_FloatPropertyDrawer</span> : <span class="title">MaterialPropertyDrawer</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="built_in">float</span> _min;</span><br><span class="line">    <span class="keyword">private</span> <span class="built_in">float</span> _max;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 使用构造函数初始化自定义的一些变量</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Lesson128_FloatPropertyDrawer</span>(<span class="params"><span class="built_in">float</span> min, <span class="built_in">float</span> max</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        _min = min;</span><br><span class="line">        _max = max;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">override</span> <span class="keyword">void</span> <span class="title">OnGUI</span>(<span class="params">Rect position, MaterialProperty prop, <span class="built_in">string</span> label, MaterialEditor editor</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (prop.type != MaterialProperty.PropType.Float)</span><br><span class="line">        &#123;</span><br><span class="line">            EditorGUILayout.LabelField(label, <span class="string">&quot;请使用float或者数值，否则无法使用此控件&quot;</span>);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        EditorGUILayout.LabelField(<span class="string">$&quot;<span class="subst">&#123;label&#125;</span> (<span class="subst">&#123;_min&#125;</span>~<span class="subst">&#123;_max&#125;</span>)&quot;</span>);</span><br><span class="line">        prop.floatValue = EditorGUILayout.Slider(prop.floatValue, _min, _max);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>
+<p>配合 <code>ShaderGUI</code>​ 使用</p>
+<p>假设要对下面的 Shader 自定义材质 Inspector 界面，并且要自定义 Shader 的 <code>float</code>​ 类型的属性的绘制方法：</p>
+ <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Shader <span class="string">&quot;Unlit/CustomInspectorTest&quot;</span></span><br><span class="line">&#123;</span><br><span class="line">    Properties</span><br><span class="line">    &#123;</span><br><span class="line">        _MainTex(<span class="string">&quot;Texture&quot;</span>, <span class="number">2</span>D) = <span class="string">&quot;white&quot;</span>&#123;&#125;</span><br><span class="line">        _TestFloat(<span class="string">&quot;TestFloat&quot;</span>, Float) = <span class="number">1</span></span><br><span class="line">    &#125;</span><br><span class="line">    SubShader &#123;<span class="comment">/*...*/</span>&#125;</span><br><span class="line"></span><br><span class="line">    CustomEditor <span class="string">&quot;Lesson127_CustomShaderInspector&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>以上节课实现的 <code>ShaderGUI</code>​ 派生类为例，代码详见：US5L1——ShaderGUI类<br>
+要使用 <code>MaterialPropertyDrawer</code>​ 派生类，需要在类内部声明相应变量并实例化，<br>
+然后再 <code>ShaderGUI</code>​ 派生类的 <code>OnGUI</code>​ 方法内调用 <code>MaterialPropertyDrawer</code>​ 派生类的 <code>OnGUI</code>​ 方法<br>
+其中 <code>MaterialPropertyDrawer</code>​ 派生类的 <code>OnGUI</code>​ 需要传入绘制位置，<code>MaterialProperty</code>​ 属性，控件名，以及 <code>MaterialEditor</code>​ 参数</p>
+<p>关于绘制位置参数，如果是自动布局，可以直接使用 EditorGUILayout.GetControlRect()​</p>
+ <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> UnityEditor;</span><br><span class="line"><span class="keyword">using</span> UnityEngine;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Lesson127_CustomShaderInspector</span> : <span class="title">ShaderGUI</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="built_in">bool</span> isShow;</span><br><span class="line">    <span class="keyword">private</span> Lesson128 floatDrawer = <span class="keyword">new</span>(<span class="number">-2</span>, <span class="number">2</span>);</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">override</span> <span class="keyword">void</span> <span class="title">OnGUI</span>(<span class="params">MaterialEditor materialEditor, MaterialProperty[] properties</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (GUILayout.Button(isShow ? <span class="string">&quot;隐藏所有属性设置&quot;</span> : <span class="string">&quot;显示所有属性设置&quot;</span>))</span><br><span class="line">        &#123;</span><br><span class="line">            isShow = !isShow;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 获取当前材质球</span></span><br><span class="line">        Material material = materialEditor.target <span class="keyword">as</span> Material;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (GUILayout.Button(<span class="string">&quot;重置材质球属性&quot;</span>))</span><br><span class="line">        &#123;</span><br><span class="line">            material.SetTexture(<span class="string">&quot;_MainTex&quot;</span>, <span class="literal">null</span>);</span><br><span class="line">            material.SetFloat(<span class="string">&quot;_TestFloat&quot;</span>, <span class="number">0</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (isShow)</span><br><span class="line">        &#123;</span><br><span class="line">            MaterialProperty property = FindProperty(<span class="string">&quot;_MainTex&quot;</span>, properties);</span><br><span class="line">            materialEditor.ShaderProperty(property, property.displayName);</span><br><span class="line">            <span class="comment">// 使用自定义的控件去设置TestFloat属性</span></span><br><span class="line">            property = FindProperty(<span class="string">&quot;_TestFloat&quot;</span>, properties);</span><br><span class="line">            floatDrawer.OnGUI(EditorGUILayout.GetControlRect(), property, property.displayName, materialEditor);</span><br><span class="line">            <span class="comment">// 绘制渲染队列控件</span></span><br><span class="line">            material.renderQueue = EditorGUILayout.IntField(<span class="string">&quot;渲染队列&quot;</span>, material.renderQueue);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>显示效果：</p>
+<p>​<img src="/assets/image-20250128170053-crkoesh.png" alt="image">​</p>
+</li>
+<li>
+<p>独立使用</p>
+<blockquote>
+<p>注意！这个功能的 BUG 比较多，可能需要多调整以解决问题</p>
+</blockquote>
+<p>我们往往不会让 <code>MaterialPropertyDrawer</code>​ 派生类只配合 <code>ShaderGUI</code>​ 类使用，因为这些逻辑也可以在 <code>ShaderGUI</code>​ 类实现<br>
+​<code>MaterialPropertyDrawer</code>​ 派生类更多的时候会单独使用，我们可以直接在 Shader 内让某个特定属性使用这个 <code>MaterialPropertyDrawer</code>​ 派生类</p>
+<p>假设要对下面的 Shader 自定义 <code>float</code>​ 类型的属性的绘制方法：</p>
+ <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Shader <span class="string">&quot;Unlit/CustomInspectorTest&quot;</span></span><br><span class="line">&#123;</span><br><span class="line">    Properties</span><br><span class="line">    &#123;</span><br><span class="line">        _MainTex(<span class="string">&quot;Texture&quot;</span>, <span class="number">2</span>D) = <span class="string">&quot;white&quot;</span>&#123;&#125;</span><br><span class="line">        _TestFloat(<span class="string">&quot;TestFloat&quot;</span>, Float) = <span class="number">1</span></span><br><span class="line">        _TestFloat2(<span class="string">&quot;TestFloat2&quot;</span>, Float) = <span class="number">1</span></span><br><span class="line">    &#125;</span><br><span class="line">    SubShader &#123;<span class="comment">/*...*/</span>&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>假设要让 <code>_TestFloat2</code>​ 这个属性使用自定义的 <code>MaterialPropertyDrawer</code>​ 派生类，<br>
+直接在 <code>_TestFloat2</code>​ 使用 <code>[MaterialPropertyDrawer派生类名(构造函数参数)]</code>​ 即可，它的使用方法类似于 C# 的特性：CS4L21——特性，<br>
+如果 <code>MaterialPropertyDrawer</code>​ 派生类类名由 <code>Drawer</code>​ 后缀，在 Shader 中使用是可以忽略的，就如同 C# 特性的 <code>Attribute</code>​ 后缀那样<br>
+如果 <code>MaterialPropertyDrawer</code>​ 派生类拥有有参构造参数，则可以通过类名后边填入参数。</p>
+<blockquote>
+<p>警告！参数内不要填入 <code>-</code>​ ，即使要传递负数也不能这么填，如果要传递负数，可能需要寻求其他方式解决<br>
+Unity Shader 会在例如 <code>[Lesson128_FloatProperty(-3, 3)]</code>​ 的语句上报错，报错原因不明！</p>
+</blockquote>
+ <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Shader <span class="string">&quot;Unlit/CustomInspectorTest&quot;</span></span><br><span class="line">&#123;</span><br><span class="line">    Properties</span><br><span class="line">    &#123;</span><br><span class="line">        _MainTex(<span class="string">&quot;Texture&quot;</span>, <span class="number">2</span>D) = <span class="string">&quot;white&quot;</span>&#123;&#125;</span><br><span class="line">        _TestFloat(<span class="string">&quot;TestFloat&quot;</span>, Float) = <span class="number">1</span></span><br><span class="line">        <span class="comment">// [Lesson128_FloatProperty(-3.0, 3,0)] _TestFloat2(&quot;TestFloat2&quot;, Float) = 1    // 不能使用&#x27;-&#x27;，否则会报错，原因不明</span></span><br><span class="line">        [Lesson128_FloatProperty(<span class="number">0.0</span>, <span class="number">3.0</span>)] _TestFloat2(<span class="string">&quot;TestFloat2&quot;</span>, Float) = <span class="number">1</span></span><br><span class="line">    &#125;</span><br><span class="line">    SubShader &#123;<span class="comment">/*...*/</span>&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>显示效果：</p>
+<p>​<img src="/assets/image-20250128163642-gzhz9bn.png" alt="image">​</p>
+</li>
+</ol>
+<p>‍</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://enjoysevenliu.github.io">文KRIFE齐</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://enjoysevenliu.github.io/2025/01/28/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US5%E2%80%94%E2%80%94Shader%E8%BF%9B%E9%98%B6%E7%9F%A5%E8%AF%86/US5L2%E2%80%94%E2%80%94MaterialPropertyDrawer%E7%B1%BB/">https://enjoysevenliu.github.io/2025/01/28/Unity就业路线学习笔记/US——Unity Shader开发入门/US5——Shader进阶知识/US5L2——MaterialPropertyDrawer类/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://enjoysevenliu.github.io" target="_blank">文KRIFE齐的博客</a>！</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/img/Blue_Ice.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2025/01/28/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US5%E2%80%94%E2%80%94Shader%E8%BF%9B%E9%98%B6%E7%9F%A5%E8%AF%86/US5L3%E2%80%94%E2%80%94Shader%E5%8F%98%E4%BD%93%E5%92%8C%E5%85%B3%E9%94%AE%E5%AD%97/" title="US5L3——Shader变体和关键字"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">US5L3——Shader变体和关键字</div></div><div class="info-2"><div class="info-item-1">US5L3——Shader变体和关键字 本章代码关键字 12#pragma shader_feature    // 声明局部关键字，只有关键词启用时才会生成对应Shader变体#pragma multi_compile    // 声明局部关键字，不管是否启用都会生成对应Shader变体 Shader 中的变体 Shader Variant（变体）指的是一个 Shader 的特定配置，通过不同的 关键字（Keywords） 和 设置组合 来实现不同的效果 每一种关键字组合或设置都会生成一个独立的 Shader 变体，最终以二进制形式存储在构建文件中供运行时使用 说人话：Shader 变体就是基于一个 Shader 文件当中的代码，编译生成多个版本的 Shader 它基于关键字来生成各种不同的版本 举例说明：一个 Shader 中有两个关键字，每个关键字有两种状态（启用或禁用），最终生成的变体数量就是 22 = 4  变体 1：没有启用任何关键字（默认）。 变体 2：启用了 关键字1。 变体 3：启用了 关键字2。 变体 4：同时启用了 关键字1 和...</div></div></div></a><a class="pagination-related" href="/2025/01/28/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US5%E2%80%94%E2%80%94Shader%E8%BF%9B%E9%98%B6%E7%9F%A5%E8%AF%86/US5L1%E2%80%94%E2%80%94ShaderGUI%E7%B1%BB/" title="US5L1——ShaderGUI类"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">US5L1——ShaderGUI类</div></div><div class="info-2"><div class="info-item-1">US5L1——ShaderGUI类  前置知识：UG1——IMGUI系列，UED——Unity编辑器拓展  本章代码关键字 123456789101112ShaderGUI                            // 用于自定义材质Inspector界面的基类，通过继承ShaderGUI，可以完全控制材质编辑界面的布局和功能void OnGUI() &#123;&#125;                        // 继承ShaderGUI的类需要重写该方法以实现自定义材质Inspector界面MaterialEditor                        // 提供与材质交互的接口，比如材质属性值等materialEditor.target                // 可以利用它获取到材质球，需要手动as一次materialEditor.ShaderProperty()        // 可以将属性设置为对应名字，并且使用默认GUI显示MaterialProperty                    //...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/Blue_Ice.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">文KRIFE齐</div><div class="author-info-description">Unity就业路线的笔记终于快更新完了！</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1048</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">132</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/enjoySevenLIU"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/enjoySevenLIU" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">博客修好了，继续学习，CSharp进阶也迁移完毕了，接下来尽快把Unity Shader给啃完，年末给博客好好整修一下</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">US5L2——MaterialPropertyDrawer类</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">2.</span> <span class="toc-text">MaterialPropertyDrawer</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#MaterialPropertyDrawer-%E5%92%8C-ShaderGUI-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">2.1.</span> <span class="toc-text">MaterialPropertyDrawer 和 ShaderGUI 的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MaterialPropertyDrawer-%E7%B1%BB%E7%9A%84%E5%A3%B0%E6%98%8E"><span class="toc-number">2.2.</span> <span class="toc-text">MaterialPropertyDrawer 类的声明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MaterialPropertyDrawer-%E7%B1%BB%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-number">2.3.</span> <span class="toc-text">MaterialPropertyDrawer 类的使用</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/01/28/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US5%E2%80%94%E2%80%94Shader%E8%BF%9B%E9%98%B6%E7%9F%A5%E8%AF%86/US5L7%E2%80%94%E2%80%94%E5%B1%9E%E6%80%A7%E7%9A%84%E7%89%B9%E6%80%A7/" title="US5L7——属性的特性">US5L7——属性的特性</a><time datetime="2025-01-28T11:42:13.000Z" title="发表于 2025-01-28 19:42:13">2025-01-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/01/28/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US5%E2%80%94%E2%80%94Shader%E8%BF%9B%E9%98%B6%E7%9F%A5%E8%AF%86/US5L6%E2%80%94%E2%80%94PowerSliderDrawer%E5%92%8CIntRangeDrawer/" title="US5L6——PowerSliderDrawer和IntRangeDrawer">US5L6——PowerSliderDrawer和IntRangeDrawer</a><time datetime="2025-01-28T11:22:37.000Z" title="发表于 2025-01-28 19:22:37">2025-01-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/01/28/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US5%E2%80%94%E2%80%94Shader%E8%BF%9B%E9%98%B6%E7%9F%A5%E8%AF%86/US5L5%E2%80%94%E2%80%94EnumDrawer%E5%92%8CKeywordEnumDrawer/" title="US5L5——EnumDrawer和KeywordEnumDrawer">US5L5——EnumDrawer和KeywordEnumDrawer</a><time datetime="2025-01-28T11:04:06.000Z" title="发表于 2025-01-28 19:04:06">2025-01-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/01/28/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US5%E2%80%94%E2%80%94Shader%E8%BF%9B%E9%98%B6%E7%9F%A5%E8%AF%86/US5L4%E2%80%94%E2%80%94ToggleDrawer/" title="US5L4——ToggleDrawer">US5L4——ToggleDrawer</a><time datetime="2025-01-28T10:33:26.000Z" title="发表于 2025-01-28 18:33:26">2025-01-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/01/28/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US5%E2%80%94%E2%80%94Shader%E8%BF%9B%E9%98%B6%E7%9F%A5%E8%AF%86/US5L3%E2%80%94%E2%80%94Shader%E5%8F%98%E4%BD%93%E5%92%8C%E5%85%B3%E9%94%AE%E5%AD%97/" title="US5L3——Shader变体和关键字">US5L3——Shader变体和关键字</a><time datetime="2025-01-28T09:01:53.000Z" title="发表于 2025-01-28 17:01:53">2025-01-28</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2025 By 文KRIFE齐</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"><script>(async () => {
+  const showKatex = () => {
+    document.querySelectorAll('#article-container .katex').forEach(el => el.classList.add('katex-show'))
+  }
+
+  if (!window.katex_js_css) {
+    window.katex_js_css = true
+    await btf.getCSS('https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css')
+    if (false) {
+      await btf.getScript('https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js')
+    }
+  }
+
+  showKatex()
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>

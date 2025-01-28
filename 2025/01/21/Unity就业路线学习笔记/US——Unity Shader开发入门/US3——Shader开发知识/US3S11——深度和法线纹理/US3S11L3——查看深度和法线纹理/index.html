@@ -1,0 +1,270 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>US3S11L3——查看深度和法线纹理 | 文KRIFE齐的博客</title><meta name="author" content="文KRIFE齐"><meta name="copyright" content="文KRIFE齐"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="US3S11L3——查看深度和法线纹理 查看深度纹理信息 我们可以在屏幕后期处理中使用我们学习过的获取深度信息的知识点，将深度值作为颜色的RGB值显示在屏幕上，感受深度纹理中存储的内容 理论上来说，如果深度值使用 0~1 范围的线性值，越接近近裁剪面越靠近黑色，越接近远裁剪面越靠近白色 实现 查看深度纹理屏幕后期处理效果 对应 Shader   新建 Shader，删除无用代码   声明变量 在">
+<meta property="og:type" content="article">
+<meta property="og:title" content="US3S11L3——查看深度和法线纹理">
+<meta property="og:url" content="https://enjoysevenliu.github.io/2025/01/21/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S11%E2%80%94%E2%80%94%E6%B7%B1%E5%BA%A6%E5%92%8C%E6%B3%95%E7%BA%BF%E7%BA%B9%E7%90%86/US3S11L3%E2%80%94%E2%80%94%E6%9F%A5%E7%9C%8B%E6%B7%B1%E5%BA%A6%E5%92%8C%E6%B3%95%E7%BA%BF%E7%BA%B9%E7%90%86/index.html">
+<meta property="og:site_name" content="文KRIFE齐的博客">
+<meta property="og:description" content="US3S11L3——查看深度和法线纹理 查看深度纹理信息 我们可以在屏幕后期处理中使用我们学习过的获取深度信息的知识点，将深度值作为颜色的RGB值显示在屏幕上，感受深度纹理中存储的内容 理论上来说，如果深度值使用 0~1 范围的线性值，越接近近裁剪面越靠近黑色，越接近远裁剪面越靠近白色 实现 查看深度纹理屏幕后期处理效果 对应 Shader   新建 Shader，删除无用代码   声明变量 在">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://enjoysevenliu.github.io/img/Blue_Ice.png">
+<meta property="article:published_time" content="2025-01-21T04:35:04.000Z">
+<meta property="article:modified_time" content="2025-01-28T12:17:14.347Z">
+<meta property="article:author" content="文KRIFE齐">
+<meta property="article:tag" content="blog">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://enjoysevenliu.github.io/img/Blue_Ice.png"><link rel="shortcut icon" href="/img/Blue_Ice.png"><link rel="canonical" href="https://enjoysevenliu.github.io/2025/01/21/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S11%E2%80%94%E2%80%94%E6%B7%B1%E5%BA%A6%E5%92%8C%E6%B3%95%E7%BA%BF%E7%BA%B9%E7%90%86/US3S11L3%E2%80%94%E2%80%94%E6%9F%A5%E7%9C%8B%E6%B7%B1%E5%BA%A6%E5%92%8C%E6%B3%95%E7%BA%BF%E7%BA%B9%E7%90%86/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'US3S11L3——查看深度和法线纹理',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  isShuoshuo: false
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/Blue_Ice.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1048</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">132</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/img/Blue_Ice.png" alt="Logo"><span class="site-name">文KRIFE齐的博客</span></a><a class="nav-page-title" href="/"><span class="site-name">US3S11L3——查看深度和法线纹理</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">US3S11L3——查看深度和法线纹理</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-01-21T04:35:04.000Z" title="发表于 2025-01-21 12:35:04">2025-01-21</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-01-28T12:17:14.347Z" title="更新于 2025-01-28 20:17:14">2025-01-28</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity-Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/">US——Unity Shader开发入门</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity-Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/">US3——Shader开发知识</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity-Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S11%E2%80%94%E2%80%94%E6%B7%B1%E5%BA%A6%E5%92%8C%E6%B3%95%E7%BA%BF%E7%BA%B9%E7%90%86/">US3S11——深度和法线纹理</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1>US3S11L3——查看深度和法线纹理</h1>
+<h1>查看深度纹理信息</h1>
+<p>我们可以在屏幕后期处理中使用我们学习过的获取深度信息的知识点，将深度值作为颜色的RGB值显示在屏幕上，感受深度纹理中存储的内容</p>
+<p>理论上来说，如果深度值使用 0~1 范围的线性值，越接近近裁剪面越靠近黑色，越接近远裁剪面越靠近白色</p>
+<h2 id="实现-查看深度纹理屏幕后期处理效果-对应-Shader">实现 查看深度纹理屏幕后期处理效果 对应 Shader</h2>
+<ol>
+<li>
+<p>新建 Shader，删除无用代码</p>
+</li>
+<li>
+<p>声明变量</p>
+<p>在 Shader 中通过声明 <code>_CameraDepthTexture</code>​ 获取深度纹理</p>
+ <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sampler2D _MainTex;</span><br><span class="line">float4 _MainTex_ST;</span><br><span class="line">sampler2D _CameraDepthTexture;  <span class="comment">// 按规则命名的深度纹理变量</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>顶点着色器</p>
+<p>只需要修改传入结构体类型</p>
+ <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">v2f <span class="title function_">vert</span> <span class="params">(appdata_base v)</span></span><br><span class="line">&#123;</span><br><span class="line">    v2f o;</span><br><span class="line">    o.vertex = UnityObjectToClipPos(v.vertex);</span><br><span class="line">    o.uv = TRANSFORM_TEX(v.texcoord, _MainTex);</span><br><span class="line">    <span class="keyword">return</span> o;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>片元着色器</p>
+<p>使用深度纹理采样宏得到的结果是非线性的，将非线性的深度值转换到观察空间下，<br>
+并将像素点到摄像机的距离转换到 [0,1] 区间内（线性深度值），将深度值作为返回颜色的RGB值</p>
+ <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">fixed4 <span class="title function_">frag</span> <span class="params">(v2f i)</span> : SV_Target</span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">float</span> depth = SAMPLE_DEPTH_TEXTURE(_CameraDepthTexture, i.uv);  <span class="comment">// 非线性的裁剪空间下深度值</span></span><br><span class="line">    fixed linearDepth = Linear01Depth(depth);                       <span class="comment">// 得到一个线性的0~1区间的深度值</span></span><br><span class="line">    <span class="comment">// 将深度值作为RGB颜色输入，越接近摄像机就越黑，越远离摄像机就越白，具体就会呈现出深浅灰</span></span><br><span class="line">    <span class="keyword">return</span> fixed4(linearDepth, linearDepth, linearDepth, <span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>​<code>Fallback Off</code>​</p>
+</li>
+</ol>
+<p>完整 Shader 代码如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">Shader <span class="string">&quot;TeachShader/Lesson110&quot;</span></span><br><span class="line">&#123;</span><br><span class="line">    Properties</span><br><span class="line">    &#123;</span><br><span class="line">        _MainTex (<span class="string">&quot;Texture&quot;</span>, <span class="number">2</span>D) = <span class="string">&quot;white&quot;</span> &#123;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">    SubShader</span><br><span class="line">    &#123;</span><br><span class="line">        Pass</span><br><span class="line">        &#123;</span><br><span class="line">            CGPROGRAM</span><br><span class="line">            <span class="meta">#<span class="keyword">pragma</span> vertex vert</span></span><br><span class="line">            <span class="meta">#<span class="keyword">pragma</span> fragment frag</span></span><br><span class="line"></span><br><span class="line">            <span class="meta">#<span class="keyword">include</span> <span class="string">&quot;UnityCG.cginc&quot;</span></span></span><br><span class="line"></span><br><span class="line">            <span class="keyword">struct</span> v2f</span><br><span class="line">            &#123;</span><br><span class="line">                float2 uv : TEXCOORD0;</span><br><span class="line">                float4 vertex : SV_POSITION;</span><br><span class="line">            &#125;;</span><br><span class="line"></span><br><span class="line">            sampler2D _MainTex;</span><br><span class="line">            float4 _MainTex_ST;</span><br><span class="line">            sampler2D _CameraDepthTexture;  <span class="comment">// 按规则命名的深度纹理变量</span></span><br><span class="line"></span><br><span class="line">            v2f <span class="title function_">vert</span> <span class="params">(appdata_base v)</span></span><br><span class="line">            &#123;</span><br><span class="line">                v2f o;</span><br><span class="line">                o.vertex = UnityObjectToClipPos(v.vertex);</span><br><span class="line">                o.uv = TRANSFORM_TEX(v.texcoord, _MainTex);</span><br><span class="line">                <span class="keyword">return</span> o;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            fixed4 <span class="title function_">frag</span> <span class="params">(v2f i)</span> : SV_Target</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="type">float</span> depth = SAMPLE_DEPTH_TEXTURE(_CameraDepthTexture, i.uv);  <span class="comment">// 非线性的裁剪空间下深度值</span></span><br><span class="line">                fixed linearDepth = Linear01Depth(depth);                       <span class="comment">// 得到一个线性的0~1区间的深度值</span></span><br><span class="line">                <span class="comment">// 将深度值作为RGB颜色输入，越接近摄像机就越黑，越远离摄像机就越白，具体就会呈现出深浅灰</span></span><br><span class="line">                <span class="keyword">return</span> fixed4(linearDepth, linearDepth, linearDepth, <span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            ENDCG</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    Fallback Off</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="实现-查看深度纹理屏幕后期处理效果-对应-C-代码">实现 查看深度纹理屏幕后期处理效果 对应 C# 代码</h2>
+<ol>
+<li>
+<p>新建 C# 脚本，命名和 Shader 相同</p>
+</li>
+<li>
+<p>继承 <code>PostEffect</code>​</p>
+<p>具体代码详见：US3S10L4——屏幕后处理基类</p>
+</li>
+<li>
+<p>在 <code>Start</code>​ 函数中设置深度纹理模式</p>
+</li>
+</ol>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">using UnityEngine;</span><br><span class="line"></span><br><span class="line">public <span class="class"><span class="keyword">class</span> <span class="title">Lesson110_DepthTexture</span> :</span> PostEffect</span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">void</span> <span class="title function_">Start</span><span class="params">()</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 设置让Shader可以得到深度纹理信息</span></span><br><span class="line">        Camera.main.depthTextureMode = DepthTextureMode.Depth;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>将该脚本挂载到摄像机后，在关联上文实现的 Shader 即可看到效果：</p>
+<p>​<img src="/assets/image-20250121131833-91s7hqp.png" alt="image">​</p>
+<h2 id="效果展示">效果展示</h2>
+<p>原画面：</p>
+<p>​<img src="/assets/image-20250121125522-caofvqx.png" alt="image">​</p>
+<p>将摄像机的远裁剪面设置为100，将深度纹理显示在画面上，效果如下：</p>
+<p>​<img src="/assets/image-20250121125618-qhy3d1s.png" alt="image">​</p>
+<p>可见，屏幕上离摄像机越远的地方越白，离摄像机越近的地方越黑</p>
+<h1>查看法线纹理信息</h1>
+<p>我们可以在屏幕后期处理中用我们学习过的获取法线信息的知识点，将法线作为颜色显示在屏幕上，感受法线纹理中存储的内容</p>
+<h2 id="实现-查看法线纹理屏幕后期处理效果-对应-Shader">实现 查看法线纹理屏幕后期处理效果 对应 Shader</h2>
+<ol>
+<li>
+<p>新建 Shader，删除无用代码</p>
+</li>
+<li>
+<p>声明变量</p>
+<p>在 Shader 中通过声明 <code>_CameraDepthNormalsTexture</code>​ 获取深度+法线纹理</p>
+ <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">v2f</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    float2 uv : TEXCOORD0;</span><br><span class="line">    float4 vertex : SV_POSITION;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">sampler2D _MainTex;</span><br><span class="line">float4 _MainTex_ST;</span><br><span class="line">sampler2D _CameraDepthNormalsTexture;  <span class="comment">// 按规则命名的深度+法线纹理变量</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>顶点着色器</p>
+<p>只需要修改传入结构体类型</p>
+ <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">v2f <span class="title function_">vert</span> <span class="params">(appdata_base v)</span></span><br><span class="line">&#123;</span><br><span class="line">    v2f o;</span><br><span class="line">    o.vertex = UnityObjectToClipPos(v.vertex);</span><br><span class="line">    o.uv = TRANSFORM_TEX(v.texcoord, _MainTex);</span><br><span class="line">    <span class="keyword">return</span> o;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>片元着色器</p>
+<p>对深度+法线纹理进行采样（其中xy是法线信息，zw是深度信息）<br>
+使用 <code>UnityCG.cginc</code>​ 内置文件中的方法一次性处理深度和法线，得到深度值 (0~1) 和法线信息 (观察空间下）<br>
+将法线的 [-1~1] 转换到 [0~1]，作为颜色值输出</p>
+ <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">fixed4 <span class="title function_">frag</span> <span class="params">(v2f i)</span> : SV_Target</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 直接采样获取到裁剪空间下的屏幕法线+深度信息</span></span><br><span class="line">    float4 depthNormal = tex2D(_CameraDepthNormalsTexture, i.uv);</span><br><span class="line">    fixed depth;</span><br><span class="line">    fixed3 normals;</span><br><span class="line">    DecodeDepthNormal(depthNormal, depth, normals);</span><br><span class="line">    <span class="comment">// 将法线的-1到1之间的区间变换到0~1之间</span></span><br><span class="line">    <span class="keyword">return</span> fixed4(normals * <span class="number">0.5</span> + <span class="number">0.5</span>, <span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>​<code>Fallback Off</code>​</p>
+</li>
+</ol>
+<p>完整 Shader 如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">Shader <span class="string">&quot;TeachShader/Lesson111_DepthNormalTexture&quot;</span></span><br><span class="line">&#123;</span><br><span class="line">    Properties</span><br><span class="line">    &#123;</span><br><span class="line">        _MainTex (<span class="string">&quot;Texture&quot;</span>, <span class="number">2</span>D) = <span class="string">&quot;white&quot;</span> &#123;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">    SubShader</span><br><span class="line">    &#123;</span><br><span class="line">        Pass</span><br><span class="line">        &#123;</span><br><span class="line">            CGPROGRAM</span><br><span class="line">            <span class="meta">#<span class="keyword">pragma</span> vertex vert</span></span><br><span class="line">            <span class="meta">#<span class="keyword">pragma</span> fragment frag</span></span><br><span class="line"></span><br><span class="line">            <span class="meta">#<span class="keyword">include</span> <span class="string">&quot;UnityCG.cginc&quot;</span></span></span><br><span class="line"></span><br><span class="line">            <span class="keyword">struct</span> v2f</span><br><span class="line">            &#123;</span><br><span class="line">                float2 uv : TEXCOORD0;</span><br><span class="line">                float4 vertex : SV_POSITION;</span><br><span class="line">            &#125;;</span><br><span class="line"></span><br><span class="line">            sampler2D _MainTex;</span><br><span class="line">            float4 _MainTex_ST;</span><br><span class="line">            sampler2D _CameraDepthNormalsTexture;  <span class="comment">// 按规则命名的深度+法线纹理变量</span></span><br><span class="line"></span><br><span class="line">            v2f <span class="title function_">vert</span> <span class="params">(appdata_base v)</span></span><br><span class="line">            &#123;</span><br><span class="line">                v2f o;</span><br><span class="line">                o.vertex = UnityObjectToClipPos(v.vertex);</span><br><span class="line">                o.uv = TRANSFORM_TEX(v.texcoord, _MainTex);</span><br><span class="line">                <span class="keyword">return</span> o;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            fixed4 <span class="title function_">frag</span> <span class="params">(v2f i)</span> : SV_Target</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="comment">// 直接采样获取到裁剪空间下的屏幕法线+深度信息</span></span><br><span class="line">                float4 depthNormal = tex2D(_CameraDepthNormalsTexture, i.uv);</span><br><span class="line">                fixed depth;</span><br><span class="line">                fixed3 normals;</span><br><span class="line">                DecodeDepthNormal(depthNormal, depth, normals);</span><br><span class="line">                <span class="comment">// 将法线的-1到1之间的区间变换到0~1之间</span></span><br><span class="line">                <span class="keyword">return</span> fixed4(normals * <span class="number">0.5</span> + <span class="number">0.5</span>, <span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            ENDCG</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    Fallback Off</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="实现-查看法线纹理屏幕后期处理效果-对应-C-代码">实现 查看法线纹理屏幕后期处理效果 对应 C# 代码</h2>
+<ol>
+<li>
+<p>新建 C# 脚本，命名和 Shader 相同</p>
+</li>
+<li>
+<p>继承 <code>PostEffect</code>​</p>
+<p>具体代码详见：US3S10L4——屏幕后处理基类</p>
+</li>
+<li>
+<p>在 <code>Start</code>​ 函数中设置深度纹理模式</p>
+</li>
+</ol>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">using UnityEngine;</span><br><span class="line"></span><br><span class="line">public <span class="class"><span class="keyword">class</span> <span class="title">Lesson111_DepthNormalTexture</span> :</span> PostEffect</span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">void</span> <span class="title function_">Start</span><span class="params">()</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 设置让Shader可以得到深度纹理信息</span></span><br><span class="line">        Camera.main.depthTextureMode = DepthTextureMode.DepthNormals;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>将该脚本挂载到摄像机后，在关联上文实现的 Shader 即可看到效果：</p>
+<p>​<img src="/assets/image-20250121132038-7rur1e9.png" alt="image">​</p>
+<h2 id="效果展示-2">效果展示</h2>
+<p>原画面：</p>
+<p>​<img src="/assets/image-20250121132154-e56kw46.png" alt="image">​</p>
+<p>将法线纹理显示在画面上，效果如下：</p>
+<p>​<img src="/assets/image-20250121132210-un6memw.png" alt="image">​</p>
+<p>可见，屏幕上每个像素点内的顶点法线方向不同，其呈现的颜色也不同，在同一平面上的点拥有相同的法线颜色<br>
+具体法线为何呈现出这样的颜色，可参考：US3S2L4——凹凸纹理基本概念</p>
+<p>‍</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://enjoysevenliu.github.io">文KRIFE齐</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://enjoysevenliu.github.io/2025/01/21/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S11%E2%80%94%E2%80%94%E6%B7%B1%E5%BA%A6%E5%92%8C%E6%B3%95%E7%BA%BF%E7%BA%B9%E7%90%86/US3S11L3%E2%80%94%E2%80%94%E6%9F%A5%E7%9C%8B%E6%B7%B1%E5%BA%A6%E5%92%8C%E6%B3%95%E7%BA%BF%E7%BA%B9%E7%90%86/">https://enjoysevenliu.github.io/2025/01/21/Unity就业路线学习笔记/US——Unity Shader开发入门/US3——Shader开发知识/US3S11——深度和法线纹理/US3S11L3——查看深度和法线纹理/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://enjoysevenliu.github.io" target="_blank">文KRIFE齐的博客</a>！</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/img/Blue_Ice.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2025/01/22/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S11%E2%80%94%E2%80%94%E6%B7%B1%E5%BA%A6%E5%92%8C%E6%B3%95%E7%BA%BF%E7%BA%B9%E7%90%86/US3S11L4%E2%80%94%E2%80%94%E5%88%A9%E7%94%A8%E6%B7%B1%E5%BA%A6%E7%BA%B9%E7%90%86%E5%AE%9E%E7%8E%B0%E8%BF%90%E5%8A%A8%E6%A8%A1%E7%B3%8A%E6%95%88%E6%9E%9C/" title="US3S11L4——利用深度纹理实现运动模糊效果"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">US3S11L4——利用深度纹理实现运动模糊效果</div></div><div class="info-2"><div class="info-item-1">US3S11L4——利用深度纹理实现运动模糊效果  知识回顾 运动模糊效果 运动模糊效果，是一种 用于模拟真实世界中快速移动物体产生的模糊现象 的图像处理技术。 一般有两种常用方式：   累积缓存：物体快速移动时存储多帧图像信息，取它们之间的加权平均值作为最后的运动模糊图像  优点：质量高、效果好 缺点：计算量大，存储开销大    速度缓存：物体快速移动时存储多帧运动速度信息，利用速度来决定模糊的方向和大小  优点：性能较累积缓存好 缺点：效果较差，可能产生重影和伪影    我们之前学习的方式是基于累积缓存的，但是并没有存储多张场景信息，而是采用一张渲染纹理 RenderTexture​ 保存之前的渲染结果， 不断把当前渲染图像叠加到之前的渲染图像中，从而产生一种运动轨迹视觉效果 详见：US3S10L9——基于累积缓存的运动模糊  基于速度缓存的运动模糊效果 这节课是利用深度纹理实现运动模糊，它其实就是基于我们之前提到的 速度缓存...</div></div></div></a><a class="pagination-related" href="/2025/01/19/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US3%E2%80%94%E2%80%94Shader%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/US3S11%E2%80%94%E2%80%94%E6%B7%B1%E5%BA%A6%E5%92%8C%E6%B3%95%E7%BA%BF%E7%BA%B9%E7%90%86/US3S11L2%E2%80%94%E2%80%94%E6%B7%B1%E5%BA%A6%E5%92%8C%E6%B3%95%E7%BA%BF%E7%BA%B9%E7%90%86%E8%83%8C%E5%90%8E%E7%9A%84%E5%8E%9F%E7%90%86/" title="US3S11L2——深度和法线纹理背后的原理"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">US3S11L2——深度和法线纹理背后的原理</div></div><div class="info-2"><div class="info-item-1">US3S11L2——深度和法线纹理背后的原理  知识回顾 —— 裁剪空间变换 具体内容详见：US2S1L13——观察空间变换、US2S1L14——齐次裁剪空间和NDC空间 等裁剪空间相关内容   观察空间：也被称为摄像机空间，遵循右手坐标系原则，观察空间中原点为摄像机位置，x、y、z轴正方向分别对应摄像机的右、上、后方   裁剪空间：也被称为齐次裁剪空间，是一个非常特殊的空间，它的坐标范围为 (-1,-1,-1) 到 (1,1,1) 的一个正方体范围 我们需要将摄像机视锥体变换到其中，其中相对复杂的是 摄像机 的 透视投影 和 正交投影 到 齐次裁剪空间 的 变换矩阵推导 ​​ ​​ 其中，正交投影的齐次裁剪空间坐标的转换矩阵为： (1Aspect×Size00001Size0000−2Far−Near−Near+FarFar−Near0001)\begin{pmatrix}   \frac{1}{Aspect \times Size} &amp; 0 &amp; 0 &amp; 0 \\   0 &amp; \frac{1}{Size} &amp; 0 &amp; 0 \\ ...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/Blue_Ice.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">文KRIFE齐</div><div class="author-info-description">Unity就业路线的笔记终于快更新完了！</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1048</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">132</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/enjoySevenLIU"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/enjoySevenLIU" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">博客修好了，继续学习，CSharp进阶也迁移完毕了，接下来尽快把Unity Shader给啃完，年末给博客好好整修一下</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">US3S11L3——查看深度和法线纹理</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">2.</span> <span class="toc-text">查看深度纹理信息</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0-%E6%9F%A5%E7%9C%8B%E6%B7%B1%E5%BA%A6%E7%BA%B9%E7%90%86%E5%B1%8F%E5%B9%95%E5%90%8E%E6%9C%9F%E5%A4%84%E7%90%86%E6%95%88%E6%9E%9C-%E5%AF%B9%E5%BA%94-Shader"><span class="toc-number">2.1.</span> <span class="toc-text">实现 查看深度纹理屏幕后期处理效果 对应 Shader</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0-%E6%9F%A5%E7%9C%8B%E6%B7%B1%E5%BA%A6%E7%BA%B9%E7%90%86%E5%B1%8F%E5%B9%95%E5%90%8E%E6%9C%9F%E5%A4%84%E7%90%86%E6%95%88%E6%9E%9C-%E5%AF%B9%E5%BA%94-C-%E4%BB%A3%E7%A0%81"><span class="toc-number">2.2.</span> <span class="toc-text">实现 查看深度纹理屏幕后期处理效果 对应 C# 代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%88%E6%9E%9C%E5%B1%95%E7%A4%BA"><span class="toc-number">2.3.</span> <span class="toc-text">效果展示</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">3.</span> <span class="toc-text">查看法线纹理信息</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0-%E6%9F%A5%E7%9C%8B%E6%B3%95%E7%BA%BF%E7%BA%B9%E7%90%86%E5%B1%8F%E5%B9%95%E5%90%8E%E6%9C%9F%E5%A4%84%E7%90%86%E6%95%88%E6%9E%9C-%E5%AF%B9%E5%BA%94-Shader"><span class="toc-number">3.1.</span> <span class="toc-text">实现 查看法线纹理屏幕后期处理效果 对应 Shader</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0-%E6%9F%A5%E7%9C%8B%E6%B3%95%E7%BA%BF%E7%BA%B9%E7%90%86%E5%B1%8F%E5%B9%95%E5%90%8E%E6%9C%9F%E5%A4%84%E7%90%86%E6%95%88%E6%9E%9C-%E5%AF%B9%E5%BA%94-C-%E4%BB%A3%E7%A0%81"><span class="toc-number">3.2.</span> <span class="toc-text">实现 查看法线纹理屏幕后期处理效果 对应 C# 代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%88%E6%9E%9C%E5%B1%95%E7%A4%BA-2"><span class="toc-number">3.3.</span> <span class="toc-text">效果展示</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/01/28/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US5%E2%80%94%E2%80%94Shader%E8%BF%9B%E9%98%B6%E7%9F%A5%E8%AF%86/US5L7%E2%80%94%E2%80%94%E5%B1%9E%E6%80%A7%E7%9A%84%E7%89%B9%E6%80%A7/" title="US5L7——属性的特性">US5L7——属性的特性</a><time datetime="2025-01-28T11:42:13.000Z" title="发表于 2025-01-28 19:42:13">2025-01-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/01/28/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US5%E2%80%94%E2%80%94Shader%E8%BF%9B%E9%98%B6%E7%9F%A5%E8%AF%86/US5L6%E2%80%94%E2%80%94PowerSliderDrawer%E5%92%8CIntRangeDrawer/" title="US5L6——PowerSliderDrawer和IntRangeDrawer">US5L6——PowerSliderDrawer和IntRangeDrawer</a><time datetime="2025-01-28T11:22:37.000Z" title="发表于 2025-01-28 19:22:37">2025-01-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/01/28/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US5%E2%80%94%E2%80%94Shader%E8%BF%9B%E9%98%B6%E7%9F%A5%E8%AF%86/US5L5%E2%80%94%E2%80%94EnumDrawer%E5%92%8CKeywordEnumDrawer/" title="US5L5——EnumDrawer和KeywordEnumDrawer">US5L5——EnumDrawer和KeywordEnumDrawer</a><time datetime="2025-01-28T11:04:06.000Z" title="发表于 2025-01-28 19:04:06">2025-01-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/01/28/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US5%E2%80%94%E2%80%94Shader%E8%BF%9B%E9%98%B6%E7%9F%A5%E8%AF%86/US5L4%E2%80%94%E2%80%94ToggleDrawer/" title="US5L4——ToggleDrawer">US5L4——ToggleDrawer</a><time datetime="2025-01-28T10:33:26.000Z" title="发表于 2025-01-28 18:33:26">2025-01-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/01/28/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US5%E2%80%94%E2%80%94Shader%E8%BF%9B%E9%98%B6%E7%9F%A5%E8%AF%86/US5L3%E2%80%94%E2%80%94Shader%E5%8F%98%E4%BD%93%E5%92%8C%E5%85%B3%E9%94%AE%E5%AD%97/" title="US5L3——Shader变体和关键字">US5L3——Shader变体和关键字</a><time datetime="2025-01-28T09:01:53.000Z" title="发表于 2025-01-28 17:01:53">2025-01-28</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2025 By 文KRIFE齐</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"><script>(async () => {
+  const showKatex = () => {
+    document.querySelectorAll('#article-container .katex').forEach(el => el.classList.add('katex-show'))
+  }
+
+  if (!window.katex_js_css) {
+    window.katex_js_css = true
+    await btf.getCSS('https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css')
+    if (false) {
+      await btf.getScript('https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js')
+    }
+  }
+
+  showKatex()
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>

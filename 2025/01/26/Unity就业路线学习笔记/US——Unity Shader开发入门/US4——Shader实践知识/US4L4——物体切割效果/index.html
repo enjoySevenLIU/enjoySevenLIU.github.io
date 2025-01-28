@@ -1,0 +1,282 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>US4L4——物体切割效果 | 文KRIFE齐的博客</title><meta name="author" content="文KRIFE齐"><meta name="copyright" content="文KRIFE齐"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="US4L4——物体切割效果 本章代码关键字 123VFACE                &#x2F;&#x2F; 片元位于模型正面还是反面的语义，一般在片元着色器的浮点数参数中使用，Unity Shader会自动传入，1表示为正面，-1表示为背面#pragma target 3.0    &#x2F;&#x2F; 设置着色器模型版本，可以让VFACE​语义使用上的兼容性和稳定性更好step()                &#x2F;&#x2F; 传">
+<meta property="og:type" content="article">
+<meta property="og:title" content="US4L4——物体切割效果">
+<meta property="og:url" content="https://enjoysevenliu.github.io/2025/01/26/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US4%E2%80%94%E2%80%94Shader%E5%AE%9E%E8%B7%B5%E7%9F%A5%E8%AF%86/US4L4%E2%80%94%E2%80%94%E7%89%A9%E4%BD%93%E5%88%87%E5%89%B2%E6%95%88%E6%9E%9C/index.html">
+<meta property="og:site_name" content="文KRIFE齐的博客">
+<meta property="og:description" content="US4L4——物体切割效果 本章代码关键字 123VFACE                &#x2F;&#x2F; 片元位于模型正面还是反面的语义，一般在片元着色器的浮点数参数中使用，Unity Shader会自动传入，1表示为正面，-1表示为背面#pragma target 3.0    &#x2F;&#x2F; 设置着色器模型版本，可以让VFACE​语义使用上的兼容性和稳定性更好step()                &#x2F;&#x2F; 传">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://enjoysevenliu.github.io/img/Blue_Ice.png">
+<meta property="article:published_time" content="2025-01-26T05:01:43.000Z">
+<meta property="article:modified_time" content="2025-01-28T12:17:14.412Z">
+<meta property="article:author" content="文KRIFE齐">
+<meta property="article:tag" content="blog">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://enjoysevenliu.github.io/img/Blue_Ice.png"><link rel="shortcut icon" href="/img/Blue_Ice.png"><link rel="canonical" href="https://enjoysevenliu.github.io/2025/01/26/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US4%E2%80%94%E2%80%94Shader%E5%AE%9E%E8%B7%B5%E7%9F%A5%E8%AF%86/US4L4%E2%80%94%E2%80%94%E7%89%A9%E4%BD%93%E5%88%87%E5%89%B2%E6%95%88%E6%9E%9C/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'US4L4——物体切割效果',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  isShuoshuo: false
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/Blue_Ice.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1048</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">132</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/img/Blue_Ice.png" alt="Logo"><span class="site-name">文KRIFE齐的博客</span></a><a class="nav-page-title" href="/"><span class="site-name">US4L4——物体切割效果</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">US4L4——物体切割效果</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-01-26T05:01:43.000Z" title="发表于 2025-01-26 13:01:43">2025-01-26</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-01-28T12:17:14.412Z" title="更新于 2025-01-28 20:17:14">2025-01-28</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity-Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/">US——Unity Shader开发入门</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity-Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US4%E2%80%94%E2%80%94Shader%E5%AE%9E%E8%B7%B5%E7%9F%A5%E8%AF%86/">US4——Shader实践知识</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1>US4L4——物体切割效果</h1>
+<h2 id="本章代码关键字">本章代码关键字</h2>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">VFACE                <span class="comment">// 片元位于模型正面还是反面的语义，一般在片元着色器的浮点数参数中使用，Unity Shader会自动传入，1表示为正面，-1表示为背面</span></span><br><span class="line"><span class="meta">#<span class="keyword">pragma</span> target 3.0    <span class="comment">// 设置着色器模型版本，可以让VFACE​语义使用上的兼容性和稳定性更好</span></span></span><br><span class="line">step()                <span class="comment">// 传入两个参数，若第二个参数大于等于第一个参数，则返回1，否则返回0</span></span><br></pre></td></tr></table></figure>
+<h1>物体切割效果</h1>
+<p>在游戏开发中，物体切割效果就是，<strong>物体看似被切割、分割或隐藏一部分的视觉效果。</strong><br>
+这种效果常用与游戏和动画中，比如角色攻击时的切割效果，场景中的墙壁切割效果等等。</p>
+<p>​<img src="/assets/image-20250126130257-kjgz30y.png" alt="image">​<img src="/assets/image-20250126130305-kycl48r.png" alt="image">​</p>
+<h2 id="物体切割效果的基本原理">物体切割效果的基本原理</h2>
+<p>一句话描述它的基本原理：<strong>在片元着色器中判断片元的世界坐标是否满足切割条件，<br>
+如果满足则直接抛弃片元不渲染，判断片元在模型中的正反面，决定使用哪种纹理进行渲染</strong></p>
+<p>关键点：</p>
+<ul>
+<li>
+<p>如何判断世界坐标</p>
+<p><strong>在 Shader 中声明一个</strong> <strong>​<code>Vector</code>​</strong> <strong>坐标变量，通过 C# 代码把控制切割位置的物体世界空间位置传递给 Shader</strong><br>
+在 Shader 中用片元的世界坐标和传递进来的世界坐标做比较，在这里，我们可以分三种模式，分别比较 x、y、z 坐标，切割 x、y、z 方向的片元</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">material.SetVector(<span class="string">&quot;_CuttingPosition&quot;</span>, cutObj.transform.position);</span><br></pre></td></tr></table></figure>
+<p>​<img src="/assets/image-20250126130702-lp8wkl4.png" alt="image">​</p>
+</li>
+<li>
+<p>如何抛弃片元不渲染</p>
+<p>Unity Shader 中提供了一个内置函数 clip(x)​，它的作用就是在片元着色器中调用时来丢弃片元的，之前在透明度测试时使用过</p>
+<p>具体详见：US3S3L4——透明度测试</p>
+<p>传入的值 <code>x</code>​ 小于0，则会丢弃当前片元，被丢弃的片元不会被进一步处理也就不会被渲染了，<br>
+也就是说，当我们判断片元位置需要被切割时，直接执行 <code>clip</code>​ 函数传入一个负数，这个片元就会被丢弃，不会被渲染了</p>
+</li>
+<li>
+<p>如何判断片元的正反面</p>
+<p>Unity Shader 中提供了一个语义 <code>VFACE</code>​，它只能在片元着色器中使用，它可以作为参数传递给片元着色器<br>
+传入值 <code>1</code>​ 表示为正面，<code>-1</code>​ 表示为背面，我们可以利用它判断该片元是模型正面还是背面片元，决定使用哪种纹理或颜色进行渲染</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">fixed4 <span class="title function_">frag</span><span class="params">(v2f i, fixed face: VFACE)</span> : SV_Target</span><br><span class="line">&#123;</span><br><span class="line">    fixed4 col = face &gt; <span class="number">0</span> ? tex2D(_MainTex, i.uv) : tex2D(_BackTex, i.uv);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注意：在使用它时建议加上编译指令 <code>#pragma target 3.0</code>​ 或 <code>4.0</code>​、<code>5.0</code>​<br>
+表示设置着色器模型版本，可以让 <code>VFACE</code>​ 语义使用上的兼容性和稳定性更好</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Pass</span><br><span class="line">&#123;</span><br><span class="line">    CGPROGRAM</span><br><span class="line">    <span class="meta">#<span class="keyword">pragma</span> vertex vert</span></span><br><span class="line">    <span class="meta">#<span class="keyword">pragma</span> fragment frag</span></span><br><span class="line">    <span class="meta">#<span class="keyword">pragma</span> target 3.0</span></span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">    ENDCG</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</blockquote>
+</li>
+</ul>
+<h2 id="实现物体切割效果的-Shader-代码">实现物体切割效果的 Shader 代码</h2>
+<ol>
+<li>
+<p>新建 Shader <code>ObjectCutting</code>​，删除无用代码</p>
+</li>
+<li>
+<p>属性声明 属性映射</p>
+<ul>
+<li>主纹理 <code>_MainTex 2D</code>​</li>
+<li>背面纹理 <code>_BackTex 2D</code>​</li>
+<li>切割方向（用来控制比较x、y、z哪个轴）<code>_CuttingDir Float</code>​</li>
+<li>是否翻转切割 <code>_Invert Float</code>​</li>
+<li>切割位置（从 C# 传递过来）<code>_CuttingPos Vector</code>​</li>
+</ul>
+ <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Properties</span><br><span class="line">&#123;</span><br><span class="line">    _MainTex(<span class="string">&quot;Texture&quot;</span>, <span class="number">2</span>D) = <span class="string">&quot;white&quot;</span>&#123;&#125;</span><br><span class="line">    _BackTex(<span class="string">&quot;BackTex&quot;</span>, <span class="number">2</span>D) = <span class="string">&quot;white&quot;</span>&#123;&#125;             <span class="comment">// 用于渲染模型背面像素的纹理</span></span><br><span class="line">    _CuttingDir(<span class="string">&quot;CuttingDir&quot;</span>, Float) = <span class="number">0</span>            <span class="comment">// 切割方向，0代表x方向，1代表y方向，2代表z方向</span></span><br><span class="line">    _Invert(<span class="string">&quot;Invert&quot;</span>, Float) = <span class="number">0</span>                    <span class="comment">// 是否切割翻转，0代表不翻转，1代表翻转</span></span><br><span class="line">    _CuttingPos(<span class="string">&quot;CuttingPos&quot;</span>, Vector) = (<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>)   <span class="comment">// 切割的位置</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>关闭剔除 因为要两面渲染</p>
+ <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">SubShader</span><br><span class="line">&#123;</span><br><span class="line">    Tags &#123; <span class="string">&quot;RenderType&quot;</span>=<span class="string">&quot;Opaque&quot;</span> &#125;</span><br><span class="line">    Cull Off                                        <span class="comment">// 正反都要渲染</span></span><br><span class="line">    Pass &#123; <span class="comment">/*...*/</span> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>编译指令 <code>#pragma target 3.0</code>​ 让 <code>VFACE</code>​ 兼容性更好</p>
+ <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">CGPROGRAM</span><br><span class="line"><span class="meta">#<span class="keyword">pragma</span> vertex vert</span></span><br><span class="line"><span class="meta">#<span class="keyword">pragma</span> fragment frag</span></span><br><span class="line"><span class="meta">#<span class="keyword">pragma</span> target 3.0</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;UnityCG.cginc&quot;</span></span></span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line">ENDCG</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>结构体</p>
+<p>UV、顶点、世界坐标</p>
+ <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">v2f</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    float4 vertex : SV_POSITION;</span><br><span class="line">    float2 uv : TEXCOORD0;</span><br><span class="line">    float3 worldPos : TEXCOORD1;            <span class="comment">// 世界坐标位置</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>顶点着色器函数</p>
+<p>坐标转换、纹理赋值、世界坐标转换</p>
+ <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">v2f <span class="title function_">vert</span> <span class="params">(appdata_base v)</span></span><br><span class="line">&#123;</span><br><span class="line">    v2f o;</span><br><span class="line">    o.vertex = UnityObjectToClipPos(v.vertex);</span><br><span class="line">    o.uv = TRANSFORM_TEX(v.texcoord, _MainTex);</span><br><span class="line">    o.worldPos = mul(unity_ObjectToWorld, v.vertex).xyz;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> o;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>片元着色器函数</p>
+<ol>
+<li>
+<p>加入 <code>VFACE</code>​ 语义参数</p>
+</li>
+<li>
+<p>根据正反面决定采样颜色</p>
+</li>
+<li>
+<p>根据切割方向判断是否丢弃（<code>0</code>​ 代表丢弃，<code>1</code>​ 代表不丢弃）</p>
+<p>可以使用 <code>step(edge, x)</code>​ 函数</p>
+<ul>
+<li>​<code>x &gt;= edge</code>​ 返回 <code>1</code>​</li>
+<li>​<code>x &lt; edge</code>​ 返回 <code>0</code>​</li>
+</ul>
+</li>
+<li>
+<p>利用是否翻转切割参数决定是否反转丢弃</p>
+</li>
+<li>
+<p>利用 <code>clip</code>​ 函数丢弃片元</p>
+</li>
+<li>
+<p>若不丢弃，直接返回颜色</p>
+</li>
+</ol>
+ <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">fixed4 <span class="title function_">frag</span> <span class="params">(v2f i, fixed face : VFACE)</span> : SV_Target</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 通过face来进行正反面判断，因为face的语义是VFACE，因此Unity Shader会自动传入对应的参数</span></span><br><span class="line">    fixed4 color = face &gt; <span class="number">0</span> ? tex2D(_MainTex, i.uv) : tex2D(_BackTex, i.uv);</span><br><span class="line">  </span><br><span class="line">    <span class="comment">// 计算丢弃中间值，其中_CuttingDir决定比较哪个方向</span></span><br><span class="line">    fixed cutValue;</span><br><span class="line">    <span class="keyword">if</span> (_CuttingDir == <span class="number">0</span>)</span><br><span class="line">        cutValue = step(_CuttingPos.x, i.worldPos.x);   <span class="comment">// 若片元的世界坐标x轴方向小于切割位置，说明需要切割</span></span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (_CuttingDir == <span class="number">1</span>)</span><br><span class="line">        cutValue = step(_CuttingPos.y, i.worldPos.y);   <span class="comment">// 若片元的世界坐标y轴方向小于切割位置，说明需要切割</span></span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (_CuttingDir == <span class="number">2</span>) </span><br><span class="line">        cutValue = step(_CuttingPos.z, i.worldPos.z);   <span class="comment">// 若片元的世界坐标z轴方向小于切割位置，说明需要切割</span></span><br><span class="line">  </span><br><span class="line">    <span class="comment">// 如果是切割翻转的，则需要反转丢弃中间值，让原来被切割的变为不被切割的，原来未被切割的变为被切割的</span></span><br><span class="line">    cutValue = _Invert ? <span class="number">1</span> - cutValue : cutValue;</span><br><span class="line">  </span><br><span class="line">    <span class="comment">// 如果丢弃中间值为0，则需要切割，此片元直接丢弃</span></span><br><span class="line">    <span class="keyword">if</span> (cutValue == <span class="number">0</span>)</span><br><span class="line">        clip(<span class="number">-1</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> color;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>完整 Shader 代码如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line">Shader <span class="string">&quot;TeachShader/ObjectCutting&quot;</span></span><br><span class="line">&#123;</span><br><span class="line">    Properties</span><br><span class="line">    &#123;</span><br><span class="line">        _MainTex(<span class="string">&quot;Texture&quot;</span>, <span class="number">2</span>D) = <span class="string">&quot;white&quot;</span>&#123;&#125;</span><br><span class="line">        _BackTex(<span class="string">&quot;BackTex&quot;</span>, <span class="number">2</span>D) = <span class="string">&quot;white&quot;</span>&#123;&#125;             <span class="comment">// 用于渲染模型背面像素的纹理</span></span><br><span class="line">        _CuttingDir(<span class="string">&quot;CuttingDir&quot;</span>, Float) = <span class="number">0</span>            <span class="comment">// 切割方向，0代表x方向，1代表y方向，2代表z方向</span></span><br><span class="line">        _Invert(<span class="string">&quot;Invert&quot;</span>, Float) = <span class="number">0</span>                    <span class="comment">// 是否切割翻转，0代表不翻转，1代表翻转</span></span><br><span class="line">        _CuttingPos(<span class="string">&quot;CuttingPos&quot;</span>, Vector) = (<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>)   <span class="comment">// 切割的位置</span></span><br><span class="line">    &#125;</span><br><span class="line">    SubShader</span><br><span class="line">    &#123;</span><br><span class="line">        Tags &#123; <span class="string">&quot;RenderType&quot;</span>=<span class="string">&quot;Opaque&quot;</span> &#125;</span><br><span class="line">        Cull Off                                        <span class="comment">// 正反都要渲染</span></span><br><span class="line"></span><br><span class="line">        Pass</span><br><span class="line">        &#123;</span><br><span class="line">            CGPROGRAM</span><br><span class="line">            <span class="meta">#<span class="keyword">pragma</span> vertex vert</span></span><br><span class="line">            <span class="meta">#<span class="keyword">pragma</span> fragment frag</span></span><br><span class="line">            <span class="meta">#<span class="keyword">pragma</span> target 3.0</span></span><br><span class="line"></span><br><span class="line">            <span class="meta">#<span class="keyword">include</span> <span class="string">&quot;UnityCG.cginc&quot;</span></span></span><br><span class="line"></span><br><span class="line">            <span class="keyword">struct</span> v2f</span><br><span class="line">            &#123;</span><br><span class="line">                float4 vertex : SV_POSITION;</span><br><span class="line">                float2 uv : TEXCOORD0;</span><br><span class="line">                float3 worldPos : TEXCOORD1;            <span class="comment">// 世界坐标位置</span></span><br><span class="line">            &#125;;</span><br><span class="line"></span><br><span class="line">            sampler2D _MainTex;</span><br><span class="line">            float4 _MainTex_ST;</span><br><span class="line">            sampler2D _BackTex;</span><br><span class="line">            float4 _BackTex_ST;</span><br><span class="line">            fixed _CuttingDir;</span><br><span class="line">            fixed _Invert;</span><br><span class="line">            float4 _CuttingPos;</span><br><span class="line"></span><br><span class="line">            v2f <span class="title function_">vert</span> <span class="params">(appdata_base v)</span></span><br><span class="line">            &#123;</span><br><span class="line">                v2f o;</span><br><span class="line">                o.vertex = UnityObjectToClipPos(v.vertex);</span><br><span class="line">                o.uv = TRANSFORM_TEX(v.texcoord, _MainTex);</span><br><span class="line">                o.worldPos = mul(unity_ObjectToWorld, v.vertex).xyz;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">return</span> o;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            fixed4 <span class="title function_">frag</span> <span class="params">(v2f i, fixed face : VFACE)</span> : SV_Target</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="comment">// 通过face来进行正反面判断，因为face的语义是VFACE，因此Unity Shader会自动传入对应的参数</span></span><br><span class="line">                fixed4 color = face &gt; <span class="number">0</span> ? tex2D(_MainTex, i.uv) : tex2D(_BackTex, i.uv);</span><br><span class="line">            </span><br><span class="line">                <span class="comment">// 计算丢弃中间值，其中_CuttingDir决定比较哪个方向</span></span><br><span class="line">                fixed cutValue;</span><br><span class="line">                <span class="keyword">if</span> (_CuttingDir == <span class="number">0</span>)</span><br><span class="line">                    cutValue = step(_CuttingPos.x, i.worldPos.x);   <span class="comment">// 若片元的世界坐标x轴方向小于切割位置，说明需要切割</span></span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span> (_CuttingDir == <span class="number">1</span>)</span><br><span class="line">                    cutValue = step(_CuttingPos.y, i.worldPos.y);   <span class="comment">// 若片元的世界坐标y轴方向小于切割位置，说明需要切割</span></span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span> (_CuttingDir == <span class="number">2</span>) </span><br><span class="line">                    cutValue = step(_CuttingPos.z, i.worldPos.z);   <span class="comment">// 若片元的世界坐标z轴方向小于切割位置，说明需要切割</span></span><br><span class="line">            </span><br><span class="line">                <span class="comment">// 如果是切割翻转的，则需要反转丢弃中间值，让原来被切割的变为不被切割的，原来未被切割的变为被切割的</span></span><br><span class="line">                cutValue = _Invert ? <span class="number">1</span> - cutValue : cutValue;</span><br><span class="line">            </span><br><span class="line">                <span class="comment">// 如果丢弃中间值为0，则需要切割，此片元直接丢弃</span></span><br><span class="line">                <span class="keyword">if</span> (cutValue == <span class="number">0</span>)</span><br><span class="line">                    clip(<span class="number">-1</span>);</span><br><span class="line"></span><br><span class="line">                <span class="keyword">return</span> color;</span><br><span class="line">            &#125;</span><br><span class="line">            ENDCG</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="实现物体切割效果的-C-代码">实现物体切割效果的 C# 代码</h2>
+<ol>
+<li>新建 C# 脚本 和 Shader 名一样</li>
+<li>加入 [ExecuteAlways]​ 特性，让编辑模式下也运行，可以看到效果</li>
+<li>声明材质球和切割位置对象</li>
+<li>材质球初始化</li>
+<li>在 <code>Update</code>​ 中不停的将切割物体位置传递给 Shader</li>
+</ol>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> UnityEngine;</span><br><span class="line"></span><br><span class="line">[<span class="meta">ExecuteAlways</span>]</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">ObjectCutting</span> : <span class="title">MonoBehaviour</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">private</span> Material material;</span><br><span class="line">    <span class="keyword">public</span> GameObject cutObj;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Start</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        material = <span class="keyword">this</span>.GetComponent&lt;Renderer&gt;().sharedMaterial;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Update</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (material == <span class="literal">null</span> || cutObj == <span class="literal">null</span>)</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">        material.SetVector(<span class="string">&quot;_CuttingPos&quot;</span>, cutObj.transform.position);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="显示效果">显示效果</h2>
+<p>在将被切割的物体上添加一个 <code>CutObj</code>​ 子对象，并将其关联到 <code>ObjectCutting</code>​ C# 脚本上</p>
+<p>​<img src="/assets/image-20250126225725-nvknu9x.png" alt="image">​</p>
+<p>通过设置添加了 <code>ObjectCutting</code>​ Shader 的 Material 上的 <code>CuttingDir</code>​ 和 <code>Invert</code>​，并拖动 <code>CutObj</code>​ 的位置，即可修改切割效果</p>
+<p>​<img src="/assets/image-20250126225415-xi7cu03.png" alt="image">​</p>
+<p>可见，物体呈现出了被切割的效果，显示出了其中的内部纹理</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://enjoysevenliu.github.io">文KRIFE齐</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://enjoysevenliu.github.io/2025/01/26/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US4%E2%80%94%E2%80%94Shader%E5%AE%9E%E8%B7%B5%E7%9F%A5%E8%AF%86/US4L4%E2%80%94%E2%80%94%E7%89%A9%E4%BD%93%E5%88%87%E5%89%B2%E6%95%88%E6%9E%9C/">https://enjoysevenliu.github.io/2025/01/26/Unity就业路线学习笔记/US——Unity Shader开发入门/US4——Shader实践知识/US4L4——物体切割效果/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://enjoysevenliu.github.io" target="_blank">文KRIFE齐的博客</a>！</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/img/Blue_Ice.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2025/01/26/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US4%E2%80%94%E2%80%94Shader%E5%AE%9E%E8%B7%B5%E7%9F%A5%E8%AF%86/US4L5%E2%80%94%E2%80%94%E7%BF%BB%E9%A1%B5%E6%95%88%E6%9E%9C/" title="US4L5——翻页效果"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">US4L5——翻页效果</div></div><div class="info-2"><div class="info-item-1">US4L5——翻页效果 书本翻页效果 在游戏开发中，书本翻页效果就是，字面意思，用 Shader 模拟出书本翻页时的动态效果 这种效果常用与游戏和动画中，比如用于制作一些 3D UI，制作一些书本交互功能等等 一句话概括它的基本原理：对顶点进行平移 —&gt; 矩阵旋转 —&gt; 再平移，并利用三角函数相关知识制做出起伏感 ​​ 关键点：   如何制作旋转 我们将利用以前学习的 旋转矩阵 相关知识，来对顶点进行旋转变换， 但是，旋转前我们需要先对顶点进行平移，否则模型将绕着模型中心点旋转。 因为旋转之前进行了平移，因此旋转结束后，我们需要再将顶点平移回来 如果不平移，旋转效果就变成了这样： ​​ 进行平移，才能让书页沿侧边一轴旋转，至于平移的距离，由书页本身宽度的一半决定： ​​ 旋转矩阵如下： 绕 x 轴旋转 β 度，旋转矩阵为： [10000cosβ−sinβ00sinβcosβ00001]\begin{bmatrix}   1 &amp; 0 &amp; 0 &amp; 0 \\   0 &amp; cos\beta &amp; -sin\beta &amp; 0...</div></div></div></a><a class="pagination-related" href="/2025/01/26/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US4%E2%80%94%E2%80%94Shader%E5%AE%9E%E8%B7%B5%E7%9F%A5%E8%AF%86/US4L3%E2%80%94%E2%80%94%E9%81%AE%E6%8C%A1%E5%8D%8A%E9%80%8F%E6%98%8E%E6%95%88%E6%9E%9C/" title="US4L3——遮挡半透明效果"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">US4L3——遮挡半透明效果</div></div><div class="info-2"><div class="info-item-1">US4L3——遮挡半透明效果 遮挡半透明效果 在游戏开发中，遮挡半透明效果就是物体被挡住的部分，也能呈现出一种半透明效果而被看到（具体效果可以自定义） 比如当角色在建筑物之间穿行时，被遮挡部分能够呈现出半透明效果而被我们看到。 遮挡半透明效果包含了两种显示效果，即挡住和没被挡住的部分，没被遮挡的部分正常显示，被遮挡的部分自定义显示（半透明、X光等等） ​​​ 遮挡半透明效果的基本原理 一句话描述它的基本原理： 两个 Pass​ 渲染对象，一个 Pass​ 用于渲染被遮挡部分，一个 Pass​ 用于渲染未遮挡模型。 被遮挡部分通过修改深度测试规则和关闭深度写入达到目的。 关键点：  如何渲染遮挡部分 如何渲染未遮挡部分  首先进行一个关于 深度测试 和 深度写入 的知识回顾， 我们可以设置 Pass​ 的深度测试规则，只有通过了深度测试，该 Pass​ 才会执行进行渲染 1234567ZTest Less        //小于当前深度缓冲中的值，就通过测试，写入到深度缓冲中ZTest Greater     //大于当前深度缓冲中的值，就通过测试，写入到深度缓冲中ZTest...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/Blue_Ice.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">文KRIFE齐</div><div class="author-info-description">Unity就业路线的笔记终于快更新完了！</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1048</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">132</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/enjoySevenLIU"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/enjoySevenLIU" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">博客修好了，继续学习，CSharp进阶也迁移完毕了，接下来尽快把Unity Shader给啃完，年末给博客好好整修一下</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">US4L4——物体切割效果</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%AC%E7%AB%A0%E4%BB%A3%E7%A0%81%E5%85%B3%E9%94%AE%E5%AD%97"><span class="toc-number">1.1.</span> <span class="toc-text">本章代码关键字</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">2.</span> <span class="toc-text">物体切割效果</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%89%A9%E4%BD%93%E5%88%87%E5%89%B2%E6%95%88%E6%9E%9C%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86"><span class="toc-number">2.1.</span> <span class="toc-text">物体切割效果的基本原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E7%89%A9%E4%BD%93%E5%88%87%E5%89%B2%E6%95%88%E6%9E%9C%E7%9A%84-Shader-%E4%BB%A3%E7%A0%81"><span class="toc-number">2.2.</span> <span class="toc-text">实现物体切割效果的 Shader 代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E7%89%A9%E4%BD%93%E5%88%87%E5%89%B2%E6%95%88%E6%9E%9C%E7%9A%84-C-%E4%BB%A3%E7%A0%81"><span class="toc-number">2.3.</span> <span class="toc-text">实现物体切割效果的 C# 代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%98%BE%E7%A4%BA%E6%95%88%E6%9E%9C"><span class="toc-number">2.4.</span> <span class="toc-text">显示效果</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/01/28/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US5%E2%80%94%E2%80%94Shader%E8%BF%9B%E9%98%B6%E7%9F%A5%E8%AF%86/US5L7%E2%80%94%E2%80%94%E5%B1%9E%E6%80%A7%E7%9A%84%E7%89%B9%E6%80%A7/" title="US5L7——属性的特性">US5L7——属性的特性</a><time datetime="2025-01-28T11:42:13.000Z" title="发表于 2025-01-28 19:42:13">2025-01-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/01/28/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US5%E2%80%94%E2%80%94Shader%E8%BF%9B%E9%98%B6%E7%9F%A5%E8%AF%86/US5L6%E2%80%94%E2%80%94PowerSliderDrawer%E5%92%8CIntRangeDrawer/" title="US5L6——PowerSliderDrawer和IntRangeDrawer">US5L6——PowerSliderDrawer和IntRangeDrawer</a><time datetime="2025-01-28T11:22:37.000Z" title="发表于 2025-01-28 19:22:37">2025-01-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/01/28/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US5%E2%80%94%E2%80%94Shader%E8%BF%9B%E9%98%B6%E7%9F%A5%E8%AF%86/US5L5%E2%80%94%E2%80%94EnumDrawer%E5%92%8CKeywordEnumDrawer/" title="US5L5——EnumDrawer和KeywordEnumDrawer">US5L5——EnumDrawer和KeywordEnumDrawer</a><time datetime="2025-01-28T11:04:06.000Z" title="发表于 2025-01-28 19:04:06">2025-01-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/01/28/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US5%E2%80%94%E2%80%94Shader%E8%BF%9B%E9%98%B6%E7%9F%A5%E8%AF%86/US5L4%E2%80%94%E2%80%94ToggleDrawer/" title="US5L4——ToggleDrawer">US5L4——ToggleDrawer</a><time datetime="2025-01-28T10:33:26.000Z" title="发表于 2025-01-28 18:33:26">2025-01-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/01/28/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US5%E2%80%94%E2%80%94Shader%E8%BF%9B%E9%98%B6%E7%9F%A5%E8%AF%86/US5L3%E2%80%94%E2%80%94Shader%E5%8F%98%E4%BD%93%E5%92%8C%E5%85%B3%E9%94%AE%E5%AD%97/" title="US5L3——Shader变体和关键字">US5L3——Shader变体和关键字</a><time datetime="2025-01-28T09:01:53.000Z" title="发表于 2025-01-28 17:01:53">2025-01-28</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2025 By 文KRIFE齐</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"><script>(async () => {
+  const showKatex = () => {
+    document.querySelectorAll('#article-container .katex').forEach(el => el.classList.add('katex-show'))
+  }
+
+  if (!window.katex_js_css) {
+    window.katex_js_css = true
+    await btf.getCSS('https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css')
+    if (false) {
+      await btf.getScript('https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js')
+    }
+  }
+
+  showKatex()
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>
