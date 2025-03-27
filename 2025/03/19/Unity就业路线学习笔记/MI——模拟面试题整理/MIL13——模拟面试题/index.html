@@ -1,0 +1,311 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>MIL13——模拟面试题 | 文KRIFE齐的博客</title><meta name="author" content="文KRIFE齐"><meta name="copyright" content="文KRIFE齐"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="MIL13——模拟面试题 C#   C# 中哪些变量类型是值类型（至少说出13种），哪些是引用类型（至少说出5种）  值类型： int​、float​、double​、byte​、short​、long​、uint​、ulong​、uint​、sbyte​、decimal​、char​、bool​、自定义结构体 引用类型： 自定义类、数组、字符串、委托、接口、object​    第一个问题：在自">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MIL13——模拟面试题">
+<meta property="og:url" content="https://enjoysevenliu.github.io/2025/03/19/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/MI%E2%80%94%E2%80%94%E6%A8%A1%E6%8B%9F%E9%9D%A2%E8%AF%95%E9%A2%98%E6%95%B4%E7%90%86/MIL13%E2%80%94%E2%80%94%E6%A8%A1%E6%8B%9F%E9%9D%A2%E8%AF%95%E9%A2%98/index.html">
+<meta property="og:site_name" content="文KRIFE齐的博客">
+<meta property="og:description" content="MIL13——模拟面试题 C#   C# 中哪些变量类型是值类型（至少说出13种），哪些是引用类型（至少说出5种）  值类型： int​、float​、double​、byte​、short​、long​、uint​、ulong​、uint​、sbyte​、decimal​、char​、bool​、自定义结构体 引用类型： 自定义类、数组、字符串、委托、接口、object​    第一个问题：在自">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://enjoysevenliu.github.io/img/Blue_Ice.png">
+<meta property="article:published_time" content="2025-03-19T14:40:48.000Z">
+<meta property="article:modified_time" content="2025-03-27T12:10:17.000Z">
+<meta property="article:author" content="文KRIFE齐">
+<meta property="article:tag" content="blog">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://enjoysevenliu.github.io/img/Blue_Ice.png"><link rel="shortcut icon" href="/img/Blue_Ice.png"><link rel="canonical" href="https://enjoysevenliu.github.io/2025/03/19/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/MI%E2%80%94%E2%80%94%E6%A8%A1%E6%8B%9F%E9%9D%A2%E8%AF%95%E9%A2%98%E6%95%B4%E7%90%86/MIL13%E2%80%94%E2%80%94%E6%A8%A1%E6%8B%9F%E9%9D%A2%E8%AF%95%E9%A2%98/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'MIL13——模拟面试题',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  isShuoshuo: false
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/Blue_Ice.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1067</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">132</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/img/Blue_Ice.png" alt="Logo"><span class="site-name">文KRIFE齐的博客</span></a><a class="nav-page-title" href="/"><span class="site-name">MIL13——模拟面试题</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">MIL13——模拟面试题</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-03-19T14:40:48.000Z" title="发表于 2025-03-19 22:40:48">2025-03-19</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-03-27T12:10:17.000Z" title="更新于 2025-03-27 20:10:17">2025-03-27</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/MI%E2%80%94%E2%80%94%E6%A8%A1%E6%8B%9F%E9%9D%A2%E8%AF%95%E9%A2%98%E6%95%B4%E7%90%86/">MI——模拟面试题整理</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1>MIL13——模拟面试题</h1>
+<p><strong>C#</strong></p>
+<ol>
+<li>
+<p>C# 中哪些变量类型是值类型（至少说出13种），哪些是引用类型（至少说出5种）</p>
+<ul>
+<li>值类型： <code>int</code>​、<code>float</code>​、<code>double</code>​、<code>byte</code>​、<code>short</code>​、<code>long</code>​、<code>uint</code>​、<code>ulong</code>​、<code>uint</code>​、<code>sbyte</code>​、<code>decimal</code>​、<code>char</code>​、<code>bool</code>​、自定义结构体</li>
+<li>引用类型： 自定义类、数组、字符串、委托、接口、<code>object</code>​</li>
+</ul>
+</li>
+<li>
+<p>第一个问题：在自定义类中声明的成员变量，类型为 <code>int</code>​，该 <code>int</code>​ 变量存储在栈上还是堆上？<br>
+第二个问题：在自定义结构体中声明的成员变量，类型为 <code>string</code>​，该 <code>string</code>​ 变量存储在栈上还是堆上？</p>
+<ol>
+<li>
+<p>堆上</p>
+<p>自定义类中声明的成员变量，无论什么类型，都会存储在堆上。<br>
+类（引用类型）的实例本身存储在堆上，而成员变量也存储在该实例所指向的内存区域（堆上）</p>
+</li>
+<li>
+<p>堆上</p>
+<p>在结构体变量中的引用类型成员实际上会存储在堆上。<br>
+虽然结构体本身是值类型，存储在栈上，但是如果结构体的成员包含引用类型，<br>
+那么引用类型的对象会存储在堆上，而结构体的实例内部会包含对这些堆上对象的引用。</p>
+</li>
+</ol>
+</li>
+<li>
+<p>C# 中在什么情况下会选择使用接口，什么情况下会选择使用抽象类？</p>
+<ul>
+<li>
+<p>接口：</p>
+<ol>
+<li>不同对象的共同行为</li>
+<li>需要多继承时</li>
+</ol>
+</li>
+<li>
+<p>抽象类：</p>
+<ol>
+<li>同类对象的共同行为</li>
+<li>共享成员变量</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>
+<p>C# 中什么是托管内存和非托管内存？</p>
+<ul>
+<li>
+<p>托管内存： 托管内存是由 .NET 运行时（CLR，Common Language Runtime）进行管理的内存。</p>
+<p>C# 中大部分对象都是托管内存，它们的内存分配、回收和资源管理都由 CLR 负责。<br>
+CLR 提供了自动垃圾回收机制（GC），可以自动检测不再使用的对象并释放它们占用的内存，从而避免了内存泄漏问题。<br>
+比如我们平时声明的引用类型的变量都属于托管内存</p>
+</li>
+<li>
+<p>非托管内存： 非托管内存是由应用程序自己负责管理的内存，它通常是通过调用本机API或与外部系统进行交互时使用的。</p>
+<p>非托管内存可能不受 CLR 的管理，这意味着它不会受到垃圾回收的影响。<br>
+但是，这也意味着开发人员需要自己负责内存的分配和释放，否则可能会导致内存泄漏或者访问无效内存的问题。<br>
+比如我们平时声明的 <code>unsafe</code>​ 语句块中的指针成员，数据库链接对象，Socket 通讯对象，文件流等对象都存在非托管内存，需要我们自己释放</p>
+</li>
+</ul>
+</li>
+<li>
+<p>请问什么是线程安全？如何在 C# 中实现线程安全操作？</p>
+<ul>
+<li>
+<p>线程安全，是指在多线程环境中，对共享资源（如数据、变量、对象等）进行操作时，不会产生不正确的结果或不可预期的行为。</p>
+<p>在多线程程序中，由于多个线程可以同时访问和修改共享资源，如果没有适当的同步机制，就可能会导致数据损坏、竞态条件（Race Condition）和其他错误</p>
+<ul>
+<li>数据损坏：数据损坏是指数据在存储、传输或处理过程中发生错误，导致数据的内容或结构出现不一致、不正确或不完整的情况</li>
+<li>竞态条件：多个线程试图同时访问和修改共享资源（如变量、数据结构、文件等），从而导致程序的行为出现不确定性或不正确的结果。<br>
+竞态条件可能会导致程序的运行结果与预期不符，产生难以预测和复现的错误</li>
+</ul>
+</li>
+<li>
+<p>如何在 C# 中实现线程安全操作？ 使用锁（Lock）、异步编程（async、await）等方式</p>
+</li>
+</ul>
+</li>
+</ol>
+<p><strong>Unity</strong></p>
+<ol>
+<li>
+<p>Unity 中的 <code>Lerp</code>​ 和 <code>Slerp</code>​ 分别是什么？</p>
+<p>​<code>Lerp</code>​ 和 <code>Slerp</code>​ 是两个方法，在 <code>Mathf</code>​ 和 <code>Vector</code>​ 等类中都提供了对应的方法</p>
+<ol>
+<li>​<code>Lerp</code>​：线性插值函数，接受三个参数，起始值、目标值和插值比例<br>
+​<code>Lerp</code>​ 用于在两个值之间进行平滑的线性插值，适用于直线运动、颜色过渡等场景</li>
+<li>​<code>Slerp</code>​：球面插值函数，接受三个参数，起始值、目标值和插值比例<br>
+​<code>Slerp</code>​ 在插值过程中会在两个旋转之间沿着曲线（球面）插值，从而保持较为自然的旋转过渡</li>
+</ol>
+</li>
+<li>
+<p>Unity 底层是单线程还是多线程</p>
+<p>Unity 底层实现是基于单线程的，这个线程通常被称为 主线程 或 渲染线程，意味着大部分的游戏逻辑、渲染和更新都在主线程上执行。<br>
+但是 Unity 也支持自定义多线程处理复杂逻辑，并且 Unity 目前的版本也提供了一些多线程技术来改善性能，比如 Job System、DOTS 等</p>
+</li>
+<li>
+<p>如何在 Unity 中实现多语言支持？（不同国家的人，看到的游戏内的语言是不一样的）</p>
+<ol>
+<li>单包：将所有设计多语言的图片、文本通过配置表去配置，当显示这些内容时，根据配置表中的信息去动态的加载，<br>
+所有地区通用一个安装包，只是游戏中进行地区判断或者语言选择</li>
+<li>分包：根据不同地区发布不同的安装包</li>
+</ol>
+</li>
+<li>
+<p>Shader 当中的顶点和片元着色器有什么作用？</p>
+<ul>
+<li>
+<p>顶点着色器： 主要作用是对物体的顶点位置进行变换和投影，从本地坐标系转换到世界坐标系和相机坐标系等。</p>
+<p>在这个阶段，顶点着色器还可以计算光照的影响、法线的变换，以及传递一些数据供后续阶段使用</p>
+</li>
+<li>
+<p>片元着色器： 主要处理像素的颜色、纹理和光照。在顶点着色器之后，渲染管线会对物体进行光栅化，将物体的几何形状转换为像素。</p>
+<p>在片元着色器中，针对每个像素，会进行插值和纹理采样，以及计算光照、阴影、反射等效果。<br>
+片元着色器最终输出的颜色将决定每个像素的显示效果。</p>
+</li>
+</ul>
+<p>这两个着色器阶段协同工作，将 3D 场景中的几何信息转换为 2D 屏幕上的像素颜色，从而实现图形的渲染和显示。</p>
+</li>
+<li>
+<p>Unity 目前版本中创建的普通项目、URP 项目、HDRP 项目的区别是什么？</p>
+<ul>
+<li>
+<p>普通项目： 使用 Unity 默认的渲染管线，也被称为内置渲染管线或标准渲染管线。</p>
+<p>这种渲染管线适用于较简单的游戏和应用，具有适中的性能和视觉效果。它不支持一些高级渲染特性，但适用于广泛的平台和设备</p>
+</li>
+<li>
+<p>URP 项目： URP 是 Unity 官方提供的一种渲染管线，旨在为轻量级、移动端和跨平台开发提供优化的解决方案。</p>
+<p>URP 在性能和质量之间取得了平衡，适用于移动平台、虚拟现实（VR）和增强现实（AR）应用。<br>
+它提供了一些轻量级的效果和优化，使开发者能够在保持性能的同时实现较好的视觉效果。</p>
+</li>
+<li>
+<p>HDRP 项目： HDRP 是 Unity 官方提供的高级渲染管线，专注于提供逼真的图形质量和高度可定制的渲染效果。</p>
+<p>HDRP 支持高动态范围（HDR）渲染、物理真实的材质和光照模型，以及其他高级特效。<br>
+HDRP 适用于需要高质量视觉效果的游戏项目，例如逼真的游戏、电影制作等。<br>
+但由于其高级特性，可能会对性能产生较大的负担，因此更适合较强的硬件平台。</p>
+</li>
+</ul>
+<p>主要区别：</p>
+<ul>
+<li>渲染质量和性能：普通项目适用于简单项目，URP 在性能和质量之间取得平衡，HDRP 专注于高质量渲染效果</li>
+<li>平台适用性：URP 适用于移动端、VR 和 AR 应用，HDRP 适用于较强硬件平台和需要高质量视觉效果的项目。</li>
+<li>特效和定制性：HDRP 提供了更多的高级渲染特效和自定义选项，允许开发者实现逼真的渲染效果。</li>
+</ul>
+</li>
+</ol>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://enjoysevenliu.github.io">文KRIFE齐</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://enjoysevenliu.github.io/2025/03/19/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/MI%E2%80%94%E2%80%94%E6%A8%A1%E6%8B%9F%E9%9D%A2%E8%AF%95%E9%A2%98%E6%95%B4%E7%90%86/MIL13%E2%80%94%E2%80%94%E6%A8%A1%E6%8B%9F%E9%9D%A2%E8%AF%95%E9%A2%98/">https://enjoysevenliu.github.io/2025/03/19/Unity就业路线学习笔记/MI——模拟面试题整理/MIL13——模拟面试题/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://enjoysevenliu.github.io" target="_blank">文KRIFE齐的博客</a>！</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/img/Blue_Ice.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2025/03/19/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/MI%E2%80%94%E2%80%94%E6%A8%A1%E6%8B%9F%E9%9D%A2%E8%AF%95%E9%A2%98%E6%95%B4%E7%90%86/MIL14%E2%80%94%E2%80%94%E6%A8%A1%E6%8B%9F%E9%9D%A2%E8%AF%95%E9%A2%98/" title="MIL14——模拟面试题"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">MIL14——模拟面试题</div></div><div class="info-2"><div class="info-item-1">MIL14——模拟面试题 C#   C# 中属性（Property）和字段（Field）的区别是什么？ 属性一般可以用来封装字段，属性相对字段来说，属性具有封装性，允许对字段进行封装，提供更多的控制和逻辑。 相比直接访问字段来说，属性允许我们在字段访问的过程汇总添加验证、计算等逻辑， 属性还可以在其中对 set​ 和 get​ 设置不同的访问级别，使得字段的读取和写入可以收到更精细的控制   请解释一下 C# 中的异步编程模型（async​ / await​），它是用来做什么的？ C# 中的异步编程模型是一种用于处理并发任务的技术 允许在执行异步操作时，让程序继续执行其他任务，而不会阻塞主线程。 这对于处理诸如网络请求、文件读写、长时间计算等耗时操作非常有用   请问七大排序算法一般指哪七种排序算法？你一般常用的排序算法是哪种？请简单描述它的排序原理 冒泡排序、选择排序、插入排序、希尔排序、归并排序、快速排序、堆排序   请简单描述斐波那契数列的基本规则是什么 假设数列从索引 0...</div></div></div></a><a class="pagination-related" href="/2025/03/19/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/MI%E2%80%94%E2%80%94%E6%A8%A1%E6%8B%9F%E9%9D%A2%E8%AF%95%E9%A2%98%E6%95%B4%E7%90%86/MIL12%E2%80%94%E2%80%94%E6%A8%A1%E6%8B%9F%E9%9D%A2%E8%AF%95%E9%A2%98/" title="MIL12——模拟面试题"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">MIL12——模拟面试题</div></div><div class="info-2"><div class="info-item-1">MIL12——模拟面试题 C#  ​List​ 是链表还是数组 上一题追问：当 list​ 满了的时候，我再加入一个元素它的效率会比较低啊，它内部大概是一个什么样的执行过程呢？ C# 里面有一个常用的接口叫做 IDispose​，它的作用是？ 上一题追问：C# 有垃圾回收机制，把一个对象设置为空的时候，系统会帮我们回收，它和接口 IDispose​ 有什么关系吗？为什么会存在两个做析构事情的东西呢？ Unity 中的生命周期函数，为什么设计为反射调用，而不是通过继承重写生命周期函数的形式去实现呢？（至少答出一种原因）  Unity  CPU 和 GPU 他们分别是什么？他们主要完成什么工作 渲染管线中的几何阶段是由 CPU 主导还是 GPU 主导？该阶段主要是在做什么？ 是不是所有矩阵都有逆矩阵？如何计算一个矩阵的逆矩阵？ 齐次坐标是什么？对于我们有什么作用？ Shader 开发中的坐标空间变换，主要是在哪几个空间中进行变换？变换顺序是什么？  答案 C#   ​List​ 是链表还是数组 数组   上一题追问：当 list​...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/Blue_Ice.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">文KRIFE齐</div><div class="author-info-description">Unity就业路线的笔记终于更新完了！新年快乐！</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1067</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">132</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/enjoySevenLIU"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/enjoySevenLIU" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">博客修好了，继续学习，CSharp进阶也迁移完毕了，接下来尽快把Unity Shader给啃完，年末给博客好好整修一下</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">MIL13——模拟面试题</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/03/24/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/CS4%E2%80%94%E2%80%94CSharp%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/CS4L25%E2%80%94%E2%80%94%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F/" title="CS4L25——插入排序">CS4L25——插入排序</a><time datetime="2025-03-24T03:26:44.000Z" title="发表于 2025-03-24 11:26:44">2025-03-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/03/20/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/MI%E2%80%94%E2%80%94%E6%A8%A1%E6%8B%9F%E9%9D%A2%E8%AF%95%E9%A2%98%E6%95%B4%E7%90%86/MIL20%E2%80%94%E2%80%94%E6%A8%A1%E6%8B%9F%E9%9D%A2%E8%AF%95%E9%A2%98/" title="MIL20——模拟面试题">MIL20——模拟面试题</a><time datetime="2025-03-20T02:55:19.000Z" title="发表于 2025-03-20 10:55:19">2025-03-20</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/03/20/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/MI%E2%80%94%E2%80%94%E6%A8%A1%E6%8B%9F%E9%9D%A2%E8%AF%95%E9%A2%98%E6%95%B4%E7%90%86/MIL19%E2%80%94%E2%80%94%E6%A8%A1%E6%8B%9F%E9%9D%A2%E8%AF%95%E9%A2%98/" title="MIL19——模拟面试题">MIL19——模拟面试题</a><time datetime="2025-03-19T17:17:57.000Z" title="发表于 2025-03-20 01:17:57">2025-03-20</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/03/20/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/MI%E2%80%94%E2%80%94%E6%A8%A1%E6%8B%9F%E9%9D%A2%E8%AF%95%E9%A2%98%E6%95%B4%E7%90%86/MIL18%E2%80%94%E2%80%94%E6%A8%A1%E6%8B%9F%E9%9D%A2%E8%AF%95%E9%A2%98/" title="MIL18——模拟面试题">MIL18——模拟面试题</a><time datetime="2025-03-19T16:51:54.000Z" title="发表于 2025-03-20 00:51:54">2025-03-20</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/03/20/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/MI%E2%80%94%E2%80%94%E6%A8%A1%E6%8B%9F%E9%9D%A2%E8%AF%95%E9%A2%98%E6%95%B4%E7%90%86/MIL17%E2%80%94%E2%80%94%E6%A8%A1%E6%8B%9F%E9%9D%A2%E8%AF%95%E9%A2%98/" title="MIL17——模拟面试题">MIL17——模拟面试题</a><time datetime="2025-03-19T16:36:10.000Z" title="发表于 2025-03-20 00:36:10">2025-03-20</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2025 By 文KRIFE齐</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"><script>(async () => {
+  const showKatex = () => {
+    document.querySelectorAll('#article-container .katex').forEach(el => el.classList.add('katex-show'))
+  }
+
+  if (!window.katex_js_css) {
+    window.katex_js_css = true
+    await btf.getCSS('https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css')
+    if (false) {
+      await btf.getScript('https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js')
+    }
+  }
+
+  showKatex()
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>

@@ -1,0 +1,279 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>MIL20——模拟面试题 | 文KRIFE齐的博客</title><meta name="author" content="文KRIFE齐"><meta name="copyright" content="文KRIFE齐"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="MIL20——模拟面试题  C# 类中的函数是否占用内存空间？ C# 中的函数是何时被加载到内存中的呢？ C# 函数中一般会声明一些临时变量，当函数被加载内存中后，所占的内存空间是否包含函数中的这些临时变量？ C# 中委托的本质是什么？它是如何存储函数的？ C# 中事件的本质是什么？  Unity  Unity 在发布 Android 平台项目时，在加载 Application.streaming">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MIL20——模拟面试题">
+<meta property="og:url" content="https://enjoysevenliu.github.io/2025/03/20/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/MI%E2%80%94%E2%80%94%E6%A8%A1%E6%8B%9F%E9%9D%A2%E8%AF%95%E9%A2%98%E6%95%B4%E7%90%86/MIL20%E2%80%94%E2%80%94%E6%A8%A1%E6%8B%9F%E9%9D%A2%E8%AF%95%E9%A2%98/index.html">
+<meta property="og:site_name" content="文KRIFE齐的博客">
+<meta property="og:description" content="MIL20——模拟面试题  C# 类中的函数是否占用内存空间？ C# 中的函数是何时被加载到内存中的呢？ C# 函数中一般会声明一些临时变量，当函数被加载内存中后，所占的内存空间是否包含函数中的这些临时变量？ C# 中委托的本质是什么？它是如何存储函数的？ C# 中事件的本质是什么？  Unity  Unity 在发布 Android 平台项目时，在加载 Application.streaming">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://enjoysevenliu.github.io/img/Blue_Ice.png">
+<meta property="article:published_time" content="2025-03-20T02:55:19.000Z">
+<meta property="article:modified_time" content="2025-03-27T12:13:36.108Z">
+<meta property="article:author" content="文KRIFE齐">
+<meta property="article:tag" content="blog">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://enjoysevenliu.github.io/img/Blue_Ice.png"><link rel="shortcut icon" href="/img/Blue_Ice.png"><link rel="canonical" href="https://enjoysevenliu.github.io/2025/03/20/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/MI%E2%80%94%E2%80%94%E6%A8%A1%E6%8B%9F%E9%9D%A2%E8%AF%95%E9%A2%98%E6%95%B4%E7%90%86/MIL20%E2%80%94%E2%80%94%E6%A8%A1%E6%8B%9F%E9%9D%A2%E8%AF%95%E9%A2%98/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'MIL20——模拟面试题',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  isShuoshuo: false
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/Blue_Ice.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1067</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">132</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/img/Blue_Ice.png" alt="Logo"><span class="site-name">文KRIFE齐的博客</span></a><a class="nav-page-title" href="/"><span class="site-name">MIL20——模拟面试题</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">MIL20——模拟面试题</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-03-20T02:55:19.000Z" title="发表于 2025-03-20 10:55:19">2025-03-20</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-03-27T12:13:36.108Z" title="更新于 2025-03-27 20:13:36">2025-03-27</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/MI%E2%80%94%E2%80%94%E6%A8%A1%E6%8B%9F%E9%9D%A2%E8%AF%95%E9%A2%98%E6%95%B4%E7%90%86/">MI——模拟面试题整理</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1>MIL20——模拟面试题</h1>
+<ol>
+<li>C# 类中的函数是否占用内存空间？</li>
+<li>C# 中的函数是何时被加载到内存中的呢？</li>
+<li>C# 函数中一般会声明一些临时变量，当函数被加载内存中后，所占的内存空间是否包含函数中的这些临时变量？</li>
+<li>C# 中委托的本质是什么？它是如何存储函数的？</li>
+<li>C# 中事件的本质是什么？</li>
+</ol>
+<p><strong>Unity</strong></p>
+<ol>
+<li>Unity 在发布 Android 平台项目时，在加载 <code>Application.streamingAssetsPath</code>​ 中文件时我们应该注意什么？</li>
+<li>Unity 中安卓主流的纹理压缩格式 ETC 和 ETC2 的主要区别是什么？</li>
+<li>Android 平台常用压缩格式 ETC 不支持透明通道，那我们的半透明纹理应该如何处理？</li>
+<li>Unity 中针对 IOS 平台我们使用的主流纹理压缩格式是什么？</li>
+<li>请问为什么延迟渲染路径能够优化有大量光源的场景渲染</li>
+</ol>
+<h2 id="答案">答案</h2>
+<p><strong>C#</strong></p>
+<ol>
+<li>
+<p>C# 类中的函数是否占用内存空间？</p>
+<p>占用，但是它不再我们通常说的堆栈中，而是存储在内存中的文本段（Text Segment），它是存储可执行程序的代码的内存段</p>
+</li>
+<li>
+<p>C# 中的函数是何时被加载到内存中的呢？</p>
+<p>CLR（公共语言运行时）会按需加载程序集和其中的类型和成员，程序执行到需要调用某个类的函数时，<br>
+CLR 会负责将该函数的 IL 代码编译成本机代码，并将其加载到 Text Segment 中，<br>
+一旦函数的代码被加载到内存中，它通常会一直存在于内存中，直到程序退出</p>
+<p>运行可执行文件后的流程：</p>
+<p><img src="/assets/image-20250320111945-iz3ejbh.png" alt="image">​</p>
+</li>
+<li>
+<p>C# 函数中一般会声明一些临时变量，当函数被加载内存中后，所占的内存空间是否包含函数中的这些临时变量？</p>
+<p>不会包含。函数中的临时变量，不管是值类型还是引用类型都是在函数执行期间动态分配的。<br>
+这些临时变量会在堆栈中进行内存分配，栈上的内存由 CLR 动态管理，用完会被销毁，堆上的内存有 GC 垃圾回收机制统一进行管理</p>
+</li>
+<li>
+<p>C# 中委托的本质是什么？它是如何存储函数的？</p>
+<p>委托的本质是一个类，当我们声明一个委托时，相当于声明了一个类。<br>
+它会默认继承 <code>System.MulticastDelegate</code>​ 类（多播委托类） 而这个 <code>System.MulticastDelegate</code>​ 类，又继承 <code>Delegate</code>​ 类（委托类）<br>
+这些父类当中的一些方法，就是当我们对委托进行操作时真正会调用的内容，</p>
+<p><img src="/assets/image-20250320112511-pqsoupv.png" alt="image">​</p>
+<p><img src="/assets/image-20250320112551-26jh4er.png" alt="image">​</p>
+<p>通过这些父类中的方法我们其实可以简单推测出，委托中存储函数的本质：<br>
+是通过一个委托类对象来存储对象的引用或者静态类的类型，然后再记录一个函数的名字。<br>
+但是实际上，在内部会根据这些信息定位到：</p>
+<ol>
+<li>函数的引用（函数的内存地址）</li>
+<li>函数所在对象的引用（如果是实例方法），而当我们进行 <code>+=</code>​ 操作时，其实 C# 内部会调用父类中的 <code>Combine</code>​ 结合方法，<br>
+在底层帮助我们声明一个新的委托对象来记录对应函数的相关信息</li>
+</ol>
+</li>
+<li>
+<p>C# 中事件的本质是什么？</p>
+<p>通过对委托的理解，来帮助我们理解事件将会变得比较容易，<br>
+我们在使用事件的时候往往是在类中声明成员变量时，当我们声明一个事件时，本质就是对委托进行私有访问限制的封装<br>
+事件的本质其实就是委托 ，只不过系统会对 <code>event</code>​ 字段修饰的委托在编译时进行一些特殊处理，这些特殊处理包括：</p>
+<ol>
+<li>生成一个私有的委托变量</li>
+<li>添加两个事件访问器（用于在外部 <code>+=</code>​ 和 <code>-=</code>​）</li>
+<li>禁止外部类对事件进行一些操作</li>
+</ol>
+</li>
+</ol>
+<p><strong>Unity</strong></p>
+<ol>
+<li>
+<p>Unity 在发布 Android 平台项目时，在加载 <code>Application.streamingAssetsPath</code>​ 中文件时我们应该注意什么？</p>
+<p>无法使用 <code>File</code>​ 中相关 API 进行加载，只能使用 Unity 中 <code>WWW</code>​、<code>UnityWebRequest</code>​、<code>AssetBundle</code>​ 相关 API 进行加载</p>
+</li>
+<li>
+<p>Unity 中安卓主流的纹理压缩格式 ETC 和 ETC2 的主要区别是什么？</p>
+<ol>
+<li>
+<p>透明通道</p>
+<ul>
+<li>ETC 不支持透明通道</li>
+<li>ETC2 支持透明通道</li>
+</ul>
+</li>
+<li>
+<p>压缩效率</p>
+<ul>
+<li>ETC2 相对 ETC 在相同压缩比下图像质量更好</li>
+</ul>
+</li>
+<li>
+<p>支持设备</p>
+<ul>
+<li>ETC 基本支持所有 Android 设备，ETC2不支持低端设备</li>
+</ul>
+</li>
+</ol>
+<p>目前 ETC2 在逐渐取代 ETC</p>
+</li>
+<li>
+<p>Android 平台常用压缩格式 ETC 不支持透明通道，那我们的半透明纹理应该如何处理？</p>
+<p>将纹理的透明通道分离，1 张存 RGB，1 张存 A，<br>
+利用自定义 Shader 将其组合使用，ETC 的内存占用相对 RGBA32 会降低为之前的 1/4，效率也会提升<br>
+因此即使分成 2 张图，内存占用也会减少到之前的 1/2</p>
+</li>
+<li>
+<p>Unity 中针对 IOS 平台我们使用的主流纹理压缩格式是什么？</p>
+<ol>
+<li>PVRTC：最主流最常用，支持所有 IOS 设备</li>
+<li>ASTC（如果设备支持，推荐使用）和 ETC2，iPhone 5s 及以上型号的 iPhone 手机，iPad Air 及以上型号的 iPad 平板电脑</li>
+</ol>
+<p>他们都支持透明通道，因此我们无需进行额外处理</p>
+</li>
+<li>
+<p>请问为什么延迟渲染路径能够优化有大量光源的场景渲染</p>
+<p>因为延迟渲染路径利用了 G 缓存来存储最终可见的片元信息，<br>
+当我们真正进行光照计算时，只会计算 G 缓冲区中存储的各片元信息，这会减少很多不必要的光照计算</p>
+</li>
+</ol>
+<p>‍</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://enjoysevenliu.github.io">文KRIFE齐</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://enjoysevenliu.github.io/2025/03/20/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/MI%E2%80%94%E2%80%94%E6%A8%A1%E6%8B%9F%E9%9D%A2%E8%AF%95%E9%A2%98%E6%95%B4%E7%90%86/MIL20%E2%80%94%E2%80%94%E6%A8%A1%E6%8B%9F%E9%9D%A2%E8%AF%95%E9%A2%98/">https://enjoysevenliu.github.io/2025/03/20/Unity就业路线学习笔记/MI——模拟面试题整理/MIL20——模拟面试题/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://enjoysevenliu.github.io" target="_blank">文KRIFE齐的博客</a>！</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/img/Blue_Ice.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2025/03/24/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/CS4%E2%80%94%E2%80%94CSharp%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/CS4L25%E2%80%94%E2%80%94%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F/" title="CS4L25——插入排序"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">CS4L25——插入排序</div></div><div class="info-2"><div class="info-item-1">CS4L25——插入排序 插入排序 插入排序（insertion sort）是一种简单的排序算法，它的工作原理与手动整理一副牌的过程非常相似。 将待排序数组分为两个区域，一个是排序区，另一个是未排序区，用一个索引值做分水岭， 未排序区元素与排序区元素比较，插入到合适位置，直到未排序区清空 ‍ </div></div></div></a><a class="pagination-related" href="/2025/03/20/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/MI%E2%80%94%E2%80%94%E6%A8%A1%E6%8B%9F%E9%9D%A2%E8%AF%95%E9%A2%98%E6%95%B4%E7%90%86/MIL19%E2%80%94%E2%80%94%E6%A8%A1%E6%8B%9F%E9%9D%A2%E8%AF%95%E9%A2%98/" title="MIL19——模拟面试题"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">MIL19——模拟面试题</div></div><div class="info-2"><div class="info-item-1">MIL19——模拟面试题 C#   请问以下这段代码的打印结果是多少？  123float f = 10.4;int i = f / 2;Console.WriteLine(i);   在 C# 当中，我们想要用一个字典容器存储场景中的所有敌对对象，比如 怪物、Boss、可被攻击的场景物件等等，应该如何存储   在 C# 中，给你一个数字，表示有 n 秒，请问如何在不改变这个数字的前提下，将它转换成格式为 __小时__分__秒​   请问执行以下代码后，List​ 中还存在哪些内容？  123List&lt;int&gt; list = new List&lt;int&gt;() &#123; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 &#125;for (int i = 0; i &lt; list.Count; i++)    list.RemoveAt(i);   假设游戏中有一个怪物管理器管理所有怪物，那么在开发时，为了避免内存泄漏，我们需要注意什么？   Unity  Unity 生命周期函数中的 OnEnable​ 和...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/Blue_Ice.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">文KRIFE齐</div><div class="author-info-description">Unity就业路线的笔记终于更新完了！新年快乐！</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1067</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">132</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/enjoySevenLIU"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/enjoySevenLIU" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">博客修好了，继续学习，CSharp进阶也迁移完毕了，接下来尽快把Unity Shader给啃完，年末给博客好好整修一下</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">MIL20——模拟面试题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AD%94%E6%A1%88"><span class="toc-number">1.1.</span> <span class="toc-text">答案</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/03/24/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/CS4%E2%80%94%E2%80%94CSharp%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/CS4L25%E2%80%94%E2%80%94%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F/" title="CS4L25——插入排序">CS4L25——插入排序</a><time datetime="2025-03-24T03:26:44.000Z" title="发表于 2025-03-24 11:26:44">2025-03-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/03/20/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/MI%E2%80%94%E2%80%94%E6%A8%A1%E6%8B%9F%E9%9D%A2%E8%AF%95%E9%A2%98%E6%95%B4%E7%90%86/MIL20%E2%80%94%E2%80%94%E6%A8%A1%E6%8B%9F%E9%9D%A2%E8%AF%95%E9%A2%98/" title="MIL20——模拟面试题">MIL20——模拟面试题</a><time datetime="2025-03-20T02:55:19.000Z" title="发表于 2025-03-20 10:55:19">2025-03-20</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/03/20/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/MI%E2%80%94%E2%80%94%E6%A8%A1%E6%8B%9F%E9%9D%A2%E8%AF%95%E9%A2%98%E6%95%B4%E7%90%86/MIL19%E2%80%94%E2%80%94%E6%A8%A1%E6%8B%9F%E9%9D%A2%E8%AF%95%E9%A2%98/" title="MIL19——模拟面试题">MIL19——模拟面试题</a><time datetime="2025-03-19T17:17:57.000Z" title="发表于 2025-03-20 01:17:57">2025-03-20</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/03/20/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/MI%E2%80%94%E2%80%94%E6%A8%A1%E6%8B%9F%E9%9D%A2%E8%AF%95%E9%A2%98%E6%95%B4%E7%90%86/MIL18%E2%80%94%E2%80%94%E6%A8%A1%E6%8B%9F%E9%9D%A2%E8%AF%95%E9%A2%98/" title="MIL18——模拟面试题">MIL18——模拟面试题</a><time datetime="2025-03-19T16:51:54.000Z" title="发表于 2025-03-20 00:51:54">2025-03-20</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/03/20/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/MI%E2%80%94%E2%80%94%E6%A8%A1%E6%8B%9F%E9%9D%A2%E8%AF%95%E9%A2%98%E6%95%B4%E7%90%86/MIL17%E2%80%94%E2%80%94%E6%A8%A1%E6%8B%9F%E9%9D%A2%E8%AF%95%E9%A2%98/" title="MIL17——模拟面试题">MIL17——模拟面试题</a><time datetime="2025-03-19T16:36:10.000Z" title="发表于 2025-03-20 00:36:10">2025-03-20</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2025 By 文KRIFE齐</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"><script>(async () => {
+  const showKatex = () => {
+    document.querySelectorAll('#article-container .katex').forEach(el => el.classList.add('katex-show'))
+  }
+
+  if (!window.katex_js_css) {
+    window.katex_js_css = true
+    await btf.getCSS('https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css')
+    if (false) {
+      await btf.getScript('https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js')
+    }
+  }
+
+  showKatex()
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>

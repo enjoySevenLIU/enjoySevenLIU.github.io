@@ -1,0 +1,557 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>US5L8——帧调试器 | 文KRIFE齐的博客</title><meta name="author" content="文KRIFE齐"><meta name="copyright" content="文KRIFE齐"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="US5L8——帧调试器 帧调试器 我们可以利用 Unity 自带的帧调试工具，看到游戏图像的某一帧是如何一步步渲染出来的 我们可以在 Window(窗口) ——&gt; Analysis(分析) ——&gt; Frame Debugger(帧调试) 中打开帧调试工具 ​ 帧调试器是一个非常强大的工具，特别是在渲染调试、优化和效果分析方面有着重要的意义，它可以帮助我们：  精准调试渲染问题，可以逐步">
+<meta property="og:type" content="article">
+<meta property="og:title" content="US5L8——帧调试器">
+<meta property="og:url" content="https://enjoysevenliu.github.io/2025/02/15/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US5%E2%80%94%E2%80%94Shader%E8%BF%9B%E9%98%B6%E7%9F%A5%E8%AF%86/US5L8%E2%80%94%E2%80%94%E5%B8%A7%E8%B0%83%E8%AF%95%E5%99%A8/index.html">
+<meta property="og:site_name" content="文KRIFE齐的博客">
+<meta property="og:description" content="US5L8——帧调试器 帧调试器 我们可以利用 Unity 自带的帧调试工具，看到游戏图像的某一帧是如何一步步渲染出来的 我们可以在 Window(窗口) ——&gt; Analysis(分析) ——&gt; Frame Debugger(帧调试) 中打开帧调试工具 ​ 帧调试器是一个非常强大的工具，特别是在渲染调试、优化和效果分析方面有着重要的意义，它可以帮助我们：  精准调试渲染问题，可以逐步">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://enjoysevenliu.github.io/img/Blue_Ice.png">
+<meta property="article:published_time" content="2025-02-15T07:00:35.000Z">
+<meta property="article:modified_time" content="2025-03-27T12:13:36.702Z">
+<meta property="article:author" content="文KRIFE齐">
+<meta property="article:tag" content="blog">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://enjoysevenliu.github.io/img/Blue_Ice.png"><link rel="shortcut icon" href="/img/Blue_Ice.png"><link rel="canonical" href="https://enjoysevenliu.github.io/2025/02/15/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US5%E2%80%94%E2%80%94Shader%E8%BF%9B%E9%98%B6%E7%9F%A5%E8%AF%86/US5L8%E2%80%94%E2%80%94%E5%B8%A7%E8%B0%83%E8%AF%95%E5%99%A8/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'US5L8——帧调试器',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  isShuoshuo: false
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/Blue_Ice.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1067</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">132</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/img/Blue_Ice.png" alt="Logo"><span class="site-name">文KRIFE齐的博客</span></a><a class="nav-page-title" href="/"><span class="site-name">US5L8——帧调试器</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">US5L8——帧调试器</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-02-15T07:00:35.000Z" title="发表于 2025-02-15 15:00:35">2025-02-15</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-03-27T12:13:36.702Z" title="更新于 2025-03-27 20:13:36">2025-03-27</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity-Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/">US——Unity Shader开发入门</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity-Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US5%E2%80%94%E2%80%94Shader%E8%BF%9B%E9%98%B6%E7%9F%A5%E8%AF%86/">US5——Shader进阶知识</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1>US5L8——帧调试器</h1>
+<h1>帧调试器</h1>
+<p>我们可以利用 Unity 自带的帧调试工具，看到游戏图像的某一帧是如何一步步渲染出来的<br>
+我们可以在 Window(窗口) ——&gt; Analysis(分析) ——&gt; Frame Debugger(帧调试) 中打开帧调试工具</p>
+<p><img src="/assets/image-20250215150146-hjchaq1.png" alt="image">​</p>
+<p>帧调试器是一个非常强大的工具，特别是在渲染调试、优化和效果分析方面有着重要的意义，它可以帮助我们：</p>
+<ol>
+<li>精准调试渲染问题，可以逐步查看渲染调用</li>
+<li>有助于优化性能，通过分析渲染调用，找出性能瓶颈并优化</li>
+<li>有助于调试材质、纹理和着色器，可以查看渲染时使用的材质、纹理和参数、快速定位问题</li>
+<li>可视化渲染过程，可以通过查看渲染目标和中间结果，深入了解渲染过程</li>
+</ol>
+<p>等等</p>
+<h2 id="帧调试器的使用">帧调试器的使用</h2>
+<p>要使用帧调试器，我们必须要认识该窗口上各部分有什么作用，帧调试器可以分为三个部分</p>
+<p><img src="/assets/image-20250215150449-8mel7lg.png" alt="image">​</p>
+<ul>
+<li>
+<p>第一部分：工具栏</p>
+<p><img src="/assets/image-20250215150631-yzmt5ge.png" alt="image"></p>
+<ul>
+<li>
+<p>Enable/Disable：该按钮控制调试窗口释放处于启用状态，启用后我们就可以查看渲染过程</p>
+<p>不过要注意，此工具只能看特定一帧的渲染过程，也就是说如果在程序运行时激活该工具，将自动暂停程序的运行</p>
+</li>
+<li>
+<p>Editor：Editor 可以帮助我们利用帧选择器帮助我们远程调试构建到真机下的 Unity 程序，需要输入此帧的 IP 地址</p>
+<p><img src="/assets/image-20250215150741-82mgkt5.png" alt="image">​</p>
+<p>但是在发布项目时，必须要勾选 Development Build（开发模式构建）和 Run In Background（在后台运行）</p>
+<p><img src="/assets/image-20250215151423-8vxju4b.png" alt="image"><img src="/assets/image-20250215151515-jeuctdh.png" alt="image">​</p>
+</li>
+<li>
+<p>拖动条和左右按钮可以帮助我们逐步查看该帧的渲染步骤</p>
+<p><img src="/assets/image-20250215151713-csz5220.png" alt="image"></p>
+<p>其中，中间数字代表目前是当前帧的第几个渲染步骤，结合 Game 窗口或者渲染事件详细信息的 Output / Mesh 确认每一步渲染了哪些内容</p>
+</li>
+</ul>
+</li>
+<li>
+<p>第二部分：渲染事件列表</p>
+<p>这是帧调试工具的核心部分，它列出了当前渲染帧中所有的渲染调用（Draw Call）以及类似清空帧缓存等操作，<br>
+每一个条目都表示一个渲染步骤，我们可以在这里选择任意渲染步骤查看相关信息，<br>
+在此树状列表中，每一个叶子节点都是一个事件，每一个父节点右侧显示的都是该节点下事件数目，例如：</p>
+<p><img src="/assets/image-20250215155207-l6ry2um.png" alt="image"></p>
+<ul>
+<li>
+<p>Camera.Render：渲染过程</p>
+<ul>
+<li>
+<p>UpdateDepthTexture：更新深度纹理</p>
+<ul>
+<li>Clear：清除屏幕缓冲区渲染的内容</li>
+<li>DepthPass.Job：深度通道渲染</li>
+</ul>
+</li>
+<li>
+<p>Drawing：绘图</p>
+<ul>
+<li>
+<p>Render.OpaqueGeometry：不透明几何体</p>
+<ul>
+<li>
+<p>Render Shader Map：渲染阴影贴图</p>
+<ul>
+<li>Shadows.RenderJob：阴影渲染</li>
+</ul>
+</li>
+<li>
+<p>Collect Shadows：收集阴影</p>
+</li>
+<li>
+<p>RenderLoopJob：渲染循环</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Camera.ImageEffects：图像效果（屏幕后处理效果）</p>
+</li>
+<li>
+<p>等等</p>
+</li>
+</ul>
+<p>我们可以从事件的名字了解这些步骤（事件）主要是在做什么内容</p>
+</li>
+<li>
+<p>第三部分：渲染事件详细信息</p>
+<p>这里可以看到某个渲染事件的各种数据和信息</p>
+<p><img src="/assets/image-20250215153214-ajxh3e9.png" alt="image">​</p>
+<ul>
+<li>
+<p>顶部工具栏</p>
+<p>可以让我们为 Game 窗口的当前状态隔离 RGBA 的颜色通道，并且可以通过右侧的 Levels 等级滑动条，根据亮度级别来隔离视图区域</p>
+<p><img src="/assets/image-20250215153449-csoszf3.png" alt="image"></p>
+<ul>
+<li>
+<p>RT0 / Depth：选择渲染目标选项</p>
+<p>其中的 RT 代表的是 Render Target（渲染目标），代表当前帧的第几个渲染目标，<br>
+RT0 一般指的就是颜色缓冲区，也就是渲染场景得到的最终图像，<br>
+在一些复杂的渲染管道上（例如延迟渲染、后处理、阴影渲染等），可能存在多个渲染目标<br>
+我们看到的 RT0 通常指代的就是第一个渲染输出图像</p>
+<p>Depth 就是深度，可以查看本步骤的深度信息，一般只在深度渲染步骤内才能查看到内容</p>
+</li>
+<li>
+<p>Channels：颜色通道</p>
+<p>ALL、R、G、B、A 用于选择查看渲染目标中的具体通道数据，<br>
+如果只选择其中一个，某个通道的值也会被单独提取出来，显示为灰度图像，我们可以只管感受到该颜色通道的变化</p>
+<p>主要作用：在某些渲染过程中，如果某一颜色通道的数据感兴趣（比如调试纹理、材质或透明度问题），就可以选择查看单一的颜色通道</p>
+</li>
+<li>
+<p>Levels：调整渲染目标的色彩范围显示</p>
+<p>RGBA 的范围往往是 0~1，Levels 允许我们调整这个范围的映射，<br>
+因为有时渲染结果的颜色分量可能表示的是深度、法线或其他非标准颜色信息，<br>
+只可能非常接近 0 或者 1，我们可以调整 Levels 将细节拉升出来，更容易看出数据的变化。</p>
+<p>例如选择一个深度通道渲染步骤，由于深度值全部导致非常接近 0 ，<br>
+这导致显示输出到屏幕上深度图几乎是黑的，难以观察，这时将右侧的范围调小即可看到内容</p>
+<p>不调整 Levels 时，几乎无法看到内容：</p>
+<p><img src="/assets/image-20250215155843-mj87qbb.png" alt="image">​</p>
+<p>将最大值拉小，即可看到在 Output 处看到内容：</p>
+<p><img src="/assets/image-20250215155911-gh9bbov.png" alt="image">​</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Output / Mesh：屏幕输出信息和网格信息</p>
+<ul>
+<li>
+<p>Output：显示当前 渲染调用 的输出信息，包括渲染的目标图像、纹理或者缓冲区</p>
+<p>红框是本次 渲染调用 渲染的物体</p>
+<p><img src="/assets/image-20250215160601-7e14q0r.png" alt="image">​</p>
+</li>
+<li>
+<p>Mesh：显示当前 渲染调用 所用的网格消息（即 3D 模型的顶点数据）</p>
+<p>如果这个 渲染调用 渲染了一个物体的网格消息，可以在这个选项中看到该网格的具体数据</p>
+<p><img src="/assets/image-20250215160640-8l0gxol.png" alt="image">​</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Details：详细信息</p>
+<p>显示当前 渲染调用 的详细信息，比如渲染状态、材质、着色器、渲染目标等。<br>
+这些信息可以帮助深入了解渲染的具体参数，却表每个渲染步骤都按照预期执行。<br>
+在该页签可以看到诸如：剔除模式、使用的 Shader、Pass、混合模式、深度测试是否开启、光照模式等等信息，<br>
+我们可以通过这些信息排查渲染问题。</p>
+<p><img src="/assets/image-20250215161247-ch1k3d1.png" alt="image"></p>
+<p>各个属性的简略消息如下：</p>
+<table>
+<thead>
+<tr>
+<th>属性标签</th>
+<th>作用</th>
+<th>属性标签</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RenderTarget</td>
+<td>渲染目标的名称</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Size</td>
+<td>渲染目标的尺寸</td>
+<td>ZClip</td>
+<td>是否开启深度裁剪</td>
+</tr>
+<tr>
+<td>Format</td>
+<td>渲染目标的贴图格式</td>
+<td>ZTest</td>
+<td>深度测试模式</td>
+</tr>
+<tr>
+<td>Color Actions</td>
+<td>颜色行为</td>
+<td>ZWrite</td>
+<td>是否开启深度写入</td>
+</tr>
+<tr>
+<td>Depth Actions</td>
+<td>深度行为</td>
+<td>Cull</td>
+<td>剔除模式</td>
+</tr>
+<tr>
+<td>Memoryless</td>
+<td>是否是无记忆性模式</td>
+<td>Conservative</td>
+<td>是否使用保守光栅化</td>
+</tr>
+<tr>
+<td>Foveated Rendering</td>
+<td>是否激活注视点渲染</td>
+<td>Offset</td>
+<td>深度偏移</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>ColorMask</td>
+<td>颜色蒙版</td>
+<td>Stencil</td>
+<td><a target="_blank" rel="noopener" href="https://docs.unity.cn/cn/2022.3/Manual/SL-Stencil.html">模板</a></td>
+</tr>
+<tr>
+<td>Blend Color</td>
+<td>颜色 混合方式</td>
+<td>Stencil Ref</td>
+<td>模板引用值</td>
+</tr>
+<tr>
+<td>Blend Alpha</td>
+<td>透明度 混合方式</td>
+<td>Stencil ReadMesk</td>
+<td>模板测试的模板 ReadMesk 值</td>
+</tr>
+<tr>
+<td>BlendOp Color</td>
+<td>颜色 混合操作 方式</td>
+<td>Stencil WriteMask</td>
+<td>写入模板缓冲区的模板<a target="_blank" rel="noopener" href="https://docs.unity.cn/cn/2022.3/Manual/SL-Stencil.html">写入掩码</a>值</td>
+</tr>
+<tr>
+<td>BlendOp Alpha</td>
+<td>透明度 混合操作 方式</td>
+<td>Stencil Comp</td>
+<td>GPU对所有像素执行的模板测试操作</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>Stencil Pass</td>
+<td>GPU对通过模板与深度测试的像素在模板缓冲区执行的操作</td>
+</tr>
+<tr>
+<td>DrawInstanced Calls</td>
+<td>GPU实例化的渲染调用数</td>
+<td>Stencil Fail</td>
+<td>GPU对未通过模板测试的像素在模板缓冲区执行的操作</td>
+</tr>
+<tr>
+<td>Instances</td>
+<td>单个GPU实例化渲染的实例数</td>
+<td>Stencil ZFail</td>
+<td>对通过模板但未通过深度测试像素在模板缓冲区执行的操作</td>
+</tr>
+<tr>
+<td>Draw Calls</td>
+<td>本次渲染事件的渲染调用数</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Vertices</td>
+<td>本次渲染事件期间处理的顶点数</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Indices</td>
+<td>本次渲染事件期间处理的索引数</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Batch cause</td>
+<td>本次绘制批处理开始的原因</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Light Mode</td>
+<td>LightMode​ 标签值（Pass 的执行阶段）<br /></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Pass</td>
+<td>本次渲染事件的渲染通道名</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>User Shader</td>
+<td>本次渲染事件使用的 Pass 实际所属的 Shader<br /></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Origin</td>
+<td>本次渲染事件使用的 Shader</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>Keywords：关键词</p>
+<p>显示当前 渲染调用 中所用的着色器关键词，这些关键词控制着色器中的条件编译，决定了哪些着色器代码会被调用</p>
+<p><img src="/assets/image-20250215161427-c7d29j4.png" alt="image">​</p>
+</li>
+<li>
+<p>Textures：纹理数据</p>
+<p>显示当前 渲染调用中使用的 纹理数据，你可以看到与当前渲染相关的所有纹理（包括漫反射纹理、法线纹理、镜面反射纹理等等）</p>
+<p><img src="/assets/image-20250215161540-zc22kh2.png" alt="image"></p>
+</li>
+<li>
+<p>Ints：整数数据</p>
+<p>显示当前 渲染调用 中传递到着色器中的整数数据，这些数据通常是作为着色器常量（比如材质的参数、场景配置等）传入的</p>
+<p><img src="/assets/image-20250215163413-0sdiz4b.png" alt="image"></p>
+<p>其中，Stage 指的是 Unity 使用此整数信息时所处的着色器阶段。可能的值为：</p>
+<ul>
+<li>vs：顶点着色器（Vertex Shader）</li>
+<li>fs：片元着色器（Fragment Shader）</li>
+<li>gs：几何着色器（Geometry Shader）</li>
+<li>hs：细分控制着色器（Hull Shader，属于曲面细分着色器的一部分）</li>
+<li>ds：细分计算着色器（Domain Shader，属于曲面细分着色器的一部分）</li>
+</ul>
+</li>
+<li>
+<p>Floats：浮点数数据</p>
+<p>显示当前渲染调用中传递到着色器中的浮点数数据，浮点数通常用于诸如颜色值、材质属性、光照强度等浮动数据</p>
+<p><img src="/assets/image-20250215162120-0b4fgy3.png" alt="image"></p>
+<p>其中，Stage 指的是 Unity 使用此浮点数信息时所处的着色器阶段。可能的值为：</p>
+<ul>
+<li>vs：顶点着色器（Vertex Shader）</li>
+<li>fs：片元着色器（Fragment Shader）</li>
+<li>gs：几何着色器（Geometry Shader）</li>
+<li>hs：细分控制着色器（Hull Shader，属于曲面细分着色器的一部分）</li>
+<li>ds：细分计算着色器（Domain Shader，属于曲面细分着色器的一部分）</li>
+</ul>
+</li>
+<li>
+<p>Vectors：向量数据</p>
+<p>显示当前 渲染调用 中传递到着色器中的向量数据，向量通常用于存储坐标、法线、颜色（如 RGB 颜色）或其他方向性数据</p>
+<p><img src="/assets/image-20250215162605-rltvhu0.png" alt="image"></p>
+<p>其中，Stage 指的是 Unity 使用此向量信息时所处的着色器阶段。可能的值为：</p>
+<ul>
+<li>vs：顶点着色器（Vertex Shader）</li>
+<li>fs：片元着色器（Fragment Shader）</li>
+<li>gs：几何着色器（Geometry Shader）</li>
+<li>hs：细分控制着色器（Hull Shader，属于曲面细分着色器的一部分）</li>
+<li>ds：细分计算着色器（Domain Shader，属于曲面细分着色器的一部分）</li>
+</ul>
+</li>
+<li>
+<p>Matrices：矩阵数据</p>
+<p>显示当前 渲染调用 中传递到着色器中的矩阵数据。矩阵在 3D 渲染中通常用于变换（例如模型矩阵、视图矩阵、投影矩阵），或者用于表示变换数据</p>
+<p><img src="/assets/image-20250215162617-arqddo2.png" alt="image"></p>
+<p>其中，Stage 指的是 Unity 使用此矩阵信息时所处的着色器阶段。可能的值为：</p>
+<ul>
+<li>vs：顶点着色器（Vertex Shader）</li>
+<li>fs：片元着色器（Fragment Shader）</li>
+<li>gs：几何着色器（Geometry Shader）</li>
+<li>hs：细分控制着色器（Hull Shader，属于曲面细分着色器的一部分）</li>
+<li>ds：细分计算着色器（Domain Shader，属于曲面细分着色器的一部分）</li>
+</ul>
+</li>
+<li>
+<p>Buffers：缓冲区数据</p>
+<p>显示当前 渲染调用 使用的缓冲区数据，缓冲区可以是顶点缓冲区（用于存储模型的顶点数据）、索引缓冲区（用于存储模型的索引数据）等</p>
+<p><img src="/assets/image-20250215162838-3da6y84.png" alt="image"></p>
+</li>
+<li>
+<p>Constant Buffers：常量缓冲区数据</p>
+<p>显示当前 渲染调用 中传递到着色器中的常量缓冲区（Constant Buffers）数据。常量缓冲区通常用于传递一些不常变化的值（如视图矩阵，世界矩阵，光照参数等）</p>
+<p><img src="/assets/image-20250215162849-jk2yrqs.png" alt="image"></p>
+</li>
+</ul>
+</li>
+</ul>
+<p>‍</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://enjoysevenliu.github.io">文KRIFE齐</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://enjoysevenliu.github.io/2025/02/15/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US5%E2%80%94%E2%80%94Shader%E8%BF%9B%E9%98%B6%E7%9F%A5%E8%AF%86/US5L8%E2%80%94%E2%80%94%E5%B8%A7%E8%B0%83%E8%AF%95%E5%99%A8/">https://enjoysevenliu.github.io/2025/02/15/Unity就业路线学习笔记/US——Unity Shader开发入门/US5——Shader进阶知识/US5L8——帧调试器/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://enjoysevenliu.github.io" target="_blank">文KRIFE齐的博客</a>！</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/img/Blue_Ice.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2025/02/16/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UD%E2%80%94%E2%80%94Unity%E6%95%B0%E6%8D%AE%E6%8C%81%E4%B9%85%E5%8C%96%E7%AC%94%E8%AE%B0/UD3%E2%80%94%E2%80%94JSON%E7%B3%BB%E5%88%97/UD3L6%E2%80%94%E2%80%94Newtonsoft.Json/" title="UD3L6——Newtonsoft.Json"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">UD3L6——Newtonsoft.Json</div></div><div class="info-2"><div class="info-item-1">UD3L6——Newtonsoft.Json Newtonsoft.Json ​Newtonsoft.Json​，通常也被称为 Json.NET，是一个非常流行的用于处理 JSON 数据的高性能 .NET 库。 它由 James Newton-King 开发，并广泛应用于各种 .NET 应用程序中，以实现对象与 JSON 之间的序列化和反序列化。 官网：Json.NET - Newtonsoft 官方文档：Json.NET Documentation 关于 Newtonsoft.Json​ 进阶用法可以参考此视频：分享一些Newtonsoft.Json的实用功能与技巧_哔哩哔哩_bilibili 导入 Newtonsoft.Json Newtonsoft.Json 已经提供了针对 Unity 的定制版本，因此，将 Newtonsoft.Json 导入到 Unity 项目非常简单 直接通过 Package Manager 即可导入 Newtonsoft.Json，此版本为 IL2CPP 做了优化，因此直接使用此版本即可 ​ 使用 Newtonsoft.Json...</div></div></div></a><a class="pagination-related" href="/2025/01/28/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/US%E2%80%94%E2%80%94Unity%20Shader%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/US5%E2%80%94%E2%80%94Shader%E8%BF%9B%E9%98%B6%E7%9F%A5%E8%AF%86/US5L7%E2%80%94%E2%80%94%E5%B1%9E%E6%80%A7%E7%9A%84%E7%89%B9%E6%80%A7/" title="US5L7——属性的特性"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">US5L7——属性的特性</div></div><div class="info-2"><div class="info-item-1">US5L7——属性的特性 本章代码关键字 123456[HideInInspector]    // 从Inspector面板隐藏属性[NoScaleOffset]        // 让贴图属性在材质面板上隐藏纹理Tiling和​Offset选项[Normal]            // 检测关联的纹理贴图是否为法线贴图，如果不是法线，会弹出修复提示[HDR]                // 让2D纹理贴图或者颜色属性开启高动态范围（HDR）效果，使数值突破 1 的限制，常用于自发光属性[Space]                // 在某一个属性前添加一个空白行，如果填入数值，可以添加对应行数的空白行[Header()]            // 可以在材质属性面板上添加标题文字 属性的特性 所谓的属性的特性，就是在属性前加上一些类似特性的限制 让属性在 Inspector 窗口中进行 有限制的显示 或者 特殊的布局显示 常用的限制特性   从 Inspector 面板隐藏属性...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/Blue_Ice.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">文KRIFE齐</div><div class="author-info-description">Unity就业路线的笔记终于更新完了！新年快乐！</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1067</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">132</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/enjoySevenLIU"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/enjoySevenLIU" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">博客修好了，继续学习，CSharp进阶也迁移完毕了，接下来尽快把Unity Shader给啃完，年末给博客好好整修一下</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">US5L8——帧调试器</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">2.</span> <span class="toc-text">帧调试器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%A7%E8%B0%83%E8%AF%95%E5%99%A8%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-number">2.1.</span> <span class="toc-text">帧调试器的使用</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/03/24/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/CS4%E2%80%94%E2%80%94CSharp%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/CS4L25%E2%80%94%E2%80%94%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F/" title="CS4L25——插入排序">CS4L25——插入排序</a><time datetime="2025-03-24T03:26:44.000Z" title="发表于 2025-03-24 11:26:44">2025-03-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/03/20/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/MI%E2%80%94%E2%80%94%E6%A8%A1%E6%8B%9F%E9%9D%A2%E8%AF%95%E9%A2%98%E6%95%B4%E7%90%86/MIL20%E2%80%94%E2%80%94%E6%A8%A1%E6%8B%9F%E9%9D%A2%E8%AF%95%E9%A2%98/" title="MIL20——模拟面试题">MIL20——模拟面试题</a><time datetime="2025-03-20T02:55:19.000Z" title="发表于 2025-03-20 10:55:19">2025-03-20</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/03/20/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/MI%E2%80%94%E2%80%94%E6%A8%A1%E6%8B%9F%E9%9D%A2%E8%AF%95%E9%A2%98%E6%95%B4%E7%90%86/MIL19%E2%80%94%E2%80%94%E6%A8%A1%E6%8B%9F%E9%9D%A2%E8%AF%95%E9%A2%98/" title="MIL19——模拟面试题">MIL19——模拟面试题</a><time datetime="2025-03-19T17:17:57.000Z" title="发表于 2025-03-20 01:17:57">2025-03-20</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/03/20/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/MI%E2%80%94%E2%80%94%E6%A8%A1%E6%8B%9F%E9%9D%A2%E8%AF%95%E9%A2%98%E6%95%B4%E7%90%86/MIL18%E2%80%94%E2%80%94%E6%A8%A1%E6%8B%9F%E9%9D%A2%E8%AF%95%E9%A2%98/" title="MIL18——模拟面试题">MIL18——模拟面试题</a><time datetime="2025-03-19T16:51:54.000Z" title="发表于 2025-03-20 00:51:54">2025-03-20</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/03/20/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/MI%E2%80%94%E2%80%94%E6%A8%A1%E6%8B%9F%E9%9D%A2%E8%AF%95%E9%A2%98%E6%95%B4%E7%90%86/MIL17%E2%80%94%E2%80%94%E6%A8%A1%E6%8B%9F%E9%9D%A2%E8%AF%95%E9%A2%98/" title="MIL17——模拟面试题">MIL17——模拟面试题</a><time datetime="2025-03-19T16:36:10.000Z" title="发表于 2025-03-20 00:36:10">2025-03-20</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2025 By 文KRIFE齐</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"><script>(async () => {
+  const showKatex = () => {
+    document.querySelectorAll('#article-container .katex').forEach(el => el.classList.add('katex-show'))
+  }
+
+  if (!window.katex_js_css) {
+    window.katex_js_css = true
+    await btf.getCSS('https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css')
+    if (false) {
+      await btf.getScript('https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js')
+    }
+  }
+
+  showKatex()
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>

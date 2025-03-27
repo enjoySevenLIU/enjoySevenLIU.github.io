@@ -1,0 +1,325 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>MIL17——模拟面试题 | 文KRIFE齐的博客</title><meta name="author" content="文KRIFE齐"><meta name="copyright" content="文KRIFE齐"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="MIL17——模拟面试题 C#  递归函数是什么？请用一句话总结 在编写递归函数时，最需要关注的两点是什么？请说出你自己的理解 C# 中如何在函数中返回多个返回值？（至少说出3种方法） 二分查找（折半查找）的原理是什么？ 在游戏开发中，我们可以利用数据结构中的树参与哪些功能的制作？（至少说出 3 点）  Unity  你之前做过一些项目，那么一般美术同学提供给我们的美术资源，一般分为哪几类？ 美术">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MIL17——模拟面试题">
+<meta property="og:url" content="https://enjoysevenliu.github.io/2025/03/20/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/MI%E2%80%94%E2%80%94%E6%A8%A1%E6%8B%9F%E9%9D%A2%E8%AF%95%E9%A2%98%E6%95%B4%E7%90%86/MIL17%E2%80%94%E2%80%94%E6%A8%A1%E6%8B%9F%E9%9D%A2%E8%AF%95%E9%A2%98/index.html">
+<meta property="og:site_name" content="文KRIFE齐的博客">
+<meta property="og:description" content="MIL17——模拟面试题 C#  递归函数是什么？请用一句话总结 在编写递归函数时，最需要关注的两点是什么？请说出你自己的理解 C# 中如何在函数中返回多个返回值？（至少说出3种方法） 二分查找（折半查找）的原理是什么？ 在游戏开发中，我们可以利用数据结构中的树参与哪些功能的制作？（至少说出 3 点）  Unity  你之前做过一些项目，那么一般美术同学提供给我们的美术资源，一般分为哪几类？ 美术">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://enjoysevenliu.github.io/img/Blue_Ice.png">
+<meta property="article:published_time" content="2025-03-19T16:36:10.000Z">
+<meta property="article:modified_time" content="2025-03-27T12:10:12.000Z">
+<meta property="article:author" content="文KRIFE齐">
+<meta property="article:tag" content="blog">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://enjoysevenliu.github.io/img/Blue_Ice.png"><link rel="shortcut icon" href="/img/Blue_Ice.png"><link rel="canonical" href="https://enjoysevenliu.github.io/2025/03/20/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/MI%E2%80%94%E2%80%94%E6%A8%A1%E6%8B%9F%E9%9D%A2%E8%AF%95%E9%A2%98%E6%95%B4%E7%90%86/MIL17%E2%80%94%E2%80%94%E6%A8%A1%E6%8B%9F%E9%9D%A2%E8%AF%95%E9%A2%98/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'MIL17——模拟面试题',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  isShuoshuo: false
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/Blue_Ice.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1067</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">132</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/img/Blue_Ice.png" alt="Logo"><span class="site-name">文KRIFE齐的博客</span></a><a class="nav-page-title" href="/"><span class="site-name">MIL17——模拟面试题</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">MIL17——模拟面试题</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-03-19T16:36:10.000Z" title="发表于 2025-03-20 00:36:10">2025-03-20</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-03-27T12:10:12.000Z" title="更新于 2025-03-27 20:10:12">2025-03-27</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/MI%E2%80%94%E2%80%94%E6%A8%A1%E6%8B%9F%E9%9D%A2%E8%AF%95%E9%A2%98%E6%95%B4%E7%90%86/">MI——模拟面试题整理</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1>MIL17——模拟面试题</h1>
+<p><strong>C#</strong></p>
+<ol>
+<li>递归函数是什么？请用一句话总结</li>
+<li>在编写递归函数时，最需要关注的两点是什么？请说出你自己的理解</li>
+<li>C# 中如何在函数中返回多个返回值？（至少说出3种方法）</li>
+<li>二分查找（折半查找）的原理是什么？</li>
+<li>在游戏开发中，我们可以利用数据结构中的树参与哪些功能的制作？（至少说出 3 点）</li>
+</ol>
+<p><strong>Unity</strong></p>
+<ol>
+<li>你之前做过一些项目，那么一般美术同学提供给我们的美术资源，一般分为哪几类？</li>
+<li>美术同学提供给我们的模型数据中，包含哪些关键数据？（至少说出 3 点）</li>
+<li>游戏项目中，运行时主要占内存的内容有哪些？（至少说出 5 点）</li>
+<li>游戏项目中，主要消耗性能的内容有哪些？（至少说出 3 点）</li>
+<li>网络游戏中，有一个数据统计界面，这些数据是由最近 1000 场战斗计算出来的平均数据，<br>
+你认为以下处理方式合理吗？如果不合理，应该如何改进？<br>
+我们通过向后端请求这 1000 场战斗的数据，然后在客户端计算相关平均数据，更新显示到统计界面上</li>
+</ol>
+<h2 id="答案">答案</h2>
+<p><strong>C#</strong></p>
+<ol>
+<li>
+<p>递归函数是什么？请用一句话总结</p>
+<p>递归函数就是在函数定义中使用自己的函数</p>
+</li>
+<li>
+<p>在编写递归函数时，最需要关注的两点是什么？请说出你自己的理解</p>
+<ol>
+<li>结束条件：在什么情况下递归会结束，否则会死循环</li>
+<li><strong>问题规模的减小：递归函数通过自身来解决问题的规模，每次递归都应该将问题分成一个或多个更小规模的子问题，直到达到结束条件</strong></li>
+</ol>
+</li>
+<li>
+<p>C# 中如何在函数中返回多个返回值？（至少说出 3 种方法）</p>
+<ol>
+<li>数组等容器</li>
+<li>结构体或类自定义数据结构</li>
+<li>​<code>out</code>​ 参数</li>
+<li>元组</li>
+</ol>
+</li>
+<li>
+<p>二分查找（折半查找）的原理是什么？</p>
+<p>在一组有序（升\降）的数据中查找一个元素时，将目标元素和查找范围的中间值做比较</p>
+<ul>
+<li>若 <code>目标 == 中间值</code>​，查找结束</li>
+<li>若 <code>目标 != 中间值</code>​，将目标分到较大/较小的一组</li>
+<li>通过分组，可以将查找范围缩小一半，再新组中重复刚才的步骤，直到找到目标</li>
+</ul>
+</li>
+<li>
+<p>在游戏开发中，我们可以利用数据结构中的树参与哪些功能的制作？（至少说出 3 点）</p>
+<ol>
+<li>
+<p>场景中对象的关系</p>
+<p>比如 Unity 中场景上的对象通过树形结构建立父子关系，可以方便我们查找对象，确定对象的层级关系等等</p>
+</li>
+<li>
+<p>行为树 AI</p>
+</li>
+<li>
+<p>资源管理，资源之间的层级结构可以靠树建立</p>
+</li>
+<li>
+<p>技能系统，比如技能树的表现</p>
+</li>
+<li>
+<p>随机地图生成，比如“肉鸽”游戏中的随机地图，地图中的关系可以用树建立</p>
+</li>
+<li>
+<p>任务系统，比如游戏中的任务面板中的任务清单</p>
+</li>
+<li>
+<p>碰撞检测，碰撞检测的底层一般会采用四叉树或八叉树来加速碰撞检测</p>
+</li>
+</ol>
+</li>
+</ol>
+<p><strong>Unity</strong></p>
+<ol>
+<li>
+<p>你之前做过一些项目，那么一般美术同学提供给我们的美术资源，一般分为哪几类？</p>
+<ol>
+<li>UI 资源</li>
+<li>3D 模型资源</li>
+<li>特效资源</li>
+<li>2D 图片资源（角色、道具、背景图、过场原画等）</li>
+</ol>
+</li>
+<li>
+<p>美术同学提供给我们的模型数据中，包含哪些关键数据？（至少说出 3 点）</p>
+<ol>
+<li>顶点</li>
+<li>法线</li>
+<li>切线</li>
+<li>UV纹理坐标</li>
+<li>纹理贴图</li>
+<li>法线贴图</li>
+<li>骨骼</li>
+</ol>
+<p>等等</p>
+</li>
+<li>
+<p>游戏项目中，运行时主要占内存的内容有哪些？（至少说出 5 点）</p>
+<ul>
+<li>
+<p>代码相关：</p>
+<ol>
+<li>代码中预加载的数据（比如数据表中加载出来的数据）</li>
+<li>代码中的成员数据（执行逻辑的代码中的相关成员）</li>
+</ol>
+</li>
+<li>
+<p>资源相关：</p>
+<ol>
+<li>
+<p>模型</p>
+<ol>
+<li>模型数据</li>
+<li>纹理贴图</li>
+<li>动画数据</li>
+</ol>
+</li>
+<li>
+<p>2D</p>
+<ol>
+<li>UI</li>
+<li>各种游戏图片（角色、道具、背景等等）</li>
+</ol>
+</li>
+<li>
+<p>其他</p>
+<ol>
+<li>音效</li>
+<li>特效</li>
+</ol>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>
+<p>游戏项目中，主要消耗性能的内容有哪些？（至少说出 3 点）</p>
+<ol>
+<li>图形渲染相关</li>
+<li>物理引擎</li>
+<li>骨骼动画</li>
+<li>资源加载</li>
+<li>寻路算法</li>
+<li>网络通讯</li>
+<li>常规游戏代码逻辑</li>
+</ol>
+</li>
+<li>
+<p>网络游戏中，有一个数据统计界面，这些数据是由最近 1000 场战斗计算出来的平均数据，<br>
+你认为以下处理方式合理吗？如果不合理，应该如何改进？<br>
+我们通过向后端请求这 1000 场战斗的数据，然后在客户端计算相关平均数据，更新显示到统计界面上</p>
+<p>不合理，应该让后端计算好，前端需要数据时请求获取计算好的数据后更新到界面上即可，无需前端来进行计算处理</p>
+</li>
+</ol>
+<p>‍</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://enjoysevenliu.github.io">文KRIFE齐</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://enjoysevenliu.github.io/2025/03/20/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/MI%E2%80%94%E2%80%94%E6%A8%A1%E6%8B%9F%E9%9D%A2%E8%AF%95%E9%A2%98%E6%95%B4%E7%90%86/MIL17%E2%80%94%E2%80%94%E6%A8%A1%E6%8B%9F%E9%9D%A2%E8%AF%95%E9%A2%98/">https://enjoysevenliu.github.io/2025/03/20/Unity就业路线学习笔记/MI——模拟面试题整理/MIL17——模拟面试题/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://enjoysevenliu.github.io" target="_blank">文KRIFE齐的博客</a>！</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/img/Blue_Ice.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2025/03/20/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/MI%E2%80%94%E2%80%94%E6%A8%A1%E6%8B%9F%E9%9D%A2%E8%AF%95%E9%A2%98%E6%95%B4%E7%90%86/MIL18%E2%80%94%E2%80%94%E6%A8%A1%E6%8B%9F%E9%9D%A2%E8%AF%95%E9%A2%98/" title="MIL18——模拟面试题"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">MIL18——模拟面试题</div></div><div class="info-2"><div class="info-item-1">MIL18——模拟面试题 C#  父类中定义了一个静态成员属性有两个子类都继承该父类请问打印结果是什么？为什么 泛型父类中定义了一个静态成员属性有两个子类都继承该泛型父类请问打印结果是什么？为什么 使用 C# 制作游戏存档功能，请问有几种做法？（至少说出三种） C# 中是否可以通过反射获取到类内部的私有成员？ 在制作游戏存档功能时，C# 中反射主要可以发挥出哪些作用（至少说出三点）  Unity  如果在 Unity 当中制作 FPS 游戏，如何模拟枪械开枪时的后坐力 Unity 当中存在多线程时，继承 MonoBehaviour​ 的脚本是否有必要对其中内容加锁？为什么？ 我们在 Unity 中进行一些复杂逻辑处理时，比如网路通讯、寻路算法、往往会开启多线程进行处理。 我们如何保证数据能够和 Unity 主线程进行正常交互？（请至少说出 1 种方式） Shader 当中的 Blend​ 渲染命令主要用来干什么？ Shader 当中的 Blend​ 渲染命令后面跟的参数是用来干嘛的？比如：Blend SrcAlpha...</div></div></div></a><a class="pagination-related" href="/2025/03/19/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/MI%E2%80%94%E2%80%94%E6%A8%A1%E6%8B%9F%E9%9D%A2%E8%AF%95%E9%A2%98%E6%95%B4%E7%90%86/MIL16%E2%80%94%E2%80%94%E6%A8%A1%E6%8B%9F%E9%9D%A2%E8%AF%95%E9%A2%98/" title="MIL16——模拟面试题"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">MIL16——模拟面试题</div></div><div class="info-2"><div class="info-item-1">MIL16——模拟面试题 C#  我们可以使用 C# 中的迭代器来做什么？至少说出两点 面向对象的七大原则分别是什么？并选择其中一个原则说明它的意思 为什么单例模式在游戏开发中很常用？至少说出 3 个优点 工厂模式在游戏开发中一般用来做什么？ 观察者设计模式在游戏开发中有什么作用？  Unity  Unity工程文件中，meta​ 后缀的文件中主要存了什么信息？（最少说出2点） 不同后缀的各种文件的本质是什么？ ​UnityWebRequest​ 可以用来做什么？ 如何在 Unity 中进行多线程编程以提高性能？（至少说出3点可以使用多线程提高性能的内容） 游戏开发完成后：1、游戏运行卡顿、设备发热一般往哪个大方向进行排查？2、游戏运行一段时间后闪退，一般往哪个大方向进行排查？  答案 C#   我们可以使用 C# 中的迭代器来做什么？至少说出两点  ​foreach 协同程序    面向对象的七大原则分别是什么？并选择其中一个原则说明它的意思  单一职责原则： 一个类只处理自己应该处理的内容，不应该啥都写在一起 开闭原则：...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/Blue_Ice.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">文KRIFE齐</div><div class="author-info-description">Unity就业路线的笔记终于更新完了！新年快乐！</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1067</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">132</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/enjoySevenLIU"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/enjoySevenLIU" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">博客修好了，继续学习，CSharp进阶也迁移完毕了，接下来尽快把Unity Shader给啃完，年末给博客好好整修一下</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">MIL17——模拟面试题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AD%94%E6%A1%88"><span class="toc-number">1.1.</span> <span class="toc-text">答案</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/03/24/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/CS%E2%80%94%E2%80%94CSharp%E7%AC%94%E8%AE%B0/CS4%E2%80%94%E2%80%94CSharp%E8%BF%9B%E9%98%B6%E7%B3%BB%E5%88%97/CS4L25%E2%80%94%E2%80%94%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F/" title="CS4L25——插入排序">CS4L25——插入排序</a><time datetime="2025-03-24T03:26:44.000Z" title="发表于 2025-03-24 11:26:44">2025-03-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/03/20/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/MI%E2%80%94%E2%80%94%E6%A8%A1%E6%8B%9F%E9%9D%A2%E8%AF%95%E9%A2%98%E6%95%B4%E7%90%86/MIL20%E2%80%94%E2%80%94%E6%A8%A1%E6%8B%9F%E9%9D%A2%E8%AF%95%E9%A2%98/" title="MIL20——模拟面试题">MIL20——模拟面试题</a><time datetime="2025-03-20T02:55:19.000Z" title="发表于 2025-03-20 10:55:19">2025-03-20</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/03/20/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/MI%E2%80%94%E2%80%94%E6%A8%A1%E6%8B%9F%E9%9D%A2%E8%AF%95%E9%A2%98%E6%95%B4%E7%90%86/MIL19%E2%80%94%E2%80%94%E6%A8%A1%E6%8B%9F%E9%9D%A2%E8%AF%95%E9%A2%98/" title="MIL19——模拟面试题">MIL19——模拟面试题</a><time datetime="2025-03-19T17:17:57.000Z" title="发表于 2025-03-20 01:17:57">2025-03-20</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/03/20/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/MI%E2%80%94%E2%80%94%E6%A8%A1%E6%8B%9F%E9%9D%A2%E8%AF%95%E9%A2%98%E6%95%B4%E7%90%86/MIL18%E2%80%94%E2%80%94%E6%A8%A1%E6%8B%9F%E9%9D%A2%E8%AF%95%E9%A2%98/" title="MIL18——模拟面试题">MIL18——模拟面试题</a><time datetime="2025-03-19T16:51:54.000Z" title="发表于 2025-03-20 00:51:54">2025-03-20</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/03/20/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/MI%E2%80%94%E2%80%94%E6%A8%A1%E6%8B%9F%E9%9D%A2%E8%AF%95%E9%A2%98%E6%95%B4%E7%90%86/MIL17%E2%80%94%E2%80%94%E6%A8%A1%E6%8B%9F%E9%9D%A2%E8%AF%95%E9%A2%98/" title="MIL17——模拟面试题">MIL17——模拟面试题</a><time datetime="2025-03-19T16:36:10.000Z" title="发表于 2025-03-20 00:36:10">2025-03-20</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2025 By 文KRIFE齐</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"><script>(async () => {
+  const showKatex = () => {
+    document.querySelectorAll('#article-container .katex').forEach(el => el.classList.add('katex-show'))
+  }
+
+  if (!window.katex_js_css) {
+    window.katex_js_css = true
+    await btf.getCSS('https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css')
+    if (false) {
+      await btf.getScript('https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js')
+    }
+  }
+
+  showKatex()
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>
