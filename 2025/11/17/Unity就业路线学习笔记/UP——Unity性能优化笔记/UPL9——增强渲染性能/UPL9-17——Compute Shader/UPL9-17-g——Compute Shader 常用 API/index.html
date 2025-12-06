@@ -1,0 +1,339 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>UPL9-17-g——Compute Shader 常用 API | 文KRIFE齐的博客</title><meta name="author" content="文KRIFE齐"><meta name="copyright" content="文KRIFE齐"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="UPL9-17-g——Compute Shader 常用 API Compute Shader 常用 API 我们目前已经掌握了 Compute Shader 的核心知识点，已经能够使用 Compute Shader 来帮助我们来完成计算需求 这里整理 Compute Shader 中的常用 API (大部分学习过，补充部分新 API) C# 常用 API 通过 ComputeShader 对象调">
+<meta property="og:type" content="article">
+<meta property="og:title" content="UPL9-17-g——Compute Shader 常用 API">
+<meta property="og:url" content="https://enjoysevenliu.github.io/2025/11/17/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL9%E2%80%94%E2%80%94%E5%A2%9E%E5%BC%BA%E6%B8%B2%E6%9F%93%E6%80%A7%E8%83%BD/UPL9-17%E2%80%94%E2%80%94Compute%20Shader/UPL9-17-g%E2%80%94%E2%80%94Compute%20Shader%20%E5%B8%B8%E7%94%A8%20API/index.html">
+<meta property="og:site_name" content="文KRIFE齐的博客">
+<meta property="og:description" content="UPL9-17-g——Compute Shader 常用 API Compute Shader 常用 API 我们目前已经掌握了 Compute Shader 的核心知识点，已经能够使用 Compute Shader 来帮助我们来完成计算需求 这里整理 Compute Shader 中的常用 API (大部分学习过，补充部分新 API) C# 常用 API 通过 ComputeShader 对象调">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://enjoysevenliu.github.io/img/Blue_Ice.png">
+<meta property="article:published_time" content="2025-11-17T08:52:15.000Z">
+<meta property="article:modified_time" content="2025-12-06T15:57:23.000Z">
+<meta property="article:author" content="文KRIFE齐">
+<meta property="article:tag" content="blog">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://enjoysevenliu.github.io/img/Blue_Ice.png"><link rel="shortcut icon" href="/img/Blue_Ice.png"><link rel="canonical" href="https://enjoysevenliu.github.io/2025/11/17/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL9%E2%80%94%E2%80%94%E5%A2%9E%E5%BC%BA%E6%B8%B2%E6%9F%93%E6%80%A7%E8%83%BD/UPL9-17%E2%80%94%E2%80%94Compute%20Shader/UPL9-17-g%E2%80%94%E2%80%94Compute%20Shader%20%E5%B8%B8%E7%94%A8%20API/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'UPL9-17-g——Compute Shader 常用 API',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  isShuoshuo: false
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/Blue_Ice.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1168</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">141</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/img/Blue_Ice.png" alt="Logo"><span class="site-name">文KRIFE齐的博客</span></a><a class="nav-page-title" href="/"><span class="site-name">UPL9-17-g——Compute Shader 常用 API</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">UPL9-17-g——Compute Shader 常用 API</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-11-17T08:52:15.000Z" title="发表于 2025-11-17 16:52:15">2025-11-17</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-12-06T15:57:23.000Z" title="更新于 2025-12-06 23:57:23">2025-12-06</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/">UP——Unity性能优化笔记</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL9%E2%80%94%E2%80%94%E5%A2%9E%E5%BC%BA%E6%B8%B2%E6%9F%93%E6%80%A7%E8%83%BD/">UPL9——增强渲染性能</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL9%E2%80%94%E2%80%94%E5%A2%9E%E5%BC%BA%E6%B8%B2%E6%9F%93%E6%80%A7%E8%83%BD/UPL9-17%E2%80%94%E2%80%94Compute-Shader/">UPL9-17——Compute Shader</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1>UPL9-17-g——Compute Shader 常用 API</h1>
+<h1>Compute Shader 常用 API</h1>
+<p>我们目前已经掌握了 Compute Shader 的核心知识点，已经能够使用 Compute Shader 来帮助我们来完成计算需求<br>
+这里整理 Compute Shader 中的常用 API (大部分学习过，补充部分新 API)</p>
+<h2 id="C-常用-API">C# 常用 API</h2>
+<p>通过 <code>ComputeShader</code> 对象调用</p>
+<ol>
+<li>
+<p>查找入口函数索引</p>
+ <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ComputeShader.FindKernel(<span class="built_in">string</span> name)</span><br></pre></td></tr></table></figure>
+<p>示例可见：UPL9-17——Compute Shader</p>
+</li>
+<li>
+<p>按线程组数量启用GPU执行</p>
+ <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ComputeShader.Dispatch(<span class="built_in">int</span> kernelIndex, <span class="built_in">int</span> x, <span class="built_in">int</span> y, <span class="built_in">int</span> z)</span><br></pre></td></tr></table></figure>
+<p>示例可见：UPL9-17——Compute Shader</p>
+</li>
+<li>
+<p>设置参数相关API</p>
+ <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">ComputeShader.SetFloat(<span class="built_in">string</span> name, <span class="built_in">float</span> <span class="keyword">value</span>)                                <span class="comment">// 设置单个 float 参数</span></span><br><span class="line">ComputeShader.SetInt(<span class="built_in">string</span> name, <span class="built_in">int</span> <span class="keyword">value</span>)                                    <span class="comment">// 设置 int 参数</span></span><br><span class="line">ComputeShader.SetBool(<span class="built_in">string</span> name, <span class="built_in">bool</span> <span class="keyword">value</span>)                                    <span class="comment">// 设置 bool 参数</span></span><br><span class="line">ComputeShader.SetVector(<span class="built_in">string</span> name, Vector4 <span class="keyword">value</span>)                                <span class="comment">// 设置 float2/float3/float4 类型</span></span><br><span class="line">ComputeShader.SetFloats(<span class="built_in">string</span> name, <span class="keyword">params</span> <span class="built_in">float</span>[] values)                        <span class="comment">// 设置 float2/float3 类型 或 数组</span></span><br><span class="line">ComputeShader.SetMatrix(<span class="built_in">string</span> name, Matrix4x4 <span class="keyword">value</span>)                             <span class="comment">// 设置矩阵类型（float3x3/float4x4）</span></span><br><span class="line">ComputeShader.SetBuffer(<span class="built_in">int</span> kernelIndex, <span class="built_in">string</span> name, ComputeBuffer buffer)        <span class="comment">// 绑定结构化缓冲区</span></span><br><span class="line">ComputeShader.SetTexture(<span class="built_in">int</span> kernelIndex, <span class="built_in">string</span> name, Texture tex)                <span class="comment">// 绑定纹理</span></span><br></pre></td></tr></table></figure>
+<p>相关内容可见：UPL9-17-c——数据输入规则</p>
+<p>设置常量缓冲区</p>
+ <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ComputeShader.SetConstantBuffer(<span class="built_in">string</span> name, ComputeBuffer buffer, <span class="built_in">int</span> offset, <span class="built_in">int</span> size)</span><br></pre></td></tr></table></figure>
+<p>获取 <code>[numthreads(x,y,z)]</code> 的设置值</p>
+ <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ComputeShader.GetKernelThreadGroupSizes(<span class="built_in">int</span> kernelIndex, <span class="keyword">out</span> <span class="built_in">uint</span> x, <span class="keyword">out</span> <span class="built_in">uint</span> y, <span class="keyword">out</span> <span class="built_in">uint</span> z)</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>​<code>ComputeBuffer</code> 相关API</p>
+ <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> ComputeBuffer(count, stride)                <span class="comment">// 创建一个 GPU 缓冲区</span></span><br><span class="line">ComputeBuffer.SetData(T[] data)                    <span class="comment">// 向 GPU 写入数据</span></span><br><span class="line">ComputeBuffer.GetData(T[] data)                    <span class="comment">// 从 GPU 读取数据（同步操作）</span></span><br><span class="line">ComputeBuffer.Release()                            <span class="comment">// 释放 GPU 缓冲区资源</span></span><br><span class="line">ComputeBuffer.CopyCount(buffer1,buffer2, <span class="number">0</span>)        <span class="comment">// 统计 GPU 动态生成的数据数量</span></span><br></pre></td></tr></table></figure>
+<p>主要配合 <code>AppendStructuredBuffer</code>​（动态追加元素）和 <code>ConsumeStructuredBuffer</code>（动态消耗元素）使用</p>
+<p>相关内容可见：UPL9-17-c——数据输入规则，UPL9-17-f——获取 GPU 数据</p>
+<blockquote>
+<p>注意：新版本中有一个 <code>GraphicsBuffer</code>​ 类，它的用法和 <code>ComputeBuffer</code> 类似，它可以和 SRP 等管线更好地配合</p>
+</blockquote>
+</li>
+<li>
+<p>异步获取</p>
+ <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">AsyncGPUReadback.Request(buffer, callback)</span><br></pre></td></tr></table></figure>
+<p>相关内容可见：UPL9-17-f——获取 GPU 数据</p>
+</li>
+<li>
+<p>判断设备是否支持 <code>ComputeShader</code></p>
+ <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SystemInfo.supportsComputeShaders</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>动态启用/关闭编译关键字（可用于多功能 <code>ComputeShader</code>）</p>
+ <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ComputeShader.enableKeyword</span><br><span class="line">ComputeShader.DisableKeyword</span><br></pre></td></tr></table></figure>
+<p>相关内容可参考：US5L3——Shader变体和关键字</p>
+</li>
+</ol>
+<h2 id="Compoute-Shader-内常用-API">Compoute Shader 内常用 API</h2>
+<ol>
+<li>
+<p>入口函数参数的三个常用语义</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SV_DispatchThreadID        // 调度线程 ID，每个线程的全局索引（系统自动传入）</span><br><span class="line">SV_GroupThreadID        // 组内线程 ID，当前线程在组内的局部索引</span><br><span class="line">SV_GroupID                // 线程组 ID，当前线程组在整个 Dispatch 中的索引</span><br></pre></td></tr></table></figure>
+<p>相关内容可见：UPL9-17-e——参数的系统语义</p>
+</li>
+<li>
+<p>HLSL 内置函数</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">lerp(a,b,t)                 // 线性插值</span><br><span class="line">step(edge,x)                // 阶跃函数</span><br><span class="line">saturate(x)                    // 将值限制在 [0,1]</span><br><span class="line">smoothstep(min, max, x)        // 平滑插值</span><br><span class="line">dot(a,b)                    // 向量点积</span><br><span class="line">cross(a,b)                    // 向量叉积</span><br><span class="line">length(x)                    // 向量长度</span><br><span class="line">normalize(x)                // 向量单位化</span><br></pre></td></tr></table></figure>
+<p>等等，具体可以参考：US2S3L12——CG内置函数</p>
+</li>
+<li>
+<p>组内共享内存 - <code>groupshared</code> 关键字</p>
+<p>它可以让<strong>同一线程组内的所有线程共享一块高速、低延迟的片上内存</strong>，以便线程之间协作计算、减少显存访问<br>
+用 <code>groupshared</code>​ 修饰的变量会被放入组内共享内存，<strong>组内所有线程都能访问、修改同一份数据</strong><br>
+每个组有自己的那一份；不同组之间互不干扰，比如：</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">groupshared float test[64];</span><br></pre></td></tr></table></figure>
+<p>假设一个线程组 <code>[numthreads(8,8,1)]</code>，每组64个线程<br>
+那么每组线程都会有自己的一块共享内存</p>
+</li>
+<li>
+<p>同步与内存屏障函数</p>
+<blockquote>
+<p>先解释一些概念：</p>
+<ol>
+<li>
+<p>GPU 的 三层内存层级</p>
+<ol>
+<li>寄存器 —— 每个线程独有，比如普通局部变量</li>
+<li>组内共享内存 —— 每个线程组独立拥有，比如 <code>groupshared</code> 变量</li>
+<li>全局内存 —— 所有线程组共享，比如可读写数据流、纹理等</li>
+</ol>
+</li>
+<li>
+<p>内存同步</p>
+<p>让之前写入的内存在后续访问时保证最新可见，不被缓存或乱序，举例：</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">groupshared int data;</span><br><span class="line"></span><br><span class="line">[numthreads(2, 1, 1)]</span><br><span class="line">void CSMain(uint3 tid : SV_GroupThreadID)</span><br><span class="line">&#123;</span><br><span class="line">    if (tid.x == 0)</span><br><span class="line">        data = 123;</span><br><span class="line">    // 线程 1 可能此时还没看到 data=123</span><br><span class="line">    // 因此我们可以在这等待内存同步完成（添加一些内存同步API）</span><br><span class="line">    int v = data;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>线程同步</p>
+<p>让所有线程等一等，等大家都执行到同一位置后再继续执行</p>
+</li>
+</ol>
+</blockquote>
+<p>同步函数：</p>
+<ul>
+<li>
+<p>​<code>GroupMemoryBarrierWithGroupSync()</code></p>
+<p>线程同步 + 内存同步（组内共享内存，<code>groupshared</code>​、当前组写的 <code>RWBuffer</code>​ / <code>Texture</code>​等，不跨线程组）<br>
+让同一个线程组内部的所有线程在某个时刻进行汇合同步<br>
+最常用的同步函数，一般所有涉及 <code>groupshared</code>​ 的协作计算都要用它<br>
+假设一个线程组 <code>[numthreads(8,8,1)]</code>​，每组有 64 个线程，这些线程是并行执行的<br>
+但是在某些时刻，我们可能希望该组所有线程都完成了当前阶段后，再一起进行下一阶段<br>
+这时候我们就可以调用 <code>GroupMemoryBarrierWithGroupSync()</code> 函数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">groupshared int data;</span><br><span class="line"></span><br><span class="line">[numthreads(2, 1, 1)]</span><br><span class="line">void CSMain(uint3 tid : SV_GroupThreadID)</span><br><span class="line">&#123;</span><br><span class="line">    if (tid.x == 0)</span><br><span class="line">        data = 123;</span><br><span class="line">    // 让所有线程都执行到这一步时，再执行继续并行执行后边的逻辑，并且此时内存也同步了</span><br><span class="line">    GroupMemoryBarrierWithGroupSync();</span><br><span class="line">    int v = data;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>​<code>GroupMemoryBarrier()</code></p>
+<p>内存同步（组内共享内存，<code>groupshared</code>​、当前组写的 <code>RWBuffer</code>​ / <code>Texture</code>等，不跨线程组）</p>
+</li>
+<li>
+<p>​<code>DeviceMemoryBarrier()</code></p>
+<p>内存同步（全局内存同步，比如可读写的纹理和数据流，跨线程组），跨组的全局内存同步</p>
+</li>
+<li>
+<p>​<code>AllMemoryBarrier()</code></p>
+<p>内存同步（组内共享内存 + 全局内存 都得同步，跨线程组），同步所有层级内存</p>
+</li>
+<li>
+<p>​<code>AllMemoryBarrierWithGroupSync()</code></p>
+<p>最强版，线程同步 + 所有内存同步，等待组内所有线程汇合，确保所有类型内存（共享内存 + 全局内存）写入完成</p>
+</li>
+</ul>
+</li>
+<li>
+<p>原子操作</p>
+<blockquote>
+<p>原子操作用于并行计算时防止多个线程同时修改同一份数据造成的竞态条件<br>
+指一个操作在 GPU 上执行时，不会被其他线程中断或同时修改同一内存地址</p>
+<p>举例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">RWStructuredBuffer&lt;int&gt; Counter;</span><br><span class="line"></span><br><span class="line">[numthreads(64, 1, 1)]</span><br><span class="line">void CSMain(uint3 id : SV_DispatchThreadID)</span><br><span class="line">&#123;</span><br><span class="line">    Counter[0] += 1;   // 64个线程同时执行时，结果可能 Counter[0] &lt; 64 ！</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<ol>
+<li>
+<p>对 <code>dest</code> 执行原子加法，并返回加前的值</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">InterlockedAdd(dest, value, out originalValue)</span><br></pre></td></tr></table></figure>
+<p>示例：</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">RWStructuredBuffer&lt;int&gt; Counter;</span><br><span class="line"></span><br><span class="line">[numthreads(64, 1, 1)]</span><br><span class="line">void CSMain(uint3 id : SV_DispatchThreadID)</span><br><span class="line">&#123;</span><br><span class="line">    int i;</span><br><span class="line">    InterlockedAdd(Counter[0], 1, out i)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>原子地将 <code>dest</code> 设为新值，并返回加前的值</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">InterlockedExchange(dest, value, out originalValue)</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>比较后再交换 如果 <code>dest == compareValue</code>​，则写入 <code>value</code></p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">InterlockedCompareExchange(dest, compareValue, value, out originalValue)</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>原子地取最小值</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">InterlockedMin(dest, value, out originalValue)</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>原子地取最大值</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">InterlockedMax(dest, value, out originalValue)</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>原子按位与</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">InterlockedAnd(dest, value, out originalValue)</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>原子按位或</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">InterlockedOr(dest, value, out originalValue)</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>原子按位异或</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">InterlockedXor(dest, value, out originalValue)</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>原子操作让对共享变量的 “读-改-写” 过程变成一个不可被打断的整体</p>
+<blockquote>
+<p>注意：原子操作会破坏 GPU 的并行性，影响 GPU 性能，需要谨慎使用</p>
+</blockquote>
+</li>
+</ol>
+<p>‍</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://enjoysevenliu.github.io">文KRIFE齐</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://enjoysevenliu.github.io/2025/11/17/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL9%E2%80%94%E2%80%94%E5%A2%9E%E5%BC%BA%E6%B8%B2%E6%9F%93%E6%80%A7%E8%83%BD/UPL9-17%E2%80%94%E2%80%94Compute%20Shader/UPL9-17-g%E2%80%94%E2%80%94Compute%20Shader%20%E5%B8%B8%E7%94%A8%20API/">https://enjoysevenliu.github.io/2025/11/17/Unity就业路线学习笔记/UP——Unity性能优化笔记/UPL9——增强渲染性能/UPL9-17——Compute Shader/UPL9-17-g——Compute Shader 常用 API/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://enjoysevenliu.github.io" target="_blank">文KRIFE齐的博客</a>！</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/img/Blue_Ice.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2025/11/17/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL9%E2%80%94%E2%80%94%E5%A2%9E%E5%BC%BA%E6%B8%B2%E6%9F%93%E6%80%A7%E8%83%BD/UPL9-18%E2%80%94%E2%80%94%E4%BC%98%E5%8C%96%E7%A7%BB%E5%8A%A8%E7%AB%AF%E6%B8%B2%E6%9F%93%E6%80%A7%E8%83%BD/" title="UPL9-18——优化移动端渲染性能"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">UPL9-18——优化移动端渲染性能</div></div><div class="info-2"><div class="info-item-1">UPL9-18——优化移动端渲染性能 避免 alpha 测试 对于一些低端移动设备，透明度测试是一项特别消耗资源的任务 在大多数的情况下，我们应该尽量避免使用透明测试，而是使用透明混合来代替 最小化 DrawCall 移动设备上高 DrawCall 通常比填充率更容易造成性能瓶颈 因此利用批处理或者自己合并网格来降低 DrawCall 是移动平台上提高性能表现的有效手段 我们应该尽量在移动平台上保证最小的 DrawCall 最小化材质数量 材质数量和 DrawCall 数量息息相关，使用更少的材质，可以有效减少 DrawCall，还可以避免打断批处理 并且它有有助于解决内存带宽问题，因此我们应该在移动平台上保证最小化材质数量 最小化纹理大小 和桌面 GPU 相比，大多数的移动设备的纹理缓存都非常小，对于一些老移动设备（iphone6s 以前），最大纹理大小仅支持 1024 * 1024 大小 目前市面上的大部分移动设备已经支持 2048 *...</div></div></div></a><a class="pagination-related" href="/2025/11/17/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL9%E2%80%94%E2%80%94%E5%A2%9E%E5%BC%BA%E6%B8%B2%E6%9F%93%E6%80%A7%E8%83%BD/UPL9-17%E2%80%94%E2%80%94Compute%20Shader/UPL9-17-f%E2%80%94%E2%80%94%E8%8E%B7%E5%8F%96%20GPU%20%E6%95%B0%E6%8D%AE/" title="UPL9-17-f——获取 GPU 数据"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">UPL9-17-f——获取 GPU 数据</div></div><div class="info-2"><div class="info-item-1">UPL9-17-f——获取 GPU 数据 本章代码关键字 12345678computeBuffer.GetData()                    // 同步获取ComputeBuffer对象的计算结果，传入需要获取结果的数组即可AsyncGPUReadback.Request()                // 异步读取GPU计算结果请求，需要传入要异步获取数据的对象，例如ComputeBuffer和RenderTextureAsyncGPUReadbackRequest                    // 异步读取GPU计算结果的请求类，通过该类获取计算结果asyncGPUReadbackRequest.GetData&lt;&gt;()        // 获取GPU计算结果，返回NativeArray&lt;&gt;，泛型参数如果是数组传入数组元素的类型，如果是数组传入Color类型asyncGPUReadbackRequest.hasError        // GPU计算是否有报错RenderTexture.active          ...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/Blue_Ice.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">文KRIFE齐</div><div class="author-info-description">Unity就业路线的笔记终于更新完了！新年快乐！</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1168</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">141</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/enjoySevenLIU"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/enjoySevenLIU" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">博客修好了，继续学习，CSharp进阶也迁移完毕了，接下来尽快把Unity Shader给啃完，年末给博客好好整修一下</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">UPL9-17-g——Compute Shader 常用 API</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">2.</span> <span class="toc-text">Compute Shader 常用 API</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#C-%E5%B8%B8%E7%94%A8-API"><span class="toc-number">2.1.</span> <span class="toc-text">C# 常用 API</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Compoute-Shader-%E5%86%85%E5%B8%B8%E7%94%A8-API"><span class="toc-number">2.2.</span> <span class="toc-text">Compoute Shader 内常用 API</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/11/24/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL11%E2%80%94%E2%80%94%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/" title="UPL11——内存管理">UPL11——内存管理</a><time datetime="2025-11-24T08:07:56.000Z" title="发表于 2025-11-24 16:07:56">2025-11-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/11/24/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL10%E2%80%94%E2%80%94%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/UPL10-6%E2%80%94%E2%80%94AB%E5%8C%85%E5%92%8CResources%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/" title="UPL10-6——AB包和Resources资源优化">UPL10-6——AB包和Resources资源优化</a><time datetime="2025-11-24T07:46:31.000Z" title="发表于 2025-11-24 15:46:31">2025-11-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/11/24/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL10%E2%80%94%E2%80%94%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/UPL10-5%E2%80%94%E2%80%94%E6%9D%90%E8%B4%A8%E4%B8%8EShader%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/" title="UPL10-5——材质与Shader资源优化">UPL10-5——材质与Shader资源优化</a><time datetime="2025-11-24T07:09:51.000Z" title="发表于 2025-11-24 15:09:51">2025-11-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/11/24/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL10%E2%80%94%E2%80%94%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/UPL10-4%E2%80%94%E2%80%94%E7%BD%91%E6%A0%BC%E4%B8%8E%E5%8A%A8%E7%94%BB%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/" title="UPL10-4——网格与动画资源优化">UPL10-4——网格与动画资源优化</a><time datetime="2025-11-24T03:58:43.000Z" title="发表于 2025-11-24 11:58:43">2025-11-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/11/24/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL10%E2%80%94%E2%80%94%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/UPL10-3%E2%80%94%E2%80%94%E7%BA%B9%E7%90%86%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/" title="UPL10-3——纹理资源优化">UPL10-3——纹理资源优化</a><time datetime="2025-11-24T03:10:58.000Z" title="发表于 2025-11-24 11:10:58">2025-11-24</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2025 By 文KRIFE齐</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"><script>(async () => {
+  const showKatex = () => {
+    document.querySelectorAll('#article-container .katex').forEach(el => el.classList.add('katex-show'))
+  }
+
+  if (!window.katex_js_css) {
+    window.katex_js_css = true
+    await btf.getCSS('https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css')
+    if (false) {
+      await btf.getScript('https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js')
+    }
+  }
+
+  showKatex()
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>

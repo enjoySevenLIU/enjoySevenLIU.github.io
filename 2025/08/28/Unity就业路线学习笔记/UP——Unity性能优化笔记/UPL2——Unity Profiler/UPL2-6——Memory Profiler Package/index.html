@@ -1,0 +1,844 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>UPL2-6——Memory Profiler Package | 文KRIFE齐的博客</title><meta name="author" content="文KRIFE齐"><meta name="copyright" content="文KRIFE齐"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="UPL2-6——Memory Profiler Package Memory Profiler Package Memory Profiler Package（内存分析器包），是 Unity 提供给我们的一个关于内存分析的独立工具 它可以用于检查 Unity 应用程序以及 Unity 编辑器的内存使用情况 我们可以使用它来捕获、检查、比较内存快照！它获取的是当前时刻，全局的内存情况 它和我们上节课">
+<meta property="og:type" content="article">
+<meta property="og:title" content="UPL2-6——Memory Profiler Package">
+<meta property="og:url" content="https://enjoysevenliu.github.io/2025/08/28/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL2%E2%80%94%E2%80%94Unity%20Profiler/UPL2-6%E2%80%94%E2%80%94Memory%20Profiler%20Package/index.html">
+<meta property="og:site_name" content="文KRIFE齐的博客">
+<meta property="og:description" content="UPL2-6——Memory Profiler Package Memory Profiler Package Memory Profiler Package（内存分析器包），是 Unity 提供给我们的一个关于内存分析的独立工具 它可以用于检查 Unity 应用程序以及 Unity 编辑器的内存使用情况 我们可以使用它来捕获、检查、比较内存快照！它获取的是当前时刻，全局的内存情况 它和我们上节课">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://enjoysevenliu.github.io/img/Blue_Ice.png">
+<meta property="article:published_time" content="2025-08-28T12:04:27.000Z">
+<meta property="article:modified_time" content="2025-12-06T16:02:04.559Z">
+<meta property="article:author" content="文KRIFE齐">
+<meta property="article:tag" content="blog">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://enjoysevenliu.github.io/img/Blue_Ice.png"><link rel="shortcut icon" href="/img/Blue_Ice.png"><link rel="canonical" href="https://enjoysevenliu.github.io/2025/08/28/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL2%E2%80%94%E2%80%94Unity%20Profiler/UPL2-6%E2%80%94%E2%80%94Memory%20Profiler%20Package/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'UPL2-6——Memory Profiler Package',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  isShuoshuo: false
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/Blue_Ice.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1168</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">141</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/img/Blue_Ice.png" alt="Logo"><span class="site-name">文KRIFE齐的博客</span></a><a class="nav-page-title" href="/"><span class="site-name">UPL2-6——Memory Profiler Package</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">UPL2-6——Memory Profiler Package</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-08-28T12:04:27.000Z" title="发表于 2025-08-28 20:04:27">2025-08-28</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-12-06T16:02:04.559Z" title="更新于 2025-12-07 00:02:04">2025-12-07</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/">UP——Unity性能优化笔记</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL2%E2%80%94%E2%80%94Unity-Profiler/">UPL2——Unity Profiler</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1>UPL2-6——Memory Profiler Package</h1>
+<h1>Memory Profiler Package</h1>
+<p>Memory Profiler Package（内存分析器包），是 Unity 提供给我们的一个关于内存分析的独立工具<br>
+它可以用于检查 Unity 应用程序以及 Unity 编辑器的内存使用情况<br>
+我们可以使用它来捕获、检查、比较<strong>内存快照</strong>！它获取的是当前时刻，全局的内存情况</p>
+<p>它和我们上节课学习的 Memory 模块都是用于分析内存的，但是他们的定位有所不同，功能深浅有所不同</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">对比项</th>
+<th style="text-align:left">Profiler - Memory 模块</th>
+<th style="text-align:left">Memory Profiler（独立工具）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">实时监控</td>
+<td style="text-align:left">支持</td>
+<td style="text-align:left">主要用于快照分析</td>
+</tr>
+<tr>
+<td style="text-align:left">适用阶段</td>
+<td style="text-align:left">开发中持续观察性能</td>
+<td style="text-align:left">排查具体内存泄漏 / 激增问题</td>
+</tr>
+<tr>
+<td style="text-align:left">查看细节</td>
+<td style="text-align:left">粗略数据（贴图、网格、GC 内存等）</td>
+<td style="text-align:left">精细到对象引用关系、类型大小、堆分布等</td>
+</tr>
+<tr>
+<td style="text-align:left">是否支持快照对比</td>
+<td style="text-align:left">不支持</td>
+<td style="text-align:left">支持多个快照对比</td>
+</tr>
+<tr>
+<td style="text-align:left">是否能定位内存泄漏</td>
+<td style="text-align:left">部分可以推测</td>
+<td style="text-align:left">具备定位能力</td>
+</tr>
+<tr>
+<td style="text-align:left">是否支持深入引用链分析<br />（即通过一层层追踪对象是如何被其他对象引用的）<br /></td>
+<td style="text-align:left">不支持</td>
+<td style="text-align:left">支持<br /></td>
+</tr>
+<tr>
+<td style="text-align:left">性能开销</td>
+<td style="text-align:left">极小</td>
+<td style="text-align:left">略高（抓取快照时会卡顿）</td>
+</tr>
+</tbody>
+</table>
+<p>从对比中可以看出 Memory Profiler Package 具备更细致的内存问题定位能力，可以帮助我们更加细致的排查问题</p>
+<p>总而言之：Memory Profiler Package 是一个比起 Profiler Memory 模块更加细致排查内存问题的模块</p>
+<h2 id="Memory-Profiler-Package-对于我们的意义">Memory Profiler Package 对于我们的意义</h2>
+<p>它可以通过捕获不同时间点的内存快照并进行对比，来定位内存泄漏、资源未释放、异常增长等问题</p>
+<p>比如当我们进行某些操作时，前后各生成两次快照，来分析内存问题：</p>
+<ol>
+<li>打开一个 UI 面板前后</li>
+<li>运行 10 分钟前后</li>
+<li>切换场景前后</li>
+</ol>
+<p>等等</p>
+<p>当我们想要：</p>
+<ol>
+<li>想要详细对比两次运行之间的内存差异</li>
+<li>想要知道到底是什么对象一直不释放</li>
+<li>想要知道哪段代码导致了内存暴涨</li>
+</ol>
+<p>等等，就可以可以使用它</p>
+<p>总而言之：<br>
+想要更加深度的定位内存问题，我们可以使用它来进行排查，但是一般我们会配合上节课学习的 Memory 模块一起进行排查<br>
+通过 Profiler 中的 Memory 大概定位问题，再通过 Memory Profiler 来进行详细排查，Profiler 是望远镜，Memory Profiler 是显微镜</p>
+<h2 id="安装-Memory-Profiler-Package">安装 Memory Profiler Package</h2>
+<p>在 Package Manager 内即可安装，除此以外，还可以直接在 Profiler 内安装：</p>
+<p><img src="/assets/image-20250828201520-x799pcq.png" alt="image"></p>
+<p>安装 Memory Profiler Package 后，下方的 Simple 视图显示内容也会改变，变成 Summary 相关内容，点击 Open Memory Profiler 即可打开相应界面</p>
+<p><img src="/assets/image-20250828201816-t7v38j0.png" alt="image"></p>
+<h2 id="初始状态-Memory-Profiler-Package-窗口">初始状态 Memory Profiler Package 窗口</h2>
+<p><img src="/assets/image-20250828202041-fs5j4uc.png" alt="image"></p>
+<ul>
+<li>
+<p>A：顶部菜单</p>
+<p><img src="/assets/image-20250828202638-zru8d1g.png" alt="image"></p>
+<ol>
+<li>开/关左侧 快照 相关窗口</li>
+<li>加载保存的内存快照</li>
+<li>捕获内存快照（展开后可以选择要捕获的信息）</li>
+<li>附加到应用程序（展开后可以选择要附加到的应用程序）</li>
+<li>关闭右侧信息窗口</li>
+<li>更多设置</li>
+</ol>
+</li>
+<li>
+<p>B：当前选中内存快照</p>
+<p>其中，Single Snapshot 只选择一个快照，而 Compare Snapshots 可选择两个快照用于对比</p>
+<p><img src="/assets/image-20250828203905-jeeao25.png" alt="image"></p>
+</li>
+<li>
+<p>C：内存快照列表，每获取一次快照，就会在此处列表中添加一个快照信息</p>
+<p><img src="/assets/image-20250828204025-1g1rbum.png" alt="image"></p>
+</li>
+<li>
+<p>D：快照具体信息，在没有选择快照时，中间会出现一个 Capture New Snapshot（捕获新快照）按钮，点击后便会捕获快照</p>
+<p>当捕获内存快照并选中一个快照后，会显示如下内容，具体内容在下文阐述</p>
+<p><img src="/assets/image-20250828203145-pjg71ke.png" alt="image"></p>
+<ul>
+<li>
+<p>Summary： 总结概要页签</p>
+<p>该页签主要显示快照中的内存总体信息，适合做快速分析和横向比较，常作为入口使用； 用于定位大块内存占用；对比多个快照</p>
+</li>
+<li>
+<p>Unity Objects： Unity 对象页签</p>
+<p>展示所有 Unity 引擎级别的对象（非 C# 脚本对象），比如 <code>Texture2D</code>​、<code>Mesh</code>​、<code>Material</code>​、<code>GameObject</code>​、<code>Component</code>​、<code>AnimationClip</code> 等<br>
+用于追查资源类内存开销来源、是否重复加载、是否未释放</p>
+</li>
+<li>
+<p>All Of Memory： 所有内存页签</p>
+<p>它是这个工具中最强大、最底层、最全面的页签，显示包括托管堆（Managed Heap）在内的所有内存块<br>
+用于追查复杂内存泄漏、查找引用链闭环、深入调试</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Summary（总结概要页签）">Summary（总结概要页签）</h2>
+<p>该页签主要显示快照中的内存总体信息，该页签主要由以下四部分组成：</p>
+<ol>
+<li>
+<p>Memory Usage On Device（设备上的内存使用情况）</p>
+<p>判断应用是否接近或超出设备内存上限</p>
+</li>
+<li>
+<p>Allocated Memory Distribution（已分配内存分布）</p>
+<p>快速识别主要内存消耗源头</p>
+</li>
+<li>
+<p>Managed Heap Utilization（托管堆使用率）</p>
+<p>用于分析 C# 脚本对象的内存使用效率</p>
+</li>
+<li>
+<p>Top Unity Objects Categories（Unity对象内存占用最多的类型分类）</p>
+<p>针对某类型内容优化的数据依据之一</p>
+</li>
+</ol>
+<p><img src="/assets/image-20250828204152-tob37e8.png" alt="image"></p>
+<p>其中，Allocated Memory Distribution，Managed Heap Utilization，和 Top Unity Objects Categories 部分右上角都有 Inspect 按钮，<br>
+Inspect 按钮可以跳转到更详细的分类页面，并自动筛选出该类内存的相关对象或资源，方便你进一步深入分析<br>
+它是定位问题的快速入口，适合先看 Summary 总览，再 drill-down（向下钻取） 到具体对象。<br>
+它不会改变快照本身，只是切换到对应视图并加好过滤<br>
+如果你正在查某个大类的内存异常问题（比如贴图暴涨、Mesh 堆积），使用 Inspect 可以极大提高定位效率</p>
+<p>着重关注以下内容：</p>
+<ol>
+<li>托管堆内存：是否有 GC 压力，是否有内存碎片化问题</li>
+<li>原生内存：是否存在 Unity 原生对象内存泄漏，比如 <code>GameObject</code>​，<code>Component</code>、资源等</li>
+<li>图形内存：是否存在贴图、渲染贴图显存异常</li>
+<li>虚拟机内存：查看增长趋势</li>
+<li>未追踪内存：是否存在大块内存异常，利用对应平台工具进行内存问题排查</li>
+<li>预留内存：申请但没使用内存，是否存在内存碎片等情况</li>
+</ol>
+<p>等等</p>
+<p>我们可以通过对比多张内存快照来排查问题</p>
+<h3 id="Memory-Usage-On-Device（设备上的内存使用情况）">Memory Usage On Device（设备上的内存使用情况）</h3>
+<p>主要作用：<br>
+展示当前快照中，Unity 在设备上实际占用了多少内存<br>
+可以用于判断当前是否接近设备内存限制，特别是移动设备上是否存在内存溢出的风险</p>
+<p><img src="/assets/image-20250828204359-gguqu0q.png" alt="image"></p>
+<blockquote>
+<p>补充 —— 内存溢出：<br>
+在 iOS / Android 上，系统会给每个 App 分配一段最大内存上限（比如 512MB、1GB 等，依设备不同而异）<br>
+如果你的游戏在运行过程中内存分配超出了这个上限，那么系统会判断该 App 占用内存超标，会强行杀死进程，不给任何提示！</p>
+</blockquote>
+<p>一些统计数据（不准确，以真机为主）</p>
+<table>
+<thead>
+<tr>
+<th>设备</th>
+<th>分配最大内存上限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Android 低端机</td>
+<td>~350 – 450MB</td>
+</tr>
+<tr>
+<td>Android 中端机</td>
+<td>~500 – 600MB</td>
+</tr>
+<tr>
+<td>Android 高端机</td>
+<td>~700MB – 1.2GB</td>
+</tr>
+<tr>
+<td>iPhone 6s</td>
+<td>~350MB<br /></td>
+</tr>
+<tr>
+<td>iPhone 12+</td>
+<td>~1GB+</td>
+</tr>
+<tr>
+<td>iPad Pro</td>
+<td>~1.5GB+</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>注意：建议在真机上进行调试排查</p>
+</blockquote>
+<p>点击内存占用比例条，在右侧的信息面板可以看到如下内容：</p>
+<p><img src="/assets/image-20250828204823-12g3mfm.png" alt="image"></p>
+<blockquote>
+<h5 id="设备上的内存使用情况">设备上的内存使用情况</h5>
+<p>显示您已分配给系统的内存量，以及设备上当前驻留的内存量。分配的内存可以高于设备上可用的最大内存，而不会造成问题。</p>
+<h6 id="已分配内存">已分配内存</h6>
+<p>分配内存是指由进程分配的所有内存，该进程有操作系统提交的资源。资源可能位于物理内存中（在这种情况下，它被称为驻留）或交换到辅助存储，例如磁盘上的页面文件。如果分配的内存区域在一段时间内未被使用或未被访问，操作系统可能会决定压缩或将其移动到磁盘。这允许您的应用程序在物理内存中只保留它立即需要的东西。不利的一面是，对辅助存储的访问速度要慢得多，可能会影响您的应用程序性能。</p>
+<p>检查分配的内存使用情况，以改善应用程序的总体健康状况。</p>
+<h6 id="设备上驻留内存总量">设备上驻留内存总量</h6>
+<p>当前位于设备物理内存（RAM）中的已分配内存部分。它是应用程序对目标设备要求有多高的指标。如果常驻内存使用量增加，您可能会面临页面错误、性能下降或从系统中驱逐的风险。</p>
+<p>检查应用程序的驻留内存使用情况，以降低内存不足的最直接风险。</p>
+</blockquote>
+<h3 id="Allocated-Memory-Distribution（已分配内存分布）">Allocated Memory Distribution（已分配内存分布）</h3>
+<p>主要作用：<br>
+显示分配的内存如何在内存区域中分布<br>
+将光标悬停在类别上，查看分配的内存中有多少当前驻留在设备上。<br>
+可用于分析各个系统的内存占用比例，判断到底是谁“吃”内存</p>
+<p><img src="/assets/image-20250828205535-ts2w1h5.png" alt="image"></p>
+<p>它由以下几个部分组成</p>
+<ol>
+<li>Native（原生内存）：C++ 层对象，如 GameObject、资源加载、系统插件等；如果这里过高，排查是否未及时释放对象</li>
+<li>Managed（托管内存）：C# 代码里的类、数组、<code>List</code> 等托管对象，如果过高；排查是否存在内存泄漏、GC压力大等问题</li>
+<li>Executables &amp; Mapped（可执行文件和映射内存）：可执行代码和库；如果过高，说明项目模块太多，建议开启代码裁剪（Stripping Level）</li>
+<li>Graphics (Estimated)（图形相关内存（估算）)：GPU 纹理、Mesh、Animation 等资源；如果过高，检查贴图大小/格式/是否读写等问题</li>
+<li>Untracked*（未追踪的内存）：Unity 无法识别的内存，若很大；可能是图形驱动、插件、平台相关等，需用平台专用工具查看（如 Android Profiler、Xcode Instruments）</li>
+</ol>
+<p>点击内存占用比例条的不同部分，在右侧的信息面板可以看到如下内容：</p>
+<h4 id="Native（原生内存）">Native（原生内存）</h4>
+<p><img src="/assets/image-20250828205654-yxcw50d.png" alt="image"></p>
+<blockquote>
+<h5 id="原生内存">原生内存</h5>
+<p>原生内存（Native memory），被以下对象使用：</p>
+<ul>
+<li>场景对象（如 GameObject 和它们的组件）</li>
+<li>资源（Assets）和管理器（Managers）</li>
+<li>原生分配（Native Allocations），包括 NativeArray 和其他原生容器（Native Containers）</li>
+<li>图形资源在 CPU 端的内存占用</li>
+<li>以及其他类型的原生对象</li>
+</ul>
+<p>这个分类不包括 GPU 图形内存，图形内存会在单独的 “Graphics” 类别中显示。</p>
+<p>你可以在 All Of Memory Breakdown（全部内存明细） 中进一步查看这些分类的详细信息。</p>
+<p>注意：Summary（概览）视图和 All Of Memory（全部内存）视图中的数值可能不同，因为它们在归类方式上是不同的。不同的方式将项目分组在一起。</p>
+</blockquote>
+<p>建议：如果你正在分析某个 Native 内存异常增长的情况，建议重点查看 “All Of Memory” 中的 “Objects and Allocations” 和 “Memory Map”</p>
+<h4 id="Managed（托管内存）">Managed（托管内存）</h4>
+<p><img src="/assets/image-20250828210000-i1gvkr2.png" alt="image"></p>
+<blockquote>
+<h5 id="托管内存">托管内存</h5>
+<p>包含所有虚拟机和托管堆（Managed Heap）的内存</p>
+<p>托管堆（Managed Heap）包含了与托管对象（Managed Objects）相关的数据，以及为这些对象预留的空间。它由脚本的垃圾回收器（Scripting Garbage Collector）进行管理，因此任何不再与根对象存在引用链的托管对象都会被回收。</p>
+<p>托管内存中的“已使用”部分包括了用于托管对象的内存，以及一些无法归还（释放）但当前未被使用的空闲空间。</p>
+<p>这个分类中的“已预留（reserved）”内存可以在需要时快速重复利用，或者会在每进行 6 次 GC.Collect 垃圾回收清扫时被归还给系统。</p>
+</blockquote>
+<h4 id="Executables-Mapped（可执行文件和映射内存）">Executables &amp; Mapped（可执行文件和映射内存）</h4>
+<p><img src="/assets/image-20250828210151-39f3huf.png" alt="image"></p>
+<blockquote>
+<h5 id="可执行文件和映射内存">可执行文件和映射内存</h5>
+<p>由应用程序构建代码占用的内存，包括所有共享库（shared libraries）和程序集（assemblies），无论是托管（Managed）还是原生（Native）的。目前，这个数值在所有平台上的报告还不完全一致。</p>
+<p>你可以通过以下方式减少这部分内存使用：使用更高级别的代码剥离（Code Stripping Level，如 IL2CPP 下的 Stripping Level 设置） 减少对不同模块和库的依赖</p>
+</blockquote>
+<h4 id="Graphics-Estimated-（图形相关内存（估算））">Graphics (Estimated)（图形相关内存（估算））</h4>
+<p><img src="/assets/image-20250828210407-5nca66v.png" alt="image"></p>
+<blockquote>
+<h5 id="图形相关（估算）">图形相关（估算）</h5>
+<p>指的是图形驱动和 GPU 为渲染你的应用程序而使用的估算内存。</p>
+<p>这些信息是基于 Unity 内部对图形资源分配情况的追踪得出的，包括：RenderTexture、Texture、Mesh、Animation 以及其他通过 Unity 或脚本 API 分配的图形缓冲区（Graphics Buffers）你可以在 All Of Memory 标签页中进一步查看这些图形资源。</p>
+<p>注意事项： 并不是所有图形对象的内存都会体现在这个分类中。例如：启用了 Read/Write 的图形资源，在 CPU 内存中需要保留一份副本，这会使它们的总内存使用量翻倍。（之后会教大家如何排查 Read/Write 造成的问题（#TODO#）） 可以通过 Unity Objects 标签页来查看 Unity 对象的总内存使用情况。 此外，并非所有此类资源的内存都实际存在于 GPU 中。 Memory Profiler 无法准确获取图形资源是否驻留在 GPU 内存中的信息，因此这里只能提供估算值。</p>
+</blockquote>
+<p>建议： 如果你在分析图形内存暴涨（如纹理、RT 多开-创建过多的RenderTexture）的问题，这段内容非常关键。<br>
+一般屏幕后处理、相机截图、多视角渲染、水面反射、投影、UI特效都会生成 RenderTexture 渲染纹理</p>
+<h4 id="Untracked-（未标记（追踪）的内存）">Untracked* （未标记（追踪）的内存）</h4>
+<p><img src="/assets/image-20250828210727-4ug4lfi.png" alt="image"></p>
+<blockquote>
+<h5 id="未标记（追踪）的内存">未标记（追踪）的内存</h5>
+<p>Untracked Memory（未追踪内存） 这部分内存是 Memory Profiler 尚无法追踪或归类的内存，原因可能包括：</p>
+<ol>
+<li>平台特有的内存使用机制</li>
+<li>Memory Profiler 的追踪能力尚未覆盖</li>
+<li>某些潜在的 bug 或内存记录漏洞</li>
+</ol>
+<p>这部分 Untracked 内存的计算方式如下：<br>
+Memory Profiler 会分析整个 Unity 进程中已分配和常驻（resident）的内存区域，然后从中减去 Unity 已知的托管内存和原生内存分配器所使用的区域，剩下的部分就是无法归类的“未追踪”内存。要进一步分析这些未追踪内存，你需要使用平台专用的底层 Profiler（例如 Xcode Instruments、Android Studio Profiler 等）。</p>
+<p>补充说明： 在计算 Untracked 内存的 “Allocated Size（已分配大小）” 时， 我们还会从中减去 Graphics（Estimated）图形内存的大小，因为：我们知道图形设备会申请某些类型的内存区域，但无法精确追踪每个图形资源具体映射到哪个内存块，所以我们直接从图形设备相关区域中减去 Graphics（Estimated）的总值，若找不到图形区域，则从最大的几个内存区域中扣减这部分图形估算值</p>
+</blockquote>
+<p>建议：</p>
+<ol>
+<li>想分析图形内存的详细情况， 用 Allocated Memory 视图</li>
+<li>想准确查看 Untracked 未追踪部分 占用了多少内存、是否常驻；用 Resident Memory（常驻内存） 或 Allocated and Resident（分配和常驻）模式</li>
+<li>如果你遇到 Untracked 非常大，建议结合平台原生工具（如 Xcode Instruments 的 VM Tracker、Android 的 meminfo）来做进一步排查</li>
+</ol>
+<h3 id="Managed-Heap-Utilization（托管堆使用率）">Managed Heap Utilization（托管堆使用率）</h3>
+<p>主要作用：<br>
+显示 Unity 脚本虚拟机（Scripting VM）所管理的内存的详细分类<br>
+可以用于分析 C# 脚本对象的内存使用效率<br>
+可以结合 GC 分析是否有频繁回收/堆扩容等问题</p>
+<p><img src="/assets/image-20250829101152-5blckt0.png" alt="image"></p>
+<p>其中包括：</p>
+<ol>
+<li>
+<p>Empty Heap Space（空闲堆空间）</p>
+<p>可能是之前被对象使用过，或者在上一次堆扩展时预留的空间<br>
+托管堆中空闲区域，可能是就对象被GC清理后的空位，堆扩容后的未使用空间</p>
+</li>
+<li>
+<p>Objects（托管对象占用内存）</p>
+<p>托管堆内存，正在被引用的托管对象，占用堆内存，GC 不会清除的内存</p>
+</li>
+<li>
+<p>Virtual Machine（虚拟机使用的内存）</p>
+<p>脚本运行时（Mono / IL2CPP）自身占用的非对象内存，比如类型元数据、静态字段、泛型支持等</p>
+</li>
+</ol>
+<p>在排查问题时，主要关注：</p>
+<ol>
+<li>
+<p>托管对象（Managed Objects）所占内存，</p>
+<p>对比多个快照，看是不是存在对象一直不被释放，此时可能存在内存泄漏。<br>
+或者看看对象创建速度是否超过了 GC 回收速度。</p>
+</li>
+<li>
+<p>空闲堆内存在 GC 触发后，是否有明显回收、收缩（即内存被释放出来）</p>
+</li>
+<li>
+<p>虚拟机内存是否不断增大</p>
+<p>如果存在可能是元数据膨胀或静态字段泄漏，即静态字段持有大量对象未释放，特别注意单例</p>
+</li>
+<li>
+<p>不要单独只看一个数字，要结合堆大小、使用率、类型分布、引用关系综合判断</p>
+</li>
+</ol>
+<p>比较观察：</p>
+<ol>
+<li>
+<p>对比 托管对象所占内存 和 堆内存</p>
+<p>对象很少但堆很大，说明堆膨胀，可能存在内存碎片</p>
+</li>
+<li>
+<p>Empty Heap Space（空闲堆空间）高，已 GC 但堆未收缩，可能是 GC 没触发或碎片多</p>
+</li>
+<li>
+<p>Virtual Machine 增长快 泛型类过多或静态字段持有大对象未释放</p>
+</li>
+</ol>
+<p>我们可以进行多次快照对比</p>
+<p>点击内存占用比例条的不同部分，在右侧的信息面板可以看到如下内容：</p>
+<h4 id="Empty-Heap-Space（空闲堆空间）">Empty Heap Space（空闲堆空间）</h4>
+<p><img src="/assets/image-20250829101634-of3gmnw.png" alt="image"></p>
+<blockquote>
+<h5 id="空闲堆空间">空闲堆空间</h5>
+<p>这个快照版本尚未能准确标识出哪个托管堆区段（Managed Heap Section）是当前活动的（Active）。因此，系统假设虚拟地址值最高的那个连续托管堆区段是活动的，这个判断大多数情况下是正确的。图中的进度条显示的是该活动区段中未使用内存的数量。</p>
+<p>当需要为新的托管对象（Managed Objects）分配内存时：</p>
+<ol>
+<li>首先会检查当前活动的堆区段中是否有空闲空间，这是分配内存最快的方式（直接连续分配）</li>
+<li>如果活动堆区段中没有足够的连续空闲空间，脚本虚拟机（Scripting VM）就需要扫描“空闲块列表”和其他堆区段来寻找可用空间，这一步会更慢一些。</li>
+<li>如果还是找不到合适的位置，则会触发 垃圾回收（<code>GC.Collection</code>）</li>
+</ol>
+<p>而 GC 这一步分两种情况：</p>
+<ul>
+<li>
+<p>如果启用了 增量式 GC（Incremental GC）：</p>
+<p>在找不到空间时，会立刻分配一个新的堆区段（扩展堆）来存放新对象，与此同时，垃圾回收会异步地进行</p>
+</li>
+<li>
+<p>如果未启用增量式 GC：</p>
+<p>系统会先尝试做一次完整的 GC，如果回收后仍然没有足够空间，才会新分配堆区段。另外，这部分内存中也可能仍然包含一些已“被放弃”的对象，即：上一次 GC 后已无引用的对象，但尚未被实际清理，等待下次 GC 时才会被回收。</p>
+</li>
+</ul>
+</blockquote>
+<p>重点排查：</p>
+<ol>
+<li>堆有没有用满</li>
+<li>是不是频繁 GC 或膨胀</li>
+<li>有没有“看起来未使用但没被释放”的对象</li>
+</ol>
+<h4 id="Objects（托管对象占用内存）">Objects（托管对象占用内存）</h4>
+<p><img src="/assets/image-20250829102222-wufc9v9.png" alt="image"></p>
+<blockquote>
+<h5 id="对象">对象</h5>
+<p>用于托管对象（Managed Objects）的内存，即那些由 C# 脚本代码中定义的类型创建和使用的对象所占用的内存。这个数字仅包括仍然被引用或保持存活状态的对象的内存。尚未被回收器 (Garbage Collector) 收集的托管对象，可能位于 活动堆区段的空闲区域（Empty Active / Fragmented Heap Space） 中。</p>
+</blockquote>
+<p>重点：<br>
+这里统计的仅是“活跃托管对象”的内存使用，不会包括已失去引用但尚未 GC 的部分<br>
+垃圾回收尚未处理的对象，虽然没有引用，但仍可能暂时占用堆空间（在空闲或碎片区域里）<br>
+因此，Managed Objects 的数值只是堆使用的一部分，并不能代表堆中的全部存在内容</p>
+<h4 id="Virtual-Machine（虚拟机使用的内存）">Virtual Machine（虚拟机使用的内存）</h4>
+<p><img src="/assets/image-20250829102441-yn72y4d.png" alt="image"></p>
+<blockquote>
+<h5 id="虚拟机">虚拟机</h5>
+<p>虚拟机内存（Virtual Machine memory） 包括 Mono 或 IL2CPP 运行所需的数据，例如：</p>
+<ol>
+<li>每一个被使用的托管类型（Managed Type）的 类型元数据（Type MetaData）</li>
+<li>字段与函数的定义（虚函数表 vTable）</li>
+<li>静态字段的数据</li>
+<li>泛型类型所需的支持数据</li>
+</ol>
+<p>当 Memory Profiler 捕获快照时，它会初始化在托管堆中发现的所有类型，并因此将这些类型的元数据“膨胀”成完整数据结构（inflate）。因此，在一次分析会话中，第一次和第二次快照之间虚拟机内存的增长，通常主要是由于这些类型被初始化导致的。</p>
+<p>尚未初始化的类型是指：没有任何代码访问过它们的类型相关数据，因此它们的静态构造函数（无论是显式的还是隐式的）尚未被调用。</p>
+<p>这种情况通常出现在数组或泛型集合类中 —— 虽然集合被创建并使用了，但其内部类型数据还没有被实际访问。</p>
+</blockquote>
+<p>重点：<br>
+Memory Profiler 抓快照时，会“触发”类型初始化，让一些原本没被使用的静态类型元数据加载进来，<br>
+这会让第二次快照比第一次“看起来多了虚拟机内存”，其实是因为被初始化了，<br>
+如果你在分析快照差异，看到 VM 内存上涨，不一定是泄漏，可能只是因为多扫了一些静态字段或泛型类</p>
+<h3 id="Top-Unity-Objects-Categories（Unity-对象内存占用最多的类型分类）">Top Unity Objects Categories（Unity 对象内存占用最多的类型分类）</h3>
+<p>主要作用：<br>
+显示在当前快照中，是哪些 Unity 类型对象占用最多内存<br>
+是我们针对某类型内容优化的数据依据之一</p>
+<p><img src="/assets/image-20250829103113-r3y1r09.png" alt="image"></p>
+<ul>
+<li>Texture2D：静态纹理（材质贴图）所占内存空间</li>
+<li>RenderTexture：渲染纹理（屏幕后处理、相机目标输出、屏幕截图、倒影、UI等等）所占内存空间</li>
+<li>Shader：着色器所占内存，包含着色器变体</li>
+<li>Mesh：模型网格数据</li>
+<li>AnimationClip：动画切片数据</li>
+<li>SceneVisibilityState：Unity编辑器用来记录“场景可见性“的数据结构，仅在编辑器中会看到</li>
+<li>MonoManager：内部对象，非暴露类，Unity 引擎内部的脚本生命周期管理器</li>
+<li>Others：其他，未归类到已知类型的原生对象，比如原生插件对象等等</li>
+</ul>
+<p>这些具体信息，都可以前往 Unity Objects 页签查看详细信息</p>
+<h2 id="Unity-Objects（Unity-对象页签）">Unity Objects（Unity 对象页签）</h2>
+<p>快速定位 Unity 对象内存占用的类型和具体实例</p>
+<ol>
+<li>查找内存占用最大的资源，判断这些资源是否可以压缩或者延迟加载等</li>
+<li>查找重复加载的资源</li>
+<li>查看运行时创建但是没有释放的资源</li>
+<li>查看脚本对象是否滞留内存</li>
+</ol>
+<p>常见的一些问题：</p>
+<ol>
+<li>纹理贴图内存过高：可以检查下是否重复加载，未压缩，是否开启 Read / Write</li>
+<li>相同资源是否多次加载：Name 相同，但是 InstanceID 不同的对象</li>
+<li>动态资源未释放：脚本中没有及时释放材质、纹理等</li>
+<li>多个组件持有大资源引用</li>
+<li>​<code>MonoBehaviour</code> 组件长期驻留，是否存在脚本组件内存泄漏（占着引用没使用）</li>
+</ol>
+<p>等等</p>
+<h3 id="界面上的功能参数">界面上的功能参数</h3>
+<p><img src="/assets/image-20250829105516-qa9mri1.png" alt="image"></p>
+<ul>
+<li>
+<p>A：对所有 Unity 对象所占内存的组成进行详细分类分析</p>
+<p><img src="/assets/image-20250829105804-fc8z0um.png" alt="image"></p>
+<ul>
+<li>
+<p>Allocated Memory（已分配内存）</p>
+<p>显示 Unity 已向操作系统申请的内存总量（可能在虚拟内存或被操作系统回收），一般比 驻留内存 大一些<br>
+主要作用： 用来分析对象本身理论占用的内存量，可以快速判断大内存对象</p>
+</li>
+<li>
+<p>Resident Memory on Device（驻留的内存）</p>
+<p>实际驻留在设备物理内存中的部分，表示当前确实占据了内存，排除了后台运行或系统清理后的内容，反应对象现在是否还在内存中<br>
+主要作用： 在设备内存紧张时判断哪些对象仍常驻，可用于作为优化运行时内存压力的重要依据</p>
+</li>
+<li>
+<p>Allocated and Resident Memory on Device（分配和驻留的内存）</p>
+<p>综合视图，显示对象分配的总内存以及在设备内存中的驻留情况，通常是最全面的视角。可以直观看出分类了多少，但真的再用的有多少<br>
+主要作用： 找出大但驻留少的资源（说明是临时性的，加载后没用），找出分配不大但全部常驻的资源（说明常用）</p>
+</li>
+</ul>
+</li>
+<li>
+<p>B：所选内容的详细信息（点击某个大类时显示内容）</p>
+<p><img src="/assets/image-20250829110014-t2aty1u.png" alt="image"></p>
+<ul>
+<li>
+<p>Managed Type：对象的 C# 类型名</p>
+</li>
+<li>
+<p>Managed Assembly：该对象所属程序集</p>
+</li>
+<li>
+<p>Native Type：Unity原生对象的类型名称</p>
+</li>
+<li>
+<p>Children Count：该对象的子对象数量（它引用了多少其他对象）</p>
+<blockquote>
+<p>注意：不是场景层级的子物体，而是内存引用结构中的“下层持有对象”，比如一个材质球可能持有一个着色器和多个纹理</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li>
+<p>C：对象内存占用情况</p>
+<p><img src="/assets/image-20250829110132-qqzfkkw.png" alt="image"></p>
+<ul>
+<li>Description：对象简要说明，一般是对象名称</li>
+<li>Allocated Size：该对象在 Unity 进程内部分配器中记录的总分配内存大小</li>
+<li>Resident Size：该对象实际驻留在设备物理内存中的内存大小</li>
+<li>%Impact：该对象占整体内存的百分比</li>
+<li>Native Size：对象在 Unity 原生内存（C++层）中分配的大小，比如纹理、材质、网格这些大多都是原生对象</li>
+<li>Managed Size：对象在托管内存（C#）中占用的大小， 比如 <code>MonoBehaviour</code>​、<code>ScriptableObject</code>、托管数组、类等对象</li>
+<li>Graphics Size：对象在 GPU 图形内存（显存）中占用的估算大小， 比如纹理的像素，RenderTexture 的 RT 缓冲区，Mesh 的顶点/索引缓冲</li>
+</ul>
+<p>该表内的大类都可以展开查看每个类型下哪些资源占内存最多，并且每个子项可以点击，右侧会显示该资源的引用情况和，不同类型资源显示详细数据内容不同</p>
+<p><img src="/assets/image-20250829110852-n8vhvrw.png" alt="image"></p>
+</li>
+</ul>
+<h3 id="驻留内存（Resident-Memory）">驻留内存（Resident Memory）</h3>
+<p>真正对设备内存造成压力的，其实是驻留内存（Resident Memory）<br>
+因为它才是实际驻留在物理内存（RAM）中的部分，也就是说系统此刻必须为它分配真实的内存</p>
+<p>一旦超过物理内存上限，就容易造成：</p>
+<ol>
+<li>系统强制垃圾回收，导致卡顿，掉帧</li>
+<li>内存溢出（Out of Memory，简称 OOM），系统直接强行杀掉进程</li>
+</ol>
+<p>总结：驻留内存决定了程序的生死</p>
+<h3 id="已分配内存（Allocated-Memory）">已分配内存（Allocated Memory）</h3>
+<p>数值上可以超过物理限制，不会导致问题</p>
+<p>举例说明：<br>
+比如申请了 6GB 内存，但其中只有 2.5GB 驻留在 RAM 中，<br>
+就算操作系统没有 6GB 可用内存，依然会“允许”你申请成功（登记虚拟地址空间），它会允许你申请成功，<br>
+但是如果你真正想要驻留超过上限的内存，系统会毫不留情的干掉你</p>
+<p>总结：申请不是问题，真正驻留、访问才决定生死</p>
+<p>既然已分配内存（Allocated Memory）不决定生死，那为什么还要统计它？<br>
+原因：它虽不决定“立刻死亡”，但决定“健康状况和崩溃风险趋势”</p>
+<p>统计它的主要目的：</p>
+<ol>
+<li>
+<p>提前预警 内存溢出 风险</p>
+<p>已分配内存很高（Allocated Memory）意味着迟早会驻留，OOM 是时间问题</p>
+</li>
+<li>
+<p>衡量资源使用的总体趋势</p>
+<p>有些内存你还没用到或暂时没驻留，但它反映了程序在“计划”使用的资源规模，是设计是否合理的量化依据</p>
+</li>
+<li>
+<p>识别内存泄漏</p>
+<p>如果 已分配内存（Allocated Memory）一直上涨却没有回落，极可能是资源没有释放或发生了内存泄漏（特别是原生资源或 C++ 插件）</p>
+</li>
+<li>
+<p>优化内存分布结构</p>
+<p>不合理的内存使用分布（如 纹理相关 占一半，托管堆相关 占很少），可以通过观察 已分配内存（Allocated Memory） 各子类分布来发现</p>
+</li>
+<li>
+<p>与平台限制进行对比</p>
+<p>虽然当前驻留量没爆，但你可能分配了超过平台上限的内存（比如 Android 中 4GB 上限），一旦压力加大就会踩雷</p>
+</li>
+</ol>
+<p>再次总结：</p>
+<ul>
+<li>驻留内存（Resident Memory）：决定生死（是否内存溢出）</li>
+<li>已分配内存（Allocated Memory）：决定体质（是否健康）</li>
+</ul>
+<p>虽然最终关心的是 内存溢出 是否发生，但通过监控已分配内存（Allocated Memory）可以提前发现问题、指导设计和优化，从而防患于未然！</p>
+<h2 id="All-Of-Memory（所有内存页签）">All Of Memory（所有内存页签）</h2>
+<p>它是这个工具中最强大、最底层、最全面的页签，它将内存分配按照分配方式进行了分类</p>
+<p>我们着重要分析的内容有以下几点：</p>
+<ol>
+<li>哪些模块分配了最多内存</li>
+<li>哪些内存是托管的，哪些是原生的，哪些是图形的</li>
+<li>那些内存增长但没有释放</li>
+<li>是否出现了内存碎片、预留过多、未追踪内存暴涨等问题</li>
+</ol>
+<p>着重应该关注的内存类别为：</p>
+<ul>
+<li>托管内存：排查托管堆占用内存是否过高，是否有 GC 问题</li>
+<li>资源所占内存：排查资源对象（纹理、网格、材质球）是否重复加载或者未释放</li>
+<li>图形内存：查看纹理、渲染纹理、网格的显存是否有异常，是否因为开启 Read / Write 有双份内存</li>
+<li>原生分配：排查 <code>NativeArray</code>​、<code>UnsafeUtility.Malloc</code> 是否有泄漏，特别是使用 DOTS 时</li>
+<li>未追踪内存：查看是否有无法追踪的大块内存，这往往是由于驱动、平台问题造成的潜在泄漏</li>
+<li>预留内存：分析内存碎片或预留过高的区域，确认是否系统内存无法被释放</li>
+</ul>
+<h3 id="界面上的功能参数-2">界面上的功能参数</h3>
+<p><img src="/assets/image-20250829112102-1c2f36y.png" alt="image"></p>
+<ul>
+<li>
+<p>A：Unity 所能是被和追踪到的所有内存的详细分类分析</p>
+<p><img src="/assets/image-20250829112503-405ilcp.png" alt="image"></p>
+<ul>
+<li>
+<p>Allocated Memory（已分配内存）</p>
+<p>显示 Unity 已向操作系统申请的内存总量（可能在虚拟内存或被操作系统回收），一般比 驻留内存 大一些<br>
+主要作用： 用来分析对象本身理论占用的内存量，可以快速判断大内存对象</p>
+</li>
+<li>
+<p>Resident Memory on Device（驻留的内存）</p>
+<p>实际驻留在设备物理内存中的部分，表示当前确实占据了内存，排除了后台运行或系统清理后的内容，反应对象现在是否还在内存中<br>
+主要作用： 在设备内存紧张时判断哪些对象仍常驻，可用于作为优化运行时内存压力的重要依据</p>
+</li>
+<li>
+<p>Allocated and Resident Memory on Device（分配和驻留的内存）</p>
+<p>综合视图，显示对象分配的总内存以及在设备内存中的驻留情况，通常是最全面的视角。可以直观看出分类了多少，但真的再用的有多少<br>
+主要作用： 找出大但驻留少的资源（说明是临时性的，加载后没用），找出分配不大但全部常驻的资源（说明常用）</p>
+</li>
+</ul>
+</li>
+<li>
+<p>B：所选内容的详细信息</p>
+<ul>
+<li>
+<p>当点击某个大类下具体的某种类型（托管类型）时，右侧信息面板显示内容如下：</p>
+<p><img src="/assets/image-20250829112917-1uhqn4q.png" alt="image"></p>
+<ul>
+<li>
+<p>Managed Type：对象的 C# 类型名</p>
+</li>
+<li>
+<p>Managed Assembly：该对象所属程序集</p>
+</li>
+<li>
+<p>Native Type：Unity原生对象的类型名称</p>
+</li>
+<li>
+<p>Children Count：该对象的子对象数量（它引用了多少其他对象）</p>
+<blockquote>
+<p>注意：不是场景层级的子物体，而是内存引用结构中的“下层持有对象”，比如一个材质球可能持有一个着色器和多个纹理</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li>
+<p>当点击某个大类时，右侧信息面板显示会显示该大类代表的含义</p>
+<p><img src="/assets/image-20250829113510-kkcyqdb.png" alt="image"></p>
+<p>它显示的内容和 Summary 页签中的 Allocated Memory Distribution 部分对各个内存类型的描述一致<br>
+因此，可以直接参考 Allocated Memory Distribution（已分配内存分布）内对各个内存类型的描述，这里不再阐述</p>
+</li>
+</ul>
+</li>
+<li>
+<p>C：内存分配详细情况</p>
+<p><img src="/assets/image-20250829112438-fq0z5k0.png" alt="image"></p>
+<ul>
+<li>Description：描述；内存分类名或功能模块简要说明</li>
+<li>Allocated Size：已分配内存大小</li>
+<li>Resident Size：该对象实际驻留在设备物理内存中的内存大小</li>
+<li>%Impact：这项占整个快照内存总量的百分比</li>
+</ul>
+</li>
+</ul>
+<h3 id="All-Of-Memory（所有内存）Unity-Objects（Unity-对象）页签区别">All Of Memory（所有内存）Unity Objects（Unity 对象）页签区别</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"></th>
+<th style="text-align:left">Unity Objects（Unity 对象页签）</th>
+<th style="text-align:left">All Of Memory（所有内存页签）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">关注角度</td>
+<td style="text-align:left">按 Unity 对象类型分类，如：Texture、RT、Shader 等</td>
+<td style="text-align:left">按内存类别或区域类型分类，如：Native、Managed、Graphics</td>
+</tr>
+<tr>
+<td style="text-align:left">分析角度</td>
+<td style="text-align:left">分析指定类型对象占用内存情况</td>
+<td style="text-align:left">分析 Unity 整体内存结构、分配和驻留情况</td>
+</tr>
+<tr>
+<td style="text-align:left">排查方向</td>
+<td style="text-align:left">找出哪个资源占用最多</td>
+<td style="text-align:left">分析整体内存健康情况</td>
+</tr>
+<tr>
+<td style="text-align:left">定位问题</td>
+<td style="text-align:left">资源暴涨、泄漏的原因等</td>
+<td style="text-align:left">内存碎片、未归类区域、驻留异常等</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>
+<p>Unity Objects（Unity对象）页签是 <strong>面向对象</strong> 去分析内存使用情况</p>
+<p>更适合排查资源、对象等内存问题，它更像是一个资源仓库清单，列出了每类物品（资源）有多少，占用了多少内存</p>
+</li>
+<li>
+<p>All Of Memory（所有内存）页签是 <strong>面向内存类型</strong> 去分析内存使用情况</p>
+<p>更适合排查系统内存问题，它更像是一个仓库布局图，列出了哪个区域占了多少，是否堆积，是否有空间被浪费</p>
+</li>
+</ul>
+<p>‍</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://enjoysevenliu.github.io">文KRIFE齐</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://enjoysevenliu.github.io/2025/08/28/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL2%E2%80%94%E2%80%94Unity%20Profiler/UPL2-6%E2%80%94%E2%80%94Memory%20Profiler%20Package/">https://enjoysevenliu.github.io/2025/08/28/Unity就业路线学习笔记/UP——Unity性能优化笔记/UPL2——Unity Profiler/UPL2-6——Memory Profiler Package/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://enjoysevenliu.github.io" target="_blank">文KRIFE齐的博客</a>！</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/img/Blue_Ice.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2025/08/29/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL2%E2%80%94%E2%80%94Unity%20Profiler/UPL2-7%E2%80%94%E2%80%94Audio%20%E6%A8%A1%E5%9D%97/" title="UPL2-7——Audio 模块"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">UPL2-7——Audio 模块</div></div><div class="info-2"><div class="info-item-1">UPL2-7——Audio 模块  关于 Unity 自带的音频播放相关，详见：U1L14——音效系统相关  Audio 模块 Audio（音频）模块 是用来分析和监控音频系统的性能表现的，包括音频播放、混音、音量、CPU 占用等关键信息 在游戏中如果出现以下问题时，可以着重观察这里的内容：  声音异常（音量小、失真、播放顺序错误等等）、缺失 声音卡顿、延迟、音画不同步 声音内存占用过高  等等 总之，几乎所有和音频相关的问题，我们都可以通过该模块进行排查 Audio 中各参数功能的含义和作用    音效（Audio）分析窗口    Playing Audio Sources：场景中在该帧播放的音频源的总数。此信息可用于监测音频是否过载。 该帧播放的音频源的总数超过 20~30 个时，在移动端可能导致声音丢失或性能下降 如果你听不到声音、某些音效丢失，可以看这里是否 AudioSource 数量太多   Audio Voices：该帧中使用的音频（FMOD 通道）语音数 若 AudioSource 多但 Voices 少，说明部分声音被“抢占”或“没被调度”   Total...</div></div></div></a><a class="pagination-related" href="/2025/08/15/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL2%E2%80%94%E2%80%94Unity%20Profiler/UPL2-5%E2%80%94%E2%80%94Memory%20%E6%A8%A1%E5%9D%97/" title="UPL2-5——Memory 模块"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">UPL2-5——Memory 模块</div></div><div class="info-2"><div class="info-item-1">UPL2-5——Memory 模块 Memory 模块 Memory（内存）模块是 Unity 中用于监视 内存使用情况 的关键工具 它能帮助你识别哪些资源在占用大量内存，是否存在内存泄漏或垃圾回收频繁等问题 游戏开发中会造成内存开销的主要有：  纹理贴图 网格 音频/视频 动画 材质球和 Shader C# 托管堆内存 场景中的各 GameObject 以及各组件  等等 在游戏中如果出现以下问题时，可以着重观察这里的内容：   游戏卡顿、掉帧 表现：游戏突然变慢、不定期小卡顿、操作延迟等 可能原因：内存不足导致系统频繁进行 垃圾回收（GC），降低游戏帧率   闪退、崩溃 表现：玩着玩着突然黑屏退出、特定场景（如加载大地图）崩溃 可能原因：设备分配不出更多内存，系统强制杀掉进程   加载时间变长 表现：加载界面等待时间变长，场景切换明显卡顿 可能原因：加载资源时需要更多内存，系统调度与 GC 频繁运行。   发热严重、掉电快 表现：手机发烫严重、电池消耗快 可能原因：设备内存使用达到极限，系统/游戏频繁调度内存资源，CPU、GPU...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/Blue_Ice.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">文KRIFE齐</div><div class="author-info-description">Unity就业路线的笔记终于更新完了！新年快乐！</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1168</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">141</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/enjoySevenLIU"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/enjoySevenLIU" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">博客修好了，继续学习，CSharp进阶也迁移完毕了，接下来尽快把Unity Shader给啃完，年末给博客好好整修一下</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">UPL2-6——Memory Profiler Package</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">2.</span> <span class="toc-text">Memory Profiler Package</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Memory-Profiler-Package-%E5%AF%B9%E4%BA%8E%E6%88%91%E4%BB%AC%E7%9A%84%E6%84%8F%E4%B9%89"><span class="toc-number">2.1.</span> <span class="toc-text">Memory Profiler Package 对于我们的意义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85-Memory-Profiler-Package"><span class="toc-number">2.2.</span> <span class="toc-text">安装 Memory Profiler Package</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9D%E5%A7%8B%E7%8A%B6%E6%80%81-Memory-Profiler-Package-%E7%AA%97%E5%8F%A3"><span class="toc-number">2.3.</span> <span class="toc-text">初始状态 Memory Profiler Package 窗口</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Summary%EF%BC%88%E6%80%BB%E7%BB%93%E6%A6%82%E8%A6%81%E9%A1%B5%E7%AD%BE%EF%BC%89"><span class="toc-number">2.4.</span> <span class="toc-text">Summary（总结概要页签）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Memory-Usage-On-Device%EF%BC%88%E8%AE%BE%E5%A4%87%E4%B8%8A%E7%9A%84%E5%86%85%E5%AD%98%E4%BD%BF%E7%94%A8%E6%83%85%E5%86%B5%EF%BC%89"><span class="toc-number">2.4.1.</span> <span class="toc-text">Memory Usage On Device（设备上的内存使用情况）</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%AE%BE%E5%A4%87%E4%B8%8A%E7%9A%84%E5%86%85%E5%AD%98%E4%BD%BF%E7%94%A8%E6%83%85%E5%86%B5"><span class="toc-number">2.4.1.0.1.</span> <span class="toc-text">设备上的内存使用情况</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E5%B7%B2%E5%88%86%E9%85%8D%E5%86%85%E5%AD%98"><span class="toc-number">2.4.1.0.1.1.</span> <span class="toc-text">已分配内存</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E8%AE%BE%E5%A4%87%E4%B8%8A%E9%A9%BB%E7%95%99%E5%86%85%E5%AD%98%E6%80%BB%E9%87%8F"><span class="toc-number">2.4.1.0.1.2.</span> <span class="toc-text">设备上驻留内存总量</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Allocated-Memory-Distribution%EF%BC%88%E5%B7%B2%E5%88%86%E9%85%8D%E5%86%85%E5%AD%98%E5%88%86%E5%B8%83%EF%BC%89"><span class="toc-number">2.4.2.</span> <span class="toc-text">Allocated Memory Distribution（已分配内存分布）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Native%EF%BC%88%E5%8E%9F%E7%94%9F%E5%86%85%E5%AD%98%EF%BC%89"><span class="toc-number">2.4.2.1.</span> <span class="toc-text">Native（原生内存）</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%8E%9F%E7%94%9F%E5%86%85%E5%AD%98"><span class="toc-number">2.4.2.1.1.</span> <span class="toc-text">原生内存</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Managed%EF%BC%88%E6%89%98%E7%AE%A1%E5%86%85%E5%AD%98%EF%BC%89"><span class="toc-number">2.4.2.2.</span> <span class="toc-text">Managed（托管内存）</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%89%98%E7%AE%A1%E5%86%85%E5%AD%98"><span class="toc-number">2.4.2.2.1.</span> <span class="toc-text">托管内存</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Executables-Mapped%EF%BC%88%E5%8F%AF%E6%89%A7%E8%A1%8C%E6%96%87%E4%BB%B6%E5%92%8C%E6%98%A0%E5%B0%84%E5%86%85%E5%AD%98%EF%BC%89"><span class="toc-number">2.4.2.3.</span> <span class="toc-text">Executables &amp; Mapped（可执行文件和映射内存）</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%8F%AF%E6%89%A7%E8%A1%8C%E6%96%87%E4%BB%B6%E5%92%8C%E6%98%A0%E5%B0%84%E5%86%85%E5%AD%98"><span class="toc-number">2.4.2.3.1.</span> <span class="toc-text">可执行文件和映射内存</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Graphics-Estimated-%EF%BC%88%E5%9B%BE%E5%BD%A2%E7%9B%B8%E5%85%B3%E5%86%85%E5%AD%98%EF%BC%88%E4%BC%B0%E7%AE%97%EF%BC%89%EF%BC%89"><span class="toc-number">2.4.2.4.</span> <span class="toc-text">Graphics (Estimated)（图形相关内存（估算））</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%9B%BE%E5%BD%A2%E7%9B%B8%E5%85%B3%EF%BC%88%E4%BC%B0%E7%AE%97%EF%BC%89"><span class="toc-number">2.4.2.4.1.</span> <span class="toc-text">图形相关（估算）</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Untracked-%EF%BC%88%E6%9C%AA%E6%A0%87%E8%AE%B0%EF%BC%88%E8%BF%BD%E8%B8%AA%EF%BC%89%E7%9A%84%E5%86%85%E5%AD%98%EF%BC%89"><span class="toc-number">2.4.2.5.</span> <span class="toc-text">Untracked* （未标记（追踪）的内存）</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%9C%AA%E6%A0%87%E8%AE%B0%EF%BC%88%E8%BF%BD%E8%B8%AA%EF%BC%89%E7%9A%84%E5%86%85%E5%AD%98"><span class="toc-number">2.4.2.5.1.</span> <span class="toc-text">未标记（追踪）的内存</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Managed-Heap-Utilization%EF%BC%88%E6%89%98%E7%AE%A1%E5%A0%86%E4%BD%BF%E7%94%A8%E7%8E%87%EF%BC%89"><span class="toc-number">2.4.3.</span> <span class="toc-text">Managed Heap Utilization（托管堆使用率）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Empty-Heap-Space%EF%BC%88%E7%A9%BA%E9%97%B2%E5%A0%86%E7%A9%BA%E9%97%B4%EF%BC%89"><span class="toc-number">2.4.3.1.</span> <span class="toc-text">Empty Heap Space（空闲堆空间）</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%A9%BA%E9%97%B2%E5%A0%86%E7%A9%BA%E9%97%B4"><span class="toc-number">2.4.3.1.1.</span> <span class="toc-text">空闲堆空间</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Objects%EF%BC%88%E6%89%98%E7%AE%A1%E5%AF%B9%E8%B1%A1%E5%8D%A0%E7%94%A8%E5%86%85%E5%AD%98%EF%BC%89"><span class="toc-number">2.4.3.2.</span> <span class="toc-text">Objects（托管对象占用内存）</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AF%B9%E8%B1%A1"><span class="toc-number">2.4.3.2.1.</span> <span class="toc-text">对象</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Virtual-Machine%EF%BC%88%E8%99%9A%E6%8B%9F%E6%9C%BA%E4%BD%BF%E7%94%A8%E7%9A%84%E5%86%85%E5%AD%98%EF%BC%89"><span class="toc-number">2.4.3.3.</span> <span class="toc-text">Virtual Machine（虚拟机使用的内存）</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%99%9A%E6%8B%9F%E6%9C%BA"><span class="toc-number">2.4.3.3.1.</span> <span class="toc-text">虚拟机</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Top-Unity-Objects-Categories%EF%BC%88Unity-%E5%AF%B9%E8%B1%A1%E5%86%85%E5%AD%98%E5%8D%A0%E7%94%A8%E6%9C%80%E5%A4%9A%E7%9A%84%E7%B1%BB%E5%9E%8B%E5%88%86%E7%B1%BB%EF%BC%89"><span class="toc-number">2.4.4.</span> <span class="toc-text">Top Unity Objects Categories（Unity 对象内存占用最多的类型分类）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Unity-Objects%EF%BC%88Unity-%E5%AF%B9%E8%B1%A1%E9%A1%B5%E7%AD%BE%EF%BC%89"><span class="toc-number">2.5.</span> <span class="toc-text">Unity Objects（Unity 对象页签）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%95%8C%E9%9D%A2%E4%B8%8A%E7%9A%84%E5%8A%9F%E8%83%BD%E5%8F%82%E6%95%B0"><span class="toc-number">2.5.1.</span> <span class="toc-text">界面上的功能参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A9%BB%E7%95%99%E5%86%85%E5%AD%98%EF%BC%88Resident-Memory%EF%BC%89"><span class="toc-number">2.5.2.</span> <span class="toc-text">驻留内存（Resident Memory）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%B2%E5%88%86%E9%85%8D%E5%86%85%E5%AD%98%EF%BC%88Allocated-Memory%EF%BC%89"><span class="toc-number">2.5.3.</span> <span class="toc-text">已分配内存（Allocated Memory）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#All-Of-Memory%EF%BC%88%E6%89%80%E6%9C%89%E5%86%85%E5%AD%98%E9%A1%B5%E7%AD%BE%EF%BC%89"><span class="toc-number">2.6.</span> <span class="toc-text">All Of Memory（所有内存页签）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%95%8C%E9%9D%A2%E4%B8%8A%E7%9A%84%E5%8A%9F%E8%83%BD%E5%8F%82%E6%95%B0-2"><span class="toc-number">2.6.1.</span> <span class="toc-text">界面上的功能参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#All-Of-Memory%EF%BC%88%E6%89%80%E6%9C%89%E5%86%85%E5%AD%98%EF%BC%89Unity-Objects%EF%BC%88Unity-%E5%AF%B9%E8%B1%A1%EF%BC%89%E9%A1%B5%E7%AD%BE%E5%8C%BA%E5%88%AB"><span class="toc-number">2.6.2.</span> <span class="toc-text">All Of Memory（所有内存）Unity Objects（Unity 对象）页签区别</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/11/24/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL11%E2%80%94%E2%80%94%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/" title="UPL11——内存管理">UPL11——内存管理</a><time datetime="2025-11-24T08:07:56.000Z" title="发表于 2025-11-24 16:07:56">2025-11-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/11/24/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL10%E2%80%94%E2%80%94%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/UPL10-6%E2%80%94%E2%80%94AB%E5%8C%85%E5%92%8CResources%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/" title="UPL10-6——AB包和Resources资源优化">UPL10-6——AB包和Resources资源优化</a><time datetime="2025-11-24T07:46:31.000Z" title="发表于 2025-11-24 15:46:31">2025-11-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/11/24/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL10%E2%80%94%E2%80%94%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/UPL10-5%E2%80%94%E2%80%94%E6%9D%90%E8%B4%A8%E4%B8%8EShader%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/" title="UPL10-5——材质与Shader资源优化">UPL10-5——材质与Shader资源优化</a><time datetime="2025-11-24T07:09:51.000Z" title="发表于 2025-11-24 15:09:51">2025-11-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/11/24/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL10%E2%80%94%E2%80%94%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/UPL10-4%E2%80%94%E2%80%94%E7%BD%91%E6%A0%BC%E4%B8%8E%E5%8A%A8%E7%94%BB%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/" title="UPL10-4——网格与动画资源优化">UPL10-4——网格与动画资源优化</a><time datetime="2025-11-24T03:58:43.000Z" title="发表于 2025-11-24 11:58:43">2025-11-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/11/24/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL10%E2%80%94%E2%80%94%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/UPL10-3%E2%80%94%E2%80%94%E7%BA%B9%E7%90%86%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/" title="UPL10-3——纹理资源优化">UPL10-3——纹理资源优化</a><time datetime="2025-11-24T03:10:58.000Z" title="发表于 2025-11-24 11:10:58">2025-11-24</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2025 By 文KRIFE齐</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"><script>(async () => {
+  const showKatex = () => {
+    document.querySelectorAll('#article-container .katex').forEach(el => el.classList.add('katex-show'))
+  }
+
+  if (!window.katex_js_css) {
+    window.katex_js_css = true
+    await btf.getCSS('https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css')
+    if (false) {
+      await btf.getScript('https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js')
+    }
+  }
+
+  showKatex()
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>

@@ -1,0 +1,191 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>UPL7-5——碰撞体缩放，位置，质量 | 文KRIFE齐的博客</title><meta name="author" content="文KRIFE齐"><meta name="copyright" content="文KRIFE齐"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="UPL7-5——碰撞体缩放，位置，质量 尽量保证物理对象的缩放大小 尽量保证物理对象的缩放为(1,1,1)，原因： PhysX 的很多容差（接触偏移、皮肤宽度、求解步长等）是以 1unit &#x3D; 1m 的数量级进行默认调参的 把物体做得过小（&lt; ~0.1m）或过大（&gt; ~10–50m），更容易出现穿透、抖动、关节数值不稳等问题 非均匀缩放还会让碰撞几何与惯性张量的计算更复杂，稳定性更差">
+<meta property="og:type" content="article">
+<meta property="og:title" content="UPL7-5——碰撞体缩放，位置，质量">
+<meta property="og:url" content="https://enjoysevenliu.github.io/2025/10/11/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL7%E2%80%94%E2%80%94%E7%89%A9%E7%90%86%E5%BC%95%E6%93%8E%E7%9B%B8%E5%85%B3/UPL7-5%E2%80%94%E2%80%94%E7%A2%B0%E6%92%9E%E4%BD%93%E7%BC%A9%E6%94%BE%EF%BC%8C%E4%BD%8D%E7%BD%AE%EF%BC%8C%E8%B4%A8%E9%87%8F/index.html">
+<meta property="og:site_name" content="文KRIFE齐的博客">
+<meta property="og:description" content="UPL7-5——碰撞体缩放，位置，质量 尽量保证物理对象的缩放大小 尽量保证物理对象的缩放为(1,1,1)，原因： PhysX 的很多容差（接触偏移、皮肤宽度、求解步长等）是以 1unit &#x3D; 1m 的数量级进行默认调参的 把物体做得过小（&lt; ~0.1m）或过大（&gt; ~10–50m），更容易出现穿透、抖动、关节数值不稳等问题 非均匀缩放还会让碰撞几何与惯性张量的计算更复杂，稳定性更差">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://enjoysevenliu.github.io/img/Blue_Ice.png">
+<meta property="article:published_time" content="2025-10-11T02:44:30.000Z">
+<meta property="article:modified_time" content="2025-12-06T15:57:45.000Z">
+<meta property="article:author" content="文KRIFE齐">
+<meta property="article:tag" content="blog">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://enjoysevenliu.github.io/img/Blue_Ice.png"><link rel="shortcut icon" href="/img/Blue_Ice.png"><link rel="canonical" href="https://enjoysevenliu.github.io/2025/10/11/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL7%E2%80%94%E2%80%94%E7%89%A9%E7%90%86%E5%BC%95%E6%93%8E%E7%9B%B8%E5%85%B3/UPL7-5%E2%80%94%E2%80%94%E7%A2%B0%E6%92%9E%E4%BD%93%E7%BC%A9%E6%94%BE%EF%BC%8C%E4%BD%8D%E7%BD%AE%EF%BC%8C%E8%B4%A8%E9%87%8F/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'UPL7-5——碰撞体缩放，位置，质量',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  isShuoshuo: false
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/Blue_Ice.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1168</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">141</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/img/Blue_Ice.png" alt="Logo"><span class="site-name">文KRIFE齐的博客</span></a><a class="nav-page-title" href="/"><span class="site-name">UPL7-5——碰撞体缩放，位置，质量</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">UPL7-5——碰撞体缩放，位置，质量</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-10-11T02:44:30.000Z" title="发表于 2025-10-11 10:44:30">2025-10-11</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-12-06T15:57:45.000Z" title="更新于 2025-12-06 23:57:45">2025-12-06</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/">UP——Unity性能优化笔记</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL7%E2%80%94%E2%80%94%E7%89%A9%E7%90%86%E5%BC%95%E6%93%8E%E7%9B%B8%E5%85%B3/">UPL7——物理引擎相关</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1>UPL7-5——碰撞体缩放，位置，质量</h1>
+<h2 id="尽量保证物理对象的缩放大小">尽量保证物理对象的缩放大小</h2>
+<p>尽量保证物理对象的缩放为(1,1,1)，原因：</p>
+<p>PhysX 的很多容差（接触偏移、皮肤宽度、求解步长等）是以 1unit = 1m 的数量级进行默认调参的<br>
+把物体做得过小（&lt; ~0.1m）或过大（&gt; ~10–50m），更容易出现穿透、抖动、关节数值不稳等问题<br>
+非均匀缩放还会让碰撞几何与惯性张量的计算更复杂，稳定性更差<br>
+因此为了避免增加物理计算压力和稳定，建议保证物理对象的缩放不变</p>
+<h2 id="尽量保持对象不要距离世界空间原点位置过远">尽量保持对象不要距离世界空间原点位置过远</h2>
+<p>建议保持对象在世界空间的位置尽量接近世界空间原点 (0,0,0)，因为距离(0,0,0)越远，32 位浮点的小数精度越差，出现距离现象<br>
+距离现象会表现为渲染抖动、碰撞抖动、关节发疯等等</p>
+<p>比如：如果是超大场景的游戏，玩家可能走数万米，那么有可能在远处时产生奇怪的物理表现</p>
+<p>建议：我们可以秘密地将玩家传送到世界空间的原点（0,0,0），<br>
+可以在玩家 进入一个洞穴后出来时，把场景内所有对象（含地形、静态物、刚体、粒子、导航、音源等）整体平移一个偏移量<br>
+让玩家还是感受在原来的位置，但实际上，坐标已经回到原点附近</p>
+<h2 id="尽量保证合理的质量关系">尽量保证合理的质量关系</h2>
+<p>PhysX 默认把 Unity 中质量当千克（kg），推荐直接使用真实数量级（人 70–90kg，车 1200–2000kg）</p>
+<p>或者，在全局统一按常数缩放（例如全部质量 ÷ 80），但要保证所有相关力、阻尼、弹簧参数也随之成比例调整，避免相对量级被破坏</p>
+<p>我们应该尽量避免极端质量情况<br>
+比如</p>
+<ul>
+<li>极小的质量（小于 0.01 kg）</li>
+<li>极大的质量（大于 10000 kg）</li>
+</ul>
+<p>这样会容易产生数值问题，如果想表现那种大质量不能被推动的物体，可以使用静态碰撞器或者运动学刚体实现，而不是给一个超大质量</p>
+<p>常见交互体的 质量比 应尽量小一些，最好控制在 20:1 以下<br>
+因为过大的比值会导致冲量极端、速度骤变、解算不稳定等问题</p>
+<p>比如，一个人 80 kg，最好和自己产生碰撞对象的质量不要超过 1600 kg<br>
+如果存在显著质量差异的对象应尽可能使用碰撞层矩阵配置对他们进行剔除，避免出现问题</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://enjoysevenliu.github.io">文KRIFE齐</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://enjoysevenliu.github.io/2025/10/11/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL7%E2%80%94%E2%80%94%E7%89%A9%E7%90%86%E5%BC%95%E6%93%8E%E7%9B%B8%E5%85%B3/UPL7-5%E2%80%94%E2%80%94%E7%A2%B0%E6%92%9E%E4%BD%93%E7%BC%A9%E6%94%BE%EF%BC%8C%E4%BD%8D%E7%BD%AE%EF%BC%8C%E8%B4%A8%E9%87%8F/">https://enjoysevenliu.github.io/2025/10/11/Unity就业路线学习笔记/UP——Unity性能优化笔记/UPL7——物理引擎相关/UPL7-5——碰撞体缩放，位置，质量/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://enjoysevenliu.github.io" target="_blank">文KRIFE齐的博客</a>！</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/img/Blue_Ice.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2025/10/11/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL7%E2%80%94%E2%80%94%E7%89%A9%E7%90%86%E5%BC%95%E6%93%8E%E7%9B%B8%E5%85%B3/UPL7-6%E2%80%94%E2%80%94%E9%81%BF%E5%85%8D%E5%A4%8D%E6%9D%82%E7%A2%B0%E6%92%9E%E4%BD%93%E7%B1%BB%E5%9E%8B/" title="UPL7-6——避免复杂碰撞体类型"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">UPL7-6——避免复杂碰撞体类型</div></div><div class="info-2"><div class="info-item-1">UPL7-6——避免复杂碰撞体类型 碰撞器性能消耗排行 如果我们将 Unity 提供给我们的自带碰撞器进行性能消耗排行，那么得到的结果是这样的（前面的消耗更低，后面的消耗更高）   球体（Sphere Collider） 最省性能，因为数学公式简单，适合用于子弹、角色感知范围、球类等   胶囊体（Capsule Collider） 稍比球复杂，但依旧是数学公式计算，常用于角色、NPC 碰撞体   盒体（Box Collide） 稍微复杂一点，但仍然是矩阵与边界检测，性能非常高，场景里使用最广泛，比如地板、墙壁、方形物体   组合碰撞体（由多个原始碰撞体（Sphere、Box、Capsule）拼接） 开销比单一原始体略高，但仍远低于 网格碰撞器(Mesh Collider)   轮子碰撞体（WheelCollider） 它的本质不是网格求交，主要开销来自于垂直射线检测和摩擦、扭矩、制动相关的计算   地形碰撞体（Terrain Collider） 专门为地形系统优化的特殊碰撞器，内部使用高度图数据，而不是逐三角面，在大规模场景中比 Mesh Collider...</div></div></div></a><a class="pagination-related" href="/2025/10/09/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL7%E2%80%94%E2%80%94%E7%89%A9%E7%90%86%E5%BC%95%E6%93%8E%E7%9B%B8%E5%85%B3/UPL7-4%E2%80%94%E2%80%94%E7%89%A9%E7%90%86%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80%E8%AE%BE%E7%BD%AE/" title="UPL7-4——物理系统基础设置"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">UPL7-4——物理系统基础设置</div></div><div class="info-2"><div class="info-item-1">UPL7-4——物理系统基础设置 物理系统基础设置 我们可以在 Project Settings 中对物理系统进行一些基础设置， 这些设置看起来只是和物理系统相关，但是实际上其中有很多的参数都会实实在在的影响我们的性能， 因此，了解这些基础设置，对于我们优化性能也有一定的帮助！ 解算器 解算器（Solver）在 Unity 物理系统里其实是指物理系统里负责解方程的模块，就是 Unity 物理中用来处理碰撞，关节约束的方程求解器 它决定物体在发生接触后该怎么调整位置和速度，迭代次数越多越稳定，代价是 CPU 的消耗也更高（迭代指的就是解算器的计算次数） 在物理模拟中，碰撞检测只是发现 物体 A 和物体 B 重叠或接触，检测到重叠或者接触后，接下来要处理两个问题：  它们要分开多少 它们的速度，角速度要怎么调整？  这就涉及到一系列约束条件：  碰撞不允许重叠，需要位置约束 摩擦，弹性系数要生效，需要速度约束 关节要维持结构，需要关节约束  这些约束本质上会形成一组线性方程和不等式，解算器就是负责解这些方程，求出新的位置与速度 举例：解算器在 Unity...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/Blue_Ice.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">文KRIFE齐</div><div class="author-info-description">Unity就业路线的笔记终于更新完了！新年快乐！</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1168</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">141</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/enjoySevenLIU"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/enjoySevenLIU" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">博客修好了，继续学习，CSharp进阶也迁移完毕了，接下来尽快把Unity Shader给啃完，年末给博客好好整修一下</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">UPL7-5——碰撞体缩放，位置，质量</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%BD%E9%87%8F%E4%BF%9D%E8%AF%81%E7%89%A9%E7%90%86%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%BC%A9%E6%94%BE%E5%A4%A7%E5%B0%8F"><span class="toc-number">1.1.</span> <span class="toc-text">尽量保证物理对象的缩放大小</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%BD%E9%87%8F%E4%BF%9D%E6%8C%81%E5%AF%B9%E8%B1%A1%E4%B8%8D%E8%A6%81%E8%B7%9D%E7%A6%BB%E4%B8%96%E7%95%8C%E7%A9%BA%E9%97%B4%E5%8E%9F%E7%82%B9%E4%BD%8D%E7%BD%AE%E8%BF%87%E8%BF%9C"><span class="toc-number">1.2.</span> <span class="toc-text">尽量保持对象不要距离世界空间原点位置过远</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%BD%E9%87%8F%E4%BF%9D%E8%AF%81%E5%90%88%E7%90%86%E7%9A%84%E8%B4%A8%E9%87%8F%E5%85%B3%E7%B3%BB"><span class="toc-number">1.3.</span> <span class="toc-text">尽量保证合理的质量关系</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/11/24/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL11%E2%80%94%E2%80%94%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/" title="UPL11——内存管理">UPL11——内存管理</a><time datetime="2025-11-24T08:07:56.000Z" title="发表于 2025-11-24 16:07:56">2025-11-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/11/24/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL10%E2%80%94%E2%80%94%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/UPL10-6%E2%80%94%E2%80%94AB%E5%8C%85%E5%92%8CResources%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/" title="UPL10-6——AB包和Resources资源优化">UPL10-6——AB包和Resources资源优化</a><time datetime="2025-11-24T07:46:31.000Z" title="发表于 2025-11-24 15:46:31">2025-11-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/11/24/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL10%E2%80%94%E2%80%94%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/UPL10-5%E2%80%94%E2%80%94%E6%9D%90%E8%B4%A8%E4%B8%8EShader%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/" title="UPL10-5——材质与Shader资源优化">UPL10-5——材质与Shader资源优化</a><time datetime="2025-11-24T07:09:51.000Z" title="发表于 2025-11-24 15:09:51">2025-11-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/11/24/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL10%E2%80%94%E2%80%94%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/UPL10-4%E2%80%94%E2%80%94%E7%BD%91%E6%A0%BC%E4%B8%8E%E5%8A%A8%E7%94%BB%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/" title="UPL10-4——网格与动画资源优化">UPL10-4——网格与动画资源优化</a><time datetime="2025-11-24T03:58:43.000Z" title="发表于 2025-11-24 11:58:43">2025-11-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/11/24/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL10%E2%80%94%E2%80%94%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/UPL10-3%E2%80%94%E2%80%94%E7%BA%B9%E7%90%86%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/" title="UPL10-3——纹理资源优化">UPL10-3——纹理资源优化</a><time datetime="2025-11-24T03:10:58.000Z" title="发表于 2025-11-24 11:10:58">2025-11-24</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2025 By 文KRIFE齐</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"><script>(async () => {
+  const showKatex = () => {
+    document.querySelectorAll('#article-container .katex').forEach(el => el.classList.add('katex-show'))
+  }
+
+  if (!window.katex_js_css) {
+    window.katex_js_css = true
+    await btf.getCSS('https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css')
+    if (false) {
+      await btf.getScript('https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js')
+    }
+  }
+
+  showKatex()
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>

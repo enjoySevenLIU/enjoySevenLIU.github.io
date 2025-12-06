@@ -1,0 +1,380 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>UPL10-1——音频资源优化 | 文KRIFE齐的博客</title><meta name="author" content="文KRIFE齐"><meta name="copyright" content="文KRIFE齐"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="UPL10-1——音频资源优化  前置知识：U1L14——音效系统相关  音频优化的核心理念 按需加载，及时卸载 我们要尽量减少不必要的 AudioClip 在内存中驻留的 时间 和 大小 要尽量最小化活动音频的数量 音频加载方式优化 音频文件导入后非常重要的两个设置参数就是 Load Type (加载类型) 和 Preload Audio Data (预加载音频数据)  音频文件设置参数可见：U">
+<meta property="og:type" content="article">
+<meta property="og:title" content="UPL10-1——音频资源优化">
+<meta property="og:url" content="https://enjoysevenliu.github.io/2025/11/24/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL10%E2%80%94%E2%80%94%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/UPL10-1%E2%80%94%E2%80%94%E9%9F%B3%E9%A2%91%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/index.html">
+<meta property="og:site_name" content="文KRIFE齐的博客">
+<meta property="og:description" content="UPL10-1——音频资源优化  前置知识：U1L14——音效系统相关  音频优化的核心理念 按需加载，及时卸载 我们要尽量减少不必要的 AudioClip 在内存中驻留的 时间 和 大小 要尽量最小化活动音频的数量 音频加载方式优化 音频文件导入后非常重要的两个设置参数就是 Load Type (加载类型) 和 Preload Audio Data (预加载音频数据)  音频文件设置参数可见：U">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://enjoysevenliu.github.io/img/Blue_Ice.png">
+<meta property="article:published_time" content="2025-11-24T02:26:14.000Z">
+<meta property="article:modified_time" content="2025-12-06T16:02:04.548Z">
+<meta property="article:author" content="文KRIFE齐">
+<meta property="article:tag" content="blog">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://enjoysevenliu.github.io/img/Blue_Ice.png"><link rel="shortcut icon" href="/img/Blue_Ice.png"><link rel="canonical" href="https://enjoysevenliu.github.io/2025/11/24/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL10%E2%80%94%E2%80%94%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/UPL10-1%E2%80%94%E2%80%94%E9%9F%B3%E9%A2%91%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'UPL10-1——音频资源优化',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  isShuoshuo: false
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/Blue_Ice.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1168</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">141</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/img/Blue_Ice.png" alt="Logo"><span class="site-name">文KRIFE齐的博客</span></a><a class="nav-page-title" href="/"><span class="site-name">UPL10-1——音频资源优化</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">UPL10-1——音频资源优化</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-11-24T02:26:14.000Z" title="发表于 2025-11-24 10:26:14">2025-11-24</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-12-06T16:02:04.548Z" title="更新于 2025-12-07 00:02:04">2025-12-07</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/">UP——Unity性能优化笔记</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL10%E2%80%94%E2%80%94%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/">UPL10——资源优化</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1>UPL10-1——音频资源优化</h1>
+<blockquote>
+<p>前置知识：U1L14——音效系统相关</p>
+</blockquote>
+<h2 id="音频优化的核心理念">音频优化的核心理念</h2>
+<p>按需加载，及时卸载<br>
+我们要尽量减少不必要的 <code>AudioClip</code> 在内存中驻留的 时间 和 大小<br>
+要尽量最小化活动音频的数量</p>
+<h2 id="音频加载方式优化">音频加载方式优化</h2>
+<p>音频文件导入后非常重要的两个设置参数就是 Load Type (加载类型) 和 Preload Audio Data (预加载音频数据)</p>
+<blockquote>
+<p>音频文件设置参数可见：U1L14-1——音效文件导入</p>
+</blockquote>
+<p>首先来看 Preload Audio Data (预加载音频数据)</p>
+<p><img src="/assets/image-20251124104558-hkaxyr2.png" alt="image"></p>
+<p>勾选后，当 <code>AudioClip</code>​ 资源被加载时（场景加载、<code>Resources.Load</code>​、AB包、<code>Addressables</code> 加载等），立即加载音频数据<br>
+取消勾选，音频数据延迟加载，直到第一次需要播放时才加载</p>
+<p>再来看 Load Type (加载类型) 中的三种模式：</p>
+<p><img src="/assets/image-20251124104353-2ui0ynl.png" alt="image"></p>
+<ol>
+<li>
+<p>Decompress On Load（加载时解压）</p>
+<ul>
+<li>
+<p>工作机制：</p>
+<ul>
+<li>加载时：音频文件完全加载到内存，并立即解压成原始的 PCM 格式</li>
+<li>播放时：直接从内存中读取已解压的 PCM 数据，无需任何额外处理</li>
+</ul>
+</li>
+<li>
+<p>内存与 CPU 特点：</p>
+<ul>
+<li>内存占用：最高（存储完整的解压后数据）</li>
+<li>CPU 占用：最低（播放时零解压开销）</li>
+<li>加载延迟：高（需要完成解压才能使用）</li>
+</ul>
+</li>
+<li>
+<p>适用场景：</p>
+<p>短小、频繁播放的音效（枪声、按钮点击、跳跃声等）<br>
+需要极低播放延迟和零 CPU 开销的场景</p>
+</li>
+</ul>
+<p>推荐配合 Preload Audio Data (预加载音频数据)</p>
+<ul>
+<li>适用：短小高频音效</li>
+<li>效果：场景加载时立即解压，播放时零延迟</li>
+</ul>
+</li>
+<li>
+<p>Compressed In Memory（在内存中压缩）</p>
+<ul>
+<li>
+<p>工作机制：</p>
+<ul>
+<li>加载时：压缩的音频数据（.ogg、.mp3等）加载到内存，保持压缩状态</li>
+<li>播放时：实时解压小块的压缩数据供播放使用</li>
+</ul>
+</li>
+<li>
+<p>内存与 CPU 特点：</p>
+<ul>
+<li>内存占用：中等（存储压缩数据）</li>
+<li>CPU占用：高（播放时持续解压）</li>
+<li>加载延迟：中等（只需加载压缩数据）</li>
+</ul>
+</li>
+<li>
+<p>适用场景：</p>
+<p>中等长度音频（角色语音、环境音效，5 秒 ~ 2 分钟）<br>
+需要快速启动但内存敏感的场景</p>
+</li>
+</ul>
+<p>配合 Preload Audio Data (预加载音频数据)</p>
+<ul>
+<li>适用：重要的语音/音效，需要快速首次播放</li>
+<li>效果：立即加载压缩数据，首次播放无延迟</li>
+</ul>
+<p>如果不开启，会延迟加载，节省初始内存，首次播放有轻微延迟</p>
+</li>
+<li>
+<p>Streaming（流式加载）</p>
+<ul>
+<li>
+<p>工作机制：</p>
+<ul>
+<li>加载时：只加载音频文件的头部信息</li>
+<li>播放时：从磁盘实时读取小块数据到固定大小的环形缓冲区</li>
+</ul>
+</li>
+<li>
+<p>内存与 CPU 特点：</p>
+<ul>
+<li>内存占用：最低（固定大小缓冲区，通常256KB左右）</li>
+<li>CPU占用：最高（持续磁盘 I/O + 解压）</li>
+<li>加载延迟：低（几乎立即可以开始播放）</li>
+</ul>
+</li>
+<li>
+<p>适用场景：</p>
+<p>长音频文件（背景音乐、过场动画音频，&gt; 2 分钟）<br>
+内存极度敏感的应用</p>
+</li>
+</ul>
+<p>推荐不配合 Preload Audio Data (预加载音频数据)</p>
+<ul>
+<li>适用：所有流式音频（BGM 等）</li>
+<li>效果：避免无意义的预加载，按需流式读取</li>
+</ul>
+</li>
+</ol>
+<p>总结：根据音频长度来判断使用那种加载方式和是否开启预加载</p>
+<ol>
+<li>
+<p>短音频 (&lt; 5 秒)</p>
+<ul>
+<li>
+<p>高频播放：Decompress On Load（加载时解压）+ 勾选预加载 (Decompress On Load)</p>
+<p>比如游戏中的枪声、脚步声、换弹声、UI 音效等</p>
+</li>
+<li>
+<p>低频播放: Compressed In Memory（在内存中压缩）+ 不勾选预加载 (Decompress On Load)</p>
+<p>比如角色受伤语音等</p>
+</li>
+</ul>
+</li>
+<li>
+<p>中等音频 (5 秒 - 2 分钟)</p>
+<ul>
+<li>
+<p>需要快速启动：Compressed In Memory（在内存中压缩） + 勾选预加载 (Decompress On Load)</p>
+<p>比如重要 NPC 对话语音等</p>
+</li>
+<li>
+<p>内存敏感不需要快速启动：Compressed In Memory（在内存中压缩）  + 不勾选预加载 (Decompress On Load)</p>
+<p>比如风声、雨声等环境声</p>
+</li>
+</ul>
+</li>
+<li>
+<p>长音频 (&gt; 2 分钟)</p>
+<ul>
+<li>
+<p>Streaming（流式加载） + 不勾选预加载 (Decompress On Load)</p>
+<p>比如背景音乐</p>
+</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li>频繁播放：优先考虑 CPU 开销，选择 Decompress On Load</li>
+<li>内存敏感：优先考虑 Compressed In Memory 或 Streaming</li>
+</ul>
+<h2 id="音频格式与设置优化">音频格式与设置优化</h2>
+<p>音效格式：不建议直接在项目中使用 <code>.wav</code>​、<code>.aiff</code> 等音频格式，这些格式的内存占用很大</p>
+<p>推荐使用：</p>
+<ul>
+<li>​<code>mp3</code>：适用于有较长静音或复杂音轨的音乐（如背景音乐），压缩率高</li>
+<li>​<code>ogg</code>​：通常比 <code>mp3</code> 有更好的压缩比和质量，是 BGM 和长音效的绝佳选择</li>
+<li>​<code>aac</code>：在 IOS 平台上有硬件解码支持，效率很高</li>
+</ul>
+<p>等格式</p>
+<p>对于移动平台来说，IOS 优先使用 <code>mp3</code>​ 或 <code>aac</code>​ 格式，Android 优先使用 <code>ogg</code> 格式</p>
+<p>设置优化</p>
+<ol>
+<li>
+<p>降低质量</p>
+<p>对于背景音乐或非核心音效，适当降低音频设置中的质量选项可以显著减少文件大小和内存占用，而人耳几乎听不出太大区别</p>
+<ul>
+<li>高质量（0.8-1.0）：用于音乐、重要音效</li>
+<li>中等质量（0.5-0.7）：用于环境音、次要音效</li>
+<li>低质量（0.3-0.5）：用于测试阶段或内存极度紧张时</li>
+</ul>
+</li>
+<li>
+<p>降低采样率 (制作音频文件时设置)</p>
+<p>语音频率范围远小于音乐，对于语音文件，将采样率从 44.1kHz 降低到 22.05kHz 甚至 11 kHz，<br>
+文件大小和内存占用会减半或更多，同时完全满足清晰度要求</p>
+</li>
+<li>
+<p>勾选 Load In Background（后台加载）</p>
+<p>勾选后，音频加载不会阻塞主线程，对于大文件，强烈建议勾选，避免游戏卡顿</p>
+</li>
+<li>
+<p>选择适合对应平台的 Compression Format（压缩格式）</p>
+<ul>
+<li>Andorid 和 PC 推荐勾选 Vorbis（沃比斯）</li>
+<li>IOS 推荐勾选 MPEG（即MP3）</li>
+</ul>
+</li>
+<li>
+<p>对于不需要多声道效果的音效，建议勾选 Force To Mono（多声道转单声道）</p>
+<p>这样可以有效减少内存占用</p>
+</li>
+</ol>
+<h2 id="生命周期管理">生命周期管理</h2>
+<ol>
+<li>
+<p>推荐使用 AB 包或者 <code>Addressables</code> 管理音频文件</p>
+<p>相对 <code>Resources</code> 加载来说可以更精准的控制音效的加载和卸载，避免内存泄漏</p>
+</li>
+<li>
+<p>对于频繁播放和停止的同一音效，为了避免反复实例化和销毁音频组件</p>
+<p>我们可以使用对象池来管理 <code>AudioSource</code> 组件，避免频繁产生垃圾，触发 GC</p>
+</li>
+<li>
+<p>可以在音效管理中加入并发数量限制</p>
+<p>即当前全局音效播放数超过了上限后，限制活动源</p>
+</li>
+<li>
+<p>场景切换时要注意确保清理未使用的音频资源</p>
+</li>
+<li>
+<p>可以结合性能检测窗口 Profiler 检测音频模块的问题</p>
+</li>
+</ol>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://enjoysevenliu.github.io">文KRIFE齐</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://enjoysevenliu.github.io/2025/11/24/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL10%E2%80%94%E2%80%94%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/UPL10-1%E2%80%94%E2%80%94%E9%9F%B3%E9%A2%91%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/">https://enjoysevenliu.github.io/2025/11/24/Unity就业路线学习笔记/UP——Unity性能优化笔记/UPL10——资源优化/UPL10-1——音频资源优化/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://enjoysevenliu.github.io" target="_blank">文KRIFE齐的博客</a>！</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/img/Blue_Ice.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2025/11/24/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL10%E2%80%94%E2%80%94%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/UPL10-2%E2%80%94%E2%80%94%E8%A7%86%E9%A2%91%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/" title="UPL10-2——视频资源优化"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">UPL10-2——视频资源优化</div></div><div class="info-2"><div class="info-item-1">UPL10-2——视频资源优化  前置知识：U4S3——视频播放  视频优化的核心理念 分层加载，按需解码 视频资源同时涉及内存、显存、CPU、GPU 和磁盘 I/O 优化目标是平衡画质与性能，避免播放卡顿和内存溢出 视频优化决策流程：   根据视频用途选择加载方式 小文件预加载，大文件流式加载   根据目标平台选择编码格式 移动端：H.264，Web平台：WebM   根据设备性能调整画质参数 分辨率、码率、帧率   严格管理生命周期 及时释放资源，监控内存使用   视频转码相关 在 Unity 中导入视频后，我们可以利用内部的转码设置（Transcode），将视频转码为目标平台最优化的格式 建议开启转码，并且针对目标平台进行设置，它可以帮助我们获得更好的平台兼容性，达到性能优化的目的 如果关闭，Unity 会直接使用原始视频文件，可能由于该文件的编码格式在某些平台上不支持，或者解码效率低，导致视频播放异常 视频加载方式优化 Unity 中视频主要通过 VideoPlayer 组件处理，关键设置参数：   Source（视频源）   URL：外部视频文件， streaming...</div></div></div></a><a class="pagination-related" href="/2025/11/24/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL10%E2%80%94%E2%80%94%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/" title="UPL10——资源优化"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">UPL10——资源优化</div></div><div class="info-2"><div class="info-item-1">UPL10——资源优化  音频 视频 纹理 网格与动画 材质与Shader AB包和Resources  </div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/Blue_Ice.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">文KRIFE齐</div><div class="author-info-description">Unity就业路线的笔记终于更新完了！新年快乐！</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1168</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">141</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/enjoySevenLIU"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/enjoySevenLIU" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">博客修好了，继续学习，CSharp进阶也迁移完毕了，接下来尽快把Unity Shader给啃完，年末给博客好好整修一下</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">UPL10-1——音频资源优化</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9F%B3%E9%A2%91%E4%BC%98%E5%8C%96%E7%9A%84%E6%A0%B8%E5%BF%83%E7%90%86%E5%BF%B5"><span class="toc-number">1.1.</span> <span class="toc-text">音频优化的核心理念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9F%B3%E9%A2%91%E5%8A%A0%E8%BD%BD%E6%96%B9%E5%BC%8F%E4%BC%98%E5%8C%96"><span class="toc-number">1.2.</span> <span class="toc-text">音频加载方式优化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9F%B3%E9%A2%91%E6%A0%BC%E5%BC%8F%E4%B8%8E%E8%AE%BE%E7%BD%AE%E4%BC%98%E5%8C%96"><span class="toc-number">1.3.</span> <span class="toc-text">音频格式与设置优化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E7%AE%A1%E7%90%86"><span class="toc-number">1.4.</span> <span class="toc-text">生命周期管理</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/11/24/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL11%E2%80%94%E2%80%94%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/" title="UPL11——内存管理">UPL11——内存管理</a><time datetime="2025-11-24T08:07:56.000Z" title="发表于 2025-11-24 16:07:56">2025-11-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/11/24/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL10%E2%80%94%E2%80%94%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/UPL10-6%E2%80%94%E2%80%94AB%E5%8C%85%E5%92%8CResources%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/" title="UPL10-6——AB包和Resources资源优化">UPL10-6——AB包和Resources资源优化</a><time datetime="2025-11-24T07:46:31.000Z" title="发表于 2025-11-24 15:46:31">2025-11-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/11/24/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL10%E2%80%94%E2%80%94%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/UPL10-5%E2%80%94%E2%80%94%E6%9D%90%E8%B4%A8%E4%B8%8EShader%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/" title="UPL10-5——材质与Shader资源优化">UPL10-5——材质与Shader资源优化</a><time datetime="2025-11-24T07:09:51.000Z" title="发表于 2025-11-24 15:09:51">2025-11-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/11/24/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL10%E2%80%94%E2%80%94%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/UPL10-4%E2%80%94%E2%80%94%E7%BD%91%E6%A0%BC%E4%B8%8E%E5%8A%A8%E7%94%BB%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/" title="UPL10-4——网格与动画资源优化">UPL10-4——网格与动画资源优化</a><time datetime="2025-11-24T03:58:43.000Z" title="发表于 2025-11-24 11:58:43">2025-11-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/11/24/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL10%E2%80%94%E2%80%94%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/UPL10-3%E2%80%94%E2%80%94%E7%BA%B9%E7%90%86%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/" title="UPL10-3——纹理资源优化">UPL10-3——纹理资源优化</a><time datetime="2025-11-24T03:10:58.000Z" title="发表于 2025-11-24 11:10:58">2025-11-24</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2025 By 文KRIFE齐</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"><script>(async () => {
+  const showKatex = () => {
+    document.querySelectorAll('#article-container .katex').forEach(el => el.classList.add('katex-show'))
+  }
+
+  if (!window.katex_js_css) {
+    window.katex_js_css = true
+    await btf.getCSS('https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css')
+    if (false) {
+      await btf.getScript('https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js')
+    }
+  }
+
+  showKatex()
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>

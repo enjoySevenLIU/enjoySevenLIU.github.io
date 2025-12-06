@@ -1,0 +1,633 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>UPL10-5——材质与Shader资源优化 | 文KRIFE齐的博客</title><meta name="author" content="文KRIFE齐"><meta name="copyright" content="文KRIFE齐"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="UPL10-5——材质与Shader资源优化  前置知识：US2S2L1——材质与Shader  材质与 Shader 内存优化的核心理念   材质优化目标： 最小化 纹理内存占用 降低 材质实例数量 降低 Shader 的计算负荷   Shader 优化目标： 减少变体数量，简化计算逻辑   核心矛盾：视觉质量 与 内存占用 和 GPU 计算负荷 的平衡   主要优化原则：关键角色高质量，大量物">
+<meta property="og:type" content="article">
+<meta property="og:title" content="UPL10-5——材质与Shader资源优化">
+<meta property="og:url" content="https://enjoysevenliu.github.io/2025/11/24/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL10%E2%80%94%E2%80%94%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/UPL10-5%E2%80%94%E2%80%94%E6%9D%90%E8%B4%A8%E4%B8%8EShader%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/index.html">
+<meta property="og:site_name" content="文KRIFE齐的博客">
+<meta property="og:description" content="UPL10-5——材质与Shader资源优化  前置知识：US2S2L1——材质与Shader  材质与 Shader 内存优化的核心理念   材质优化目标： 最小化 纹理内存占用 降低 材质实例数量 降低 Shader 的计算负荷   Shader 优化目标： 减少变体数量，简化计算逻辑   核心矛盾：视觉质量 与 内存占用 和 GPU 计算负荷 的平衡   主要优化原则：关键角色高质量，大量物">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://enjoysevenliu.github.io/img/Blue_Ice.png">
+<meta property="article:published_time" content="2025-11-24T07:09:51.000Z">
+<meta property="article:modified_time" content="2025-12-06T16:02:04.550Z">
+<meta property="article:author" content="文KRIFE齐">
+<meta property="article:tag" content="blog">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://enjoysevenliu.github.io/img/Blue_Ice.png"><link rel="shortcut icon" href="/img/Blue_Ice.png"><link rel="canonical" href="https://enjoysevenliu.github.io/2025/11/24/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL10%E2%80%94%E2%80%94%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/UPL10-5%E2%80%94%E2%80%94%E6%9D%90%E8%B4%A8%E4%B8%8EShader%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'UPL10-5——材质与Shader资源优化',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  isShuoshuo: false
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/Blue_Ice.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1168</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">141</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/img/Blue_Ice.png" alt="Logo"><span class="site-name">文KRIFE齐的博客</span></a><a class="nav-page-title" href="/"><span class="site-name">UPL10-5——材质与Shader资源优化</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">UPL10-5——材质与Shader资源优化</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-11-24T07:09:51.000Z" title="发表于 2025-11-24 15:09:51">2025-11-24</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-12-06T16:02:04.550Z" title="更新于 2025-12-07 00:02:04">2025-12-07</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/">UP——Unity性能优化笔记</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL10%E2%80%94%E2%80%94%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/">UPL10——资源优化</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1>UPL10-5——材质与Shader资源优化</h1>
+<blockquote>
+<p>前置知识：US2S2L1——材质与Shader</p>
+</blockquote>
+<h2 id="材质与-Shader-内存优化的核心理念">材质与 Shader 内存优化的核心理念</h2>
+<ul>
+<li>
+<p>材质优化目标：</p>
+<p>最小化 纹理内存占用<br>
+降低 材质实例数量<br>
+降低 Shader 的计算负荷</p>
+</li>
+<li>
+<p>Shader 优化目标：</p>
+<p>减少变体数量，简化计算逻辑</p>
+</li>
+<li>
+<p>核心矛盾：视觉质量 与 内存占用 和 GPU 计算负荷 的平衡</p>
+</li>
+<li>
+<p>主要优化原则：关键角色高质量，大量物体低成本</p>
+</li>
+</ul>
+<p>材质优化流程：</p>
+<ol>
+<li>设置合适的纹理压缩格式和尺寸</li>
+<li>合理配置 Mip Maps 和 Read/Write</li>
+<li>使用通道合并和纹理图集</li>
+<li>开启纹理流送管理内存</li>
+</ol>
+<p>Shader 优化流程：</p>
+<ol>
+<li>剥离不需要的 Shader 变体</li>
+<li>建立 Shader LOD 分级系统</li>
+<li>简化 Shader 代码和计算</li>
+<li>适配目标渲染管线</li>
+</ol>
+<p>材质管理流程：</p>
+<ol>
+<li>使用材质共享而非复制</li>
+<li>按需使用 <code>MaterialPropertyBlock</code></li>
+<li>实现材质资源生命周期管理</li>
+<li>建立材质复杂度分级标准</li>
+</ol>
+<p>监控维护流程：</p>
+<ol>
+<li>定期使用 Profiler 分析内存</li>
+<li>建立性能预算和预警机制</li>
+<li>代码审查避免常见内存问题</li>
+</ol>
+<blockquote>
+<h2 id="纹理资源导入优化">纹理资源导入优化</h2>
+<p>详见：UPL10-3——纹理资源优化</p>
+<ol>
+<li>
+<p>纹理压缩格式</p>
+<table>
+<thead>
+<tr>
+<th>平台</th>
+<th>首选</th>
+<th>备选</th>
+<th>HDR格式</th>
+<th>法线</th>
+<th>遮罩贴图</th>
+<th>特殊用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PC</td>
+<td>BC7</td>
+<td>BC3</td>
+<td>BC6H</td>
+<td>BC5</td>
+<td>DXT1|BC1</td>
+<td>BC1、BC4（单通道)</td>
+</tr>
+<tr>
+<td>Android</td>
+<td>ASTC 4x4</td>
+<td>ETC2 4bit</td>
+<td>ASTC HDR 6x6</td>
+<td>ASTC 5x5</td>
+<td>ETC2 4bit</td>
+<td>ASTC 6x6（远景、小道具）</td>
+</tr>
+<tr>
+<td>IOS</td>
+<td>ASTC 4x4</td>
+<td>ASTC 6x6</td>
+<td>ASTC HDR 4x4</td>
+<td>ASTC 5x5</td>
+<td>ASTC 6x6|8x8</td>
+<td>EAC R/RG</td>
+</tr>
+<tr>
+<td>WebGL</td>
+<td>ASTC 4x4</td>
+<td>DXT1/DXT5,ETC2,PVRTC</td>
+<td>BC6H</td>
+<td>BC5</td>
+<td>DXT1|BC1</td>
+<td>ASTC 6x6 / DXT1</td>
+</tr>
+</tbody>
+</table>
+<p>作用：大幅减少纹理在磁盘和内存中的占用空间，不同格式在质量、大小、兼容性之间权衡</p>
+<p>建议：</p>
+<ul>
+<li>移动端：ASTC &gt; ETC2 &gt; PVRTC</li>
+<li>PC 端：BC/DXT 系列</li>
+<li>WebGL：不要默认 ASTC 可用，要根据平台和浏览器而定</li>
+</ul>
+</li>
+<li>
+<p>Max Size（最大尺寸）</p>
+<p>控制纹理导入时的最大尺寸</p>
+<p>作用：防止过大的纹理占用不必要的内存，根据使用距离和重要性设置合适尺寸</p>
+<p>建议：</p>
+<ul>
+<li>主角 / 重要道具：1024*1024 或 2048*2048</li>
+<li>场景物件：512*512 或 1024*1024</li>
+<li>UI 元素：按实际显示尺寸，避免缩放</li>
+<li>远景贴图：256*256 或 512*512</li>
+</ul>
+</li>
+<li>
+<p>Mip Maps（多级渐远纹理）</p>
+<ul>
+<li>勾选：生成纹理金字塔，远处使用低分辨率版本</li>
+<li>不勾选：始终使用全分辨率纹理</li>
+</ul>
+<p>作用：减少远处物体的纹理采样开销和闪烁问题，增加约 33% 的内存占用，但提升渲染性能</p>
+<p>建议：</p>
+<ul>
+<li>3D 场景物体：开启 Mip Maps</li>
+<li>UI 元素、Sprite、全屏特效：关闭 Mip Maps</li>
+</ul>
+</li>
+<li>
+<p>Read/Write</p>
+<ul>
+<li>勾选：CPU 和 GPU 都可访问纹理数据</li>
+<li>不勾选：仅 GPU 可访问，上传后释放 CPU 内存</li>
+</ul>
+<p>建议：运行时不需要修改的纹理务必取消勾选，需要动态修改的纹理（如程序生成）才开启</p>
+</li>
+</ol>
+<p>纹理导入决策流程：</p>
+<ul>
+<li>重要角色贴图 → 合适尺寸 + ASTC/BC压缩 + Mip Maps 开启</li>
+<li>UI贴图 → 精确尺寸 + 适当压缩 + Mip Maps 关闭</li>
+<li>场景贴图 → 中等尺寸 + 较高压缩 + Mip Maps 开启</li>
+<li>永远不需要修改的纹理 → 不要勾选 Read/Write</li>
+</ul>
+<h2 id="纹理数据精简策略">纹理数据精简策略</h2>
+<p>从源纹理数据和布局上优化</p>
+<ol>
+<li>
+<p>通道分离与合并</p>
+<p>将多个单通道纹理合并到 RGBA 通道中</p>
+<p>示例：</p>
+<ul>
+<li>原：金属度、粗糙度、环境光遮蔽、高度各一张 1024 灰度图 = 16MB</li>
+<li>合并：一张 1024 RGBA 图，各占一个通道 = 4MB</li>
+</ul>
+<p>作用：大幅减少纹理数量和内存占用，同时减少 3 次纹理采样</p>
+</li>
+<li>
+<p>纹理图集</p>
+<p>将多个小纹理打包到一张大纹理中</p>
+<p>作用：减少 DrawCall，提高合批效率，减少纹理切换开销。优化内存碎片</p>
+<p>注意：不要过度打包导致空白区域浪费</p>
+</li>
+<li>
+<p>纹理流 (Texture Streaming)</p>
+<p>动态加载不同Mip级别的纹理</p>
+<p>作用：按需加载纹理数据，减少内存峰值，根据距离和重要性动态调整纹理质量</p>
+<p>建议：开放大世界游戏强烈推荐开启，注意设置合理的预算和优先级</p>
+</li>
+<li>
+<p>Crunch（紧缩）压缩</p>
+<p>只会压 磁盘/包体，不降显存，加载时需要 CPU 解压，移动端慎用</p>
+</li>
+</ol>
+</blockquote>
+<h2 id="Shader-内存与性能优化">Shader 内存与性能优化</h2>
+<p>Shader 变体和复杂度是优化重点</p>
+<ol>
+<li>
+<p>Shader 变体控制</p>
+<p>使用预处理指令控制变体生成，示例：</p>
+<ol>
+<li>
+<p>强制生成所有指定的变体组合 <code>#pragma multi_compile</code></p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#pragma multi_compile _ _SHADOWS_SOFT</span><br></pre></td></tr></table></figure>
+<p>这会生成 2 个 Shader变体<br>
+一个不包含 <code>_SHADOWS_SOFT</code>​ 关键字（<code>_</code>​ 代表空或默认）<br>
+一个包含 <code>_SHADOWS_SOFT</code> 关键字</p>
+</li>
+<li>
+<p>智能生成变体 <code>#pragma shader_feature</code></p>
+<p>只有那些在实际使用的材质中启用了相应关键字的变体才会被生成</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#pragma shader_feature _EMISSION</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>显式跳过某些变体的生成 <code>#pragma skip_variants</code></p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#pragma skip_variants POINT_COOKIE</span><br></pre></td></tr></table></figure>
+<p>如果你确定你的游戏永远不会使用 <code>POINT_COOKIE</code>​ 类型的光源<br>
+就可以用 <code>skip_variants</code> 跳过它，不生成这个变体</p>
+</li>
+</ol>
+<p>作用：减少编译后的 Shader 变体数量，降低内存占用和构建时间</p>
+<p>建议：只保留实际使用的特性组合</p>
+</li>
+<li>
+<p>配置变体剥离</p>
+<p>在 Edit -&gt; Project Settings -&gt; Graphics -&gt; Shader Stripping (着色器剥离) 中配置变体剥离</p>
+<p><img src="/assets/image-20251124152807-ej6cvun.png" alt="image"></p>
+<ul>
+<li>
+<p>Lightmap Modes (光照贴图模式)</p>
+<p><img src="/assets/image-20251124151930-lxjggif.png" alt="image"></p>
+<ul>
+<li>
+<p>Automatic：Unity 会自动分析项目设置和场景内容、只保留实际使用的光照贴图编码格式变体</p>
+</li>
+<li>
+<p>Custom (自定义)：手动选择需要保留的光照贴图模式</p>
+<p>选择 Custom 后会出现如下设置项：</p>
+<p><img src="/assets/image-20251124151959-mrc0z8g.png" alt="image"></p>
+<ul>
+<li>
+<p>Baked Non-Directional (烘焙非定向光照贴图)：预计算的光照贴图，不包含方向信息</p>
+</li>
+<li>
+<p>Baked Directional (烘焙定向光照贴图)：预计算的光照贴图，包含方向信息</p>
+</li>
+<li>
+<p>Realtime Non-Directional (实时非定向光照贴图)：实时全局光照的非定向模式</p>
+</li>
+<li>
+<p>Realtime Directional (实时定向光照贴图)：实时全局光照的定向模式</p>
+</li>
+<li>
+<p>Baked Shadowmask (烘焙阴影遮罩)：混合光照模式，结合烘焙和实时阴影</p>
+</li>
+<li>
+<p>Baked Subtractive (烘焙减法模式)：简化的混合光照模式</p>
+</li>
+<li>
+<p>Import From Current Scene (从当前场景导入)：自动分析当前打开的场景，只保留场景中实际使用的光照贴图模式</p>
+</li>
+<li>
+<p>勾选某个模式:</p>
+<p>告诉 Unity：我的项目可能会使用这种光照模式<br>
+Unity 会在构建时保留所有与该模式相关的 Shader 变体<br>
+增加构建大小，增加内存占用，但确保该模式可用</p>
+</li>
+<li>
+<p>取消勾选某个模式:</p>
+<p>告诉 Unity：我的项目绝对不会使用这种光照模式<br>
+Unity 会在构建时彻底移除所有与该模式相关的 Shader 变体<br>
+减少构建大小，减少内存占用，但该模式将完全不可用</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>建议：移动端 - 取消勾选所有 Realtime 模式</p>
+</li>
+<li>
+<p>Fog Modes (雾效模式)</p>
+<p><img src="/assets/image-20251124152259-hkcwna8.png" alt="image"></p>
+<ul>
+<li>
+<p>Automatic：自动检测项目是否使用雾效，如果场景中没有启用雾效，会移除所有雾效变体</p>
+<p>如果使用了雾效，只保留实际使用的雾效类型变体</p>
+</li>
+<li>
+<p>Custom (自定义)：手动选择需要保留的雾效模式</p>
+<p>选择 Custom 后会出现如下设置项：</p>
+<p><img src="/assets/image-20251124152312-2l0pfh8.png" alt="image"></p>
+<ul>
+<li>Linear (线性雾)</li>
+<li>Exponential (指数雾)</li>
+<li>Exponential Squared (二次指数雾)</li>
+<li>Import From Current Scene (从当前场景导入)：自动分析当前打开的场景，只保留场景中实际使用的雾效模式</li>
+</ul>
+<p>关于 Unity 雾效，详细可见：US3S11L5——Unity自带全局雾效</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Instancing Variants (GPU 实例化变体)</p>
+<p><img src="/assets/image-20251124152525-zs689cd.png" alt="image"></p>
+<ul>
+<li>
+<p>Strip Unused (剥离未使用的)</p>
+<p>移除没有被任何材质使用的 GPU 实例化变体，Unity 分析项目中所有材质球<br>
+如果 Shader 声明了 <code>#pragma multi_compile_instancing</code> 但没有材质启用 GPU Instancing<br>
+这些变体会被移除，只有实际启用了 GPU Instancing 的材质对应的变体会保留</p>
+</li>
+<li>
+<p>Strip All (剥离所有)</p>
+<p>强制移除所有 GPU 实例化相关的 Shader 变体</p>
+</li>
+<li>
+<p>Keep All (保留所有)</p>
+<p>强制保留所有 GPU 实例化变体，无论是否被使用</p>
+</li>
+</ul>
+</li>
+<li>
+<p>BatchRendererGroup Variants (批渲染组变体)</p>
+<p><img src="/assets/image-20251124152750-efqx654.png" alt="image"></p>
+<ul>
+<li>
+<p>Strip if Entities Graphics Package is not installed (未安装 Entities Graphics 包时剥离)</p>
+<p>智能检测并自动处理 DOTS 相关变体</p>
+</li>
+<li>
+<p>Strip All (剥离所有)</p>
+<p>强制移除所有 BatchRendererGroup 变体</p>
+</li>
+<li>
+<p>Keep All (保留所有)</p>
+<p>强制保留所有 BatchRendererGroup 变体</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Shader LOD (Level of Detail)</p>
+<p>为不同硬件配置提供多个细节级别，配置示例：</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SubShader &#123; LOD 400 /*...*/ &#125; // 高配：复杂效果</span><br><span class="line">SubShader &#123; LOD 200 /*...*/ &#125; // 中配：简化效果</span><br><span class="line">SubShader &#123; LOD 100 /*...*/ &#125; // 低配：基础效果</span><br></pre></td></tr></table></figure>
+<p>作用：根据设备性能自动选择合适的 Shader 版本，保证低端设备的流畅运行</p>
+<p>建议：为重要材质提供 3 个LOD级别，通过 <code>Shader.maximumLOD</code> 全局控制</p>
+</li>
+<li>
+<p>Shader 代码简化</p>
+<ul>
+<li>
+<p>优化策略：</p>
+<ul>
+<li>减少纹理采样次数（合并采样）</li>
+<li>简化数学计算（用近似代替精确）</li>
+<li>使用更廉价的光照模型</li>
+<li>移除不需要的顶点属性</li>
+</ul>
+</li>
+<li>
+<p>作用：降低GPU计算负荷，提高渲染性能</p>
+</li>
+<li>
+<p>建议：性能敏感平台使用简化版 Shader，为不同重要度的物体提供不同复杂度的 Shader</p>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="材质实例管理优化">材质实例管理优化</h2>
+<p>避免材质复制和内存泄漏</p>
+<ol>
+<li>
+<p>材质共享策略</p>
+<p>使用 <code>renderer.sharedMaterial</code>​ 而非 <code>renderer.material</code></p>
+<p>正确做法：</p>
+ <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Material sharedMat = renderer.sharedMaterial; <span class="comment">// 共享实例</span></span><br></pre></td></tr></table></figure>
+<p>错误做法：</p>
+ <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Material newMat = renderer.material; <span class="comment">// 创建副本！</span></span><br></pre></td></tr></table></figure>
+<p>作用：避免无意中创建材质副本导致内存泄漏，减少材质数量，便于合批<br>
+建议：所有相同外观的物体共享同一个材质实例</p>
+</li>
+<li>
+<p>材质属性块 (<code>MaterialPropertyBlock</code>)</p>
+<p>对需要个性化参数的物体使用 <code>PropertyBlock</code>，用于在运行时修改材质属性而不创建新的材质实例，示例：</p>
+ <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">MaterialPropertyBlock props = <span class="keyword">new</span> MaterialPropertyBlock();</span><br><span class="line">props.SetColor(<span class="string">&quot;_Color&quot;</span>, customColor);</span><br><span class="line">renderer.SetPropertyBlock(props);</span><br></pre></td></tr></table></figure>
+<p>作用：在不创建材质实例的情况下修改渲染参数，保持合批能力的同时实现个性化<br>
+建议：大量相同网格但需要不同颜色/参数时使用</p>
+</li>
+<li>
+<p>材质按需加载</p>
+<p>使用资源管理系统控制材质生命周期</p>
+<ul>
+<li>
+<p>方法：</p>
+<ul>
+<li>​<code>Addressables</code> 资源管理系统</li>
+<li>​<code>AssetBundle</code> 动态加载</li>
+</ul>
+<p>及时卸载不用的内容</p>
+</li>
+<li>
+<p>作用：避免材质常驻内存，按场景和需求动态管理</p>
+</li>
+<li>
+<p>建议：大项目必须实现材质资源管理策略</p>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="渲染管线与复杂度分级">渲染管线与复杂度分级</h2>
+<p>根据渲染管线特性优化</p>
+<ol>
+<li>
+<p>Shader 复杂度分级体系</p>
+<p>分级策略：</p>
+<ul>
+<li>主角：完整 PBR + 法线 + 高光 + 实时阴影</li>
+<li>主要NPC：简化 PBR + 法线 + 烘焙阴影</li>
+<li>场景物件：简单漫反射 + 光照贴图</li>
+<li>远景物体：Unlit Shader + 顶点色</li>
+</ul>
+<p>作用：合理分配渲染预算，保证关键视觉质量的同时优化性能<br>
+建议：建立明确的材质复杂度标准</p>
+</li>
+<li>
+<p>实时 VS 烘焙权衡</p>
+<ul>
+<li>实时效果：动态物体、主要角色、交互元素</li>
+<li>烘焙效果：静态场景、光照贴图、反射探针</li>
+</ul>
+<p>作用：将计算开销从运行时转移到编辑时，大幅提升运行性能<br>
+建议：尽可能使用烘焙光照处理静态场景</p>
+</li>
+<li>
+<p>合批优化</p>
+<p>条件：</p>
+<ul>
+<li>相同材质实例</li>
+<li>相同 Shader 参数</li>
+<li>合适的渲染顺序</li>
+</ul>
+<p>作用：减少 DrawCall，提升 CPU 渲染效率<br>
+建议：通过材质共享和属性块优化合批条件，配合各种批处理方案使用</p>
+</li>
+</ol>
+<h2 id="内存分析与监控">内存分析与监控</h2>
+<p>建立监控体系，及时发现问题</p>
+<ol>
+<li>
+<p>性能分析工具</p>
+<ul>
+<li>Profiler 中的 Memory：详细内存分析</li>
+<li>Frame Debugger：渲染状态分析</li>
+<li>Memory Profiler：深度内存诊断</li>
+</ul>
+<p>作用：定位内存泄漏和性能瓶颈，监控资源加载和卸载</p>
+</li>
+<li>
+<p>关键性能指标</p>
+<ul>
+<li>纹理内存：监控纹理内存对整体内存占用情况的影响</li>
+<li>材质数量：控制活跃材质实例数量</li>
+<li>Shader 变体：监控变体数量和编译时间</li>
+<li>DrawCall：监控 DrawCall 对性能的影响</li>
+</ul>
+</li>
+<li>
+<p>内存优化检查点</p>
+<ul>
+<li>纹理压缩格式是否正确</li>
+<li>Read/Write 是否误开启</li>
+<li>材质实例是否意外复制</li>
+<li>Shader 变体是否过度生成</li>
+<li>资源是否及时卸载</li>
+</ul>
+</li>
+</ol>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://enjoysevenliu.github.io">文KRIFE齐</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://enjoysevenliu.github.io/2025/11/24/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL10%E2%80%94%E2%80%94%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/UPL10-5%E2%80%94%E2%80%94%E6%9D%90%E8%B4%A8%E4%B8%8EShader%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/">https://enjoysevenliu.github.io/2025/11/24/Unity就业路线学习笔记/UP——Unity性能优化笔记/UPL10——资源优化/UPL10-5——材质与Shader资源优化/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://enjoysevenliu.github.io" target="_blank">文KRIFE齐的博客</a>！</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/img/Blue_Ice.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2025/11/24/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL10%E2%80%94%E2%80%94%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/UPL10-6%E2%80%94%E2%80%94AB%E5%8C%85%E5%92%8CResources%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/" title="UPL10-6——AB包和Resources资源优化"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">UPL10-6——AB包和Resources资源优化</div></div><div class="info-2"><div class="info-item-1">UPL10-6——AB包和Resources资源优化  前置知识：U2L10——Resources资源动态加载，UH1——AssetBundle，U4S4——可寻址资源管理系统 Addressables  AssetBundle包与Resources资源管理的核心理念  AssetBundle 包（或 Addressables）的使用：实现资源热更新、减少包体大小、按需加载 Resources 的使用：谨慎使用、避免滥用、了解局限性  核心点：项目中尽量使用 AB 包或者 Addressables 管理加载项目资源 Resources 使用准则：  了解其成本，避免滥用 建立严格的加载、卸载规范 监控 Resources 内存占用 制定向 AssetBundle 包或 Addressables 的迁移计划  AssetBundle 包构建流程：  合理规划 AssetBundle 包粒度和依赖关系 选择合适的压缩方式（LZ4）和构建选项 建立版本管理和热更机制 实现依赖分析和循环检测  AssetBundle...</div></div></div></a><a class="pagination-related" href="/2025/11/24/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL10%E2%80%94%E2%80%94%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/UPL10-4%E2%80%94%E2%80%94%E7%BD%91%E6%A0%BC%E4%B8%8E%E5%8A%A8%E7%94%BB%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/" title="UPL10-4——网格与动画资源优化"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">UPL10-4——网格与动画资源优化</div></div><div class="info-2"><div class="info-item-1">UPL10-4——网格与动画资源优化  前置知识：U3L17——模型导入相关设置  网格与动画优化的核心理念 减负、精简、按需加载  网格优化目标：降低顶点处理负荷和 GPU 传输负担 动画优化目标：降低 CPU 蒙皮计算和内存占用 核心矛盾：视觉保真度 和 CPU / GPU 性能 和 内存占用 的平衡  网格优化流程：  设置合适的压缩级别 取消 Read/Write，除非需要修改网格 开启 Optimize Mesh（优化网格） 按需使用 LOD 精简顶点数据  动画优化流程：  选择合适的压缩格式（Optimal 推荐） 设置合理的压缩质量 配置 Animator Culling 模式 按需使用 GPU Skinning 实现动画 LOD 系统  网格资源导入优化 网格导入设置是优化的第一道关卡   Mesh...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/Blue_Ice.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">文KRIFE齐</div><div class="author-info-description">Unity就业路线的笔记终于更新完了！新年快乐！</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1168</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">141</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/enjoySevenLIU"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/enjoySevenLIU" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">博客修好了，继续学习，CSharp进阶也迁移完毕了，接下来尽快把Unity Shader给啃完，年末给博客好好整修一下</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">UPL10-5——材质与Shader资源优化</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9D%90%E8%B4%A8%E4%B8%8E-Shader-%E5%86%85%E5%AD%98%E4%BC%98%E5%8C%96%E7%9A%84%E6%A0%B8%E5%BF%83%E7%90%86%E5%BF%B5"><span class="toc-number">1.1.</span> <span class="toc-text">材质与 Shader 内存优化的核心理念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%B9%E7%90%86%E8%B5%84%E6%BA%90%E5%AF%BC%E5%85%A5%E4%BC%98%E5%8C%96"><span class="toc-number">1.2.</span> <span class="toc-text">纹理资源导入优化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%B9%E7%90%86%E6%95%B0%E6%8D%AE%E7%B2%BE%E7%AE%80%E7%AD%96%E7%95%A5"><span class="toc-number">1.3.</span> <span class="toc-text">纹理数据精简策略</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Shader-%E5%86%85%E5%AD%98%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96"><span class="toc-number">1.4.</span> <span class="toc-text">Shader 内存与性能优化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9D%90%E8%B4%A8%E5%AE%9E%E4%BE%8B%E7%AE%A1%E7%90%86%E4%BC%98%E5%8C%96"><span class="toc-number">1.5.</span> <span class="toc-text">材质实例管理优化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B8%8E%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%88%86%E7%BA%A7"><span class="toc-number">1.6.</span> <span class="toc-text">渲染管线与复杂度分级</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E5%AD%98%E5%88%86%E6%9E%90%E4%B8%8E%E7%9B%91%E6%8E%A7"><span class="toc-number">1.7.</span> <span class="toc-text">内存分析与监控</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/11/24/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL11%E2%80%94%E2%80%94%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/" title="UPL11——内存管理">UPL11——内存管理</a><time datetime="2025-11-24T08:07:56.000Z" title="发表于 2025-11-24 16:07:56">2025-11-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/11/24/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL10%E2%80%94%E2%80%94%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/UPL10-6%E2%80%94%E2%80%94AB%E5%8C%85%E5%92%8CResources%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/" title="UPL10-6——AB包和Resources资源优化">UPL10-6——AB包和Resources资源优化</a><time datetime="2025-11-24T07:46:31.000Z" title="发表于 2025-11-24 15:46:31">2025-11-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/11/24/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL10%E2%80%94%E2%80%94%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/UPL10-5%E2%80%94%E2%80%94%E6%9D%90%E8%B4%A8%E4%B8%8EShader%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/" title="UPL10-5——材质与Shader资源优化">UPL10-5——材质与Shader资源优化</a><time datetime="2025-11-24T07:09:51.000Z" title="发表于 2025-11-24 15:09:51">2025-11-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/11/24/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL10%E2%80%94%E2%80%94%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/UPL10-4%E2%80%94%E2%80%94%E7%BD%91%E6%A0%BC%E4%B8%8E%E5%8A%A8%E7%94%BB%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/" title="UPL10-4——网格与动画资源优化">UPL10-4——网格与动画资源优化</a><time datetime="2025-11-24T03:58:43.000Z" title="发表于 2025-11-24 11:58:43">2025-11-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/11/24/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL10%E2%80%94%E2%80%94%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/UPL10-3%E2%80%94%E2%80%94%E7%BA%B9%E7%90%86%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/" title="UPL10-3——纹理资源优化">UPL10-3——纹理资源优化</a><time datetime="2025-11-24T03:10:58.000Z" title="发表于 2025-11-24 11:10:58">2025-11-24</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2025 By 文KRIFE齐</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"><script>(async () => {
+  const showKatex = () => {
+    document.querySelectorAll('#article-container .katex').forEach(el => el.classList.add('katex-show'))
+  }
+
+  if (!window.katex_js_css) {
+    window.katex_js_css = true
+    await btf.getCSS('https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css')
+    if (false) {
+      await btf.getScript('https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js')
+    }
+  }
+
+  showKatex()
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>

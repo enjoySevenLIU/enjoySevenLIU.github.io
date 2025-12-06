@@ -1,0 +1,577 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>UPL9-13——光照烘焙 | 文KRIFE齐的博客</title><meta name="author" content="文KRIFE齐"><meta name="copyright" content="文KRIFE齐"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="UPL9-13——光照烘焙 光照烘焙 提前离线计算场景中的光照、阴影、反射、间接光照等信息，并且将结果保存为贴图或探针数据 在游戏运行时直接使用，从而节省实时计算的性能消耗 为什么可以节约性能  实时光照：运行时每帧都需要计算，开销很大 烘焙光照：提前计算，运行时直接贴图，几乎零性能开销（因为不用实时计算光照）  说人话： 提前把光照表现算好存储到光照纹理中，运行时直接使用光照纹理中的颜色用于着色">
+<meta property="og:type" content="article">
+<meta property="og:title" content="UPL9-13——光照烘焙">
+<meta property="og:url" content="https://enjoysevenliu.github.io/2025/11/13/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL9%E2%80%94%E2%80%94%E5%A2%9E%E5%BC%BA%E6%B8%B2%E6%9F%93%E6%80%A7%E8%83%BD/UPL9-13%E2%80%94%E2%80%94%E5%85%89%E7%85%A7%E7%83%98%E7%84%99/index.html">
+<meta property="og:site_name" content="文KRIFE齐的博客">
+<meta property="og:description" content="UPL9-13——光照烘焙 光照烘焙 提前离线计算场景中的光照、阴影、反射、间接光照等信息，并且将结果保存为贴图或探针数据 在游戏运行时直接使用，从而节省实时计算的性能消耗 为什么可以节约性能  实时光照：运行时每帧都需要计算，开销很大 烘焙光照：提前计算，运行时直接贴图，几乎零性能开销（因为不用实时计算光照）  说人话： 提前把光照表现算好存储到光照纹理中，运行时直接使用光照纹理中的颜色用于着色">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://enjoysevenliu.github.io/img/Blue_Ice.png">
+<meta property="article:published_time" content="2025-11-13T02:29:10.000Z">
+<meta property="article:modified_time" content="2025-12-06T16:02:04.579Z">
+<meta property="article:author" content="文KRIFE齐">
+<meta property="article:tag" content="blog">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://enjoysevenliu.github.io/img/Blue_Ice.png"><link rel="shortcut icon" href="/img/Blue_Ice.png"><link rel="canonical" href="https://enjoysevenliu.github.io/2025/11/13/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL9%E2%80%94%E2%80%94%E5%A2%9E%E5%BC%BA%E6%B8%B2%E6%9F%93%E6%80%A7%E8%83%BD/UPL9-13%E2%80%94%E2%80%94%E5%85%89%E7%85%A7%E7%83%98%E7%84%99/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'UPL9-13——光照烘焙',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  isShuoshuo: false
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/Blue_Ice.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1168</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">141</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/img/Blue_Ice.png" alt="Logo"><span class="site-name">文KRIFE齐的博客</span></a><a class="nav-page-title" href="/"><span class="site-name">UPL9-13——光照烘焙</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">UPL9-13——光照烘焙</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-11-13T02:29:10.000Z" title="发表于 2025-11-13 10:29:10">2025-11-13</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-12-06T16:02:04.579Z" title="更新于 2025-12-07 00:02:04">2025-12-07</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/">UP——Unity性能优化笔记</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL9%E2%80%94%E2%80%94%E5%A2%9E%E5%BC%BA%E6%B8%B2%E6%9F%93%E6%80%A7%E8%83%BD/">UPL9——增强渲染性能</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1>UPL9-13——光照烘焙</h1>
+<h1>光照烘焙</h1>
+<p>提前离线计算场景中的光照、阴影、反射、间接光照等信息，并且将结果保存为贴图或探针数据<br>
+在游戏运行时直接使用，从而节省实时计算的性能消耗</p>
+<p>为什么可以节约性能</p>
+<ul>
+<li>实时光照：运行时每帧都需要计算，开销很大</li>
+<li>烘焙光照：提前计算，运行时直接贴图，几乎零性能开销（因为不用实时计算光照）</li>
+</ul>
+<p>说人话：<br>
+提前把光照表现算好存储到光照纹理中，运行时直接使用光照纹理中的颜色用于着色<br>
+避免实时计算带来的高开销，是典型的 内存换性能 的优化方式</p>
+<h2 id="哪些光照信息可以被烘焙">哪些光照信息可以被烘焙</h2>
+<p>可以被烘焙的光照信息：</p>
+<ol>
+<li>
+<p>直接光照</p>
+<p>来自光源直接照射到表面的光</p>
+</li>
+<li>
+<p>间接光照</p>
+<p>光线在场景中多次反射后的柔和照明</p>
+</li>
+<li>
+<p>阴影</p>
+<p>可烘焙静态阴影（不会随动态物体移动）</p>
+</li>
+<li>
+<p>反射</p>
+<p>可通过 反射探针（Reflection Probe） 烘焙环境反射</p>
+</li>
+</ol>
+<p>不可被烘焙的光照信息：不支持随时间变化的灯光（包括位置方向和光照强度） 或 移动的光源</p>
+<h2 id="如何进行光照烘焙">如何进行光照烘焙</h2>
+<ol>
+<li>
+<p>将场景中想要进行光照烘焙的静态物体标记为静态 Static，或 只勾选 Contribute GI（Contribute Global Illumination，参与全局光照）</p>
+<p>只有勾选了该选项的物体，才会被当作静态对象进行光照烘焙</p>
+<blockquote>
+<p>注意：动态对象 需要使用 光照探针，不能作为静态对象处理</p>
+</blockquote>
+<p><img src="/assets/image-20251113110034-o38ktya.png" alt="image"></p>
+<p>或者</p>
+<p><img src="/assets/image-20251113110104-4wrbrfd.png" alt="image"></p>
+</li>
+<li>
+<p>设置灯光模式</p>
+<ul>
+<li>Realtime (实时)：每帧实时计算光照，用于动态灯光，比如手电筒、闪烁灯</li>
+<li>Baked (烘焙)：只在烘焙阶段起作用，用于完全静态的灯光</li>
+<li>Mixed (混合)：同时支持烘焙与实时，常用于主光源（表现太阳光）</li>
+</ul>
+<p>建议：</p>
+<ul>
+<li>太阳光（主光源）用 Mixed (混合)</li>
+<li>室内灯光（蜡烛、台灯等复杂室内环境光源）用 Baked (烘焙)</li>
+<li>特效等（会移动或随时间变化的光源）用 Realtime (实时)</li>
+</ul>
+</li>
+<li>
+<p>打开 Lighting 设置窗口</p>
+<p>进行相关光照烘焙设置（具体参数请见下文），设置完毕后点击 Generate Lighting，烘焙光照</p>
+<p><img src="/assets/image-20251113144953-kd4o257.png" alt="image"></p>
+</li>
+</ol>
+<p>烘焙关照示例：<br>
+假设有这样一个场景，其中平行光是 Mixed 光源，红黄点光源是 Baked 光源，绿色点光源是 Realtime 光源，其他物体全都勾选 Contribute GI</p>
+<p><img src="/assets/image-20251113145108-h46rqby.png" alt="image"></p>
+<p>烘焙完成后，将三个点光源都失活，可以看到仅绿色的 Realtime 光源的关照消失，其他光源光照依然存在</p>
+<p><img src="/assets/image-20251113145344-khmip1r.png" alt="image"></p>
+<p>在场景上添加一个动态物体，这个动态物体无法只能受到 Mixed 和 Realtime 光源光照影响，而不能受到烘焙后的 Baked 光源光照影响</p>
+<p><img src="/assets/image-20251113145506-a1e7pp9.png" alt="image"></p>
+<h2 id="Lighting-设置窗口烘焙光源相关参数">Lighting 设置窗口烘焙光源相关参数</h2>
+<p>设置建议：</p>
+<ul>
+<li>若噪点多，提高 Samples（采样相关参数）</li>
+<li>若边缘发黑，增大 Lightmap Padding（（光照贴图填充））</li>
+<li>若太亮或太暗，调整 Indirect Intensity（间接强度）</li>
+</ul>
+<p><img src="/assets/image-20251113114333-va81nxd.png" alt="image"></p>
+<ul>
+<li>
+<p>Lighting Settings（光照设置）</p>
+<ul>
+<li>
+<p>Lighting Setting Asset（光照设置配置文件）</p>
+<p>光照设置需要相应的配置文件，如果没有可以在左侧创建或者克隆一个新文件</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Realtime Lighting（实时光照）</p>
+<ul>
+<li>
+<p>Realtime Global Illumination（是否使用实时全局光照）</p>
+<ul>
+<li>
+<p>Realtime Environment Lighting（实时环境光）</p>
+</li>
+<li>
+<p>Indirect Resolution（实时光照的间接光分辨率）</p>
+<p>仅在 Realtime GI 开启时有效</p>
+</li>
+</ul>
+<blockquote>
+<p>建议： 项目一般关闭此项，仅使用 Baked GI（性能更好、质量更稳定）</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li>
+<p>Mixed Lighting（混合光照）</p>
+<ul>
+<li>
+<p>Baked Global Illumination（是否开启烘焙光照）</p>
+<p>我们必须勾选该选项，才能烘焙静态光照</p>
+</li>
+<li>
+<p>Lighting Mode（混合光照计算模式）</p>
+<p><img src="/assets/image-20251113112846-hdzplsy.png" alt="image"></p>
+<ul>
+<li>
+<p>Baked Indirect（间接烘焙模式，实时内容多，性能开销最大）</p>
+<p>只烘焙间接光照（Global Illumination），而直接光照和阴影是实时计算的<br>
+常用于完全实时的场景，只想要烘焙的全局光照“氛围”</p>
+<ul>
+<li>烘焙内容：间接光（反射、漫反射反弹）</li>
+<li>实时内容：直接光、阴影</li>
+<li>动态物体：可接收实时光和阴影，但不会接收烘焙阴影</li>
+<li>性能：较高开销（因为直接光仍是实时计算）</li>
+<li>典型用途：室外场景、昼夜循环、动态光源较多的场景</li>
+</ul>
+</li>
+<li>
+<p>Subtractive（减法模式，实时内容少，性能最好）</p>
+<p>一种最简化的烘焙+实时混合模式，主要面向 低端移动平台<br>
+只允许 一个主方向光（Directional Light） 提供实时阴影，其余光照全部烘焙进贴图</p>
+<ul>
+<li>烘焙内容：所有静态光源（包括直接光和间接光）</li>
+<li>实时内容：主方向光的实时阴影</li>
+<li>动态物体：接收烘焙的静态光照，但只有一个方向光能投影阴影</li>
+<li>性能：最佳性能（最低开销）</li>
+<li>典型用途：卡通风、移动端、光照简单的关卡</li>
+</ul>
+</li>
+<li>
+<p>Shadowmask（阴影遮罩模式，最常用）</p>
+<p>最常用的 混合光照模式，<br>
+结合了烘焙静态光源的间接光照 + 实时光的动态阴影<br>
+静态对象的阴影由烘焙贴图提供；动态物体的阴影由实时计算</p>
+<ul>
+<li>烘焙内容：静态光源的间接光照和静态物体间的阴影<br>
+（存在于 Shadowmask 贴图中）</li>
+<li>实时内容：动态物体的阴影、光照变化</li>
+<li>动态物体：接收烘焙光照 + 参与实时阴影</li>
+<li>性能：较平衡，适合主机/PC</li>
+<li>典型用途：混合场景（例如：静态建筑 + 动态角色）</li>
+</ul>
+</li>
+</ul>
+<p>使用建议：</p>
+<ul>
+<li>Baked Indirect（间接烘焙模式）：追求真实实时光照效果</li>
+<li>Subtractive（减法模式）：面向移动端</li>
+<li>Shadowmask（阴影遮罩模式） 兼顾质量与性能</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Lightmapping Settings（光照贴图设置）</p>
+<ul>
+<li>
+<p>Lightmapper（烘焙引擎类型）</p>
+<p><img src="/assets/image-20251113113456-49ku16m.png" alt="image"></p>
+<ul>
+<li>Progressive CPU（CPU烘焙）</li>
+<li>Progressive GPU（GPU烘焙）</li>
+</ul>
+<p>GPU 更快但需显卡支持。一般用 Progressive GPU</p>
+</li>
+<li>
+<p>Importance Sampling（重要性采样）</p>
+<p>改进采样精度，提高高亮区域的采样密度 建议开启即可</p>
+</li>
+<li>
+<p>采样设置相关</p>
+<ul>
+<li>
+<p>Direct Samples（直接光样本数）</p>
+<p>每个像素的直接光采样次数<br>
+控制直射光精度（阴影锐利度）<br>
+32 ~ 128为常用范围</p>
+</li>
+<li>
+<p>Indirect Samples（直接光样本数）</p>
+<p>间接光（反射、漫反射）的采样次数<br>
+越高光照越平滑但耗时更长。<br>
+建议 256 ~ 512</p>
+</li>
+<li>
+<p>Environment Samples（环境光样本数）</p>
+<p>环境光（天空盒）的采样次数<br>
+影响整体环境光平滑度，默认 256 即可</p>
+</li>
+<li>
+<p>Light Probe Sample Multiplier（光照探针采样倍增倍数）</p>
+<p>光照探针采样倍数，默认 4 即可</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Max Bounces（光线最大反弹次数）</p>
+<p>光线在场景中反射的最大次数，2 ~ 3 次通常足够，太多会浪费时间</p>
+</li>
+<li>
+<p>Filtering（滤波算法）</p>
+<p>控制烘焙后阴影与光照平滑算法</p>
+<p><img src="/assets/image-20251113113913-wz443ty.png" alt="image"></p>
+<ul>
+<li>None：关闭滤波算法</li>
+<li>Auto：自动，推荐方式</li>
+<li>Advanced：高级，阴影颗粒感强</li>
+</ul>
+</li>
+<li>
+<p>分辨率相关</p>
+<ul>
+<li>
+<p>Lightmap Resolution（光照贴图分辨率）</p>
+<p>每单位世界空间使用多少像素</p>
+<p>建议：</p>
+<ul>
+<li>室内小场景：40~60</li>
+<li>室外大场景：10~20</li>
+</ul>
+</li>
+<li>
+<p>Lightmap Padding（光照贴图填充像素数）</p>
+<p>贴图中不同物体间的像素间隔，<br>
+2~4 texel 即可，避免光照互染</p>
+</li>
+<li>
+<p>Max Lightmap Size（最大光照贴图大小）</p>
+<p>单张 Lightmap 最大分辨率<br>
+1024 ~ 2048，视情况而定</p>
+</li>
+<li>
+<p>Fixed Lightmap Size（是否固定光照贴图大小）</p>
+<p>固定 Lightmap 尺寸，具体尺寸由 Max Lightmap Size 决定，一般关闭</p>
+</li>
+<li>
+<p>Use Mipmap Limits（是否使用 Mipmap 限制）</p>
+<p>是否使用 Mipmap，限制以节省内存 一般开启</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Lightmap Compression（光照贴图压缩）</p>
+<p><img src="/assets/image-20251113114237-yz8z7ps.png" alt="image"></p>
+<ul>
+<li>None：不压缩</li>
+<li>Low：低质量压缩</li>
+<li>Normal：普通质量压缩</li>
+<li>High：高质量压缩</li>
+</ul>
+<p>选高质量可减少块状伪影</p>
+</li>
+<li>
+<p>环境光遮蔽相关</p>
+<ul>
+<li>
+<p>Ambient Occlusion（是否开启环境光遮蔽）</p>
+<p>模拟局部阴影（角落、缝隙变暗）<br>
+建议开启，可以增加立体感</p>
+<blockquote>
+<p>环境光遮蔽（AO）是一种 模拟局部阴影的效果</p>
+<p>在模型的缝隙、角落、物体接触面等区域制造微弱阴影，<br>
+使场景更有深度感与体积感<br>
+AO 不会产生方向性阴影（不随光源方向变化）<br>
+它只是让遮蔽区域更暗</p>
+</blockquote>
+<ul>
+<li>
+<p>Max Distance（AO 最大作用距离）</p>
+<p>AO 的最大作用距离（单位：世界空间距离），控制阴影扩散范围</p>
+<ul>
+<li>值越大：AO 扩散范围更大，但可能显得“脏”</li>
+<li>值越小：AO 只集中在贴近处（角落更明显）</li>
+</ul>
+<p>一般 0.5 ~ 2，取决于场景比例</p>
+</li>
+<li>
+<p>Indirect Contribution（AO 间接贡献程度）</p>
+<p>AO 对间接光照（反射光）的影响强度。<br>
+值越高：AO 会更强地抑制反射光亮度，使暗处更暗<br>
+一般 0.5 ~ 1</p>
+</li>
+<li>
+<p>Direct Contribution（AO 直接贡献程度）</p>
+<p>AO 对直接光照（灯光照射部分）的影响强度。<br>
+值越高：即使在有灯照的地方，AO 也会让角落显得更暗<br>
+一般 0.1 ~ 0.5</p>
+</li>
+</ul>
+<p>建议：</p>
+<ul>
+<li>
+<p>室内高对比场景</p>
+<ul>
+<li>Max Distance：1</li>
+<li>Indirect Contribution：1</li>
+<li>Direct Contribution：0.3</li>
+</ul>
+</li>
+<li>
+<p>室外自然光场景</p>
+<ul>
+<li>Max Distance：2</li>
+<li>Indirect Contribution：0.5</li>
+<li>Direct Contribution：0.2</li>
+</ul>
+</li>
+<li>
+<p>卡通风格 / 简洁风</p>
+<ul>
+<li>Max Distance：0.5</li>
+<li>Indirect Contribution：0.8</li>
+<li>Direct Contribution：0.1</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Directional Mode（方向模式，是否存储光照方向信息）</p>
+<p>是否存储光照方向信息，对于有法线贴图的场景用 Directional（推荐）</p>
+<p><img src="/assets/image-20251113114939-0hr3q2o.png" alt="image"></p>
+<ul>
+<li>Directional：存储</li>
+<li>Non-Directional：不存储</li>
+</ul>
+</li>
+<li>
+<p>Albedo Boost（反射率提升强度）</p>
+<p>增强表面颜色反射强度，一般保持 1</p>
+</li>
+<li>
+<p>Indirect Intensity（间接强度）</p>
+<p>间接光照亮度倍数，调整反射整体亮度，常用范围 1~2</p>
+</li>
+<li>
+<p>Lightmap Parameters（光照贴图参数配置文件）</p>
+<p>控制光照贴图细节的模板<br>
+（默认包括 Default-Low / Default-Medium / Default-High，也可以自行创建）<br>
+一般用 Default-Medium 或 Default-High</p>
+</li>
+</ul>
+</li>
+<li>
+<p>其他设置</p>
+<ul>
+<li>
+<p>GPU Baking Profile（GPU 烘焙配置）</p>
+<p>使用哪个 GPU 配置进行烘焙，默认Automatic 即可<br>
+（仅在 Lightmapper 选择 Progressive GPU 时才可选择）</p>
+<p><img src="/assets/image-20251113115349-puq1dgq.png" alt="image"></p>
+<ul>
+<li>Highest Performance（最高性能）</li>
+<li>High Performance（高性能）</li>
+<li>Automatic（自动）</li>
+<li>Low Memory Usage（低内存占用）</li>
+<li>Lowest Memory Usage（最低内存占用）</li>
+</ul>
+</li>
+<li>
+<p>Bake On Scene Load（场景加载时烘焙）</p>
+<p><img src="/assets/image-20251113115742-llborai.png" alt="image"></p>
+<ul>
+<li>Never（不烘焙，手动控制）</li>
+<li>If Misssing Lighting Data（如果缺失烘焙数据就烘焙）</li>
+</ul>
+</li>
+<li>
+<p>Generate Lighting（生成光照烘焙数据）</p>
+<p>手动开始光照烘焙，烘焙时点击此按钮</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="如何判断是否成功使用了光照贴图">如何判断是否成功使用了光照贴图</h2>
+<ol>
+<li>
+<p>查看 Window → Rendering → Lighting → Baked Lightmaps 中是否存在已经生成的光照贴图</p>
+<p><img src="/assets/image-20251113120232-fv8z4rv.png" alt="image"></p>
+</li>
+<li>
+<p>在 Scene 视图中通过切换选择观察模式来查看光照贴图显示部分</p>
+<p><img src="/assets/image-20251113120551-45k29wt.png" alt="image"></p>
+</li>
+<li>
+<p>查看场景中物体的 Renderer 组件的 Lighting 区域，查看对象是否勾选了 参与烘焙的选项，并且查看 Lightmapping 部分自己是否关联了烘焙的光照贴图</p>
+<p><img src="/assets/image-20251113144325-6vh4i9e.png" alt="image"></p>
+</li>
+<li>
+<p>检查灯光模式是否使用了 Baked 或者 Mixed</p>
+<p><img src="/assets/image-20251113144428-t0ktbiu.png" alt="image"></p>
+</li>
+</ol>
+<p>等等</p>
+<h2 id="清除光照烘焙">清除光照烘焙</h2>
+<p>如果要清除光照烘焙，需要在 Lighting 设置窗口下方的 Generate Lighting 按钮右侧点击下三角，会弹出菜单，点击 Clear Baked Data 即可清理光照烘焙</p>
+<p><img src="/assets/6a43a0e262b77981aceb07099ce3608a-20251114104956-ulm3odp.png" alt="6a43a0e262b77981aceb07099ce3608a"></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://enjoysevenliu.github.io">文KRIFE齐</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://enjoysevenliu.github.io/2025/11/13/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL9%E2%80%94%E2%80%94%E5%A2%9E%E5%BC%BA%E6%B8%B2%E6%9F%93%E6%80%A7%E8%83%BD/UPL9-13%E2%80%94%E2%80%94%E5%85%89%E7%85%A7%E7%83%98%E7%84%99/">https://enjoysevenliu.github.io/2025/11/13/Unity就业路线学习笔记/UP——Unity性能优化笔记/UPL9——增强渲染性能/UPL9-13——光照烘焙/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://enjoysevenliu.github.io" target="_blank">文KRIFE齐的博客</a>！</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/img/Blue_Ice.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2025/11/13/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL9%E2%80%94%E2%80%94%E5%A2%9E%E5%BC%BA%E6%B8%B2%E6%9F%93%E6%80%A7%E8%83%BD/UPL9-14%E2%80%94%E2%80%94%E5%85%89%E7%85%A7%E6%8E%A2%E9%92%88/" title="UPL9-14——光照探针"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">UPL9-14——光照探针</div></div><div class="info-2"><div class="info-item-1">UPL9-14——光照探针 光照探针 上一篇提到的光照烘焙，主要是为静态物体服务的，静态物体的光照信息直接烘焙进了光照贴图中 而动态物体由于自身会不停移动，受光影响的结果是不能直接烘焙进贴图的，所以烘焙光照无法作用于动态物体上 如果需要让动态物体收到直接光照，可以将光源改为 Mixed 模式，不过动态物体依然不能受到间接光的影响 而光照探针（Light Probe）可以用于解决 烘焙光源产生的间接光不能作用于动态物体 的问题，它让动态物体在场景中通过插值获得周围环境的间接光信息 间接光照（Indirect Lighting）是由光线在场景中经过一次或多次反射后，再照射到物体表面的光照 举例：  灯直接照在桌面上为 直接光照 桌面反射的光线照亮了墙壁、天花板为 间接光照 墙壁又反射出微弱的光照亮房间阴暗处为...</div></div></div></a><a class="pagination-related" href="/2025/11/12/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL9%E2%80%94%E2%80%94%E5%A2%9E%E5%BC%BA%E6%B8%B2%E6%9F%93%E6%80%A7%E8%83%BD/UPL9-12%E2%80%94%E2%80%94%E9%98%B4%E5%BD%B1%E8%B4%A8%E9%87%8F/" title="UPL9-12——阴影质量"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">UPL9-12——阴影质量</div></div><div class="info-2"><div class="info-item-1">UPL9-12——阴影质量  前置知识：  US3S6L1——阴影的基本原理 US3S6L2——Unity中阴影的实现原理   内置渲染管线设置阴影质量 工程设置中的质量设置 相关设置在 Project Setting —— Quality —— Shadows 中：    Shadowmask Mode：遮罩模式    Shadowmask（阴影遮罩） 静态物体的阴影都来自光照贴图，动态物体投射的阴影混合在 Shadowmask 里   Distance Shadowmask（距离阴影遮罩） 近处用实时阴影，远处用光照贴图里的 Shadowmask，平衡性能和质量   移动端建议选择 Distance Shadowmask   Shadows：阴影    Disable Shadows（全局禁用阴影） 即使光源（Light）里设置了投射阴影，物体也不会产生阴影   Hard Shadows Only（仅开启硬阴影） 开启 硬阴影（边缘清晰锐利） 性能消耗相对低，阴影看起来不自然，尤其是远处或柔光场景 适用于移动端、低端设备或风格化游戏   Hard and Soft...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/Blue_Ice.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">文KRIFE齐</div><div class="author-info-description">Unity就业路线的笔记终于更新完了！新年快乐！</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1168</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">141</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/enjoySevenLIU"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/enjoySevenLIU" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">博客修好了，继续学习，CSharp进阶也迁移完毕了，接下来尽快把Unity Shader给啃完，年末给博客好好整修一下</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">UPL9-13——光照烘焙</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">2.</span> <span class="toc-text">光照烘焙</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%93%AA%E4%BA%9B%E5%85%89%E7%85%A7%E4%BF%A1%E6%81%AF%E5%8F%AF%E4%BB%A5%E8%A2%AB%E7%83%98%E7%84%99"><span class="toc-number">2.1.</span> <span class="toc-text">哪些光照信息可以被烘焙</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E8%BF%9B%E8%A1%8C%E5%85%89%E7%85%A7%E7%83%98%E7%84%99"><span class="toc-number">2.2.</span> <span class="toc-text">如何进行光照烘焙</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Lighting-%E8%AE%BE%E7%BD%AE%E7%AA%97%E5%8F%A3%E7%83%98%E7%84%99%E5%85%89%E6%BA%90%E7%9B%B8%E5%85%B3%E5%8F%82%E6%95%B0"><span class="toc-number">2.3.</span> <span class="toc-text">Lighting 设置窗口烘焙光源相关参数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E5%88%A4%E6%96%AD%E6%98%AF%E5%90%A6%E6%88%90%E5%8A%9F%E4%BD%BF%E7%94%A8%E4%BA%86%E5%85%89%E7%85%A7%E8%B4%B4%E5%9B%BE"><span class="toc-number">2.4.</span> <span class="toc-text">如何判断是否成功使用了光照贴图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B8%85%E9%99%A4%E5%85%89%E7%85%A7%E7%83%98%E7%84%99"><span class="toc-number">2.5.</span> <span class="toc-text">清除光照烘焙</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/11/24/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL11%E2%80%94%E2%80%94%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/" title="UPL11——内存管理">UPL11——内存管理</a><time datetime="2025-11-24T08:07:56.000Z" title="发表于 2025-11-24 16:07:56">2025-11-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/11/24/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL10%E2%80%94%E2%80%94%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/UPL10-6%E2%80%94%E2%80%94AB%E5%8C%85%E5%92%8CResources%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/" title="UPL10-6——AB包和Resources资源优化">UPL10-6——AB包和Resources资源优化</a><time datetime="2025-11-24T07:46:31.000Z" title="发表于 2025-11-24 15:46:31">2025-11-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/11/24/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL10%E2%80%94%E2%80%94%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/UPL10-5%E2%80%94%E2%80%94%E6%9D%90%E8%B4%A8%E4%B8%8EShader%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/" title="UPL10-5——材质与Shader资源优化">UPL10-5——材质与Shader资源优化</a><time datetime="2025-11-24T07:09:51.000Z" title="发表于 2025-11-24 15:09:51">2025-11-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/11/24/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL10%E2%80%94%E2%80%94%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/UPL10-4%E2%80%94%E2%80%94%E7%BD%91%E6%A0%BC%E4%B8%8E%E5%8A%A8%E7%94%BB%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/" title="UPL10-4——网格与动画资源优化">UPL10-4——网格与动画资源优化</a><time datetime="2025-11-24T03:58:43.000Z" title="发表于 2025-11-24 11:58:43">2025-11-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/11/24/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL10%E2%80%94%E2%80%94%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/UPL10-3%E2%80%94%E2%80%94%E7%BA%B9%E7%90%86%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/" title="UPL10-3——纹理资源优化">UPL10-3——纹理资源优化</a><time datetime="2025-11-24T03:10:58.000Z" title="发表于 2025-11-24 11:10:58">2025-11-24</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2025 By 文KRIFE齐</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"><script>(async () => {
+  const showKatex = () => {
+    document.querySelectorAll('#article-container .katex').forEach(el => el.classList.add('katex-show'))
+  }
+
+  if (!window.katex_js_css) {
+    window.katex_js_css = true
+    await btf.getCSS('https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css')
+    if (false) {
+      await btf.getScript('https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js')
+    }
+  }
+
+  showKatex()
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>

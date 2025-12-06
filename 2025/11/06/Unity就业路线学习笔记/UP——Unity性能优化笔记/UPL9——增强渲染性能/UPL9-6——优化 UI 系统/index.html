@@ -1,0 +1,557 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>UPL9-6——优化 UI 系统 | 文KRIFE齐的博客</title><meta name="author" content="文KRIFE齐"><meta name="copyright" content="文KRIFE齐"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="UPL9-6——优化 UI 系统 使用更多 Canvas 组件 Canvas（画布）组件的基本工作原理 任何 UGUI 控件都必须挂在一个 Canvas 下，Unity 才会把它们作为 UI 元素渲染出来，Canvas 的本质作用：  收集子节点的 UI 元素（Graphic）信息 处理渲染顺序（Sorting、Camera、RenderMode） 管理重建，监听子物体的变动，决定哪些需要更新 批">
+<meta property="og:type" content="article">
+<meta property="og:title" content="UPL9-6——优化 UI 系统">
+<meta property="og:url" content="https://enjoysevenliu.github.io/2025/11/06/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL9%E2%80%94%E2%80%94%E5%A2%9E%E5%BC%BA%E6%B8%B2%E6%9F%93%E6%80%A7%E8%83%BD/UPL9-6%E2%80%94%E2%80%94%E4%BC%98%E5%8C%96%20UI%20%E7%B3%BB%E7%BB%9F/index.html">
+<meta property="og:site_name" content="文KRIFE齐的博客">
+<meta property="og:description" content="UPL9-6——优化 UI 系统 使用更多 Canvas 组件 Canvas（画布）组件的基本工作原理 任何 UGUI 控件都必须挂在一个 Canvas 下，Unity 才会把它们作为 UI 元素渲染出来，Canvas 的本质作用：  收集子节点的 UI 元素（Graphic）信息 处理渲染顺序（Sorting、Camera、RenderMode） 管理重建，监听子物体的变动，决定哪些需要更新 批">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://enjoysevenliu.github.io/img/Blue_Ice.png">
+<meta property="article:published_time" content="2025-11-06T06:14:00.000Z">
+<meta property="article:modified_time" content="2025-12-06T16:02:04.585Z">
+<meta property="article:author" content="文KRIFE齐">
+<meta property="article:tag" content="blog">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://enjoysevenliu.github.io/img/Blue_Ice.png"><link rel="shortcut icon" href="/img/Blue_Ice.png"><link rel="canonical" href="https://enjoysevenliu.github.io/2025/11/06/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL9%E2%80%94%E2%80%94%E5%A2%9E%E5%BC%BA%E6%B8%B2%E6%9F%93%E6%80%A7%E8%83%BD/UPL9-6%E2%80%94%E2%80%94%E4%BC%98%E5%8C%96%20UI%20%E7%B3%BB%E7%BB%9F/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'UPL9-6——优化 UI 系统',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  isShuoshuo: false
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/Blue_Ice.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1168</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">141</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/img/Blue_Ice.png" alt="Logo"><span class="site-name">文KRIFE齐的博客</span></a><a class="nav-page-title" href="/"><span class="site-name">UPL9-6——优化 UI 系统</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">UPL9-6——优化 UI 系统</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-11-06T06:14:00.000Z" title="发表于 2025-11-06 14:14:00">2025-11-06</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-12-06T16:02:04.585Z" title="更新于 2025-12-07 00:02:04">2025-12-07</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/">UP——Unity性能优化笔记</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL9%E2%80%94%E2%80%94%E5%A2%9E%E5%BC%BA%E6%B8%B2%E6%9F%93%E6%80%A7%E8%83%BD/">UPL9——增强渲染性能</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1>UPL9-6——优化 UI 系统</h1>
+<h2 id="使用更多-Canvas-组件">使用更多 Canvas 组件</h2>
+<h3 id="Canvas（画布）组件的基本工作原理">Canvas（画布）组件的基本工作原理</h3>
+<p>任何 UGUI 控件都必须挂在一个 <code>Canvas</code> 下，Unity 才会把它们作为 UI 元素渲染出来，Canvas 的本质作用：</p>
+<ol>
+<li>收集子节点的 UI 元素（Graphic）信息</li>
+<li>处理渲染顺序（Sorting、Camera、RenderMode）</li>
+<li>管理重建，监听子物体的变动，决定哪些需要更新</li>
+<li>批量生成 UI 顶点网格、更新材质信息</li>
+<li>最终在渲染阶段合批并提交给 GPU</li>
+</ol>
+<p>等等</p>
+<p>​<code>Canvas</code> 内部维护了一个重建队列，当子元素发生变化时，它会标记自己为 “脏”（dirty）<br>
+在本帧渲染前统一执行重建（布局重建 / 图形重建 / 材质重建）</p>
+<ul>
+<li>布局重建：主要进行布局计算</li>
+<li>图形重建：主要进行网格生成（比如合并 UI 元素网格信息、前提是材质相同）</li>
+<li>材质重建：主要进行材质状态更新</li>
+</ul>
+<p>所谓“画布污染”，就是有子元素打了脏标记，导致整个 Canvas 的顶点缓存需要刷新<br>
+如果 <code>Canvas</code> 很大，就会让大量 UI 元素一并重建，带来性能消耗</p>
+<p>可能带来画布污染的情况：</p>
+<ol>
+<li>修改 UI 元素的 <code>RectTransform</code> 相关属性，比如位置、缩放、角度等</li>
+<li>自动布局组件的更新，比如 <code>LayoutGoup</code>​、<code>ContentSizeFitter</code> 等自动布局组件在元素变化时会重新计算</li>
+<li>频繁改变 UI 元素父子关系、排列顺序、失活激活等</li>
+<li>文本发生变化时，自动调整大小时</li>
+<li>更改 UI 元素纹理、材质等</li>
+<li>修改 UI 元素颜色、透明度等</li>
+<li>禁用启用遮罩</li>
+<li>Shader 参数修改，比如文本边缘线、阴影效果等</li>
+</ol>
+<p>等等</p>
+<p>说人话：<br>
+一个 <code>Canvas</code>​ 统一管理它下面的所有子 UI 元素，若更新其中一个子元素会让整个 <code>Canvas</code> 进行重建，造成性能消耗</p>
+<h3 id="更多的-Canvas（画布）组件">更多的 Canvas（画布）组件</h3>
+<p>为了避免 <code>Canvas</code>​ 的重建带来的性能消耗<br>
+我们可以把会频繁变化的 UI 元素单独放在一个小 <code>Canvas</code>​ 当中<br>
+避免一个小元素的更新导致整个大 <code>Canvas</code> 重建</p>
+<p>我们可以把UI元素分成三大类</p>
+<ul>
+<li>静态：静态 UI 元素永远不会改变，比如背景图、说明文字、Logo、装饰性分割线等等</li>
+<li>偶尔动态：只会偶尔为了做出响应时而改变，比如 UI 按钮按下，拖动条，拥有金币数 等等</li>
+<li>持续动态：会持续甚至每帧发生变化的元素，比如战斗中血条流动动画、计时器、秒表文本、摇杆UI等等</li>
+</ul>
+<p>通过这个分类，我们可以将 UI 元素进行 动静分离，将 UI 元素拆分到不同的画布中，高频变化区域独立 <code>Canvas</code>，从而达到节约性能的目的</p>
+<p>举例说明：</p>
+<p>大 <code>Canvas</code>：存在 500 个 UI（背景 + 血条 + 按钮…），血条变化 导致 整个 500 个 UI 重建</p>
+<p>拆分后：</p>
+<ul>
+<li>大 <code>Canvas</code> 管理不变的内容（450 个 UI）</li>
+<li>小 <code>Canvas</code> 管理变化的血条（50 个 UI）</li>
+</ul>
+<p>血条变化时，只重建 50 个 UI，大 <code>Canvas</code> 部分缓存复用不会重建，从而性能更好</p>
+<blockquote>
+<p>注意：<code>Canvas</code> 并不是越多越好，它也存在一些潜在的缺点</p>
+<ol>
+<li>​<code>Canvas</code> 会打断合批处理，会增加 DrawCall</li>
+<li>​<code>Canvas</code> 本身需要进行排序、合批、DrawCall 提交等事情</li>
+</ol>
+<p>如果拆的太碎，反而会因为本身的开销带来性能影响</p>
+</blockquote>
+<h2 id="禁用-Raycast-Target">禁用 Raycast Target</h2>
+<h3 id="Raycast-Target-是什么">Raycast Target 是什么</h3>
+<p>UGUI 中每个 能显示的图形内容（<code>Image</code>​、<code>Text</code>​、<code>RawImage</code>​、<code>TMP_Text</code> 等等），都有一个布尔选项 Raycast Target（射线检测目标）</p>
+<p><img src="/assets/image-20251106143619-mvf8vg7.png" alt="image"></p>
+<p>它决定了该 图形 是否作为 射线检测的目标，可以简单的把 Raycast Target 类比成 能不能被点中 的开关<br>
+勾选它，该对象可以被检测到选中；不勾选，该对象不会被检测</p>
+<p>它的工作流程是：</p>
+<ol>
+<li>​<code>GraphicRaycaster</code>​（射线检测组件）在处理输入事件（点击、拖拽、触摸）时，会从 <code>EventSystem</code> 发出一条射线</li>
+<li>这条射线会检测 当前 <code>Canvas</code>​ 下所有 <code>RaycastTarget = true</code> 的 UI 元素</li>
+<li>每个元素会计算射线是否落在它的矩形或多边形范围内</li>
+<li>命中后，事件系统再决定触发哪个控件的（<code>Button</code>​、<code>Toggle</code>​、<code>Scrollbar</code>） 交互逻辑</li>
+</ol>
+<h3 id="为什么要禁用-Raycast-Target">为什么要禁用 Raycast Target</h3>
+<p>勾选 Raycast Target 可能带来的性能问题</p>
+<ol>
+<li>
+<p>检测内容太多</p>
+<p>默认所有 <code>Image</code>​、<code>Text</code> 等图形控件的 Raycast Target（射线检测目标）都是开启的<br>
+即使它只是一个装饰图，也要被遍历，遍历就会存在开销</p>
+</li>
+<li>
+<p>每帧检测</p>
+<p>射线检测每次输入（移动 / 点击 / 拖拽）都要做，可能需要每帧都执行，检测就会带来开销</p>
+</li>
+<li>
+<p>计算成本</p>
+<p>每个目标要进行矩形碰撞或更复杂的遮罩判断（<code>Mask</code>​、<code>RectMask2D</code>），子元素越多，计算成本越高</p>
+</li>
+</ol>
+<p>因此，如果一个不需要进行交互的 UI 对象，开启 Raycast Target 就会增加开销<br>
+通过禁用它可以有效的提高性能，降低开销，主要带来的好处是：</p>
+<ol>
+<li>事件系统在遍历时直接跳过它，减少遍历开销</li>
+<li>避免了无意义的射线计算，减少计算开销</li>
+</ol>
+<p>使用建议：</p>
+<ol>
+<li>
+<p>一定要禁用的</p>
+<p>背景图、装饰图标、分割线、阴影、UI 框架图、纯装饰性、说明性文字</p>
+</li>
+<li>
+<p>必须保留的</p>
+<p>​<code>Button</code>​、<code>Toggle</code>​、<code>Slider</code>​、<code>ScrollRect</code> 可交互区域或控件</p>
+</li>
+</ol>
+<h2 id="通过禁用-Canvas（画布）组件来隐藏-UI-元素">通过禁用 Canvas（画布）组件来隐藏 UI 元素</h2>
+<p>在 UGUI 中，有以下几种方式可以隐藏 UI 元素</p>
+<ol>
+<li>
+<p>通过 <code>SetActive</code> 方法 设置 UI 元素依附对象的激活失活状态</p>
+<p>会触发 <code>Canvas</code> 重建，恢复时也要重建，开销较大</p>
+</li>
+<li>
+<p>通过失活 UI 元素的 图形组件</p>
+<p>该元素不渲染，但仍会导致所在 Canvas 重建</p>
+</li>
+<li>
+<p>通过 <code>CanvasGroup</code> 组件的整体改变透明度为 0</p>
+</li>
+<li>
+<p>通过组件颜色 <code>Color</code> 属性改变透明度为 0</p>
+<p>通过 <code>CanvasGroup</code>​ 或 <code>Color</code> 属性设置为透明 仍然会生成网格、送入渲染流程;<br>
+GPU 依然在画，只是全透明</p>
+</li>
+<li>
+<p>通过将 <code>Canvas</code>（画布）组件失活</p>
+<p>只禁用这个 <code>Canvas</code>​ 的渲染器<br>
+整个 <code>Canvas</code> 下 UI 元素 不参与渲染和事件检测</p>
+</li>
+</ol>
+<p>从以上方案来考虑<br>
+如果想要隐藏某些 UI 控件时，可以通过失活其所属 <code>Canvas</code>（画布）达到目的<br>
+并且好处是可以直接跳过渲染和事件检测，避免无意义的重建和渲染！</p>
+<blockquote>
+<p>注意：通过禁用 <code>Canvas</code>​（画布）的方式去隐藏 UI 元素的前提是 动静分离、多 <code>Canvas</code>​ 合理分配<br>
+否则禁用一个 <code>Canvas</code> 可能会让很多不相关 UI 一起消失</p>
+</blockquote>
+<h2 id="避免在-UI-使用-Animator">避免在 UI 使用 Animator</h2>
+<p>如果在 UI 中使用 <code>Animator</code>​ 组件来播放一些 UI 动画<br>
+​<code>Animator</code>​ 会在每帧根据动画状态机计算 <code>Transform</code> 或其他属性变化</p>
+<p>比如：</p>
+<ol>
+<li>位置、旋转、缩放</li>
+<li>颜色、图片变换</li>
+</ol>
+<p>等等</p>
+<p>通过之前的学习我们知道，如果一个 <code>Canvas</code>​（画布）下 UI 元素发生变换会产生画布污染<br>
+画布污染就意味着会造成 <code>Canvas</code>​（画布）重建，也就说 <code>Animator</code>​ 动画组件会为 UGUI 带来更多的性能开销<br>
+并且 <code>Animator</code> 本质是状态机驱动，每帧都会运行状态逻辑，会有更多开销</p>
+<p>如果 UI 界面上一定需要动态效果，可以采用以下方案</p>
+<ol>
+<li>利用 DoTween 插件做缓动效果</li>
+<li>自己实现动态效果，比如利用协程或 <code>Lerp</code> 实现插值动画，控制更新频率和时机，避免每帧无意义更新</li>
+<li>用 Shader 实现动态效果，把计算交给 GPU，比如进度条流光、动态血条更新、按钮高亮等</li>
+<li>动静分离进行拆分，将动态效果分离到一个专门的 <code>Canvas</code> 下，减少重建开销</li>
+</ol>
+<h2 id="为世界空间画布定义摄像机">为世界空间画布定义摄像机</h2>
+<h3 id="什么是世界空间画布（Canvas）">什么是世界空间画布（Canvas）</h3>
+<p>所谓世界空间画布，就是将 <code>Canvas</code> 中的 Render Mode（渲染模式）参数，设置为 World Space（世界空间）的画布</p>
+<p><img src="/assets/image-20251106144924-h2cq2cd.png" alt="image"></p>
+<p>一般在以下情况可能使用这种 UI 模式</p>
+<ol>
+<li>
+<p>VR / AR 项目中</p>
+<ul>
+<li>UI 元素希望在 3D 世界中和场景物体混合显示</li>
+<li>VR 中常见的 悬浮菜单、手腕面板</li>
+<li>场景内的交互 UI，比如 箱子、门、机关上方的 交互提示</li>
+<li>贴在墙上的按钮、开关 UI</li>
+</ul>
+<p>等等</p>
+</li>
+<li>
+<p>游戏项目中</p>
+<p>玩家或 NPC 头顶的 血条 、 名字 、 Buff 图标</p>
+<p>等等</p>
+</li>
+</ol>
+<p>总体而言<br>
+UI 必须是 3D 世界的一部分，而不是固定在屏幕上的 2D 界面时<br>
+就可能会用到 世界空间画布（Canvas）</p>
+<h3 id="为世界空间画布（Canvas）显示定义摄像机">为世界空间画布（Canvas）显示定义摄像机</h3>
+<p>当 Canvas 的模式是 World Space 时，如果不设置它的 Event Camera 参数，并且所有摄像机都设置的会渲染 UI 层的话<br>
+那么 UI 元素就可能被多个摄像机渲染，从而带来性能浪费</p>
+<p>我们的项目中经常可能存在多个摄像机，比如 主相机、小地图相机、后处理相机、预渲染摄像机 等等</p>
+<p>如果这些相机没有进行专门的设置，可能都会渲染UI层<br>
+那带来的问题就是：同一份 UI 可能会被多次渲染，从而浪费性能<br>
+它可能带来的性能开销有：</p>
+<ul>
+<li>CPU =&gt; 会重复提交 DrawCall 等</li>
+<li>GPU =&gt; 重复进行像素填充 等</li>
+</ul>
+<p>因此，我们应该养成良好的习惯，为世界空间画布（Canvas）显示的定义关联摄像机，明确设置 Event Camera<br>
+并且 让其他不需要渲染 UI 的相机在 Culling Mask (剔除遮罩) 中排除 UI 层<br>
+这样就可以有效解决该问题，减少我们的性能浪费！</p>
+<h2 id="不要使用透明度组件隐藏组件">不要使用透明度组件隐藏组件</h2>
+<blockquote>
+<p>在 UGUI 中，有以下几种方式可以隐藏 UI 元素</p>
+<ol>
+<li>
+<p>通过 <code>SetActive</code> 方法 设置 UI 元素依附对象的激活失活状态</p>
+<p>会触发 <code>Canvas</code> 重建，恢复时也要重建，开销较大</p>
+</li>
+<li>
+<p>通过失活 UI 元素的 图形组件</p>
+<p>该元素不渲染，但仍会导致所在 Canvas 重建</p>
+</li>
+<li>
+<p>通过 <code>CanvasGroup</code> 组件的整体改变透明度为 0</p>
+</li>
+<li>
+<p>通过组件颜色 <code>Color</code> 属性改变透明度为 0</p>
+<p>通过 <code>CanvasGroup</code>​ 或 <code>Color</code> 属性设置为透明 仍然会生成网格、送入渲染流程;<br>
+GPU 依然在画，只是全透明</p>
+</li>
+<li>
+<p>通过将 <code>Canvas</code>（画布）组件失活</p>
+<p>只禁用这个 <code>Canvas</code>​ 的渲染器，整个 <code>Canvas</code> 下 UI 元素 不参与渲染和事件检测</p>
+</li>
+</ol>
+<p>在上文通过禁用 <code>Canvas</code>​（画布）组件来隐藏 UI 元素中，<br>
+就强调了通过禁用 <code>Canvas</code> 组件的方式隐藏组件是相对最节约性能的方式<br>
+这里再来强调一次不要使用透明度隐藏组件的相关内容</p>
+</blockquote>
+<h3 id="为什么不要使用透明度隐藏组件">为什么不要使用透明度隐藏组件</h3>
+<p>主要原因<br>
+透明度隐藏依旧会触发渲染</p>
+<ol>
+<li>
+<p>生成网格</p>
+<p>UI 元素依然会生成顶点数据</p>
+</li>
+<li>
+<p>提交 DrawCall</p>
+<p>​<code>CanvasRenderer</code> 还是会把看似隐藏的 UI 元素打包提交给 GPU</p>
+</li>
+<li>
+<p>GPU 渲染</p>
+<p>GPU 照常进行光栅化、像素着色，只是最终混合结果是透明像素<br>
+也就是说，GPU 做了同样的计算，只是输出颜色的透明通道为 0，看不到而已</p>
+</li>
+<li>
+<p>事件检测</p>
+<p>如果 <code>RaycastTarget = true</code>，透明 UI 还会继续参与射线检测，CPU 也有性能浪费</p>
+</li>
+</ol>
+<p>所以如果通过透明度隐藏元素，看不见 ≠ 不渲染，它只是画了一个看不见的内容</p>
+<p>原因:</p>
+<ol>
+<li>CPU消耗依旧</li>
+<li>GPU消耗依旧</li>
+<li>事件检测消耗依旧</li>
+</ol>
+<h3 id="如何尽量避免使用透明度隐藏组件">如何尽量避免使用透明度隐藏组件</h3>
+<p>如果是想要直接隐藏对象</p>
+<ul>
+<li>
+<p>最佳选择：</p>
+<p>禁用 <code>Canvas</code> 组件</p>
+</li>
+<li>
+<p>备用选择:</p>
+<ol>
+<li>失活 UI 图形组件（<code>Image</code>​、<code>RawImage</code>​、<code>Text</code> 等）</li>
+<li>失活依附的 <code>GameObject</code> 对象</li>
+</ol>
+</li>
+</ul>
+<p>如果需要淡入淡出消失效果，可以在透明度为 0 淡出结束后，将其直接隐藏</p>
+<h2 id="优化-ScrollRect">优化 ScrollRect</h2>
+<h3 id="ScrollRect-带来的性能开销">ScrollRect 带来的性能开销</h3>
+<p>​<code>ScrollRect</code> 是 UGUI 中一个 可滚动的 UI 容器，常用于列表、背包、排行榜 等功能</p>
+<p>它的工作流程大概如下所述：</p>
+<ol>
+<li>有一个 显示区域（<code>Viewport</code>​）和一个 实际内容节点（<code>Content</code>）</li>
+<li>​<code>Content</code> 下放了很多子元素（背包格子、排行榜玩家信息等等）</li>
+<li>滚动时，<code>ScrollRect</code>​ 会移动 <code>Content</code>​ 的位置，驱动子元素的 <code>RectTransform</code> 变化</li>
+<li>因为 <code>RectTransform</code>​ 在变，<code>Canvas</code>​ 会认为子元素脏了（dirty），触发 <code>Canvas</code> 重建</li>
+</ol>
+<p>因此，当 <code>Content</code> 下子元素很多时（几百几千个），哪怕屏幕只显示几十个，滚动时所有元素都会被算一次布局和渲染</p>
+<p>因此，由于 <code>ScrollRect</code> 的本身工作机制，当子元素太多时，就会带来一些无意义的性能开销</p>
+<h3 id="优化-ScrollRect-核心思想">优化 ScrollRect 核心思想</h3>
+<p>核心优化思想：只保留 在屏幕可见的元素，其他元素不参与渲染</p>
+<p>它的核心优化思路就是</p>
+<ol>
+<li>利用缓存池复用对象，只显示可见范围内的元素</li>
+<li>使用自定义布局，不使用 Unity 自带的布局组件</li>
+</ol>
+<p>除此之外，我们应该把 <code>ScrollRect</code>​ 相关内容单独放入一个独立的 <code>Canvas</code> 中，达到动静分离的目的</p>
+<h3 id="ScrollRect-遮罩优化">ScrollRect 遮罩优化</h3>
+<p>用 <code>RectMask2D</code>​ 替换 <code>Mask</code>​ 遮罩，当 <code>ScrollRect</code>​ 的裁剪区域只是矩形的情况下，完全可以用 <code>RectMask2D</code>​ 来替代 <code>Mask</code>​ 遮罩，<br>
+因为 <code>RectMask2D</code>​ 的性能开销相对 <code>Mask</code>​ 要低很多，当非矩形时再使用 <code>Mask</code></p>
+<h2 id="使用-UIText-或-自定义非渲染UI脚本-进行全屏交互">使用 UIText 或 自定义非渲染UI脚本 进行全屏交互</h2>
+<h3 id="常见的全屏交互方式">常见的全屏交互方式</h3>
+<p>在进行项目开发时，我们经常会有全屏交互层</p>
+<p>用于拦截点击，屏蔽底层 UI（后方内容不能点击，只能点击前方内容，一般称为 模态窗口）或 制作类似全屏按钮功能（点击屏幕触发流程）<br>
+我们常见的方式有：</p>
+<ol>
+<li>
+<p>透明 <code>Image</code></p>
+<p>在 <code>Canvas</code>​ 下放一个 <code>Image</code>​，拉满全屏，颜色设为几乎透明，开启 <code>RaycastTarget</code></p>
+</li>
+<li>
+<p>空 <code>Text</code>​ 或 <code>TMP_Text</code></p>
+<p>用一个没有文字显示的文本控件，拉满全屏，开启 <code>RaycastTarget</code></p>
+</li>
+<li>
+<p>​<code>Button</code></p>
+<p>全屏按钮</p>
+</li>
+</ol>
+<p>等等</p>
+<p>这些方法的主要目的，都是用来将输入事件拦截，不再往下方传递</p>
+<h3 id="使用-UIText-进行全屏交互">使用 UIText 进行全屏交互</h3>
+<p>在这些方法中，如果我们只是为了让后面层的 UI 不能被点击，那么我们推荐使用 空 <code>Text</code>​ 或 <code>TMP_Text</code> 的方式<br>
+因为它的性能表现相对较好，不需要进行额外渲染工作</p>
+<blockquote>
+<p>注意：如果你的背景需要类似半透明效果，那么这种方式不太适用</p>
+</blockquote>
+<h3 id="自定义脚本进行全屏交互">自定义脚本进行全屏交互</h3>
+<p>如果担心使用 UIText 会导致用途混淆，可以自定义一个 UI 脚本，用于响应事件但不绘制任何网格</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> UnityEngine;</span><br><span class="line"></span><br><span class="line">[<span class="meta">RequireComponent(typeof(CanvasRenderer))</span>]</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">EmptyRaycast</span> : <span class="title">MaskableGraphic</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="title">EmptyRaycast</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        useLegacyMeshGeneration = <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">override</span> <span class="keyword">void</span> <span class="title">SetMaterialDirty</span>()</span> &#123; &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">override</span> <span class="keyword">void</span> <span class="title">SetVerticesDirty</span>()</span> &#123; &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">override</span> <span class="keyword">void</span> <span class="title">OnPopulateMesh</span>(<span class="params">VertexHelper toFill</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        toFill.Clear();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="更多方案">更多方案</h2>
+<ol>
+<li>
+<p>打图集（降低 DrawCall）</p>
+<p>将 UI 图片元素打图集，从而保证元素使用材质相同，达到批处理作用</p>
+<blockquote>
+<p>注意：布局时，不同图集之间元素分层显示，避免打断合批处理</p>
+</blockquote>
+</li>
+<li>
+<p>少用自带布局组件</p>
+<p>UGUI 中提供自动布局组件，比如：</p>
+<ul>
+<li>​<code>ContentSizeFitter</code>（内容适配器）</li>
+<li>​<code>HorizontalLayoutGroup</code>​ / <code>VerticalLayoutGroup</code>（水平、垂直布局组）</li>
+<li>​<code>AspectRatioFitter</code>（宽高比适配器）</li>
+</ul>
+<p>等等</p>
+<p>建议少用或者不用这些组件，布局相关逻辑自己根据需求实现，可以有效控制更新时机，布局方式</p>
+</li>
+<li>
+<p>UI 元素关闭 Mipmap 功能</p>
+<p>对于大部分情况下，只要不是 3D UI 元素，存在距离变化<br>
+可以关闭 Mipmap 功能</p>
+</li>
+<li>
+<p>图集压缩</p>
+<p>UI 图集可以选择合适的 Unity 自带压缩格式<br>
+比如移动端使用 ASTC 或 ETC2，可以有效降低内存并保持清晰度</p>
+</li>
+<li>
+<p>合理使用九宫格拉伸</p>
+<p>只有需要保持比例进行 9 宫格缩放的UI元素再启用该功能，避免不必要的开销</p>
+</li>
+<li>
+<p>减少 OverDraw</p>
+<p>尽量少让 UI 元素重叠显示，并且减少半透明效果的使用<br>
+但是 UI 界面基本上是个元素堆叠而成的，因此很难减少重叠</p>
+<p>我们可以使用以下方案避免：</p>
+<ol>
+<li>
+<p>合并背景层，把一些装饰性元素直接和背景图做在一起</p>
+</li>
+<li>
+<p>避免大面积半透明遮罩，比如不使用半透明实现暗化效果</p>
+<p>而是直接使用一张暗化图片代替，或是使用实时模糊的 Shader</p>
+</li>
+</ol>
+<p>等等</p>
+</li>
+</ol>
+<h3 id="Unity-官方优化文档">Unity 官方优化文档</h3>
+<ol>
+<li>优化 Unity 用户界面：<a target="_blank" rel="noopener" href="https://learn.unity.com/tutorial/optimizing-unity-ui">https://learn.unity.com/tutorial/optimizing-unity-ui</a></li>
+<li>Unity UI 优化技巧：<a target="_blank" rel="noopener" href="https://unity.com/cn/how-to/unity-ui-optimization-tips">https://unity.com/cn/how-to/unity-ui-optimization-tips</a></li>
+</ol>
+<h3 id="UGUI-源码">UGUI 源码</h3>
+<p>下载地址：<a target="_blank" rel="noopener" href="https://github.com/Unity-Technologies/uGUI">https://github.com/Unity-Technologies/uGUI</a></p>
+<p>我们可以探究 UGUI 源码，可以给我们带来以下好处：</p>
+<ol>
+<li>理解 UGUI 工作原理</li>
+<li>基于原理制定优化策略</li>
+<li>学习借鉴 UGUI 设计思想</li>
+<li>提升调试能力</li>
+<li>便于定制和拓展功能</li>
+<li>提升就业竞争力</li>
+</ol>
+<p>等等</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://enjoysevenliu.github.io">文KRIFE齐</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://enjoysevenliu.github.io/2025/11/06/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL9%E2%80%94%E2%80%94%E5%A2%9E%E5%BC%BA%E6%B8%B2%E6%9F%93%E6%80%A7%E8%83%BD/UPL9-6%E2%80%94%E2%80%94%E4%BC%98%E5%8C%96%20UI%20%E7%B3%BB%E7%BB%9F/">https://enjoysevenliu.github.io/2025/11/06/Unity就业路线学习笔记/UP——Unity性能优化笔记/UPL9——增强渲染性能/UPL9-6——优化 UI 系统/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://enjoysevenliu.github.io" target="_blank">文KRIFE齐的博客</a>！</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/img/Blue_Ice.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2025/11/10/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL9%E2%80%94%E2%80%94%E5%A2%9E%E5%BC%BA%E6%B8%B2%E6%9F%93%E6%80%A7%E8%83%BD/UPL9-7%E2%80%94%E2%80%94%E4%BC%98%E5%8C%96%E7%B2%92%E5%AD%90%E7%B3%BB%E7%BB%9F/" title="UPL9-7——优化粒子系统"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">UPL9-7——优化粒子系统</div></div><div class="info-2"><div class="info-item-1">UPL9-7——优化粒子系统 粒子系统为什么会带来性能消耗   CPU 消耗： 粒子系统中，大多数模块都是 CPU 驱动模拟的，每帧会做很多工作，比如： 粒子的生命周期管理、位置、速度、加速度、物理碰撞、回调函数调用、排序、包围盒更新、剔除、脚本交互 等等内容 这些内容需要 CPU 每帧计算，那么它自然会带来 CPU 消耗 若不同粒子之间的材质和网格不同，还会打断批处理，产生额外 DrawCall 如果不使用批处理方案，在 DrawCall 上也存在更多开销   GPU消耗： 粒子能被看到肯定需要渲染，那么当粒子被提交到 GPU 渲染时： 顶点阶段的计算、片元阶段的计算、纹理采样、透明混合、阴影、光照影响都会给 GPU 带来消耗 尤其是半透明粒子容易造成 OverDraw，会显著增加 GPU 负担   由于粒子系统的表现特殊性，往往需要依赖 大量粒子叠加 来表现复杂效果 如果不加控制，粒子数量增长会在 CPU、GPU 两方面同时放大开销 因此需要特别关注粒子系统的性能影响与优化 粒子系统主要优化思路 CPU 侧优化思路 CPU 侧：优化目标 ——...</div></div></div></a><a class="pagination-related" href="/2025/11/06/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL9%E2%80%94%E2%80%94%E5%A2%9E%E5%BC%BA%E6%B8%B2%E6%9F%93%E6%80%A7%E8%83%BD/UPL9-5%E2%80%94%E2%80%94%E5%87%8F%E5%B0%91%E6%9B%B2%E9%9D%A2%E7%BB%86%E5%88%86/" title="UPL9-5——减少曲面细分"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">UPL9-5——减少曲面细分</div></div><div class="info-2"><div class="info-item-1">UPL9-5——减少曲面细分 曲面细分 在图形渲染中，曲面细分是把一个较粗的网格（低多边形）自动拆分成更多的小三角形，形成更平滑的几何表面 比如： 一张四边形面，可以被细分成 4、16、64 个小面片 这样视觉上更圆润，但会大幅增加顶点数量和三角形数量  一般通过曲面细分着色器来实现这样的功能，在对美术表现要求高的游戏中才会使用的技术 当你有以下这些需求时，才会考虑使用曲面细分着色器  高端画质、近景特写 需要真实几何表现而不是靠法线带来的视觉假象 大规模环境  曲面细分对 GPU 的性能影响 在GPU渲染管线中，曲面细分会增加多种负担   顶点处理压力增加 每细分一次，顶点数成倍增长 GPU 顶点着色器、几何阶段需要处理更多数据   片元（像素）处理间接增加 更多的三角形，意味着更密集的覆盖像素，意味着片元着色器嗲用次数会上升   内存带宽开销上升 顶点数据（坐标、法线、UV、权重等）需要传输，细分越多，显存到 GPU 核心的数据带宽消耗越大   缓存效率下降 GPU...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/Blue_Ice.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">文KRIFE齐</div><div class="author-info-description">Unity就业路线的笔记终于更新完了！新年快乐！</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1168</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">141</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/enjoySevenLIU"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/enjoySevenLIU" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">博客修好了，继续学习，CSharp进阶也迁移完毕了，接下来尽快把Unity Shader给啃完，年末给博客好好整修一下</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">UPL9-6——优化 UI 系统</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E6%9B%B4%E5%A4%9A-Canvas-%E7%BB%84%E4%BB%B6"><span class="toc-number">1.1.</span> <span class="toc-text">使用更多 Canvas 组件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Canvas%EF%BC%88%E7%94%BB%E5%B8%83%EF%BC%89%E7%BB%84%E4%BB%B6%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="toc-number">1.1.1.</span> <span class="toc-text">Canvas（画布）组件的基本工作原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9B%B4%E5%A4%9A%E7%9A%84-Canvas%EF%BC%88%E7%94%BB%E5%B8%83%EF%BC%89%E7%BB%84%E4%BB%B6"><span class="toc-number">1.1.2.</span> <span class="toc-text">更多的 Canvas（画布）组件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A6%81%E7%94%A8-Raycast-Target"><span class="toc-number">1.2.</span> <span class="toc-text">禁用 Raycast Target</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Raycast-Target-%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-number">1.2.1.</span> <span class="toc-text">Raycast Target 是什么</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E7%A6%81%E7%94%A8-Raycast-Target"><span class="toc-number">1.2.2.</span> <span class="toc-text">为什么要禁用 Raycast Target</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%9A%E8%BF%87%E7%A6%81%E7%94%A8-Canvas%EF%BC%88%E7%94%BB%E5%B8%83%EF%BC%89%E7%BB%84%E4%BB%B6%E6%9D%A5%E9%9A%90%E8%97%8F-UI-%E5%85%83%E7%B4%A0"><span class="toc-number">1.3.</span> <span class="toc-text">通过禁用 Canvas（画布）组件来隐藏 UI 元素</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%81%BF%E5%85%8D%E5%9C%A8-UI-%E4%BD%BF%E7%94%A8-Animator"><span class="toc-number">1.4.</span> <span class="toc-text">避免在 UI 使用 Animator</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%B8%96%E7%95%8C%E7%A9%BA%E9%97%B4%E7%94%BB%E5%B8%83%E5%AE%9A%E4%B9%89%E6%91%84%E5%83%8F%E6%9C%BA"><span class="toc-number">1.5.</span> <span class="toc-text">为世界空间画布定义摄像机</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E4%B8%96%E7%95%8C%E7%A9%BA%E9%97%B4%E7%94%BB%E5%B8%83%EF%BC%88Canvas%EF%BC%89"><span class="toc-number">1.5.1.</span> <span class="toc-text">什么是世界空间画布（Canvas）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%B8%96%E7%95%8C%E7%A9%BA%E9%97%B4%E7%94%BB%E5%B8%83%EF%BC%88Canvas%EF%BC%89%E6%98%BE%E7%A4%BA%E5%AE%9A%E4%B9%89%E6%91%84%E5%83%8F%E6%9C%BA"><span class="toc-number">1.5.2.</span> <span class="toc-text">为世界空间画布（Canvas）显示定义摄像机</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8D%E8%A6%81%E4%BD%BF%E7%94%A8%E9%80%8F%E6%98%8E%E5%BA%A6%E7%BB%84%E4%BB%B6%E9%9A%90%E8%97%8F%E7%BB%84%E4%BB%B6"><span class="toc-number">1.6.</span> <span class="toc-text">不要使用透明度组件隐藏组件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E8%A6%81%E4%BD%BF%E7%94%A8%E9%80%8F%E6%98%8E%E5%BA%A6%E9%9A%90%E8%97%8F%E7%BB%84%E4%BB%B6"><span class="toc-number">1.6.1.</span> <span class="toc-text">为什么不要使用透明度隐藏组件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E5%B0%BD%E9%87%8F%E9%81%BF%E5%85%8D%E4%BD%BF%E7%94%A8%E9%80%8F%E6%98%8E%E5%BA%A6%E9%9A%90%E8%97%8F%E7%BB%84%E4%BB%B6"><span class="toc-number">1.6.2.</span> <span class="toc-text">如何尽量避免使用透明度隐藏组件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%98%E5%8C%96-ScrollRect"><span class="toc-number">1.7.</span> <span class="toc-text">优化 ScrollRect</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ScrollRect-%E5%B8%A6%E6%9D%A5%E7%9A%84%E6%80%A7%E8%83%BD%E5%BC%80%E9%94%80"><span class="toc-number">1.7.1.</span> <span class="toc-text">ScrollRect 带来的性能开销</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%98%E5%8C%96-ScrollRect-%E6%A0%B8%E5%BF%83%E6%80%9D%E6%83%B3"><span class="toc-number">1.7.2.</span> <span class="toc-text">优化 ScrollRect 核心思想</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ScrollRect-%E9%81%AE%E7%BD%A9%E4%BC%98%E5%8C%96"><span class="toc-number">1.7.3.</span> <span class="toc-text">ScrollRect 遮罩优化</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-UIText-%E6%88%96-%E8%87%AA%E5%AE%9A%E4%B9%89%E9%9D%9E%E6%B8%B2%E6%9F%93UI%E8%84%9A%E6%9C%AC-%E8%BF%9B%E8%A1%8C%E5%85%A8%E5%B1%8F%E4%BA%A4%E4%BA%92"><span class="toc-number">1.8.</span> <span class="toc-text">使用 UIText 或 自定义非渲染UI脚本 进行全屏交互</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E7%9A%84%E5%85%A8%E5%B1%8F%E4%BA%A4%E4%BA%92%E6%96%B9%E5%BC%8F"><span class="toc-number">1.8.1.</span> <span class="toc-text">常见的全屏交互方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-UIText-%E8%BF%9B%E8%A1%8C%E5%85%A8%E5%B1%8F%E4%BA%A4%E4%BA%92"><span class="toc-number">1.8.2.</span> <span class="toc-text">使用 UIText 进行全屏交互</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E8%84%9A%E6%9C%AC%E8%BF%9B%E8%A1%8C%E5%85%A8%E5%B1%8F%E4%BA%A4%E4%BA%92"><span class="toc-number">1.8.3.</span> <span class="toc-text">自定义脚本进行全屏交互</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9B%B4%E5%A4%9A%E6%96%B9%E6%A1%88"><span class="toc-number">1.9.</span> <span class="toc-text">更多方案</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Unity-%E5%AE%98%E6%96%B9%E4%BC%98%E5%8C%96%E6%96%87%E6%A1%A3"><span class="toc-number">1.9.1.</span> <span class="toc-text">Unity 官方优化文档</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#UGUI-%E6%BA%90%E7%A0%81"><span class="toc-number">1.9.2.</span> <span class="toc-text">UGUI 源码</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/11/24/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL11%E2%80%94%E2%80%94%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/" title="UPL11——内存管理">UPL11——内存管理</a><time datetime="2025-11-24T08:07:56.000Z" title="发表于 2025-11-24 16:07:56">2025-11-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/11/24/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL10%E2%80%94%E2%80%94%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/UPL10-6%E2%80%94%E2%80%94AB%E5%8C%85%E5%92%8CResources%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/" title="UPL10-6——AB包和Resources资源优化">UPL10-6——AB包和Resources资源优化</a><time datetime="2025-11-24T07:46:31.000Z" title="发表于 2025-11-24 15:46:31">2025-11-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/11/24/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL10%E2%80%94%E2%80%94%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/UPL10-5%E2%80%94%E2%80%94%E6%9D%90%E8%B4%A8%E4%B8%8EShader%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/" title="UPL10-5——材质与Shader资源优化">UPL10-5——材质与Shader资源优化</a><time datetime="2025-11-24T07:09:51.000Z" title="发表于 2025-11-24 15:09:51">2025-11-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/11/24/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL10%E2%80%94%E2%80%94%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/UPL10-4%E2%80%94%E2%80%94%E7%BD%91%E6%A0%BC%E4%B8%8E%E5%8A%A8%E7%94%BB%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/" title="UPL10-4——网格与动画资源优化">UPL10-4——网格与动画资源优化</a><time datetime="2025-11-24T03:58:43.000Z" title="发表于 2025-11-24 11:58:43">2025-11-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/11/24/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL10%E2%80%94%E2%80%94%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/UPL10-3%E2%80%94%E2%80%94%E7%BA%B9%E7%90%86%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/" title="UPL10-3——纹理资源优化">UPL10-3——纹理资源优化</a><time datetime="2025-11-24T03:10:58.000Z" title="发表于 2025-11-24 11:10:58">2025-11-24</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2025 By 文KRIFE齐</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"><script>(async () => {
+  const showKatex = () => {
+    document.querySelectorAll('#article-container .katex').forEach(el => el.classList.add('katex-show'))
+  }
+
+  if (!window.katex_js_css) {
+    window.katex_js_css = true
+    await btf.getCSS('https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css')
+    if (false) {
+      await btf.getScript('https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js')
+    }
+  }
+
+  showKatex()
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>

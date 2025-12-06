@@ -1,0 +1,614 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>UPL10-3——纹理资源优化 | 文KRIFE齐的博客</title><meta name="author" content="文KRIFE齐"><meta name="copyright" content="文KRIFE齐"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="UPL10-3——纹理资源优化  前置知识：U3L2——图片导入概述  纹理优化的核心理念 纹理是运行时内存占用的大头，优化目标是平衡视觉质量与内存、显存占用 核心矛盾：视觉保真度 和 内存、显存、加载时间的平衡 纹理优化决策流程：   根据用途选择正确的 Texture Type 和设置   绝不使用超过需要的纹理尺寸   为不同平台选择最优压缩格式、    平台 首选 备选 HDR格式 法线">
+<meta property="og:type" content="article">
+<meta property="og:title" content="UPL10-3——纹理资源优化">
+<meta property="og:url" content="https://enjoysevenliu.github.io/2025/11/24/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL10%E2%80%94%E2%80%94%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/UPL10-3%E2%80%94%E2%80%94%E7%BA%B9%E7%90%86%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/index.html">
+<meta property="og:site_name" content="文KRIFE齐的博客">
+<meta property="og:description" content="UPL10-3——纹理资源优化  前置知识：U3L2——图片导入概述  纹理优化的核心理念 纹理是运行时内存占用的大头，优化目标是平衡视觉质量与内存、显存占用 核心矛盾：视觉保真度 和 内存、显存、加载时间的平衡 纹理优化决策流程：   根据用途选择正确的 Texture Type 和设置   绝不使用超过需要的纹理尺寸   为不同平台选择最优压缩格式、    平台 首选 备选 HDR格式 法线">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://enjoysevenliu.github.io/img/Blue_Ice.png">
+<meta property="article:published_time" content="2025-11-24T03:10:58.000Z">
+<meta property="article:modified_time" content="2025-12-06T16:02:04.549Z">
+<meta property="article:author" content="文KRIFE齐">
+<meta property="article:tag" content="blog">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://enjoysevenliu.github.io/img/Blue_Ice.png"><link rel="shortcut icon" href="/img/Blue_Ice.png"><link rel="canonical" href="https://enjoysevenliu.github.io/2025/11/24/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL10%E2%80%94%E2%80%94%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/UPL10-3%E2%80%94%E2%80%94%E7%BA%B9%E7%90%86%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'UPL10-3——纹理资源优化',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  isShuoshuo: false
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/Blue_Ice.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1168</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">141</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/img/Blue_Ice.png" alt="Logo"><span class="site-name">文KRIFE齐的博客</span></a><a class="nav-page-title" href="/"><span class="site-name">UPL10-3——纹理资源优化</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">UPL10-3——纹理资源优化</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-11-24T03:10:58.000Z" title="发表于 2025-11-24 11:10:58">2025-11-24</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-12-06T16:02:04.549Z" title="更新于 2025-12-07 00:02:04">2025-12-07</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/">UP——Unity性能优化笔记</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL10%E2%80%94%E2%80%94%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/">UPL10——资源优化</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1>UPL10-3——纹理资源优化</h1>
+<blockquote>
+<p>前置知识：U3L2——图片导入概述</p>
+</blockquote>
+<h2 id="纹理优化的核心理念">纹理优化的核心理念</h2>
+<p>纹理是运行时内存占用的大头，优化目标是平衡视觉质量与内存、显存占用<br>
+核心矛盾：视觉保真度 和 内存、显存、加载时间的平衡</p>
+<p>纹理优化决策流程：</p>
+<ol>
+<li>
+<p>根据用途选择正确的 Texture Type 和设置</p>
+</li>
+<li>
+<p>绝不使用超过需要的纹理尺寸</p>
+</li>
+<li>
+<p>为不同平台选择最优压缩格式、</p>
+<table>
+<thead>
+<tr>
+<th>平台</th>
+<th>首选</th>
+<th>备选</th>
+<th>HDR格式</th>
+<th>法线</th>
+<th>遮罩贴图</th>
+<th>特殊用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PC</td>
+<td>BC7</td>
+<td>BC3</td>
+<td>BC6H</td>
+<td>BC5</td>
+<td>DXT1|BC1</td>
+<td>BC1、BC4（单通道)</td>
+</tr>
+<tr>
+<td>Android</td>
+<td>ASTC 4x4</td>
+<td>ETC2 4bit</td>
+<td>ASTC HDR 6x6</td>
+<td>ASTC 5x5</td>
+<td>ETC2 4bit</td>
+<td>ASTC 6x6（远景、小道具）</td>
+</tr>
+<tr>
+<td>IOS</td>
+<td>ASTC 4x4</td>
+<td>ASTC 6x6</td>
+<td>ASTC HDR 4x4</td>
+<td>ASTC 5x5</td>
+<td>ASTC 6x6|8x8</td>
+<td>EAC R/RG</td>
+</tr>
+<tr>
+<td>WebGL</td>
+<td>ASTC 4x4</td>
+<td>DXT1/DXT5,ETC2,PVRTC</td>
+<td>BC6H</td>
+<td>BC5</td>
+<td>DXT1|BC1</td>
+<td>ASTC 6x6 / DXT1</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>合理使用 Mipmap 和纹理流式加载</p>
+</li>
+<li>
+<p>严格管理纹理生命周期，及时释放资源</p>
+</li>
+</ol>
+<h2 id="纹理导入设置优化">纹理导入设置优化</h2>
+<p>纹理导入设置是优化的第一道关卡，关键参数如下：</p>
+<ol>
+<li>
+<p>Texture Type（纹理类型）</p>
+<ul>
+<li>Default：通用纹理</li>
+<li>Normal map：法线贴图，使用特定压缩</li>
+<li>Sprite：2D 精灵</li>
+<li>Cube map：立方体贴图，用于天空盒等</li>
+<li>UI：GUI 纹理</li>
+</ul>
+</li>
+<li>
+<p>Max Size（最大尺寸）</p>
+<p>绝不使用超过实际需要的尺寸，根据用途选择：</p>
+<ul>
+<li>UI 图标：尽量 128*128 或 256*256</li>
+<li>手机角色纹理：尽量 1024*1024</li>
+<li>主机 / PC 大角色：尽量 2048*2048</li>
+<li>天空盒/远景：尽量 512*512 或 1024*1024</li>
+</ul>
+</li>
+<li>
+<p>Format（格式）</p>
+<p>原则：永远使用压缩纹理，相比未压缩格式，压缩纹理可以减少 4 到 8 倍的内存占用<br>
+不同平台使用哪种格式在下文（纹理压缩格式详解）详细解释</p>
+</li>
+<li>
+<p>Generate Mip Maps（生成Mipmap）</p>
+<p>勾选：纹理在远处自动使用低分辨率版本</p>
+<ul>
+<li>优点：减少远处像素闪烁，提升渲染性能</li>
+<li>缺点：增加约 33% 内存占用</li>
+<li>适用：3D 场景中的纹理</li>
+<li>不适用：UI、2D 精灵、粒子纹理</li>
+</ul>
+</li>
+<li>
+<p>sRGB (Color Texture)</p>
+<ul>
+<li>勾选：颜色纹理（漫反射贴图、UI等）</li>
+<li>不勾选：非颜色数据（法线贴图、金属度、粗糙度等）</li>
+</ul>
+</li>
+</ol>
+<p>纹理类型选择策略：</p>
+<ol>
+<li>
+<p>标准颜色纹理</p>
+<ul>
+<li>Texture Type: Default</li>
+<li>sRGB: 勾选</li>
+<li>Generate Mip Maps: 勾选 (3D场景)</li>
+</ul>
+</li>
+<li>
+<p>法线贴图</p>
+<ul>
+<li>Texture Type: Normal map</li>
+<li>sRGB: 不勾选</li>
+<li>Generate Mip Maps: 不勾选</li>
+</ul>
+</li>
+<li>
+<p>UI 精灵</p>
+<ul>
+<li>Texture Type: Sprite (2D and UI)</li>
+<li>sRGB: 勾选</li>
+<li>Generate Mip Maps: 不勾选</li>
+</ul>
+</li>
+<li>
+<p>立方体贴图</p>
+<ul>
+<li>Texture Type: Cube map</li>
+<li>sRGB: 根据内容决定</li>
+<li>Generate Mip Maps: 勾选</li>
+</ul>
+</li>
+</ol>
+<h2 id="纹理压缩格式详解">纹理压缩格式详解</h2>
+<p>不同平台压缩格式推荐：</p>
+<h3 id="PC">PC</h3>
+<p><img src="/assets/d34ceddd1fa13a3203d6c56be523153d-20251124112830-o1tqfyg.png" alt="d34ceddd1fa13a3203d6c56be523153d"></p>
+<ol>
+<li>
+<p>RGB(A) Compressed BC7</p>
+<p>提供极高的质量，支持平滑的 Alpha 通道<br>
+所有 DirectX 11 及以上级别的显卡均支持<br>
+但若目标是兼容极老设备（DX10 或更早），则需退回到 BC3</p>
+</li>
+<li>
+<p>RGB HDR Compressed BC6H</p>
+<p>专为 HDR 纹理设计（如天空盒、HDR环境贴图）<br>
+这是 HDR 内容的唯一正确选择</p>
+</li>
+<li>
+<p>高效备选</p>
+<ul>
+<li>RGB Compressed DXT1 和 RGBA Compressed DXT5</li>
+<li>RG Compressed BC5 用于法线贴图</li>
+</ul>
+</li>
+<li>
+<p>特殊用途</p>
+<ul>
+<li>R Compressed BC4 单通道数据（如高度图、粗糙度图）的专用格式，压缩效率极高</li>
+<li>RGBA Crunched DXT5 仅在安装包 / 下载体积是硬性指标时使用。会增加加载时的 CPU 开销</li>
+<li>RGB Crunched DXT1 同上，用于无 Alpha 的纹理</li>
+</ul>
+</li>
+</ol>
+<p>因此：</p>
+<ul>
+<li>
+<p>标准颜色纹理（漫反射、UI、图标）：RGB(A) Compressed BC7 或 RGBA Compressed DXT5 | BC3</p>
+</li>
+<li>
+<p>法线贴图：RG Compressed BC5</p>
+</li>
+<li>
+<p>金属度/粗糙度/AO 等遮罩贴图：RGB Compressed DXT1|BC1</p>
+<p>高级用法：使用 R Compressed BC4 分别压缩单个通道，然后通过着色器采样组合</p>
+</li>
+<li>
+<p>HDR 纹理（天空盒、环境贴图）：RGB HDR Compressed BC6H</p>
+</li>
+</ul>
+<blockquote>
+<p>注意：Compressed（压缩）和 Crunched（紧缩）的区别<br>
+想要极值的最小化纹理用 Crunched 紧缩模式，但是会牺牲一些加载性能（运行时会先解压在上传GPU）<br>
+如果没有太大的包体大小压力，可以使用 Compressed（压缩），会获取更快的加载速度</p>
+</blockquote>
+<h3 id="Android">Android</h3>
+<ol>
+<li>
+<p>首选 RGB(A) Compressed ASTC 4x4 block</p>
+<p>它是性能、质量和兼容性最佳的平衡点，它支持透明通道</p>
+</li>
+<li>
+<p>次选 RGB Compressed ETC2 4 bits</p>
+<p>不带 Alpha 通道纹理的高效选择，压缩率更高，如果包体大小是首要考虑，且纹理无透明，可选它</p>
+</li>
+<li>
+<p>备用</p>
+<ol>
+<li>
+<p>RGBA Compressed ASTC 6x6 block</p>
+<p>在质量和体积间平衡，适合不重要的环境纹理、远景贴图</p>
+</li>
+<li>
+<p>RGBA Compressed ASTC 5x5 block</p>
+<p>非常接近 ASTC 4x4 的质量，但体积更小。是法线贴图的绝佳选择</p>
+</li>
+<li>
+<p>RGBA Compressed ETC2 8 bits</p>
+<p>ASTC 的备胎，如果遇到极少数不支持 ASTC 但支持 ETC2 的设备，可作为后备</p>
+</li>
+</ol>
+</li>
+</ol>
+<p>因此：</p>
+<ul>
+<li>标准颜色纹理（漫反射贴图、UI 等：RGBA Compressed ASTC 4x4 block</li>
+<li>法线贴图：RGBA Compressed ASTC 5x5 block</li>
+<li>金属度/粗糙度/AO 等单通道遮罩贴图：RGB Compressed ETC2 4 bits</li>
+<li>HDR 纹理（如天空盒）：RGB(AB) Compressed ASTC HDR 6x6 block</li>
+<li>极其不重要的纹理（远景、小道具）：RGBA Compressed ASTC 6x6 block</li>
+</ul>
+<h3 id="IOS">IOS</h3>
+<ol>
+<li>
+<p>RGBA Compressed ASTC 4x4 block</p>
+<p>所有支持 Metal 的 iOS 设备（A7 芯片及以上）均有硬件解码支持，质量优异，性能最佳</p>
+</li>
+<li>
+<p>RGB(A) Compressed ASTC 6x6 block</p>
+<p>它是性价比之选，适合对质量不敏感的环境纹理、远景贴图，能显著节省内存</p>
+</li>
+<li>
+<p>RGB(A) Compressed ASTC 5x5 block</p>
+<p>法线贴图的绝佳选择，在精度和体积间取得完美平衡</p>
+</li>
+</ol>
+<p>因此</p>
+<ul>
+<li>标准颜色纹理（漫反射、UI、精灵）：RGBA Compressed ASTC 4x4 block 或 RGB(A) Compressed ASTC 6x6 block</li>
+<li>法线贴图：RGB(A) Compressed ASTC 5x5 block</li>
+<li>金属度/粗糙度/AO 等遮罩贴图：RGB(A) Compressed ASTC 6x6 block 或 RGB(A) Compressed ASTC 8x8 block</li>
+<li>HDR 纹理（天空盒、光晕、粒子）：RGB(A) Compressed ASTC HDR 4x4 block</li>
+<li>单通道或双通道数据（高度图、灰度图）：R Compressed EAC 4 bit (单通道) 或 RG Compressed EAC 8 bit (双通道)</li>
+</ul>
+<h3 id="WebGL">WebGL</h3>
+<p>WebGL 是非常特殊的平台，因为作为网页应用可以在各操作系统各浏览器中运行<br>
+它的压缩格式的兼容性是主要要考虑的内容，我们选择了格式后，应该尽量多的进行平台和浏览器测试</p>
+<ol>
+<li>
+<p>RGB(A) Compressed ASTC 相关格式 (推荐的格式)</p>
+<p>现代浏览器的黄金标准，这是质量和性能的最佳选择</p>
+</li>
+<li>
+<p>所有 DXT/BC 开头的格式</p>
+<p>在 Windows 和 Mac 的主流浏览器上支持极好，适合桌面端</p>
+</li>
+<li>
+<p>所有 ETC2 和 ETC 开头的格式</p>
+<p>是 OpenGL ES 3.0 标准，在大多数浏览器中也得到良好支持，广泛支持于 Android。</p>
+</li>
+<li>
+<p>所有 PVRTC 开头的格式</p>
+<p>这是 Safari 的原生格式。如果你的用户主要是苹果设备用户，可以包含它作为后备</p>
+</li>
+</ol>
+<p>因此：</p>
+<ul>
+<li>标准颜色纹理（漫反射、UI）：RGB(A) Compressed ASTC 4x4 block</li>
+<li>法线贴图：RGB Compressed BC5</li>
+<li>HDR 纹理（天空盒）：RGB HDR Compressed BC6H</li>
+<li>需要极致包体大小：RGBA Compressed ASTC 6x6 block 或 RGB Compressed DXT1|BC1</li>
+</ul>
+<h2 id="内存与性能优化">内存与性能优化</h2>
+<ol>
+<li>
+<p>纹理流送 (Texture Streaming)</p>
+<ul>
+<li>
+<p>作用：按需将纹理 mip 级别加载到显存</p>
+</li>
+<li>
+<p>适用：大型开放世界，内存敏感项目</p>
+<p>如果不开启，一个 2048*2048 的纹理，会将其所有Mip级别（1024*1024, 512*512, …, 1*1）都加载到内存<br>
+而开启后，假设一个在远处的小物体，可能只需要 256*256 或 128*128 的 Mip 级别就能满足视觉需求<br>
+系统就只加载这个低级别到内存，从而节省大量的内存</p>
+</li>
+<li>
+<p>设置：在 Project Setting - Quality 设置中开启 Mipmap Streaming <strong>（Unity 2022 及以前版本此设置项名为 Texture Streaming）</strong></p>
+<p><img src="/assets/image-20251125154031-d9iq7ar.png" alt="image"></p>
+</li>
+<li>
+<p>预算：设置纹理流送内存预算</p>
+<p><img src="/assets/image-20251125154056-6mvasxx.png" alt="image"></p>
+<ol>
+<li>
+<p>Add All Cameras (添加所有摄像机)：</p>
+<p>勾选后场景中所有摄像机都会参与计算，不勾选只有被标记为 Main Camera 的摄像机会参与计算</p>
+</li>
+<li>
+<p>Memory Budget (内存预算)</p>
+<p>设定 Mipmap Streaming 系统可以使用的总内存预算（单位为 MB）<br>
+系统会尝试将活动纹理所需的 Mip 级别控制在这个预算内，如果预算太低，可能会导致纹理频繁流送，产生性能波动</p>
+</li>
+<li>
+<p>Renderers Per Frame (每帧渲染器数量)</p>
+<p>每帧最多计算多少个渲染器所需的 Mip 级别<br>
+在大型场景中，如果发现远处纹理加载过慢，可以适当调高此值（如 1024）<br>
+如果遇到 CPU 峰值，则降低它</p>
+</li>
+<li>
+<p>Max Level Reduction (最大级别缩减)</p>
+<p>允许纹理的 Mip 级别相对于其最大值最多降低多少级<br>
+这是一个质量保护参数，值为 2 意味着一个 2048*2048（最大 mip 为11级）的纹理<br>
+最多只能被降低到使用 512*512（降低 2 级后为第 9 级）的 Mip，而不会被降到更模糊的 256*256 级别</p>
+</li>
+<li>
+<p>Max IO Requests (最大 I/O 请求数)</p>
+<p>限制每帧同时进行的磁盘读取请求数量<br>
+这是一个 I/O 保护参数，从硬盘加载 Mip 数据会产生 I/O 操作<br>
+此参数防止系统在一帧内发起过多请求，阻塞磁盘<br>
+对于安装在 SSD 上的项目，可以设置得较高（如 1024）<br>
+对于机械硬盘或网络流送，应设置得较低（如 128-256）</p>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>
+<p>各向异性过滤 (Anisotropic Filtering)</p>
+<ul>
+<li>
+<p>作用：改善倾斜角度观察纹理的质量</p>
+</li>
+<li>
+<p>性能消耗：轻微</p>
+</li>
+<li>
+<p>建议：根据项目需求开启</p>
+</li>
+<li>
+<p>设置：在 Project Setting - Quality 设置中设置 Anisotropic Textures (各向异性纹理)</p>
+<p><img src="/assets/image-20251125154357-yhpxoev.png" alt="image"></p>
+</li>
+<li>
+<p>建议：</p>
+<ul>
+<li>PC / 主机：Force On（全部开启）</li>
+<li>高端移动端：Per Texture（按纹理设置）</li>
+<li>低端移动端：Disabled（关闭）</li>
+</ul>
+</li>
+</ul>
+<p>然后在纹理中设置 Aniso Level (各向异性级别)</p>
+<ul>
+<li>地面、道路、桌面（经常被倾斜观察）：Aniso Level = 8 或 16</li>
+<li>角色皮肤、墙壁（大多被正对观察）：Aniso Level = 1 或 2</li>
+<li>UI、精灵（永远是正对）：Aniso Level = 0</li>
+</ul>
+</li>
+<li>
+<p>纹理图集 (Texture Atlas)</p>
+<ul>
+<li>作用：将多个小纹理合并为一个大纹理</li>
+<li>优点：减少 DrawCall，优化合批</li>
+<li>适用：UI 元素、2D 精灵、道具图标</li>
+</ul>
+</li>
+</ol>
+<h2 id="生命周期管理">生命周期管理</h2>
+<ol>
+<li>
+<p>资源管理系统</p>
+<p>使用 <code>Addressables</code>​ 或 AB 包管理大纹理<br>
+场景切换时及时卸载未使用纹理<br>
+避免 <code>Resources.Load</code> 导致的内存泄漏</p>
+</li>
+<li>
+<p>动态加载策略</p>
+<ul>
+<li>重要纹理：场景加载时预加载</li>
+<li>次要纹理：触发时异步加载</li>
+<li>可选纹理：按需加载+缓存</li>
+</ul>
+</li>
+<li>
+<p>对象池应用</p>
+<p>对频繁使用的 <code>RenderTexture</code> 使用对象池，复用临时渲染目标</p>
+</li>
+<li>
+<p>内存监控</p>
+<p>使用 Profiler 监控 Texture 内存<br>
+设置纹理内存预警机制，低内存时自动释放非关键纹理</p>
+</li>
+</ol>
+<h2 id="其它优化技巧">其它优化技巧</h2>
+<ol>
+<li>
+<p>纹理尺寸适配</p>
+<p>对于 2 的幂尺寸的纹理，特别是 UI 图集，2D 纹理图集，我们应该尽量填满对应尺寸<br>
+不要留空白，否则会浪费内存，对于一些支持最新图形接口程序的平台<br>
+如果不需要使用 Mipmap，我们完全可以使用非 2 的幂的纹理，可以节约一些内存</p>
+</li>
+<li>
+<p>通道打包</p>
+<p>将金属度、粗糙度、AO 等单通道纹理打包到 RGBA 不同通道<br>
+示例：R = 金属度, G = 粗糙度, B = AO, A = 自发光</p>
+</li>
+<li>
+<p>动态分辨率纹理</p>
+<p>根据设备性能动态调整渲染纹理分辨率，适用：后处理效果、UI 渲染纹理</p>
+</li>
+<li>
+<p>纹理格式选择决策流程：</p>
+<ol>
+<li>确定纹理用途 (颜色 / 法线 / 数据)</li>
+<li>选择对应 Texture Type</li>
+<li>根据目标平台选择压缩格式</li>
+<li>根据重要性选择压缩质量</li>
+<li>设置合适 Max Size</li>
+</ol>
+</li>
+<li>
+<p>测试验证</p>
+<p>在目标设备上验证纹理质量，使用 Frame Debugger 分析纹理采样，监控纹理流送效果</p>
+</li>
+</ol>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://enjoysevenliu.github.io">文KRIFE齐</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://enjoysevenliu.github.io/2025/11/24/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL10%E2%80%94%E2%80%94%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/UPL10-3%E2%80%94%E2%80%94%E7%BA%B9%E7%90%86%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/">https://enjoysevenliu.github.io/2025/11/24/Unity就业路线学习笔记/UP——Unity性能优化笔记/UPL10——资源优化/UPL10-3——纹理资源优化/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://enjoysevenliu.github.io" target="_blank">文KRIFE齐的博客</a>！</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/img/Blue_Ice.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2025/11/24/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL10%E2%80%94%E2%80%94%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/UPL10-4%E2%80%94%E2%80%94%E7%BD%91%E6%A0%BC%E4%B8%8E%E5%8A%A8%E7%94%BB%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/" title="UPL10-4——网格与动画资源优化"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">UPL10-4——网格与动画资源优化</div></div><div class="info-2"><div class="info-item-1">UPL10-4——网格与动画资源优化  前置知识：U3L17——模型导入相关设置  网格与动画优化的核心理念 减负、精简、按需加载  网格优化目标：降低顶点处理负荷和 GPU 传输负担 动画优化目标：降低 CPU 蒙皮计算和内存占用 核心矛盾：视觉保真度 和 CPU / GPU 性能 和 内存占用 的平衡  网格优化流程：  设置合适的压缩级别 取消 Read/Write，除非需要修改网格 开启 Optimize Mesh（优化网格） 按需使用 LOD 精简顶点数据  动画优化流程：  选择合适的压缩格式（Optimal 推荐） 设置合理的压缩质量 配置 Animator Culling 模式 按需使用 GPU Skinning 实现动画 LOD 系统  网格资源导入优化 网格导入设置是优化的第一道关卡   Mesh...</div></div></div></a><a class="pagination-related" href="/2025/11/24/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL10%E2%80%94%E2%80%94%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/UPL10-2%E2%80%94%E2%80%94%E8%A7%86%E9%A2%91%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/" title="UPL10-2——视频资源优化"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">UPL10-2——视频资源优化</div></div><div class="info-2"><div class="info-item-1">UPL10-2——视频资源优化  前置知识：U4S3——视频播放  视频优化的核心理念 分层加载，按需解码 视频资源同时涉及内存、显存、CPU、GPU 和磁盘 I/O 优化目标是平衡画质与性能，避免播放卡顿和内存溢出 视频优化决策流程：   根据视频用途选择加载方式 小文件预加载，大文件流式加载   根据目标平台选择编码格式 移动端：H.264，Web平台：WebM   根据设备性能调整画质参数 分辨率、码率、帧率   严格管理生命周期 及时释放资源，监控内存使用   视频转码相关 在 Unity 中导入视频后，我们可以利用内部的转码设置（Transcode），将视频转码为目标平台最优化的格式 建议开启转码，并且针对目标平台进行设置，它可以帮助我们获得更好的平台兼容性，达到性能优化的目的 如果关闭，Unity 会直接使用原始视频文件，可能由于该文件的编码格式在某些平台上不支持，或者解码效率低，导致视频播放异常 视频加载方式优化 Unity 中视频主要通过 VideoPlayer 组件处理，关键设置参数：   Source（视频源）   URL：外部视频文件， streaming...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/Blue_Ice.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">文KRIFE齐</div><div class="author-info-description">Unity就业路线的笔记终于更新完了！新年快乐！</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1168</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">141</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/enjoySevenLIU"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/enjoySevenLIU" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">博客修好了，继续学习，CSharp进阶也迁移完毕了，接下来尽快把Unity Shader给啃完，年末给博客好好整修一下</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">UPL10-3——纹理资源优化</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%B9%E7%90%86%E4%BC%98%E5%8C%96%E7%9A%84%E6%A0%B8%E5%BF%83%E7%90%86%E5%BF%B5"><span class="toc-number">1.1.</span> <span class="toc-text">纹理优化的核心理念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%B9%E7%90%86%E5%AF%BC%E5%85%A5%E8%AE%BE%E7%BD%AE%E4%BC%98%E5%8C%96"><span class="toc-number">1.2.</span> <span class="toc-text">纹理导入设置优化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%B9%E7%90%86%E5%8E%8B%E7%BC%A9%E6%A0%BC%E5%BC%8F%E8%AF%A6%E8%A7%A3"><span class="toc-number">1.3.</span> <span class="toc-text">纹理压缩格式详解</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#PC"><span class="toc-number">1.3.1.</span> <span class="toc-text">PC</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Android"><span class="toc-number">1.3.2.</span> <span class="toc-text">Android</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#IOS"><span class="toc-number">1.3.3.</span> <span class="toc-text">IOS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#WebGL"><span class="toc-number">1.3.4.</span> <span class="toc-text">WebGL</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E5%AD%98%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96"><span class="toc-number">1.4.</span> <span class="toc-text">内存与性能优化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E7%AE%A1%E7%90%86"><span class="toc-number">1.5.</span> <span class="toc-text">生命周期管理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B6%E5%AE%83%E4%BC%98%E5%8C%96%E6%8A%80%E5%B7%A7"><span class="toc-number">1.6.</span> <span class="toc-text">其它优化技巧</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/11/24/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL11%E2%80%94%E2%80%94%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/" title="UPL11——内存管理">UPL11——内存管理</a><time datetime="2025-11-24T08:07:56.000Z" title="发表于 2025-11-24 16:07:56">2025-11-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/11/24/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL10%E2%80%94%E2%80%94%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/UPL10-6%E2%80%94%E2%80%94AB%E5%8C%85%E5%92%8CResources%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/" title="UPL10-6——AB包和Resources资源优化">UPL10-6——AB包和Resources资源优化</a><time datetime="2025-11-24T07:46:31.000Z" title="发表于 2025-11-24 15:46:31">2025-11-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/11/24/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL10%E2%80%94%E2%80%94%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/UPL10-5%E2%80%94%E2%80%94%E6%9D%90%E8%B4%A8%E4%B8%8EShader%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/" title="UPL10-5——材质与Shader资源优化">UPL10-5——材质与Shader资源优化</a><time datetime="2025-11-24T07:09:51.000Z" title="发表于 2025-11-24 15:09:51">2025-11-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/11/24/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL10%E2%80%94%E2%80%94%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/UPL10-4%E2%80%94%E2%80%94%E7%BD%91%E6%A0%BC%E4%B8%8E%E5%8A%A8%E7%94%BB%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/" title="UPL10-4——网格与动画资源优化">UPL10-4——网格与动画资源优化</a><time datetime="2025-11-24T03:58:43.000Z" title="发表于 2025-11-24 11:58:43">2025-11-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/11/24/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL10%E2%80%94%E2%80%94%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/UPL10-3%E2%80%94%E2%80%94%E7%BA%B9%E7%90%86%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/" title="UPL10-3——纹理资源优化">UPL10-3——纹理资源优化</a><time datetime="2025-11-24T03:10:58.000Z" title="发表于 2025-11-24 11:10:58">2025-11-24</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2025 By 文KRIFE齐</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"><script>(async () => {
+  const showKatex = () => {
+    document.querySelectorAll('#article-container .katex').forEach(el => el.classList.add('katex-show'))
+  }
+
+  if (!window.katex_js_css) {
+    window.katex_js_css = true
+    await btf.getCSS('https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css')
+    if (false) {
+      await btf.getScript('https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js')
+    }
+  }
+
+  showKatex()
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>

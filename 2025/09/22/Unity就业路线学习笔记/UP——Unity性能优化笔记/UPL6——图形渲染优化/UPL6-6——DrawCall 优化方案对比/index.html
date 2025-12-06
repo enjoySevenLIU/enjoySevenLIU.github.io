@@ -1,0 +1,312 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>UPL6-6——DrawCall 优化方案对比 | 文KRIFE齐的博客</title><meta name="author" content="文KRIFE齐"><meta name="copyright" content="文KRIFE齐"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="UPL6-6——DrawCall 优化方案对比 DrawCall 优化方案对比    方案 动态批处理 静态批处理 GPU Instancing SRP Batcher     原理 运行时 CPU 每帧合并网格运行时每帧动态合并小型网格的顶点数据 构建或首次运行时 CPU 合并网格运行前合并静态物体的网格为一个大网格 GPU端批量绘制相同物体一次 DrawCall 提交共享网格和实例数据，GPU">
+<meta property="og:type" content="article">
+<meta property="og:title" content="UPL6-6——DrawCall 优化方案对比">
+<meta property="og:url" content="https://enjoysevenliu.github.io/2025/09/22/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL6%E2%80%94%E2%80%94%E5%9B%BE%E5%BD%A2%E6%B8%B2%E6%9F%93%E4%BC%98%E5%8C%96/UPL6-6%E2%80%94%E2%80%94DrawCall%20%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88%E5%AF%B9%E6%AF%94/index.html">
+<meta property="og:site_name" content="文KRIFE齐的博客">
+<meta property="og:description" content="UPL6-6——DrawCall 优化方案对比 DrawCall 优化方案对比    方案 动态批处理 静态批处理 GPU Instancing SRP Batcher     原理 运行时 CPU 每帧合并网格运行时每帧动态合并小型网格的顶点数据 构建或首次运行时 CPU 合并网格运行前合并静态物体的网格为一个大网格 GPU端批量绘制相同物体一次 DrawCall 提交共享网格和实例数据，GPU">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://enjoysevenliu.github.io/img/Blue_Ice.png">
+<meta property="article:published_time" content="2025-09-22T03:46:43.000Z">
+<meta property="article:modified_time" content="2025-12-06T15:57:43.000Z">
+<meta property="article:author" content="文KRIFE齐">
+<meta property="article:tag" content="blog">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://enjoysevenliu.github.io/img/Blue_Ice.png"><link rel="shortcut icon" href="/img/Blue_Ice.png"><link rel="canonical" href="https://enjoysevenliu.github.io/2025/09/22/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL6%E2%80%94%E2%80%94%E5%9B%BE%E5%BD%A2%E6%B8%B2%E6%9F%93%E4%BC%98%E5%8C%96/UPL6-6%E2%80%94%E2%80%94DrawCall%20%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88%E5%AF%B9%E6%AF%94/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'UPL6-6——DrawCall 优化方案对比',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  isShuoshuo: false
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/Blue_Ice.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1168</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">141</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/img/Blue_Ice.png" alt="Logo"><span class="site-name">文KRIFE齐的博客</span></a><a class="nav-page-title" href="/"><span class="site-name">UPL6-6——DrawCall 优化方案对比</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">UPL6-6——DrawCall 优化方案对比</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-09-22T03:46:43.000Z" title="发表于 2025-09-22 11:46:43">2025-09-22</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-12-06T15:57:43.000Z" title="更新于 2025-12-06 23:57:43">2025-12-06</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/">UP——Unity性能优化笔记</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL6%E2%80%94%E2%80%94%E5%9B%BE%E5%BD%A2%E6%B8%B2%E6%9F%93%E4%BC%98%E5%8C%96/">UPL6——图形渲染优化</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1>UPL6-6——DrawCall 优化方案对比</h1>
+<h2 id="DrawCall-优化方案对比">DrawCall 优化方案对比</h2>
+<table>
+<thead>
+<tr>
+<th>方案</th>
+<th>动态批处理</th>
+<th>静态批处理</th>
+<th>GPU Instancing</th>
+<th>SRP Batcher</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>原理</td>
+<td><strong>运行时 CPU 每帧合并网格</strong><br />运行时每帧动态合并小型网格的顶点数据<br /></td>
+<td><strong>构建或首次运行时 CPU 合并网格</strong><br />运行前合并静态物体的网格为一个大网格<br /></td>
+<td><strong>GPU端批量绘制相同物体</strong><br />一次 DrawCall 提交共享网格和实例数据，GPU 并行绘制多个对象<br /></td>
+<td><strong>不减少 DrawCall，是将物体、材质参数缓存到 GPU，减少 CPU 开销</strong><br />不合并网格，通过持久化 GPU 缓冲区优化材质、对象数据提交，降低 DrawCall 的CPU 开销<br /></td>
+</tr>
+<tr>
+<td>限制</td>
+<td><strong>网格顶点数小于 225 或 300</strong><br /> <strong>（Unity 2021 之前为 300）</strong> <br /><strong>并且顶点属性小于 900</strong><br /><strong>相同材质实例</strong><br />禁止镜像缩放、蒙皮、实时投影等<br /></td>
+<td><strong>必须标记为静态批处理对象</strong><br /><strong>相同材质实例</strong><br /><strong>物体不可移动、旋转、缩放</strong><br />每个静态批次最多可以包含 64,000 个顶点</td>
+<td><strong>相同网格</strong><br /><strong>材质需启用 GPU Instancing 功能，并且支持该功能</strong><br />不支持蒙皮网格渲染器等等</td>
+<td><strong>仅限 SRP 管线（URP / HDRP）</strong> <br /><strong>着色器需要兼容 SRP Batcher 功能</strong><br />禁用 <code>MaterialPropertyBlock</code> 等等</td>
+</tr>
+<tr>
+<td>优点</td>
+<td>支持动态移动物体<br />自动化处理小型物体<br />小模型能显著减少 DrawCall<br /></td>
+<td>显著减少静态物体 DrawCall<br />运行时 CPU 负担小<br /></td>
+<td>CPU 压力小<br />一次 DrawCall 绘制大规模相同物体<br />支持动态变换<br /></td>
+<td>CPU 提交极少，大幅降低 DrawCall 的 CPU 开销<br />支持蒙皮网格渲染器兼容不同材质实例<br /></td>
+</tr>
+<tr>
+<td>缺点</td>
+<td>CPU消耗较大<br />限制条件严格<br />不能和 SRP Batcher 一起用<br /></td>
+<td>内存占用高<br />静态物体不可变换（移动、旋转、缩放）<br /></td>
+<td>必须相同网格<br />Shader 需要额外适配<br /></td>
+<td>仅支持 SRP 管线<br />需重写自定义着色器<br /></td>
+</tr>
+<tr>
+<td>适用场景</td>
+<td>少量动态小物体<br />如会变换的箱子、树叶、小汽车、小粒子等等<br /></td>
+<td>静止的场景物件<br />如建筑、山体、岩石、房屋等<br /></td>
+<td>大量重复物体<br />如草、树、子弹、单位兵团等<br /></td>
+<td>SRP 项目中材质复杂、动态物体多的情况</td>
+</tr>
+<tr>
+<td>DrawCall 减少</td>
+<td>有限（仅小物体）</td>
+<td>显著</td>
+<td>极显著<br />（一次 DrawCall 绘制成千实例）<br /></td>
+<td>不减少 DrawCall</td>
+</tr>
+</tbody>
+</table>
+<h2 id="推荐使用优先级">推荐使用优先级</h2>
+<ol>
+<li>
+<p>SRP Batcher</p>
+<ul>
+<li>适用条件：仅限 URP / HDRP 项目</li>
+<li>组合逻辑：必选，它是 SRP 关键的基础优化技术，如果 Shader 不支持，优先让其支持</li>
+</ul>
+</li>
+<li>
+<p>GPU Instancing</p>
+<ul>
+<li>适用条件：大量动态、静止的重复物体（相同网格、材质）</li>
+<li>组合逻辑：主力替代动态批处理，表现优于动态批处理</li>
+</ul>
+</li>
+<li>
+<p>静态批处理</p>
+<ul>
+<li>适用条件：完全静止的物体，需要注意内存问题</li>
+<li>组合逻辑：静态场景专用，在确定内存可控时使用，它与 GPU Instancing 互斥</li>
+</ul>
+</li>
+<li>
+<p>动态批处理</p>
+<ul>
+<li>适用条件：动态、静止的重复物体（相同网格、材质）</li>
+<li>组合逻辑：最后备选，仅无法用 GPU Instancing 时启用，如无使用它的情况，建议主动关闭节省 CPU 开销</li>
+</ul>
+</li>
+</ol>
+<h2 id="按对象情况思考">按对象情况思考</h2>
+<table>
+<thead>
+<tr>
+<th>对象情况</th>
+<th>首选方案</th>
+<th>替代方案</th>
+<th>应避免方案</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>静止对象 + 内存充足</td>
+<td>静态批处理</td>
+<td>手动合并网格<br />SRP Batcher</td>
+<td>动态批处理<br />不做优化</td>
+</tr>
+<tr>
+<td>静止对象 + 内存紧张</td>
+<td>手动合并网格<br />SRP Batcher</td>
+<td>GPU Instancing</td>
+<td>静态批处理<br />不做优化</td>
+</tr>
+<tr>
+<td>动态对象 + SRP 项目</td>
+<td>SRP Batcher</td>
+<td>GPU Instancing</td>
+<td>不做优化</td>
+</tr>
+<tr>
+<td>动态对象 + 内置渲染管线</td>
+<td>GPU Instancing</td>
+<td>动态批处理</td>
+<td>不做优化</td>
+</tr>
+</tbody>
+</table>
+<p>核心优化思路：</p>
+<ul>
+<li>
+<p>静态物体：</p>
+<ul>
+<li>内存换性能 —&gt; 静态批处理</li>
+<li>内存敏感 —&gt; 手动合并网格</li>
+</ul>
+</li>
+<li>
+<p>URP 动态物体：</p>
+<ul>
+<li>默认使用 SRP Batcher</li>
+<li>存在大量相同网格对象时，追加使用 GPU Instancing</li>
+</ul>
+</li>
+<li>
+<p>内置渲染管线 动态物体：</p>
+<ul>
+<li>网格相同 —&gt; GPU Instancing</li>
+<li>网格不同 —&gt; 小物体动态批处理</li>
+</ul>
+</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://enjoysevenliu.github.io">文KRIFE齐</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://enjoysevenliu.github.io/2025/09/22/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL6%E2%80%94%E2%80%94%E5%9B%BE%E5%BD%A2%E6%B8%B2%E6%9F%93%E4%BC%98%E5%8C%96/UPL6-6%E2%80%94%E2%80%94DrawCall%20%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88%E5%AF%B9%E6%AF%94/">https://enjoysevenliu.github.io/2025/09/22/Unity就业路线学习笔记/UP——Unity性能优化笔记/UPL6——图形渲染优化/UPL6-6——DrawCall 优化方案对比/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://enjoysevenliu.github.io" target="_blank">文KRIFE齐的博客</a>！</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/img/Blue_Ice.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2025/09/22/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL6%E2%80%94%E2%80%94%E5%9B%BE%E5%BD%A2%E6%B8%B2%E6%9F%93%E4%BC%98%E5%8C%96/UPL6-7%E2%80%94%E2%80%94%E6%89%8B%E5%8A%A8%E5%90%88%E5%B9%B6%E7%BD%91%E6%A0%BC/" title="UPL6-7——手动合并网格"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">UPL6-7——手动合并网格</div></div><div class="info-2"><div class="info-item-1">UPL6-7——手动合并网格  前置知识：UED——Unity编辑器拓展  本章代码关键字 12345678910111213CombineInstance                    // 网格实例化参数CombineInstance.mesh            // 网格属性CombineInstance.subMeshIndex    // 使用的子网格索引CombineInstance.transform        // 将网格的顶点变换到某个空间坐标系下的4*4空间变换矩阵transform.worldToLocalMatrix    // 获取可以将点从世界空间转换到本地空间的矩阵transform.localToWorldMatrix    // 获取可以将点从本地空间转换到世界空间的矩阵mesh.vertexCount                // 获取网格的顶点数量mesh.indexFormat                // 网格的索引格式，可以是uint16或uint32，默认是uint16IndexFormat.UInt16...</div></div></div></a><a class="pagination-related" href="/2025/09/19/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL6%E2%80%94%E2%80%94%E5%9B%BE%E5%BD%A2%E6%B8%B2%E6%9F%93%E4%BC%98%E5%8C%96/UPL6-5%E2%80%94%E2%80%94SRP%20Batcher/" title="UPL6-5——SRP Batcher"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">UPL6-5——SRP Batcher</div></div><div class="info-2"><div class="info-item-1">UPL6-5——SRP Batcher SRP Batcher SRP Batcher（Scriptable Render Pipeline Batcher）是 Unity 在可编程渲染管线，比如 URP、HDRP 中提供的一项 CPU 优化技术 主要目的是用于降低 材质切换 带来的开销 主要解决的问题： 每次 DrawCall 不仅要告诉 GPU 画哪个网格，还要上传 材质常量（Shader 参数）， 不同物体哪怕使用同一个 Shader，但只要材质不同，CPU 就要重新设置常量缓冲区（Constant Buffer），这一步就叫做 SetPass​ ​SetPass 开销很大，在复杂场景里，CPU 花在切换材质的时间常常比真正发 DrawCall 还多，而 SRP Batcher 就是用来解决这一问题的  主要原理：Unity 在 GPU 显存中为 Shader 的常量缓冲区分配了两个区域：   材质缓冲区： 存储材质相关的参数（颜色、贴图索引 等数据），存放在 GPU 可缓存的大缓冲池里，不用每次切换材质都重新上传   物体缓冲区： 存储物体相关的参数（变换矩阵、光照探针...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/Blue_Ice.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">文KRIFE齐</div><div class="author-info-description">Unity就业路线的笔记终于更新完了！新年快乐！</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1168</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">141</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/enjoySevenLIU"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/enjoySevenLIU" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">博客修好了，继续学习，CSharp进阶也迁移完毕了，接下来尽快把Unity Shader给啃完，年末给博客好好整修一下</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">UPL6-6——DrawCall 优化方案对比</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#DrawCall-%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88%E5%AF%B9%E6%AF%94"><span class="toc-number">1.1.</span> <span class="toc-text">DrawCall 优化方案对比</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A8%E8%8D%90%E4%BD%BF%E7%94%A8%E4%BC%98%E5%85%88%E7%BA%A7"><span class="toc-number">1.2.</span> <span class="toc-text">推荐使用优先级</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8C%89%E5%AF%B9%E8%B1%A1%E6%83%85%E5%86%B5%E6%80%9D%E8%80%83"><span class="toc-number">1.3.</span> <span class="toc-text">按对象情况思考</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/11/24/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL11%E2%80%94%E2%80%94%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/" title="UPL11——内存管理">UPL11——内存管理</a><time datetime="2025-11-24T08:07:56.000Z" title="发表于 2025-11-24 16:07:56">2025-11-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/11/24/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL10%E2%80%94%E2%80%94%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/UPL10-6%E2%80%94%E2%80%94AB%E5%8C%85%E5%92%8CResources%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/" title="UPL10-6——AB包和Resources资源优化">UPL10-6——AB包和Resources资源优化</a><time datetime="2025-11-24T07:46:31.000Z" title="发表于 2025-11-24 15:46:31">2025-11-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/11/24/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL10%E2%80%94%E2%80%94%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/UPL10-5%E2%80%94%E2%80%94%E6%9D%90%E8%B4%A8%E4%B8%8EShader%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/" title="UPL10-5——材质与Shader资源优化">UPL10-5——材质与Shader资源优化</a><time datetime="2025-11-24T07:09:51.000Z" title="发表于 2025-11-24 15:09:51">2025-11-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/11/24/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL10%E2%80%94%E2%80%94%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/UPL10-4%E2%80%94%E2%80%94%E7%BD%91%E6%A0%BC%E4%B8%8E%E5%8A%A8%E7%94%BB%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/" title="UPL10-4——网格与动画资源优化">UPL10-4——网格与动画资源优化</a><time datetime="2025-11-24T03:58:43.000Z" title="发表于 2025-11-24 11:58:43">2025-11-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/11/24/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL10%E2%80%94%E2%80%94%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/UPL10-3%E2%80%94%E2%80%94%E7%BA%B9%E7%90%86%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/" title="UPL10-3——纹理资源优化">UPL10-3——纹理资源优化</a><time datetime="2025-11-24T03:10:58.000Z" title="发表于 2025-11-24 11:10:58">2025-11-24</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2025 By 文KRIFE齐</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"><script>(async () => {
+  const showKatex = () => {
+    document.querySelectorAll('#article-container .katex').forEach(el => el.classList.add('katex-show'))
+  }
+
+  if (!window.katex_js_css) {
+    window.katex_js_css = true
+    await btf.getCSS('https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css')
+    if (false) {
+      await btf.getScript('https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js')
+    }
+  }
+
+  showKatex()
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>

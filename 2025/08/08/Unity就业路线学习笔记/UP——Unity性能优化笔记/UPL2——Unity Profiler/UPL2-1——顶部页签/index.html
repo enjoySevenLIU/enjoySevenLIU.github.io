@@ -1,0 +1,365 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>UPL2-1——顶部页签 | 文KRIFE齐的博客</title><meta name="author" content="文KRIFE齐"><meta name="copyright" content="文KRIFE齐"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="UPL2-1——顶部页签 Unity Profiler 顶部页签    Profiler Modules 模块列表 我们可以在这里设置性能检测哪些模块，可以在这里通过勾选和取消勾选来进行选择    Highlights：高光区域，会把可能存在问题的帧高亮显示（仅 Unity 6 及以上版本）    CPU Usage：CPU 使用率   GPU Usage：GPU 使用率   Rendering：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="UPL2-1——顶部页签">
+<meta property="og:url" content="https://enjoysevenliu.github.io/2025/08/08/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL2%E2%80%94%E2%80%94Unity%20Profiler/UPL2-1%E2%80%94%E2%80%94%E9%A1%B6%E9%83%A8%E9%A1%B5%E7%AD%BE/index.html">
+<meta property="og:site_name" content="文KRIFE齐的博客">
+<meta property="og:description" content="UPL2-1——顶部页签 Unity Profiler 顶部页签    Profiler Modules 模块列表 我们可以在这里设置性能检测哪些模块，可以在这里通过勾选和取消勾选来进行选择    Highlights：高光区域，会把可能存在问题的帧高亮显示（仅 Unity 6 及以上版本）    CPU Usage：CPU 使用率   GPU Usage：GPU 使用率   Rendering：">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://enjoysevenliu.github.io/img/Blue_Ice.png">
+<meta property="article:published_time" content="2025-08-08T06:33:32.000Z">
+<meta property="article:modified_time" content="2025-12-06T16:02:04.556Z">
+<meta property="article:author" content="文KRIFE齐">
+<meta property="article:tag" content="blog">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://enjoysevenliu.github.io/img/Blue_Ice.png"><link rel="shortcut icon" href="/img/Blue_Ice.png"><link rel="canonical" href="https://enjoysevenliu.github.io/2025/08/08/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL2%E2%80%94%E2%80%94Unity%20Profiler/UPL2-1%E2%80%94%E2%80%94%E9%A1%B6%E9%83%A8%E9%A1%B5%E7%AD%BE/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'UPL2-1——顶部页签',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  isShuoshuo: false
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/Blue_Ice.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1168</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">141</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/img/Blue_Ice.png" alt="Logo"><span class="site-name">文KRIFE齐的博客</span></a><a class="nav-page-title" href="/"><span class="site-name">UPL2-1——顶部页签</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">UPL2-1——顶部页签</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-08-08T06:33:32.000Z" title="发表于 2025-08-08 14:33:32">2025-08-08</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-12-06T16:02:04.556Z" title="更新于 2025-12-07 00:02:04">2025-12-07</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/">UP——Unity性能优化笔记</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL2%E2%80%94%E2%80%94Unity-Profiler/">UPL2——Unity Profiler</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1>UPL2-1——顶部页签</h1>
+<h2 id="Unity-Profiler-顶部页签">Unity Profiler 顶部页签</h2>
+<p><img src="/assets/image-20250808143757-1dh3hpp.png" alt="image"></p>
+<ol>
+<li>
+<p><strong>Profiler Modules 模块列表</strong></p>
+<p>我们可以在这里设置性能检测哪些模块，可以在这里通过勾选和取消勾选来进行选择</p>
+<p><img src="/assets/image-20250808144300-f4hr97x.png" alt="image"></p>
+<ul>
+<li>
+<p>Highlights：高光区域，会把可能存在问题的帧高亮显示（仅 Unity 6 及以上版本）</p>
+<p><img src="/assets/image-20250808144753-u61prb2.png" alt="image"></p>
+</li>
+<li>
+<p>CPU Usage：CPU 使用率</p>
+</li>
+<li>
+<p>GPU Usage：GPU 使用率</p>
+</li>
+<li>
+<p>Rendering：渲染相关</p>
+</li>
+<li>
+<p>Memory：内存相关</p>
+</li>
+<li>
+<p>Audio：音效相关</p>
+</li>
+<li>
+<p>Video：视频相关</p>
+</li>
+<li>
+<p>Physics：物理系统相关</p>
+</li>
+<li>
+<p>UI：用户界面相关</p>
+</li>
+<li>
+<p>UI Details：用户界面详细信息</p>
+</li>
+<li>
+<p>Realtime GI：实时GI（光照相关）</p>
+</li>
+<li>
+<p>Virtual Texturing：虚拟纹理</p>
+</li>
+<li>
+<p>File Access：文件访问</p>
+</li>
+<li>
+<p>AssetLoading：资源加载</p>
+</li>
+<li>
+<p>左下角设置按钮中可以自定义布局，添加局部子系统的性能分析相关</p>
+</li>
+<li>
+<p>Restore Defaults：恢复默认设置</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>性能分析目标与模式选择</strong></p>
+<p>选择进行性能分析所针对的目标</p>
+<p><img src="/assets/image-20250808144943-ocwdjez.png" alt="image"></p>
+<blockquote>
+<p>注意：</p>
+<ol>
+<li>如果电脑上运行着通过开发者模式构建的应用程序 在此窗口中可能会直接显示可以连接调试的本地应用程序，直接进行选择即可</li>
+<li>如果移动设备通过 USB 线连接着电脑，下方也会显示 Unity 能够调试的设备</li>
+</ol>
+</blockquote>
+<ul>
+<li>
+<p>Play Mode：播放运行模式下分析</p>
+</li>
+<li>
+<p>Edit Mode：编辑模式下分析，可以对 Unity 编辑器进行性能分析</p>
+</li>
+<li>
+<p>Direct Connection：定向链接 可以选择输入运行应用程序的设备IP进行远程调试（一般进行内网调试）</p>
+<blockquote>
+<p>注意：需要在发布应用程序时选择：</p>
+<ul>
+<li>Development Build：开发模式构建</li>
+<li>Autoconnect Profiler：自动连接分析器（可选）</li>
+<li>Deep Profiling Support：深度分析支持（可选，可以获取更多信息）</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>数据录制按钮</strong></p>
+<p><img src="/assets/image-20250808145913-qgrsucb.png" alt="image"></p>
+<ul>
+<li>录制按钮：启用后，可以在运行应用程序时记录活跃模块的性能分析信息；如果为启用，则不会搜集</li>
+<li>前后移动一帧获取当前帧数据</li>
+<li>当前帧按钮，启用后，会自动跳到记录的最后一帧，运行时，始终显示最后一帧信息</li>
+</ul>
+</li>
+<li>
+<p><strong>Frame 帧：当前帧/总帧数（性能分析工具在整个分析期间收集的总帧数）</strong></p>
+</li>
+<li>
+<p><strong>Clear 清空按钮：清除 Profiler 窗口所有数据</strong></p>
+</li>
+<li>
+<p><strong>Clear on Play 运行时清理： 启用后，下次运行时链接到目标设备时，性能调试窗口会擦除所有数据</strong></p>
+</li>
+<li>
+<p><strong>Deep Profile 深度性能分析： 启用后会对所有 C# 方法进行性能分析</strong></p>
+<p>分析器会对脚本代码的每个部分进行性能分析，并记录所有函数调用，至少包括进入任何 Unity API 中的第一个调用栈深度。</p>
+<blockquote>
+<p>注意：此信息可用于帮助您确定代码对应用程序性能的影响，但这会带来很大的开销</p>
+</blockquote>
+</li>
+<li>
+<p>Call Stacks 调用堆栈：选择记录哪些用于脚本内存分配的调用栈</p>
+<p><img src="/assets/image-20250808150535-1m629bq.png" alt="image"></p>
+<p>勾选后，会记录用于脚本内存分配的调用栈，性能分析器记录的帧包含所选样本在完整调用栈的信息；<br>
+即使在 Deep Profile 未激活的情况下，完整调用栈上的这些样本也会导致托管脚本分配，从而会对性能和GC有一定的影响</p>
+<ul>
+<li>
+<p><strong>GC.Alloc：Unity 的 托管内存分配（C# 层）</strong></p>
+<p><strong>非常常见，几乎所有 C# 脚本开发中都会有<br>
+主要关注：减少堆内存分配，控制 GC 频率</strong></p>
+</li>
+<li>
+<p>UnsafeUtility.Malloc(Persistent)：原生（非托管）内存分配函数（原生C++层） 比如图形 API、DOTS 系统中分配的一些内存</p>
+<p>中等常见，原生容器、底层插件、DOTS中会出现<br>
+主要关注：留意资源是否释放</p>
+</li>
+<li>
+<p>JobHandle.Complete：表示主线程阻塞等待某个 Job 完成；DOTS、ECS、Burst、Unity Physics、AnimationRigging 等系统中会出现</p>
+<p>不常见：多线程任务系统中才会有<br>
+主要关注：除非使用了多线程任务系统，否则无需关心</p>
+</li>
+</ul>
+</li>
+<li>
+<p>读取，保存性能分析数据，帮助，其他设置</p>
+<p><img src="/assets/image-20250808151044-3fg5ujt.png" alt="image"></p>
+<ul>
+<li>
+<p>读取已保存的性能分析数据显示到性能分析窗口中</p>
+</li>
+<li>
+<p>保存当前获取的性能分析数据</p>
+</li>
+<li>
+<p>帮助（跳转到 Unity 官方使用手册）​</p>
+</li>
+<li>
+<p>其他选项</p>
+<p><img src="/assets/image-20250808151151-audkr6l.png" alt="image"></p>
+<ul>
+<li>
+<p>Show stats for “current” frame 是否显示当前帧（也就是正在录制的那一帧）的统计信息</p>
+<p><img src="/assets/image-20250808151313-oh3ijjj.png" alt="image"></p>
+</li>
+<li>
+<p>Preferences 打开偏好设置菜单，具体内容在下文显示</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="Profiler-首选项">Profiler 首选项</h2>
+<p><img src="/assets/image-20250808152124-wfk87x5.png" alt="image"></p>
+<ul>
+<li>
+<p>Frame Count：Profiler 保存的帧数（Frame）的最大数量</p>
+<p>决定你可以在 Profiler 中向后查看多少帧的性能数据，超过这个数量的帧数据将被丢弃；<br>
+建议：改高一点，比如 600，以便查看更长历史数据</p>
+</li>
+<li>
+<p>Show Stats for ‘current’ frame：是否显示当前帧（也就是正在录制的那一帧）的统计信息</p>
+<p>建议：打开，方便试试观察</p>
+<p><img src="/assets/image-20250808151313-oh3ijjj.png" alt="image"></p>
+</li>
+<li>
+<p>Default recording state：Unity 启动后或进入 Play 模式时，Profiler 是否默认开始记录</p>
+<p>建议：Enabled，方便自动录制</p>
+</li>
+<li>
+<p>Default editor target mode on start：Unity 编辑器启动后，Profiler 默认分析哪个目标</p>
+<p>建议：Play Mode，因为更多是对项目进行调试，编辑器拓展一般很少遇到性能问题</p>
+<p><img src="/assets/image-20250808144943-ocwdjez.png" alt="image"></p>
+</li>
+<li>
+<p>Custom connection ID：用于标识设备连接的 ID，适用于远程 Profiler 连接，用于设置连接到特定设备或进程时使用的标识名</p>
+<p>比如：可以通过代码在设备端设置 ID：<code>Profiler.SetConnectionIdentifier(&quot;MyDevice1&quot;);</code>​<br>
+然后在这里填写 <code>MyDevice1</code> 号，Unity 就会优先连接这个 ID 的设备</p>
+</li>
+<li>
+<p>Target Frames Per Second (Highlights Module)：Highlights 模块的目标帧率（仅 Unity 6 及以上版本）</p>
+<p>Profiler 中的 Highlights 模块 会以这个帧率为基准进行性能表现分析（如掉帧）。<br>
+设置为 60 表示以 60 FPS 为目标； 建议：设置为调试的目标设备的理想帧率，比如手机一般是 30 或 60，PC是 60 或 120 帧等</p>
+</li>
+</ul>
+<p>‍</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://enjoysevenliu.github.io">文KRIFE齐</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://enjoysevenliu.github.io/2025/08/08/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL2%E2%80%94%E2%80%94Unity%20Profiler/UPL2-1%E2%80%94%E2%80%94%E9%A1%B6%E9%83%A8%E9%A1%B5%E7%AD%BE/">https://enjoysevenliu.github.io/2025/08/08/Unity就业路线学习笔记/UP——Unity性能优化笔记/UPL2——Unity Profiler/UPL2-1——顶部页签/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://enjoysevenliu.github.io" target="_blank">文KRIFE齐的博客</a>！</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/img/Blue_Ice.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2025/08/08/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL2%E2%80%94%E2%80%94Unity%20Profiler/UPL2-2%E2%80%94%E2%80%94CPU%20Usage%20%E6%A8%A1%E5%9D%97/" title="UPL2-2——CPU Usage 模块"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">UPL2-2——CPU Usage 模块</div></div><div class="info-2"><div class="info-item-1">UPL2-2——CPU Usage 模块 CPU Usage 模块 CPU Usage（使用率）是 Unity Profiler 中最重要的性能分析模块之一，用于展示 每一帧 CPU 所花费的时间，按类别详细划分不同系统的消耗情况，帮助开发者诊断性能瓶颈 游戏开发中会造成CPU开销的主要有：  脚本逻辑（我们编写的 C# 代码逻辑） 物理系统（Unity 内置的物理引擎 ） 动画计算（Unity 中的动画状态机、骨骼动画相关的混合采样计算等等） 渲染准备（计算物体是否可见、是否剔除、构建绘制命令，渲染命令提交工作等） 资源管理和加载（加载 AssetBundle、场景、纹理、网格、材质等元数据 等） GC（垃圾回收） UI系统（GUI、UGUI 中 UI 布局计算、事件派发、渲染数据的准备等） 导航与寻路 音频处理 输入检测 网络通讯 屏幕后处理 C# 部分  等等 一般项目出现卡顿、掉帧问题可以着重排查此处 CPU Usage 中个参数功能的含义和作用    CPU 使用率 分析窗口 在这里通过不同模块不同颜色表达，我们可以直观的看到每一个模块对 CPU...</div></div></div></a><a class="pagination-related" href="/2025/08/06/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL2%E2%80%94%E2%80%94Unity%20Profiler/" title="UPL2——Unity Profiler"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">UPL2——Unity Profiler</div></div><div class="info-2"><div class="info-item-1">UPL2——Unity Profiler Unity Profiler  Profiler 记录应用程序性能的多个方面并显示相关信息。使用此信息可以做出有关应用程序中可能需要优化的事项的明智决策，并确认所做的优化是否产生预期结果。 默认情况下，Profiler 会记录并保存游戏最近的 300 帧，并向您显示每帧的详细信息。您可以在“首选项”窗口（菜单：编辑 &gt; 首选项）中增加其记录的帧数，最多可增加到 2000 帧。 注意：如果将此设置增加到较大的帧数，Profiler 的开销和内存使用量可能会显著增加，从而对性能产生更大影响。 可以检查脚本代码，以及应用程序如何使用某些资源（这可能会降低应用程序速度）。还可以比较应用程序在不同设备上的性能。 性能分析器具有几个不同的性能分析器模块，这些模块可以添加到性能分析会话中，从而获取有关渲染、内存和音频等方面的更多信息。  如何打开性能分析器窗口 Window ——&gt; Analysis ——&gt; Profiler 或 Profiler（Standalone...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/Blue_Ice.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">文KRIFE齐</div><div class="author-info-description">Unity就业路线的笔记终于更新完了！新年快乐！</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1168</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">141</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/enjoySevenLIU"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/enjoySevenLIU" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">博客修好了，继续学习，CSharp进阶也迁移完毕了，接下来尽快把Unity Shader给啃完，年末给博客好好整修一下</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">UPL2-1——顶部页签</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Unity-Profiler-%E9%A1%B6%E9%83%A8%E9%A1%B5%E7%AD%BE"><span class="toc-number">1.1.</span> <span class="toc-text">Unity Profiler 顶部页签</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Profiler-%E9%A6%96%E9%80%89%E9%A1%B9"><span class="toc-number">1.2.</span> <span class="toc-text">Profiler 首选项</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/11/24/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL11%E2%80%94%E2%80%94%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/" title="UPL11——内存管理">UPL11——内存管理</a><time datetime="2025-11-24T08:07:56.000Z" title="发表于 2025-11-24 16:07:56">2025-11-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/11/24/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL10%E2%80%94%E2%80%94%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/UPL10-6%E2%80%94%E2%80%94AB%E5%8C%85%E5%92%8CResources%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/" title="UPL10-6——AB包和Resources资源优化">UPL10-6——AB包和Resources资源优化</a><time datetime="2025-11-24T07:46:31.000Z" title="发表于 2025-11-24 15:46:31">2025-11-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/11/24/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL10%E2%80%94%E2%80%94%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/UPL10-5%E2%80%94%E2%80%94%E6%9D%90%E8%B4%A8%E4%B8%8EShader%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/" title="UPL10-5——材质与Shader资源优化">UPL10-5——材质与Shader资源优化</a><time datetime="2025-11-24T07:09:51.000Z" title="发表于 2025-11-24 15:09:51">2025-11-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/11/24/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL10%E2%80%94%E2%80%94%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/UPL10-4%E2%80%94%E2%80%94%E7%BD%91%E6%A0%BC%E4%B8%8E%E5%8A%A8%E7%94%BB%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/" title="UPL10-4——网格与动画资源优化">UPL10-4——网格与动画资源优化</a><time datetime="2025-11-24T03:58:43.000Z" title="发表于 2025-11-24 11:58:43">2025-11-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/11/24/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL10%E2%80%94%E2%80%94%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/UPL10-3%E2%80%94%E2%80%94%E7%BA%B9%E7%90%86%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/" title="UPL10-3——纹理资源优化">UPL10-3——纹理资源优化</a><time datetime="2025-11-24T03:10:58.000Z" title="发表于 2025-11-24 11:10:58">2025-11-24</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2025 By 文KRIFE齐</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"><script>(async () => {
+  const showKatex = () => {
+    document.querySelectorAll('#article-container .katex').forEach(el => el.classList.add('katex-show'))
+  }
+
+  if (!window.katex_js_css) {
+    window.katex_js_css = true
+    await btf.getCSS('https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css')
+    if (false) {
+      await btf.getScript('https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js')
+    }
+  }
+
+  showKatex()
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>

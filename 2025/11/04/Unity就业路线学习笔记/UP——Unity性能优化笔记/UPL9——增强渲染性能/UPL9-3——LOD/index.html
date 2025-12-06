@@ -1,0 +1,283 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>UPL9-3——LOD | 文KRIFE齐的博客</title><meta name="author" content="文KRIFE齐"><meta name="copyright" content="文KRIFE齐"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="UPL9-3——LOD LOD LOD（Level of Detail，细节层次） LOD 的核心目的：减少远处物体的几何复杂度（顶点，三角形数量），降低 GPU 顶点处理压力，让场景在视觉上几乎无损的前提下提升性能 具体好处包括：   提升性能 远处的物体在屏幕上只占很少像素，用高模浪费算力，LOD 可以替换成低模，让 GPU 处理更轻松   节省显存和带宽 高模 → 低模 → Billboar">
+<meta property="og:type" content="article">
+<meta property="og:title" content="UPL9-3——LOD">
+<meta property="og:url" content="https://enjoysevenliu.github.io/2025/11/04/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL9%E2%80%94%E2%80%94%E5%A2%9E%E5%BC%BA%E6%B8%B2%E6%9F%93%E6%80%A7%E8%83%BD/UPL9-3%E2%80%94%E2%80%94LOD/index.html">
+<meta property="og:site_name" content="文KRIFE齐的博客">
+<meta property="og:description" content="UPL9-3——LOD LOD LOD（Level of Detail，细节层次） LOD 的核心目的：减少远处物体的几何复杂度（顶点，三角形数量），降低 GPU 顶点处理压力，让场景在视觉上几乎无损的前提下提升性能 具体好处包括：   提升性能 远处的物体在屏幕上只占很少像素，用高模浪费算力，LOD 可以替换成低模，让 GPU 处理更轻松   节省显存和带宽 高模 → 低模 → Billboar">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://enjoysevenliu.github.io/img/Blue_Ice.png">
+<meta property="article:published_time" content="2025-11-04T08:17:45.000Z">
+<meta property="article:modified_time" content="2025-12-06T16:02:04.583Z">
+<meta property="article:author" content="文KRIFE齐">
+<meta property="article:tag" content="blog">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://enjoysevenliu.github.io/img/Blue_Ice.png"><link rel="shortcut icon" href="/img/Blue_Ice.png"><link rel="canonical" href="https://enjoysevenliu.github.io/2025/11/04/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL9%E2%80%94%E2%80%94%E5%A2%9E%E5%BC%BA%E6%B8%B2%E6%9F%93%E6%80%A7%E8%83%BD/UPL9-3%E2%80%94%E2%80%94LOD/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'UPL9-3——LOD',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  isShuoshuo: false
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/Blue_Ice.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1168</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">141</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/img/Blue_Ice.png" alt="Logo"><span class="site-name">文KRIFE齐的博客</span></a><a class="nav-page-title" href="/"><span class="site-name">UPL9-3——LOD</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">UPL9-3——LOD</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-11-04T08:17:45.000Z" title="发表于 2025-11-04 16:17:45">2025-11-04</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-12-06T16:02:04.583Z" title="更新于 2025-12-07 00:02:04">2025-12-07</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/">UP——Unity性能优化笔记</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL9%E2%80%94%E2%80%94%E5%A2%9E%E5%BC%BA%E6%B8%B2%E6%9F%93%E6%80%A7%E8%83%BD/">UPL9——增强渲染性能</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1>UPL9-3——LOD</h1>
+<h1>LOD</h1>
+<p>LOD（Level of Detail，细节层次）</p>
+<p>LOD 的核心目的：减少远处物体的几何复杂度（顶点，三角形数量），降低 GPU 顶点处理压力，让场景在视觉上几乎无损的前提下提升性能</p>
+<p>具体好处包括：</p>
+<ol>
+<li>
+<p>提升性能</p>
+<p>远处的物体在屏幕上只占很少像素，用高模浪费算力，LOD 可以替换成低模，让 GPU 处理更轻松</p>
+</li>
+<li>
+<p>节省显存和带宽</p>
+<p>高模 → 低模 → Billboard 加载和显存压力逐步减轻</p>
+</li>
+<li>
+<p>兼顾画质与性能</p>
+<p>近处依旧报错高质量，远处用简化版本，玩家几乎察觉不到</p>
+</li>
+</ol>
+<p>说人话：LOD 的主要作用就是动态平衡画质和性能</p>
+<h2 id="LOD-的使用">LOD 的使用</h2>
+<p>Unity 提供了 LOD Group 组件来管理 LOD</p>
+<p>使用步骤：</p>
+<ol>
+<li>
+<p>准备好模型</p>
+<p>让美术输出同一个物体的多个精度版本模型（如 LOD0、LOD1、LOD2）<br>
+或者使用 Mesh Simplification（网格简化算法）工具自动生成低精度模型</p>
+</li>
+<li>
+<p>创建一个空物体，添加 LOD Group 组件，将多个精度版本模型作为其子对象</p>
+<p>对 LOD Group 组件进行设置关联</p>
+<p>假设我们准备了胶囊体高模，球体中模，立方体低模，你需要将这些模型的渲染器分别关联到 LOD Group 的不同等级 (LOD X) 的 Renderers 上</p>
+<p><img src="/assets/image-20251104163937-ztbages.png" alt="image"></p>
+<p>然后就可以看到效果了（从近到远，依次从高模变成低模，最终被剔除）：</p>
+<p><img src="/assets/image-20251104164034-drd6r73.png" alt="image"><img src="/assets/image-20251104164050-voflu10.png" alt="image"><img src="/assets/image-20251104164102-mz13zd0.png" alt="image">​​<img src="/assets/image-20251104164121-fb145v8.png" alt="image"></p>
+</li>
+</ol>
+<h3 id="LOD-Group-参数">LOD Group 参数</h3>
+<p><img src="/assets/image-20251104172451-12skqc8.png" alt="image"></p>
+<ul>
+<li>
+<p>Fade Mode：控制 LOD 切换时是否做过渡</p>
+<p><img src="/assets/image-20251104165537-22teewg.png" alt="image"></p>
+<ul>
+<li>
+<p>None（无过渡）： 直接切换，没有过渡效果</p>
+<p>性能最好，因为不需要额外渲染，<br>
+缺点是可能出现“跳变”感，尤其是当物体在切换点来回抖动时</p>
+</li>
+<li>
+<p>Cross Fade（渐变过渡）: Unity 会在切换区间内同时渲染</p>
+<p>两个 LOD 的模型，旧 LOD 逐渐透明，新 LOD 逐渐显现<br>
+最终实现一个“淡入淡出”的效果，过渡平滑，几乎察觉不到 LOD 切换<br>
+由于在过渡阶段要同时渲染两个模型，会给 GPU 带来负担</p>
+<p>调整过渡区间需要在各个 LOD 等级的 Fade Transition Width 处调节</p>
+</li>
+<li>
+<p>Speed Tree（植被系统）: 专门为 Unity 的 SpeedTree 植被系统设计的渐变模式</p>
+<p>逐步混合顶点、枝叶信息，在切换过程中，树木的枝叶会更自然地过渡，<br>
+不会出现“透明闪烁” 针对树木、植被表现更好<br>
+只能用于 SpeedTree 资源，无法用于普通 Mesh</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Animate Cross-fading：会让淡入淡出的过程随着时间平滑播放动画，而不是仅仅基于相机位置的阈值（仅在 Fade Mode 不为 None 时出现）</p>
+<p>勾选后会更快速更直接切换模型，不会出现摄像机停在某个阈值点让两个模型都显示的情况</p>
+</li>
+<li>
+<p>拖动条：预览不同物体占屏幕比值的LOD等级，拖动可预览不同距离显示效果</p>
+<p><img src="/assets/image-20251104170033-49zzf6f.png" alt="image"></p>
+<p>上面的百分比（100%、60%、30%、10%）表示屏幕占比阈值<br>
+（一般是基于物体的包围盒在屏幕上投影的高度，去和 屏幕总高度 做比值）<br>
+比如：当物体在屏幕上大小 &lt; 30% 时，从 LOD1 切换到 LOD2<br>
+拖动摄像机图标可以看到切换效果</p>
+<p><img src="/assets/image-20251104171240-4j788ia.png" alt="image"></p>
+</li>
+<li>
+<p>警告：Active LOD bias is 2.0. Distances are adjusted accordingly</p>
+<p>表示当前项目里启用了 Quality Settings → LOD Bias（LOD 偏移）<br>
+值越大，切换到低 LOD 的时机越远（即更久保留高模）</p>
+<p><img src="/assets/image-20251104170832-n2ppa21.png" alt="image"></p>
+</li>
+<li>
+<p><strong>Recalculate Bounds：重新计算 LOD 的包围盒（建议模型设置完毕变时点击）</strong></p>
+<p>LOD 切换基于物体在屏幕上的包围盒大小，模型改变或者缩放后需要点这个</p>
+</li>
+<li>
+<p>Recalculate Lightmap Scale：重新计算光照贴图缩放参数</p>
+</li>
+<li>
+<p>Object Size：物体在计算 LOD 时的参考大小（默认自动算出）</p>
+</li>
+<li>
+<p>Reset Object Size：重置物体在计算 LOD 时的参考大小为1，同时修改 Transition</p>
+</li>
+<li>
+<p>LOD X：各个阶段的 LOD 使用的网格渲染器信息</p>
+<ul>
+<li>
+<p>Transition：表示当物体在屏幕上占比 &gt; 多少百分比 时使用它</p>
+</li>
+<li>
+<p>Set to Camera：根据当前相机位置，计算出的 LOD 的切换距离，快捷设置</p>
+</li>
+<li>
+<p>Fade Transition Width：渐变切换的过渡区间宽度（仅在 Fade Mode 不为 None 且不勾选 Animate Cross-fading 时出现）</p>
+<ul>
+<li>值越大 → 过渡区间越宽，淡入淡出的时间/距离越长，看起来更平滑</li>
+<li>值越小 → 过渡区间越窄，几乎是瞬间切换</li>
+</ul>
+</li>
+<li>
+<p>Renderers：指定这一层级使用的 MeshRenderer</p>
+<p>后面的三角形数量信息： 表示当前网格有多少个三角形</p>
+</li>
+</ul>
+</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://enjoysevenliu.github.io">文KRIFE齐</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://enjoysevenliu.github.io/2025/11/04/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL9%E2%80%94%E2%80%94%E5%A2%9E%E5%BC%BA%E6%B8%B2%E6%9F%93%E6%80%A7%E8%83%BD/UPL9-3%E2%80%94%E2%80%94LOD/">https://enjoysevenliu.github.io/2025/11/04/Unity就业路线学习笔记/UP——Unity性能优化笔记/UPL9——增强渲染性能/UPL9-3——LOD/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://enjoysevenliu.github.io" target="_blank">文KRIFE齐的博客</a>！</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/img/Blue_Ice.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2025/11/04/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL9%E2%80%94%E2%80%94%E5%A2%9E%E5%BC%BA%E6%B8%B2%E6%9F%93%E6%80%A7%E8%83%BD/UPL9-4%E2%80%94%E2%80%94%E9%81%AE%E6%8C%A1%E5%89%94%E9%99%A4/" title="UPL9-4——遮挡剔除"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">UPL9-4——遮挡剔除</div></div><div class="info-2"><div class="info-item-1">UPL9-4——遮挡剔除 遮挡剔除 Unity 默认只会进行视锥剔除，即摄像机视锥外的物体不会渲染， 但是在视锥内，被其他物体挡住的东西仍然会被渲染，而遮挡剔除就是用来弥补这一点的 遮挡剔除（Occlusion Culling）的作用：  让被遮挡，不可见的物体不再进入渲染管线 减少 DrawCall，顶点处理，像素填充 等开销 提升性能，尤其是在室内场景，城市场景，森林 这种遮挡很多的环境  比如：玩家在一个房间里，外面的街道模型其实完全看不到，没有必要渲染他们 如果没有遮挡剔除，这些在摄像机视锥范围内的对象依然会被送进 GPU 渲染，浪费性能 说人话：遮挡剔除弥补了视锥剔除的局限性，让 Unity 可以剔除那些在摄像机视锥内，但是被挡住的对象，这样可以节约 GPU 渲染性能 遮挡剔除的具体内容可见：遮挡剔除 - Unity 手册 遮挡剔除的作用   设置需要使用遮挡剔除的对象为遮挡静态对象   会遮挡别人的物体（比如建筑、墙体、山体等）——&gt; 设置为 Occluder Static（静态遮挡物）    可能被遮挡的物体（比如角色、家具、树木等）——&gt; 设置为...</div></div></div></a><a class="pagination-related" href="/2025/11/04/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL9%E2%80%94%E2%80%94%E5%A2%9E%E5%BC%BA%E6%B8%B2%E6%9F%93%E6%80%A7%E8%83%BD/UPL9-2%E2%80%94%E2%80%94%E9%99%8D%E4%BD%8E%E5%87%A0%E4%BD%95%E5%A4%8D%E6%9D%82%E5%BA%A6/" title="UPL9-2——降低几何复杂度"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">UPL9-2——降低几何复杂度</div></div><div class="info-2"><div class="info-item-1">UPL9-2——降低几何复杂度 为什么要降低几何复杂度 降低几何复杂度的主要目的是  减轻 GPU 与 CPU 在几何处理阶段的负担 减轻 内存带宽 压力和 显存 压力  等等   从GPU角度 GPU 渲染管线的第一步就是处理顶点， 如果场景里有几百万甚至上千万个顶点，GPU 必须逐个变换（模型矩阵、光照计算、蒙皮等）， 负担会极大，可能带来：  帧率下降 移动端功耗升高、发热严重 顶点带宽不足导致 GPU 卡顿  等等 因此，降低几何复杂度，相当于直接减少了顶点着色器的工作量   从 CPU 角度 每个网格渲染之前，CPU 要把网格数据提交给 GPU（DrawCall）， 如果模型过于复杂（高面数、网格碎片多），则会导致 CPU 消耗在渲染准备工作上，挤占逻辑、物理计算上的时间 因此，降低几何复杂度，可以间接减少 CPU...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/Blue_Ice.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">文KRIFE齐</div><div class="author-info-description">Unity就业路线的笔记终于更新完了！新年快乐！</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1168</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">141</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/enjoySevenLIU"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/enjoySevenLIU" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">博客修好了，继续学习，CSharp进阶也迁移完毕了，接下来尽快把Unity Shader给啃完，年末给博客好好整修一下</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">UPL9-3——LOD</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">2.</span> <span class="toc-text">LOD</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#LOD-%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-number">2.1.</span> <span class="toc-text">LOD 的使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#LOD-Group-%E5%8F%82%E6%95%B0"><span class="toc-number">2.1.1.</span> <span class="toc-text">LOD Group 参数</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/11/24/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL11%E2%80%94%E2%80%94%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/" title="UPL11——内存管理">UPL11——内存管理</a><time datetime="2025-11-24T08:07:56.000Z" title="发表于 2025-11-24 16:07:56">2025-11-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/11/24/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL10%E2%80%94%E2%80%94%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/UPL10-6%E2%80%94%E2%80%94AB%E5%8C%85%E5%92%8CResources%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/" title="UPL10-6——AB包和Resources资源优化">UPL10-6——AB包和Resources资源优化</a><time datetime="2025-11-24T07:46:31.000Z" title="发表于 2025-11-24 15:46:31">2025-11-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/11/24/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL10%E2%80%94%E2%80%94%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/UPL10-5%E2%80%94%E2%80%94%E6%9D%90%E8%B4%A8%E4%B8%8EShader%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/" title="UPL10-5——材质与Shader资源优化">UPL10-5——材质与Shader资源优化</a><time datetime="2025-11-24T07:09:51.000Z" title="发表于 2025-11-24 15:09:51">2025-11-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/11/24/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL10%E2%80%94%E2%80%94%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/UPL10-4%E2%80%94%E2%80%94%E7%BD%91%E6%A0%BC%E4%B8%8E%E5%8A%A8%E7%94%BB%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/" title="UPL10-4——网格与动画资源优化">UPL10-4——网格与动画资源优化</a><time datetime="2025-11-24T03:58:43.000Z" title="发表于 2025-11-24 11:58:43">2025-11-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/11/24/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL10%E2%80%94%E2%80%94%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/UPL10-3%E2%80%94%E2%80%94%E7%BA%B9%E7%90%86%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/" title="UPL10-3——纹理资源优化">UPL10-3——纹理资源优化</a><time datetime="2025-11-24T03:10:58.000Z" title="发表于 2025-11-24 11:10:58">2025-11-24</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2025 By 文KRIFE齐</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"><script>(async () => {
+  const showKatex = () => {
+    document.querySelectorAll('#article-container .katex').forEach(el => el.classList.add('katex-show'))
+  }
+
+  if (!window.katex_js_css) {
+    window.katex_js_css = true
+    await btf.getCSS('https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css')
+    if (false) {
+      await btf.getScript('https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js')
+    }
+  }
+
+  showKatex()
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>

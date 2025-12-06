@@ -1,0 +1,377 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>UPL9-4——遮挡剔除 | 文KRIFE齐的博客</title><meta name="author" content="文KRIFE齐"><meta name="copyright" content="文KRIFE齐"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="UPL9-4——遮挡剔除 遮挡剔除 Unity 默认只会进行视锥剔除，即摄像机视锥外的物体不会渲染， 但是在视锥内，被其他物体挡住的东西仍然会被渲染，而遮挡剔除就是用来弥补这一点的 遮挡剔除（Occlusion Culling）的作用：  让被遮挡，不可见的物体不再进入渲染管线 减少 DrawCall，顶点处理，像素填充 等开销 提升性能，尤其是在室内场景，城市场景，森林 这种遮挡很多的环境  比">
+<meta property="og:type" content="article">
+<meta property="og:title" content="UPL9-4——遮挡剔除">
+<meta property="og:url" content="https://enjoysevenliu.github.io/2025/11/04/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL9%E2%80%94%E2%80%94%E5%A2%9E%E5%BC%BA%E6%B8%B2%E6%9F%93%E6%80%A7%E8%83%BD/UPL9-4%E2%80%94%E2%80%94%E9%81%AE%E6%8C%A1%E5%89%94%E9%99%A4/index.html">
+<meta property="og:site_name" content="文KRIFE齐的博客">
+<meta property="og:description" content="UPL9-4——遮挡剔除 遮挡剔除 Unity 默认只会进行视锥剔除，即摄像机视锥外的物体不会渲染， 但是在视锥内，被其他物体挡住的东西仍然会被渲染，而遮挡剔除就是用来弥补这一点的 遮挡剔除（Occlusion Culling）的作用：  让被遮挡，不可见的物体不再进入渲染管线 减少 DrawCall，顶点处理，像素填充 等开销 提升性能，尤其是在室内场景，城市场景，森林 这种遮挡很多的环境  比">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://enjoysevenliu.github.io/img/Blue_Ice.png">
+<meta property="article:published_time" content="2025-11-04T09:27:53.000Z">
+<meta property="article:modified_time" content="2025-12-06T16:02:04.584Z">
+<meta property="article:author" content="文KRIFE齐">
+<meta property="article:tag" content="blog">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://enjoysevenliu.github.io/img/Blue_Ice.png"><link rel="shortcut icon" href="/img/Blue_Ice.png"><link rel="canonical" href="https://enjoysevenliu.github.io/2025/11/04/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL9%E2%80%94%E2%80%94%E5%A2%9E%E5%BC%BA%E6%B8%B2%E6%9F%93%E6%80%A7%E8%83%BD/UPL9-4%E2%80%94%E2%80%94%E9%81%AE%E6%8C%A1%E5%89%94%E9%99%A4/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'UPL9-4——遮挡剔除',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  isShuoshuo: false
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/Blue_Ice.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1168</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">141</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/img/Blue_Ice.png" alt="Logo"><span class="site-name">文KRIFE齐的博客</span></a><a class="nav-page-title" href="/"><span class="site-name">UPL9-4——遮挡剔除</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">UPL9-4——遮挡剔除</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-11-04T09:27:53.000Z" title="发表于 2025-11-04 17:27:53">2025-11-04</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-12-06T16:02:04.584Z" title="更新于 2025-12-07 00:02:04">2025-12-07</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/">UP——Unity性能优化笔记</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL9%E2%80%94%E2%80%94%E5%A2%9E%E5%BC%BA%E6%B8%B2%E6%9F%93%E6%80%A7%E8%83%BD/">UPL9——增强渲染性能</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1>UPL9-4——遮挡剔除</h1>
+<h1>遮挡剔除</h1>
+<p>Unity 默认只会进行视锥剔除，即摄像机视锥外的物体不会渲染，<br>
+但是在视锥内，被其他物体挡住的东西仍然会被渲染，而遮挡剔除就是用来弥补这一点的</p>
+<p>遮挡剔除（Occlusion Culling）的作用：</p>
+<ol>
+<li>让被遮挡，不可见的物体不再进入渲染管线</li>
+<li>减少 DrawCall，顶点处理，像素填充 等开销</li>
+<li>提升性能，尤其是在室内场景，城市场景，森林 这种遮挡很多的环境</li>
+</ol>
+<p>比如：玩家在一个房间里，外面的街道模型其实完全看不到，没有必要渲染他们<br>
+如果没有遮挡剔除，这些在摄像机视锥范围内的对象依然会被送进 GPU 渲染，浪费性能</p>
+<p>说人话：遮挡剔除弥补了视锥剔除的局限性，让 Unity 可以剔除那些在摄像机视锥内，但是被挡住的对象，这样可以节约 GPU 渲染性能</p>
+<p>遮挡剔除的具体内容可见：<a target="_blank" rel="noopener" href="https://docs.unity.cn/cn/2022.3/Manual/OcclusionCulling.html">遮挡剔除 - Unity 手册</a></p>
+<h2 id="遮挡剔除的作用">遮挡剔除的作用</h2>
+<ol>
+<li>
+<p>设置需要使用遮挡剔除的对象为遮挡静态对象</p>
+<ul>
+<li>
+<p>会遮挡别人的物体（比如建筑、墙体、山体等）——&gt; 设置为 Occluder Static（静态遮挡物）</p>
+<p><img src="/assets/image-20251104175151-i05zjkn.png" alt="image"></p>
+</li>
+<li>
+<p>可能被遮挡的物体（比如角色、家具、树木等）——&gt; 设置为 Occludee Static（静态被遮挡物）</p>
+<p><img src="/assets/image-20251104175231-dkcyl1n.png" alt="image"></p>
+</li>
+</ul>
+<blockquote>
+<p>注意：动态物体不能作为静态遮挡物 (Occluder Static)</p>
+</blockquote>
+</li>
+<li>
+<p>打开遮挡剔除（Occlusion Culling）窗口</p>
+<p>Window → Rendering → Occlusion Culling</p>
+<p>在该窗口中进行遮挡数据烘焙</p>
+<p><img src="/assets/image-20251104174410-2c3nd48.png" alt="image"></p>
+</li>
+<li>
+<p>摄像机需要开启遮挡剔除功能</p>
+<p><img src="/assets/image-20251104175318-zkyj7zz.png" alt="image"></p>
+</li>
+</ol>
+<h2 id="遮挡剔除-Occlusion-窗口参数">遮挡剔除 (Occlusion) 窗口参数</h2>
+<ul>
+<li>
+<p>Object 页签</p>
+<p>Scene Filter（在 Hierarchy 窗口内筛选出场景内特定对象）：</p>
+<ul>
+<li>
+<p>All（所有对象）：</p>
+<p>在 Hierarchy 窗口内会显示所有对象，不会筛选，但只有在 Hierarchy 窗口内选择了带 Mesh Renderer 或者 Occlusion Area 对象才会显示内容</p>
+</li>
+<li>
+<p>Renderers（渲染器）：</p>
+<p>在 Hierarchy 窗口内会筛选出所有的带 Mesh Renderer 的对象，点击其中一个对象会显示如下内容：</p>
+<p><img src="/assets/image-20251104180709-c95jcs4.png" alt="image"></p>
+<p>此时可以设置该对象是否为 Occluder Static（静态遮挡物）以及 Occludee Static（静态被遮挡物）</p>
+</li>
+<li>
+<p>Occlusion Area（遮挡区域）：</p>
+<p>在 Hierarchy 窗口内会筛选出所有的带 Occlusion Area 的对象，关于 Occlusion Area，详见下文：Occlusion Area</p>
+<p>当未选中任何一个带 Occlusion Area 的对象时，会显示如下内容：</p>
+<p><img src="/assets/image-20251104181024-rdniya6.png" alt="image"></p>
+<p>点击 Create New Occlusion Area 即可创建一个新的带 Occlusion Area 的对象</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Bake 页签</p>
+<p><img src="/assets/image-20251104182839-qy2w3fr.png" alt="image"></p>
+<ul>
+<li>
+<p>Set Default parameters：设置为默认值，点击后直接还原下方参数</p>
+<blockquote>
+<p>下方提示：默认参数可确保任意给定场景都能快速计算，并获得良好的遮挡剔除结果。由于这些参数始终与具体场景相关，因此在逐场景基础上对参数进行微调将获得更佳效果。所有参数都依赖于场景的单位尺度，因此在设置默认值之前，必须正确设置单位尺度参数。</p>
+</blockquote>
+</li>
+<li>
+<p>Smallest Occluder：最小遮挡物</p>
+<p>小于该尺寸的物体不会被当作遮挡者<br>
+太小的物体（比如椅子腿、路灯杆）即使当作遮挡者，对整体遮挡效果意义不大，反而增加计算复杂度</p>
+<p>比如：如果设为 5，那么宽高深任意方向小于 5 个单位的物体，不会被烘焙进“遮挡源”</p>
+<p>建议：</p>
+<ul>
+<li>大场景（城市/山体） → 数值设大（比如 5~10）</li>
+<li>小场景（室内/走廊） → 数值设小（比如 1~2）</li>
+</ul>
+</li>
+<li>
+<p>Smallest Hole：最小孔洞</p>
+<p>小于该尺寸的孔洞会被“填上”，不会算作能透过去的空间<br>
+避免一些小缝隙（比如窗框、门缝）被计算成“可见路径”，导致不合理的可见性判断</p>
+<p>比如：如果设为 0.25，那么小于 0.25 单位的洞（例如小裂缝）会被忽略，当成墙壁</p>
+<p>建议：</p>
+<ul>
+<li>室内场景 → 设小一些，保证窗户、门洞能算作可见</li>
+<li>城市/森林 → 设大一些，忽略不重要的小缝隙</li>
+</ul>
+</li>
+<li>
+<p>Backface Threshold：背面阈值</p>
+<p>决定一个物体有多少背面可以参与遮挡。遮挡计算时，通常只考虑物体面向摄像机的正面，但有些情况下，背面（比如反向法线）也能阻挡视线</p>
+<blockquote>
+<p>注意，这里的正面一般指的是我们会观察到的模型的外表面，而背面就是模型的内部面，一般是透明的，也存在部分单面墙，能看到贴图的一面是正面，而透明的一面就是背面</p>
+</blockquote>
+<p>数值范围：0~100%</p>
+<ul>
+<li>0 → 完全不考虑背面；</li>
+<li>100 → 所有背面都能参与遮挡</li>
+</ul>
+<p>建议： 默认值（100%）就够用，除非场景特殊（比如很多单面平面作为墙）</p>
+</li>
+<li>
+<p>Clear：清除烘焙数据</p>
+</li>
+<li>
+<p>Bake：开始烘焙</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Visualization 页签</p>
+<p>当选中该 可视化 (Visualization) 页签，再选择开启遮挡剔除的摄像机时，可以实时的预览遮挡剔除效果</p>
+<p>默认 Scene 窗口：</p>
+<p><img src="/assets/image-20251105202501-izdz59h.png" alt="image"></p>
+<p>开启遮挡剔除预览后 Scene 窗口：</p>
+<p><img src="/assets/image-20251105202557-jz2gbgb.png" alt="image"></p>
+<p>在 右下角可以设置不同预览效果：</p>
+<p><img src="/assets/image-20251105202829-ndk3k8e.png" alt="image"></p>
+<ul>
+<li>
+<p>Camera Volumes：摄像机空间</p>
+<p>启用此选项后，您会看到黄线，这些黄线指示 Unity 为其生成遮挡剔除数据的场景区域。<br>
+这取决于场景几何体以及在场景中使用 Occlusion Areas 选项定义的任何视图体积 (View Volumes)。当摄像机在黄线之外时，Unity 不会执行遮挡剔除。</p>
+<p>您还可以看到灰线，这些灰线指示摄像机当前位置所对应的遮挡剔除数据中的单元格以及当前单元格中的细分。<br>
+<strong>Smallest Hole</strong> 设置定义了单元格内细分的最小大小：值越小，每个单元格产生的细分越多且越小，从而使精度提高并且文件增大。</p>
+</li>
+<li>
+<p>Visibility Lines：可视范围线</p>
+<p>启用此选项后，您会看到绿线，这些绿线指示当前选择的摄像机可以看到的内容。</p>
+</li>
+<li>
+<p>Portals：入口</p>
+<p>启用此选项后，您可以看到一些线代表遮挡数据中单元格之间的连接。当前可见的入口是当前所选摄像机可以看到的入口。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="遮挡区域">遮挡区域</h2>
+<p>Occlusion Area 是一个 体积框（Box Volume），用来提示 Unity 的遮挡剔除烘焙系统哪些区域是摄像机可能存在的位置，从而在这一块区域进行精确的遮挡剔除烘焙</p>
+<p>我们可以创建一个“盒子”空间，在这个区域内会启用精确的遮挡剔除烘焙计算，它的作用是用于优化性能的，<br>
+如果不在场景上添加任何 Occlusion Area，则 Unity 会默认创建一个包含所有 Occluder Static 和 Occludee Static 对象的 Occlusion Area 再烘焙，即所有区域全部精确烘焙<br>
+如果场景很大、到处都做精细的遮挡剔除烘焙，可能会导致大量不必要的数据，漫长的烘焙时间，且运行时计算量加大，反而可能拖慢性能，</p>
+<p>加上 Occlusion Area（遮挡区域） 后，Unity 只在该区域范围内进行精密的遮挡计算，可以用于<strong>精确控制在启用更精确的遮挡剔除</strong></p>
+<p>在物体繁多的建筑物内部场景会更有用，也可以在没有 Occluder Static 或 Occludee Static 对象但摄像机可到达的区域使用，确保那块区域的遮挡剔除生效</p>
+<p>在 Scene 内拖动绿色框体的白色圆柱体即可调整 Occlusion Area 的边界，Occlusion Area 应该框住<strong>摄像机的移动范围</strong></p>
+<p><img src="/assets/image-20251105110847-l67bsq9.png" alt="image"></p>
+<blockquote>
+<p>注意：</p>
+<ol>
+<li>它主要影响静态几何的遮挡剔除</li>
+<li>可以创建多个 Occlusion Area，把不同场景分开管理</li>
+</ol>
+</blockquote>
+<p><img src="/assets/image-20251104181748-rw2rxq0.png" alt="image"></p>
+<ul>
+<li>
+<p>Size：遮挡区域包围盒的尺寸</p>
+</li>
+<li>
+<p>Center：遮挡区域包围盒的中心点偏移位置</p>
+</li>
+<li>
+<p>Is View Volume：是否是视图体积（开启才能生效）</p>
+<p>视图体积是摄像机可能处于运行时的场景区域，<br>
+如果启用此属性，遮挡区域 (Occlusion Area) 将定义视图体积。<br>
+如果禁用此属性，遮挡区域 (Occlusion Area) 不会定义视图体积。<br>
+必须启用此属性才能使遮挡区域 (Occlusion Area) 生效。</p>
+</li>
+</ul>
+<p>不使用 Occlusion Area 标识的遮挡剔除烘焙结果：</p>
+<p><img src="/assets/image-20251105202011-sl07rgc.png" alt="image"></p>
+<p>使用 Occlusion Area 标识的遮挡剔除烘焙结果：</p>
+<p><img src="/assets/image-20251105202052-0d89tsq.png" alt="image"></p>
+<p>可以看到，如果不适用 Occlusion Area 标识，则所有区域的格子密度都较高，而启用烘焙区域后，格子只在 Occlusion Area 框定处附近密度较高</p>
+<h2 id="遮挡入口">遮挡入口</h2>
+<p>遮挡入口 (Occlusion Portal) 可以用于在关闭状态下遮挡，而在开启状态下不遮挡的对象<br>
+遮挡入口关闭时，它将遮挡其他游戏对象。遮挡入口打开时，它不会遮挡其他游戏对象。<br>
+适用于遮挡剔除场景中 门 等的物体，可以在 门 即将打开 或者 完全关闭 时用脚本控制其 <code>open</code> 属性使其启用遮挡</p>
+<blockquote>
+<p>注意：使用 Occlusion Portal 对象不需要设置为 Occluder Static 或 Occludee Static，同时要参与到遮挡剔除的烘焙中</p>
+</blockquote>
+<p><img src="/assets/image-20251105204656-nqy7s7x.png" alt="image"></p>
+<ul>
+<li>
+<p>Open：入口是否开启</p>
+<p>如果开启，则此区域将不进行遮挡剔除，摄像机可透过此入口观察到物体</p>
+</li>
+<li>
+<p>Center：中心点</p>
+</li>
+<li>
+<p>Size：尺寸</p>
+</li>
+</ul>
+<p>假设有这个这样的场景，中间的门是遮挡入口：</p>
+<p><img src="/assets/image-20251105204115-gmb4719.png" alt="image"></p>
+<p>当遮挡入口的 Open 属性为 <code>false</code> 时预览遮挡剔除结果：</p>
+<p><img src="/assets/image-20251105204504-415tnfv.png" alt="image"></p>
+<p>当遮挡入口的 Open 属性为 <code>true</code> 时预览遮挡剔除结果：</p>
+<p><img src="/assets/image-20251105204522-sn5vsq5.png" alt="image"></p>
+<p>可以看到，遮挡入口可以起到仅在不开启时进行遮挡的效果，适用于场景中的门的场景</p>
+<p>‍</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://enjoysevenliu.github.io">文KRIFE齐</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://enjoysevenliu.github.io/2025/11/04/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL9%E2%80%94%E2%80%94%E5%A2%9E%E5%BC%BA%E6%B8%B2%E6%9F%93%E6%80%A7%E8%83%BD/UPL9-4%E2%80%94%E2%80%94%E9%81%AE%E6%8C%A1%E5%89%94%E9%99%A4/">https://enjoysevenliu.github.io/2025/11/04/Unity就业路线学习笔记/UP——Unity性能优化笔记/UPL9——增强渲染性能/UPL9-4——遮挡剔除/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://enjoysevenliu.github.io" target="_blank">文KRIFE齐的博客</a>！</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/img/Blue_Ice.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2025/11/06/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL9%E2%80%94%E2%80%94%E5%A2%9E%E5%BC%BA%E6%B8%B2%E6%9F%93%E6%80%A7%E8%83%BD/UPL9-5%E2%80%94%E2%80%94%E5%87%8F%E5%B0%91%E6%9B%B2%E9%9D%A2%E7%BB%86%E5%88%86/" title="UPL9-5——减少曲面细分"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">UPL9-5——减少曲面细分</div></div><div class="info-2"><div class="info-item-1">UPL9-5——减少曲面细分 曲面细分 在图形渲染中，曲面细分是把一个较粗的网格（低多边形）自动拆分成更多的小三角形，形成更平滑的几何表面 比如： 一张四边形面，可以被细分成 4、16、64 个小面片 这样视觉上更圆润，但会大幅增加顶点数量和三角形数量  一般通过曲面细分着色器来实现这样的功能，在对美术表现要求高的游戏中才会使用的技术 当你有以下这些需求时，才会考虑使用曲面细分着色器  高端画质、近景特写 需要真实几何表现而不是靠法线带来的视觉假象 大规模环境  曲面细分对 GPU 的性能影响 在GPU渲染管线中，曲面细分会增加多种负担   顶点处理压力增加 每细分一次，顶点数成倍增长 GPU 顶点着色器、几何阶段需要处理更多数据   片元（像素）处理间接增加 更多的三角形，意味着更密集的覆盖像素，意味着片元着色器嗲用次数会上升   内存带宽开销上升 顶点数据（坐标、法线、UV、权重等）需要传输，细分越多，显存到 GPU 核心的数据带宽消耗越大   缓存效率下降 GPU...</div></div></div></a><a class="pagination-related" href="/2025/11/04/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL9%E2%80%94%E2%80%94%E5%A2%9E%E5%BC%BA%E6%B8%B2%E6%9F%93%E6%80%A7%E8%83%BD/UPL9-3%E2%80%94%E2%80%94LOD/" title="UPL9-3——LOD"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">UPL9-3——LOD</div></div><div class="info-2"><div class="info-item-1">UPL9-3——LOD LOD LOD（Level of Detail，细节层次） LOD 的核心目的：减少远处物体的几何复杂度（顶点，三角形数量），降低 GPU 顶点处理压力，让场景在视觉上几乎无损的前提下提升性能 具体好处包括：   提升性能 远处的物体在屏幕上只占很少像素，用高模浪费算力，LOD 可以替换成低模，让 GPU 处理更轻松   节省显存和带宽 高模 → 低模 → Billboard 加载和显存压力逐步减轻   兼顾画质与性能 近处依旧报错高质量，远处用简化版本，玩家几乎察觉不到   说人话：LOD 的主要作用就是动态平衡画质和性能 LOD 的使用 Unity 提供了 LOD Group 组件来管理 LOD 使用步骤：   准备好模型 让美术输出同一个物体的多个精度版本模型（如 LOD0、LOD1、LOD2） 或者使用 Mesh Simplification（网格简化算法）工具自动生成低精度模型   创建一个空物体，添加 LOD Group 组件，将多个精度版本模型作为其子对象 对 LOD Group...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/Blue_Ice.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">文KRIFE齐</div><div class="author-info-description">Unity就业路线的笔记终于更新完了！新年快乐！</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1168</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">141</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/enjoySevenLIU"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/enjoySevenLIU" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">博客修好了，继续学习，CSharp进阶也迁移完毕了，接下来尽快把Unity Shader给啃完，年末给博客好好整修一下</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">UPL9-4——遮挡剔除</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">2.</span> <span class="toc-text">遮挡剔除</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%81%AE%E6%8C%A1%E5%89%94%E9%99%A4%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="toc-number">2.1.</span> <span class="toc-text">遮挡剔除的作用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%81%AE%E6%8C%A1%E5%89%94%E9%99%A4-Occlusion-%E7%AA%97%E5%8F%A3%E5%8F%82%E6%95%B0"><span class="toc-number">2.2.</span> <span class="toc-text">遮挡剔除 (Occlusion) 窗口参数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%81%AE%E6%8C%A1%E5%8C%BA%E5%9F%9F"><span class="toc-number">2.3.</span> <span class="toc-text">遮挡区域</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%81%AE%E6%8C%A1%E5%85%A5%E5%8F%A3"><span class="toc-number">2.4.</span> <span class="toc-text">遮挡入口</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/11/24/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL11%E2%80%94%E2%80%94%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/" title="UPL11——内存管理">UPL11——内存管理</a><time datetime="2025-11-24T08:07:56.000Z" title="发表于 2025-11-24 16:07:56">2025-11-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/11/24/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL10%E2%80%94%E2%80%94%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/UPL10-6%E2%80%94%E2%80%94AB%E5%8C%85%E5%92%8CResources%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/" title="UPL10-6——AB包和Resources资源优化">UPL10-6——AB包和Resources资源优化</a><time datetime="2025-11-24T07:46:31.000Z" title="发表于 2025-11-24 15:46:31">2025-11-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/11/24/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL10%E2%80%94%E2%80%94%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/UPL10-5%E2%80%94%E2%80%94%E6%9D%90%E8%B4%A8%E4%B8%8EShader%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/" title="UPL10-5——材质与Shader资源优化">UPL10-5——材质与Shader资源优化</a><time datetime="2025-11-24T07:09:51.000Z" title="发表于 2025-11-24 15:09:51">2025-11-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/11/24/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL10%E2%80%94%E2%80%94%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/UPL10-4%E2%80%94%E2%80%94%E7%BD%91%E6%A0%BC%E4%B8%8E%E5%8A%A8%E7%94%BB%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/" title="UPL10-4——网格与动画资源优化">UPL10-4——网格与动画资源优化</a><time datetime="2025-11-24T03:58:43.000Z" title="发表于 2025-11-24 11:58:43">2025-11-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/11/24/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL10%E2%80%94%E2%80%94%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/UPL10-3%E2%80%94%E2%80%94%E7%BA%B9%E7%90%86%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/" title="UPL10-3——纹理资源优化">UPL10-3——纹理资源优化</a><time datetime="2025-11-24T03:10:58.000Z" title="发表于 2025-11-24 11:10:58">2025-11-24</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2025 By 文KRIFE齐</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"><script>(async () => {
+  const showKatex = () => {
+    document.querySelectorAll('#article-container .katex').forEach(el => el.classList.add('katex-show'))
+  }
+
+  if (!window.katex_js_css) {
+    window.katex_js_css = true
+    await btf.getCSS('https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css')
+    if (false) {
+      await btf.getScript('https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js')
+    }
+  }
+
+  showKatex()
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>

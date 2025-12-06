@@ -1,0 +1,349 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>UPL2-5——Memory 模块 | 文KRIFE齐的博客</title><meta name="author" content="文KRIFE齐"><meta name="copyright" content="文KRIFE齐"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="UPL2-5——Memory 模块 Memory 模块 Memory（内存）模块是 Unity 中用于监视 内存使用情况 的关键工具 它能帮助你识别哪些资源在占用大量内存，是否存在内存泄漏或垃圾回收频繁等问题 游戏开发中会造成内存开销的主要有：  纹理贴图 网格 音频&#x2F;视频 动画 材质球和 Shader C# 托管堆内存 场景中的各 GameObject 以及各组件  等等 在游戏中如果出现以下问">
+<meta property="og:type" content="article">
+<meta property="og:title" content="UPL2-5——Memory 模块">
+<meta property="og:url" content="https://enjoysevenliu.github.io/2025/08/15/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL2%E2%80%94%E2%80%94Unity%20Profiler/UPL2-5%E2%80%94%E2%80%94Memory%20%E6%A8%A1%E5%9D%97/index.html">
+<meta property="og:site_name" content="文KRIFE齐的博客">
+<meta property="og:description" content="UPL2-5——Memory 模块 Memory 模块 Memory（内存）模块是 Unity 中用于监视 内存使用情况 的关键工具 它能帮助你识别哪些资源在占用大量内存，是否存在内存泄漏或垃圾回收频繁等问题 游戏开发中会造成内存开销的主要有：  纹理贴图 网格 音频&#x2F;视频 动画 材质球和 Shader C# 托管堆内存 场景中的各 GameObject 以及各组件  等等 在游戏中如果出现以下问">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://enjoysevenliu.github.io/img/Blue_Ice.png">
+<meta property="article:published_time" content="2025-08-15T07:40:03.000Z">
+<meta property="article:modified_time" content="2025-12-06T16:02:04.558Z">
+<meta property="article:author" content="文KRIFE齐">
+<meta property="article:tag" content="blog">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://enjoysevenliu.github.io/img/Blue_Ice.png"><link rel="shortcut icon" href="/img/Blue_Ice.png"><link rel="canonical" href="https://enjoysevenliu.github.io/2025/08/15/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL2%E2%80%94%E2%80%94Unity%20Profiler/UPL2-5%E2%80%94%E2%80%94Memory%20%E6%A8%A1%E5%9D%97/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'UPL2-5——Memory 模块',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  isShuoshuo: false
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/Blue_Ice.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1168</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">141</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/img/Blue_Ice.png" alt="Logo"><span class="site-name">文KRIFE齐的博客</span></a><a class="nav-page-title" href="/"><span class="site-name">UPL2-5——Memory 模块</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">UPL2-5——Memory 模块</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-08-15T07:40:03.000Z" title="发表于 2025-08-15 15:40:03">2025-08-15</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-12-06T16:02:04.558Z" title="更新于 2025-12-07 00:02:04">2025-12-07</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/">UP——Unity性能优化笔记</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL2%E2%80%94%E2%80%94Unity-Profiler/">UPL2——Unity Profiler</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1>UPL2-5——Memory 模块</h1>
+<h1>Memory 模块</h1>
+<p>Memory（内存）模块是 Unity 中用于监视 内存使用情况 的关键工具<br>
+它能帮助你识别哪些资源在占用大量内存，是否存在内存泄漏或垃圾回收频繁等问题</p>
+<p>游戏开发中会造成内存开销的主要有：</p>
+<ol>
+<li>纹理贴图</li>
+<li>网格</li>
+<li>音频/视频</li>
+<li>动画</li>
+<li>材质球和 Shader</li>
+<li>C# 托管堆内存</li>
+<li>场景中的各 GameObject 以及各组件</li>
+</ol>
+<p>等等</p>
+<p>在游戏中如果出现以下问题时，可以着重观察这里的内容：</p>
+<ol>
+<li>
+<p>游戏卡顿、掉帧</p>
+<p>表现：游戏突然变慢、不定期小卡顿、操作延迟等<br>
+可能原因：内存不足导致系统频繁进行 垃圾回收（GC），降低游戏帧率</p>
+</li>
+<li>
+<p>闪退、崩溃</p>
+<p>表现：玩着玩着突然黑屏退出、特定场景（如加载大地图）崩溃<br>
+可能原因：设备分配不出更多内存，系统强制杀掉进程</p>
+</li>
+<li>
+<p>加载时间变长</p>
+<p>表现：加载界面等待时间变长，场景切换明显卡顿<br>
+可能原因：加载资源时需要更多内存，系统调度与 GC 频繁运行。</p>
+</li>
+<li>
+<p>发热严重、掉电快</p>
+<p>表现：手机发烫严重、电池消耗快<br>
+可能原因：设备内存使用达到极限，系统/游戏频繁调度内存资源，CPU、GPU 都高负载运转</p>
+</li>
+<li>
+<p>低端设备无法运行</p>
+<p>表现：打开即闪退、进主界面就崩溃<br>
+可能原因：老旧设备的可用内存更少，超出后甚至无法加载首屏</p>
+</li>
+</ol>
+<p>等等</p>
+<h2 id="Memory-中各参数功能的含义和作用">Memory 中各参数功能的含义和作用</h2>
+<blockquote>
+<p>注：如果你的工程内安装了 Memory Profiler Package 这个包，那么下方 Simple 显示的内容会有所不同<br>
+这里演示的是未安装 Memory Profiler Package 的情况，关于 Memory Profiler Package 会在后续阐述 ——&gt; UPL2-6——Memory Profiler Package</p>
+</blockquote>
+<p><img src="/assets/image-20250828194517-kkpbhou.png" alt="image"></p>
+<ul>
+<li>
+<p><strong>Memory（内存）分析窗口 在这里显示有关内存的相关统计信息</strong></p>
+<p><img src="/assets/image-20250815155218-gufjp26.png" alt="image"></p>
+<ul>
+<li><strong>Total Used Memory： 已使用的内存总量（包括纹理、网格、对象、脚本等所有内存） 是最直观的内存压力指标</strong></li>
+<li><strong>Texture Memory： 贴图纹理使用的内存总量（包括 Mipmap） 通常是内存占用的最大部分</strong></li>
+<li><strong>Mesh Memory： 网格使用的内存总量（顶点、索引缓冲等） 和场景中物体数量密切相关</strong></li>
+<li><strong>Material Count： 材质数量 材质越多越难合批、内存占用也高</strong></li>
+<li><strong>Object Count： 内存中的</strong> <strong>​<code>UnityEngine.Object</code>​</strong>​ <strong>实例总数包括贴图、网格、脚本、GameObject 等） 过高可能意味着资源未卸载干净</strong></li>
+<li><strong>GC Used Memory： GC（托管堆）使用的内存（堆已分配但仍被使用）</strong></li>
+<li><strong>GC Allocated In Frame： 该帧分配的托管堆内存</strong></li>
+</ul>
+<p>使用建议：</p>
+<ol>
+<li>排查 GC 问题时，可以重点观察 GC Allocated In Frame 是否频繁跳动</li>
+<li>Texture Memory 如果过高，要检查是否贴图分辨率太大、未压缩、重复加载</li>
+<li>Mesh Memory 可反映模型复杂度，是否存在不合理的高面数网格</li>
+<li>Object Count 超高时，注意是否存在对象未正确卸载，是否存在未销毁的临时 Gameobject</li>
+</ol>
+<p>等等</p>
+</li>
+<li>
+<p>Simple 视图 展示的是 Unity 运行时的内存占用概况，用于快速判断内存使用情况</p>
+<p>它可以帮助我们：</p>
+<ol>
+<li>看懂 Unity 总共用了多少内存</li>
+<li>哪些资源类型是主要的内存消耗者</li>
+<li>GC 是否活跃（有没有频繁分配）</li>
+<li>是否存在异常占用（比如 Profiler 本身占用过大）</li>
+</ol>
+<p>等等</p>
+<blockquote>
+<p>注意： 对于空场景都有 Textures、Meshs 等对象的分配和内存占用<br>
+这是因为 Unity 即使是空场景，也会默认加载一些内建资源，<br>
+比如内置字体、编辑器用到的各种图标、GUI 样式、Gizmos 相关资源、Profiler 自己的资源，这些内容其实不属于你的游戏资源</p>
+</blockquote>
+<p><img src="/assets/image-20250828195032-0jmcz39.png" alt="image"></p>
+<ul>
+<li>
+<p>Normalized（规范化）： 将所有帧的内存占用<strong>按相同的最大值</strong>进行统一缩放显示</p>
+<p>这样你可以更直观地比较多帧之间各类内存（比如贴图、堆内存、Profiler、Audio 等）的占用比例变化<br>
+未勾选时，各帧是按自己的比例显示的，视觉对比就不太直观了<br>
+勾选后可以帮助我们分析内存是否稳定，对比 不同类型资源的内存占比变化，从而查找 内存激增、泄漏等问题</p>
+</li>
+<li>
+<p>Total Committed Memory（总提交内存）： 表示 Unity 总共已分配的内存（虚拟内存），包括系统预留 + 实际使用</p>
+<p><img src="/assets/image-20250828195850-588uqtb.png" alt="image"></p>
+<p>即 Unity 请求了多少内存资源，无论是否真正用了</p>
+<ul>
+<li>
+<p>Tracked Memory（跟踪的内存）： Unity 能追踪的内存（即 Memory Profiler 能看见的部分）包括 托管堆内存、图形资源、音视频等等</p>
+<ul>
+<li>In use：实际使用量</li>
+<li>Reserved：为未来分配预留的空间</li>
+</ul>
+</li>
+<li>
+<p>Untracked Memory（未跟踪的内存）： Unity 已使用但未跟踪的内存总量，比如本机插件、Mono 或 IL2CPP 的元数据，DLL等</p>
+<p>如果你用 C++ 插件或 NativeArray 没正确释放，会在这体现出问题</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Total Memory Breakdown： 总内存细分，显示和总提交内存相同的总量，会显示具体是为Unity的哪些子系统分配了多少内存</p>
+<p><img src="/assets/image-20250828195959-a5kaot7.png" alt="image"></p>
+<ul>
+<li>
+<p>Managed Heap： 托管堆内存使用情况；正在使用/预留内存  此内存会被垃圾回收，即由 C# 脚本分配的对象内存</p>
+<ul>
+<li>In use：实际使用量</li>
+<li>Reserved：为未来分配预留的空间</li>
+</ul>
+</li>
+<li>
+<p>Graphics &amp; Graphics Driver：图形/图形驱动程序分配的内存。 驱动程序对纹理、渲染目标、着色器、网格数据等分配的内存</p>
+</li>
+<li>
+<p>Audio：音效系统预估内存使用量</p>
+</li>
+<li>
+<p>Video：视频系统预估内存使用量</p>
+</li>
+<li>
+<p>Other：其它系统内存使用情况 未归类但可追踪的内存，如 Unity 编辑器自身的一些缓存结构</p>
+</li>
+<li>
+<p>Profiler：Unity Profiler 本身占用的内存（采样数据、快照等）</p>
+</li>
+<li>
+<p>Untracked Memory：Memory Profiler 无法追踪的内存使用量</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Object Stats（对象统计信息）：资源类对象的数量与内存分布概况</p>
+<p><img src="/assets/image-20250828200147-4n5xp6w.png" alt="image"></p>
+<ul>
+<li>Textures： 已加载的纹理总数及其使用的内存</li>
+<li>Meshes： 已加载的网格总数及其使用的内存</li>
+<li>Materials： 已加载的材质总数及其使用的内存</li>
+<li>Animation Clips： 已加载的动画剪辑总数及其使用的内存</li>
+<li>Assets： 已加载的资源总数</li>
+<li>Game Objects： 场景中的游戏对象实例的总数</li>
+<li>Scene Objects： Scene 中所有对象总数，包含 Gameobject、组件以及场景中不属于资源的所有内容</li>
+<li>GC allocated in frame： 该帧分配的托管堆内存数量和总大小</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Memory-对于我们的意义">Memory 对于我们的意义</h2>
+<p>Memory 可以帮助我们</p>
+<ol>
+<li>
+<p>精准定位内存占用来源</p>
+<p>可以详细查看哪些内容（脚本、贴图、网格、音频等等）占用内存多，判断哪些部分可以进行优化压缩，重复利用</p>
+</li>
+<li>
+<p>分析是否存在内存泄漏</p>
+<p>可以通过对比不同帧内存使用情况，发现是否存在不使用但未被释放的内存</p>
+</li>
+<li>
+<p>验证资源卸载是否生效</p>
+<p>可以通过对比不同帧内存使用情况，验证是否如预期释放了资源</p>
+</li>
+<li>
+<p>检查GC压力来源</p>
+<p>排查哪些脚本对象存在大量分配</p>
+</li>
+<li>
+<p>决定内存优化策略</p>
+<p>可以根据发现的问题，制定优化策略</p>
+</li>
+</ol>
+<p>等等</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://enjoysevenliu.github.io">文KRIFE齐</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://enjoysevenliu.github.io/2025/08/15/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL2%E2%80%94%E2%80%94Unity%20Profiler/UPL2-5%E2%80%94%E2%80%94Memory%20%E6%A8%A1%E5%9D%97/">https://enjoysevenliu.github.io/2025/08/15/Unity就业路线学习笔记/UP——Unity性能优化笔记/UPL2——Unity Profiler/UPL2-5——Memory 模块/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://enjoysevenliu.github.io" target="_blank">文KRIFE齐的博客</a>！</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/img/Blue_Ice.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2025/08/28/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL2%E2%80%94%E2%80%94Unity%20Profiler/UPL2-6%E2%80%94%E2%80%94Memory%20Profiler%20Package/" title="UPL2-6——Memory Profiler Package"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">UPL2-6——Memory Profiler Package</div></div><div class="info-2"><div class="info-item-1">UPL2-6——Memory Profiler Package Memory Profiler Package Memory Profiler Package（内存分析器包），是 Unity 提供给我们的一个关于内存分析的独立工具 它可以用于检查 Unity 应用程序以及 Unity 编辑器的内存使用情况 我们可以使用它来捕获、检查、比较内存快照！它获取的是当前时刻，全局的内存情况 它和我们上节课学习的 Memory 模块都是用于分析内存的，但是他们的定位有所不同，功能深浅有所不同    对比项 Profiler - Memory 模块 Memory Profiler（独立工具）     实时监控 支持 主要用于快照分析   适用阶段 开发中持续观察性能 排查具体内存泄漏 / 激增问题   查看细节 粗略数据（贴图、网格、GC...</div></div></div></a><a class="pagination-related" href="/2025/08/15/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL2%E2%80%94%E2%80%94Unity%20Profiler/UPL2-4%E2%80%94%E2%80%94Rendering%20%E6%A8%A1%E5%9D%97/" title="UPL2-4——Rendering 模块"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">UPL2-4——Rendering 模块</div></div><div class="info-2"><div class="info-item-1">UPL2-4——Rendering 模块 Rendering 模块 Rendering（渲染）模块，用于显示一帧渲染时的数据量（批次数、顶点数等） 在游戏中如果出现以下问题时，可以着重观察这里的内容  怀疑是因为 DrawCall 过高导致 CPU 性能问题（卡顿、掉帧） 在中低端手机上发热严重、掉电快 开启大量实时光照、粒子、动态对象后出现掉帧 画面复杂卡顿、简单不卡顿时  等等 Rendering 中各参数功能的含义和作用    渲染（Rendering） 分析窗口 在这里显示有关CPU和GPU和渲染相关的统计信息   Batches Count（批处理数）： 该帧内批处理数量（DrawCall 次数），值越高，CPU 压力越大。推荐合批优化 SetPass Calls Count（SetPass 调用次数）： 该帧内用于渲染游戏对象的着色器渲染通道（Pass）调用次数 即每帧需要切换 Shader / 材质状态的次数  值越高，GPU 状态切换开销大。尽量减少材质和渲染通道 Pass 的数量 Triangles...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/Blue_Ice.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">文KRIFE齐</div><div class="author-info-description">Unity就业路线的笔记终于更新完了！新年快乐！</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1168</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">141</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/enjoySevenLIU"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/enjoySevenLIU" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">博客修好了，继续学习，CSharp进阶也迁移完毕了，接下来尽快把Unity Shader给啃完，年末给博客好好整修一下</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">UPL2-5——Memory 模块</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">2.</span> <span class="toc-text">Memory 模块</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Memory-%E4%B8%AD%E5%90%84%E5%8F%82%E6%95%B0%E5%8A%9F%E8%83%BD%E7%9A%84%E5%90%AB%E4%B9%89%E5%92%8C%E4%BD%9C%E7%94%A8"><span class="toc-number">2.1.</span> <span class="toc-text">Memory 中各参数功能的含义和作用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Memory-%E5%AF%B9%E4%BA%8E%E6%88%91%E4%BB%AC%E7%9A%84%E6%84%8F%E4%B9%89"><span class="toc-number">2.2.</span> <span class="toc-text">Memory 对于我们的意义</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/11/24/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL11%E2%80%94%E2%80%94%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/" title="UPL11——内存管理">UPL11——内存管理</a><time datetime="2025-11-24T08:07:56.000Z" title="发表于 2025-11-24 16:07:56">2025-11-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/11/24/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL10%E2%80%94%E2%80%94%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/UPL10-6%E2%80%94%E2%80%94AB%E5%8C%85%E5%92%8CResources%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/" title="UPL10-6——AB包和Resources资源优化">UPL10-6——AB包和Resources资源优化</a><time datetime="2025-11-24T07:46:31.000Z" title="发表于 2025-11-24 15:46:31">2025-11-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/11/24/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL10%E2%80%94%E2%80%94%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/UPL10-5%E2%80%94%E2%80%94%E6%9D%90%E8%B4%A8%E4%B8%8EShader%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/" title="UPL10-5——材质与Shader资源优化">UPL10-5——材质与Shader资源优化</a><time datetime="2025-11-24T07:09:51.000Z" title="发表于 2025-11-24 15:09:51">2025-11-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/11/24/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL10%E2%80%94%E2%80%94%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/UPL10-4%E2%80%94%E2%80%94%E7%BD%91%E6%A0%BC%E4%B8%8E%E5%8A%A8%E7%94%BB%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/" title="UPL10-4——网格与动画资源优化">UPL10-4——网格与动画资源优化</a><time datetime="2025-11-24T03:58:43.000Z" title="发表于 2025-11-24 11:58:43">2025-11-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/11/24/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL10%E2%80%94%E2%80%94%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/UPL10-3%E2%80%94%E2%80%94%E7%BA%B9%E7%90%86%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/" title="UPL10-3——纹理资源优化">UPL10-3——纹理资源优化</a><time datetime="2025-11-24T03:10:58.000Z" title="发表于 2025-11-24 11:10:58">2025-11-24</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2025 By 文KRIFE齐</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"><script>(async () => {
+  const showKatex = () => {
+    document.querySelectorAll('#article-container .katex').forEach(el => el.classList.add('katex-show'))
+  }
+
+  if (!window.katex_js_css) {
+    window.katex_js_css = true
+    await btf.getCSS('https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css')
+    if (false) {
+      await btf.getScript('https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js')
+    }
+  }
+
+  showKatex()
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>

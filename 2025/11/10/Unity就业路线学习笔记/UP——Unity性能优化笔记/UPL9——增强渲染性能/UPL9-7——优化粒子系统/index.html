@@ -1,0 +1,431 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>UPL9-7——优化粒子系统 | 文KRIFE齐的博客</title><meta name="author" content="文KRIFE齐"><meta name="copyright" content="文KRIFE齐"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="UPL9-7——优化粒子系统 粒子系统为什么会带来性能消耗   CPU 消耗： 粒子系统中，大多数模块都是 CPU 驱动模拟的，每帧会做很多工作，比如： 粒子的生命周期管理、位置、速度、加速度、物理碰撞、回调函数调用、排序、包围盒更新、剔除、脚本交互 等等内容 这些内容需要 CPU 每帧计算，那么它自然会带来 CPU 消耗 若不同粒子之间的材质和网格不同，还会打断批处理，产生额外 DrawCall">
+<meta property="og:type" content="article">
+<meta property="og:title" content="UPL9-7——优化粒子系统">
+<meta property="og:url" content="https://enjoysevenliu.github.io/2025/11/10/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL9%E2%80%94%E2%80%94%E5%A2%9E%E5%BC%BA%E6%B8%B2%E6%9F%93%E6%80%A7%E8%83%BD/UPL9-7%E2%80%94%E2%80%94%E4%BC%98%E5%8C%96%E7%B2%92%E5%AD%90%E7%B3%BB%E7%BB%9F/index.html">
+<meta property="og:site_name" content="文KRIFE齐的博客">
+<meta property="og:description" content="UPL9-7——优化粒子系统 粒子系统为什么会带来性能消耗   CPU 消耗： 粒子系统中，大多数模块都是 CPU 驱动模拟的，每帧会做很多工作，比如： 粒子的生命周期管理、位置、速度、加速度、物理碰撞、回调函数调用、排序、包围盒更新、剔除、脚本交互 等等内容 这些内容需要 CPU 每帧计算，那么它自然会带来 CPU 消耗 若不同粒子之间的材质和网格不同，还会打断批处理，产生额外 DrawCall">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://enjoysevenliu.github.io/img/Blue_Ice.png">
+<meta property="article:published_time" content="2025-11-10T12:30:28.000Z">
+<meta property="article:modified_time" content="2025-12-06T16:02:04.586Z">
+<meta property="article:author" content="文KRIFE齐">
+<meta property="article:tag" content="blog">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://enjoysevenliu.github.io/img/Blue_Ice.png"><link rel="shortcut icon" href="/img/Blue_Ice.png"><link rel="canonical" href="https://enjoysevenliu.github.io/2025/11/10/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL9%E2%80%94%E2%80%94%E5%A2%9E%E5%BC%BA%E6%B8%B2%E6%9F%93%E6%80%A7%E8%83%BD/UPL9-7%E2%80%94%E2%80%94%E4%BC%98%E5%8C%96%E7%B2%92%E5%AD%90%E7%B3%BB%E7%BB%9F/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'UPL9-7——优化粒子系统',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  isShuoshuo: false
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/Blue_Ice.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1168</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">141</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/img/Blue_Ice.png" alt="Logo"><span class="site-name">文KRIFE齐的博客</span></a><a class="nav-page-title" href="/"><span class="site-name">UPL9-7——优化粒子系统</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">UPL9-7——优化粒子系统</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-11-10T12:30:28.000Z" title="发表于 2025-11-10 20:30:28">2025-11-10</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-12-06T16:02:04.586Z" title="更新于 2025-12-07 00:02:04">2025-12-07</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/">UP——Unity性能优化笔记</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL9%E2%80%94%E2%80%94%E5%A2%9E%E5%BC%BA%E6%B8%B2%E6%9F%93%E6%80%A7%E8%83%BD/">UPL9——增强渲染性能</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1>UPL9-7——优化粒子系统</h1>
+<h2 id="粒子系统为什么会带来性能消耗">粒子系统为什么会带来性能消耗</h2>
+<ul>
+<li>
+<p>CPU 消耗：</p>
+<p>粒子系统中，大多数模块都是 CPU 驱动模拟的，每帧会做很多工作，比如：<br>
+粒子的生命周期管理、位置、速度、加速度、物理碰撞、回调函数调用、排序、包围盒更新、剔除、脚本交互 等等内容<br>
+这些内容需要 CPU 每帧计算，那么它自然会带来 CPU 消耗<br>
+若不同粒子之间的材质和网格不同，还会打断批处理，产生额外 DrawCall<br>
+如果不使用批处理方案，在 DrawCall 上也存在更多开销</p>
+</li>
+<li>
+<p>GPU消耗：</p>
+<p>粒子能被看到肯定需要渲染，那么当粒子被提交到 GPU 渲染时：<br>
+顶点阶段的计算、片元阶段的计算、纹理采样、透明混合、阴影、光照影响都会给 GPU 带来消耗<br>
+尤其是半透明粒子容易造成 OverDraw，会显著增加 GPU 负担</p>
+</li>
+</ul>
+<p>由于粒子系统的表现特殊性，往往需要依赖 大量粒子叠加 来表现复杂效果<br>
+如果不加控制，粒子数量增长会在 CPU、GPU 两方面同时放大开销<br>
+因此需要特别关注粒子系统的性能影响与优化</p>
+<h2 id="粒子系统主要优化思路">粒子系统主要优化思路</h2>
+<h3 id="CPU-侧优化思路">CPU 侧优化思路</h3>
+<p>CPU 侧：优化目标 —— 少算粒子</p>
+<ul>
+<li>降低每帧要处理的粒子数</li>
+<li>降低每个粒子要计算的内容</li>
+</ul>
+<p>主要优化点：</p>
+<ul>
+<li>减少并发量</li>
+<li>减少工作模块</li>
+<li>减少排序开销</li>
+<li>减少脚本调用</li>
+<li>利用剔除</li>
+<li>利用对象池</li>
+<li>控制 DrawCall</li>
+</ul>
+<p>等等</p>
+<h4 id="减少粒子数量的并发">减少粒子数量的并发</h4>
+<p>CPU 每帧都要模拟所有存活粒子的状态，比如 位置、速度、旋转、颜色、生命周期 等等<br>
+我们可以通过修改粒子系统上的一些参数来减少粒子数量的并发量</p>
+<ol>
+<li>
+<p>缩短 开始生命时间（Start Lifetime）</p>
+<p>可以降低并发粒子数量</p>
+<p><img src="/assets/image-20251111113923-r3ngxj5.png" alt="image"></p>
+</li>
+<li>
+<p>控制 发射频率（Emission 中的 Rate over Time）</p>
+<p>可以避免过高的发射率，导致单位时间内粒子数过多</p>
+<p><img src="/assets/image-20251111113954-pr4q4yd.png" alt="image"></p>
+</li>
+<li>
+<p>限制 最大粒子数 （Max Particles）</p>
+<p>防止粒子峰值无限增长</p>
+<p><img src="/assets/image-20251111114035-kgvem1k.png" alt="image"></p>
+</li>
+<li>
+<p>使用 LOD 或 距离剔除</p>
+<p>远处降低发射率甚至关闭</p>
+</li>
+</ol>
+<p>等等</p>
+<h4 id="减少高开销模块的使用">减少高开销模块的使用</h4>
+<p>粒子系统中有各种各样的模块，增加模块的使用会增加计算量从而增加开销，因此对于以下高开销模块，应该谨慎使用：</p>
+<ol>
+<li>
+<p>碰撞模块（Collision）</p>
+<p>粒子碰撞检测通常在 CPU 上进行，代价极高，我们应该能不用就不用<br>
+如果一定要使用，尽量用简单的碰撞器进行检测，并且结合碰撞层矩阵进行优化<br>
+关闭其中的 发送碰撞信息（Send Collision Messages）勾选项</p>
+<p><img src="/assets/image-20251111114202-yd6791x.png" alt="image"></p>
+</li>
+<li>
+<p>触发器模块（Triggers）</p>
+<p>触发需要逐粒子检测，频繁的调用回调函数<br>
+如果一定要使用，要严格限制触发条件，仅在需要时启用</p>
+<p><img src="/assets/image-20251111114257-8qr7cik.png" alt="image"></p>
+</li>
+<li>
+<p>噪声扰动模块（Noise）</p>
+<p>每帧采样噪声函数开销大<br>
+如果一定要用，应该降低频率，减少强度<br>
+或者用随机值一次性赋值，避免每帧采样</p>
+<p><img src="/assets/image-20251111114334-ngsam8t.png" alt="image"></p>
+</li>
+<li>
+<p>拖尾模块（Trails）</p>
+<p>拖尾效果会产生额外顶点，顶点数会呈指数级上升<br>
+如果一定要使用，可以调大其中的 最小顶点距离（Minimum Vertex Distance）<br>
+通过生命时间限制 最大轨迹长度</p>
+<p><img src="/assets/image-20251111114417-ito5e6y.png" alt="image"></p>
+</li>
+<li>
+<p>子发射器模块（Sub Emitters）</p>
+<p>如果利用子发射器在爆炸里再爆炸会产生指数级的粒子数，<br>
+我们应该尽量不使用它，或只在关键效果触发，减少层级</p>
+<p><img src="/assets/image-20251111114508-qxyt9vl.png" alt="image"></p>
+</li>
+</ol>
+<p>等等</p>
+<h4 id="减少脚本和排序开销">减少脚本和排序开销</h4>
+<ul>
+<li>
+<p>脚本开销：</p>
+<ol>
+<li>
+<p>减少粒子 碰撞和触发 回调函数的使用</p>
+<p>继承 <code>MonoBehaviour</code> 的脚本中，可以通过以下两个函数进行粒子的碰撞和触发监听</p>
+<ul>
+<li>​<code>OnParticleCollision()</code>​（粒子开启 <code>Collision</code> 模块时会进入回调）</li>
+<li>​<code>OnParticleTrigger</code>​（粒子开启 <code>Trigger</code> 模块时会进入回调）</li>
+</ul>
+<p>这两个函数，单个粒子都可能触发，可能造成成千上万次的调用，导致 CPU 性能开销极大<br>
+他们非常不适合大规模高发射率的粒子使用，如果一定要使用，可以结合 Unity 的多线程 Job System 使用</p>
+</li>
+<li>
+<p>减少粒子组件中 <code>GetParticles()</code>​ 和 <code>SetParticles()</code> 方法的使用</p>
+<ul>
+<li>​<code>GetParticles()</code>​ 会把当前存活的所有粒子数据（位置、速度、颜色、大小、剩余寿命等）拷贝到一个数组或 <code>List</code></li>
+<li>​<code>SetParticles()</code> 则把你修改后的粒子数据写回去，覆盖粒子系统中的粒子状态</li>
+</ul>
+<p>每次调用都会进行托管数组和原生引起内部数据的拷贝，非常耗性能<br>
+千万不要每帧频繁调用它们，否则甚至会导致 CPU 卡死<br>
+如果一定要使用，可以结合 Unity 的多线程 Job System 使用</p>
+</li>
+</ol>
+</li>
+<li>
+<p>排序开销：</p>
+<p>粒子往往都是半透明渲染的，半透明物体需要按照 从远到近 的顺序绘制，否则会出现混合错误，<br>
+所以 Unity 在渲染粒子前，CPU 需要对所有粒子进行 基于深度的排序，<br>
+这个过程就会带来开销，我们应该减少排序带来的开销</p>
+<ol>
+<li>
+<p>减少需要排序的粒子数量，即减少粒子数量</p>
+</li>
+<li>
+<p>避免排序，能使用不透明就使用不透明的粒子</p>
+</li>
+<li>
+<p>减少排序的频率和精度</p>
+<p>可以利用 排序偏移系数（Renderer → Sorting Fudge），解决排序不稳定的问题</p>
+</li>
+</ol>
+<p>等等</p>
+</li>
+</ul>
+<h4 id="利用剔除和对象池">利用剔除和对象池</h4>
+<ul>
+<li>
+<p>剔除：</p>
+<p><img src="/assets/image-20251111115055-xj4rurr.png" alt="image"></p>
+<ol>
+<li>
+<p>模拟空间参数（Simulation Space）</p>
+<p>设置为 Local 空间更容易整体剔除掉</p>
+</li>
+<li>
+<p>停止动作参数（Stop Action）</p>
+<p>表示粒子播放结束时的处理方式<br>
+一次性特效记得设为 <code>Disable</code>​ 或 <code>Destroy</code>​，避免播放完还在后台模拟<br>
+如果使用了对象池，可以选 <code>Disable</code></p>
+</li>
+</ol>
+<p>等等</p>
+</li>
+<li>
+<p>对象池：</p>
+<p>频繁会使用的粒子，应该对象池化，可以有效的避免 GC 和 CPU 创建销毁的成本</p>
+</li>
+</ul>
+<h4 id="减少-DrawCall">减少 DrawCall</h4>
+<p>多个粒子系统尽量用相同材质或贴图图集，对于网格相同的粒子，可以使用 GPU Instancing 减小 DrawCall</p>
+<h3 id="GPU-侧优化思路">GPU 侧优化思路</h3>
+<p>GPU 侧：优化目标 —— 少算像素</p>
+<ul>
+<li>降低屏幕上计算的像素数</li>
+<li>降低每个像素的计算的内容</li>
+</ul>
+<p>主要优化点：</p>
+<ul>
+<li>控制覆盖面积</li>
+<li>控制着色器复杂度</li>
+<li>控制几何复杂度</li>
+</ul>
+<p>等等</p>
+<h4 id="控制-OverDraw">控制 OverDraw</h4>
+<p>粒子大部分是半透明的，为了进行透明度混合，往往不会进行深度写入，导致多个粒子叠加时同一像素被反复计算，我们需要尽量减少这种计算</p>
+<ol>
+<li>
+<p>减少粒子数量和粒子尺寸</p>
+<p>因为 粒子数量 * 粒子尺寸 决定了 覆盖面积</p>
+</li>
+<li>
+<p>使用修剪透明度（Trim Alpha），裁剪掉贴图边缘的空透明区域</p>
+<p>一般在美术导出图片前裁减掉无效透明区域，或用图集工具自动忽略无效透明边缘<br>
+比如一张图 512*512，但是其中的有效图形只占 128*128 的区域，完全可以把四周透明区域裁减掉</p>
+</li>
+<li>
+<p>设置合理的 开始大小参数（Start Size）</p>
+<p>避免大面积的满屏效果</p>
+</li>
+<li>
+<p>使用 LOD</p>
+<p>远处粒子直接换成雾面贴图或后处理效果的体积雾效果</p>
+</li>
+</ol>
+<p>等等</p>
+<h4 id="降低几何复杂度">降低几何复杂度</h4>
+<p>粒子也需要被渲染才能被我们看到，降低几何复杂度，可以较少着色器中顶点处理部分的开销</p>
+<ol>
+<li>
+<p>使用广告牌粒子</p>
+<p>广告牌效果一般只需要使用一个四边形即可</p>
+</li>
+<li>
+<p>合理使用拖尾模块（Trails）</p>
+<p>拖尾效果会把单个粒子拉成数十个顶点，会增加GPU顶点处理阶段的压力<br>
+我们可以调大拖尾效果的采样间距，限制最大顶点数</p>
+</li>
+<li>
+<p>合适使用网格粒子</p>
+<p>如果一定要使用网格粒子，也尽量使用低模<br>
+因为一个网格粒子可能就会包含数百顶点，会大幅增加顶点处理压力</p>
+</li>
+</ol>
+<h4 id="减少片元着色开销">减少片元着色开销</h4>
+<p>粒子也需要被渲染才能被我们看到，如果从渲染层面上，减少着色器中计算开销就可以降低粒子的开销</p>
+<ol>
+<li>
+<p>降低着色器复杂度</p>
+<p>减少纹理采样，尽量用一张纹理即可，尽量避免使用法线、遮罩相关纹理<br>
+避免在片元着色器中产生分支，或使用高开销函数<br>
+大多数情况下不太需要给粒子投射阴影，受光影响也需谨慎使用</p>
+</li>
+<li>
+<p>优化贴图</p>
+<p>可以减少序列帧动画帧数，降低其分辨率<br>
+可以压缩贴图，移动端优先使用 ASTC、ETC2 等压缩格式</p>
+</li>
+</ol>
+<p>等等</p>
+<h4 id="替代手段">替代手段</h4>
+<p>在一些表现效果中，我们应该尽量使用不那么消耗性能的手段去替代高消耗表现</p>
+<p>比如：</p>
+<ol>
+<li>
+<p>能用不透明就不要使用半透明粒子</p>
+<p>一些游戏中的弹壳、碎屑效果，我们可以使用几何渲染队列的粒子，不要使用半透明</p>
+</li>
+<li>
+<p>后处理效果替代</p>
+<p>大范围的雾、火焰，可以改为屏幕后处理效果去实现</p>
+</li>
+<li>
+<p>使用 VFX Graph（2018.3 引入的一套基于节点的 GPU 粒子特效系统）</p>
+<p>依赖于 SRP 管线，只支持 URP 和 HDRP 项目，内置渲染管线不支持<br>
+如果你的粒子效果有上万粒子，可以考虑使用它来制作</p>
+</li>
+</ol>
+<h2 id="更多粒子系统优化方案">更多粒子系统优化方案</h2>
+<ol>
+<li>为移动应用优化粒子效果：<a target="_blank" rel="noopener" href="https://learn.unity.com/tutorial/optimizing-particle-effects-for-mobile-applications">https://learn.unity.com/tutorial/optimizing-particle-effects-for-mobile-applications</a></li>
+<li>内置渲染管线中的粒子系统优化：<a target="_blank" rel="noopener" href="https://docs.unity3d.com/6000.2/Documentation/Manual/particle-system-optimization.html">https://docs.unity3d.com/6000.2/Documentation/Manual/particle-system-optimization.html</a></li>
+</ol>
+<p>‍</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://enjoysevenliu.github.io">文KRIFE齐</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://enjoysevenliu.github.io/2025/11/10/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL9%E2%80%94%E2%80%94%E5%A2%9E%E5%BC%BA%E6%B8%B2%E6%9F%93%E6%80%A7%E8%83%BD/UPL9-7%E2%80%94%E2%80%94%E4%BC%98%E5%8C%96%E7%B2%92%E5%AD%90%E7%B3%BB%E7%BB%9F/">https://enjoysevenliu.github.io/2025/11/10/Unity就业路线学习笔记/UP——Unity性能优化笔记/UPL9——增强渲染性能/UPL9-7——优化粒子系统/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://enjoysevenliu.github.io" target="_blank">文KRIFE齐的博客</a>！</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/img/Blue_Ice.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2025/11/12/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL9%E2%80%94%E2%80%94%E5%A2%9E%E5%BC%BA%E6%B8%B2%E6%9F%93%E6%80%A7%E8%83%BD/UPL9-8%E2%80%94%E2%80%94%E7%9D%80%E8%89%B2%E5%99%A8%E4%BC%98%E5%8C%96/" title="UPL9-8——着色器优化"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">UPL9-8——着色器优化</div></div><div class="info-2"><div class="info-item-1">UPL9-8——着色器优化  前置知识：US——Unity Shader开发入门  着色器优化的必要性 在开发时，为了快捷的实现对应的渲染效果，一些 Shader 制作者（程序、美术、技美等）会使用 Shader 可视化编辑器生成 Shader 比如 Shader Graph、ASE(Amplify Shader Editor) 等，通过这些可视化编辑器生成的 Shader 的性能表现往往不是最优异的 主要原因：  Shader Graph、ASE 等工具为了适配各种情况，会生成比较通用的着色器代码，里面可能包含一些 冗余计算 或 不必要的分支 节点式编辑为了可读性，往往拆分为很多中间步骤，编译后可能比手写 Shader 冗长 手写 Shader 可以在指令级别做微调，比如合并数学运算、避免精度浪费，而可视化工具的优化程度受限  因此学习着色器优化的必要性就体现了出来，不管是对这些可视化编辑器生成的 Shader，还是我们自己通过代码编写的 Shader 养成良好的优化习惯都是对项目有益处的，可以避免我们在Shader上浪费性能 总结下 必要的原因：   Shader 其实是...</div></div></div></a><a class="pagination-related" href="/2025/11/06/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL9%E2%80%94%E2%80%94%E5%A2%9E%E5%BC%BA%E6%B8%B2%E6%9F%93%E6%80%A7%E8%83%BD/UPL9-6%E2%80%94%E2%80%94%E4%BC%98%E5%8C%96%20UI%20%E7%B3%BB%E7%BB%9F/" title="UPL9-6——优化 UI 系统"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">UPL9-6——优化 UI 系统</div></div><div class="info-2"><div class="info-item-1">UPL9-6——优化 UI 系统 使用更多 Canvas 组件 Canvas（画布）组件的基本工作原理 任何 UGUI 控件都必须挂在一个 Canvas 下，Unity 才会把它们作为 UI 元素渲染出来，Canvas 的本质作用：  收集子节点的 UI 元素（Graphic）信息 处理渲染顺序（Sorting、Camera、RenderMode） 管理重建，监听子物体的变动，决定哪些需要更新 批量生成 UI 顶点网格、更新材质信息 最终在渲染阶段合批并提交给 GPU  等等 ​Canvas 内部维护了一个重建队列，当子元素发生变化时，它会标记自己为 “脏”（dirty） 在本帧渲染前统一执行重建（布局重建 / 图形重建 / 材质重建）  布局重建：主要进行布局计算 图形重建：主要进行网格生成（比如合并 UI 元素网格信息、前提是材质相同） 材质重建：主要进行材质状态更新  所谓“画布污染”，就是有子元素打了脏标记，导致整个 Canvas 的顶点缓存需要刷新 如果 Canvas 很大，就会让大量 UI 元素一并重建，带来性能消耗 可能带来画布污染的情况：  修改 UI 元素的...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/Blue_Ice.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">文KRIFE齐</div><div class="author-info-description">Unity就业路线的笔记终于更新完了！新年快乐！</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1168</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">141</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/enjoySevenLIU"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/enjoySevenLIU" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">博客修好了，继续学习，CSharp进阶也迁移完毕了，接下来尽快把Unity Shader给啃完，年末给博客好好整修一下</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">UPL9-7——优化粒子系统</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B2%92%E5%AD%90%E7%B3%BB%E7%BB%9F%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BC%9A%E5%B8%A6%E6%9D%A5%E6%80%A7%E8%83%BD%E6%B6%88%E8%80%97"><span class="toc-number">1.1.</span> <span class="toc-text">粒子系统为什么会带来性能消耗</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B2%92%E5%AD%90%E7%B3%BB%E7%BB%9F%E4%B8%BB%E8%A6%81%E4%BC%98%E5%8C%96%E6%80%9D%E8%B7%AF"><span class="toc-number">1.2.</span> <span class="toc-text">粒子系统主要优化思路</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#CPU-%E4%BE%A7%E4%BC%98%E5%8C%96%E6%80%9D%E8%B7%AF"><span class="toc-number">1.2.1.</span> <span class="toc-text">CPU 侧优化思路</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%87%8F%E5%B0%91%E7%B2%92%E5%AD%90%E6%95%B0%E9%87%8F%E7%9A%84%E5%B9%B6%E5%8F%91"><span class="toc-number">1.2.1.1.</span> <span class="toc-text">减少粒子数量的并发</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%87%8F%E5%B0%91%E9%AB%98%E5%BC%80%E9%94%80%E6%A8%A1%E5%9D%97%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-number">1.2.1.2.</span> <span class="toc-text">减少高开销模块的使用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%87%8F%E5%B0%91%E8%84%9A%E6%9C%AC%E5%92%8C%E6%8E%92%E5%BA%8F%E5%BC%80%E9%94%80"><span class="toc-number">1.2.1.3.</span> <span class="toc-text">减少脚本和排序开销</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%A9%E7%94%A8%E5%89%94%E9%99%A4%E5%92%8C%E5%AF%B9%E8%B1%A1%E6%B1%A0"><span class="toc-number">1.2.1.4.</span> <span class="toc-text">利用剔除和对象池</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%87%8F%E5%B0%91-DrawCall"><span class="toc-number">1.2.1.5.</span> <span class="toc-text">减少 DrawCall</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GPU-%E4%BE%A7%E4%BC%98%E5%8C%96%E6%80%9D%E8%B7%AF"><span class="toc-number">1.2.2.</span> <span class="toc-text">GPU 侧优化思路</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8E%A7%E5%88%B6-OverDraw"><span class="toc-number">1.2.2.1.</span> <span class="toc-text">控制 OverDraw</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%99%8D%E4%BD%8E%E5%87%A0%E4%BD%95%E5%A4%8D%E6%9D%82%E5%BA%A6"><span class="toc-number">1.2.2.2.</span> <span class="toc-text">降低几何复杂度</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%87%8F%E5%B0%91%E7%89%87%E5%85%83%E7%9D%80%E8%89%B2%E5%BC%80%E9%94%80"><span class="toc-number">1.2.2.3.</span> <span class="toc-text">减少片元着色开销</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9B%BF%E4%BB%A3%E6%89%8B%E6%AE%B5"><span class="toc-number">1.2.2.4.</span> <span class="toc-text">替代手段</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9B%B4%E5%A4%9A%E7%B2%92%E5%AD%90%E7%B3%BB%E7%BB%9F%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88"><span class="toc-number">1.3.</span> <span class="toc-text">更多粒子系统优化方案</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/11/24/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL11%E2%80%94%E2%80%94%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/" title="UPL11——内存管理">UPL11——内存管理</a><time datetime="2025-11-24T08:07:56.000Z" title="发表于 2025-11-24 16:07:56">2025-11-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/11/24/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL10%E2%80%94%E2%80%94%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/UPL10-6%E2%80%94%E2%80%94AB%E5%8C%85%E5%92%8CResources%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/" title="UPL10-6——AB包和Resources资源优化">UPL10-6——AB包和Resources资源优化</a><time datetime="2025-11-24T07:46:31.000Z" title="发表于 2025-11-24 15:46:31">2025-11-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/11/24/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL10%E2%80%94%E2%80%94%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/UPL10-5%E2%80%94%E2%80%94%E6%9D%90%E8%B4%A8%E4%B8%8EShader%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/" title="UPL10-5——材质与Shader资源优化">UPL10-5——材质与Shader资源优化</a><time datetime="2025-11-24T07:09:51.000Z" title="发表于 2025-11-24 15:09:51">2025-11-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/11/24/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL10%E2%80%94%E2%80%94%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/UPL10-4%E2%80%94%E2%80%94%E7%BD%91%E6%A0%BC%E4%B8%8E%E5%8A%A8%E7%94%BB%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/" title="UPL10-4——网格与动画资源优化">UPL10-4——网格与动画资源优化</a><time datetime="2025-11-24T03:58:43.000Z" title="发表于 2025-11-24 11:58:43">2025-11-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/11/24/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL10%E2%80%94%E2%80%94%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/UPL10-3%E2%80%94%E2%80%94%E7%BA%B9%E7%90%86%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/" title="UPL10-3——纹理资源优化">UPL10-3——纹理资源优化</a><time datetime="2025-11-24T03:10:58.000Z" title="发表于 2025-11-24 11:10:58">2025-11-24</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2025 By 文KRIFE齐</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"><script>(async () => {
+  const showKatex = () => {
+    document.querySelectorAll('#article-container .katex').forEach(el => el.classList.add('katex-show'))
+  }
+
+  if (!window.katex_js_css) {
+    window.katex_js_css = true
+    await btf.getCSS('https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css')
+    if (false) {
+      await btf.getScript('https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js')
+    }
+  }
+
+  showKatex()
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>

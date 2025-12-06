@@ -1,0 +1,566 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>UPL7-1——Physics Debugger | 文KRIFE齐的博客</title><meta name="author" content="文KRIFE齐"><meta name="copyright" content="文KRIFE齐"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="UPL7-1——Physics Debugger Physics Debugger Physics Debugger 是 Unity 提供的一个 物理系统可视化调试工具 它不会改变场景中的物理行为，而是通过图形化的方式把：  碰撞体（Collider） 刚体（Rigidbody） 触发器（Trigger） 关节（Joint） 接触点（Contact） 射线检测（Raycast） 范围检测（Over">
+<meta property="og:type" content="article">
+<meta property="og:title" content="UPL7-1——Physics Debugger">
+<meta property="og:url" content="https://enjoysevenliu.github.io/2025/09/26/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL7%E2%80%94%E2%80%94%E7%89%A9%E7%90%86%E5%BC%95%E6%93%8E%E7%9B%B8%E5%85%B3/UPL7-1%E2%80%94%E2%80%94Physics%20Debugger/index.html">
+<meta property="og:site_name" content="文KRIFE齐的博客">
+<meta property="og:description" content="UPL7-1——Physics Debugger Physics Debugger Physics Debugger 是 Unity 提供的一个 物理系统可视化调试工具 它不会改变场景中的物理行为，而是通过图形化的方式把：  碰撞体（Collider） 刚体（Rigidbody） 触发器（Trigger） 关节（Joint） 接触点（Contact） 射线检测（Raycast） 范围检测（Over">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://enjoysevenliu.github.io/img/Blue_Ice.png">
+<meta property="article:published_time" content="2025-09-26T06:01:43.000Z">
+<meta property="article:modified_time" content="2025-12-06T16:02:04.573Z">
+<meta property="article:author" content="文KRIFE齐">
+<meta property="article:tag" content="blog">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://enjoysevenliu.github.io/img/Blue_Ice.png"><link rel="shortcut icon" href="/img/Blue_Ice.png"><link rel="canonical" href="https://enjoysevenliu.github.io/2025/09/26/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL7%E2%80%94%E2%80%94%E7%89%A9%E7%90%86%E5%BC%95%E6%93%8E%E7%9B%B8%E5%85%B3/UPL7-1%E2%80%94%E2%80%94Physics%20Debugger/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'UPL7-1——Physics Debugger',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  isShuoshuo: false
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/Blue_Ice.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1168</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">141</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/img/Blue_Ice.png" alt="Logo"><span class="site-name">文KRIFE齐的博客</span></a><a class="nav-page-title" href="/"><span class="site-name">UPL7-1——Physics Debugger</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">UPL7-1——Physics Debugger</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-09-26T06:01:43.000Z" title="发表于 2025-09-26 14:01:43">2025-09-26</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-12-06T16:02:04.573Z" title="更新于 2025-12-07 00:02:04">2025-12-07</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Unity就业路线学习笔记</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/">UP——Unity性能优化笔记</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL7%E2%80%94%E2%80%94%E7%89%A9%E7%90%86%E5%BC%95%E6%93%8E%E7%9B%B8%E5%85%B3/">UPL7——物理引擎相关</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1>UPL7-1——Physics Debugger</h1>
+<h1>Physics Debugger</h1>
+<p>Physics Debugger 是 Unity 提供的一个 物理系统可视化调试工具<br>
+它不会改变场景中的物理行为，而是通过图形化的方式把：</p>
+<ul>
+<li>碰撞体（Collider）</li>
+<li>刚体（Rigidbody）</li>
+<li>触发器（Trigger）</li>
+<li>关节（Joint）</li>
+<li>接触点（Contact）</li>
+<li>射线检测（Raycast）</li>
+<li>范围检测（Overlap）</li>
+</ul>
+<p>等信息直观显示在 Scene 视图里</p>
+<p>帮助开发者快速定位物理相关的问题，它严格来说并不是性能检测工具，而是用于定位物理碰撞表现问题的，比如：</p>
+<ul>
+<li>定位为什么碰撞没有触发</li>
+<li>为什么子弹打不中敌人</li>
+<li>关节为什么拉扯异常</li>
+</ul>
+<p>等等问题的</p>
+<p>点击工具栏 ——&gt; Window ——&gt; Analysis ——&gt; Physics Debugger 即可打开相应窗口：</p>
+<p><img src="/assets/image-20250926140922-72fyloa.png" alt="image"></p>
+<h2 id="初始-Physics-Debug-窗口">初始 Physics Debug 窗口</h2>
+<p><img src="/assets/image-20250926141100-88wgdgi.png" alt="image"></p>
+<p>物理调试窗口中，主要由五部分组成：</p>
+<ol>
+<li>
+<p>Info（信息）</p>
+<p>显示被选中物理对象（通常是 <code>Rigidbody</code>）的运行时物理属性<br>
+用途：检查某个物体在运行时的物理状态是否正常，比如为什么这个刚体不动、为什么它抖动等等</p>
+<p><img src="/assets/image-20250926141322-124ofhx.png" alt="image"></p>
+</li>
+<li>
+<p>Filtering（过滤）</p>
+<p>控制哪些物理对象会在 Scene 视图中显示<br>
+用途：当场景里物体太多时，只显示与调试相关的碰撞体/刚体，避免视图杂乱</p>
+<p><img src="/assets/image-20250926141203-yg33wq5.png" alt="image"></p>
+</li>
+<li>
+<p>Rendering（渲染）</p>
+<p>调整物理调试可视化的显示方式<br>
+用途：让调试显示更清晰。例如在复杂场景中，给不同对象分配不同颜色</p>
+<p><img src="/assets/image-20250926141218-p8spsy1.png" alt="image"></p>
+</li>
+<li>
+<p>Contacts（联系方式）</p>
+<p>显示物体之间的物理接触信息<br>
+用途：调试 碰撞为什么没有触发、为什么会穿模、为什么弹力怪异，能看到碰撞点在哪里、法线指向哪里</p>
+<p><img src="/assets/image-20250926141237-bl4xvyt.png" alt="image"></p>
+</li>
+<li>
+<p>Queries（查询）</p>
+<p>可视化物理查询操作<br>
+用途：调试射线、范围检测逻辑是否正常，比如子弹打不中敌人，是因为 <code>Raycast</code> 没命中还是方向错了的问题</p>
+<p><img src="/assets/image-20250926141255-bk35wh2.png" alt="image"></p>
+</li>
+</ol>
+<p>调整了上边页签的数值后，点击右侧的 Reset 即可重置参数</p>
+<p>打开 Physics Debugger 后，Scene 中会出现 Physics Debug 的小窗口，它是 Scene 窗口里 Physics Debugger 的浮动工具栏<br>
+它提供了几个快速开关，主要用于控制物理调试可视化的显示内容</p>
+<p><img src="/assets/image-20250926141435-82wm4s8.png" alt="image"></p>
+<ol>
+<li>
+<p>Collision Geometry（碰撞几何体）</p>
+<p>作用：是否在 Scene 视图中绘制 碰撞几何体（Collider） 的可视化，勾选时会显示 各种碰撞器 的线框和形状轮廓<br>
+主要用于检查物体的 物理碰撞体和视觉模型是否对齐，排查看起来模型碰到了，但物理没碰到的问题</p>
+<p><img src="/assets/image-20250926142212-4mtzng7.png" alt="image"></p>
+</li>
+<li>
+<p>Mouse Select（鼠标选择）</p>
+<p>作用：勾选后，你用鼠标点击某个物体时，会在 Scene 视图里给出 颜色高亮，方便我们通过鼠标选择更直观的观察对象</p>
+<p><img src="/assets/image-20250926142240-ewrqri6.png" alt="image"></p>
+</li>
+</ol>
+<h2 id="Info（信息）页签">Info（信息）页签</h2>
+<p>显示被选中物理对象（通常是 <code>Rigidbody</code>）的运行时物理属性<br>
+用途：检查某个物体在运行时的物理状态是否正常，比如为什么这个刚体不动、为什么它抖动等等</p>
+<p>当你未选择任何对象时会显示：</p>
+<p><img src="/assets/image-20250926141322-124ofhx.png" alt="image"></p>
+<blockquote>
+<p>当没有选择任何对象时会提示： 选择一个带有 <code>Rigidbody</code>​（刚体）或 <code>ArticulationBody</code>​（关节体）组件的 <code>GameObject</code>，以显示它的相关信息</p>
+</blockquote>
+<p><img src="/assets/image-20250926142748-4r2e83j.png" alt="image"></p>
+<ul>
+<li>
+<p>Number of items per row（每行项目数）： 设置调试信息在窗口中每行显示几个对象</p>
+</li>
+<li>
+<p>Tracked objects（追踪对象）： 当前正在跟踪的物体数量</p>
+<p>点击 Clear locked objects 会将 Info 页签内当前锁定显示的对象清空</p>
+</li>
+<li>
+<p>GameObject（游戏对象）： 被跟踪的具体对象，会显示对象名</p>
+</li>
+<li>
+<p>Draw Gizmos for（绘制工具）： 决定在场景里为该对象绘制哪类辅助图形</p>
+<p><img src="/assets/image-20250926143017-hnlj39p.png" alt="image"></p>
+<ul>
+<li>
+<p>None： 不绘制额外辅助图形，只显示普通的物理可视化</p>
+</li>
+<li>
+<p>Center Of Mass（质心）： 会在 Scene 视图中绘制一个小标记（通常是球或者十字），表示刚体的 质心位置</p>
+<p>质心不一定在几何中心，比如带有偏移 Collider 的物体，它的质心就可能偏移<br>
+用于调试物体的旋转行为。刚体绕质心旋转，如果质心位置偏移不对，可能导致旋转怪异</p>
+<p><img src="/assets/image-20250926143120-rcvfdd1.png" alt="image"></p>
+</li>
+<li>
+<p>Inertia Tensor（惯性张量）： 会绘制一个类似“椭球”或三根轴线的图形，表示刚体的 惯性张量方向和大小</p>
+<p>惯性张量描述了物体对不同方向旋转的“抗拒程度”<br>
+用于调试物体旋转时的动力学。如果你发现物体某个方向特别难旋转，可以用这个 Gizmo 检查惯性张量是不是和物体几何不匹配<br>
+长轴易转，短轴难转</p>
+<p><img src="/assets/image-20250926143412-qkj2vlx.png" alt="image"></p>
+</li>
+</ul>
+</li>
+<li>
+<p>速度相关（Speed）</p>
+<ul>
+<li>Speed（速度）： 物体的瞬时速度大小，单位为 m/s</li>
+<li>Velocity (X/Y/Z)（速度）： 物体在世界坐标下的方向速度向量</li>
+<li>Angular Velocity (X/Y/Z)（角速度）： 物体绕个轴的角速度向量，单位是 rad/s</li>
+</ul>
+</li>
+<li>
+<p>惯性张量相关（Inertia Tensor 衡量扭动物体有多难）</p>
+<ul>
+<li>Inertia Tensor (X/Y/Z)（惯性张量）： 刚体在本地坐标系下的惯性张量分量，用来描述物体对旋转加速度的阻抗（系统对外部作用的反抗程度）。</li>
+<li>Inertia Tensor Rotation (X/Y/Z)（惯性张量旋转）： 惯性张量的旋转方向，用四元数或欧拉角表示，定义了惯性张量相对刚体本地坐标的旋转。</li>
+</ul>
+</li>
+<li>
+<p>质心相关（Mass）</p>
+<ul>
+<li>Local Center of Mass (X/Y/Z)（局部质心）： 刚体在自身局部坐标系下的质心位置。</li>
+<li>World Center of Mass (X/Y/Z)（世界质心）： 刚体在世界坐标系下的质心位置。</li>
+</ul>
+</li>
+<li>
+<p>休眠状态和阈值（Sleep）</p>
+<ul>
+<li>
+<p>Sleep State（休眠状态）： 刚体当前是否处于睡眠状态</p>
+<ul>
+<li>Asleep = 静止且不参与物理模拟</li>
+<li>Awake = 活跃</li>
+</ul>
+</li>
+<li>
+<p>Sleep Threshold（休眠阈值）： 当物体速度低于该阈值时，会进入睡眠状态</p>
+</li>
+</ul>
+</li>
+<li>
+<p>限制参数</p>
+<ul>
+<li>Max Linear Velocity：最大线性速度上限，超过会被截断，防止数值过大导致模拟不稳定。</li>
+<li>Max Angular Velocity： 最大角速度上限</li>
+</ul>
+</li>
+<li>
+<p>求解器参数（Solver）</p>
+<ul>
+<li>Solver Iterations（求解器迭代）： 物理解算迭代次数（用于处理碰撞和约束）。 数值越大精度越高，但性能开销更大。</li>
+<li>Solver Velocity Iteration（求解器速度迭代）： 解算速度相关的迭代次数（影响摩擦、反弹等效果的精度）。</li>
+</ul>
+</li>
+</ul>
+<p>调试建议：</p>
+<ol>
+<li>
+<p>确定物体为啥不动</p>
+<p>主要看 Velocity（速度）、Sleep State（休眠状态）</p>
+</li>
+<li>
+<p>排查旋转异常</p>
+<p>主要看 Angular Velocity（角速度）、Inertia Tensor （惯性张量）</p>
+</li>
+<li>
+<p>排查穿透或弹力怪异</p>
+<p>主要看 Solver Iterations（求解器迭代）和下文的 Contacts（联系页签） 等等</p>
+</li>
+</ol>
+<h2 id="Filtering（过滤）页签">Filtering（过滤）页签</h2>
+<p>控制哪些物理对象会在 Scene 视图中显示<br>
+用途：当场景里物体太多时，只显示与调试相关的碰撞体/刚体，避免视图杂乱</p>
+<p><img src="/assets/image-20250926144456-732z6mk.png" alt="image"></p>
+<ul>
+<li>
+<p>Show Physics Scene（显示物理场景）： 选择要调试的 物理场景</p>
+<p>Unity 支持多物理场景（比如多线程模拟、子场景），这里可以切换</p>
+</li>
+<li>
+<p>Show Unity Scene（显示Unity场景）： 选择对应的 Unity 场景（Scene）</p>
+<p>通常一个物理场景对应一个 Unity 场景</p>
+</li>
+<li>
+<p>Show Layers（显示层级）： 根据 Layer 来过滤，只显示特定 Layer 的物理对象</p>
+<p>例如只显示 Player、Enemy</p>
+</li>
+<li>
+<p>按物体类别过滤</p>
+<ul>
+<li>
+<p>Show Static Colliders（显示静态碰撞器）： 显示静态碰撞体</p>
+<p>即显示无 <code>Rigidbody</code>​ 的 <code>Collider</code>，常见于地形、建筑</p>
+</li>
+<li>
+<p>Show Triggers（显示触发器）： 显示触发器 <code>Collider</code></p>
+<p>显示 <code>isTrigger = true</code> 的碰撞体</p>
+</li>
+<li>
+<p>Show Rigidbodies（显示刚体）： 显示所有刚体</p>
+<p>显示带 <code>Rigidbody</code> 的物体</p>
+</li>
+<li>
+<p>Show Kinematic Bodies（显示运动学刚体）： 显示运动学刚体</p>
+<p>显示 <code>isKinematic = true</code>​ 的 <code>Rigidbody</code>，<br>
+它们不会受物理模拟影响，但能驱动物理</p>
+</li>
+<li>
+<p>Show Articulation Bodies（显示关节体）： 显示 <code>ArticulationBody</code> 组件</p>
+<p>​<code>ArticulationBody</code> 主要用于机器人/机械臂模拟</p>
+</li>
+<li>
+<p>Show Sleeping Bodies（显示休眠的刚体）： 显示 睡眠中的刚体</p>
+<p>​<code>Rigidbody</code> 处于 Sleep 状态，不再参与模拟</p>
+</li>
+</ul>
+</li>
+<li>
+<p>按碰撞体类型过滤（Collider Types）</p>
+<ul>
+<li>Show BoxColliders（显示盒装碰撞器）</li>
+<li>Show SphereColliders（显示球状碰撞器）</li>
+<li>Show CapsuleColliders（显示胶囊碰撞器）</li>
+<li>Show MeshColliders (convex)（显示凸型的网格碰撞器）</li>
+<li>Show MeshColliders (concave)（显示凹型的网格碰撞器，只能用于静态物体）</li>
+<li>Show TerrainColliders（显示地形碰撞体）</li>
+</ul>
+</li>
+<li>
+<p>Show None（一键取消选中所有，隐藏所有物理对象）</p>
+</li>
+<li>
+<p>Show All（一键显示所有物理对象）</p>
+</li>
+</ul>
+<p>调试建议： 这个界面就是一个 物理可视化过滤器，让我们在复杂场景里筛选出想调试的部分</p>
+<h2 id="Rendering（渲染）页签">Rendering（渲染）页签</h2>
+<p>调整物理调试可视化的显示方式<br>
+用途：让调试显示更清晰。例如在复杂场景中，给不同对象分配不同颜色</p>
+<p><img src="/assets/image-20250926141218-p8spsy1.png" alt="image"></p>
+<ul>
+<li>
+<p>颜色设置相关</p>
+<ul>
+<li>
+<p>Static Colliders（静态碰撞器）： 设置今天碰撞体显示颜色，即无刚体的碰撞器</p>
+</li>
+<li>
+<p>Triggers： 设置触发器碰撞体（<code>isTrigger = true</code>）显示颜色</p>
+</li>
+<li>
+<p>Rigidbodies： 设置普通刚体显示颜色</p>
+</li>
+<li>
+<p>Kinematic Bodies： 设置运动学刚体显示颜色</p>
+<p>显示 <code>isKinematic = true</code>​ 的 <code>Rigidbody</code>，<br>
+它们不会受物理模拟影响，但能驱动物理</p>
+</li>
+<li>
+<p>Articulation Bodies： 设置关节刚体 <code>ArticulationBody</code> 显示颜色</p>
+<p>​<code>ArticulationBody</code> 主要用于机器人/机械臂模拟</p>
+</li>
+<li>
+<p>Sleeping Bodies： 设置处于 Sleep 状态的刚体的显示颜色</p>
+</li>
+</ul>
+</li>
+<li>
+<p>渲染参数</p>
+<ul>
+<li>
+<p>Variation（变化）：给不同物体随机加点颜色偏移，数值越大，颜色差异越明显</p>
+<p>避免一堆同类物体颜色完全一样</p>
+</li>
+<li>
+<p>Transparency（透明度）： 控制物体调试显示的透明度</p>
+<p>0 = 全不透明，1 = 全透明，一般调中间值方便观察叠加物体</p>
+</li>
+<li>
+<p>Force Overdraw（强制叠加绘制）： 如果勾选，会强制所有物体在 Scene 视图里渲染出来，即使有被遮挡。 类似“透视模式”，避免某些物体被挡住看不到。</p>
+</li>
+<li>
+<p>View Distance（视距）： 可视化的最大显示距离</p>
+<p>超过这个距离的物体不会绘制 Gizmo，可以减少 Scene 杂乱和性能开销</p>
+</li>
+<li>
+<p>Terrain Tiles Max（地形瓦片绘制最大值）： 针对 Terrain Collider 的优化，限制一次最多绘制多少个地形瓦片</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Gizmos settings（绘制小工具设置）</p>
+<p>主要影响 Info 页签设置的 Draw Gizmos for 绘制的内容</p>
+<ul>
+<li>Constant screen size（Constant screen size）： 如果勾选，物体 Gizmo（如质心点、碰撞体线框）会在 Scene 视图里保持固定屏幕大小，而不是随镜头远近缩放。 常用于调试小物体时避免 Gizmo 太小看不清</li>
+<li>Inertia Tensor scale（惯性张量比例）： 控制显示的惯性张量 Gizmo 的缩放 例如把它调大，更容易看清楚刚体的主惯性轴方向</li>
+</ul>
+</li>
+</ul>
+<p>调试建议： 这个界面就是一个 调试工具颜色设置界面，可以让我们自定义颜色、细节显示，方便我们更清楚直观的观察物理系统对象的变化</p>
+<h2 id="Contacts（联系方式）页签">Contacts（联系方式）页签</h2>
+<p>显示物体之间的物理接触信息<br>
+用途：调试 碰撞为什么没有触发、为什么会穿模、为什么弹力怪异，能看到碰撞点在哪里、法线指向哪里</p>
+<p><img src="/assets/image-20250926150458-01bg5av.png" alt="image"></p>
+<p><img src="/assets/image-20250926141237-bl4xvyt.png" alt="image"></p>
+<ul>
+<li>
+<p>接触点显示信息相关</p>
+<ul>
+<li>
+<p>Show Contacts（显示接触信息）： 总开关</p>
+<p>是否在 Scene 里显示物体的接触点，开启后，才可以详细设置下方的勾选项</p>
+</li>
+<li>
+<p>Show All Contacts（显示所有接触信息）： 勾选后，会显示所有接触点（有时两个物体接触可能有多个接触点，比如箱子放在地面上）</p>
+<p><img src="/assets/image-20250926150654-8861jdg.png" alt="image"></p>
+</li>
+<li>
+<p>Show Impulse（显示接触点冲量）： 显示物理引擎在这个点施加了多大的反作用力 可用来调试反弹力度、碰撞是否过强/过弱</p>
+<p><img src="/assets/image-20250926150718-uf3thdm.png" alt="image"></p>
+</li>
+<li>
+<p>Show Separation（显示接触点分离向量）： 显示物体相互“推开”的方向和距离。 可用来调试物体是否正确分离，避免穿透</p>
+</li>
+<li>
+<p>Use Filtering settings（使用过滤设置）： 如果勾选，就会应用 Filtering 页签里的过滤条件（比如只显示某个 Layer 的接触点） 不勾选的话，就显示所有接触点</p>
+</li>
+</ul>
+</li>
+<li>
+<p>接触点颜色设置</p>
+<ul>
+<li>Use varied colors（使用多种颜色）： 是否使用随机颜色来区分不同接触点，避免所有接触点看起来一样</li>
+<li>Contact color（普通接触点的颜色设置）</li>
+<li>Contact separation color（接触点分离向量颜色设置）</li>
+<li>Contact impulse color（碰撞冲量颜色设置）</li>
+</ul>
+</li>
+</ul>
+<p>调试建议：接触页签主要是让我们在Scene窗口中可以清楚的看到：</p>
+<ol>
+<li>物体之间到底哪些点发生了接触</li>
+<li>接触点的碰撞强度</li>
+<li>接触点的分离方向和距离</li>
+<li>用不同颜色区分不同类型的信息</li>
+</ol>
+<p>等等</p>
+<h2 id="Queries（查询）页签">Queries（查询）页签</h2>
+<p>可视化物理查询操作<br>
+用途：调试射线、范围检测逻辑是否正常，比如子弹打不中敌人，是因为 <code>Raycast</code> 没命中还是方向错了的问题</p>
+<p><img src="/assets/image-20250926141255-bk35wh2.png" alt="image"></p>
+<ul>
+<li>
+<p>Show queries（显示物理查询信息）： 总开关</p>
+<p>勾选后，Unity 会把你运行时的物理查询（Raycast、Overlap 等）绘制到 Scene 视图里</p>
+</li>
+<li>
+<p>Query color（查询颜色）： 用来绘制查询的 调试图形 的颜色 比如射线 Raycast 的线段、SphereOverlap 的球体边框，会用这里的颜色显示</p>
+</li>
+<li>
+<p>Show shapes 显示形状设置</p>
+<ul>
+<li>Sphere 显示球体查询（范围检测）</li>
+<li>Box 显示盒装查询（范围检测）</li>
+<li>Capsule 显示胶囊体查询（范围检测）</li>
+<li>Ray 显示射线检测</li>
+</ul>
+</li>
+<li>
+<p>Show types 显示类型设置</p>
+<ul>
+<li>Overlay 会显示 Overlay 类型的查询 比如 <code>Physics.OverlapSphere</code></li>
+<li>Check 会显示 Check 类型的查询（返回 <code>bool</code>​ 值，判断是否有物体与形状相交） 比如 <code>Physics.CheckBox</code> 函数</li>
+<li>Cast 会显示 Cast 类型的查询 比如 <code>Physics.Raycast</code> 函数</li>
+</ul>
+</li>
+<li>
+<p>Max Queries： 最多显示多少条查询结果</p>
+</li>
+<li>
+<p>Show None/All： 一键隐藏/显示 所有</p>
+</li>
+</ul>
+<p>调试建议： Queries 页签 主要用于 调试物理检测逻辑</p>
+<ol>
+<li>你可以直观看到 射线、球体、盒子、胶囊体检测的范围和方向 排查是否是方法调用存在问题</li>
+<li>判断为什么子弹没打中敌人、为什么 Overlap 检测不到碰撞体</li>
+<li>控制显示数量，避免画面过载 等等</li>
+</ol>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://enjoysevenliu.github.io">文KRIFE齐</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://enjoysevenliu.github.io/2025/09/26/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL7%E2%80%94%E2%80%94%E7%89%A9%E7%90%86%E5%BC%95%E6%93%8E%E7%9B%B8%E5%85%B3/UPL7-1%E2%80%94%E2%80%94Physics%20Debugger/">https://enjoysevenliu.github.io/2025/09/26/Unity就业路线学习笔记/UP——Unity性能优化笔记/UPL7——物理引擎相关/UPL7-1——Physics Debugger/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://enjoysevenliu.github.io" target="_blank">文KRIFE齐的博客</a>！</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/img/Blue_Ice.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2025/09/26/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL7%E2%80%94%E2%80%94%E7%89%A9%E7%90%86%E5%BC%95%E6%93%8E%E7%9B%B8%E5%85%B3/UPL7-2%E2%80%94%E2%80%94%E6%97%B6%E9%97%B4%E6%AD%A5%E9%95%BF%E5%92%8C%E6%9C%80%E5%A4%A7%E5%85%81%E8%AE%B8%E6%97%B6%E9%97%B4%E6%AD%A5%E9%95%BF/" title="UPL7-2——时间步长和最大允许时间步长"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">UPL7-2——时间步长和最大允许时间步长</div></div><div class="info-2"><div class="info-item-1">UPL7-2——时间步长和最大允许时间步长 Unity 物理系统中的更新机制 Unity 中的 3D 物理系统基于 Nvidia（英伟达）的 PhysX，2D 物理系统基于开源项目 Box2D Unity中 对他们进行了封装，我们不需要知道内部是如何执行的，只要调用 Unity 相关API，既可以让两个物理引擎解决方案以相同的方式运行 物理系统的执行机制中，最重要的就是 时间步长(Time Step) 的概念 时间步长在 Unity 中我们一般称为 固定更新时间步长，指的是 物理世界 更新的固定时间间隔 即每隔多长时间更新一次物理逻辑，在 Unity 中默认为每 20 ms(即 0.02 秒，50 Hz) 更新一次 我们可以在 Project Settings ——&gt; Time ——&gt; Fixed Timestep 中进行设置   注意： 物理逻辑是独立于帧率的，不以帧为准，而是严格以固定时间步长为准，一帧里可能执行 0 次、1 次、甚至多次物理循环 即...</div></div></div></a><a class="pagination-related" href="/2025/09/26/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL7%E2%80%94%E2%80%94%E7%89%A9%E7%90%86%E5%BC%95%E6%93%8E%E7%9B%B8%E5%85%B3/" title="UPL7——物理引擎相关"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">UPL7——物理引擎相关</div></div><div class="info-2"><div class="info-item-1">UPL7——物理引擎相关  物理相关性能分析详见：UPL2-9——Physics 模块、UPL2-10——Physics (2D) 模块    Physics Debugger（物理系统可视化调试工具，主要观察碰撞表现信息，而不是性能分析）   工作机制相关  时间步长和最大允许时间步长（物理世界的更新间隔时间相关） 碰撞层矩阵（控制基于层的物理碰撞，可以将两个不可能发生物理碰撞的层的物理碰撞勾选给取消掉） 物理系统基础设置（包括解算器，碰撞检测，模拟模式等设置相关，包含 2D 和 3D 物理相关的各个全局设置项）    碰撞器相关  碰撞体缩放，位置，质量（物理对象的缩放应保持 (1,1,1)，不能距离世界原点过于远，不能过轻或过重，会发生物理交互的质量比最好控制在 20:1 以下） 避免复杂碰撞体类型（简单碰撞体的性能消耗低于复杂碰撞体，当出现物理相关性能瓶颈时可以从简化碰撞体类型入手）    刚体相关   碰撞检测相关   ‍ </div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/Blue_Ice.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">文KRIFE齐</div><div class="author-info-description">Unity就业路线的笔记终于更新完了！新年快乐！</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1168</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">141</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/enjoySevenLIU"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/enjoySevenLIU" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">博客修好了，继续学习，CSharp进阶也迁移完毕了，接下来尽快把Unity Shader给啃完，年末给博客好好整修一下</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">UPL7-1——Physics Debugger</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">2.</span> <span class="toc-text">Physics Debugger</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9D%E5%A7%8B-Physics-Debug-%E7%AA%97%E5%8F%A3"><span class="toc-number">2.1.</span> <span class="toc-text">初始 Physics Debug 窗口</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Info%EF%BC%88%E4%BF%A1%E6%81%AF%EF%BC%89%E9%A1%B5%E7%AD%BE"><span class="toc-number">2.2.</span> <span class="toc-text">Info（信息）页签</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Filtering%EF%BC%88%E8%BF%87%E6%BB%A4%EF%BC%89%E9%A1%B5%E7%AD%BE"><span class="toc-number">2.3.</span> <span class="toc-text">Filtering（过滤）页签</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Rendering%EF%BC%88%E6%B8%B2%E6%9F%93%EF%BC%89%E9%A1%B5%E7%AD%BE"><span class="toc-number">2.4.</span> <span class="toc-text">Rendering（渲染）页签</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Contacts%EF%BC%88%E8%81%94%E7%B3%BB%E6%96%B9%E5%BC%8F%EF%BC%89%E9%A1%B5%E7%AD%BE"><span class="toc-number">2.5.</span> <span class="toc-text">Contacts（联系方式）页签</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Queries%EF%BC%88%E6%9F%A5%E8%AF%A2%EF%BC%89%E9%A1%B5%E7%AD%BE"><span class="toc-number">2.6.</span> <span class="toc-text">Queries（查询）页签</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/11/24/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL11%E2%80%94%E2%80%94%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/" title="UPL11——内存管理">UPL11——内存管理</a><time datetime="2025-11-24T08:07:56.000Z" title="发表于 2025-11-24 16:07:56">2025-11-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/11/24/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL10%E2%80%94%E2%80%94%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/UPL10-6%E2%80%94%E2%80%94AB%E5%8C%85%E5%92%8CResources%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/" title="UPL10-6——AB包和Resources资源优化">UPL10-6——AB包和Resources资源优化</a><time datetime="2025-11-24T07:46:31.000Z" title="发表于 2025-11-24 15:46:31">2025-11-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/11/24/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL10%E2%80%94%E2%80%94%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/UPL10-5%E2%80%94%E2%80%94%E6%9D%90%E8%B4%A8%E4%B8%8EShader%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/" title="UPL10-5——材质与Shader资源优化">UPL10-5——材质与Shader资源优化</a><time datetime="2025-11-24T07:09:51.000Z" title="发表于 2025-11-24 15:09:51">2025-11-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/11/24/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL10%E2%80%94%E2%80%94%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/UPL10-4%E2%80%94%E2%80%94%E7%BD%91%E6%A0%BC%E4%B8%8E%E5%8A%A8%E7%94%BB%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/" title="UPL10-4——网格与动画资源优化">UPL10-4——网格与动画资源优化</a><time datetime="2025-11-24T03:58:43.000Z" title="发表于 2025-11-24 11:58:43">2025-11-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/11/24/Unity%E5%B0%B1%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/UP%E2%80%94%E2%80%94Unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/UPL10%E2%80%94%E2%80%94%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/UPL10-3%E2%80%94%E2%80%94%E7%BA%B9%E7%90%86%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96/" title="UPL10-3——纹理资源优化">UPL10-3——纹理资源优化</a><time datetime="2025-11-24T03:10:58.000Z" title="发表于 2025-11-24 11:10:58">2025-11-24</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2025 By 文KRIFE齐</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"><script>(async () => {
+  const showKatex = () => {
+    document.querySelectorAll('#article-container .katex').forEach(el => el.classList.add('katex-show'))
+  }
+
+  if (!window.katex_js_css) {
+    window.katex_js_css = true
+    await btf.getCSS('https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css')
+    if (false) {
+      await btf.getScript('https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js')
+    }
+  }
+
+  showKatex()
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>
